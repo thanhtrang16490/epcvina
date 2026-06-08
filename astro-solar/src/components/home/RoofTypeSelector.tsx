@@ -75,7 +75,7 @@ export default function RoofTypeSelector({ selected, onSelect }: RoofTypeSelecto
 
               {/* Check mark */}
               {isSelected && (
-                <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check className="h-3 w-3 text-white" strokeWidth={3} />
                 </div>
               )}

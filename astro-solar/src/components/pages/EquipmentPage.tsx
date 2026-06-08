@@ -166,7 +166,7 @@ function SpecRow({ label, value, highlight }: { label: string; value: string; hi
   return (
     <div className="flex items-center justify-between px-4 py-3">
       <p className="text-sm text-gray-500">{label}</p>
-      <p className={`text-sm font-semibold ${highlight ? 'text-[#1a73e8]' : 'text-gray-900'}`}>{value}</p>
+      <p className={`text-sm font-semibold ${highlight ? 'text-[#F97316]' : 'text-gray-900'}`}>{value}</p>
     </div>
   );
 }
@@ -437,7 +437,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                 onClick={() => scrollToBrand(brand)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                   selectedBrand === brand
-                    ? 'bg-[#1a73e8] text-white'
+                    ? 'bg-[#F97316] text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -457,7 +457,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                 placeholder="Tìm kiếm thiết bị..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a73e8] focus:border-transparent"
+                className="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
               />
               {searchQuery && (
                 <button
@@ -472,7 +472,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
             {/* Filter Button */}
             <button
               onClick={() => setShowFilterDrawer(true)}
-              className="px-4 py-2 bg-[#1a73e8] text-white rounded-lg flex items-center gap-2 hover:bg-[#1557b0] transition-colors flex-shrink-0"
+              className="px-4 py-2 bg-[#F97316] text-white rounded-lg flex items-center gap-2 hover:bg-[#C2410C] transition-colors flex-shrink-0"
             >
               <SlidersHorizontal className="h-4 w-4" />
               <span className="text-sm font-medium hidden sm:inline">Bộ lọc</span>
@@ -538,7 +538,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                       <div className="flex items-center gap-2 mb-0.5">
                         <h3 className="font-semibold text-gray-900 truncate">{device.model}</h3>
                         {isSelected && (
-                          <span className="w-2 h-2 rounded-full bg-[#1a73e8] flex-shrink-0" />
+                          <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                         )}
                       </div>
                       <p className="text-sm text-gray-500">{device.unit}</p>
@@ -548,7 +548,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                     {device.price && (
                       <div className="text-right flex-shrink-0">
                         <p className="text-xs text-gray-500 mb-0.5">Đơn giá</p>
-                        <p className="text-base font-semibold text-[#1a73e8]">{formatCurrency(device.price)}</p>
+                        <p className="text-base font-semibold text-[#F97316]">{formatCurrency(device.price)}</p>
                       </div>
                     )}
 
@@ -613,7 +613,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                       ×{selectedDevice.quantity} {selectedDevice.unit}
                     </span>
                     {selectedDevice.price && (
-                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-[#1a73e8]/10 text-[#1a73e8]">
+                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-[#F97316]/10 text-[#F97316]">
                         {formatCurrency(selectedDevice.price)}/{selectedDevice.unit}
                       </span>
                     )}
@@ -712,17 +712,17 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                       onClick={() => setSortBy(option.value as typeof sortBy)}
                       className={`w-full flex items-center justify-between p-4 rounded-xl border transition-all ${
                         sortBy === option.value
-                          ? 'border-[#1a73e8] bg-blue-50'
+                          ? 'border-[#F97316] bg-orange-50'
                           : 'border-gray-200 hover:border-gray-300'
                       }`}
                     >
                       <span className={`text-sm font-medium ${
-                        sortBy === option.value ? 'text-[#1a73e8]' : 'text-gray-700'
+                        sortBy === option.value ? 'text-[#F97316]' : 'text-gray-700'
                       }`}>
                         {option.label}
                       </span>
                       {sortBy === option.value && (
-                        <div className="w-5 h-5 rounded-full bg-[#1a73e8] flex items-center justify-center">
+                        <div className="w-5 h-5 rounded-full bg-[#F97316] flex items-center justify-center">
                           <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
@@ -747,7 +747,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                   setSortBy('az');
                   setShowFilterDrawer(false);
                 }}
-                className="w-full py-3 px-4 bg-[#1a73e8] text-white rounded-xl font-semibold hover:bg-[#1557b0] transition-colors"
+                className="w-full py-3 px-4 bg-[#F97316] text-white rounded-xl font-semibold hover:bg-[#C2410C] transition-colors"
               >
                 Áp dụng bộ lọc
               </button>

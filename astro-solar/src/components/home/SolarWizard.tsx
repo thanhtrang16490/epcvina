@@ -96,7 +96,7 @@ function StepBadge({ number, active }: { number: number; active: boolean }) {
   return (
     <span
       className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-sm font-bold flex-shrink-0 transition-colors duration-300 ${
-        active ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-500'
+        active ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-500'
       }`}
     >
       {number}
@@ -188,7 +188,7 @@ function ProductCard({
       }`}
     >
       {isSelected && (
-        <span className="absolute top-2 right-2 w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
+        <span className="absolute top-2 right-2 w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
           <Check className="h-3 w-3 text-white" />
         </span>
       )}
@@ -245,7 +245,7 @@ function SummaryBar({
           key={tag.stepIndex}
           type="button"
           onClick={() => onRemove(tag.stepIndex)}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium hover:bg-blue-200 transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-sm font-medium hover:bg-orange-200 transition-colors"
         >
           {tag.label}
           <X className="h-3.5 w-3.5" />
@@ -845,7 +845,7 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
               }
               className={`py-2.5 px-2 rounded-xl border-2 font-semibold text-sm transition-all duration-200 hover:shadow-sm ${
                 wizard.power === p
-                  ? 'border-blue-600 bg-blue-600 text-white'
+                  ? 'border-orange-500 bg-orange-500 text-white'
                   : 'border-gray-200 bg-white text-gray-700 hover:border-blue-300'
               }`}
             >
@@ -1064,7 +1064,7 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
                 <div
                   className={`absolute top-3 right-3 w-5 h-5 rounded border-2 flex items-center justify-center flex-shrink-0 transition-all ${
                     isSelected
-                      ? 'bg-blue-600 border-blue-600'
+                      ? 'bg-orange-500 border-orange-500'
                       : 'bg-white border-gray-300'
                   }`}
                 >
@@ -1088,7 +1088,7 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
         <button
           type="button"
           onClick={handleConfirm}
-          className="w-full mt-2 py-4 rounded-2xl bg-blue-600 text-white font-semibold hover:bg-blue-700 active:bg-blue-800 transition-colors flex items-center justify-center gap-2 shadow-md"
+          className="w-full mt-2 py-4 rounded-2xl bg-orange-500 text-white font-semibold hover:bg-orange-600 active:bg-orange-700 transition-colors flex items-center justify-center gap-2 shadow-md"
         >
           <CheckCircle2 className="h-5 w-5" />
           <span>Xác nhận cấu hình</span>

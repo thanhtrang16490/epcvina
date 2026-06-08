@@ -784,7 +784,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                 onClick={() => scrollToGroup(value)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                   selectedGroup === value
-                    ? 'bg-[#1a73e8] text-white'
+                    ? 'bg-[#F97316] text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -803,7 +803,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                 placeholder="Tìm kiếm combo..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a73e8] focus:border-transparent"
+                className="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
               />
               {searchQuery && (
                 <button
@@ -818,7 +818,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
             {/* Filter Button */}
             <button
               onClick={() => setShowFilterDrawer(true)}
-              className="px-4 py-2 bg-[#1a73e8] text-white rounded-lg flex items-center gap-2 hover:bg-[#1557b0] transition-colors flex-shrink-0"
+              className="px-4 py-2 bg-[#F97316] text-white rounded-lg flex items-center gap-2 hover:bg-[#C2410C] transition-colors flex-shrink-0"
             >
               <SlidersHorizontal className="h-4 w-4" />
               <span className="text-sm font-medium hidden sm:inline">Bộ lọc</span>
@@ -887,7 +887,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                             <div className="flex items-center gap-2 mb-0.5">
                               <h3 className="font-semibold text-gray-900 truncate">{combo.name}</h3>
                               {isSelected && (
-                                <span className="w-2 h-2 rounded-full bg-[#1a73e8] flex-shrink-0" />
+                                <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                               )}
                             </div>
                             <p className="text-sm text-gray-500">
@@ -899,7 +899,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                           {/* Right: Price */}
                           <div className="text-right flex-shrink-0">
                             <p className="text-xs text-gray-500 mb-0.5">Tổng chi phí</p>
-                            <p className="text-base font-semibold text-[#1a73e8]">{formatCurrency(combo.price)}</p>
+                            <p className="text-base font-semibold text-[#F97316]">{formatCurrency(combo.price)}</p>
                           </div>
 
                           {/* Chevron */}
@@ -931,7 +931,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
           {loadingTemplates ? (
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
-                <div className="w-8 h-8 border-2 border-[#1a73e8] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+                <div className="w-8 h-8 border-2 border-[#F97316] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                 <p className="text-sm text-gray-500">Đang tải mẫu...</p>
               </div>
             </div>
@@ -952,7 +952,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                       <button
                         key={template.id}
                         onClick={() => handleSelectTemplate(template)}
-                        className="w-full text-left bg-white border border-gray-200 rounded-2xl p-4 hover:border-[#1a73e8] hover:shadow-lg transition-all"
+                        className="w-full text-left bg-white border border-gray-200 rounded-2xl p-4 hover:border-[#F97316] hover:shadow-lg transition-all"
                       >
                         {/* Header */}
                         <div className="flex items-start justify-between mb-3">
@@ -1037,7 +1037,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
             onClick={() => setShowLoginPrompt(false)}
           />
           <div className="fixed inset-x-6 top-1/2 -translate-y-1/2 z-50 bg-white rounded-3xl shadow-2xl p-6 flex flex-col items-center gap-4 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2 lg:w-[360px]">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#1a73e8] to-[#1557b0] flex items-center justify-center">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F97316] to-[#C2410C] flex items-center justify-center">
               <Sparkles className="h-7 w-7 text-white" />
             </div>
             <div className="text-center">
@@ -1046,7 +1046,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
             </div>
             <a
               href="/login"
-              className="w-full py-3 px-4 bg-[#1a73e8] text-white rounded-xl font-semibold text-center hover:bg-[#1557b0] transition-colors"
+              className="w-full py-3 px-4 bg-[#F97316] text-white rounded-xl font-semibold text-center hover:bg-[#C2410C] transition-colors"
             >
               Đăng nhập
             </a>
@@ -1121,7 +1121,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                     </div>
                     <div className="text-right flex-shrink-0">
                       <p className="text-xs text-gray-400">Tổng chi phí</p>
-                      <p className="text-lg font-bold text-[#1a73e8]">{(selectedCombo.price / 1000000).toLocaleString('vi-VN')} triệu</p>
+                      <p className="text-lg font-bold text-[#F97316]">{(selectedCombo.price / 1000000).toLocaleString('vi-VN')} triệu</p>
                     </div>
                   </div>
                   {/* Quick stats */}
@@ -1140,7 +1140,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                     </div>
                     <div className="w-px bg-gray-100 flex-shrink-0" />
                     <div className="text-center flex-shrink-0">
-                      <p className="text-base font-bold text-[#1a73e8]">{selectedCombo.paybackPeriod} <span className="text-xs font-normal text-gray-500">năm</span></p>
+                      <p className="text-base font-bold text-[#F97316]">{selectedCombo.paybackPeriod} <span className="text-xs font-normal text-gray-500">năm</span></p>
                       <p className="text-xs text-gray-400">Hoàn vốn</p>
                     </div>
                     <div className="w-px bg-gray-100 flex-shrink-0" />
@@ -1177,7 +1177,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                   })().map(({ label, value, unit, green, blue }) => (
                     <div key={label} className="p-3 bg-gray-50 rounded-xl">
                       <p className="text-xs text-gray-500 mb-1">{label}</p>
-                      <p className={`text-lg font-bold ${green ? 'text-green-600' : blue ? 'text-[#1a73e8]' : 'text-gray-900'}`}>
+                      <p className={`text-lg font-bold ${green ? 'text-green-600' : blue ? 'text-[#F97316]' : 'text-gray-900'}`}>
                         {value} {unit && <span className="text-sm font-normal text-gray-500">{unit}</span>}
                       </p>
                     </div>
@@ -1244,7 +1244,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                   {device.price ? (
                                     <p className="text-xs text-green-600 font-medium">{formatCurrency(device.price * device.quantity)}</p>
                                   ) : (
-                                    <p className="text-xs text-[#1a73e8]">Chi tiết</p>
+                                    <p className="text-xs text-[#F97316]">Chi tiết</p>
                                   )}
                                 </div>
                               </div>
@@ -1308,7 +1308,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                       {device.price ? (
                                         <p className="text-xs text-green-600 font-medium">{formatCurrency(device.price * device.quantity)}</p>
                                       ) : (
-                                        <p className="text-xs text-[#1a73e8]">Chi tiết</p>
+                                        <p className="text-xs text-[#F97316]">Chi tiết</p>
                                       )}
                                     </div>
                                     <ChevronRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
@@ -1348,7 +1348,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                   <ul className="space-y-2">
                     {selectedCombo.features.map((feature: string, index: number) => (
                       <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#1a73e8] mt-1.5 flex-shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#F97316] mt-1.5 flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -1426,7 +1426,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                             ×{modalDevice.quantity} {modalDevice.unit}
                           </span>
                           {modalDevice.price && (
-                            <span className="px-3 py-1 text-xs font-medium rounded-full bg-[#1a73e8]/10 text-[#1a73e8]">
+                            <span className="px-3 py-1 text-xs font-medium rounded-full bg-[#F97316]/10 text-[#F97316]">
                               {formatCurrency(modalDevice.price)}/{modalDevice.unit}
                             </span>
                           )}
@@ -1511,7 +1511,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
               {loadingDevices ? (
                 <div className="flex items-center justify-center py-12">
                   <div className="text-center">
-                    <div className="w-8 h-8 border-2 border-[#1a73e8] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+                    <div className="w-8 h-8 border-2 border-[#F97316] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                     <p className="text-sm text-gray-500">Đang tải thiết bị...</p>
                   </div>
                 </div>
@@ -1545,7 +1545,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                       }}
                       className={`w-full flex items-center gap-3 p-4 border rounded-xl transition-colors text-left ${
                         isCurrentDevice
-                          ? 'border-[#1a73e8] bg-blue-50'
+                          ? 'border-[#F97316] bg-orange-50'
                           : 'border-gray-200 hover:bg-gray-50 active:bg-gray-100'
                       }`}
                     >
@@ -1577,7 +1577,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                       
                       {/* Check icon or select indicator */}
                       {isCurrentDevice ? (
-                        <div className="w-6 h-6 rounded-full bg-[#1a73e8] flex items-center justify-center flex-shrink-0">
+                        <div className="w-6 h-6 rounded-full bg-[#F97316] flex items-center justify-center flex-shrink-0">
                           <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                           </svg>
@@ -1640,7 +1640,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
               </div>
               <div className="text-right">
                 <p className="text-xs text-gray-500">Tổng cộng</p>
-                <p className="text-lg font-bold text-[#1a73e8]">
+                <p className="text-lg font-bold text-[#F97316]">
                   {formatCurrency(mainProductsTotal + accessoriesTotal + additionalDevicesTotal)}
                 </p>
               </div>
@@ -1699,7 +1699,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                     fetchSlotProducts(selectedTemplate.slug, item.productType);
                                     setShowTemplateSlotPicker(true);
                                   }}
-                                  className="w-full flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-200 hover:border-[#1a73e8] transition-colors text-left"
+                                  className="w-full flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-200 hover:border-[#F97316] transition-colors text-left"
                                 >
                                   <div className={`w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 ${meta?.bg || 'bg-gray-100'} flex items-center justify-center ${meta?.color || 'text-gray-600'}`}>
                                     {product?.main_image || product?.image_url ? (
@@ -1746,7 +1746,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                       </span>
                                       <button
                                         onClick={() => handleSlotQuantityChange(item.id, 1)}
-                                        className="w-8 h-8 rounded-lg bg-[#1a73e8] flex items-center justify-center hover:bg-[#1557b0] transition-colors"
+                                        className="w-8 h-8 rounded-lg bg-[#F97316] flex items-center justify-center hover:bg-[#C2410C] transition-colors"
                                       >
                                         <Plus className="h-4 w-4 text-white" />
                                       </button>
@@ -1824,7 +1824,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                       setAddDeviceProducts([]);
                       setShowAddDevicePicker(true);
                     }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 bg-[#1a73e8] text-white text-sm font-medium rounded-lg hover:bg-[#1557b0] transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-[#F97316] text-white text-sm font-medium rounded-lg hover:bg-[#C2410C] transition-colors"
                   >
                     <Plus className="h-4 w-4" />
                     Thêm thiết bị
@@ -1886,7 +1886,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                   : item
                                 )
                               )}
-                              className="w-7 h-7 rounded-lg bg-[#1a73e8] flex items-center justify-center hover:bg-[#1557b0] transition-colors"
+                              className="w-7 h-7 rounded-lg bg-[#F97316] flex items-center justify-center hover:bg-[#C2410C] transition-colors"
                             >
                               <Plus className="h-3 w-3 text-white" />
                             </button>
@@ -1927,7 +1927,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                   )}
                   <div className="flex items-center justify-between py-3 border-t border-gray-200">
                     <span className="text-base font-semibold text-gray-900">Tổng cộng</span>
-                    <span className="text-xl font-bold text-[#1a73e8]">
+                    <span className="text-xl font-bold text-[#F97316]">
                       {formatCurrency(mainProductsTotal + accessoriesTotal + additionalDevicesTotal)}
                     </span>
                   </div>
@@ -1943,7 +1943,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                 className={`w-full py-3 px-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-colors ${
                   generatingCombo || Object.keys(itemOverrides).length === 0
                     ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                    : 'bg-[#1a73e8] text-white hover:bg-[#1557b0]'
+                    : 'bg-[#F97316] text-white hover:bg-[#C2410C]'
                 }`}
               >
                 {generatingCombo ? (
@@ -2007,7 +2007,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
               {loadingSlotProducts ? (
                 <div className="flex items-center justify-center py-12">
                   <div className="text-center">
-                    <div className="w-8 h-8 border-2 border-[#1a73e8] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+                    <div className="w-8 h-8 border-2 border-[#F97316] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                     <p className="text-sm text-gray-500">Đang tải sản phẩm...</p>
                   </div>
                 </div>
@@ -2023,7 +2023,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                         onClick={() => handleSelectSlotProduct(product)}
                         className={`w-full flex items-center gap-3 p-4 border rounded-xl transition-colors text-left ${
                           isSelected
-                            ? 'border-[#1a73e8] bg-blue-50'
+                            ? 'border-[#F97316] bg-orange-50'
                             : 'border-gray-200 hover:bg-gray-50 active:bg-gray-100'
                         }`}
                       >
@@ -2057,7 +2057,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                         
                         {/* Check icon */}
                         {isSelected ? (
-                          <div className="w-6 h-6 rounded-full bg-[#1a73e8] flex items-center justify-center flex-shrink-0">
+                          <div className="w-6 h-6 rounded-full bg-[#F97316] flex items-center justify-center flex-shrink-0">
                             <Check className="w-4 h-4 text-white" />
                           </div>
                         ) : (
@@ -2169,7 +2169,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                 loadingAddDeviceProducts ? (
                   <div className="flex items-center justify-center py-12">
                     <div className="text-center">
-                      <div className="w-8 h-8 border-2 border-[#1a73e8] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+                      <div className="w-8 h-8 border-2 border-[#F97316] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                       <p className="text-sm text-gray-500">Đang tải sản phẩm...</p>
                     </div>
                   </div>
@@ -2196,7 +2196,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                           }}
                           className={`w-full flex items-center gap-3 p-4 border rounded-xl transition-colors text-left ${
                             alreadyAdded
-                              ? 'border-[#1a73e8] bg-blue-50'
+                              ? 'border-[#F97316] bg-orange-50'
                               : 'border-gray-200 hover:bg-gray-50 active:bg-gray-100'
                           }`}
                         >
@@ -2228,7 +2228,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                           </div>
                           {/* Check icon */}
                           {alreadyAdded ? (
-                            <div className="w-6 h-6 rounded-full bg-[#1a73e8] flex items-center justify-center flex-shrink-0">
+                            <div className="w-6 h-6 rounded-full bg-[#F97316] flex items-center justify-center flex-shrink-0">
                               <Check className="w-4 h-4 text-white" />
                             </div>
                           ) : (
@@ -2322,7 +2322,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                   setSearchQuery('');
                   setShowFilterDrawer(false);
                 }}
-                className="w-full py-3 px-4 bg-[#1a73e8] text-white rounded-xl font-semibold hover:bg-[#1557b0] transition-colors"
+                className="w-full py-3 px-4 bg-[#F97316] text-white rounded-xl font-semibold hover:bg-[#C2410C] transition-colors"
               >
                 Đặt lại bộ lọc
               </button>
@@ -2338,7 +2338,7 @@ function SpecRow({ label, value, highlight }: { label: string; value: string; hi
   return (
     <div className="flex items-center justify-between px-4 py-3">
       <p className="text-sm text-gray-500">{label}</p>
-      <p className={`text-sm font-semibold ${highlight ? 'text-[#1a73e8]' : 'text-gray-900'}`}>{value}</p>
+      <p className={`text-sm font-semibold ${highlight ? 'text-[#F97316]' : 'text-gray-900'}`}>{value}</p>
     </div>
   );
 }

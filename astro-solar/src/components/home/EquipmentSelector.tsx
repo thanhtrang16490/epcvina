@@ -120,7 +120,7 @@ function ProductCard({
       {/* Selected indicator */}
       {isSelected && (
         <div className="mt-2 flex items-center gap-1 text-blue-600">
-          <div className="w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center">
+          <div className="w-4 h-4 rounded-full bg-orange-500 flex items-center justify-center">
             <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />
           </div>
           <span className="text-xs font-semibold">Đã chọn</span>

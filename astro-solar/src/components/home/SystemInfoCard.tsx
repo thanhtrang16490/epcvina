@@ -524,12 +524,12 @@ function DeviceSelectorModal({ category, currentDevice, onClose, onConfirm }: De
                     onClick={() => setSelectedProduct(product)}
                     className={`relative text-left rounded-xl border-2 p-3 cursor-pointer transition-all ${
                       isSelected
-                        ? 'border-blue-600 bg-blue-50'
-                        : 'border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50/30'
+                        ? 'border-orange-500 bg-orange-50'
+                        : 'border-gray-100 bg-white hover:border-orange-200 hover:bg-orange-50/30'
                     }`}
                   >
                     {isSelected && (
-                      <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center">
+                      <span className="absolute top-2 right-2 w-5 h-5 rounded-full bg-orange-500 flex items-center justify-center">
                         <Check className="h-3 w-3 text-white" />
                       </span>
                     )}
@@ -578,7 +578,7 @@ function DeviceSelectorModal({ category, currentDevice, onClose, onConfirm }: De
           <button
             onClick={handleConfirm}
             disabled={!selectedProduct}
-            className="w-full bg-blue-600 text-white rounded-xl py-3 font-semibold text-sm hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full bg-orange-500 text-white rounded-xl py-3 font-semibold text-sm hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             Xác nhận thay đổi
           </button>

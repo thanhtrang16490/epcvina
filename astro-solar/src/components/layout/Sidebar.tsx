@@ -139,11 +139,11 @@ function MenuGroup({
         onClick={onClose}
         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
           active
-            ? 'bg-[#e8f0fe] text-[#1a73e8]'
+            ? 'bg-[#FFF7ED] text-[#F97316]'
             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
         }`}
       >
-        <Icon className={`h-5 w-5 ${active ? 'text-[#1a73e8]' : 'text-gray-400'}`} />
+        <Icon className={`h-5 w-5 ${active ? 'text-[#F97316]' : 'text-gray-400'}`} />
         {item.name}
       </a>
     );
@@ -183,11 +183,11 @@ function MenuGroup({
                 onClick={onClose}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
                   active
-                    ? 'bg-[#e8f0fe] text-[#1a73e8] font-medium'
+                    ? 'bg-[#FFF7ED] text-[#F97316] font-medium'
                     : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                 }`}
               >
-                <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#1a73e8]' : 'bg-gray-300'}`} />
+                <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#F97316]' : 'bg-gray-300'}`} />
                 {child.name}
               </a>
             );
@@ -311,14 +311,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isExpanded
                       ? active
-                        ? 'bg-[#e8f0fe] text-[#1a73e8]'
+                        ? 'bg-[#FFF7ED] text-[#F97316]'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                       : 'justify-center'
-                  } ${!isExpanded && active ? 'bg-[#e8f0fe] text-[#1a73e8]' : ''}`}
+                  } ${!isExpanded && active ? 'bg-[#FFF7ED] text-[#F97316]' : ''}`}
                   title={!isExpanded ? item.name : undefined}
                 >
                   <Icon className={`h-5 w-5 flex-shrink-0 ${
-                    active ? 'text-[#1a73e8]' : isExpanded ? 'text-gray-400' : 'text-gray-400'
+                    active ? 'text-[#F97316]' : isExpanded ? 'text-gray-400' : 'text-gray-400'
                   }`} />
                   {isExpanded && <span>{item.name}</span>}
                 </a>
@@ -364,11 +364,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           onClick={onClose}
                           className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
                             active
-                              ? 'bg-[#e8f0fe] text-[#1a73e8] font-medium'
+                              ? 'bg-[#FFF7ED] text-[#F97316] font-medium'
                               : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                           }`}
                         >
-                          <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#1a73e8]' : 'bg-gray-300'}`} />
+                          <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#F97316]' : 'bg-gray-300'}`} />
                           {child.name}
                         </a>
                       );
