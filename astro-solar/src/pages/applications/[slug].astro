@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import ApplicationPage from '../../components/pages/ApplicationPage';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'nha-o' } },
+    { params: { slug: 'van-phong' } },
+    { params: { slug: 'nha-xuong' } },
+    { params: { slug: 'khach-san' } },
+    { params: { slug: 'nha-hang' } },
+  ];
+}
+
+const { slug } = Astro.params;
+---
+<DashboardLayout title="Ứng dụng - EPC Solar">
+  <ApplicationPage applicationType={slug as any} client:load />
+</DashboardLayout>

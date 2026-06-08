@@ -1,0 +1,15 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EquipmentPage from '../../components/pages/EquipmentPage';
+
+export const prerender = false;
+
+const { category } = Astro.params;
+---
+
+<DashboardLayout title={`Thiết bị - EPC Solar`}>
+  <DashboardShell client:load>
+    <EquipmentPage category={category!} client:load />
+  </DashboardShell>
+</DashboardLayout>

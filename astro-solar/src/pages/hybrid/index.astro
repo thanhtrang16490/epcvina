@@ -1,0 +1,11 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HybridListingPage from '../../components/combo/HybridListingPage';
+---
+
+<DashboardLayout title="Combo Hybrid - EPC Solar">
+  <DashboardShell client:load>
+    <HybridListingPage client:load />
+  </DashboardShell>
+</DashboardLayout>

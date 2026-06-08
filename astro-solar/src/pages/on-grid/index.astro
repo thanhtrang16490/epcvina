@@ -1,0 +1,11 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import OnGridListingPage from '../../components/combo/OnGridListingPage';
+---
+
+<DashboardLayout title="Combo On-Grid - EPC Solar">
+  <DashboardShell client:load>
+    <OnGridListingPage client:load />
+  </DashboardShell>
+</DashboardLayout>

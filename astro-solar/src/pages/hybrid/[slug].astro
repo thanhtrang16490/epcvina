@@ -1,0 +1,15 @@
+---
+export const prerender = false;
+
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HybridPage from '../../components/pages/HybridPage';
+
+const { slug } = Astro.params;
+---
+
+<DashboardLayout title={`${slug} - Combo Hybrid - EPC Solar`}>
+  <DashboardShell client:load>
+    <HybridPage comboSlug={slug} client:load />
+  </DashboardShell>
+</DashboardLayout>

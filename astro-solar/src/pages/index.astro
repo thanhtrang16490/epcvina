@@ -1,0 +1,11 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import SolarFullPage from '../components/home/SolarFullPage';
+---
+
+<DashboardLayout title="EPC Solar - Điện Mặt Trời Trọn Gói">
+  <DashboardShell client:load>
+    <SolarFullPage client:load />
+  </DashboardShell>
+</DashboardLayout>
