@@ -1,9 +1,80 @@
 ---
 interface Props {
   title?: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title = 'EPC Solar - Điện Mặt Trời Trọn Gói' } = Astro.props;
+const {
+  title = 'EPC Solar - Điện Mặt Trời Trọn Gói | Lắp Đặt Tại Hà Nội',
+  description = 'EPC Solar - Chuyên lắp đặt hệ thống điện mặt trời trọn gói cho hộ gia đình và doanh nghiệp. Giải pháp On-Grid & Hybrid tiết kiệm điện đến 90%. Hotline: 0988 446 113.',
+  keywords = 'điện mặt trời, lắp đặt điện mặt trời, solar panel, EPC Solar, điện mặt trời Hà Nội, hệ thống điện mặt trời, combo điện mặt trời, on-grid, hybrid',
+  ogImage = '/logo-epc-solar.png',
+  noindex = false,
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "EPC Solar - Công ty Cổ phần Xây lắp EPC Việt Nam",
+  "description": description,
+  "url": "https://epcvina.com",
+  "logo": "https://epcvina.com/logo-epc-solar.png",
+  "image": "https://epcvina.com/logo-epc-solar.png",
+  "telephone": "+84988446113",
+  "email": "epcvina@hotmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Phòng 315 - Khu TM Chung cư HVQP, Đường Nguyễn Văn Huyên Kéo Dài",
+    "addressLocality": "Tây Hồ",
+    "addressRegion": "Hà Nội",
+    "addressCountry": "VN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "21.0485",
+    "longitude": "105.7951"
+  },
+  "openingHours": "Mo-Sa 08:00-17:30",
+  "priceRange": "$$",
+  "sameAs": [
+    "https://www.facebook.com/epcvina"
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": "21.0285",
+      "longitude": "105.8542"
+    },
+    "geoRadius": "100000"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Hệ thống điện mặt trời",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Lắp đặt điện mặt trời On-Grid"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Lắp đặt điện mặt trời Hybrid"
+        }
+      }
+    ]
+  }
+};
 ---
 
 <!DOCTYPE html>
@@ -11,12 +82,44 @@ const { title = 'EPC Solar - Điện Mặt Trời Trọn Gói' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Hệ thống quản lý và tìm kiếm combo điện mặt trời phù hợp cho hộ gia đình và doanh nghiệp" />
+
+    <!-- SEO Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL.href} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:site_name" content="EPC Solar" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo-epc-solar.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
-    <title>{title}</title>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#f97316" />
+    <meta name="author" content="EPC Solar - Công ty CP Xây lắp EPC Việt Nam" />
   </head>
   <body class="min-h-full">
     <slot />
