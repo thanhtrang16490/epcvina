@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "description": "Solar24h - Astro Build",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "dependencies": {
     "@astrojs/node": "^10.1.3",
     "@astrojs/react": "^5.0.7",
