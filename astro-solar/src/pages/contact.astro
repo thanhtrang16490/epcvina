@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import ContactPage from '../components/pages/ContactPage';
 ---
 
@@ -8,5 +9,7 @@ import ContactPage from '../components/pages/ContactPage';
   description="Liên hệ EPC Solar để được tư vấn miễn phí về giải pháp điện mặt trời. Địa chỉ: Tây Hồ, Hà Nội. Hotline: 0988 446 113. Email: epcvina@hotmail.com."
   keywords="liên hệ EPC Solar, tư vấn điện mặt trời, lắp đặt solar Hà Nội, báo giá điện mặt trời"
 >
-  <ContactPage client:load />
+  <DashboardShell client:load>
+    <ContactPage client:load />
+  </DashboardShell>
 </DashboardLayout>

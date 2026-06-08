@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import ProjectsPage from '../components/pages/ProjectsPage';
 ---
 
@@ -8,5 +9,7 @@ import ProjectsPage from '../components/pages/ProjectsPage';
   description="Xem các dự án điện mặt trời đã thi công bởi EPC Solar. Hơn 500 công trình tại Hà Nội và các tỉnh phía Bắc. Chất lượng đảm bảo, khách hàng hài lòng."
   keywords="dự án điện mặt trời, thi công solar, công trình điện mặt trời Hà Nội, EPC Solar projects"
 >
-  <ProjectsPage client:load />
+  <DashboardShell client:load>
+    <ProjectsPage client:load />
+  </DashboardShell>
 </DashboardLayout>

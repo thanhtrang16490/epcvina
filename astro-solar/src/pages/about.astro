@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import AboutPage from '../components/pages/AboutPage';
 ---
 
@@ -8,5 +9,7 @@ import AboutPage from '../components/pages/AboutPage';
   description="Tìm hiểu về EPC Solar - Công ty Cổ phần Xây lắp EPC Việt Nam. Đội ngũ kỹ sư chuyên nghiệp, kinh nghiệm thi công hơn 500 dự án điện mặt trời trên toàn quốc."
   keywords="giới thiệu EPC Solar, công ty điện mặt trời Hà Nội, EPC Vina, xây lắp điện mặt trời"
 >
-  <AboutPage client:load />
+  <DashboardShell client:load>
+    <AboutPage client:load />
+  </DashboardShell>
 </DashboardLayout>
