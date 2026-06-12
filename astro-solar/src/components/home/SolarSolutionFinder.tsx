@@ -310,7 +310,7 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
         <motion.a
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
-          href="/contact"
+          href="/lien-he"
           className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
           style={{ background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' }}
         >

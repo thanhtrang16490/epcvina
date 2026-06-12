@@ -204,7 +204,7 @@ export default function EVChargerPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <a
-                href="/contact"
+                href="/lien-he"
                 className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
                 Liên hệ tư vấn lắp đặt trạm sạc V-GREEN
@@ -498,7 +498,7 @@ export default function EVChargerPage() {
                   ))}
                 </div>
                 <a
-                  href="/contact"
+                  href="/lien-he"
                   className="cursor-pointer mt-6 inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none text-base min-h-[44px]"
                 >
                   Tư vấn nhượng quyền trạm sạc
@@ -616,7 +616,7 @@ export default function EVChargerPage() {
                   Solar + BESS cho trạm sạc V-GREEN phù hợp nhất cho dự án của bạn.
                 </p>
                 <a
-                  href="/contact"
+                  href="/lien-he"
                   className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors duration-200 ease-in-out hover:shadow-xl focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                 >
                   Liên hệ tư vấn lắp đặt trạm sạc V-GREEN

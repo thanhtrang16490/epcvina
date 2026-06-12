@@ -9,7 +9,7 @@ const navItems = [
   { label: 'Solar C&I', href: '/solar-ci' },
   { label: 'Bảo trì O&M', href: '/bao-tri' },
   { label: 'Dự án', href: '/projects' },
-  { label: 'Liên hệ', href: '/contact' },
+  { label: 'Liên hệ', href: '/lien-he' },
 ];
 
 export default function HeaderBar() {

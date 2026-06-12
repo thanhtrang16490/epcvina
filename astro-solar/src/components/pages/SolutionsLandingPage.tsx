@@ -214,7 +214,7 @@ export default function SolutionsLandingPage() {
               tối ưu cho bạn.
             </p>
             <a
-              href="/contact"
+              href="/lien-he"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-semibold px-8 py-3.5 rounded-xl cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 shadow-lg shadow-emerald-500/20"
             >
               Nhận tư vấn miễn phí

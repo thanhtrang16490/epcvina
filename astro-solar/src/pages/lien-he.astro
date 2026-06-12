@@ -1,0 +1,15 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import ContactPage from '../components/pages/ContactPage';
+---
+
+<DashboardLayout
+  title="Liên Hệ Tư Vấn | EPC SOLAR"
+  description="Liên hệ EPC SOLAR để được tư vấn miễn phí về giải pháp điện mặt trời cho gia đình và doanh nghiệp. Hotline: 0988 446 113"
+  keywords="liên hệ EPC Solar, tư vấn điện mặt trời, báo giá solar, lắp đặt điện mặt trời"
+>
+  <DashboardShell client:load>
+    <ContactPage client:load />
+  </DashboardShell>
+</DashboardLayout>

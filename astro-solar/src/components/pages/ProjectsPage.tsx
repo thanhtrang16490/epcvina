@@ -174,7 +174,7 @@ export default function ProjectsPage() {
           </p>
 
           <a
-            href="/contact"
+            href="/lien-he"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-gray-50 text-orange-700 font-semibold rounded-full cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 shadow-lg"
           >
             Liên hệ tư vấn
