@@ -8,13 +8,19 @@ import {
   XCircle,
   CheckCircle2,
 } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const NAVY = '#1a365d';
 const ORANGE = '#ea580c';
 
 export default function ComparisonSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <section className="bg-white">
+    <section
+      ref={sectionRef}
+      className={`bg-white ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none`}
+    >
       {/* ── Part 1: Visual hero cards — inherits hero background ── */}
       <div className="relative py-12 sm:py-16 overflow-hidden">
         {/* Same background image as HeroSection */}

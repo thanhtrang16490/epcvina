@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const NEEDS = [
   { value: 'solar', label: 'Solar Home' },
@@ -11,6 +12,7 @@ const NEEDS = [
 ];
 
 export default function CTASection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -35,7 +37,11 @@ export default function CTASection() {
   }
 
   return (
-    <section id="tu-van" className="py-14 sm:py-20 bg-gradient-to-br from-[#6B1A1F] via-[#8B2020] to-[#D0202A]">
+    <section
+      id="tu-van"
+      ref={sectionRef}
+      className={`py-14 sm:py-20 bg-gradient-to-br from-[#6B1A1F] via-[#8B2020] to-[#D0202A] ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:scale-100 motion-reduce:transition-none`}
+    >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">
@@ -148,7 +154,7 @@ export default function CTASection() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-[#D0202A] hover:bg-[#B01A22] disabled:opacity-60 text-white font-bold rounded-xl text-sm transition-colors duration-200 shadow-lg shadow-red-200 motion-reduce:transition-none"
+                className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-[#D0202A] hover:bg-[#B01A22] disabled:opacity-60 text-white font-bold rounded-xl text-sm transition-colors duration-200 shadow-lg shadow-red-200 glow-emerald motion-reduce:transition-none"
               >
                 {loading ? (
                   <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />

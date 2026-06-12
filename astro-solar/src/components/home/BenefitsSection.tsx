@@ -1,4 +1,5 @@
 import { Zap, ShieldCheck, Cpu, CloudRain, Wrench, Building2 } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import type { LucideIcon } from 'lucide-react';
 
 const benefits: { icon: LucideIcon; title: string; description: string }[] = [
@@ -35,8 +36,10 @@ const benefits: { icon: LucideIcon; title: string; description: string }[] = [
 ];
 
 export default function BenefitsSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
+
   return (
-    <section className="py-14 sm:py-20 bg-[#0F172A]">
+    <section ref={sectionRef} className="py-14 sm:py-20 bg-[#0F172A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-12">
@@ -58,13 +61,14 @@ export default function BenefitsSection() {
             return (
               <div
                 key={benefit.title}
-                className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-amber-400/30 transition-all duration-200 motion-reduce:transition-none"
+                className={`group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-amber-400/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-200 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+                style={{ transitionDelay: isVisible ? `${i * 100}ms` : '0ms' }}
               >
                 {/* Top accent bar */}
                 <div className="absolute top-0 left-6 right-6 h-0.5 rounded-full bg-gradient-to-r from-amber-400/0 via-amber-400/60 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-amber-400/10 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-amber-400/10 flex items-center justify-center group-hover:-translate-y-0.5 transition-transform duration-200 motion-reduce:transition-none">
                     <Icon className="h-5 w-5 text-amber-400" />
                   </div>
                   <div>

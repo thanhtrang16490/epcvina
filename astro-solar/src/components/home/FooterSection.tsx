@@ -77,6 +77,23 @@ export default function FooterSection() {
                 </svg>
               </a>
             </div>
+
+            {/* BCT Registration Badge */}
+            <div className="mt-5">
+              <a
+                href="http://online.gov.vn/Home/WebDetails/110771"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Xác nhận đăng ký Bộ Công Thương"
+              >
+                <img
+                  src="/logo-da-thong-bao-bo-cong-thuong.webp"
+                  alt="Đã thông báo Bộ Công Thương"
+                  className="h-10 w-auto"
+                  loading="lazy"
+                />
+              </a>
+            </div>
           </div>
 
           {/* Products */}

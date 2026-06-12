@@ -1,4 +1,5 @@
 import { MapPin, Zap, ArrowRight } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const projects = [
   {
@@ -41,8 +42,10 @@ const projects = [
 ];
 
 export default function ProjectsPreviewSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
+
   return (
-    <section className="py-14 sm:py-20 bg-white">
+    <section ref={sectionRef} className="py-14 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
@@ -68,10 +71,11 @@ export default function ProjectsPreviewSection() {
 
         {/* Project grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {projects.map((p) => (
+          {projects.map((p, i) => (
             <div
               key={p.title}
-              className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+              className={`group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+              style={{ transitionDelay: isVisible ? `${i * 100}ms` : '0ms' }}
             >
               {/* Image placeholder — replace bg-gradient with actual <img> when photos available */}
               <div className={`bg-gradient-to-br ${p.bg} h-48 w-full flex items-end`}>

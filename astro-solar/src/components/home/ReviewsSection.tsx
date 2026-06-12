@@ -1,4 +1,5 @@
 import { Quote, Star } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const reviews = [
   { name: 'Anh Minh', location: 'Quận 7, TP.HCM', quote: 'Lắp hệ 10kWp được 6 tháng, tiền điện giảm từ 3 triệu còn 200k/tháng. Rất hài lòng với dịch vụ!', rating: 5 },
@@ -9,8 +10,10 @@ const reviews = [
 ];
 
 export default function ReviewsSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
+
   return (
-    <section className="py-12 sm:py-16 bg-gray-50">
+    <section ref={sectionRef} className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-10">
@@ -24,10 +27,11 @@ export default function ReviewsSection() {
 
         {/* Horizontal scroll carousel */}
         <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-5 pb-4 touch-pan-x">
-          {reviews.map((review) => (
+          {reviews.map((review, i) => (
             <div
               key={review.name}
-              className="w-[320px] flex-shrink-0 snap-start bg-white shadow-md rounded-xl p-6 flex flex-col transition-all duration-200 hover:shadow-lg hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none"
+              className={`w-[320px] flex-shrink-0 snap-start bg-white shadow-md rounded-xl p-6 flex flex-col transition-all duration-200 hover:shadow-lg hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+              style={{ transitionDelay: isVisible ? `${i * 100}ms` : '0ms' }}
             >
               {/* Quotation mark */}
               <Quote className="h-8 w-8 text-orange-200 mb-3 flex-shrink-0" />

@@ -1,4 +1,5 @@
 import { PhoneCall, MapPin, PenTool, FileText, Wrench, BarChart2 } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import type { LucideIcon } from 'lucide-react';
 
 const steps: { step: number; icon: LucideIcon; title: string; description: string }[] = [
@@ -41,8 +42,10 @@ const steps: { step: number; icon: LucideIcon; title: string; description: strin
 ];
 
 export default function ProcessSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
+
   return (
-    <section className="py-14 sm:py-20 bg-white">
+    <section ref={sectionRef} className="py-14 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-12">
@@ -59,12 +62,13 @@ export default function ProcessSection() {
 
         {/* Steps grid: 3 cols desktop, 2 cols tablet, 1 col mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {steps.map((step) => {
+          {steps.map((step, i) => {
             const Icon = step.icon;
             return (
               <div
                 key={step.step}
-                className="relative bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-md hover:border-orange-200 transition-all duration-200 motion-reduce:transition-none"
+                className={`group relative bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-orange-200 hover:-translate-y-1 transition-all duration-200 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+                style={{ transitionDelay: isVisible ? `${i * 100}ms` : '0ms' }}
               >
                 {/* Step number badge */}
                 <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-[#D0202A] text-white text-sm font-bold flex items-center justify-center shadow-md">
@@ -72,7 +76,7 @@ export default function ProcessSection() {
                 </div>
 
                 {/* Icon */}
-                <div className="w-11 h-11 rounded-xl bg-red-50 flex items-center justify-center mb-4">
+                <div className="w-11 h-11 rounded-xl bg-red-50 flex items-center justify-center mb-4 group-hover:-translate-y-0.5 transition-transform duration-200 motion-reduce:transition-none">
                   <Icon className="h-5 w-5 text-[#D0202A]" />
                 </div>
 

@@ -6,6 +6,7 @@ import {
   Sparkles, ArrowRight, BarChart3, Cpu, Info,
   Phone, Calendar, Star, Leaf, ChevronRight,
 } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 // ─────────────────────────────────────────────
 // Types
@@ -644,6 +645,7 @@ function scoreCombo(c: ComboCatalog, kwhNeed: number, budgetM: number): number {
 export default function SolarSolutionFinder() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const detailRef = useRef<HTMLDivElement>(null);
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [bill, setBill] = useState(0);
   const [roofArea, setRoofArea] = useState(0);
   const [budget, setBudget] = useState(0);
@@ -693,7 +695,11 @@ export default function SolarSolutionFinder() {
   const selectedSol = selectedIndex !== null ? solutions[selectedIndex] : null;
 
   return (
-    <section className="w-full py-10 md:py-16 px-3 sm:px-4" style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #f8fafc 100%)' }}>
+    <section
+      ref={sectionRef}
+      className={`w-full py-10 md:py-16 px-3 sm:px-4 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none`}
+      style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #f8fafc 100%)' }}
+    >
       <div className="max-w-[1440px] mx-auto">
 
         {/* ─── Header ─── */}

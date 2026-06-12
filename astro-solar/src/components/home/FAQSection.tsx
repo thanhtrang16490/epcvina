@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 const faqData = [
   {
@@ -28,24 +29,24 @@ const faqData = [
   },
 ];
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer, staggerClass }: { question: string; answer: string; staggerClass: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border border-gray-200 rounded-xl overflow-hidden">
+    <div className={`border border-gray-200 rounded-xl overflow-hidden animate-on-scroll ${staggerClass}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition-colors"
+        className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition-colors motion-reduce:transition-none"
       >
         <span className="font-medium text-gray-900 pr-4">{question}</span>
         <ChevronDown
-          className={`h-5 w-5 text-gray-400 flex-shrink-0 transition-transform duration-200 ${
+          className={`h-5 w-5 text-gray-400 flex-shrink-0 transition-transform duration-200 motion-reduce:transition-none ${
             isOpen ? 'rotate-180' : ''
           }`}
         />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ${
+        className={`overflow-hidden transition-all duration-300 ease-out motion-reduce:transition-none ${
           isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
@@ -58,8 +59,14 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function FAQSection() {
+  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const staggerClasses = ['stagger-1', 'stagger-2', 'stagger-3', 'stagger-4', 'stagger-5', 'stagger-6'];
+
   return (
-    <section className="py-12 sm:py-16 bg-gray-50">
+    <section
+      ref={sectionRef}
+      className={`py-12 sm:py-16 bg-gray-50 ${isVisible ? 'animate-visible' : ''} transition-all duration-600 ease-out motion-reduce:transition-none`}
+    >
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Section header */}
         <div className="flex items-end justify-between mb-8">
@@ -74,8 +81,13 @@ export default function FAQSection() {
 
         {/* FAQ Items */}
         <div className="space-y-3">
-          {faqData.map((item) => (
-            <FAQItem key={item.question} question={item.question} answer={item.answer} />
+          {faqData.map((item, i) => (
+            <FAQItem
+              key={item.question}
+              question={item.question}
+              answer={item.answer}
+              staggerClass={isVisible ? `animate-visible ${staggerClasses[i] || ''}` : staggerClasses[i] || ''}
+            />
           ))}
         </div>
       </div>
