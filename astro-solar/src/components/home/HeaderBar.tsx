@@ -28,7 +28,7 @@ export default function HeaderBar() {
 
   return (
     <header
-      className={`hidden lg:block fixed left-0 right-0 z-50 transition-all duration-300 ${
+      className={`block fixed left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'top-1' : 'top-2'
       }`}
     >
