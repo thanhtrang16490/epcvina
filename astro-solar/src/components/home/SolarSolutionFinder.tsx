@@ -689,7 +689,9 @@ export default function SolarSolutionFinder() {
     setSystemType('');
     setBuildingType('');
     setMainGoal('both');
-    setSelectedIndex(null);
+    // Reset the ref so the useEffect treats the next render as a fresh load
+    // and auto-selects the first combo
+    prevSolutionsRef.current = [];
   };
 
   const selectedSol = selectedIndex !== null ? solutions[selectedIndex] : null;
