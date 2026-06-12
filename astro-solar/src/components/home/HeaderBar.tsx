@@ -67,11 +67,11 @@ export default function HeaderBar() {
         <div className="flex items-center gap-2">
           {/* Phone CTA - hidden on mobile */}
           <a
-            href="tel:0966568558"
+            href="tel:0988446113"
             className="hidden sm:flex items-center gap-2 bg-orange-500 text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-orange-600 transition-colors shadow-sm"
           >
             <Phone className="h-4 w-4" />
-            <span>0966 568 558</span>
+            <span>0988 446 113</span>
           </a>
 
           {/* Hamburger - mobile only */}
@@ -110,11 +110,11 @@ export default function HeaderBar() {
             })}
             <div className="px-4 py-3 border-t border-white/20">
               <a
-                href="tel:0966568558"
+                href="tel:0988446113"
                 className="flex items-center justify-center gap-2 bg-orange-500 text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-orange-600 transition-colors"
               >
                 <Phone className="h-4 w-4" />
-                <span>0966 568 558</span>
+                <span>0988 446 113</span>
               </a>
             </div>
           </nav>

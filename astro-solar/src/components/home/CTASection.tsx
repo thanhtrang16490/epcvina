@@ -15,14 +15,14 @@ export default function CTASection() {
         {/* CTA buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="tel:0909123456"
+            href="tel:0988446113"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-gray-50 text-orange-700 font-semibold rounded-full transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 shadow-lg motion-reduce:transition-none motion-reduce:transform-none"
           >
             <Phone className="h-5 w-5" />
-            Gọi ngay: 0909 123 456
+            Gọi ngay: 0988 446 113
           </a>
           <a
-            href="https://zalo.me/0909123456"
+            href="https://zalo.me/0988446113"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-gray-50 text-orange-700 font-semibold rounded-full transition-all duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 shadow-lg motion-reduce:transition-none motion-reduce:transform-none"
