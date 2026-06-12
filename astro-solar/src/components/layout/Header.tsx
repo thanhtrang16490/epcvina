@@ -83,8 +83,8 @@ export default function Header({ onMenuClick, isHidden, mobileOnly }: HeaderProp
 
   return (
     <>
-      {/* Mobile Header - completely hidden on homepage (HeaderBar handles it) */}
-      <header className={`${mobileOnly ? 'hidden' : 'lg:hidden'} fixed top-0 left-0 right-0 z-40 border-b transition-transform duration-300 ${
+      {/* Mobile Header - Title căn trái cạnh hamburger */}
+      <header className={`lg:hidden fixed top-0 left-0 right-0 z-40 border-b transition-transform duration-300 ${
         isHome 
           ? 'bg-transparent/95 backdrop-blur-sm border-transparent'
           : 'bg-white border-gray-100'

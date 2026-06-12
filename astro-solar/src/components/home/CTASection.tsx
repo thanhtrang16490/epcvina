@@ -35,7 +35,7 @@ export default function CTASection() {
   }
 
   return (
-    <section id="tu-van" className="py-14 sm:py-20 bg-gradient-to-br from-[#7C2D12] via-[#9A3412] to-[#C2410C]">
+    <section id="tu-van" className="py-14 sm:py-20 bg-gradient-to-br from-[#6B1A1F] via-[#8B2020] to-[#D0202A]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10">

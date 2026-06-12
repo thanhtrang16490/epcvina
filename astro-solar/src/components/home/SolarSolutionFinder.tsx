@@ -61,7 +61,7 @@ function SliderInput({ label, icon, value, min, max, step, onChange, format, tic
     <div className="space-y-2">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-          <span className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
+          <span className="w-8 h-8 rounded-lg bg-[#FFF4E8] flex items-center justify-center text-[#F5831F] flex-shrink-0">
             {icon}
           </span>
           {label}
@@ -101,7 +101,7 @@ function SelectInput({ label, icon, value, options, onChange }: SelectInputProps
   return (
     <div className="flex items-center justify-between gap-3">
       <div className="flex items-center gap-2 text-sm font-medium text-gray-700 flex-shrink-0">
-        <span className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
+        <span className="w-8 h-8 rounded-lg bg-[#FFF4E8] flex items-center justify-center text-[#F5831F] flex-shrink-0">
           {icon}
         </span>
         {label}
@@ -370,7 +370,7 @@ function ToggleRow({
               className={`flex-1 flex flex-col items-center justify-center py-2 px-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
                 isActive
                   ? accentBlue
-                    ? 'bg-blue-600 text-white shadow-sm'
+                    ? 'bg-[#4A4F56] text-white shadow-sm'
                     : 'bg-white text-gray-900 shadow-sm'
                   : 'text-gray-500 hover:text-gray-700'
               }`}
@@ -414,7 +414,7 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
     <div className="space-y-3">
       {/* Label */}
       <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
-        <span className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
+        <span className="w-8 h-8 rounded-lg bg-[#FFF4E8] flex items-center justify-center text-[#F5831F] flex-shrink-0">
           <Zap className="w-4 h-4" />
         </span>
         Loại hệ thống mong muốn
@@ -762,7 +762,7 @@ export default function SolarSolutionFinder() {
             {/* Card header */}
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-[#F5831F] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                   1
                 </div>
                 <div>
@@ -849,7 +849,7 @@ export default function SolarSolutionFinder() {
           >
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-[#F5831F] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                   2
                 </div>
                 <div>

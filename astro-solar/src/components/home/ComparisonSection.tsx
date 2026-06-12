@@ -159,7 +159,7 @@ export default function ComparisonSection() {
           <div className="mt-8 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/hybrid"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-full transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full transition-colors shadow-lg"
             >
               <Battery className="h-4 w-4" />
               Xem combo Hybrid

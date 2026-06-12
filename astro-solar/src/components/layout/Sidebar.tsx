@@ -1,33 +1,18 @@
 import { useState } from 'react';
-import { 
-  LayoutDashboard, 
-  Package, 
+import {
+  LayoutDashboard,
+  Package,
   Sun,
   Lightbulb,
-  Building, 
+  Building,
   Factory,
-  Warehouse,
-  Wheat,
-  Zap,
-  TrendingUp,
-  Battery,
-  Layers,
-  Cable,
-  Shield,
+  Wrench,
+  MessageSquare,
+  BookOpen,
+  Phone,
   ChevronDown,
   ChevronRight,
   X,
-  Home,
-  Hammer,
-  Mountain,
-  Grid3X3,
-  HelpCircle,
-  BookOpen,
-  MessageSquare,
-  FileText,
-  Video,
-  Star,
-  Wrench
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -35,12 +20,12 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-// Menu group type with nested items
 interface MenuItem {
   name: string;
   href?: string;
   icon: React.ComponentType<{ className?: string }>;
-  children?: { name: string; href: string }[];
+  soon?: boolean;
+  children?: { name: string; href: string; soon?: boolean }[];
 }
 
 const menuItems: MenuItem[] = [
@@ -78,9 +63,9 @@ const menuItems: MenuItem[] = [
     name: 'Giải pháp mái',
     icon: Lightbulb,
     children: [
-      { name: 'Mái tôn', href: '/solutions/mai-ton' },
-      { name: 'Mái ngói', href: '/solutions/mai-ngoi' },
-      { name: 'Mái bằng', href: '/solutions/mai-bang' },
+      { name: 'Mái tôn', href: '/solutions/mai-ton', soon: true },
+      { name: 'Mái ngói', href: '/solutions/mai-ngoi', soon: true },
+      { name: 'Mái bằng', href: '/solutions/mai-bang', soon: true },
     ],
   },
   {
@@ -98,18 +83,18 @@ const menuItems: MenuItem[] = [
     name: 'Hỏi đáp',
     icon: MessageSquare,
     children: [
-      { name: 'Câu hỏi thường gặp', href: '/faq' },
-      { name: 'Chính sách bảo hành', href: '/warranty' },
-      { name: 'Đánh giá khách hàng', href: '/reviews' },
+      { name: 'Câu hỏi thường gặp', href: '/faq', soon: true },
+      { name: 'Chính sách bảo hành', href: '/warranty', soon: true },
+      { name: 'Đánh giá khách hàng', href: '/reviews', soon: true },
     ],
   },
   {
     name: 'Hướng dẫn',
     icon: BookOpen,
     children: [
-      { name: 'Hướng dẫn sử dụng', href: '/guides/user-manual' },
-      { name: 'Bảo trì & Xử lý sự cố', href: '/guides/maintenance' },
-      { name: 'Video hướng dẫn', href: '/guides/videos' },
+      { name: 'Hướng dẫn sử dụng', href: '/guides/user-manual', soon: true },
+      { name: 'Bảo trì & Xử lý sự cố', href: '/guides/maintenance', soon: true },
+      { name: 'Video hướng dẫn', href: '/guides/videos', soon: true },
     ],
   },
 ];
@@ -139,11 +124,11 @@ function MenuGroup({
         onClick={onClose}
         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
           active
-            ? 'bg-[#FFF7ED] text-[#F97316]'
+            ? 'bg-[#FFF4E8] text-[#F5831F]'
             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
         }`}
       >
-        <Icon className={`h-5 w-5 ${active ? 'text-[#F97316]' : 'text-gray-400'}`} />
+        <Icon className={`h-5 w-5 ${active ? 'text-[#F5831F]' : 'text-gray-400'}`} />
         {item.name}
       </a>
     );
@@ -176,6 +161,23 @@ function MenuGroup({
         <div className="ml-4 mt-1 space-y-0.5 border-l border-gray-200 pl-4">
           {item.children.map((child) => {
             const active = isActive(child.href);
+            if (child.soon) {
+              return (
+                <div
+                  key={child.href}
+                  className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-sm cursor-not-allowed opacity-50"
+                  title="Sắp ra mắt"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                    <span className="text-gray-400">{child.name}</span>
+                  </div>
+                  <span className="text-[10px] font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full whitespace-nowrap">
+                    Sắp ra mắt
+                  </span>
+                </div>
+              );
+            }
             return (
               <a
                 key={child.href}
@@ -183,11 +185,11 @@ function MenuGroup({
                 onClick={onClose}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
                   active
-                    ? 'bg-[#FFF7ED] text-[#F97316] font-medium'
+                    ? 'bg-[#FFF4E8] text-[#F5831F] font-medium'
                     : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                 }`}
               >
-                <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#F97316]' : 'bg-gray-300'}`} />
+                <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#F5831F]' : 'bg-gray-300'}`} />
                 {child.name}
               </a>
             );
@@ -242,23 +244,30 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       <aside 
         className={`
           fixed top-0 left-0 z-50
-          h-screen w-[280px] bg-white
+          h-screen w-[280px]
+          bg-white/70 backdrop-blur-2xl
+          border-r border-white/40
+          shadow-[4px_0_32px_rgba(0,0,0,0.10)]
           transform transition-transform duration-300 ease-in-out
           lg:hidden
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
+        {/* Mirror reflection gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none z-0" />
+
         {/* Header with logo */}
-        <div className="flex items-center justify-between px-4 h-14 border-b border-gray-100">
+        <div className="relative z-10 flex items-center justify-between px-4 h-14 border-b border-white/30">
           <a href="/" className="flex items-center gap-3">
             <img src="/logo-epcvina-solar.png" alt="EPC Solar" className="h-8 w-auto" />
           </a>
-          <button onClick={onClose} className="p-2 -mr-2 text-gray-600">
+          <button onClick={onClose} className="p-2 -mr-2 text-gray-600 hover:text-gray-900">
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <nav className="p-3 space-y-1 overflow-y-auto h-[calc(100vh-60px)]">
+        <nav className="relative z-10 p-3 space-y-1 overflow-y-auto h-[calc(100vh-60px)] flex flex-col">
+          <div className="flex-1 space-y-1">
           {menuItems.map((item) => (
             <MenuGroup
               key={item.name}
@@ -269,18 +278,39 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               onClose={onClose}
             />
           ))}
+          </div>
+          {/* Phone CTA */}
+          <div className="pt-3 border-t border-white/30 mt-2">
+            <a
+              href="tel:0988446113"
+              onClick={onClose}
+              className="flex items-center justify-center gap-2 bg-[#F5831F] text-white rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-[#E0721A] transition-colors"
+            >
+              <Phone className="h-4 w-4" />
+              <span>0988 446 113</span>
+            </a>
+          </div>
         </nav>
       </aside>
 
       {/* Desktop Sidebar - Expandable on Hover */}
       <aside 
-        className="hidden lg:block fixed top-0 left-0 h-screen bg-white border-r border-gray-200 z-40 transition-all duration-300 ease-in-out overflow-hidden"
-        style={{ width: isExpanded ? '280px' : '64px' }}
+        className="hidden lg:block fixed top-0 left-0 h-screen z-40 transition-all duration-300 ease-in-out overflow-hidden"
+        style={{
+          width: isExpanded ? '280px' : '64px',
+          background: 'rgba(255,255,255,0.72)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderRight: '1px solid rgba(255,255,255,0.40)',
+          boxShadow: '4px 0 32px rgba(0,0,0,0.08)',
+        }}
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
       >
+        {/* Mirror reflection gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none z-0" />
         {/* Logo */}
-        <div className={`h-16 flex items-center border-b border-gray-200 transition-all duration-300 ${
+        <div className={`relative z-10 h-16 flex items-center border-b border-white/30 transition-all duration-300 ${
           isExpanded ? 'px-6 justify-start' : 'px-0 justify-center'
         }`}>
           <a href="/" className="flex items-center">
@@ -294,7 +324,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         {/* Navigation */}
-        <nav className="p-2 space-y-1 overflow-y-auto h-[calc(100vh-64px)] scrollbar-hide">
+        <nav className="relative z-10 p-2 space-y-1 overflow-y-auto h-[calc(100vh-64px)] scrollbar-hide flex flex-col">
+          <div className="flex-1 space-y-1">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const hasChildren = item.children && item.children.length > 0;
@@ -311,14 +342,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isExpanded
                       ? active
-                        ? 'bg-[#FFF7ED] text-[#F97316]'
+                        ? 'bg-[#FFF4E8] text-[#F5831F]'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                       : 'justify-center'
-                  } ${!isExpanded && active ? 'bg-[#FFF7ED] text-[#F97316]' : ''}`}
+                  } ${!isExpanded && active ? 'bg-[#FFF4E8] text-[#F5831F]' : ''}`}
                   title={!isExpanded ? item.name : undefined}
                 >
                   <Icon className={`h-5 w-5 flex-shrink-0 ${
-                    active ? 'text-[#F97316]' : isExpanded ? 'text-gray-400' : 'text-gray-400'
+                    active ? 'text-[#F5831F]' : isExpanded ? 'text-gray-400' : 'text-gray-400'
                   }`} />
                   {isExpanded && <span>{item.name}</span>}
                 </a>
@@ -357,6 +388,23 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   <div className="ml-4 mt-1 space-y-0.5 border-l border-gray-200 pl-4">
                     {item.children.map((child) => {
                       const active = isActive(child.href);
+                      if (child.soon) {
+                        return (
+                          <div
+                            key={child.href}
+                            className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-sm cursor-not-allowed opacity-50"
+                            title="Sắp ra mắt"
+                          >
+                            <div className="flex items-center gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
+                              <span className="text-gray-400">{child.name}</span>
+                            </div>
+                            <span className="text-[10px] font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full whitespace-nowrap">
+                              Sắp ra mắt
+                            </span>
+                          </div>
+                        );
+                      }
                       return (
                         <a
                           key={child.href}
@@ -364,11 +412,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           onClick={onClose}
                           className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
                             active
-                              ? 'bg-[#FFF7ED] text-[#F97316] font-medium'
+                              ? 'bg-[#FFF4E8] text-[#F5831F] font-medium'
                               : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                           }`}
                         >
-                          <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#F97316]' : 'bg-gray-300'}`} />
+                          <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#F5831F]' : 'bg-gray-300'}`} />
                           {child.name}
                         </a>
                       );
@@ -378,6 +426,20 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </div>
             );
           })}
+          </div>
+          {/* Phone CTA - desktop */}
+          <div className={`pt-3 border-t border-white/30 mt-2 ${isExpanded ? 'px-1' : 'px-0'}`}>
+            <a
+              href="tel:0988446113"
+              className={`flex items-center gap-2 bg-[#F5831F] text-white rounded-xl py-2.5 text-sm font-semibold hover:bg-[#E0721A] transition-colors ${
+                isExpanded ? 'justify-center px-4' : 'justify-center px-0'
+              }`}
+              title={!isExpanded ? '0988 446 113' : undefined}
+            >
+              <Phone className="h-4 w-4 flex-shrink-0" />
+              {isExpanded && <span>0988 446 113</span>}
+            </a>
+          </div>
         </nav>
       </aside>
     </>

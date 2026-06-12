@@ -5,6 +5,9 @@ const navItems = [
   { label: 'Trang chủ', href: '/' },
   { label: 'Solar Home', href: '/solutions' },
   { label: 'Hybrid & BESS', href: '/hybrid' },
+  { label: 'EV Charger', href: '#ev-charger' },
+  { label: 'Solar C&I', href: '#solar-ci' },
+  { label: 'Bảo trì O&M', href: '#bao-tri' },
   { label: 'Dự án', href: '/projects' },
   { label: 'Liên hệ', href: '/contact' },
 ];
@@ -25,7 +28,7 @@ export default function HeaderBar() {
 
   return (
     <header
-      className={`block fixed left-0 right-0 z-50 transition-all duration-300 ${
+      className={`hidden lg:block fixed left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'top-1' : 'top-2'
       }`}
     >
@@ -35,48 +38,47 @@ export default function HeaderBar() {
           <img
             src="/logo-epcvina-solar-white.png"
             alt="EPCVINA Solar"
-            className="h-7 sm:h-8 w-auto max-w-[120px] sm:max-w-[160px] object-contain drop-shadow-sm"
+            className="h-10 w-auto drop-shadow-sm"
           />
         </a>
 
-        {/* Nav pill - center (md+ only) */}
-        <nav className="hidden md:flex flex-1 items-center justify-center gap-0.5 mx-4">
-          <div className="flex items-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-2 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none rounded-full" />
-            {navItems.map((item) => {
-              const isActive = activePath === item.href;
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
-                    isActive
-                      ? 'bg-gray-900 text-white shadow-md'
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'
-                  }`}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
-          </div>
+        {/* Nav pill - center (desktop only) */}
+        <nav className="hidden md:flex items-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
+          {/* Mirror reflection gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none rounded-full" />
+          {navItems.map((item) => {
+            const isActive = activePath === item.href;
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                  isActive
+                    ? 'bg-gray-900 text-white shadow-md'
+                    : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'
+                }`}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Right side */}
         <div className="flex items-center gap-2">
-          {/* Phone CTA - md+ only */}
+          {/* Phone CTA - hidden on mobile */}
           <a
             href="tel:0988446113"
-            className="hidden md:flex items-center gap-2 bg-orange-500 text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-orange-600 transition-colors shadow-sm whitespace-nowrap"
+            className="hidden sm:flex items-center gap-2 bg-[#F5831F] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#E0721A] transition-colors shadow-sm"
           >
             <Phone className="h-4 w-4" />
             <span>0988 446 113</span>
           </a>
 
-          {/* Hamburger - mobile only (below md) */}
+          {/* Hamburger - mobile only */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white shadow-lg"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 text-gray-700"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -110,7 +112,7 @@ export default function HeaderBar() {
             <div className="px-4 py-3 border-t border-white/20">
               <a
                 href="tel:0988446113"
-                className="flex items-center justify-center gap-2 bg-orange-500 text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-orange-600 transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#F5831F] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#E0721A] transition-colors"
               >
                 <Phone className="h-4 w-4" />
                 <span>0988 446 113</span>
