@@ -36,9 +36,9 @@ export default function ComboListingCard({ combo, basePath }: ComboListingCardPr
 
   // Build brands string
   const brands = [
-    combo.panel_brand || 'JA Solar',
-    combo.inverter_brand || (combo.system_type === 'hybrid' ? 'Solis' : 'Auxsol'),
-    combo.system_type === 'hybrid' ? (combo.battery_brand || 'Dyness') : null,
+    combo.panel_brand || 'Aiko',
+    combo.inverter_brand || (combo.system_type === 'hybrid' ? 'SAJ' : 'Auxsol'),
+    combo.system_type === 'hybrid' ? (combo.battery_brand || 'Genxgreen') : null,
   ].filter(Boolean).join(' - ');
 
   const paybackYears = Math.floor(paybackPeriod);
@@ -89,7 +89,16 @@ export default function ComboListingCard({ combo, basePath }: ComboListingCardPr
 
       {/* Title & Brands */}
       <div className="px-4 pt-3 pb-2">
-        <h3 className="font-semibold text-gray-900 text-sm leading-snug">{combo.name}</h3>
+        <div className="flex items-center gap-2 flex-wrap">
+          <h3 className="font-semibold text-gray-900 text-sm leading-snug">{combo.name}</h3>
+          {combo.voltage && (
+            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ${
+              combo.voltage === 'low' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'
+            }`}>
+              {combo.voltage === 'low' ? 'AT' : 'AC'}
+            </span>
+          )}
+        </div>
         <p className="text-xs text-gray-500 mt-1">{brands}</p>
       </div>
 
@@ -102,16 +111,16 @@ export default function ComboListingCard({ combo, basePath }: ComboListingCardPr
       {/* Specs */}
       <div className="px-4 py-2 text-xs text-gray-600 space-y-1.5 border-t border-gray-100 flex-1">
         <div className="flex justify-between">
-          <span>{combo.panel_brand || 'JA Solar'}:</span>
+          <span>{combo.panel_brand || 'Aiko'}:</span>
           <span className="font-medium text-gray-900">{combo.power} kWp</span>
         </div>
         <div className="flex justify-between">
-          <span>Biến tần: {combo.inverter_brand || (combo.system_type === 'hybrid' ? 'Solis' : 'Auxsol')}</span>
+          <span>Biến tần: {combo.inverter_brand || (combo.system_type === 'hybrid' ? 'SAJ' : 'Auxsol')}</span>
           <span className="font-medium text-gray-900">{combo.power} kW</span>
         </div>
         {combo.system_type === 'hybrid' && combo.battery > 0 && (
           <div className="flex justify-between">
-            <span>Lưu trữ: {combo.battery_brand || 'Dyness'}</span>
+            <span>Lưu trữ: {combo.battery_brand || 'Genxgreen'}</span>
             <span className="font-medium text-gray-900">{combo.battery} kWh</span>
           </div>
         )}

@@ -3,8 +3,8 @@ import { Phone, Menu, X } from 'lucide-react';
 
 const navItems = [
   { label: 'Trang chủ', href: '/' },
-  { label: 'Solar Home', href: '/solutions' },
-  { label: 'Hybrid & BESS', href: '/hybrid' },
+  { label: 'Solar Home', href: '/solar-home' },
+  { label: 'Hybrid & BESS', href: '/hybrid-bess' },
   { label: 'EV Charger', href: '/ev-charger' },
   { label: 'Solar C&I', href: '/solar-ci' },
   { label: 'Bảo trì O&M', href: '/bao-tri' },

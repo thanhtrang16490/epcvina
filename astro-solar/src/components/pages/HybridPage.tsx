@@ -662,7 +662,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
     
     // Get panel wattage from multiple sources:
     // 1. Specs: 'Công suất', 'Power', 'Wattage', 'Công suất tấm pin'
-    // 2. Model name: Extract from "Tấm quang năng JA Solar 640Wp" or "550W"
+    // 2. Model name: Extract from "Tấm quang năng Aiko 640Wp" or "550W"
     let panelWattage = 0;
     
     // Try specs first

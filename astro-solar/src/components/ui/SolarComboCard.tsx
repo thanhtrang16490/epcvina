@@ -88,7 +88,7 @@ export default function SolarComboCard({ combo, onClick }: SolarComboCardProps) 
               <div className="flex items-start gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-1.5 flex-shrink-0" />
                 <span className="text-gray-700">
-                  Tấm {combo.panelBrand} {combo.panelModel?.replace('JA Solar ', '').replace(' Wp', 'Wp')}
+                  Tấm {combo.panelBrand} {combo.panelModel?.replace('Aiko ', '').replace(' Wp', 'Wp')}
                 </span>
               </div>
               

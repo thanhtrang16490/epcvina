@@ -26,7 +26,13 @@ export default function ReviewsSection() {
         </div>
 
         {/* Horizontal scroll carousel */}
-        <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-5 pb-4 touch-pan-x">
+        <p className="sm:hidden text-xs text-gray-400 text-center mb-2 animate-pulse">← Vuốt để xem thêm →</p>
+        <div className="relative">
+          {/* Left fade */}
+          <div className="absolute left-0 top-0 bottom-4 w-6 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10 sm:hidden" aria-hidden="true" />
+          {/* Right fade */}
+          <div className="absolute right-0 top-0 bottom-4 w-6 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10 sm:hidden" aria-hidden="true" />
+          <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-5 pb-4 touch-pan-x">
           {reviews.map((review, i) => (
             <div
               key={review.name}
@@ -56,6 +62,7 @@ export default function ReviewsSection() {
               <p className="text-gray-400 text-xs">{review.location}</p>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </section>

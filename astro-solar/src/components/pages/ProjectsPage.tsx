@@ -20,10 +20,10 @@ import FooterSection from '../home/FooterSection';
 
 /* ─── Stats ─── */
 const heroStats = [
-  { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '500+', label: 'Công trình', gradient: 'from-emerald-600 to-emerald-500' },
+  { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '100+', label: 'Công trình', gradient: 'from-emerald-600 to-emerald-500' },
   { icon: <Zap className="h-6 w-6" aria-hidden="true" />, value: '42 MWp', label: 'Lớn nhất', gradient: 'from-green-600 to-green-500' },
-  { icon: <Award className="h-6 w-6" aria-hidden="true" />, value: '6+', label: 'Năm kinh nghiệm', gradient: 'from-teal-600 to-teal-500' },
-  { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: '100%', label: 'Khách hàng hài lòng', gradient: 'from-cyan-600 to-cyan-500' },
+  { icon: <Award className="h-6 w-6" aria-hidden="true" />, value: '15+', label: 'Năm kinh nghiệm', gradient: 'from-teal-600 to-teal-500' },
+  { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: '100%', label: 'Hài lòng', gradient: 'from-cyan-600 to-cyan-500' },
 ];
 
 /* ─── Solar Projects ─── */
@@ -82,28 +82,120 @@ const solarProjects = [
 
 /* ─── MEP Projects ─── */
 const mepProjects = [
-  { name: 'Samsung SEV — Bắc Ninh', scope: 'HVAC, Chiller, Hệ thống nước, Đường ống', client: 'Samsung', year: '2014–2015', image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80', alt: 'Dự án cơ điện Samsung SEV Bắc Ninh', tagColor: 'bg-amber-100 text-amber-700' },
-  { name: 'Samsung SEVT — Thái Nguyên', scope: 'HVAC, Khí nén, Hệ thống DI/RO', client: 'Samsung', year: '2014–2016', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80', alt: 'Dự án cơ điện Samsung SEVT Thái Nguyên', tagColor: 'bg-amber-100 text-amber-700' },
-  { name: 'VinFast Auto Complex — Hải Phòng', scope: 'Đường ống công nghệ, HVAC, PCCC', client: 'VinFast', year: '2018–2020', image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80', alt: 'Dự án cơ điện VinFast Auto Complex Hải Phòng', tagColor: 'bg-red-100 text-red-700' },
-  { name: 'Lotte Mall Tây Hồ', scope: 'HVAC, Hệ thống nước, PCCC', client: 'Lotte', year: '2021–2023', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80', alt: 'Dự án cơ điện Lotte Mall Tây Hồ', tagColor: 'bg-violet-100 text-violet-700' },
-  { name: 'Shilla Hotel — StarLake', scope: 'HVAC, Hệ thống nước, Vệ sinh', client: 'Shilla', year: '2024–2026', image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80', alt: 'Dự án cơ điện Shilla Hotel StarLake', tagColor: 'bg-teal-100 text-teal-700' },
-  { name: 'Đại sứ quán Hàn Quốc — Hà Nội', scope: 'HVAC, Nước, PCCC, Xử lý nước thải', client: 'Chính phủ Hàn Quốc', year: '2017–2018', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80', alt: 'Dự án cơ điện Đại sứ quán Hàn Quốc', tagColor: 'bg-sky-100 text-sky-700' },
-  { name: 'Samsung SEHC — TP.HCM', scope: 'PCCC, Lắp đặt cơ khí', client: 'Samsung', year: '2015–2016', image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80', alt: 'Dự án cơ điện Samsung SEHC TP.HCM', tagColor: 'bg-amber-100 text-amber-700' },
-  { name: 'Vinhomes Metropolis Liễu Giai', scope: 'HVAC, Hệ thống Chiller', client: 'VinGroup', year: '2017–2018', image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80', alt: 'Dự án cơ điện Vinhomes Metropolis', tagColor: 'bg-red-100 text-red-700' },
+  {
+    name: 'VinFast Auto Complex',
+    client: 'VinCom',
+    scope: 'PCCC, Chiller, Khí nén, Bơm nước',
+    year: '2018-2019',
+    location: 'Hải Phòng',
+    image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&q=80',
+    alt: 'Nhà máy VinFast Hải Phòng',
+    tagColor: 'bg-amber-100 text-amber-700',
+  },
+  {
+    name: 'Samsung SEV Bắc Ninh',
+    client: 'Samsung',
+    scope: 'HVAC, Khí nén, DI/RO, PCCC',
+    year: '2014-2018',
+    location: 'Bắc Ninh',
+    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80',
+    alt: 'Nhà máy Samsung Bắc Ninh',
+    tagColor: 'bg-amber-100 text-amber-700',
+  },
+  {
+    name: 'Samsung SEVT Thái Nguyên',
+    client: 'Samsung',
+    scope: 'HVAC, PCCC, DI/RO, Khí nén',
+    year: '2014-2018',
+    location: 'Thái Nguyên',
+    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=400&q=80',
+    alt: 'Nhà máy Samsung Thái Nguyên',
+    tagColor: 'bg-amber-100 text-amber-700',
+  },
+  {
+    name: 'Đại sứ quán Hàn Quốc',
+    client: 'Đại sứ quán Hàn Quốc',
+    scope: 'HVAC, PCCC, Cấp thoát nước, Vệ sinh',
+    year: '2017-2018',
+    location: 'Hà Nội',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80',
+    alt: 'Đại sứ quán Hàn Quốc tại Hà Nội',
+    tagColor: 'bg-sky-100 text-sky-700',
+  },
+  {
+    name: 'Lotte Center Hà Nội (65 tầng)',
+    client: 'Lotte',
+    scope: 'PCCC toàn bộ tòa nhà 65 tầng',
+    year: '2012-2014',
+    location: 'Hà Nội',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&q=80',
+    alt: 'Lotte Center Hà Nội 65 tầng',
+    tagColor: 'bg-violet-100 text-violet-700',
+  },
+  {
+    name: 'Keangnam Landmark Tower',
+    client: 'Keangnam',
+    scope: 'Chiller, AHU, Ống gió, Cấp thoát nước',
+    year: '2011-2012',
+    location: 'Hà Nội',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&q=80',
+    alt: 'Keangnam Landmark Tower Hà Nội',
+    tagColor: 'bg-emerald-100 text-emerald-700',
+  },
+  {
+    name: 'Metropolis Liễu Giai',
+    client: 'VinCom',
+    scope: 'HVAC, Chiller',
+    year: '2017-2018',
+    location: 'Hà Nội',
+    image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=80',
+    alt: 'Vinhomes Metropolis Liễu Giai',
+    tagColor: 'bg-amber-100 text-amber-700',
+  },
+  {
+    name: 'Vinhomes Golden River Ba Son',
+    client: 'VinCom',
+    scope: 'Cấp thoát nước, Vệ sinh',
+    year: '2017',
+    location: 'TP. Hồ Chí Minh',
+    image: 'https://images.unsplash.com/photo-1515263487990-61b07816b324?w=400&q=80',
+    alt: 'Vinhomes Golden River Ba Son TP.HCM',
+    tagColor: 'bg-amber-100 text-amber-700',
+  },
+  {
+    name: 'Samsung SEHC TP.HCM',
+    client: 'Samsung',
+    scope: 'PCCC, Hệ thống chữa cháy',
+    year: '2015-2017',
+    location: 'TP. Hồ Chí Minh',
+    image: 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=400&q=80',
+    alt: 'Nhà máy Samsung SEHC TP.HCM',
+    tagColor: 'bg-amber-100 text-amber-700',
+  },
+  {
+    name: 'Imperia Hải Phòng Hotel',
+    client: 'VinCom',
+    scope: 'Hệ thống PCCC',
+    year: '2017',
+    location: 'Hải Phòng',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80',
+    alt: 'Khách sạn Imperia Hải Phòng',
+    tagColor: 'bg-amber-100 text-amber-700',
+  },
 ];
 
 /* ─── Client Names ─── */
-const clientNames = ['Samsung', 'VinFast', 'VinGroup', 'Lotte', 'Keangnam', 'Coteccons', 'Shilla'];
+const clientNames = ['Samsung', 'VinCom', 'VinFast', 'Lotte', 'Keangnam', 'Đại sứ quán HQ', 'Coteccons'];
 
 /* ─── Client Icons ─── */
 const clientIcons: Record<string, React.ReactNode> = {
   Samsung: <Factory className="h-6 w-6" aria-hidden="true" />,
+  VinCom: <Building2 className="h-6 w-6" aria-hidden="true" />,
   VinFast: <Gauge className="h-6 w-6" aria-hidden="true" />,
-  VinGroup: <Building2 className="h-6 w-6" aria-hidden="true" />,
   Lotte: <Handshake className="h-6 w-6" aria-hidden="true" />,
   Keangnam: <Building2 className="h-6 w-6" aria-hidden="true" />,
+  'Đại sứ quán HQ': <Globe className="h-6 w-6" aria-hidden="true" />,
   Coteccons: <CheckCircle2 className="h-6 w-6" aria-hidden="true" />,
-  Shilla: <Award className="h-6 w-6" aria-hidden="true" />,
 };
 
 export default function ProjectsPage() {
@@ -137,7 +229,7 @@ export default function ProjectsPage() {
               Dự Án <span className="text-emerald-400">Điện Mặt Trời</span> & MEP
             </h1>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              EPCVINA SOLAR — Tổng thầu EPC hàng đầu với hơn 500 công trình điện mặt trời và MEP
+              EPCVINA SOLAR — Tổng thầu EPC hàng đầu với hơn 100 công trình điện mặt trời và MEP
               trên toàn quốc. Từ trang trại MWp đến mái nhà C&I, mỗi dự án đều cam kết chất lượng
               quốc tế.
             </p>
@@ -248,11 +340,11 @@ export default function ProjectsPage() {
                 15+ năm kinh nghiệm M&E với các tập đoàn đa quốc gia hàng đầu Việt Nam
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {mepProjects.map((project) => (
                 <div
                   key={project.name}
-                  className="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:bg-white/20 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none"
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ease-in-out motion-reduce:transition-none motion-reduce:transform-none cursor-pointer"
                 >
                   <div className="aspect-video overflow-hidden relative">
                     <img
@@ -275,9 +367,15 @@ export default function ProjectsPage() {
                     <p className="text-xs text-gray-400 leading-relaxed mb-3 line-clamp-3">
                       {project.scope}
                     </p>
-                    <div className="flex items-center gap-1 text-xs text-gray-400">
-                      <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
-                      {project.year}
+                    <div className="flex items-center justify-between text-xs text-gray-400">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-3.5 w-3.5 text-emerald-400" aria-hidden="true" />
+                        {project.location}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+                        {project.year}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -337,7 +435,7 @@ export default function ProjectsPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { icon: <Sun className="h-6 w-6" aria-hidden="true" />, value: '5+', label: 'Dự án Solar Farm MWp', gradient: 'from-emerald-600 to-emerald-500' },
-                { icon: <Building2 className="h-6 w-6" aria-hidden="true" />, value: '8+', label: 'Dự án MEP đa quốc gia', gradient: 'from-amber-600 to-amber-500' },
+                { icon: <Building2 className="h-6 w-6" aria-hidden="true" />, value: '10+', label: 'Dự án MEP đa quốc gia', gradient: 'from-amber-600 to-amber-500' },
                 { icon: <TrendingUp className="h-6 w-6" aria-hidden="true" />, value: '100+ MWp', label: 'Tổng công suất đã thi công', gradient: 'from-green-600 to-green-500' },
                 { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: 'ISO 9001', label: 'Chứng nhận chất lượng', gradient: 'from-teal-600 to-teal-500' },
               ].map((stat) => (

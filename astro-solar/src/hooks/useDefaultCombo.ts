@@ -138,7 +138,7 @@ export function useDefaultCombo(): UseDefaultComboResult {
             const category = mapProductTypeToCategory(product.product_type, specs);
             if (!category) continue;
 
-            // Extract brand from product name (e.g., "Tấm quang năng JA Solar 640Wp" -> "JA Solar")
+            // Extract brand from product name (e.g., "Tấm quang năng Aiko 640Wp" -> "Aiko")
             let brand = 'Unknown';
             let model = product.name || 'Unknown';
             

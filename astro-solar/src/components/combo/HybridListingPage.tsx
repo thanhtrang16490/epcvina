@@ -5,16 +5,16 @@ import type { ComboCardData } from './ComboListingCard';
 
 // Fallback data when API returns empty
 const FALLBACK_COMBOS: ComboCardData[] = [
-  { id: 'hb1p-5-5', slug: 'hb1p-5kw-5kwh', name: 'Hệ Hy-Brid 5 kWp 1 pha - Lưu trữ 5.12 kWh', power: 5, battery: 5.12, price: 91400000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb1p-5-10', slug: 'hb1p-5kw-10kwh', name: 'Hệ Hy-Brid 5 kWp 1 pha - Lưu trữ 10.24 kWh', power: 5, battery: 10.24, price: 112400000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness', is_popular: true },
-  { id: 'hb1p-8-5', slug: 'hb1p-8kw-5kwh', name: 'Hệ Hy-Brid 8.8 kWp 1 pha - Lưu trữ 5.12 kWh', power: 8.8, battery: 5.12, price: 130000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb1p-8-10', slug: 'hb1p-8kw-10kwh', name: 'Hệ Hy-Brid 8.8 kWp 1 pha - Lưu trữ 10.24 kWh', power: 8.8, battery: 10.24, price: 134800000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb1p-10-5', slug: 'hb1p-10kw-5kwh', name: 'Hệ Hy-Brid 10.7 kWp 1 pha - Lưu trữ 5.12 kWh', power: 10.7, battery: 5.12, price: 137000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb1p-10-10', slug: 'hb1p-10kw-10kwh', name: 'Hệ Hy-Brid 10.7 kWp 1 pha - Lưu trữ 10.24 kWh', power: 10.7, battery: 10.24, price: 148000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb3p-10-5', slug: 'hb3p-10kw-5kwh', name: 'Hệ Hy-Brid 10.7 kWp 3 pha - Lưu trữ 5.12 kWh', power: 10.7, battery: 5.12, price: 161000000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb3p-10-16', slug: 'hb3p-10kw-16kwh', name: 'Hệ Hy-Brid 11.7 kWp 3 pha - Lưu trữ 16 kWh', power: 11.7, battery: 16, price: 190000000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb3p-15-16', slug: 'hb3p-15kw-16kwh', name: 'Hệ Hy-Brid 15.7 kWp 3 pha - Lưu trữ 16 kWh', power: 15.7, battery: 16, price: 224500000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
-  { id: 'hb3p-15-30', slug: 'hb3p-15kw-30kwh', name: 'Hệ Hy-Brid 15.7 kWp 3 pha - Lưu trữ 30.5 kWh', power: 15.7, battery: 30.5, price: 247000000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Solis', battery_brand: 'Dyness' },
+  { id: 'hb1p-5-5', slug: 'hb1p-5kw-5kwh', name: 'Hệ Hy-Brid 5 kWp 1 pha - Lưu trữ 5.12 kWh', power: 5, battery: 5.12, price: 91400000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb1p-5-10', slug: 'hb1p-5kw-10kwh', name: 'Hệ Hy-Brid 5 kWp 1 pha - Lưu trữ 10.24 kWh', power: 5, battery: 10.24, price: 112400000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen', is_popular: true },
+  { id: 'hb1p-8-5', slug: 'hb1p-8kw-5kwh', name: 'Hệ Hy-Brid 8.8 kWp 1 pha - Lưu trữ 5.12 kWh', power: 8.8, battery: 5.12, price: 130000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb1p-8-10', slug: 'hb1p-8kw-10kwh', name: 'Hệ Hy-Brid 8.8 kWp 1 pha - Lưu trữ 10.24 kWh', power: 8.8, battery: 10.24, price: 134800000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb1p-10-5', slug: 'hb1p-10kw-5kwh', name: 'Hệ Hy-Brid 10.7 kWp 1 pha - Lưu trữ 5.12 kWh', power: 10.7, battery: 5.12, price: 137000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb1p-10-10', slug: 'hb1p-10kw-10kwh', name: 'Hệ Hy-Brid 10.7 kWp 1 pha - Lưu trữ 10.24 kWh', power: 10.7, battery: 10.24, price: 148000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb3p-10-5', slug: 'hb3p-10kw-5kwh', name: 'Hệ Hy-Brid 10.7 kWp 3 pha - Lưu trữ 5.12 kWh', power: 10.7, battery: 5.12, price: 161000000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb3p-10-16', slug: 'hb3p-10kw-16kwh', name: 'Hệ Hy-Brid 11.7 kWp 3 pha - Lưu trữ 16 kWh', power: 11.7, battery: 16, price: 190000000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb3p-15-16', slug: 'hb3p-15kw-16kwh', name: 'Hệ Hy-Brid 15.7 kWp 3 pha - Lưu trữ 16 kWh', power: 15.7, battery: 16, price: 224500000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
+  { id: 'hb3p-15-30', slug: 'hb3p-15kw-30kwh', name: 'Hệ Hy-Brid 15.7 kWp 3 pha - Lưu trữ 30.5 kWh', power: 15.7, battery: 30.5, price: 247000000, system_type: 'hybrid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', battery_brand: 'Genxgreen' },
 ];
 
 export default function HybridListingPage() {
@@ -108,7 +108,7 @@ export default function HybridListingPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {phase1.map(combo => (
-              <ComboListingCard key={combo.id} combo={combo} basePath="/hybrid" />
+              <ComboListingCard key={combo.id} combo={combo} basePath="/hybrid-bess" />
             ))}
           </div>
         </section>
@@ -129,7 +129,7 @@ export default function HybridListingPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {phase3.map(combo => (
-              <ComboListingCard key={combo.id} combo={combo} basePath="/hybrid" />
+              <ComboListingCard key={combo.id} combo={combo} basePath="/hybrid-bess" />
             ))}
           </div>
         </section>

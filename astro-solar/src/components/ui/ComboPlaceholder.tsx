@@ -16,7 +16,7 @@ export default function ComboPlaceholder({
   systemName,
   phase = '1-phase',
   panelCount = 8,
-  panelBrand = 'JA SOLAR',
+  panelBrand = 'Aiko',
   inverterCount = 1,
   inverterBrand = 'AUXSOL',
   hasBattery = false,

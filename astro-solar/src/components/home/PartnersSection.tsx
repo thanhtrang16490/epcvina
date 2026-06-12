@@ -1,7 +1,7 @@
 const partners = [
-  { name: 'JA Solar', logo: null },
-  { name: 'Solis', logo: null },
-  { name: 'Dyness', logo: null },
+  { name: 'Aiko', logo: null },
+  { name: 'SAJ', logo: null },
+  { name: 'Genxgreen', logo: null },
   { name: 'Growatt', logo: null },
   { name: 'Canadian Solar', logo: null },
   { name: 'Goodwe', logo: null },

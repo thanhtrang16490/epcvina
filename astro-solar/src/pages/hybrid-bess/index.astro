@@ -1,0 +1,15 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HybridBESSPage from '../../components/pages/HybridBESSPage';
+---
+
+<DashboardLayout
+  title="Hybrid & BESS - Lưu Trữ Năng Lượng Thông Minh | EPC SOLAR"
+  description="Giải pháp Hybrid và hệ thống lưu trữ năng lượng BESS cho gia đình và doanh nghiệp. Dự phòng mất điện, tối ưu chi phí giờ cao điểm, quản lý năng lượng thông minh."
+  keywords="hybrid solar, BESS, pin lưu trữ năng lượng, battery storage, lưu trữ điện mặt trời, backup điện, EPCVINA Solar"
+>
+  <DashboardShell client:load>
+    <HybridBESSPage client:load />
+  </DashboardShell>
+</DashboardLayout>

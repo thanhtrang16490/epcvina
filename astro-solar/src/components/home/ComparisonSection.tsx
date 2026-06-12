@@ -50,10 +50,10 @@ export default function ComparisonSection() {
           </div>
 
           {/* Side-by-side hero cards + VS badge */}
-          <div className="flex flex-row items-stretch gap-0 max-w-3xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-0 max-w-3xl mx-auto">
             {/* HYBRID Card */}
             <div
-              className="flex-1 rounded-2xl rounded-r-none p-4 sm:p-6 border border-white/10 text-white flex flex-col"
+              className="flex-1 rounded-2xl sm:rounded-r-none p-4 sm:p-6 border border-white/10 text-white flex flex-col"
               style={{ backgroundColor: 'rgba(26, 54, 93, 0.90)', backdropFilter: 'blur(12px)' }}
             >
               <h3 className="text-lg sm:text-xl font-extrabold mb-4 text-center tracking-wide text-blue-300">
@@ -105,9 +105,10 @@ export default function ComparisonSection() {
             </div>
 
             {/* VS divider */}
-            <div className="flex items-center justify-center z-10 -mx-5 relative">
+            <div className="flex items-center justify-center z-10 sm:-mx-5 relative
+                my-[-0.75rem] sm:my-0">
               <div
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-base sm:text-lg font-black shadow-2xl border-4 border-white/20 z-20 relative"
+                className="w-9 h-9 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-sm sm:text-lg font-black shadow-2xl border-4 border-white/20 z-20 relative"
                 style={{ background: 'linear-gradient(135deg, #1a365d 50%, #ea580c 50%)', color: '#fff' }}
               >
                 VS
@@ -116,7 +117,7 @@ export default function ComparisonSection() {
 
             {/* ON-GRID Card */}
             <div
-              className="flex-1 rounded-2xl rounded-l-none p-4 sm:p-6 border border-white/10 text-white flex flex-col"
+              className="flex-1 rounded-2xl sm:rounded-l-none p-4 sm:p-6 border border-white/10 text-white flex flex-col"
               style={{ backgroundColor: 'rgba(154, 52, 18, 0.90)', backdropFilter: 'blur(12px)' }}
             >
               <h3 className="text-lg sm:text-xl font-extrabold mb-4 text-center tracking-wide text-orange-300">
@@ -164,7 +165,7 @@ export default function ComparisonSection() {
           {/* CTA buttons */}
           <div className="mt-8 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="/hybrid"
+              href="/hybrid-bess"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full transition-colors shadow-lg"
             >
               <Battery className="h-4 w-4" />

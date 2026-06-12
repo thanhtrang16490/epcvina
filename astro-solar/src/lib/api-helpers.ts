@@ -103,7 +103,7 @@ export function normalizeCombo(rawCombo: any) {
       equipment.push({
         id: `${rawCombo.slug}-battery`,
         category: 'battery',
-        brand: 'Dyness',
+        brand: 'Genxgreen',
         model: `Battery ${rawCombo.battery_capacity_kwh}kWh`,
         quantity: 1,
         unit: 'bộ',

@@ -11,11 +11,11 @@ const pageTitles: Record<string, string> = {
   '/': 'EPC Solar',
   '/combos': 'All Combos',
   '/on-grid': 'Combo On-Grid',
-  '/hybrid': 'Combo Hy-Brid',
+  '/hybrid-bess': 'Combo Hy-Brid',
   // Giải pháp
-  '/solutions/mai-ton': 'Mái tôn',
-  '/solutions/mai-ngoi': 'Mái ngói',
-  '/solutions/mai-bang': 'Mái bằng',
+  '/solar-home/mai-ton': 'Mái tôn',
+  '/solar-home/mai-ngoi': 'Mái ngói',
+  '/solar-home/mai-bang': 'Mái bằng',
   // Ứng dụng
   '/applications/van-phong': 'Văn phòng',
   '/applications/nha-xuong': 'Nhà xưởng',

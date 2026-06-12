@@ -54,14 +54,14 @@ function ComboCard({ combo }: { combo: Combo }) {
             <Sun className="h-4 w-4 text-blue-500" />
             Tấm pin:
           </span>
-          <span className="font-medium text-gray-900">{combo.panel_brand || 'JA Solar'} {combo.power} kWp</span>
+          <span className="font-medium text-gray-900">{combo.panel_brand || 'Aiko'} {combo.power} kWp</span>
         </div>
         <div className="flex items-center justify-between">
           <span className="text-gray-500 flex items-center gap-2">
             <Zap className="h-4 w-4 text-orange-500" />
             Biến tần:
           </span>
-          <span className="font-medium text-gray-900">{combo.inverter_brand || 'Solis'} {combo.power} kW</span>
+          <span className="font-medium text-gray-900">{combo.inverter_brand || 'SAJ'} {combo.power} kW</span>
         </div>
         {combo.battery > 0 && (
           <div className="flex items-center justify-between">

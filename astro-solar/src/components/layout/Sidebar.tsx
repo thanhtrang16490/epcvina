@@ -36,7 +36,7 @@ const menuItems: MenuItem[] = [
     icon: Package,
     children: [
       { name: 'Combo On-Grid', href: '/on-grid' },
-      { name: 'Combo Hybrid', href: '/hybrid' },
+      { name: 'Combo Hybrid', href: '/hybrid-bess' },
     ],
   },
   {
@@ -64,9 +64,9 @@ const menuItems: MenuItem[] = [
     name: 'Giải pháp mái',
     icon: Lightbulb,
     children: [
-      { name: 'Mái tôn', href: '/solutions/mai-ton', soon: true },
-      { name: 'Mái ngói', href: '/solutions/mai-ngoi', soon: true },
-      { name: 'Mái bằng', href: '/solutions/mai-bang', soon: true },
+      { name: 'Mái tôn', href: '/solar-home/mai-ton', soon: true },
+      { name: 'Mái ngói', href: '/solar-home/mai-ngoi', soon: true },
+      { name: 'Mái bằng', href: '/solar-home/mai-bang', soon: true },
     ],
   },
   {

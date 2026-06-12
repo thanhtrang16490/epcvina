@@ -124,7 +124,7 @@ EPC VINA là **nhà thầu cơ điện (M&E)** chuyên cung cấp giải pháp t
 | 1 | Chưa có kinh nghiệm trực tiếp về solar | Hợp tác/tuyển dụng chuyên gia solar |
 | 2 | Chưa có chứng chỉ/giấy phép điện mặt trời | Xin cấp phép theo NĐ135/2024 |
 | 3 | Website cũ, chưa cập nhật | Cần nâng cấp website, thêm mảng solar |
-| 4 | Chưa có quan hệ với nhà cung cấp tấm pin | Thiết lập đại lý/đối tác với Longi, JA Solar, Canadian Solar... |
+| 4 | Chưa có quan hệ với nhà cung cấp tấm pin | Thiết lập đại lý/đối tác với Longi, Aiko, Canadian Solar... |
 | 5 | Chưa có năng lực thiết kế hệ thống PV | Đầu tư phần mềm thiết kế (PVsyst, AutoCAD Solar) |
 
 ### 4.3 Opportunities (Cơ hội)
@@ -281,7 +281,7 @@ EPC VINA có thể cung cấp giải pháp **TRỌN GÓI** mà các công ty sol
 1. Liên hệ Mrs. Giang (0988446113) để tìm hiểu kế hoạch nội bộ
 2. Khảo sát nhu cầu solar tại các khách hàng Samsung hiện tại
 3. Lập business plan chi tiết với ROI projection
-4. Xác định đối tác cung cấp thiết bị (Longi, JA Solar, Huawei inverter...)
+4. Xác định đối tác cung cấp thiết bị (Longi, Aiko, Huawei inverter...)
 5. Đăng ký bổ sung ngành nghề kinh doanh tại Sở KHĐT
 
 ---

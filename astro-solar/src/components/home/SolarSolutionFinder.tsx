@@ -893,7 +893,7 @@ export default function SolarSolutionFinder() {
             </div>
 
             <div className="px-5 pb-5">
-              <a href="/solutions" className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 font-medium hover:bg-gray-50 transition-all">
+              <a href="/solar-home" className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 font-medium hover:bg-gray-50 transition-all">
                 Xem tất cả giải pháp <ArrowRight className="w-4 h-4" />
               </a>
             </div>

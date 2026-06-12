@@ -12,7 +12,8 @@ export default function HeroSection() {
   // Parallax scroll
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
+    const isMobile = window.innerWidth < 768;
+    if (prefersReducedMotion || isMobile) return;
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -106,7 +107,7 @@ export default function HeroSection() {
             className="max-w-5xl mx-auto rounded-2xl shadow-2xl"
             style={{ backgroundColor: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(12px)' }}
           >
-            <div className="grid grid-cols-4 divide-x divide-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {[
                 { icon: <Sun className="w-7 h-7 md:w-9 md:h-9 text-[#D0202A]" />, value: `${count10}+`, label: 'Năm kinh nghiệm' },
                 { icon: <Zap className="w-7 h-7 md:w-9 md:h-9 text-[#D0202A]" />, value: `${count200}+`, label: 'Công trình đã thi công' },

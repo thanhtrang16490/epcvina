@@ -15,7 +15,7 @@ export default function ComboGridSection({ title, description, systemType, phase
   }
 
   const isHybrid = systemType === 'hybrid';
-  const basePath = isHybrid ? '/hybrid' : '/on-grid';
+  const basePath = isHybrid ? '/hybrid-bess' : '/on-grid';
 
   const IconComponent = isHybrid ? Battery : Sun;
 

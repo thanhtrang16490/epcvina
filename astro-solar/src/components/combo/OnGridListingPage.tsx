@@ -5,14 +5,14 @@ import type { ComboCardData } from './ComboListingCard';
 
 // Fallback data when API returns empty
 const FALLBACK_COMBOS: ComboCardData[] = [
-  { id: 'og1p-5', slug: 'og1p-5-5kw', name: 'Hệ On-Grid 5 kWp 1 pha', power: 5, battery: 0, price: 54500000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol' },
-  { id: 'og1p-8', slug: 'og1p-8-8kw', name: 'Hệ On-Grid 8.8 kWp 1 pha', power: 8.8, battery: 0, price: 86400000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol' },
-  { id: 'og1p-10', slug: 'og1p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 1 pha', power: 10.7, battery: 0, price: 100600000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol' },
-  { id: 'og3p-10', slug: 'og3p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 3 pha', power: 10.7, battery: 0, price: 98500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol' },
-  { id: 'og3p-15', slug: 'og3p-15-7kw', name: 'Hệ On-Grid 15.7 kWp 3 pha', power: 15.7, battery: 0, price: 132500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol', is_popular: true },
-  { id: 'og3p-18', slug: 'og3p-18-8kw', name: 'Hệ On-Grid 18.8 kWp 3 pha', power: 18.8, battery: 0, price: 152000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol' },
-  { id: 'og3p-29', slug: 'og3p-29-4kw', name: 'Hệ On-Grid 29.4 kWp 3 pha', power: 29.4, battery: 0, price: 252700000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol' },
-  { id: 'og3p-48', slug: 'og3p-48-8kw', name: 'Hệ On-Grid 48.8 kWp 3 pha', power: 48.8, battery: 0, price: 400500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'JA Solar', inverter_brand: 'Auxsol' },
+  { id: 'og1p-5', slug: 'og1p-5-5kw', name: 'Hệ On-Grid 5 kWp 1 pha', power: 5, battery: 0, price: 54500000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'og1p-8', slug: 'og1p-8-8kw', name: 'Hệ On-Grid 8.8 kWp 1 pha', power: 8.8, battery: 0, price: 86400000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'og1p-10', slug: 'og1p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 1 pha', power: 10.7, battery: 0, price: 100600000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'og3p-10', slug: 'og3p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 3 pha', power: 10.7, battery: 0, price: 98500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'og3p-15', slug: 'og3p-15-7kw', name: 'Hệ On-Grid 15.7 kWp 3 pha', power: 15.7, battery: 0, price: 132500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol', is_popular: true },
+  { id: 'og3p-18', slug: 'og3p-18-8kw', name: 'Hệ On-Grid 18.8 kWp 3 pha', power: 18.8, battery: 0, price: 152000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'og3p-29', slug: 'og3p-29-4kw', name: 'Hệ On-Grid 29.4 kWp 3 pha', power: 29.4, battery: 0, price: 252700000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'og3p-48', slug: 'og3p-48-8kw', name: 'Hệ On-Grid 48.8 kWp 3 pha', power: 48.8, battery: 0, price: 400500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
 ];
 
 export default function OnGridListingPage() {

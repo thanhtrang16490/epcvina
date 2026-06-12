@@ -42,10 +42,10 @@ export const INVERTER_IMAGES_AUXSOL = [
   deviceImg('Inverter Auxsol 3', 'inverter'),
 ];
 
-export const INVERTER_IMAGES_SOLIS = [
-  deviceImg('Inverter Solis 1', 'inverter'),
-  deviceImg('Inverter Solis 2', 'inverter'),
-  deviceImg('Inverter Solis 3', 'inverter'),
+export const INVERTER_IMAGES_SAJ = [
+  deviceImg('Inverter SAJ 1', 'inverter'),
+  deviceImg('Inverter SAJ 2', 'inverter'),
+  deviceImg('Inverter SAJ 3', 'inverter'),
 ];
 
 export const MOUNTING_IMAGES = [
