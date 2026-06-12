@@ -39,43 +39,44 @@ export default function HeaderBar() {
           />
         </a>
 
-        {/* Nav pill - center (desktop only) */}
-        <nav className="hidden md:flex items-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
-          {/* Mirror reflection gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none rounded-full" />
-          {navItems.map((item) => {
-            const isActive = activePath === item.href;
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
-                  isActive
-                    ? 'bg-gray-900 text-white shadow-md'
-                    : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'
-                }`}
-              >
-                {item.label}
-              </a>
-            );
-          })}
+        {/* Nav pill - center (md+ only) */}
+        <nav className="hidden md:flex flex-1 items-center justify-center gap-0.5 mx-4">
+          <div className="flex items-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-2 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none rounded-full" />
+            {navItems.map((item) => {
+              const isActive = activePath === item.href;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? 'bg-gray-900 text-white shadow-md'
+                      : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+          </div>
         </nav>
 
         {/* Right side */}
         <div className="flex items-center gap-2">
-          {/* Phone CTA - hidden on mobile */}
+          {/* Phone CTA - md+ only */}
           <a
             href="tel:0988446113"
-            className="hidden sm:flex items-center gap-2 bg-orange-500 text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-orange-600 transition-colors shadow-sm"
+            className="hidden md:flex items-center gap-2 bg-orange-500 text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-orange-600 transition-colors shadow-sm whitespace-nowrap"
           >
             <Phone className="h-4 w-4" />
             <span>0988 446 113</span>
           </a>
 
-          {/* Hamburger - mobile only */}
+          {/* Hamburger - mobile only (below md) */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 text-gray-700"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white shadow-lg"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
