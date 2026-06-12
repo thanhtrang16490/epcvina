@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 
 const stats = [
-  { value: '500+', label: 'Hệ thống đã lắp đặt' },
-  { value: '98%', label: 'Khách hàng hài lòng' },
-  { value: '10+', label: 'Năm kinh nghiệm' },
+  { value: '10+', label: 'Năm kinh nghiệm MEP & Solar' },
+  { value: '200+', label: 'Công trình đã thi công' },
+  { value: '5 MWp+', label: 'Tổng công suất lắp đặt' },
   { value: '25 năm', label: 'Bảo hành tấm pin' },
 ];
 

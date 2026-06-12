@@ -1,56 +1,77 @@
-import { BatteryCharging, Banknote, TrendingUp, Home } from 'lucide-react';
+import { Zap, ShieldCheck, Cpu, CloudRain, Wrench, Building2 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 const benefits: { icon: LucideIcon; title: string; description: string }[] = [
   {
-    icon: BatteryCharging,
-    title: 'Không lo mất điện',
-    description: 'Tự động chuyển sang pin khi mất điện lưới. Gia đình luôn có điện 24/7.',
+    icon: Building2,
+    title: 'Thiết kế chuẩn cơ điện',
+    description: 'Mọi hệ thống đều được thiết kế theo tiêu chuẩn cơ điện MEP bởi kỹ sư có chứng chỉ hành nghề, đảm bảo tính kỹ thuật và pháp lý.',
   },
   {
-    icon: Banknote,
-    title: 'Tiết kiệm 70-90% hóa đơn',
-    description: 'Sử dụng năng lượng mặt trời ban ngày, pin lưu trữ ban đêm.',
+    icon: ShieldCheck,
+    title: 'An toàn điện, chống sét, tiếp địa',
+    description: 'Hệ thống tiếp địa, chống sét lan truyền và bảo vệ quá áp được thi công đồng bộ theo tiêu chuẩn IEC — bảo vệ thiết bị và người dùng.',
   },
   {
-    icon: TrendingUp,
-    title: 'Hoàn vốn 4-6 năm',
-    description: 'Lợi nhuận ổn định trong 25+ năm. Đầu tư sinh lời bền vững.',
+    icon: Cpu,
+    title: 'Kiểm soát tải, inverter, pin lưu trữ',
+    description: 'Tích hợp giải pháp quản lý năng lượng thông minh: tự động ưu tiên pin ban đêm, tối ưu nguồn điện mặt trời ban ngày, giảm tối đa tiền điện.',
   },
   {
-    icon: Home,
-    title: 'Tăng giá trị nhà',
-    description: 'Nâng cấp nhà thông minh, thân thiện môi trường, tăng giá trị bất động sản.',
+    icon: CloudRain,
+    title: 'Thi công đảm bảo chống thấm mái',
+    description: 'Đội ngũ thi công có kinh nghiệm xử lý chống thấm mái trước và sau khi lắp đặt tấm pin, đảm bảo kết cấu mái không bị ảnh hưởng.',
+  },
+  {
+    icon: Wrench,
+    title: 'Bảo trì dài hạn',
+    description: 'Cam kết bảo trì định kỳ, theo dõi sản lượng từ xa, xử lý sự cố nhanh trong 24h — đồng hành cùng khách hàng trong suốt vòng đời hệ thống.',
+  },
+  {
+    icon: Zap,
+    title: 'Nền tảng nhà thầu MEP toàn diện',
+    description: 'EPCVINA có nền tảng từ nhà thầu cơ điện MEP, HVAC, PCCC, Electrical, Plumbing — đảm bảo thi công Solar tích hợp hoàn chỉnh trong một dự án.',
   },
 ];
 
 export default function BenefitsSection() {
   return (
-    <section className="py-12 sm:py-16 bg-gray-50">
+    <section className="py-14 sm:py-20 bg-[#0F172A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-            Tại sao chọn điện mặt trời Hybrid?
+        <div className="text-center mb-12">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-amber-400 mb-3">
+            TẠI SAO CHỌN EPCVINA SOLAR
+          </p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            Lợi Thế <span className="text-amber-400">EPCVINA Solar</span>
           </h2>
+          <p className="mt-4 text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+            Điện mặt trời an toàn từ chuyên gia cơ điện — không chỉ lắp đặt, chúng tôi thiết kế, thi công và bảo trì toàn diện theo tiêu chuẩn kỹ thuật.
+          </p>
         </div>
 
-        {/* Benefits grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {benefits.map((benefit) => {
+        {/* Benefits grid — 3 cols desktop, 2 cols tablet, 1 col mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {benefits.map((benefit, i) => {
             const Icon = benefit.icon;
             return (
               <div
                 key={benefit.title}
-                className="bg-white border border-gray-200 rounded-xl p-6 text-center transition-all duration-200 hover:shadow-lg hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none"
+                className="group relative bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-amber-400/30 transition-all duration-200 motion-reduce:transition-none"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-orange-100 text-orange-600 mb-4">
-                  <Icon className="h-6 w-6" />
+                {/* Top accent bar */}
+                <div className="absolute top-0 left-6 right-6 h-0.5 rounded-full bg-gradient-to-r from-amber-400/0 via-amber-400/60 to-amber-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-amber-400/10 flex items-center justify-center">
+                    <Icon className="h-5 w-5 text-amber-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white mb-1.5 text-[15px]">{benefit.title}</h3>
+                    <p className="text-[13px] text-gray-400 leading-relaxed">{benefit.description}</p>
+                  </div>
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {benefit.description}
-                </p>
               </div>
             );
           })}

@@ -3,11 +3,12 @@ import { Phone, Menu, X } from 'lucide-react';
 
 const navItems = [
   { label: 'Trang chủ', href: '/' },
-  { label: 'Giới thiệu', href: '/about' },
-  { label: 'Giải pháp', href: '/solutions' },
+  { label: 'Solar Home', href: '/solutions' },
+  { label: 'Hybrid & BESS', href: '/hybrid' },
+  { label: 'EV Charger', href: '#ev-charger' },
+  { label: 'Solar C&I', href: '#solar-ci' },
+  { label: 'Bảo trì O&M', href: '#bao-tri' },
   { label: 'Dự án', href: '/projects' },
-  { label: 'Sản phẩm', href: '/equipment' },
-  { label: 'Tin tức', href: '/blog' },
   { label: 'Liên hệ', href: '/contact' },
 ];
 
@@ -42,7 +43,7 @@ export default function HeaderBar() {
         </a>
 
         {/* Nav pill - center (desktop only) */}
-        <nav className="hidden md:flex items-center gap-1 bg-white/60 backdrop-blur-2xl rounded-full px-3 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
+        <nav className="hidden md:flex items-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
           {/* Mirror reflection gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none rounded-full" />
           {navItems.map((item) => {
@@ -51,7 +52,7 @@ export default function HeaderBar() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
+                className={`relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
                   isActive
                     ? 'bg-gray-900 text-white shadow-md'
                     : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'

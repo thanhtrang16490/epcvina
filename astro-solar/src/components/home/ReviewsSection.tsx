@@ -18,7 +18,7 @@ export default function ReviewsSection() {
             Khách hàng nói gì về chúng tôi?
           </h2>
           <p className="text-gray-500 mt-2">
-            Hơn 500+ khách hàng đã tin tưởng lắp đặt
+            Hơn 200+ công trình đã tin tưởng lắp đặt
           </p>
         </div>
 

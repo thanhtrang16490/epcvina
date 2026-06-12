@@ -200,3 +200,30 @@ body {
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
+
+/* === Performance: content-visibility for off-screen sections === */
+.section-offscreen {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+
+/* will-change for animated elements — applied only when needed */
+.animate-fade-in,
+.animate-slide-in-up,
+.animate-slide-in-left,
+.animate-scale-in,
+.animate-counter-up {
+  will-change: opacity, transform;
+}
+
+/* GPU-accelerated hover cards */
+.gpu-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Improve CLS: reserve space for images before load */
+img {
+  max-width: 100%;
+  height: auto;
+}

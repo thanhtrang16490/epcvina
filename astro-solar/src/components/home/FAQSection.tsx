@@ -3,28 +3,28 @@ import { ChevronDown } from 'lucide-react';
 
 const faqData = [
   {
+    question: 'Lắp điện mặt trời có cần xin phép không?',
+    answer: 'Có. Theo Nghị định 135/2024/NĐ-CP, hệ thống điện mặt trời mái nhà dưới 1 MWp cần thông báo với Đọc điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục phép, đấu nối lưới và đăng ký bán điện dư với EVN miễn phí cho khách hàng.',
+  },
+  {
     question: 'Lắp điện mặt trời có thực sự tiết kiệm tiền điện không?',
-    answer: 'Có. Hệ thống điện mặt trời giúp giảm 70-90% hóa đơn điện hàng tháng. Với giá điện ngày càng tăng, mức tiết kiệm sẽ càng lớn theo thời gian. Trung bình một hệ 5kWp tiết kiệm được 1.5-2.5 triệu đồng/tháng.',
+    answer: 'Có. Hệ thống điện mặt trời giúp giảm 70–90% hóa đơn điện hàng tháng. Với giá điện ngày càng tăng, mức tiết kiệm sẽ càng lớn theo thời gian. Trung bình một hệ 5 kWp tiết kiệm được 1.5–2.5 triệu đồng/tháng.',
   },
   {
     question: 'Thời gian hoàn vốn là bao lâu?',
-    answer: 'Thời gian hoàn vốn trung bình từ 3-5 năm cho hệ On-Grid và 5-7 năm cho hệ Hybrid. Sau khi hoàn vốn, bạn sẽ sử dụng điện miễn phí trong suốt tuổi thọ còn lại của hệ thống (20-25 năm).',
+    answer: 'Thời gian hoàn vốn trung bình từ 3–5 năm cho hệ On-Grid và 5–7 năm cho hệ Hybrid. Sau khi hoàn vốn, bạn sẽ sử dụng điện miễn phí trong suốt tuổi thọ còn lại của hệ thống (20–25 năm).',
   },
   {
-    question: 'Tấm pin mặt trời bền được bao lâu?',
-    answer: 'Tấm pin quang năng chất lượng cao có tuổi thọ trên 25 năm với hiệu suất giảm dần khoảng 0.5%/năm. Sau 25 năm, tấm pin vẫn hoạt động ở mức 80-85% công suất ban đầu. Bảo hành sản phẩm từ 12-15 năm.',
+    question: 'Tấm pin mặt trời bền được bao lâu? Bảo hành như thế nào?',
+    answer: 'Tấm pin chất lượng cao có tuổi thọ trên 25 năm với hiệu suất giảm dần khoảng 0.5%/năm. EPCVINA bảo hành tấm pin 25 năm, inverter 5–10 năm, thi công 2 năm. Hỗ trợ kỹ thuật và bảo trì định kỳ trong suốt vòng đời hệ thống.',
   },
   {
     question: 'Hệ thống có hoạt động trong ngày mưa hoặc trời âm u không?',
-    answer: 'Có, hệ thống vẫn phát điện trong điều kiện ít nắng, tuy nhiên sản lượng sẽ giảm 50-80% so với ngày nắng. Hệ thống được thiết kế dựa trên sản lượng trung bình cả năm nên đã tính đến các ngày mưa.',
+    answer: 'Có, hệ thống vẫn phát điện trong điều kiện ít nắng, tuy nhiên sản lượng sẽ giảm 50–80% so với ngày nắng. Hệ thống được thiết kế dựa trên sản lượng trung bình cả năm nên đã tính đến các ngày mưa.',
   },
   {
-    question: 'Chi phí bảo trì hàng năm là bao nhiêu?',
-    answer: 'Chi phí bảo trì rất thấp, chủ yếu là vệ sinh tấm pin 2-4 lần/năm (có thể tự làm bằng nước sạch). Không có chi phí nhiên liệu hay phụ tùng thay thế định kỳ. Chi phí bảo trì chuyên nghiệp khoảng 500.000-1.000.000đ/năm.',
-  },
-  {
-    question: 'Sự khác biệt giữa On-Grid và Hybrid là gì?',
-    answer: 'On-Grid (hòa lưới): Hoạt động song song với điện lưới, không lưu trữ, chi phí thấp hơn, tắt khi mất điện. Hybrid: Có pin lưu trữ, hoạt động độc lập khi mất điện, chi phí cao hơn nhưng đảm bảo nguồn điện liên tục.',
+    question: 'Chi phí phát sinh sau khi lắp đặt là bao nhiêu?',
+    answer: 'Chi phí bảo trì rất thấp: chủ yếu là vệ sinh tấm pin 2–4 lần/năm (có thể tự làm bằng nước sạch). Không có chi phí nhiên liệu hay phụ tùng thay thế định kỳ. Bảo trì chuyên nghiệp khoảng 500.000–1.000.000đ/năm. EPCVINA có gói bảo trì O&M dài hạn.',
   },
 ];
 
