@@ -1,7 +1,15 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import BaoTriPage from '../components/pages/BaoTriPage';
 ---
-<DashboardLayout title="Bảo Trì & Vận Hành O&M | EPC SOLAR">
-  <BaoTriPage client:load />
+
+<DashboardLayout
+  title="Bảo Trì & Vận Hành O&M | EPC SOLAR"
+  description="Dịch vụ vận hành và bảo trì điện mặt trời chuyên nghiệp. Giám sát 24/7, vệ sinh tấm pin, bảo dưỡng định kỳ, cam kết hiệu suất PR ≥ 80%."
+  keywords="bảo trì điện mặt trời, O&M solar, vệ sinh tấm pin, giám sát hệ thống, EPCVINA"
+>
+  <DashboardShell client:load>
+    <BaoTriPage client:load />
+  </DashboardShell>
 </DashboardLayout>

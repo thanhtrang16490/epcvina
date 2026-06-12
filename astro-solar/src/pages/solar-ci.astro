@@ -1,7 +1,15 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import SolarCIPage from '../components/pages/SolarCIPage';
 ---
-<DashboardLayout title="Solar Thương Mại & Công Nghiệp | EPC SOLAR">
-  <SolarCIPage client:load />
+
+<DashboardLayout
+  title="Solar Thương Mại & Công Nghiệp | EPC SOLAR"
+  description="Giải pháp điện mặt trời cho thương mại và công nghiệp. Công suất 100kWp - 5MWp, hoàn vốn 4-6 năm, tuổi thọ 30+ năm."
+  keywords="điện mặt trời công nghiệp, solar C&I, điện mặt trời nhà xưởng, EPCVINA, tiết kiệm điện doanh nghiệp"
+>
+  <DashboardShell client:load>
+    <SolarCIPage client:load />
+  </DashboardShell>
 </DashboardLayout>

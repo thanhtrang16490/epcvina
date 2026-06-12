@@ -1,7 +1,15 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import EVChargerPage from '../components/pages/EVChargerPage';
 ---
-<DashboardLayout title="Trạm Sạc Xe Điện | EPC SOLAR">
-  <EVChargerPage client:load />
+
+<DashboardLayout
+  title="Trạm Sạc Xe Điện V-GREEN | EPC SOLAR"
+  description="Giải pháp trạm sạc xe điện V-GREEN tích hợp năng lượng mặt trời. EPCVINA SOLAR cung cấp dịch vụ lắp đặt, tư vấn và vận hành trạm sạc EV toàn quốc."
+  keywords="trạm sạc xe điện, V-GREEN, EV charger, năng lượng mặt trời, sạc xe điện, EPCVINA"
+>
+  <DashboardShell client:load>
+    <EVChargerPage client:load />
+  </DashboardShell>
 </DashboardLayout>

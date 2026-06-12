@@ -166,11 +166,11 @@ const epcvinaValues = [
 export default function EVChargerPage() {
   return (
     <div className="min-h-screen bg-white">
-      <HeaderBar />
-      <div className="md:pt-16">
-
+      {/* Hero area with HeaderBar floating over */}
+      <div className="relative">
+        <HeaderBar />
         {/* ═══════════════════ Hero Section ═══════════════════ */}
-        <section className="relative overflow-hidden bg-slate-900 text-white">
+        <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
           <img
             src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80"
@@ -183,7 +183,7 @@ export default function EVChargerPage() {
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/30 rounded-full -translate-y-1/2 translate-x-1/4" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-400/20 rounded-full translate-y-1/2 -translate-x-1/4" />
           </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-16 sm:pb-24 text-center flex flex-col items-center justify-center min-h-[60vh] sm:min-h-[70vh]">
             {/* V-GREEN badge */}
             <div className="inline-flex items-center gap-2 bg-cyan-500/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-base border border-cyan-400/30 mb-6">
               <Zap className="h-4 w-4 text-cyan-400" aria-hidden="true" />
@@ -213,8 +213,10 @@ export default function EVChargerPage() {
             </div>
           </div>
         </section>
+      </div>
 
-        {/* ═══════════════════ V-GREEN Network Overview ═══════════════════ */}
+      {/* Content below hero */}
+      <div>
         <section className="py-12 sm:py-16 bg-white" aria-labelledby="vgreen-network-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">

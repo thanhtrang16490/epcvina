@@ -59,18 +59,18 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
           {/* Main content - offset by sidebar on desktop */}
           <div className="flex-1 flex flex-col min-w-0 lg:ml-16">
-            {/* Header: always shown on mobile for hamburger; desktop hidden on homepage (HeaderBar handles it) */}
+            {/* Header: mobile-only hamburger toggle (all pages have their own HeaderBar for desktop navigation) */}
             <Header
               onMenuClick={() => setIsSidebarOpen(true)}
               isHidden={!isHeaderVisible}
-              mobileOnly={isHomePage}
+              mobileOnly={true}
             />
             
             {/* Page content */}
             <main ref={mainRef} className={`flex-1 ${
               isHomePage
                 ? ''
-                : pathname?.startsWith('/equipment') ? '' : 'pt-14 lg:pt-16'
+                : pathname?.startsWith('/equipment') ? '' : 'pt-14 lg:pt-0'
             } ${isHomePage ? '' : 'lg:pl-8 lg:pr-8'}`}>
               {children}
             </main>

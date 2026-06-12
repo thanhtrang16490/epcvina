@@ -96,15 +96,16 @@ const stats = [
 export default function SolutionsLandingPage() {
   return (
     <div className="min-h-screen bg-white">
-      <HeaderBar />
-      <div className="md:pt-16">
+      {/* Hero area with HeaderBar floating over */}
+      <div className="relative">
+        <HeaderBar />
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-gray-900 text-white">
+        <section className="relative overflow-hidden bg-gray-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-400/20 rounded-full -translate-y-1/2 translate-x-1/4" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />
           </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-16 sm:pb-24 text-center flex flex-col items-center justify-center min-h-[60vh] sm:min-h-[70vh]">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm border border-white/20 mb-6">
               <Sun className="h-4 w-4 text-amber-400" />
               <span>Giải pháp năng lượng xanh</span>
@@ -120,7 +121,10 @@ export default function SolutionsLandingPage() {
             </p>
           </div>
         </section>
+      </div>
 
+      {/* Content below hero */}
+      <div>
         {/* Solutions Grid */}
         <section className="py-12 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
