@@ -5,9 +5,6 @@ const navItems = [
   { label: 'Trang chủ', href: '/' },
   { label: 'Solar Home', href: '/solutions' },
   { label: 'Hybrid & BESS', href: '/hybrid' },
-  { label: 'EV Charger', href: '#ev-charger' },
-  { label: 'Solar C&I', href: '#solar-ci' },
-  { label: 'Bảo trì O&M', href: '#bao-tri' },
   { label: 'Dự án', href: '/projects' },
   { label: 'Liên hệ', href: '/contact' },
 ];
