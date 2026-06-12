@@ -54,7 +54,7 @@ function QuoteModal({ isOpen, onClose, combo }: { isOpen: boolean; onClose: () =
         {/* Header */}
         <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100">
           <div>
-            <h3 className="font-bold text-gray-900 text-lg">Nhận báo giá</h3>
+            <h3 className="font-bold text-gray-900 text-lg">Xem chi tiết</h3>
             <p className="text-xs text-gray-500 mt-0.5">
               Hệ thống {combo.power ? `${combo.power} kWp` : ''} — {(combo.price / 1000000).toFixed(1)} triệu đồng
             </p>
@@ -225,7 +225,7 @@ function FinancialCard({ combo, mounted }: FinancialCardProps) {
             onClick={() => setShowQuoteModal(true)}
             className="w-full py-2.5 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-gray-800 transition-colors"
           >
-            Nhận báo giá
+            Xem chi tiết
           </button>
         </div>
       </GlassCard>

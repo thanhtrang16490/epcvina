@@ -408,13 +408,7 @@ function HybridComboCard({ combo }: { combo: typeof FALLBACK_HYBRID_COMBOS[0] })
           className="flex-1 h-11 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition-all hover:opacity-90 shadow-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
           style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 100%)' }}
         >
-          <Phone className="w-4 h-4" /> Nhận báo giá
-        </a>
-        <a
-          href="tel:0988446113"
-          className="h-11 w-24 rounded-xl border border-indigo-300 text-indigo-600 text-sm font-semibold flex items-center justify-center gap-1.5 hover:bg-indigo-50 transition-all focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
-        >
-          <Phone className="w-3.5 h-3.5" /> Gọi ngay
+          <Phone className="w-4 h-4" /> Xem chi tiết
         </a>
       </div>
     </div>

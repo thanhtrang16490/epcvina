@@ -49,7 +49,7 @@ export default function CTASection() {
             ĐĂNG KÝ TƯ VẤN MIỄN PHÍ
           </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-            Nhận Báo Giá <span className="text-amber-300">Sơ Bộ</span> Ngay Hôm Nay
+            Xem chi tiết <span className="text-amber-300">Sơ Bộ</span> Ngay Hôm Nay
           </h2>
           <p className="mt-3 text-orange-100 text-sm sm:text-base max-w-xl mx-auto">
             Điền thông tin bên dưới — đội kỹ sư EPCVINA Solar sẽ liên hệ tư vấn và khảo sát miễn phí trong 24h.

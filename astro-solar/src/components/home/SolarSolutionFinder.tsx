@@ -315,14 +315,8 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
           className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
           style={{ background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' }}
         >
-          <Phone className="w-4 h-4" /> Nhận báo giá
+          <Phone className="w-4 h-4" /> Xem chi tiết
         </motion.a>
-        <a
-          href="tel:0988446113"
-          className="h-11 w-24 rounded-xl border border-[#D0202A] text-[#D0202A] text-[14px] font-semibold flex items-center justify-center gap-1.5 hover:bg-red-50 transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none"
-        >
-          <Phone className="w-3.5 h-3.5" /> Gọi ngay
-        </a>
       </div>
     </motion.div>
   );

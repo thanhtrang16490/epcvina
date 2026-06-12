@@ -91,7 +91,7 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-white/60 text-white font-semibold text-sm hover:bg-white/10 hover:border-white transition-all duration-200"
             >
               <FileText className="w-4 h-4" />
-              Nhận báo giá sơ bộ
+              Xem chi tiết sơ bộ
             </a>
           </div>
 
