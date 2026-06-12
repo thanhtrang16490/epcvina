@@ -38,7 +38,7 @@ export default function HeaderBar() {
           <img
             src="/logo-epcvina-solar-white.png"
             alt="EPCVINA Solar"
-            className="h-10 w-auto drop-shadow-sm"
+            className="h-7 sm:h-8 w-auto max-w-[120px] sm:max-w-[160px] object-contain drop-shadow-sm"
           />
         </a>
 
