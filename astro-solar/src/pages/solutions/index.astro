@@ -1,0 +1,15 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolutionsLandingPage from '../../components/pages/SolutionsLandingPage';
+---
+
+<DashboardLayout
+  title="Giải Pháp Năng Lượng Mặt Trời | EPC SOLAR"
+  description="EPCVINA SOLAR cung cấp các giải pháp điện mặt trời tích hợp cho hộ gia đình, doanh nghiệp và công nghiệp. Hòa lưới, hybrid, mái tôn, mái bằng, mái ngói, EV Charger, Solar C&I và bảo trì O&M."
+  keywords="giải pháp năng lượng mặt trời, điện mặt trời hòa lưới, hybrid, BESS, mái tôn, mái bằng, mái ngói, EV charger, solar C&I, bảo trì O&M"
+>
+  <DashboardShell client:load>
+    <SolutionsLandingPage client:load />
+  </DashboardShell>
+</DashboardLayout>
