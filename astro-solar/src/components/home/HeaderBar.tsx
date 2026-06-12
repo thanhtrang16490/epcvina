@@ -8,7 +8,7 @@ const navItems = [
   { label: 'EV Charger', href: '/ev-charger' },
   { label: 'Solar C&I', href: '/solar-ci' },
   { label: 'Bảo trì O&M', href: '/bao-tri' },
-  { label: 'Dự án', href: '/projects' },
+  { label: 'Dự án', href: '/du-an' },
   { label: 'Liên hệ', href: '/lien-he' },
 ];
 

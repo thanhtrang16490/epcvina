@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Zap, Shield, Home, Building2, Target, CheckCircle2,
+  Zap, Shield, Home, Building2, CheckCircle2,
   RefreshCw, ChevronDown, Battery, Sun, TrendingUp,
   Sparkles, ArrowRight, BarChart3, Cpu, Info,
   Phone, Calendar, Star, Leaf, ChevronRight,
@@ -212,9 +212,9 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
 // ─────────────────────────────────────────────
 function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
   const isHybrid = sol.type === 'hybrid';
-  const panelBrand = 'JA Solar';
-  const inverterBrand = isHybrid ? 'Solis' : 'Auxsol';
-  const batteryBrand = isHybrid ? 'Dyness' : null;
+  const panelBrand = 'Aiko';
+  const inverterBrand = 'SAJ';
+  const batteryBrand = isHybrid ? 'Genxgreen' : null;
   const panelCount = Math.ceil(sol.power * 1000 / 580);
 
   const specs: { icon: React.ReactNode; label: string; value: string }[] = [
@@ -500,39 +500,39 @@ function fmtPayback(s: string): string {
 
 const COMBO_CATALOG: ComboCatalog[] = [
   // ── Hybrid 1 pha ────────────────────────────────────────────
-  { id: 'h1p-5-5',    name: 'Hy-Brid 5 kWp 1pha – 5.12 kWh',    systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 5,     battery: 5.12,  investment: 91.4,  productionMin: 500,  productionMax: 700,  paybackStr: fmtPayback('4n3t'),  paybackYears: parsePayback('4n3t'),  roofArea: 21.6  },
-  { id: 'h1p-5-10',   name: 'Hy-Brid 5 kWp 1pha – 10.24 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 5,     battery: 10.24, investment: 112.4, productionMin: 400,  productionMax: 600,  paybackStr: fmtPayback('6n3t'),  paybackYears: parsePayback('6n3t'),  roofArea: 21.6  },
-  { id: 'h1p-88-5',   name: 'Hy-Brid 8.8 kWp 1pha – 5.12 kWh',  systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 8.75,  battery: 5.12,  investment: 113.8, productionMin: 600,  productionMax: 900,  paybackStr: fmtPayback('4n3t'),  paybackYears: parsePayback('4n3t'),  roofArea: 37.8  },
-  { id: 'h1p-88-10',  name: 'Hy-Brid 8.8 kWp 1pha – 10.24 kWh', systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 8.75,  battery: 10.24, investment: 134.8, productionMin: 700,  productionMax: 1000, paybackStr: fmtPayback('4n5t'),  paybackYears: parsePayback('4n5t'),  roofArea: 37.8  },
-  { id: 'h1p-107-5',  name: 'Hy-Brid 10.7 kWp 1pha – 5.12 kWh', systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 10.63, battery: 5.12,  investment: 137.6, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('3n8t'),  paybackYears: parsePayback('3n8t'),  roofArea: 45.9  },
-  { id: 'h1p-88-16',  name: 'Hy-Brid 8.8 kWp 1pha – 16 kWh',    systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 8.75,  battery: 16,    investment: 149.8, productionMin: 600,  productionMax: 900,  paybackStr: fmtPayback('5n7t'),  paybackYears: parsePayback('5n7t'),  roofArea: 37.8  },
-  { id: 'h1p-107-10', name: 'Hy-Brid 10.7 kWp 1pha – 10.24 kWh',systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 10.63, battery: 10.24, investment: 158.6, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('4n3t'),  paybackYears: parsePayback('4n3t'),  roofArea: 45.9  },
-  { id: 'h1p-112-16', name: 'Hy-Brid 11.2 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 11.25, battery: 16,    investment: 167.8, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('4n6t'),  paybackYears: parsePayback('4n6t'),  roofArea: 48.6  },
-  { id: 'h1p-107-16', name: 'Hy-Brid 10.7 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 10.63, battery: 16,    investment: 172.6, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('4n7t'),  paybackYears: parsePayback('4n7t'),  roofArea: 45.9  },
-  { id: 'h1p-157-16', name: 'Hy-Brid 15.7 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 15.63, battery: 16,    investment: 209.8, productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('4n4t'),  paybackYears: parsePayback('4n4t'),  roofArea: 67.5  },
-  { id: 'h1p-188-16', name: 'Hy-Brid 18.8 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 18.75, battery: 16,    investment: 237.5, productionMin: 1400, productionMax: 1600, paybackStr: fmtPayback('4n5t'),  paybackYears: parsePayback('4n5t'),  roofArea: 81    },
-  { id: 'h1p-157-32', name: 'Hy-Brid 15.7 kWp 1pha – 32 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 15.63, battery: 32,    investment: 266.8, productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('5n6t'),  paybackYears: parsePayback('5n6t'),  roofArea: 67.5  },
-  { id: 'h1p-244-32', name: 'Hy-Brid 24.4 kWp 1pha – 32 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 24.38, battery: 32,    investment: 334.1, productionMin: 2000, productionMax: 2200, paybackStr: fmtPayback('4n6t'),  paybackYears: parsePayback('4n6t'),  roofArea: 105.3 },
+  { id: 'h1p-5-5',    name: 'Hy-Brid 5 kWp 1pha – 5.12 kWh',    systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 5,     battery: 5.12,  investment: 100.5, productionMin: 500,  productionMax: 700,  paybackStr: fmtPayback('4n8t'),  paybackYears: parsePayback('4n8t'),  roofArea: 21.6  },
+  { id: 'h1p-5-10',   name: 'Hy-Brid 5 kWp 1pha – 10.24 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 5,     battery: 10.24, investment: 123.6, productionMin: 400,  productionMax: 600,  paybackStr: fmtPayback('6n10t'), paybackYears: parsePayback('6n10t'), roofArea: 21.6  },
+  { id: 'h1p-88-5',   name: 'Hy-Brid 8.8 kWp 1pha – 5.12 kWh',  systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 8.75,  battery: 5.12,  investment: 125.2, productionMin: 600,  productionMax: 900,  paybackStr: fmtPayback('4n8t'),  paybackYears: parsePayback('4n8t'),  roofArea: 37.8  },
+  { id: 'h1p-88-10',  name: 'Hy-Brid 8.8 kWp 1pha – 10.24 kWh', systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 8.75,  battery: 10.24, investment: 148.3, productionMin: 700,  productionMax: 1000, paybackStr: fmtPayback('4n10t'), paybackYears: parsePayback('4n10t'), roofArea: 37.8  },
+  { id: 'h1p-107-5',  name: 'Hy-Brid 10.7 kWp 1pha – 5.12 kWh', systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 10.63, battery: 5.12,  investment: 151.4, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('4n0t'),  paybackYears: parsePayback('4n0t'),  roofArea: 45.9  },
+  { id: 'h1p-88-16',  name: 'Hy-Brid 8.8 kWp 1pha – 16 kWh',    systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 8.75,  battery: 16,    investment: 164.8, productionMin: 600,  productionMax: 900,  paybackStr: fmtPayback('6n2t'),  paybackYears: parsePayback('6n2t'),  roofArea: 37.8  },
+  { id: 'h1p-107-10', name: 'Hy-Brid 10.7 kWp 1pha – 10.24 kWh',systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 10.63, battery: 10.24, investment: 174.5, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('4n8t'),  paybackYears: parsePayback('4n8t'),  roofArea: 45.9  },
+  { id: 'h1p-112-16', name: 'Hy-Brid 11.2 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 11.25, battery: 16,    investment: 184.6, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('4n11t'), paybackYears: parsePayback('4n11t'), roofArea: 48.6  },
+  { id: 'h1p-107-16', name: 'Hy-Brid 10.7 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 10.63, battery: 16,    investment: 189.9, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('5n1t'),  paybackYears: parsePayback('5n1t'),  roofArea: 45.9  },
+  { id: 'h1p-157-16', name: 'Hy-Brid 15.7 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 15.63, battery: 16,    investment: 230.8, productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('4n9t'),  paybackYears: parsePayback('4n9t'),  roofArea: 67.5  },
+  { id: 'h1p-188-16', name: 'Hy-Brid 18.8 kWp 1pha – 16 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 18.75, battery: 16,    investment: 261.3, productionMin: 1400, productionMax: 1600, paybackStr: fmtPayback('4n10t'), paybackYears: parsePayback('4n10t'), roofArea: 81    },
+  { id: 'h1p-157-32', name: 'Hy-Brid 15.7 kWp 1pha – 32 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 15.63, battery: 32,    investment: 293.5, productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('6n1t'),  paybackYears: parsePayback('6n1t'),  roofArea: 67.5  },
+  { id: 'h1p-244-32', name: 'Hy-Brid 24.4 kWp 1pha – 32 kWh',   systemTypeKey: 'hybrid-1p', type: 'hybrid',   power: 24.38, battery: 32,    investment: 367.5, productionMin: 2000, productionMax: 2200, paybackStr: fmtPayback('4n11t'), paybackYears: parsePayback('4n11t'), roofArea: 105.3 },
   // ── Hybrid 3 pha áp thấp ────────────────────────────────────
-  { id: 'h3lv-107-5',  name: 'Hy-Brid 10.7 kWp 3pha AT – 5.12 kWh', systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 10.63, battery: 5.12, investment: 161,   productionMin: 950,  productionMax: 1100, paybackStr: fmtPayback('4n5t'), paybackYears: parsePayback('4n5t'), roofArea: 45.9  },
-  { id: 'h3lv-107-16', name: 'Hy-Brid 10.7 kWp 3pha AT – 16 kWh',   systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 10.63, battery: 16,   investment: 196,   productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('5n3t'), paybackYears: parsePayback('5n3t'), roofArea: 45.9  },
-  { id: 'h3lv-157-16', name: 'Hy-Brid 15.7 kWp 3pha AT – 16 kWh',   systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 15.63, battery: 16,   investment: 224.5, productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('4n8t'), paybackYears: parsePayback('4n8t'), roofArea: 67.5  },
-  { id: 'h3lv-244-16', name: 'Hy-Brid 24.4 kWp 3pha AT – 16 kWh',   systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 24.38, battery: 16,   investment: 292.5, productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n1t'), paybackYears: parsePayback('4n1t'), roofArea: 105.3 },
+  { id: 'h3lv-107-5',  name: 'Hy-Brid 10.7 kWp 3pha AT – 5.12 kWh', systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 10.63, battery: 5.12, investment: 177.1, productionMin: 950,  productionMax: 1100, paybackStr: fmtPayback('4n10t'), paybackYears: parsePayback('4n10t'), roofArea: 45.9  },
+  { id: 'h3lv-107-16', name: 'Hy-Brid 10.7 kWp 3pha AT – 16 kWh',   systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 10.63, battery: 16,   investment: 215.6, productionMin: 900,  productionMax: 1200, paybackStr: fmtPayback('5n9t'),  paybackYears: parsePayback('5n9t'),  roofArea: 45.9  },
+  { id: 'h3lv-157-16', name: 'Hy-Brid 15.7 kWp 3pha AT – 16 kWh',   systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 15.63, battery: 16,   investment: 247,   productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('5n2t'),  paybackYears: parsePayback('5n2t'),  roofArea: 67.5  },
+  { id: 'h3lv-244-16', name: 'Hy-Brid 24.4 kWp 3pha AT – 16 kWh',   systemTypeKey: 'hybrid-3p-lv', type: 'hybrid', power: 24.38, battery: 16,   investment: 321.8, productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n6t'),  paybackYears: parsePayback('4n6t'),  roofArea: 105.3 },
   // ── Hybrid 3 pha áp cao ─────────────────────────────────────
-  { id: 'h3hv-157-15', name: 'Hy-Brid 15.7 kWp 3pha AC – 15.36 kWh', systemTypeKey: 'hybrid-3p-hv', type: 'hybrid', power: 15.63, battery: 15.36, investment: 247,   productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('5n1t'), paybackYears: parsePayback('5n1t'), roofArea: 67.5  },
-  { id: 'h3hv-244-15', name: 'Hy-Brid 24.4 kWp 3pha AC – 15.36 kWh', systemTypeKey: 'hybrid-3p-hv', type: 'hybrid', power: 24.38, battery: 15.36, investment: 313.8, productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n5t'), paybackYears: parsePayback('4n5t'), roofArea: 105.3 },
+  { id: 'h3hv-157-15', name: 'Hy-Brid 15.7 kWp 3pha AC – 15.36 kWh', systemTypeKey: 'hybrid-3p-hv', type: 'hybrid', power: 15.63, battery: 15.36, investment: 271.7, productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('5n7t'),  paybackYears: parsePayback('5n7t'),  roofArea: 67.5  },
+  { id: 'h3hv-244-15', name: 'Hy-Brid 24.4 kWp 3pha AC – 15.36 kWh', systemTypeKey: 'hybrid-3p-hv', type: 'hybrid', power: 24.38, battery: 15.36, investment: 345.2, productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n10t'), paybackYears: parsePayback('4n10t'), roofArea: 105.3 },
   // ── On-Grid 1 pha ────────────────────────────────────────────
-  { id: 'og1p-5',   name: 'On-Grid 5 kWp 1 pha',    systemTypeKey: 'on-grid-1p', type: 'on-grid', power: 5,     investment: 54.5,  productionMin: 350,  productionMax: 450,  paybackStr: fmtPayback('3n10t'), paybackYears: parsePayback('3n10t') },
-  { id: 'og1p-88',  name: 'On-Grid 8.8 kWp 1 pha',  systemTypeKey: 'on-grid-1p', type: 'on-grid', power: 8.75,  investment: 86.4,  productionMin: 800,  productionMax: 1000, paybackStr: fmtPayback('2n8t'),  paybackYears: parsePayback('2n8t')  },
-  { id: 'og1p-107', name: 'On-Grid 10.7 kWp 1 pha', systemTypeKey: 'on-grid-1p', type: 'on-grid', power: 10.63, investment: 100.6, productionMin: 900,  productionMax: 1100, paybackStr: fmtPayback('2n10t'), paybackYears: parsePayback('2n10t') },
+  { id: 'og1p-5',   name: 'On-Grid 5 kWp 1 pha',    systemTypeKey: 'on-grid-1p', type: 'on-grid', power: 5,     investment: 60,    productionMin: 350,  productionMax: 450,  paybackStr: fmtPayback('4n3t'),  paybackYears: parsePayback('4n3t')  },
+  { id: 'og1p-88',  name: 'On-Grid 8.8 kWp 1 pha',  systemTypeKey: 'on-grid-1p', type: 'on-grid', power: 8.75,  investment: 95,    productionMin: 800,  productionMax: 1000, paybackStr: fmtPayback('2n11t'), paybackYears: parsePayback('2n11t') },
+  { id: 'og1p-107', name: 'On-Grid 10.7 kWp 1 pha', systemTypeKey: 'on-grid-1p', type: 'on-grid', power: 10.63, investment: 110.7, productionMin: 900,  productionMax: 1100, paybackStr: fmtPayback('3n1t'),  paybackYears: parsePayback('3n1t')  },
   // ── On-Grid 3 pha ────────────────────────────────────────────
-  { id: 'og3p-107', name: 'On-Grid 10.7 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 10.63, investment: 98.5,  productionMin: 800,  productionMax: 1000, paybackStr: fmtPayback('3n1t'),  paybackYears: parsePayback('3n1t')  },
-  { id: 'og3p-157', name: 'On-Grid 15.7 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 15.63, investment: 132.5, productionMin: 1100, productionMax: 1300, paybackStr: fmtPayback('3n1t'),  paybackYears: parsePayback('3n1t')  },
-  { id: 'og3p-188', name: 'On-Grid 18.8 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 18.75, investment: 152,   productionMin: 1200, productionMax: 1400, paybackStr: fmtPayback('3n3t'),  paybackYears: parsePayback('3n3t')  },
-  { id: 'og3p-294', name: 'On-Grid 29.4 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 29.38, investment: 252.7, productionMin: 2500, productionMax: 3600, paybackStr: fmtPayback('2n4t'),  paybackYears: parsePayback('2n4t')  },
-  { id: 'og3p-488', name: 'On-Grid 48.8 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 48.75, investment: 400.5, productionMin: 4500, productionMax: 6000, paybackStr: fmtPayback('2n2t'),  paybackYears: parsePayback('2n2t')  },
-  { id: 'og3p-731', name: 'On-Grid 73.1 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 73.13, investment: 580.8, productionMin: 6000, productionMax: 9000, paybackStr: fmtPayback('2n2t'),  paybackYears: parsePayback('2n2t')  },
-  { id: 'og3p-97',  name: 'On-Grid 97 kWp 3 pha',   systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 96.88, investment: 752.3, productionMin: 8000, productionMax: 11800,paybackStr: fmtPayback('2n2t'),  paybackYears: parsePayback('2n2t')  },
+  { id: 'og3p-107', name: 'On-Grid 10.7 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 10.63, investment: 108.4, productionMin: 800,  productionMax: 1000, paybackStr: fmtPayback('3n5t'),  paybackYears: parsePayback('3n5t')  },
+  { id: 'og3p-157', name: 'On-Grid 15.7 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 15.63, investment: 145.8, productionMin: 1100, productionMax: 1300, paybackStr: fmtPayback('3n5t'),  paybackYears: parsePayback('3n5t')  },
+  { id: 'og3p-188', name: 'On-Grid 18.8 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 18.75, investment: 167.2, productionMin: 1200, productionMax: 1400, paybackStr: fmtPayback('3n7t'),  paybackYears: parsePayback('3n7t')  },
+  { id: 'og3p-294', name: 'On-Grid 29.4 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 29.38, investment: 278,   productionMin: 2500, productionMax: 3600, paybackStr: fmtPayback('2n7t'),  paybackYears: parsePayback('2n7t')  },
+  { id: 'og3p-488', name: 'On-Grid 48.8 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 48.75, investment: 440.6, productionMin: 4500, productionMax: 6000, paybackStr: fmtPayback('2n5t'),  paybackYears: parsePayback('2n5t')  },
+  { id: 'og3p-731', name: 'On-Grid 73.1 kWp 3 pha', systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 73.13, investment: 638.9, productionMin: 6000, productionMax: 9000, paybackStr: fmtPayback('2n5t'),  paybackYears: parsePayback('2n5t')  },
+  { id: 'og3p-97',  name: 'On-Grid 97 kWp 3 pha',   systemTypeKey: 'on-grid-3p', type: 'on-grid', power: 96.88, investment: 827.5, productionMin: 8000, productionMax: 11800,paybackStr: fmtPayback('2n5t'),  paybackYears: parsePayback('2n5t')  },
 ];
 
 // ─────────────────────────────────────────────

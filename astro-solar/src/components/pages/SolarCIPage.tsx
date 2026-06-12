@@ -1,5 +1,6 @@
 import {
   Building2,
+  Factory,
   ShoppingBag,
   Hotel,
   Server,

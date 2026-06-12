@@ -99,7 +99,7 @@ export default function FooterSection() {
               <li><a href="/hybrid" className="hover:text-white transition-colors">Hybrid & BESS</a></li>
               <li><a href="/applications/nha-xuong" className="hover:text-white transition-colors">Solar C&I</a></li>
               <li><a href="/applications/van-phong" className="hover:text-white transition-colors">Văn phòng</a></li>
-              <li><a href="/projects" className="hover:text-white transition-colors">Dự án đã thi công</a></li>
+              <li><a href="/du-an" className="hover:text-white transition-colors">Dự án đã thi công</a></li>
             </ul>
           </div>
 

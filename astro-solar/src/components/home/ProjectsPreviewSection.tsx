@@ -58,7 +58,7 @@ export default function ProjectsPreviewSection() {
             </p>
           </div>
           <a
-            href="/projects"
+            href="/du-an"
             className="inline-flex items-center gap-2 text-[#D0202A] hover:text-[#B01A22] font-semibold text-sm transition-colors flex-shrink-0"
           >
             Xem tất cả dự án
@@ -111,7 +111,7 @@ export default function ProjectsPreviewSection() {
         {/* Bottom CTA */}
         <div className="mt-10 text-center">
           <a
-            href="/projects"
+            href="/du-an"
             className="inline-flex items-center gap-2 px-7 py-3 border-2 border-[#D0202A] text-[#D0202A] hover:bg-[#D0202A] hover:text-white font-semibold rounded-full text-sm transition-all duration-200"
           >
             Xem toàn bộ dự án đã thi công

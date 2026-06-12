@@ -4,7 +4,6 @@ import {
   Package,
   Sun,
   Lightbulb,
-  Factory,
   Wrench,
   MessageSquare,
   BookOpen,
