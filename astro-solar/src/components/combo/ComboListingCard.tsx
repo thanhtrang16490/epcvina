@@ -79,8 +79,8 @@ export default function ComboListingCard({ combo, basePath }: ComboListingCardPr
         {/* Battery icon (hybrid only) */}
         {combo.system_type === 'hybrid' && combo.battery > 0 && (
           <div className="flex flex-col items-center gap-1">
-            <div className="w-14 h-14 bg-green-100 rounded-lg flex items-center justify-center">
-              <Battery className="h-7 w-7 text-green-600" />
+            <div className="w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center">
+              <Battery className="h-7 w-7 text-orange-600" />
             </div>
             <span className="text-[10px] text-gray-500">{combo.battery} kWh</span>
           </div>
@@ -133,7 +133,7 @@ export default function ComboListingCard({ combo, basePath }: ComboListingCardPr
       <div className="px-4 pb-4 pt-2 flex gap-2">
         <a
           href={`${basePath}/${combo.slug}`}
-          className="flex-1 text-center py-2.5 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors"
+          className="flex-1 text-center py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium rounded-lg transition-colors"
         >
           Xem chi tiết
         </a>

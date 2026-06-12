@@ -54,24 +54,22 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <ScrollContext.Provider value={{ isHeaderVisible, scrollY }}>
       <div className="min-h-screen bg-[#f8f9fa] overflow-x-hidden">
         <div className="flex min-w-0">
-          {/* Sidebar - always present */}
+          {/* Sidebar - always visible on desktop, mobile drawer */}
           <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
           {/* Main content - offset by sidebar on desktop */}
           <div className="flex-1 flex flex-col min-w-0 lg:ml-16">
-            {/* Header: mobile = always show; desktop = hide on homepage */}
-            {!isHomePage ? (
-              <Header onMenuClick={() => setIsSidebarOpen(true)} isHidden={!isHeaderVisible} />
-            ) : (
-              <div className="lg:hidden">
-                <Header onMenuClick={() => setIsSidebarOpen(true)} isHidden={!isHeaderVisible} />
-              </div>
-            )}
+            {/* Header: always shown on mobile for hamburger; desktop hidden on homepage (HeaderBar handles it) */}
+            <Header
+              onMenuClick={() => setIsSidebarOpen(true)}
+              isHidden={!isHeaderVisible}
+              mobileOnly={isHomePage}
+            />
             
             {/* Page content */}
             <main ref={mainRef} className={`flex-1 ${
               isHomePage
-                ? 'pt-14 lg:pt-0'
+                ? ''
                 : pathname?.startsWith('/equipment') ? '' : 'pt-14 lg:pt-16'
             } ${isHomePage ? '' : 'lg:pl-8 lg:pr-8'}`}>
               {children}

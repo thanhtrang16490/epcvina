@@ -35,9 +35,10 @@ const pageTitles: Record<string, string> = {
 interface HeaderProps {
   onMenuClick?: () => void;
   isHidden?: boolean;
+  mobileOnly?: boolean;
 }
 
-export default function Header({ onMenuClick, isHidden }: HeaderProps) {
+export default function Header({ onMenuClick, isHidden, mobileOnly }: HeaderProps) {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const navigateTo = (path: string) => { window.location.href = path; };
   const [user, setUser] = useState<UserData | null>(null);
@@ -179,8 +180,8 @@ export default function Header({ onMenuClick, isHidden }: HeaderProps) {
         </div>
       </header>
 
-      {/* Desktop Header - Full Width with Sidebar Offset */}
-      <header className={`hidden lg:flex h-16 border-b items-center justify-between px-4 lg:px-8 fixed top-0 left-[64px] right-0 z-30 transition-all duration-300 ${
+      {/* Desktop Header - hidden when mobileOnly (homepage uses HeaderBar instead) */}
+      <header className={`${mobileOnly ? 'hidden' : 'hidden lg:flex'} h-16 border-b items-center justify-between px-4 lg:px-8 fixed top-0 left-[64px] right-0 z-30 transition-all duration-300 ${
         isHome 
           ? 'bg-transparent/95 backdrop-blur-sm border-transparent'
           : 'bg-white border-gray-200'

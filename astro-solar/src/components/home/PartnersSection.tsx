@@ -26,7 +26,7 @@ export default function PartnersSection() {
           {partners.map((partner) => (
             <div
               key={partner.name}
-              className="border border-gray-200 rounded-lg px-6 py-3 bg-gray-50 text-gray-600 font-semibold text-sm sm:text-base hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-200 cursor-pointer motion-reduce:transition-none motion-reduce:transform-none"
+              className="border border-gray-200 rounded-lg px-6 py-3 bg-gray-50 text-gray-600 font-semibold text-sm sm:text-base hover:border-orange-300 hover:bg-orange-50 transition-all duration-200 cursor-pointer motion-reduce:transition-none motion-reduce:transform-none"
             >
               {partner.name}
             </div>

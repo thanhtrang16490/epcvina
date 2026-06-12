@@ -67,7 +67,7 @@ export default function FAQSection() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Hỏi đáp</h2>
             <p className="text-gray-500 mt-2">Những câu hỏi thường gặp về điện mặt trời</p>
           </div>
-          <a href="/faq" className="text-green-600 hover:text-green-700 font-medium text-sm">
+          <a href="/faq" className="text-orange-600 hover:text-orange-700 font-medium text-sm">
             Tìm hiểu thêm
           </a>
         </div>

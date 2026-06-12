@@ -80,14 +80,14 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#7C2D12] via-[#9A3412] to-[#7C2D12]">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-500 to-amber-400 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-amber-400 to-emerald-500 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-500 to-amber-400 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-amber-400 to-orange-500 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="flex flex-col items-center text-center gap-6">
-            <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-500 shadow-lg shadow-emerald-500/20">
+            <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-500 shadow-lg shadow-orange-500/20">
               <IconComponent className="h-10 w-10 text-white" />
             </div>
             <div>
@@ -106,7 +106,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-500">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500">
               <Wrench className="h-5 w-5 text-white" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -115,7 +115,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
           </div>
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-500 text-white font-bold text-lg">
+              <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 text-white font-bold text-lg">
                 1
               </div>
               <p className="text-gray-600 text-base sm:text-lg leading-relaxed pt-2">
@@ -130,7 +130,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-10">
           <div className="flex items-center gap-3 mb-8">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-emerald-500">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500">
               <Zap className="h-5 w-5 text-white" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -141,10 +141,10 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
             {data.advantages.map((advantage, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-emerald-50 transition-colors duration-200"
+                className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 hover:bg-orange-50 transition-colors duration-200"
               >
                 <div className="flex-shrink-0 mt-0.5">
-                  <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-500">
+                  <div className="flex items-center justify-center w-7 h-7 rounded-full bg-gradient-to-br from-orange-500 to-amber-500">
                     <Check className="h-3.5 w-3.5 text-white" />
                   </div>
                 </div>
@@ -193,7 +193,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
 
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
-        <div className="bg-gradient-to-br from-emerald-600 to-emerald-500 rounded-2xl p-8 sm:p-12 text-center">
+        <div className="bg-gradient-to-br from-orange-600 to-orange-500 rounded-2xl p-8 sm:p-12 text-center">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             Cần tư vấn giải pháp lắp đặt?
           </h2>
@@ -203,7 +203,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-500 text-emerald-900 font-semibold px-8 py-3.5 rounded-xl cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 shadow-lg"
+              className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-orange-700 font-semibold px-8 py-3.5 rounded-xl cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 shadow-lg"
             >
               <Phone className="h-5 w-5" />
               Nhận báo giá miễn phí

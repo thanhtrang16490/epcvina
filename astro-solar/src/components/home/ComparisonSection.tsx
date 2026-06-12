@@ -41,7 +41,7 @@ export default function ComparisonSection() {
                 </th>
                 <th className="text-center px-5 py-4 w-[30%]">
                   <div className="flex items-center justify-center gap-2">
-                    <Battery className="h-5 w-5 text-green-600" />
+                    <Battery className="h-5 w-5 text-orange-600" />
                     <span className="font-bold text-gray-900">Hybrid</span>
                   </div>
                 </th>
@@ -57,7 +57,7 @@ export default function ComparisonSection() {
                   <td className="px-5 py-3.5 text-center">
                     {typeof row.onGrid === 'boolean' ? (
                       row.onGrid ? (
-                        <Check className="h-5 w-5 text-green-500 mx-auto" />
+                        <Check className="h-5 w-5 text-orange-500 mx-auto" />
                       ) : (
                         <X className="h-5 w-5 text-red-400 mx-auto" />
                       )
@@ -68,7 +68,7 @@ export default function ComparisonSection() {
                   <td className="px-5 py-3.5 text-center">
                     {typeof row.hybrid === 'boolean' ? (
                       row.hybrid ? (
-                        <Check className="h-5 w-5 text-green-500 mx-auto" />
+                        <Check className="h-5 w-5 text-orange-500 mx-auto" />
                       ) : (
                         <X className="h-5 w-5 text-red-400 mx-auto" />
                       )
@@ -93,7 +93,7 @@ export default function ComparisonSection() {
           </a>
           <a
             href="/hybrid"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-full transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-full transition-colors"
           >
             <Battery className="h-4 w-4" />
             Xem combo Hybrid

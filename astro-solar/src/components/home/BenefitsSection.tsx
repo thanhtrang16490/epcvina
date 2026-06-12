@@ -44,7 +44,7 @@ export default function BenefitsSection() {
                 key={benefit.title}
                 className="bg-white border border-gray-200 rounded-xl p-6 text-center transition-all duration-200 hover:shadow-lg hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-orange-100 text-orange-600 mb-4">
                   <Icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">{benefit.title}</h3>

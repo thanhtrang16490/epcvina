@@ -251,7 +251,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Header with logo */}
         <div className="flex items-center justify-between px-4 h-14 border-b border-gray-100">
           <a href="/" className="flex items-center gap-3">
-            <img src="/logo-epc-solar.png" alt="EPC Solar" className="h-8 w-auto" />
+            <img src="/logo-epcvina-solar.png" alt="EPC Solar" className="h-8 w-auto" />
           </a>
           <button onClick={onClose} className="p-2 -mr-2 text-gray-600">
             <X className="h-5 w-5" />
@@ -284,7 +284,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           isExpanded ? 'px-6 justify-start' : 'px-0 justify-center'
         }`}>
           <a href="/" className="flex items-center">
-            <img src="/logo-epc-solar.png" alt="EPC Solar" className="h-8 w-auto flex-shrink-0" />
+            <img src="/logo-epcvina-solar.png" alt="EPC Solar" className="h-8 w-auto flex-shrink-0" />
             {isExpanded && (
               <span className="text-xl font-semibold text-gray-900 ml-3 whitespace-nowrap opacity-100 transition-opacity duration-300">
                 EPC Solar

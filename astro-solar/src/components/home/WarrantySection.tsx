@@ -38,11 +38,11 @@ export default function WarrantySection() {
                 key={item.title}
                 className="bg-gray-50 border border-gray-100 rounded-2xl p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-200 motion-reduce:transition-none motion-reduce:transform-none"
               >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-emerald-50 mb-4">
-                  <Icon className="h-7 w-7 text-emerald-600" />
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-orange-50 mb-4">
+                  <Icon className="h-7 w-7 text-orange-600" />
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-3xl font-bold text-emerald-600 mb-2">{item.duration}</p>
+                <p className="text-3xl font-bold text-orange-600 mb-2">{item.duration}</p>
                 <p className="text-sm text-gray-500 leading-relaxed">{item.detail}</p>
               </div>
             );

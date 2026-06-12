@@ -21,7 +21,7 @@ export default function StatsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-12 sm:py-16 bg-gradient-to-r from-emerald-900 to-emerald-800">
+    <section ref={sectionRef} className="py-12 sm:py-16 bg-gradient-to-r from-[#7C2D12] to-[#9A3412]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {stats.map((stat, index) => (

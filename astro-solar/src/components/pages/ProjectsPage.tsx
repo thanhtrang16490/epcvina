@@ -57,7 +57,7 @@ export default function ProjectsPage() {
                 className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
               >
                 {/* Orange gradient top bar */}
-                <div className="h-2 bg-gradient-to-r from-amber-400 to-emerald-500" />
+                <div className="h-2 bg-gradient-to-r from-amber-400 to-orange-500" />
 
                 <div className="p-5">
                   <h3 className="text-base font-semibold text-gray-900 mb-3 line-clamp-2">
@@ -69,7 +69,7 @@ export default function ProjectsPage() {
                   </p>
 
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-700">
                       {project.type}
                     </span>
                   </div>
@@ -154,7 +154,7 @@ export default function ProjectsPage() {
             {clientNames.map((name) => (
               <div
                 key={name}
-                className="border border-gray-200 rounded-lg px-6 py-3 bg-gray-50 text-gray-600 font-semibold text-sm sm:text-base hover:border-emerald-300 hover:bg-emerald-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+                className="border border-gray-200 rounded-lg px-6 py-3 bg-gray-50 text-gray-600 font-semibold text-sm sm:text-base hover:border-orange-300 hover:bg-orange-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
               >
                 {name}
               </div>
@@ -164,18 +164,18 @@ export default function ProjectsPage() {
       </section>
 
       {/* ── CTA ────────────────────────────────────────────── */}
-      <section className="bg-gradient-to-r from-emerald-600 to-emerald-500 py-16">
+      <section className="bg-gradient-to-r from-orange-600 to-orange-500 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             Bạn có dự án cần triển khai?
           </h2>
-          <p className="text-emerald-100 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-orange-100 text-base sm:text-lg mb-8 max-w-2xl mx-auto">
             Liên hệ ngay để được tư vấn giải pháp phù hợp
           </p>
 
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-amber-400 hover:bg-amber-500 text-emerald-900 font-semibold rounded-full cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 shadow-lg"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white hover:bg-gray-50 text-orange-700 font-semibold rounded-full cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 shadow-lg"
           >
             Liên hệ tư vấn
             <ArrowRight className="h-5 w-5" />

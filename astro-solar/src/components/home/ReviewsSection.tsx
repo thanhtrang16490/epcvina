@@ -30,7 +30,7 @@ export default function ReviewsSection() {
               className="w-[320px] flex-shrink-0 snap-start bg-white shadow-md rounded-xl p-6 flex flex-col transition-all duration-200 hover:shadow-lg hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none"
             >
               {/* Quotation mark */}
-              <Quote className="h-8 w-8 text-emerald-200 mb-3 flex-shrink-0" />
+              <Quote className="h-8 w-8 text-orange-200 mb-3 flex-shrink-0" />
 
               {/* Quote text */}
               <p className="text-gray-700 text-sm leading-relaxed flex-1 mb-4">

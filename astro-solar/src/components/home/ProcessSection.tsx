@@ -56,7 +56,7 @@ export default function ProcessSection() {
                 )}
 
                 {/* Step number circle + icon */}
-                <div className="relative z-10 w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-bold mb-4">
+                <div className="relative z-10 w-12 h-12 rounded-full bg-orange-500 text-white flex items-center justify-center text-lg font-bold mb-4">
                   {step.step}
                 </div>
 

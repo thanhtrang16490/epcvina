@@ -45,10 +45,10 @@ const CATEGORY_META: Record<EquipmentCategory, {
   battery: {
     label: 'Pin lưu trữ',
     icon: <Battery className="h-5 w-5" />,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
-    accent: 'bg-green-500',
-    gradient: 'from-green-400 to-green-600',
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
+    accent: 'bg-orange-500',
+    gradient: 'from-orange-400 to-orange-600',
   },
   mounting: {
     label: 'Hệ khung nhôm',
@@ -866,7 +866,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                           }`}
                         >
                           {/* Thumbnail */}
-                          <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-green-50 relative">
+                          <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-orange-50 relative">
                             {combo.images?.[0] ? (
                               <Image
                                 src={combo.images[0]}
@@ -876,7 +876,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                 className="w-full h-full object-cover"
                               />
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center text-green-600">
+                              <div className="w-full h-full flex items-center justify-center text-orange-600">
                                 <Battery className="h-6 w-6" />
                               </div>
                             )}
@@ -968,7 +968,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                             </div>
                             <p className="text-sm text-gray-500">{template.description}</p>
                           </div>
-                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white">
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white">
                             <Sparkles className="h-6 w-6" />
                           </div>
                         </div>
@@ -1071,7 +1071,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
             {/* Sticky Header */}
             <div className="flex-shrink-0 flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
-                <div className={`w-10 h-10 rounded-xl ${selectedCombo.systemType === 'hybrid' ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'} flex items-center justify-center`}>
+                <div className={`w-10 h-10 rounded-xl ${selectedCombo.systemType === 'hybrid' ? 'bg-orange-50 text-orange-600' : 'bg-orange-50 text-orange-600'} flex items-center justify-center`}>
                   {selectedCombo.systemType === 'hybrid' ? <Battery className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
                 </div>
                 <div>
@@ -1109,7 +1109,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                     <div className="flex-1">
                       <div className="flex items-center gap-1.5 mb-1 flex-wrap">
                         <span className={`inline-block px-2 py-0.5 text-xs font-medium rounded-full ${
-                          selectedCombo.systemType === 'hybrid' ? 'bg-green-50 text-green-700' : 'bg-orange-50 text-orange-700'
+                          selectedCombo.systemType === 'hybrid' ? 'bg-orange-50 text-orange-700' : 'bg-orange-50 text-orange-700'
                         }`}>
                           Combo {selectedCombo.systemType === 'hybrid' ? 'Hy-Brid' : 'On-Grid'}
                         </span>
@@ -1177,7 +1177,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                   })().map(({ label, value, unit, green, blue }) => (
                     <div key={label} className="p-3 bg-gray-50 rounded-xl">
                       <p className="text-xs text-gray-500 mb-1">{label}</p>
-                      <p className={`text-lg font-bold ${green ? 'text-green-600' : blue ? 'text-[#F97316]' : 'text-gray-900'}`}>
+                      <p className={`text-lg font-bold ${green ? 'text-orange-600' : blue ? 'text-[#F97316]' : 'text-gray-900'}`}>
                         {value} {unit && <span className="text-sm font-normal text-gray-500">{unit}</span>}
                       </p>
                     </div>
@@ -1794,7 +1794,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                     ×{calculatedQuantity} × {formatCurrency(item.unitPrice)}
                                   </p>
                                 </div>
-                                <p className="text-sm font-semibold text-green-600">
+                                <p className="text-sm font-semibold text-orange-600">
                                   {formatCurrency(lineTotal)}
                                 </p>
                               </div>

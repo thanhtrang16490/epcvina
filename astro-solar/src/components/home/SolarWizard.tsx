@@ -77,16 +77,16 @@ const ACCESSORY_OPTIONS = [
     label: 'Tủ điện',
     desc: 'Tủ điện AC/DC, thiết bị bảo vệ',
     icon: Box,
-    color: 'text-blue-600',
-    bg: 'bg-blue-50',
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
   },
   {
     slug: 'grounding',
     label: 'Hệ tiếp địa',
     desc: 'Cọc tiếp địa, dây tiếp địa',
     icon: Shield,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
   },
 ];
 
@@ -118,7 +118,7 @@ function StepHeader({
   return (
     <div className="flex items-center gap-3 mb-4">
       <StepBadge number={number} active={active} />
-      {icon && <span className="text-blue-600">{icon}</span>}
+      {icon && <span className="text-orange-600">{icon}</span>}
       <h3 className="text-lg font-semibold text-gray-800">{label}</h3>
     </div>
   );
@@ -138,12 +138,12 @@ function OptionCard({ selected, onClick, children, className = '' }: OptionCardP
       onClick={onClick}
       className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 hover:shadow-md text-left w-full ${
         selected
-          ? 'border-blue-600 bg-blue-50'
+          ? 'border-orange-500 bg-orange-50'
           : 'border-gray-200 bg-white hover:border-gray-300'
       } ${className}`}
     >
       {selected && (
-        <CheckCircle2 className="absolute top-2 right-2 h-5 w-5 text-blue-600" />
+        <CheckCircle2 className="absolute top-2 right-2 h-5 w-5 text-orange-500" />
       )}
       {children}
     </button>
@@ -183,8 +183,8 @@ function ProductCard({
       onClick={onSelect}
       className={`relative flex flex-col gap-2 p-3 rounded-xl border-2 cursor-pointer transition-all duration-200 hover:shadow-md text-left w-full ${
         isSelected
-          ? 'border-blue-600 bg-blue-50'
-          : 'border-gray-200 bg-white hover:border-blue-200'
+          ? 'border-orange-500 bg-orange-50'
+          : 'border-gray-200 bg-white hover:border-orange-200'
       }`}
     >
       {isSelected && (
@@ -199,7 +199,7 @@ function ProductCard({
           className="w-full h-20 object-contain rounded-lg bg-gray-50"
         />
       )}
-      <span className="text-xs font-bold text-blue-600 uppercase">{brandName}</span>
+      <span className="text-xs font-bold text-orange-600 uppercase">{brandName}</span>
       <span className="text-sm font-semibold text-gray-800 line-clamp-2 leading-tight">
         {product.name}
       </span>
@@ -616,8 +616,8 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
             }}
           >
             <div className="flex items-center gap-3 mb-2 pr-5">
-              <div className="w-10 h-10 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0">
-                <Battery className="h-5 w-5 text-green-600" />
+              <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
+                <Battery className="h-5 w-5 text-orange-600" />
               </div>
               <div>
                 <p className="font-semibold text-gray-900">Hybrid</p>
@@ -650,8 +650,8 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
               }
             >
               <div className="flex items-center gap-3 pr-5">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
-                  <Home className="h-5 w-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
+                  <Home className="h-5 w-5 text-orange-600" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">1 Pha</p>
@@ -677,8 +677,8 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
               }
             >
               <div className="flex items-center gap-3 pr-5">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
-                  <Battery className="h-5 w-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
+                  <Battery className="h-5 w-5 text-orange-600" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">3 Pha Pin Áp Thấp</p>
@@ -733,8 +733,8 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
               }
             >
               <div className="flex items-center gap-3 pr-5">
-                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0">
-                  <Home className="h-5 w-5 text-blue-600" />
+                <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center flex-shrink-0">
+                  <Home className="h-5 w-5 text-orange-600" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">1 Pha</p>
@@ -846,7 +846,7 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
               className={`py-2.5 px-2 rounded-xl border-2 font-semibold text-sm transition-all duration-200 hover:shadow-sm ${
                 wizard.power === p
                   ? 'border-orange-500 bg-orange-500 text-white'
-                  : 'border-gray-200 bg-white text-gray-700 hover:border-blue-300'
+                  : 'border-gray-200 bg-white text-gray-700 hover:border-orange-300'
               }`}
             >
               {p}
@@ -974,8 +974,8 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
               }
               className={`py-2.5 px-2 rounded-xl border-2 font-semibold text-sm transition-all duration-200 hover:shadow-sm ${
                 wizard.batteryCapacity === b
-                  ? 'border-green-600 bg-green-600 text-white'
-                  : 'border-gray-200 bg-white text-gray-700 hover:border-green-300'
+                  ? 'border-orange-500 bg-orange-500 text-white'
+                  : 'border-gray-200 bg-white text-gray-700 hover:border-orange-300'
               }`}
             >
               {b}
@@ -1048,7 +1048,7 @@ export default function SolarWizard({ onConfigComplete, className = '' }: SolarW
                 onClick={() => toggleAccessory(acc.slug)}
                 className={`relative flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 hover:shadow-md text-left w-full ${
                   isSelected
-                    ? 'border-blue-600 bg-blue-50'
+                    ? 'border-orange-500 bg-orange-50'
                     : 'border-gray-200 bg-white hover:border-gray-300'
                 }`}
               >
