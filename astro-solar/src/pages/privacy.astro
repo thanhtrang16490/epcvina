@@ -1,0 +1,125 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+---
+
+<DashboardLayout
+  title="Chính Sách Bảo Mật - EPCVINA Solar"
+  description="Chính sách bảo mật dữ liệu cá nhân của EPCVINA Solar. Cam kết bảo vệ thông tin khách hàng theo quy định pháp luật Việt Nam."
+  keywords="chính sách bảo mật, bảo vệ dữ liệu cá nhân, EPCVINA Solar"
+  noindex={false}
+>
+  <DashboardShell client:load>
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div class="mb-8">
+        <a href="/" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">← Trang chủ</a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Chính Sách Bảo Mật</h1>
+      <p class="text-sm text-gray-500 mb-10">Cập nhật lần cuối: tháng 6 năm 2025</p>
+
+      <div class="prose prose-gray max-w-none space-y-8 text-gray-700 leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">1. Giới thiệu</h2>
+          <p>
+            Công ty Cổ phần Xây Lắp EPC Việt Nam (<strong>EPCVINA Solar</strong>, "chúng tôi") cam kết bảo vệ
+            quyền riêng tư và dữ liệu cá nhân của khách hàng, đối tác và người dùng website
+            <strong>epcvina.com</strong> theo đúng quy định của pháp luật Việt Nam, bao gồm
+            Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">2. Thông tin chúng tôi thu thập</h2>
+          <p>Chúng tôi có thể thu thập các loại thông tin sau:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li><strong>Thông tin định danh:</strong> Họ tên, số điện thoại, địa chỉ email.</li>
+            <li><strong>Thông tin liên lạc:</strong> Địa chỉ lắp đặt, tỉnh/thành phố.</li>
+            <li><strong>Thông tin kỹ thuật:</strong> Loại mái, diện tích, nhu cầu công suất hệ thống.</li>
+            <li><strong>Thông tin thiết bị:</strong> Địa chỉ IP, trình duyệt, thời gian truy cập (qua cookie và log hệ thống).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">3. Mục đích sử dụng</h2>
+          <p>Thông tin được thu thập nhằm:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li>Cung cấp tư vấn và báo giá lắp đặt hệ thống điện mặt trời.</li>
+            <li>Liên lạc và hỗ trợ khách hàng trước, trong và sau khi thi công.</li>
+            <li>Gửi thông tin về sản phẩm, chính sách bảo hành, chương trình khuyến mãi (khi có sự đồng ý).</li>
+            <li>Cải thiện chất lượng dịch vụ và trải nghiệm người dùng trên website.</li>
+            <li>Tuân thủ nghĩa vụ pháp lý khi được yêu cầu bởi cơ quan có thẩm quyền.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">4. Chia sẻ thông tin</h2>
+          <p>
+            Chúng tôi <strong>không bán, cho thuê hoặc trao đổi</strong> thông tin cá nhân của bạn cho
+            bên thứ ba vì mục đích thương mại. Chúng tôi chỉ chia sẻ thông tin trong các trường hợp:
+          </p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li>Đối tác thi công và nhà cung cấp thiết bị trong phạm vi dự án của bạn.</li>
+            <li>Nhà cung cấp dịch vụ kỹ thuật (hosting, email, CRM) với cam kết bảo mật tương đương.</li>
+            <li>Cơ quan nhà nước khi có yêu cầu pháp lý hợp lệ.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">5. Lưu trữ và bảo mật</h2>
+          <p>
+            Dữ liệu được lưu trữ trên hệ thống máy chủ bảo mật (Supabase — EU region) với mã hóa
+            SSL/TLS. Quyền truy cập bị giới hạn theo nguyên tắc "ít đặc quyền nhất". Chúng tôi
+            cam kết thông báo cho bạn trong vòng 72 giờ nếu xảy ra sự cố rò rỉ dữ liệu nghiêm trọng.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">6. Quyền của bạn</h2>
+          <p>Theo Nghị định 13/2023/NĐ-CP, bạn có quyền:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li>Truy cập và xem lại thông tin cá nhân của mình.</li>
+            <li>Yêu cầu chỉnh sửa thông tin không chính xác.</li>
+            <li>Yêu cầu xóa dữ liệu (trừ trường hợp pháp luật yêu cầu lưu trữ).</li>
+            <li>Rút lại sự đồng ý tiếp thị bất kỳ lúc nào.</li>
+            <li>Phản đối việc xử lý dữ liệu vì lợi ích hợp pháp.</li>
+          </ul>
+          <p class="mt-3">
+            Để thực hiện quyền của mình, vui lòng liên hệ:
+            <a href="mailto:epcvina@hotmail.com" class="text-[#D0202A] hover:underline font-medium">epcvina@hotmail.com</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">7. Cookie</h2>
+          <p>
+            Website sử dụng cookie kỹ thuật cần thiết để đảm bảo hoạt động bình thường (phiên đăng nhập,
+            tùy chọn người dùng). Chúng tôi không sử dụng cookie theo dõi quảng cáo bên thứ ba.
+            Bạn có thể tắt cookie trong cài đặt trình duyệt, tuy nhiên một số tính năng có thể bị
+            ảnh hưởng.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">8. Thay đổi chính sách</h2>
+          <p>
+            Chúng tôi có thể cập nhật chính sách này theo thời gian. Mọi thay đổi quan trọng sẽ được
+            thông báo qua email hoặc thông báo nổi bật trên website ít nhất 7 ngày trước khi có hiệu lực.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">9. Liên hệ</h2>
+          <div class="bg-gray-50 rounded-xl p-5 space-y-1 text-sm">
+            <p class="font-semibold text-gray-900">Công ty Cổ phần Xây Lắp EPC Việt Nam</p>
+            <p>Phòng 315 - Khu TM Chung cư HVQP, Nguyễn Văn Huyên, Q. Tây Hồ, Hà Nội</p>
+            <p>Điện thoại: <a href="tel:0988446113" class="text-[#D0202A] hover:underline">0988 446 113</a></p>
+            <p>Email: <a href="mailto:epcvina@hotmail.com" class="text-[#D0202A] hover:underline">epcvina@hotmail.com</a></p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </DashboardShell>
+</DashboardLayout>

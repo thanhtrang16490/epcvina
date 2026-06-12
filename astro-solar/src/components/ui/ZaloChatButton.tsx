@@ -1,7 +1,7 @@
 
 
 export default function ZaloChatButton() {
-  const zaloPhone = '0962916488';
+  const zaloPhone = '0988446113';
   const zaloUrl = `https://zalo.me/${zaloPhone}`;
 
   return (
@@ -11,10 +11,10 @@ export default function ZaloChatButton() {
         <div className="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill"></div>
         <span>
           <img 
-            src="/images/zalo-2.png" 
+            src="/icons8-zalo.svg" 
             alt="Contact Me on Zalo" 
-            width={40}
-            height={40}
+            width={52}
+            height={52}
             className="zalo-icon"
           />
         </span>
@@ -28,8 +28,8 @@ export default function ZaloChatButton() {
           }
           .zalo-container {
             position: fixed;
-            width: 40px;
-            height: 40px;
+            width: 56px;
+            height: 56px;
             bottom: 100px;
             z-index: 9999999;
           }
@@ -40,15 +40,11 @@ export default function ZaloChatButton() {
             display: block;
           }
           .zalo-container span {
-            display: -webkit-flex;
-            display: -moz-flex;
-            display: -ms-flex;
-            display: -o-flex;
             display: flex;
-            -ms-align-items: center;
             align-items: center;
-            width: 40px;
-            height: 40px;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             background: #1182FC;
             position: relative;
@@ -67,10 +63,10 @@ export default function ZaloChatButton() {
             animation-iteration-count: infinite;
           }
           .cmoz-alo-circle {
-            width: 50px;
-            height: 50px;
-            top: -5px;
-            right: -5px;
+            width: 68px;
+            height: 68px;
+            top: -6px;
+            right: -6px;
             position: absolute;
             background-color: transparent;
             -webkit-border-radius: 100%;
@@ -81,9 +77,9 @@ export default function ZaloChatButton() {
             opacity: .5;
           }
           .cmoz-alo-circle-fill {
-            width: 60px;
-            height: 60px;
-            top: -10px;
+            width: 80px;
+            height: 80px;
+            top: -12px;
             position: absolute;
             -webkit-transition: all 0.2s ease-in-out;
             -moz-transition: all 0.2s ease-in-out;
@@ -100,7 +96,7 @@ export default function ZaloChatButton() {
             transition: all .5s;
             background-color: rgba(17, 130, 252, .45);
             opacity: .75;
-            right: -10px;
+            right: -12px;
           }
           .pulse_zalo {
             -webkit-animation-name: pulse_zalo;

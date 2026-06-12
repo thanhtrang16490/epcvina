@@ -77,8 +77,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </div>
         
-        {/* Zalo Chat Button (hidden on homepage) */}
-        {!isHomePage && <ZaloChatButton />}
+        {/* Zalo Chat Button */}
+        <ZaloChatButton />
       </div>
     </ScrollContext.Provider>
   );

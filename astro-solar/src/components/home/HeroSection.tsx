@@ -1,6 +1,6 @@
 import { Sun, Zap, Shield, Factory, ClipboardCheck, FileText } from 'lucide-react';
 
-const ORANGE = '#ea580c';
+const RED = '#D0202A';
 
 export default function HeroSection() {
   return (
@@ -32,7 +32,7 @@ export default function HeroSection() {
           {/* Brand name */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-none mb-4">
             EPCVINA{' '}
-            <span style={{ color: ORANGE }}>Solar</span>
+            <span style={{ color: RED }}>Solar</span>
           </h1>
 
           {/* Primary descriptor */}
@@ -53,7 +53,7 @@ export default function HeroSection() {
             <a
               href="#tu-van"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white font-bold text-sm shadow-lg hover:shadow-xl hover:brightness-110 transition-all duration-200"
-              style={{ backgroundColor: ORANGE }}
+              style={{ backgroundColor: RED }}
             >
               <ClipboardCheck className="w-4 h-4" />
               Đăng ký khảo sát miễn phí
@@ -81,8 +81,8 @@ export default function HeroSection() {
           >
             <div className="grid grid-cols-4 divide-x divide-gray-200">
               {[
-                { icon: <Sun className="w-7 h-7 md:w-9 md:h-9 text-[#ea580c]" />, value: '10+', label: 'Năm kinh nghiệm' },
-                { icon: <Zap className="w-7 h-7 md:w-9 md:h-9 text-[#ea580c]" />, value: '200+', label: 'Công trình đã thi công' },
+                { icon: <Sun className="w-7 h-7 md:w-9 md:h-9 text-[#D0202A]" />, value: '10+', label: 'Năm kinh nghiệm' },
+                { icon: <Zap className="w-7 h-7 md:w-9 md:h-9 text-[#D0202A]" />, value: '200+', label: 'Công trình đã thi công' },
                 { icon: <Factory className="w-7 h-7 md:w-9 md:h-9 text-[#1a365d]" />, value: '5 MWp+', label: 'Công suất lắp đặt' },
                 { icon: <Shield className="w-7 h-7 md:w-9 md:h-9 text-[#1a365d]" />, value: '25 năm', label: 'Bảo hành tấm pin' },
               ].map((stat, i) => (

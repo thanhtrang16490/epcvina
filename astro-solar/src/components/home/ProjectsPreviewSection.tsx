@@ -17,8 +17,8 @@ const projects = [
     capacity: '15 kWp On-Grid',
     year: '2024',
     tag: 'On-Grid',
-    tagColor: 'bg-orange-500',
-    bg: 'from-orange-900 to-orange-700',
+    tagColor: 'bg-[#D0202A]',
+    bg: 'from-red-900 to-red-700',
   },
   {
     title: 'Hệ Hybrid 24 kWp 3 pha — Nhà xưởng',
@@ -47,11 +47,11 @@ export default function ProjectsPreviewSection() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-2">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#D0202A] mb-2">
               CÔNG TRÌNH ĐÃ TRIỂN KHAI
             </p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-              Dự Án <span className="text-orange-500">Thực Tế</span>
+              Dự Án <span className="text-[#D0202A]">Thực Tế</span>
             </h2>
             <p className="mt-2 text-gray-500 text-sm max-w-lg">
               200+ công trình đã hoàn thành trên toàn quốc — từ nhà dân, biệt thự đến nhà xưởng và văn phòng.
@@ -59,7 +59,7 @@ export default function ProjectsPreviewSection() {
           </div>
           <a
             href="/projects"
-            className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-semibold text-sm transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-2 text-[#D0202A] hover:text-[#B01A22] font-semibold text-sm transition-colors flex-shrink-0"
           >
             Xem tất cả dự án
             <ArrowRight className="h-4 w-4" />
@@ -112,7 +112,7 @@ export default function ProjectsPreviewSection() {
         <div className="mt-10 text-center">
           <a
             href="/projects"
-            className="inline-flex items-center gap-2 px-7 py-3 border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-semibold rounded-full text-sm transition-all duration-200"
+            className="inline-flex items-center gap-2 px-7 py-3 border-2 border-[#D0202A] text-[#D0202A] hover:bg-[#D0202A] hover:text-white font-semibold rounded-full text-sm transition-all duration-200"
           >
             Xem toàn bộ dự án đã thi công
             <ArrowRight className="h-4 w-4" />

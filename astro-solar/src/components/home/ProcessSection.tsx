@@ -46,11 +46,11 @@ export default function ProcessSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-12">
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-orange-500 mb-3">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#D0202A] mb-3">
             QUY TRÌNH TRIỂN KHAI
           </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-            6 Bước Từ Tư Vấn <span className="text-orange-500">Đến Vận Hành</span>
+            6 Bước Từ Tư Vấn <span className="text-[#D0202A]">Đến Vận Hành</span>
           </h2>
           <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
             Quy trình chuẩn cơ điện, minh bạch từng bước — đảm bảo an toàn và đúng tiến độ.
@@ -67,13 +67,13 @@ export default function ProcessSection() {
                 className="relative bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-md hover:border-orange-200 transition-all duration-200 motion-reduce:transition-none"
               >
                 {/* Step number badge */}
-                <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-orange-500 text-white text-sm font-bold flex items-center justify-center shadow-md">
+                <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-[#D0202A] text-white text-sm font-bold flex items-center justify-center shadow-md">
                   {step.step}
                 </div>
 
                 {/* Icon */}
-                <div className="w-11 h-11 rounded-xl bg-orange-50 flex items-center justify-center mb-4">
-                  <Icon className="h-5 w-5 text-orange-500" />
+                <div className="w-11 h-11 rounded-xl bg-red-50 flex items-center justify-center mb-4">
+                  <Icon className="h-5 w-5 text-[#D0202A]" />
                 </div>
 
                 <h3 className="font-bold text-gray-900 mb-1.5 text-[15px]">{step.title}</h3>

@@ -142,16 +142,16 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06 }}
       onClick={onSelect}
-      className={`group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${
+      className={`group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 ${
         isSelected
-          ? 'border-[#ea580c] bg-orange-50 shadow-md'
-          : 'border-gray-200 bg-white hover:border-[#ea580c]/40 hover:shadow-md'
+          ? 'border-[#D0202A] bg-red-50 shadow-md'
+          : 'border-gray-200 bg-white hover:border-[#D0202A]/40 hover:shadow-md'
       }`}
     >
       {/* Color bar top */}
       <div
         className="h-0.5 w-full"
-        style={{ background: isHybrid ? 'linear-gradient(90deg,#1d4ed8,#3b82f6)' : 'linear-gradient(90deg,#ea580c,#f59e0b)' }}
+        style={{ background: isHybrid ? 'linear-gradient(90deg,#1d4ed8,#3b82f6)' : 'linear-gradient(90deg,#D0202A,#F5831F)' }}
       />
 
       <div className="p-3.5">
@@ -169,7 +169,7 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
                 className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full"
                 style={{
                   background: isHybrid ? 'rgba(29,78,216,0.08)' : 'rgba(234,88,12,0.08)',
-                  color: isHybrid ? '#1d4ed8' : '#ea580c',
+                  color: isHybrid ? '#1d4ed8' : '#D0202A',
                 }}
               >
                 {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
@@ -197,7 +197,7 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
           ].map(m => (
             <div key={m.label} className="bg-white py-1.5 px-1">
               <p className="text-[11px] font-bold text-[#0F172A] leading-tight">{m.value}</p>
-              {m.sub && <p className="text-[9px] text-[#ea580c] font-medium leading-none mt-0.5">{m.sub}</p>}
+              {m.sub && <p className="text-[9px] text-[#D0202A] font-medium leading-none mt-0.5">{m.sub}</p>}
               <p className="text-[9px] text-gray-400 mt-0.5">{m.label}</p>
             </div>
           ))}
@@ -223,8 +223,8 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
     ...(sol.battery && batteryBrand
       ? [{ icon: <Battery className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
       : []),
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#ea580c]" />, label: 'Sản lượng/tháng',           value: `${sol.productionMin}–${sol.productionMax} kWh` },
-    { icon: <Calendar className="w-3.5 h-3.5 text-[#ea580c]" />,  label: 'Hoàn vốn',                  value: sol.paybackStr },
+    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#D0202A]" />, label: 'Sản lượng/tháng',           value: `${sol.productionMin}–${sol.productionMax} kWh` },
+    { icon: <Calendar className="w-3.5 h-3.5 text-[#D0202A]" />,  label: 'Hoàn vốn',                  value: sol.paybackStr },
     ...(sol.roofArea
       ? [{ icon: <Home className="w-3.5 h-3.5 text-gray-400" />,  label: 'Diện tích lắp đặt',          value: `${sol.roofArea} m²` }]
       : []),
@@ -250,7 +250,7 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
             className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full mb-2"
             style={{
               background: isHybrid ? 'rgba(29,78,216,0.1)' : 'rgba(234,88,12,0.1)',
-              color: isHybrid ? '#1d4ed8' : '#ea580c',
+              color: isHybrid ? '#1d4ed8' : '#D0202A',
             }}
           >
             {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
@@ -282,7 +282,7 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
           </div>
           <div className="text-right">
             <p className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">Công suất</p>
-            <p className="text-[20px] font-extrabold text-[#ea580c] leading-tight mt-0.5">{sol.power} <span className="text-[13px] font-semibold text-gray-500">kWp</span></p>
+            <p className="text-[20px] font-extrabold text-[#D0202A] leading-tight mt-0.5">{sol.power} <span className="text-[13px] font-semibold text-gray-500">kWp</span></p>
           </div>
         </div>
 
@@ -311,14 +311,14 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
           href="/contact"
-          className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
-          style={{ background: 'linear-gradient(135deg,#ea580c 0%,#f59e0b 100%)' }}
+          className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
+          style={{ background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' }}
         >
           <Phone className="w-4 h-4" /> Nhận báo giá
         </motion.a>
         <a
           href="tel:0988446113"
-          className="h-11 w-24 rounded-xl border border-[#ea580c] text-[#ea580c] text-[14px] font-semibold flex items-center justify-center gap-1.5 hover:bg-orange-50 transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+          className="h-11 w-24 rounded-xl border border-[#D0202A] text-[#D0202A] text-[14px] font-semibold flex items-center justify-center gap-1.5 hover:bg-red-50 transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none"
         >
           <Phone className="w-3.5 h-3.5" /> Gọi ngay
         </a>

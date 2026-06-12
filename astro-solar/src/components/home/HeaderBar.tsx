@@ -13,24 +13,16 @@ const navItems = [
 ];
 
 export default function HeaderBar() {
-  const [scrolled, setScrolled] = useState(false);
   const [activePath, setActivePath] = useState('/');
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     setActivePath(window.location.pathname);
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 0);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
-      className={`hidden lg:block fixed left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'top-1' : 'top-2'
-      }`}
+      className="hidden lg:block absolute left-0 right-0 z-50 top-2"
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4">
         {/* Logo - left */}
@@ -69,7 +61,7 @@ export default function HeaderBar() {
           {/* Phone CTA - hidden on mobile */}
           <a
             href="tel:0988446113"
-            className="hidden sm:flex items-center gap-2 bg-[#F5831F] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#E0721A] transition-colors shadow-sm"
+            className="hidden sm:flex items-center gap-2 bg-[#D0202A] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors shadow-sm"
           >
             <Phone className="h-4 w-4" />
             <span>0988 446 113</span>
@@ -112,7 +104,7 @@ export default function HeaderBar() {
             <div className="px-4 py-3 border-t border-white/20">
               <a
                 href="tel:0988446113"
-                className="flex items-center justify-center gap-2 bg-[#F5831F] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#E0721A] transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#D0202A] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
               >
                 <Phone className="h-4 w-4" />
                 <span>0988 446 113</span>

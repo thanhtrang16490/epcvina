@@ -3,21 +3,26 @@
 :root {
   /* === EPCVINA Solar Design System ===
    * Colors extracted directly from logo:
-   *   #F5831F — SOLAR orange (primary brand)
-   *   #4A4F56 — EPCVINA charcoal (professional neutral)
-   *   #D0202A — Red accent bar (urgency / logo mark)
+   *   #D0202A — Red accent bar = PRIMARY brand (EPC mark, urgency, CTA)
+   *   #F5831F — SOLAR orange = SECONDARY accent (solar energy, warmth)
+   *   #4A4F56 — EPCVINA charcoal = professional neutral
    */
 
-  /* Primary: Logo orange (#F5831F) */
-  --color-primary: #F5831F;
-  --color-primary-hover: #E0721A;
-  --color-primary-light: #FFF4E8;
-  --color-primary-50: #FFF4E8;
-  --color-primary-100: #FFE4C4;
-  --color-primary-200: #FEC998;
-  --color-primary-500: #F5831F;
-  --color-primary-600: #E0721A;
-  --color-primary-700: #C25E10;
+  /* Primary: Logo red (#D0202A) — main CTA, active states, headings accent */
+  --color-primary: #D0202A;
+  --color-primary-hover: #B01A22;
+  --color-primary-light: #FEF2F2;
+  --color-primary-50: #FEF2F2;
+  --color-primary-100: #FEE2E2;
+  --color-primary-200: #FECACA;
+  --color-primary-500: #D0202A;
+  --color-primary-600: #B01A22;
+  --color-primary-700: #8B1219;
+
+  /* Secondary accent: Logo orange (#F5831F) — solar energy cue, hover accents */
+  --color-secondary-accent: #F5831F;
+  --color-secondary-accent-hover: #E0721A;
+  --color-secondary-accent-light: #FFF4E8;
 
   /* Brand charcoal: Logo EPCVINA text (#4A4F56) */
   --color-charcoal: #4A4F56;
@@ -28,12 +33,7 @@
   --color-charcoal-800: #2C3036;
   --color-charcoal-900: #1A1D21;
 
-  /* Accent red: Logo E-bar (#D0202A) */
-  --color-accent: #D0202A;
-  --color-accent-hover: #B01A22;
-  --color-accent-light: #FEF2F2;
-
-  /* Secondary: Emerald (eco/sustainability cue) */
+  /* Eco/sustainability: Emerald */
   --color-secondary: #059669;
   --color-secondary-hover: #047857;
   --color-secondary-light: #ECFDF5;
@@ -68,6 +68,7 @@
   --color-brand: var(--color-primary);
   --color-brand-hover: var(--color-primary-hover);
   --color-brand-light: var(--color-primary-light);
+  --color-brand-orange: var(--color-secondary-accent);
   --color-charcoal: var(--color-charcoal);
   --color-eco: var(--color-secondary);
   --color-eco-light: var(--color-secondary-light);
@@ -81,7 +82,7 @@ html {
 }
 
 body {
-  background: linear-gradient(to bottom right, #FFF4E8, #ffffff, #ECFDF5);
+  background: linear-gradient(to bottom right, #FEF2F2, #ffffff, #ECFDF5);
   color: var(--foreground);
   font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
