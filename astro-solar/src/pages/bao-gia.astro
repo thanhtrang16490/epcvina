@@ -1,0 +1,21 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import QuotationPage from '../components/pages/QuotationPage';
+
+const breadcrumbs = [
+  { name: "Trang Chủ", url: "https://epcvina.com" },
+  { name: "Báo Giá", url: "https://epcvina.com/bao-gia" }
+];
+---
+
+<DashboardLayout
+  title="Báo Giá Lắp Đặt Điện Mặt Trời | EPC Solar Hà Nội"
+  description="Nhận báo giá miễn phí lắp đặt điện mặt trời on-grid, hybrid. Đề xuất combo phù hợp với nhu cầu sử dụng điện của bạn. Tư vấn trong 24h."
+  keywords="báo giá điện mặt trời, báo giá solar, lắp đặt solar giá, combo on-grid giá, EPC Solar Hà Nội"
+  breadcrumbs={breadcrumbs}
+>
+  <DashboardShell client:load>
+    <QuotationPage client:load />
+  </DashboardShell>
+</DashboardLayout>

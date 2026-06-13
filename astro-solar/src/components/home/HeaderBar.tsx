@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Phone, Menu, X } from 'lucide-react';
+import { FileText, Menu, X } from 'lucide-react';
 
 const navItems = [
   { label: 'Trang chủ', href: '/' },
@@ -9,6 +9,7 @@ const navItems = [
   { label: 'Solar C&I', href: '/solar-ci' },
   { label: 'Bảo trì O&M', href: '/bao-tri' },
   { label: 'Dự án', href: '/du-an' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Liên hệ', href: '/lien-he' },
 ];
 
@@ -60,11 +61,11 @@ export default function HeaderBar() {
         <div className="flex items-center gap-2">
           {/* Phone CTA - hidden on mobile */}
           <a
-            href="tel:0988446113"
-            className="hidden sm:flex items-center gap-2 bg-[#D0202A] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors shadow-sm"
+            href="/bao-gia"
+            className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-5 py-2.5 text-sm font-semibold shadow-md transition-colors"
           >
-            <Phone className="h-4 w-4" />
-            <span>0988 446 113</span>
+            <FileText className="h-4 w-4" />
+            <span>Nhận Báo Giá</span>
           </a>
 
           {/* Hamburger - mobile only */}
@@ -103,11 +104,12 @@ export default function HeaderBar() {
             })}
             <div className="px-4 py-3 border-t border-white/20">
               <a
-                href="tel:0988446113"
-                className="flex items-center justify-center gap-2 bg-[#D0202A] text-white rounded-full px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
+                href="/bao-gia"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full"
               >
-                <Phone className="h-4 w-4" />
-                <span>0988 446 113</span>
+                <FileText className="h-4 w-4" />
+                <span>Nhận Báo Giá</span>
               </a>
             </div>
           </nav>

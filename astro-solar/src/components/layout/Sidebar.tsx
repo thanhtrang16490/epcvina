@@ -7,6 +7,8 @@ import {
   Wrench,
   MessageSquare,
   BookOpen,
+  Newspaper,
+  Calculator,
   LogIn,
   LogOut,
   User,
@@ -31,6 +33,8 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { name: 'Trang chủ', href: '/', icon: LayoutDashboard },
+  { name: 'Báo Giá', href: '/bao-gia', icon: Calculator },
+  { name: 'Blog', href: '/blog', icon: Newspaper },
   {
     name: 'Gói combo',
     icon: Package,

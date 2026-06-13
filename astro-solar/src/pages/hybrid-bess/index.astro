@@ -5,10 +5,28 @@ import HybridBESSPage from '../../components/pages/HybridBESSPage';
 ---
 
 <DashboardLayout
-  title="Hybrid & BESS - Lưu Trữ Năng Lượng Thông Minh | EPC SOLAR"
-  description="Giải pháp Hybrid và hệ thống lưu trữ năng lượng BESS cho gia đình và doanh nghiệp. Dự phòng mất điện, tối ưu chi phí giờ cao điểm, quản lý năng lượng thông minh."
+  title="Hybrid Solar + Pin Lưu Trữ BESS - Điện 24/7 | EPC Solar Hà Nội"
+  description="Hệ thống Hybrid Solar kết hợp pin lưu trữ BESS - cung cấp điện 24/7 không phụ thuộc lưới. Tối ưu chi phí, bảo hành 25 năm. Tư vấn miễn phí."
   keywords="hybrid solar, BESS, pin lưu trữ năng lượng, battery storage, lưu trữ điện mặt trời, backup điện, EPCVINA Solar"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Giải Pháp", url: "https://epcvina.com"}, {name: "Hybrid BESS", url: "https://epcvina.com/hybrid-bess"}]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Lắp Đặt Hệ Thống Hybrid Solar + Pin Lưu Trữ BESS",
+    "description": "Hệ thống hybrid solar kết hợp pin lưu trữ BESS, cung cấp điện 24/7. Tối ưu chi phí điện năng. Bảo hành 25 năm.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "EPC Solar",
+      "url": "https://epcvina.com"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Hà Nội"
+    },
+    "serviceType": "Solar Energy Storage Installation",
+    "priceRange": "$$-$$$"
+  })} />
   <DashboardShell client:load>
     <HybridBESSPage client:load />
   </DashboardShell>

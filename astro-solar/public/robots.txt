@@ -1,7 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /login
+Disallow: /api/
 
 Sitemap: https://epcvina.com/sitemap-index.xml
 
-# Block admin/login pages
-Disallow: /login
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

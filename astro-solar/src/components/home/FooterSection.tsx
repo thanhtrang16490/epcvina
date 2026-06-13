@@ -79,7 +79,7 @@ export default function FooterSection() {
             </div>
 
             {/* BCT Registration Badge */}
-            <div className="mt-5">
+            {/* <div className="mt-5">
               <a
                 href="http://online.gov.vn/Home/WebDetails/110771"
                 target="_blank"
@@ -93,7 +93,7 @@ export default function FooterSection() {
                   loading="lazy"
                 />
               </a>
-            </div>
+            </div> */}
           </div>
 
           {/* Products */}
@@ -117,6 +117,7 @@ export default function FooterSection() {
               <li><a href="/applications/nha-xuong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar C&I</a></li>
               <li><a href="/applications/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Văn phòng</a></li>
               <li><a href="/du-an" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Dự án đã thi công</a></li>
+              <li><a href="/blog" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Blog</a></li>
             </ul>
           </div>
 

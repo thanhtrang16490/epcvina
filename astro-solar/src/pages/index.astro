@@ -5,10 +5,64 @@ import SolarFullPage from '../components/home/SolarFullPage';
 ---
 
 <DashboardLayout
-  title="EPC Solar - Lắp Đặt Điện Mặt Trời Trọn Gói Tại Hà Nội | Tiết Kiệm 90% Tiền Điện"
-  description="EPC Solar chuyên tư vấn và lắp đặt hệ thống điện mặt trời trọn gói cho hộ gia đình, doanh nghiệp tại Hà Nội. Combo On-Grid & Hybrid giá tốt nhất 2025. Bảo hành 25 năm. Hotline 0988 446 113."
+  title="Lắp Đặt Điện Mặt Trời Trọn Gói On-Grid & Hybrid Hà Nội | EPC Solar"
+  description="EPC Solar - Chuyên lắp đặt hệ thống điện mặt trời on-grid, hybrid & BESS trọn gói tại Hà Nội. Tiết kiệm 70-90% tiền điện. Bảo hành 25 năm. Tư vấn miễn phí!"
   keywords="lắp đặt điện mặt trời Hà Nội, combo điện mặt trời, EPC Solar, hệ thống solar, on-grid, hybrid, tiết kiệm điện, tấm pin mặt trời"
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Lắp điện mặt trời có cần xin phép không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có. Theo Nghị định 135/2024/NĐ-CP, hệ thống điện mặt trời mái nhà dưới 1 MWp cần thông báo với Đọc điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục phép, đấu nối lưới và đăng ký bán điện dư với EVN miễn phí cho khách hàng."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Lắp điện mặt trời có thực sự tiết kiệm tiền điện không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có. Hệ thống điện mặt trời giúp giảm 70–90% hóa đơn điện hàng tháng. Với giá điện ngày càng tăng, mức tiết kiệm sẽ càng lớn theo thời gian. Trung bình một hệ 5 kWp tiết kiệm được 1.5–2.5 triệu đồng/tháng."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Thời gian hoàn vốn là bao lâu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Thời gian hoàn vốn trung bình từ 3–5 năm cho hệ On-Grid và 5–7 năm cho hệ Hybrid. Sau khi hoàn vốn, bạn sẽ sử dụng điện miễn phí trong suốt tuổi thọ còn lại của hệ thống (20–25 năm)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Tấm pin mặt trời bền được bao lâu? Bảo hành như thế nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tấm pin chất lượng cao có tuổi thọ trên 25 năm với hiệu suất giảm dần khoảng 0.5%/năm. EPCVINA bảo hành tấm pin 25 năm, inverter 5–10 năm, thi công 2 năm. Hỗ trợ kỹ thuật và bảo trì định kỳ trong suốt vòng đời hệ thống."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hệ thống có hoạt động trong ngày mưa hoặc trời âm u không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có, hệ thống vẫn phát điện trong điều kiện ít nắng, tuy nhiên sản lượng sẽ giảm 50–80% so với ngày nắng. Hệ thống được thiết kế dựa trên sản lượng trung bình cả năm nên đã tính đến các ngày mưa."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Chi phí phát sinh sau khi lắp đặt là bao nhiêu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chi phí bảo trì rất thấp: chủ yếu là vệ sinh tấm pin 2–4 lần/năm (có thể tự làm bằng nước sạch). Không có chi phí nhiên liệu hay phụ tùng thay thế định kỳ. Bảo trì chuyên nghiệp khoảng 500.000–1.000.000đ/năm. EPCVINA có gói bảo trì O&M dài hạn."
+        }
+      }
+    ]
+  })} />
   <DashboardShell client:load>
     <SolarFullPage client:load />
   </DashboardShell>

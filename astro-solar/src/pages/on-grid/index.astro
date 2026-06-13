@@ -5,10 +5,28 @@ import OnGridListingPage from '../../components/combo/OnGridListingPage';
 ---
 
 <DashboardLayout
-  title="Combo Điện Mặt Trời On-Grid - Hòa Lưới | EPC Solar"
-  description="Combo điện mặt trời On-Grid hòa lưới, tiết kiệm đến 90% tiền điện hàng tháng. Không cần pin lưu trữ, chi phí thấp. Giá từ 50 triệu. Bảo hành 25 năm."
+  title="On-Grid Solar - Giải Pháp Tiết Kiệm Điện 70-90% | EPC Solar"
+  description="Hệ thống điện mặt trời On-Grid hòa lưới - tiết kiệm 70-90% hóa đơn điện. Combo trọn gói từ 5kW-50kW. Hoàn vốn 3-5 năm. Lắp đặt chuyên nghiệp tại Hà Nội."
   keywords="combo on-grid, điện mặt trời hòa lưới, solar on grid, tiết kiệm tiền điện, EPC Solar on-grid, lắp điện mặt trời giá rẻ"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Giải Pháp", url: "https://epcvina.com"}, {name: "On-Grid", url: "https://epcvina.com/on-grid"}]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Lắp Đặt Hệ Thống Điện Mặt Trời On-Grid",
+    "description": "Lắp đặt hệ thống điện mặt trời on-grid trọn gói, tiết kiệm điện 70-90%. Bảo hành 25 năm. Tư vấn miễn phí tại Hà Nội.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "EPC Solar",
+      "url": "https://epcvina.com"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Hà Nội"
+    },
+    "serviceType": "Solar Panel Installation",
+    "priceRange": "$$"
+  })} />
   <DashboardShell client:load>
     <OnGridListingPage client:load />
   </DashboardShell>

@@ -5,6 +5,7 @@ interface Props {
   keywords?: string;
   ogImage?: string;
   noindex?: boolean;
+  breadcrumbs?: Array<{name: string, url: string}>;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   keywords = 'điện mặt trời, lắp đặt điện mặt trời, solar panel, EPC Solar, điện mặt trời Hà Nội, hệ thống điện mặt trời, combo điện mặt trời, on-grid, hybrid',
   ogImage = '/logo-epcvina-solar.png',
   noindex = false,
+  breadcrumbs = [],
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -114,8 +116,23 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
 
+    <!-- Preload hero image (LCP) -->
+    <link rel="preload" as="image" href="/hero-bg.png" />
+
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    {breadcrumbs && breadcrumbs.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbs.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      })} />
+    )}
 
     <!-- Theme color -->
     <meta name="theme-color" content="#f97316" />

@@ -1,0 +1,187 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/HeaderBar';
+import BlogHero from '../../components/blog/BlogHero';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const postId = post.id;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "author": {
+    "@type": "Organization",
+    "name": post.data.author || "EPC Solar",
+    "url": "https://epcvina.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EPC Solar",
+    "url": "https://epcvina.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://epcvina.com/logo-epcvina-solar.png"
+    }
+  },
+  "datePublished": post.data.publishDate.toISOString(),
+  "dateModified": (post.data.updatedDate || post.data.publishDate).toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://epcvina.com/blog/${postId}`
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang Chủ", "item": "https://epcvina.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://epcvina.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": `https://epcvina.com/blog/${postId}` }
+  ]
+};
+
+// Get related posts (same tags)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.id !== post.id && !p.data.draft)
+  .filter(p => p.data.tags.some(tag => post.data.tags.includes(tag)))
+  .slice(0, 3);
+---
+
+<DashboardLayout
+  title={`${post.data.title} | EPC Solar Blog`}
+  description={post.data.description}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <DashboardShell client:load>
+  <HeaderBar client:load />
+  <main class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50 md:pt-16">
+    <!-- Blog Hero with post title -->
+    <BlogHero client:load
+      title={post.data.title}
+      subtitle={post.data.description}
+    />
+
+    <!-- Breadcrumb -->
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+      <nav class="flex items-center gap-2 text-sm text-gray-500" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-orange-600 transition-colors duration-200 cursor-pointer">Trang Chủ</a>
+        <span>›</span>
+        <a href="/blog" class="hover:text-orange-600 transition-colors duration-200 cursor-pointer">Blog</a>
+        <span>›</span>
+        <span class="text-gray-700 truncate max-w-xs">{post.data.title}</span>
+      </nav>
+    </div>
+
+    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <!-- Article Meta -->
+      <div class="flex flex-wrap items-center gap-4 mb-8 pb-6 border-b border-gray-200">
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.map(tag => (
+            <span class="text-xs bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1 rounded-full font-medium">
+              #{tag}
+            </span>
+          ))}
+        </div>
+        <div class="flex items-center gap-3 ml-auto">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center text-white font-bold text-xs">
+            E
+          </div>
+          <div>
+            <p class="font-semibold text-gray-800 text-sm">{post.data.author}</p>
+            <div class="flex items-center gap-2 text-xs text-gray-500">
+              <span>{post.data.publishDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+              {post.data.updatedDate && (
+                <>
+                  <span>•</span>
+                  <span>Cập nhật: {post.data.updatedDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Article Content -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10 mb-10">
+        <div class="prose prose-lg prose-orange max-w-none
+          prose-headings:font-bold prose-headings:text-gray-900
+          prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
+          prose-p:text-gray-700 prose-p:leading-relaxed
+          prose-a:text-orange-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-gray-900
+          prose-table:text-sm prose-th:bg-gray-50 prose-th:font-semibold
+          prose-code:text-orange-700 prose-code:bg-orange-50 prose-code:px-1 prose-code:rounded
+          prose-li:text-gray-700 prose-li:leading-relaxed
+          prose-blockquote:border-orange-400 prose-blockquote:bg-orange-50 prose-blockquote:rounded-r-lg">
+          <Content />
+        </div>
+      </div>
+
+      <!-- CTA Banner -->
+      <div class="bg-gradient-to-r from-orange-600 to-red-700 rounded-2xl p-8 md:p-10 text-center text-white mb-10">
+        <h3 class="text-2xl font-bold mb-2">Bạn cần tư vấn lắp đặt điện mặt trời?</h3>
+        <p class="text-orange-100 mb-6 text-base max-w-lg mx-auto">
+          Liên hệ EPC Solar để được tư vấn miễn phí và nhận báo giá cụ thể trong vòng 24 giờ.
+        </p>
+        <a
+          href="/contact"
+          class="inline-block bg-white text-orange-700 font-bold px-8 py-3 rounded-xl hover:bg-orange-50 transition-all duration-200 ease-in-out cursor-pointer focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-orange-600 motion-reduce:transition-none"
+        >
+          Tư Vấn Miễn Phí →
+        </a>
+      </div>
+
+      <!-- Related Posts -->
+      {relatedPosts.length > 0 && (
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Bài Viết Liên Quan</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {relatedPosts.map(related => (
+              <a
+                href={`/blog/${related.id}`}
+                class="block p-5 bg-white rounded-xl border border-gray-200 hover:border-orange-400 hover:shadow-md transition-all duration-200 ease-in-out cursor-pointer focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+              >
+                <div class="flex flex-wrap gap-1.5 mb-3">
+                  {related.data.tags.slice(0, 2).map(tag => (
+                    <span class="text-xs bg-orange-50 text-orange-600 px-2 py-0.5 rounded-full">#{tag}</span>
+                  ))}
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 text-sm leading-snug">{related.data.title}</h3>
+                <p class="text-xs text-gray-400">{related.data.publishDate.toLocaleDateString('vi-VN')}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Back to Blog -->
+      <div class="mt-10 pt-6 border-t border-gray-200">
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-700 transition-colors duration-200 cursor-pointer focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 rounded"
+        >
+          ← Quay lại Blog
+        </a>
+      </div>
+    </article>
+  </main>
+  </DashboardShell>
+</DashboardLayout>
