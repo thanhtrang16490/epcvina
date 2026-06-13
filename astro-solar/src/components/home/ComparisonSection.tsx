@@ -26,7 +26,7 @@ export default function ComparisonSection() {
         {/* Same background image as HeroSection */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "image-set(url('/hero-background.webp') 1x) type('image/webp'), url('/hero-background Large.jpeg')" }}
+          style={{ backgroundImage: "url('/hero-background Large.jpeg')" }}
         />
         {/* Same gradient overlay as HeroSection */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/75" />

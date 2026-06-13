@@ -36,11 +36,12 @@ export default function HeroSection() {
       className="relative w-full overflow-hidden flex flex-col"
       style={{ height: '100dvh', minHeight: '600px' }}
     >
-      {/* ─── Background Image + Overlay (merged for DOM reduction) ─── */}
+      {/* ─── Background Image + Overlay ─── */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.5), rgba(0,0,0,0.8)), image-set(url('/hero-bg-768.webp') 1x, url('/hero-bg-1280.webp') 2x) type('image/webp'), url('/hero-bg.png')", transform: `translateY(${scrollY * 0.3}px)` }}
+        style={{ backgroundImage: "url('/hero-bg.png')", transform: `translateY(${scrollY * 0.3}px)` }}
       />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
 
       {/* ─── Content ─── */}
       <div className="relative z-10 flex flex-col flex-1">

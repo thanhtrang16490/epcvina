@@ -14,6 +14,7 @@ export default function SolarFullPage() {
   return (
     <div className="min-h-screen bg-white scroll-smooth">
       <HeaderBar />
+      <div>
       {/* 1. Hero — EPCVINA Solar brand, CTA, stats bar */}
       <div className="lg:-ml-16 lg:w-[calc(100%+4rem)]">
         <HeroSection />
@@ -44,6 +45,7 @@ export default function SolarFullPage() {
       <CTASection />
 
       <FooterSection />
+      </div>
       <style>{`
         @keyframes fadeInUp {
           from { opacity: 0; transform: translateY(20px); }
