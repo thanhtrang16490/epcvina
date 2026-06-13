@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://epcvina.com',
   output: 'static',
+  compressHTML: true,
   adapter: node({
     mode: 'standalone',
   }),
@@ -23,7 +24,37 @@ export default defineConfig({
       },
     }),
   ],
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: 'hover',
+  },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            // Vendor chunk: React core
+            if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+              return 'react-vendor';
+            }
+            // Framer-motion in its own chunk (only loaded when needed)
+            if (id.includes('node_modules/framer-motion')) {
+              return 'framer-motion';
+            }
+            // Recharts in its own chunk
+            if (id.includes('node_modules/recharts') || id.includes('node_modules/d3-')) {
+              return 'recharts';
+            }
+            // Supabase
+            if (id.includes('node_modules/@supabase')) {
+              return 'supabase';
+            }
+          },
+        },
+      },
+      // Raise the chunk warning threshold slightly (default is 500kB)
+      chunkSizeWarningLimit: 600,
+    },
   },
 });

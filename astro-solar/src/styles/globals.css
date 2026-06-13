@@ -73,7 +73,7 @@
   --color-eco: var(--color-secondary);
   --color-eco-light: var(--color-secondary-light);
   --font-sans: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Geist Mono', monospace;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
 }
 
 html {

@@ -71,10 +71,10 @@ const relatedPosts = allPosts
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <DashboardShell client:load>
-  <HeaderBar client:load />
+  <HeaderBar client:idle />
   <main class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50 md:pt-16">
     <!-- Blog Hero with post title -->
-    <BlogHero client:load
+    <BlogHero client:idle
       title={post.data.title}
       subtitle={post.data.description}
     />

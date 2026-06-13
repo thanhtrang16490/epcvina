@@ -10,6 +10,6 @@ const { slug } = Astro.params;
 
 <DashboardLayout title={`${slug} - Combo Hybrid - EPC Solar`}>
   <DashboardShell client:load>
-    <HybridPage comboSlug={slug} client:load />
+    <HybridPage comboSlug={slug} client:idle />
   </DashboardShell>
 </DashboardLayout>

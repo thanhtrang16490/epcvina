@@ -10,6 +10,6 @@ const { category } = Astro.params;
 
 <DashboardLayout title={`Thiết bị - EPC Solar`}>
   <DashboardShell client:load>
-    <EquipmentPage category={category!} client:load />
+    <EquipmentPage category={category!} client:idle />
   </DashboardShell>
 </DashboardLayout>

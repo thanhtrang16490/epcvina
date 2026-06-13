@@ -17,6 +17,6 @@ const { slug } = Astro.params;
 ---
 <DashboardLayout title="Ứng dụng - EPC Solar">
   <DashboardShell client:load>
-    <ApplicationPage applicationType={slug as any} client:load />
+    <ApplicationPage applicationType={slug as any} client:idle />
   </DashboardShell>
 </DashboardLayout>
