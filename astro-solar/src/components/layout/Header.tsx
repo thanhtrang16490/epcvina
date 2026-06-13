@@ -180,8 +180,9 @@ export default function Header({ onMenuClick, isHidden, mobileOnly }: HeaderProp
         </div>
       </header>
 
-      {/* Desktop Header - hidden when mobileOnly (homepage uses HeaderBar instead) */}
-      <header className={`${mobileOnly ? 'hidden' : 'hidden lg:flex'} h-16 border-b items-center justify-between px-4 lg:px-8 fixed top-0 left-[64px] right-0 z-30 transition-all duration-300 ${
+      {/* Desktop Header - skipped entirely when mobileOnly (homepage uses HeaderBar instead) */}
+      {!mobileOnly && (
+      <header className={`hidden lg:flex h-16 border-b items-center justify-between px-4 lg:px-8 fixed top-0 left-[64px] right-0 z-30 transition-all duration-300 ${
         isHome 
           ? 'bg-transparent/95 backdrop-blur-sm border-transparent'
           : 'bg-white border-gray-200'
@@ -281,6 +282,7 @@ export default function Header({ onMenuClick, isHidden, mobileOnly }: HeaderProp
           )}
         </div>
       </header>
+      )}
     </>
   );
 }

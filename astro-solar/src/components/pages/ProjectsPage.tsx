@@ -211,6 +211,8 @@ export default function ProjectsPage() {
             src="https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=1200&q=80"
             alt="Trang trại điện mặt trời quy mô lớn của EPC Solar"
             loading="eager"
+            width={1200}
+            height={675}
             className="absolute inset-0 w-full h-full object-cover opacity-20"
           />
           {/* Gradient overlays */}
@@ -290,6 +292,8 @@ export default function ProjectsPage() {
                       src={project.image}
                       alt={project.alt}
                       loading="lazy"
+                      width={400}
+                      height={225}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true" />
@@ -351,6 +355,8 @@ export default function ProjectsPage() {
                       src={project.image}
                       alt={project.alt}
                       loading="lazy"
+                      width={400}
+                      height={225}
                       className="w-full h-full object-cover opacity-80"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" aria-hidden="true" />

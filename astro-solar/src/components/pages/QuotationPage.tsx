@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   FileText, Sun, Phone, User, Mail, MapPin, Hash,
   MessageSquare, Home, Zap, Battery, CheckCircle2,
@@ -100,12 +99,8 @@ function ToggleRow({
   accentBlue?: boolean;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -6 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -6 }}
-      transition={{ duration: 0.18 }}
-      className="space-y-1.5"
+    <div
+      className="animate-slide-in-down space-y-1.5"
     >
       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{label}</p>
       <div className="flex rounded-xl bg-gray-100 p-1 gap-1">
@@ -134,7 +129,7 @@ function ToggleRow({
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -178,10 +173,9 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
         ]}
         accentBlue={kind === 'hybrid'}
       />
-      <AnimatePresence>
-        {kind && (
-          <ToggleRow
-            label="Số pha"
+      {kind && (
+        <ToggleRow
+          label="Số pha"
             value={phase}
             onChange={handlePhase}
             options={[
@@ -190,12 +184,10 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
             ]}
             accentBlue
           />
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {kind === 'hybrid' && phase === '3' && (
-          <ToggleRow
-            label="Áp pin lưu trữ"
+      )}
+      {kind === 'hybrid' && phase === '3' && (
+        <ToggleRow
+          label="Áp pin lưu trữ"
             value={battVolt}
             onChange={handleBatt}
             options={[
@@ -204,8 +196,7 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
             ]}
             accentBlue
           />
-        )}
-      </AnimatePresence>
+      )}
     </div>
   );
 }
@@ -222,16 +213,14 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
   const isHybrid = sol.type === 'hybrid';
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.06 }}
+    <div
       onClick={onSelect}
-      className={`group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 ${
+      className={`animate-slide-in-up group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 ${
         isSelected
           ? 'border-[#D0202A] bg-red-50 shadow-md'
           : 'border-gray-200 bg-white hover:border-[#D0202A]/40 hover:shadow-md'
       }`}
+      style={{ animationDelay: `${index * 60}ms` }}
     >
       {/* Color bar top */}
       <div
@@ -288,14 +277,14 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 // ─────────────────────────────────────────────
 // Solution Detail Modal (exact SSF Column 3 content as a modal)
 // ─────────────────────────────────────────────
-function SolutionDetailModal({ sol, onClose }: { sol: SolutionCard; onClose: () => void }) {
+function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; onClose: () => void; isClosing: boolean }) {
   const isHybrid = sol.type === 'hybrid';
   const panelBrand = 'Aiko';
   const inverterBrand = 'SAJ';
@@ -325,25 +314,17 @@ function SolutionDetailModal({ sol, onClose }: { sol: SolutionCard; onClose: () 
   }, [handleKeyDown]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+    <div
+      className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center ${isClosing ? 'animate-modal-backdrop-out' : 'animate-modal-backdrop-in'}`}
       onClick={onClose}
     >
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
 
       {/* Modal panel */}
-      <motion.div
-        initial={{ opacity: 0, y: 60, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 60, scale: 0.95 }}
-        transition={{ type: 'spring', damping: 28, stiffness: 350 }}
-        onClick={e => e.stopPropagation()}
-        className="relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full sm:max-w-[700px] max-h-[92vh] sm:max-h-[85vh] flex flex-col overflow-hidden z-10"
+      <div
+        className={`relative bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full sm:max-w-[700px] max-h-[92vh] sm:max-h-[85vh] flex flex-col overflow-hidden z-10 ${isClosing ? 'animate-modal-panel-out' : 'animate-modal-panel-in'}`}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
@@ -381,7 +362,7 @@ function SolutionDetailModal({ sol, onClose }: { sol: SolutionCard; onClose: () 
 
           {/* Product image — 16:9 aspect */}
           <div className="relative mx-4 mt-3 rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-            <img src="/sample-combo.jpg" alt={sol.name} className="w-full h-full object-cover" />
+            <img src="/sample-combo.jpg" alt={sol.name} width={640} height={360} className="w-full h-full object-cover" loading="lazy" />
             <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 55%)' }} />
             <p className="absolute bottom-2.5 left-3 text-white text-[12px] font-semibold drop-shadow">{sol.name}</p>
           </div>
@@ -422,18 +403,16 @@ function SolutionDetailModal({ sol, onClose }: { sol: SolutionCard; onClose: () 
 
         {/* Action buttons — always visible at bottom */}
         <div className="flex gap-2.5 mx-4 my-3 flex-shrink-0">
-          <motion.a
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
+          <a
             href="/lien-he"
-            className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
+            className="btn-scale flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
             style={{ background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' }}
           >
             <Phone className="w-4 h-4" /> Xem chi tiết
-          </motion.a>
+          </a>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -640,6 +619,15 @@ export default function QuotationPage() {
   // ── Selection / modal state ──
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [modalSol, setModalSol] = useState<SolutionCard | null>(null);
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleCloseModal = useCallback(() => {
+    setIsClosing(true);
+    setTimeout(() => {
+      setModalSol(null);
+      setIsClosing(false);
+    }, 250);
+  }, []);
 
 
   // ── Form submission ──
@@ -897,15 +885,11 @@ export default function QuotationPage() {
 
                 {/* CTA + Reset */}
                 <div className="px-5 pb-5 flex flex-col gap-2.5 mt-auto">
-                  <motion.button
-                    whileHover={isFormValid ? { scale: 1.02 } : {}}
-                    whileTap={isFormValid ? { scale: 0.97 } : {}}
+                  <button
                     onClick={handleShowResults}
                     type="button"
                     disabled={!isFormValid}
-                    className={`cursor-pointer w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white text-base font-bold shadow-sm transition-all ${
-                      isFormValid ? 'opacity-100' : 'opacity-50 cursor-not-allowed'
-                    }`}
+                    className={`cursor-pointer w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white text-base font-bold shadow-sm transition-all ${isFormValid ? 'opacity-100 btn-scale' : 'opacity-50 cursor-not-allowed'}`}
                     style={isFormValid ? { background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' } : { background: '#9ca3af' }}
                   >
                     {submitted ? (
@@ -919,7 +903,7 @@ export default function QuotationPage() {
                         Nhận Báo Giá
                       </>
                     )}
-                  </motion.button>
+                  </button>
                   <button
                     onClick={handleReset}
                     type="button"
@@ -942,12 +926,9 @@ export default function QuotationPage() {
         {showResults && (
           <section className="pb-16 px-3 sm:px-4">
             <div className="max-w-6xl mx-auto">
-              <motion.div
+              <div
                 ref={resultsRef}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden"
+                className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden animate-slide-in-up"
               >
                 {/* Header */}
                 <div className="px-5 py-4 border-b border-gray-100">
@@ -969,8 +950,7 @@ export default function QuotationPage() {
                 <div className="p-4">
                   {solutions.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                      <AnimatePresence>
-                        {solutions.map((sol, i) => (
+                      {solutions.map((sol, i) => (
                           <RecommendationCard
                             key={sol.name + i}
                             sol={sol}
@@ -982,7 +962,6 @@ export default function QuotationPage() {
                             }}
                           />
                         ))}
-                      </AnimatePresence>
                     </div>
                   ) : (
                     <div className="py-12 text-center text-gray-400 text-sm">
@@ -990,7 +969,7 @@ export default function QuotationPage() {
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
         )}
@@ -998,14 +977,13 @@ export default function QuotationPage() {
       </div>
 
       {/* ─── Detail Modal (SSF Column 3 as modal popup) ─── */}
-      <AnimatePresence>
-        {modalSol && (
-          <SolutionDetailModal
-            sol={modalSol}
-            onClose={() => setModalSol(null)}
-          />
-        )}
-      </AnimatePresence>
+      {modalSol && (
+        <SolutionDetailModal
+          sol={modalSol}
+          onClose={handleCloseModal}
+          isClosing={isClosing}
+        />
+      )}
 
       {/* Slider thumb styles */}
       <style>{`
@@ -1059,7 +1037,7 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
   ];
 
   return (
-    <motion.div key={sol.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.22 }}>
+    <div key={sol.name} className="animate-slide-in-up-fast">
       <div
         className="px-4 pt-4 pb-3"
         style={{ background: isHybrid ? 'linear-gradient(135deg,#eff6ff 0%,#f8fafc 100%)' : 'linear-gradient(135deg,#fff7ed 0%,#f8fafc 100%)' }}
@@ -1081,7 +1059,7 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
       </div>
 
       <div className="relative mx-4 mt-3 rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-        <img src="/sample-combo.jpg" alt={sol.name} className="w-full h-full object-cover" />
+        <img src="/sample-combo.jpg" alt={sol.name} width={640} height={360} className="w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 55%)' }} />
         <p className="absolute bottom-2.5 left-3 text-white text-[12px] font-semibold drop-shadow">{sol.name}</p>
       </div>
@@ -1126,6 +1104,6 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
           <Phone className="w-4 h-4" /> Xem chi tiết
         </a>
       </div>
-    </motion.div>
+    </div>
   );
 }

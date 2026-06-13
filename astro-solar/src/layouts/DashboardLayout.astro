@@ -85,6 +85,7 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
     <!-- SEO Meta -->
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -130,8 +131,10 @@ const structuredData = {
       <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300..700&display=swap" rel="stylesheet" />
     </noscript>
 
-    <!-- Preload hero image (LCP) -->
-    <link rel="preload" as="image" href="/hero-bg.png" />
+    <!-- Preload hero image (LCP) - WebP with PNG fallback -->
+    <link rel="preload" as="image" href="/hero-bg.webp" type="image/webp"
+      imagesrcset="/hero-bg-768.webp 768w, /hero-bg-1280.webp 1280w, /hero-bg-1920.webp 1920w"
+      imagesizes="100vw" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
@@ -151,6 +154,71 @@ const structuredData = {
     <!-- Theme color -->
     <meta name="theme-color" content="#f97316" />
     <meta name="author" content="EPC Solar - Công ty CP Xây lắp EPC Việt Nam" />
+
+    <!-- Critical CSS: above-the-fold styles inlined to prevent FOUC -->
+    <style is:inline>
+      /* Reset & base */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html {
+        height: 100%;
+        overflow-x: hidden;
+        max-width: 100vw;
+        -webkit-text-size-adjust: 100%;
+        -moz-tab-size: 4;
+        tab-size: 4;
+        font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        min-height: 100%;
+        background: linear-gradient(to bottom right, #FEF2F2, #ffffff, #ECFDF5);
+        color: #1E293B;
+        font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+      /* Layout shell: sidebar + main grid (prevents layout shift) */
+      .dashboard-shell {
+        display: flex;
+        min-height: 100vh;
+        position: relative;
+      }
+      /* Sidebar placeholder: prevent layout shift while JS loads */
+      .sidebar-placeholder {
+        width: 260px;
+        flex-shrink: 0;
+        background: rgba(255,255,255,0.6);
+      }
+      @media (max-width: 1023px) {
+        .sidebar-placeholder { display: none; }
+      }
+      /* Main content area */
+      main, .main-content {
+        flex: 1;
+        min-width: 0;
+        overflow-x: hidden;
+      }
+      /* Prevent invisible text while font loads */
+      .font-sans { font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      /* Brand color CSS vars (critical — used by header/CTA immediately) */
+      :root {
+        --color-primary: #D0202A;
+        --color-primary-hover: #B01A22;
+        --color-secondary-accent: #F5831F;
+        --color-charcoal: #4A4F56;
+        --color-neutral-900: #0F172A;
+        --color-neutral-800: #1E293B;
+        --color-neutral-100: #F1F5F9;
+        --color-neutral-50: #F8FAFC;
+        --background: #F8FAFC;
+        --foreground: #1E293B;
+        --surface: #FFFFFF;
+        --border: #E2E8F0;
+      }
+    </style>
   </head>
   <body class="min-h-full">
     <slot />

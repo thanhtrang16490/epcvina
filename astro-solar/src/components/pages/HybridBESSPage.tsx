@@ -365,7 +365,7 @@ function HybridComboCard({ combo }: { combo: typeof FALLBACK_HYBRID_COMBOS[0] })
 
       {/* Product image */}
       <div className="relative mx-4 mt-3 rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-        <img src="/sample-combo.jpg" alt={combo.name} className="w-full h-full object-cover" loading="lazy" />
+        <img src="/sample-combo.jpg" alt={combo.name} width={640} height={360} className="w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 55%)' }} />
         <p className="absolute bottom-2.5 left-3 text-white text-xs font-semibold drop-shadow">{combo.name}</p>
       </div>
@@ -510,6 +510,8 @@ export default function HybridBESSPage() {
               alt="Hệ thống lưu trữ năng lượng pin BESS"
               className="w-full h-full object-cover"
               loading="eager"
+              width={1200}
+              height={675}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-slate-900/90" />
           </div>

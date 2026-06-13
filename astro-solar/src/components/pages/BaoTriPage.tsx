@@ -244,6 +244,8 @@ export default function BaoTriPage() {
             src="https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=1200&q=80"
             alt="Hệ thống điện mặt trời được vận hành và bảo trì chuyên nghiệp"
             loading="eager"
+            width={1200}
+            height={675}
             className="absolute inset-0 w-full h-full object-cover opacity-20"
           />
           {/* Gradient overlays */}
@@ -343,6 +345,8 @@ export default function BaoTriPage() {
                       src={item.image}
                       alt={item.alt}
                       loading="lazy"
+                      width={400}
+                      height={225}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -385,6 +389,8 @@ export default function BaoTriPage() {
                       src={svc.image}
                       alt={svc.alt}
                       loading="lazy"
+                      width={400}
+                      height={225}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true" />

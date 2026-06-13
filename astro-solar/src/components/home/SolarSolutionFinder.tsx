@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   Zap, Shield, Home, Building2, CheckCircle2,
   RefreshCw, ChevronDown, Battery, Sun, TrendingUp,
@@ -138,16 +137,14 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
   const isHybrid = sol.type === 'hybrid';
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.06 }}
+    <div
       onClick={onSelect}
-      className={`group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 ${
+      className={`group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 animate-slide-in-up ${
         isSelected
           ? 'border-[#D0202A] bg-red-50 shadow-md'
           : 'border-gray-200 bg-white hover:border-[#D0202A]/40 hover:shadow-md'
       }`}
+      style={{ animationDelay: `${index * 60}ms` }}
     >
       {/* Color bar top */}
       <div
@@ -204,7 +201,7 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -232,12 +229,9 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
   ];
 
   return (
-    <motion.div
+    <div
       key={sol.name}
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.22 }}
-      className="h-full flex flex-col"
+      className="animate-slide-in-up-fast h-full flex flex-col"
     >
       {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto min-h-0">
@@ -267,7 +261,7 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
 
         {/* Product image — 16:9 aspect */}
         <div className="relative mx-4 mt-3 rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-          <img src="/sample-combo.jpg" alt={sol.name} className="w-full h-full object-cover" />
+          <img src="/sample-combo.jpg" alt={sol.name} width={640} height={360} className="w-full h-full object-cover" loading="lazy" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 55%)' }} />
           <p className="absolute bottom-2.5 left-3 text-white text-[12px] font-semibold drop-shadow">{sol.name}</p>
         </div>
@@ -308,17 +302,15 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
 
       {/* Action buttons — always visible at bottom */}
       <div className="flex gap-2.5 mx-4 my-3 flex-shrink-0">
-        <motion.a
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.97 }}
+        <a
           href="/lien-he"
-          className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
+          className="btn-scale flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
           style={{ background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' }}
         >
           <Phone className="w-4 h-4" /> Xem chi tiết
-        </motion.a>
+        </a>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -346,12 +338,8 @@ function ToggleRow({
   accentBlue?: boolean;
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -6 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -6 }}
-      transition={{ duration: 0.18 }}
-      className="space-y-1.5"
+    <div
+      className="animate-slide-in-down space-y-1.5"
     >
       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide">{label}</p>
       <div className="flex rounded-xl bg-gray-100 p-1 gap-1">
@@ -380,7 +368,7 @@ function ToggleRow({
           );
         })}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -428,36 +416,32 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
       />
 
       {/* Step 2: Phase — appears after kind chosen */}
-      <AnimatePresence>
-        {kind && (
-          <ToggleRow
-            label="Số pha"
-            value={phase}
-            onChange={handlePhase}
-            options={[
-              { value: '1', label: '1 Pha', sub: 'Hộ gia đình' },
-              { value: '3', label: '3 Pha', sub: 'Doanh nghiệp' },
-            ]}
-            accentBlue
-          />
-        )}
-      </AnimatePresence>
+      {kind && (
+        <ToggleRow
+          label="Số pha"
+          value={phase}
+          onChange={handlePhase}
+          options={[
+            { value: '1', label: '1 Pha', sub: 'Hộ gia đình' },
+            { value: '3', label: '3 Pha', sub: 'Doanh nghiệp' },
+          ]}
+          accentBlue
+        />
+      )}
 
       {/* Step 3: Battery voltage — only for Hybrid 3-phase */}
-      <AnimatePresence>
-        {kind === 'hybrid' && phase === '3' && (
-          <ToggleRow
-            label="Áp pin lưu trữ"
-            value={battVolt}
-            onChange={handleBatt}
-            options={[
-              { value: 'lv', label: 'Áp thấp', sub: '48V · Phổ thông' },
-              { value: 'hv', label: 'Áp cao',  sub: '100V+ · Hiệu suất cao' },
-            ]}
-            accentBlue
-          />
-        )}
-      </AnimatePresence>
+      {kind === 'hybrid' && phase === '3' && (
+        <ToggleRow
+          label="Áp pin lưu trữ"
+          value={battVolt}
+          onChange={handleBatt}
+          options={[
+            { value: 'lv', label: 'Áp thấp', sub: '48V · Phổ thông' },
+            { value: 'hv', label: 'Áp cao',  sub: '100V+ · Hiệu suất cao' },
+          ]}
+          accentBlue
+        />
+      )}
     </div>
   );
 }
@@ -634,6 +618,11 @@ function scoreCombo(c: ComboCatalog, kwhNeed: number, budgetM: number): number {
 }
 
 // ─────────────────────────────────────────────
+// DOM budget: max cards rendered at once
+// ─────────────────────────────────────────────
+const VISIBLE_LIMIT = 8;
+
+// ─────────────────────────────────────────────
 // Main Component
 // ─────────────────────────────────────────────
 export default function SolarSolutionFinder() {
@@ -646,12 +635,18 @@ export default function SolarSolutionFinder() {
   const [buildingType, setBuildingType] = useState('');
   const [mainGoal, setMainGoal] = useState('both');
   const [systemType, setSystemType] = useState('');
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   // Column 2: reactive — recompute whenever any filter changes
   const solutions = useMemo(
     () => filterCombos(bill, roofArea, budget, systemType, buildingType, mainGoal),
     [bill, roofArea, budget, systemType, buildingType, mainGoal],
+  );
+
+  // Visible subset — limits DOM nodes for performance
+  const displaySolutions = useMemo(
+    () => showAll ? solutions : solutions.slice(0, VISIBLE_LIMIT),
+    [solutions, showAll],
   );
 
   // Auto-select first combo on initial load only.
@@ -660,21 +655,19 @@ export default function SolarSolutionFinder() {
   const prevSolutionsRef = useRef<SolutionCard[]>([]);
   useEffect(() => {
     const prev = prevSolutionsRef.current;
-    prevSolutionsRef.current = solutions;
+    prevSolutionsRef.current = displaySolutions;
 
     if (prev.length === 0) {
-      // First load — select first item
-      setSelectedIndex(solutions.length > 0 ? 0 : null);
+      setSelectedIndex(displaySolutions.length > 0 ? 0 : null);
       return;
     }
 
-    // Filter changed: if current selection is still in the new list, keep it
     setSelectedIndex(idx => {
-      if (solutions.length === 0) return null;
-      if (idx !== null && solutions[idx] !== undefined) return idx;
-      return 0; // selection fell off end of shorter list
+      if (displaySolutions.length === 0) return null;
+      if (idx !== null && displaySolutions[idx] !== undefined) return idx;
+      return 0;
     });
-  }, [solutions]);
+  }, [displaySolutions]);
 
   const handleReset = () => {
     setBill(0);
@@ -683,12 +676,11 @@ export default function SolarSolutionFinder() {
     setSystemType('');
     setBuildingType('');
     setMainGoal('both');
-    // Reset the ref so the useEffect treats the next render as a fresh load
-    // and auto-selects the first combo
+    setShowAll(false);
     prevSolutionsRef.current = [];
   };
 
-  const selectedSol = selectedIndex !== null ? solutions[selectedIndex] : null;
+  const selectedSol = selectedIndex !== null ? displaySolutions[selectedIndex] : null;
 
   return (
     <section
@@ -700,34 +692,25 @@ export default function SolarSolutionFinder() {
 
         {/* ─── Header ─── */}
         <div className="text-center mb-10">
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-3"
+          <p
+            className={`text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-3 transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
           >
             TƯ VẤN GIẢI PHÁP ĐIỆN MẶT TRỜI
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.05 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-3 leading-tight"
+          </p>
+          <h2
+            className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-3 leading-tight transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
+            style={{ transitionDelay: isVisible ? '50ms' : '0ms' }}
           >
             Hệ Thống Nào{' '}
             <span style={{ color: '#f59e0b' }}>Phù Hợp Với Bạn?</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto"
+          </h2>
+          <p
+            className={`text-gray-500 text-sm sm:text-base max-w-xl mx-auto transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+            style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
           >
             Chỉ cần nhập thông tin cơ bản, EPCVINA Solar sẽ đề xuất giải pháp phù hợp nhất
             dựa trên nhu cầu sử dụng thực tế của bạn.
-          </motion.p>
+          </p>
 
        
         </div>
@@ -735,19 +718,17 @@ export default function SolarSolutionFinder() {
         {/* ─── MOBILE: Detail panel only ─── */}
         <div className="lg:hidden">
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-            <AnimatePresence mode="wait">
-              {solutions[selectedIndex ?? -1] ? (
-                <SolutionDetailPanel
-                  key={solutions[selectedIndex ?? 0].name + '-mobile'}
-                  sol={solutions[selectedIndex ?? 0]}
-                />
-              ) : (
-                <div className="flex flex-col items-center justify-center py-16 text-gray-400">
-                  <CheckCircle2 className="w-8 h-8 mb-2 text-gray-200" />
-                  <p className="text-sm">Nhập thông số để xem đề xuất</p>
-                </div>
-              )}
-            </AnimatePresence>
+            {displaySolutions[selectedIndex ?? -1] ? (
+              <SolutionDetailPanel
+                key={displaySolutions[selectedIndex ?? 0].name + '-mobile'}
+                sol={displaySolutions[selectedIndex ?? 0]}
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center py-16 text-gray-400">
+                <CheckCircle2 className="w-8 h-8 mb-2 text-gray-200" />
+                <p className="text-sm">Nhập thông số để xem đề xuất</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -755,11 +736,8 @@ export default function SolarSolutionFinder() {
         <div className="hidden lg:grid lg:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-5" style={{ height: '720px' }}>
 
           {/* ── LEFT: Calculator Card ── */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full"
+          <div
+            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'}`}
           >
             {/* Card header */}
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
@@ -829,25 +807,20 @@ export default function SolarSolutionFinder() {
 
             {/* CTAs */}
             <div className="px-5 pb-5 flex gap-3">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <button
                 onClick={handleReset}
-                className="flex items-center gap-1.5 px-4 py-3 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all"
+                className="btn-scale flex items-center gap-1.5 px-4 py-3 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all"
               >
                 <RefreshCw className="w-4 h-4" />
                 Đặt lại
-              </motion.button>
+              </button>
             </div>
-          </motion.div>
+          </div>
 
           {/* ── CENTER: Recommendations ── */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full"
+          <div
+            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+            style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
           >
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex items-center gap-2">
@@ -863,8 +836,7 @@ export default function SolarSolutionFinder() {
             </div>
 
             <div className="p-4 space-y-3 flex-1 overflow-y-auto">
-              <AnimatePresence>
-                {solutions.map((sol: SolutionCard, i: number) => (
+              {displaySolutions.map((sol: SolutionCard, i: number) => (
                   <RecommendationCard
                     key={sol.name + i}
                     sol={sol}
@@ -878,7 +850,19 @@ export default function SolarSolutionFinder() {
                     }}
                   />
                 ))}
-              </AnimatePresence>
+              {solutions.length > VISIBLE_LIMIT && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = !showAll;
+                    setShowAll(next);
+                    if (!next && selectedIndex !== null && selectedIndex >= VISIBLE_LIMIT) setSelectedIndex(0);
+                  }}
+                  className="w-full py-2.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl transition-colors"
+                >
+                  {showAll ? 'Thu gọn' : `Xem thêm ${solutions.length - VISIBLE_LIMIT} giải pháp`}
+                </button>
+              )}
               {solutions.length === 0 && (
                 <div className="py-12 text-center text-gray-400 text-sm">
                   Không có combo phù hợp với bộ lọc hiện tại
@@ -891,32 +875,27 @@ export default function SolarSolutionFinder() {
                 Xem tất cả giải pháp <ArrowRight className="w-4 h-4" />
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* ── RIGHT: Selected Detail ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden h-full"
+          <div
+            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden h-full transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-5'}`}
+            style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
             ref={detailRef}
             id="solution-detail-panel"
           >
-            <AnimatePresence mode="wait">
-              {selectedSol ? (
-                <SolutionDetailPanel
-                  key={selectedSol.name}
-                  sol={selectedSol}
-                />
-              ) : (
-                <div className="flex flex-col items-center justify-center py-20 text-center text-gray-400">
-                  <CheckCircle2 className="w-10 h-10 mb-3 text-gray-200" />
-                  <p className="text-sm">Chọn một giải pháp để xem chi tiết</p>
-                </div>
-              )}
-            </AnimatePresence>
-          </motion.div>
+            {selectedSol ? (
+              <SolutionDetailPanel
+                key={selectedSol.name}
+                sol={selectedSol}
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center py-20 text-center text-gray-400">
+                <CheckCircle2 className="w-10 h-10 mb-3 text-gray-200" />
+                <p className="text-sm">Chọn một giải pháp để xem chi tiết</p>
+              </div>
+            )}
+          </div>
 
         </div>
 

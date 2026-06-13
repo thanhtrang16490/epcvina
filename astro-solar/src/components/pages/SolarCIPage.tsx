@@ -127,6 +127,8 @@ export default function SolarCIPage() {
             src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80"
             alt="Hệ thống điện mặt trời công nghiệp trên mái nhà xưởng"
             loading="eager"
+            width={1200}
+            height={675}
             className="absolute inset-0 w-full h-full object-cover opacity-20"
           />
           {/* Gradient overlays */}
@@ -192,6 +194,8 @@ export default function SolarCIPage() {
                       src={ct.image}
                       alt={ct.alt}
                       loading="lazy"
+                      width={400}
+                      height={225}
                       className="w-full h-full object-cover"
                     />
                   </div>

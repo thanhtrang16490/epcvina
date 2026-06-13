@@ -268,6 +268,68 @@ body {
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);
 }
 
+/* Toggle row slide-in (y: -6px → 0) */
+@keyframes slide-in-down {
+  from { transform: translateY(-6px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-in-down {
+  animation: slide-in-down 0.18s ease-out both;
+}
+
+/* Fast slide-in-up variant */
+.animate-slide-in-up-fast {
+  animation: slide-in-up 0.22s ease-out both;
+}
+
+/* Slide-in from right */
+@keyframes slide-in-right {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out both;
+}
+
+/* Interactive button/link hover-tap scale */
+.btn-scale {
+  transition: transform 0.15s ease-out;
+}
+.btn-scale:hover {
+  transform: scale(1.02);
+}
+.btn-scale:active {
+  transform: scale(0.97);
+}
+
+/* Modal animations */
+@keyframes modal-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes modal-panel-in {
+  from { opacity: 0; transform: translateY(60px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes modal-panel-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(60px) scale(0.95); }
+}
+
+.animate-modal-backdrop-in { animation: modal-backdrop-in 0.2s ease-out both; }
+.animate-modal-backdrop-out { animation: modal-backdrop-out 0.15s ease-in both; }
+.animate-modal-panel-in { animation: modal-panel-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-modal-panel-out { animation: modal-panel-out 0.2s ease-in both; }
+
 /* Reduced motion override */
 @media (prefers-reduced-motion: reduce) {
   .animate-on-scroll {
@@ -280,5 +342,24 @@ body {
   }
   .glow-emerald:hover {
     box-shadow: none;
+  }
+  .animate-slide-in-down,
+  .animate-slide-in-up-fast,
+  .animate-slide-in-right {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .btn-scale:hover,
+  .btn-scale:active {
+    transform: none;
+  }
+  .animate-modal-backdrop-in,
+  .animate-modal-backdrop-out,
+  .animate-modal-panel-in,
+  .animate-modal-panel-out {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

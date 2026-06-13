@@ -16,7 +16,7 @@ import {
   ChevronRight,
   X,
 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+// Supabase is loaded dynamically to avoid adding it to every page's client bundle.
 
 interface SidebarProps {
   isOpen: boolean;
@@ -199,30 +199,47 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [user, setUser] = useState<{ email: string; name?: string } | null>(null);
 
+  // Delayed mobile content: keep DOM nodes during slide-out, remove after animation
+  const [showMobileContent, setShowMobileContent] = useState(false);
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        setUser({
-          email: session.user.email ?? '',
-          name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0],
-        });
-      }
+    if (isOpen) {
+      setShowMobileContent(true);
+    } else {
+      const timer = setTimeout(() => setShowMobileContent(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    let subscription: { unsubscribe: () => void } | null = null;
+    import('../../lib/supabase').then(({ getSupabase }) => {
+      const sb = getSupabase();
+      sb.auth.getSession().then(({ data: { session } }) => {
+        if (session?.user) {
+          setUser({
+            email: session.user.email ?? '',
+            name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0],
+          });
+        }
+      });
+      const { data } = sb.auth.onAuthStateChange((_event, session) => {
+        if (session?.user) {
+          setUser({
+            email: session.user.email ?? '',
+            name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0],
+          });
+        } else {
+          setUser(null);
+        }
+      });
+      subscription = data.subscription;
     });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (session?.user) {
-        setUser({
-          email: session.user.email ?? '',
-          name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0],
-        });
-      } else {
-        setUser(null);
-      }
-    });
-    return () => subscription.unsubscribe();
+    return () => subscription?.unsubscribe();
   }, []);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    const { getSupabase } = await import('../../lib/supabase');
+    await getSupabase().auth.signOut();
     setUser(null);
   };
 
@@ -289,6 +306,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         <nav className="relative z-10 p-3 space-y-1 overflow-y-auto h-[calc(100vh-60px)] flex flex-col">
+          {showMobileContent && (<>
           <div className="flex-1 space-y-1">
           {menuItems.map((item) => (
             <MenuGroup
@@ -357,6 +375,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </a>
             )}
           </div>
+          </>)}
         </nav>
       </aside>
 

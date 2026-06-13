@@ -8,6 +8,9 @@ export default defineConfig({
   site: 'https://epcvina.com',
   output: 'static',
   compressHTML: true,
+  build: {
+    inlineStylesheets: 'auto',
+  },
   adapter: node({
     mode: 'standalone',
   }),
@@ -31,6 +34,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
+      cssCodeSplit: true,
       rollupOptions: {
         output: {
           manualChunks(id) {

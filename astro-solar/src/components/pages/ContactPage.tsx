@@ -90,6 +90,8 @@ export default function ContactPage() {
           src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80"
           alt="Đội ngũ tư vấn EPCVINA Solar sẵn sàng hỗ trợ khách hàng"
           loading="eager"
+          width={1200}
+          height={675}
           className="absolute inset-0 w-full h-full object-cover opacity-20"
         />
         {/* Gradient overlays */}
@@ -159,6 +161,8 @@ export default function ContactPage() {
                     src={card.image}
                     alt={card.alt}
                     loading="lazy"
+                    width={400}
+                    height={225}
                     className="w-full h-full object-cover"
                   />
                 </div>

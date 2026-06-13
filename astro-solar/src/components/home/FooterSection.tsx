@@ -11,7 +11,7 @@ export default function FooterSection() {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1 pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <div className="mb-4">
-              <img src="/logo-epcvina-solar-white.png" alt="EPCVINA Solar" className="h-9 sm:h-12 w-auto" />
+              <img src="/logo-epcvina-solar-white.png" alt="EPCVINA Solar" width={160} height={48} className="h-9 sm:h-12 w-auto" loading="lazy" />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-1">
               Điện mặt trời an toàn từ chuyên gia cơ điện.
@@ -33,7 +33,7 @@ export default function FooterSection() {
                 onMouseOut={e => (e.currentTarget.style.backgroundColor = '#1a3a5c')}
                 aria-label="Zalo"
               >
-                <img src="/icons8-zalo.svg" alt="Zalo" width={20} height={20} className="w-5 h-5 object-contain" />
+                <img src="/icons8-zalo.svg" alt="Zalo" width={20} height={20} className="w-5 h-5 object-contain" loading="lazy" />
               </a>
               {/* Facebook */}
               <a

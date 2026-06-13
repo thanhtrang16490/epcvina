@@ -176,6 +176,8 @@ export default function EVChargerPage() {
             src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80"
             alt="Trạm sạc xe điện năng lượng mặt trời"
             loading="eager"
+            width={1200}
+            height={675}
             className="absolute inset-0 w-full h-full object-cover opacity-20"
           />
           {/* Gradient overlays */}
@@ -276,6 +278,8 @@ export default function EVChargerPage() {
                       src={product.image}
                       alt={product.alt}
                       loading="lazy"
+                      width={400}
+                      height={225}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -479,6 +483,8 @@ export default function EVChargerPage() {
                         src={app.image}
                         alt={app.alt}
                         loading="lazy"
+                        width={400}
+                        height={400}
                         className="w-full h-full object-cover"
                       />
                     </div>
