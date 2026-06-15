@@ -212,36 +212,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     }
   }, [isOpen]);
 
-  useEffect(() => {
-    let subscription: { unsubscribe: () => void } | null = null;
-    import('../../lib/supabase').then(({ getSupabase }) => {
-      const sb = getSupabase();
-      sb.auth.getSession().then(({ data: { session } }) => {
-        if (session?.user) {
-          setUser({
-            email: session.user.email ?? '',
-            name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0],
-          });
-        }
-      });
-      const { data } = sb.auth.onAuthStateChange((_event, session) => {
-        if (session?.user) {
-          setUser({
-            email: session.user.email ?? '',
-            name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0],
-          });
-        } else {
-          setUser(null);
-        }
-      });
-      subscription = data.subscription;
-    });
-    return () => subscription?.unsubscribe();
-  }, []);
-
+  // Auth removed - Supabase no longer used
   const handleLogout = async () => {
-    const { getSupabase } = await import('../../lib/supabase');
-    await getSupabase().auth.signOut();
     setUser(null);
   };
 
