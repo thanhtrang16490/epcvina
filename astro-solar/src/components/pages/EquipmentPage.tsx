@@ -79,6 +79,16 @@ export default function EquipmentPage({ category }: PageProps) {
     fetchDevices();
   }, [category]);
 
+  // Debug log
+  useEffect(() => {
+    console.log('🔍 EquipmentPage State:', {
+      category,
+      allDevices: allDevices.length,
+      categoryDevices: categoryDevices.length,
+      loading,
+    });
+  }, [category, allDevices, categoryDevices, loading]);
+
   return (
     <div className="flex-1 flex flex-col">
       {/* Mobile: Render full mobile component */}

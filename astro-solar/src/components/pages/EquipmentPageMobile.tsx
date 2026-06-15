@@ -216,20 +216,20 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
           const devices: Device[] = data.data.map((product: any) => ({
             id: product.id,
             category: category as EquipmentCategory,
-            brand: product.brands?.name || product.brand || 'Unknown',
-            model: product.name,
+            brand: product.brand || 'Unknown',
+            model: product.model || product.name,
             quantity: 1,
             unit: 'sản phẩm',
-            price: product.unit_price || product.price || 0,
+            price: product.price || 0,
             specs: {
-              'Danh mục': product.categories?.name || category,
-              'Thương hiệu': product.brands?.name || product.brand || '',
+              'Danh mục': product.category || category,
+              'Thương hiệu': product.brand || '',
               ...(product.specifications || {}),
             },
             features: product.features || [],
-            warranty: product.warranty_years || product.warranty || 0,
-            images: product.main_image || product.image_url ? [product.main_image || product.image_url] : [],
-            image_url: product.image_url || product.main_image,
+            warranty: parseInt(product.warranty || '0') || 0,
+            images: product.main_image ? [product.main_image] : [],
+            image_url: product.main_image,
           }));
           
           setAllDevices(devices);
