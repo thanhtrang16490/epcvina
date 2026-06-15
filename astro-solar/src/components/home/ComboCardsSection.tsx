@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sun, Zap, Battery, TrendingUp, Calendar, Maximize } from 'lucide-react';
+import { Sun, Zap, Battery, TrendingUp, Calendar, Maximize, Eye, ArrowRight } from 'lucide-react';
 
 interface Combo {
   id: string;
@@ -30,7 +30,7 @@ function ComboCard({ combo }: { combo: Combo }) {
   return (
     <div className="flex-shrink-0 w-[300px] sm:w-[320px] bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700 px-5 py-4">
+      <div className="bg-gradient-to-r from-orange-500 to-orange-600 px-5 py-4">
         <div className="flex items-center gap-2">
           {combo.system_type === 'hybrid' ? (
             <Battery className="h-5 w-5 text-yellow-300" />
@@ -97,17 +97,21 @@ function ComboCard({ combo }: { combo: Combo }) {
 
       {/* Actions */}
       <div className="px-5 pb-5 flex gap-2">
+        <button
+          onClick={() => window.location.href = `/on-grid`}
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-all duration-200 cursor-pointer min-h-[44px]"
+          aria-label={`Xem nhanh ${combo.name}`}
+        >
+          <Eye className="w-4 h-4" />
+          <span className="hidden sm:inline">Xem nhanh</span>
+        </button>
         <a
           href={`/on-grid`}
-          className="flex-1 text-center py-2.5 bg-red-500 hover:bg-red-600 text-white text-sm font-medium rounded-lg transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer min-h-[44px]"
+          aria-label={`Xem chi tiết ${combo.name}`}
         >
-          Xem chi tiết
-        </a>
-        <a
-          href="tel:0988446113"
-          className="flex-1 text-center py-2.5 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
-        >
-          Liên hệ
+          <span className="hidden sm:inline">Chi tiết</span>
+          <ArrowRight className="w-4 h-4" />
         </a>
       </div>
     </div>
@@ -154,7 +158,7 @@ export default function ComboCardsSection() {
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo điện mặt trời</h2>
             <p className="text-gray-500 mt-2">Gói trọn bộ - Giá tốt nhất thị trường</p>
           </div>
-          <a href="/on-grid" className="hidden sm:inline-flex text-green-600 hover:text-green-700 font-medium text-sm">
+          <a href="/on-grid" className="hidden sm:inline-flex text-orange-600 hover:text-orange-700 font-medium text-sm">
             Xem tất cả →
           </a>
         </div>
@@ -178,7 +182,7 @@ export default function ComboCardsSection() {
 
         {/* Mobile view all link */}
         <div className="sm:hidden mt-6 text-center">
-          <a href="/on-grid" className="text-green-600 hover:text-green-700 font-medium text-sm">
+          <a href="/on-grid" className="text-orange-600 hover:text-orange-700 font-medium text-sm">
             Xem tất cả combo →
           </a>
         </div>
