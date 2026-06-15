@@ -52,10 +52,8 @@ const certifications = [
 
 const suppliers = [
   { name: 'AIKO', logo: '/partners/aiko.webp', category: 'Tấm pin mặt trời' },
-  { name: 'JA Solar', logo: '/partners/trina.png', category: 'Tấm pin mặt trời' },
   { name: 'Trina Solar', logo: '/partners/trina.png', category: 'Tấm pin mặt trời' },
   { name: 'SAJ', logo: '/partners/saj.png', category: 'Biến tần Inverter' },
-  { name: 'Growatt', logo: '/partners/saj.png', category: 'Biến tần Inverter' },
   { name: 'Genxgreen', logo: '/partners/GenixGreen.webp', category: 'Pin lưu trữ' },
 ];
 
