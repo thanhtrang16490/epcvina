@@ -51,12 +51,12 @@ const certifications = [
 ];
 
 const suppliers = [
-  { name: 'AIKO', category: 'Tấm pin mặt trời' },
-  { name: 'JA Solar', category: 'Tấm pin mặt trời' },
-  { name: 'Trina Solar', category: 'Tấm pin mặt trời' },
-  { name: 'SAJ', category: 'Biến tần Inverter' },
-  { name: 'Growatt', category: 'Biến tần Inverter' },
-  { name: 'Genxgreen', category: 'Pin lưu trữ' },
+  { name: 'AIKO', logo: '/partners/aiko.webp', category: 'Tấm pin mặt trời' },
+  { name: 'JA Solar', logo: '/partners/trina.png', category: 'Tấm pin mặt trời' },
+  { name: 'Trina Solar', logo: '/partners/trina.png', category: 'Tấm pin mặt trời' },
+  { name: 'SAJ', logo: '/partners/saj.png', category: 'Biến tần Inverter' },
+  { name: 'Growatt', logo: '/partners/saj.png', category: 'Biến tần Inverter' },
+  { name: 'Genxgreen', logo: '/partners/GenixGreen.webp', category: 'Pin lưu trữ' },
 ];
 
 
@@ -279,16 +279,16 @@ export default function AboutPage() {
               {suppliers.map((supplier) => (
                 <div
                   key={supplier.name}
-                  className="group flex items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
+                  className="group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
                 >
-                  <div className="text-center">
-                    <div className="text-lg sm:text-xl font-bold text-gray-700 group-hover:text-emerald-600 transition-colors">
-                      {supplier.name}
-                    </div>
-                    <p className="text-[10px] sm:text-xs text-gray-400 mt-1 group-hover:text-gray-500 transition-colors">
-                      {supplier.category}
-                    </p>
-                  </div>
+                  <img
+                    src={supplier.logo}
+                    alt={supplier.name}
+                    className="h-10 sm:h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-200"
+                  />
+                  <p className="text-[10px] sm:text-xs text-gray-400 mt-2 group-hover:text-gray-500 transition-colors text-center">
+                    {supplier.category}
+                  </p>
                 </div>
               ))}
             </div>
