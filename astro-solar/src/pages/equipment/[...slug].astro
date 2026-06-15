@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
 import ProductDetail from '../../components/pages/ProductDetail.tsx';
 import { getCollection } from 'astro:content';
 
@@ -23,5 +24,7 @@ if (!product) {
   title={product.data.name}
   description={product.data.description || `Chi tiết sản phẩm ${product.data.name} - EPCVINA Solar`}
 >
-  <ProductDetail client:load product={product.data} />
+  <DashboardShell client:load>
+    <ProductDetail client:load product={product.data} />
+  </DashboardShell>
 </DashboardLayout>

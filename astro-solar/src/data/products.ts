@@ -19,6 +19,106 @@ export interface LocalProduct {
   voltage?: 'low' | 'high' | null;
 }
 
+// Actual product data
+export const localProducts: LocalProduct[] = [
+  {
+    id: "aiko-800w-stellar-2n-78-232",
+    name: "Tấm pin mặt trời Aiko 800W Mặt Kính Stellar 2N 78-232",
+    slug: "tam-pin-mat-troi-aiko-800w-mat-kinh-stellar-2n-78-232",
+    brand: "AIKO",
+    category: "solar-panel",
+    model: "Stellar 2N 78-232",
+    description: "Tấm pin mặt trời Aiko 800W công nghệ ABC (All Back Contact) hiệu suất cao, mặt kính trong suốt",
+    specifications: {
+      power: "800W",
+      efficiency: "24.0%",
+      cell_type: "ABC (All Back Contact)",
+      panel_type: "Mặt kính trong suốt",
+      dimensions: "2384 x 1303 x 33 mm",
+      weight: "38.5 kg"
+    },
+    features: [
+      "Công nghệ ABC tiên tiến không có busbar mặt trước",
+      "Hiệu suất chuyển đổi lên đến 24.0%",
+      "Hệ số nhiệt độ thấp, hoạt động tốt ở môi trường nóng",
+      "Bảo hành sản phẩm 15 năm",
+      "Bảo hành hiệu suất 30 năm"
+    ],
+    warranty_years: 15,
+    unit_price: 0,
+    main_image: "/images/products/260424(1).png",
+    is_available: true,
+    show_on_homepage: true,
+    product_type: "panel",
+    phase: null,
+    voltage: "high"
+  },
+  {
+    id: "aiko-680w-stellar-2n-66-231",
+    name: "Tấm pin mặt trời Aiko 680W Mặt Kính Stellar 2N 66-231",
+    slug: "tam-pin-mat-troi-aiko-680w-mat-kinh-stellar-2n-66-231",
+    brand: "AIKO",
+    category: "solar-panel",
+    model: "Stellar 2N 66-231",
+    description: "Tấm pin mặt trời Aiko 680W công nghệ ABC (All Back Contact), mặt kính trong suốt",
+    specifications: {
+      power: "680W",
+      efficiency: "23.6%",
+      cell_type: "ABC (All Back Contact)",
+      panel_type: "Mặt kính trong suốt",
+      dimensions: "2278 x 1134 x 30 mm",
+      weight: "32.8 kg"
+    },
+    features: [
+      "Công nghệ ABC tiên tiến không có busbar mặt trước",
+      "Hiệu suất chuyển đổi lên đến 23.6%",
+      "Thiết kế thẩm mỹ cao với mặt trước đồng nhất",
+      "Bảo hành sản phẩm 15 năm",
+      "Bảo hành hiệu suất 30 năm"
+    ],
+    warranty_years: 15,
+    unit_price: 0,
+    main_image: "/images/products/260424.png",
+    is_available: true,
+    show_on_homepage: true,
+    product_type: "panel",
+    phase: null,
+    voltage: "high"
+  },
+  {
+    id: "aiko-650w-stellar-2n-66-202",
+    name: "Tấm pin mặt trời Aiko 650W Mặt Kính Stellar 2N 66-202",
+    slug: "tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202",
+    brand: "AIKO",
+    category: "solar-panel",
+    model: "Stellar 2N 66-202",
+    description: "Tấm pin mặt trời Aiko 650W công nghệ ABC (All Back Contact), mặt kính trong suốt",
+    specifications: {
+      power: "650W",
+      efficiency: "23.2%",
+      cell_type: "ABC (All Back Contact)",
+      panel_type: "Mặt kính trong suốt",
+      dimensions: "2278 x 1134 x 30 mm",
+      weight: "32.5 kg"
+    },
+    features: [
+      "Công nghệ ABC tiên tiến không có busbar mặt trước",
+      "Hiệu suất chuyển đổi lên đến 23.2%",
+      "Phù hợp cho cả hệ thống residential và commercial",
+      "Bảo hành sản phẩm 15 năm",
+      "Bảo hành hiệu suất 30 năm"
+    ],
+    warranty_years: 15,
+    unit_price: 0,
+    main_image: "/images/products/260508(1).png",
+    is_available: true,
+    show_on_homepage: true,
+    product_type: "panel",
+    phase: null,
+    voltage: "high"
+  }
+];
+
 
 // Helper functions
 export function getProductsByCategory(category: string): LocalProduct[] {
