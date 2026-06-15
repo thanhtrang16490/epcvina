@@ -10,22 +10,52 @@ interface PageProps {
 
 export default function EquipmentPage({ category }: PageProps) {
   const [allDevices, setAllDevices] = useState<Device[]>([]);
+  const [categoryDevices, setCategoryDevices] = useState<Device[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
 
-  // Fetch devices once, share between mobile and desktop
+  // Fetch all devices for sidebar counts + category devices for display
   useEffect(() => {
     const fetchDevices = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`/api/products?category=${category}`);
-        const data = await response.json();
         
-        if (data.success && data.data) {
-          const devices: Device[] = data.data.map((product: any) => ({
+        // Fetch ALL products for sidebar counts
+        const allResponse = await fetch('/api/products');
+        const allData = await allResponse.json();
+        
+        if (allData.success && allData.data) {
+          const allDevicesList: Device[] = allData.data.map((product: any) => ({
+            id: product.id,
+            category: product.categories?.slug || product.category || 'panel',
+            brand: product.brands?.name || product.brand || 'Unknown',
+            model: product.name,
+            quantity: 1,
+            unit: 'sản phẩm',
+            price: product.unit_price || product.price || 0,
+            specs: {
+              'Danh mục': product.categories?.name || product.category || '',
+              'Thương hiệu': product.brands?.name || product.brand || '',
+              ...(product.specifications || {}),
+            },
+            features: product.features || [],
+            warranty: product.warranty_years || product.warranty || 0,
+            images: product.main_image || product.image_url ? [product.main_image || product.image_url] : [],
+            image_url: product.image_url || product.main_image,
+          }));
+          
+          setAllDevices(allDevicesList);
+        }
+        
+        // Fetch category-specific products for display
+        const catResponse = await fetch(`/api/products?category=${category}`);
+        const catData = await catResponse.json();
+        
+        if (catData.success && catData.data) {
+          const catDevicesList: Device[] = catData.data.map((product: any) => ({
             id: product.id,
             category: category as EquipmentCategory,
             brand: product.brands?.name || product.brand || 'Unknown',
@@ -44,11 +74,12 @@ export default function EquipmentPage({ category }: PageProps) {
             image_url: product.image_url || product.main_image,
           }));
           
-          setAllDevices(devices);
+          setCategoryDevices(catDevicesList);
         }
       } catch (error) {
         console.error('Error fetching devices:', error);
         setAllDevices([]);
+        setCategoryDevices([]);
       } finally {
         setLoading(false);
       }
@@ -67,7 +98,7 @@ export default function EquipmentPage({ category }: PageProps) {
         {/* Section 1: Hero full-width */}
         <EquipmentPageDesktop 
           category={category} 
-          devices={allDevices}
+          devices={categoryDevices}
           loading={loading}
           searchQuery={searchQuery}
           sortBy={sortBy}
@@ -96,7 +127,7 @@ export default function EquipmentPage({ category }: PageProps) {
           <div className="flex-1 flex flex-col">
             <EquipmentPageDesktop 
               category={category} 
-              devices={allDevices}
+              devices={categoryDevices}
               loading={loading}
               searchQuery={searchQuery}
               sortBy={sortBy}
