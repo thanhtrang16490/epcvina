@@ -85,7 +85,7 @@ export default function EquipmentPage({ category }: PageProps) {
 
       {/* Desktop: Hero (section 1) + Sidebar + Content (section 2) */}
       <div className="hidden lg:flex lg:flex-col lg:flex-1">
-        {/* Section 1: Hero full-width */}
+        {/* Section 1: Hero full-width only */}
         <EquipmentPageDesktop 
           category={category} 
           devices={categoryDevices}
@@ -95,10 +95,10 @@ export default function EquipmentPage({ category }: PageProps) {
           onSearchChange={setSearchQuery}
           onSortChange={setSortBy}
           showHero={true}
-          showContent={true}
+          showContent={false}
         />
 
-        {/* Section 2: Sidebar + Content */}
+        {/* Section 2: Sidebar + Content only */}
         <div className="flex flex-1">
           <EquipmentSidebar
             category={category}
