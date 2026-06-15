@@ -1,4 +1,4 @@
-// Local product catalog - GPG Solar products
+// Local product catalog - EPCVINA products
 export interface LocalProduct {
   id: string;
   name: string;
@@ -263,12 +263,12 @@ export const localProducts: LocalProduct[] = [
   // HỆ KHUNG NHÔM (Mounting Systems)
   {
     id: 'gpg-mount-roof-5kw',
-    name: 'Hệ khung nhôm mái tôn 5kW',
-    slug: 'he-khung-nhom-mai-ton-5kw',
-    brand: 'GPG Solar',
+    name: 'Hệ khung nhôm mái tôn 5kW EPCVINA',
+    slug: 'he-khung-nhom-mai-ton-5kw-epcvina',
+    brand: 'EPCVINA',
     category: 'mounting',
-    model: 'GPG-MOUNT-ROOF-5KW',
-    description: 'Hệ khung nhôm cho mái tôn, công suất 5kW, vật liệu cao cấp',
+    model: 'EPC-MOUNT-ROOF-5KW',
+    description: 'Hệ khung nhôm EPCVINA cho mái tôn, công suất 5kW, vật liệu cao cấp',
     specifications: {
       'Loại mái': 'Mái tôn',
       'Công suất': '5kW',
@@ -296,12 +296,12 @@ export const localProducts: LocalProduct[] = [
   // TỦ ĐIỆN (Cabinets)
   {
     id: 'gpg-dc-10s',
-    name: 'Tủ điện DC Solar 10 string',
-    slug: 'tu-dien-dc-solar-10-string',
-    brand: 'GPG Solar',
+    name: 'Tủ điện DC Solar EPCVINA 10 string',
+    slug: 'tu-dien-dc-solar-epcvina-10-string',
+    brand: 'EPCVINA',
     category: 'cabinet',
-    model: 'GPG-DC-10S',
-    description: 'Tủ điện DC cho hệ thống solar 10 string, bảo vệ toàn diện',
+    model: 'EPC-DC-10S',
+    description: 'Tủ điện DC EPCVINA cho hệ thống solar 10 string, bảo vệ toàn diện',
     specifications: {
       'Số string': '10',
       'Dòng điện tối đa': '20A/string',
@@ -328,12 +328,12 @@ export const localProducts: LocalProduct[] = [
   // HỆ DÂY ĐIỆN (Wiring)
   {
     id: 'gpg-dc-4mm-100m',
-    name: 'Cáp điện DC solar 4mm² (100m)',
-    slug: 'cap-dien-dc-solar-4mm-100m',
-    brand: 'GPG Solar',
+    name: 'Cáp điện DC solar EPCVINA 4mm² (100m)',
+    slug: 'cap-dien-dc-solar-epcvina-4mm-100m',
+    brand: 'EPCVINA',
     category: 'wiring',
-    model: 'GPG-DC-4MM-100M',
-    description: 'Cáp điện DC chuyên dụng cho solar 4mm², cuộn 100m',
+    model: 'EPC-DC-4MM-100M',
+    description: 'Cáp điện DC EPCVINA chuyên dụng cho solar 4mm², cuộn 100m',
     specifications: {
       'Tiết diện': '4mm²',
       'Chiều dài': '100m',
@@ -361,12 +361,12 @@ export const localProducts: LocalProduct[] = [
   // HỆ TIẾP ĐỊA (Grounding)
   {
     id: 'gpg-ground-kit',
-    name: 'Bộ tiếp địa cho hệ solar',
-    slug: 'bo-tiep-dia-cho-he-solar',
-    brand: 'GPG Solar',
+    name: 'Bộ tiếp địa EPCVINA cho hệ solar',
+    slug: 'bo-tiep-dia-epcvina-cho-he-solar',
+    brand: 'EPCVINA',
     category: 'grounding',
-    model: 'GPG-GROUND-KIT',
-    description: 'Bộ tiếp địa hoàn chỉnh cho hệ thống điện mặt trời',
+    model: 'EPC-GROUND-KIT',
+    description: 'Bộ tiếp địa EPCVINA hoàn chỉnh cho hệ thống điện mặt trời',
     specifications: {
       'Số cọc': '3 cọc',
       'Vật liệu': 'Đồng mạ thép',

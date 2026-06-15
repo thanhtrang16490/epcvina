@@ -56,12 +56,12 @@ export const localBrands: LocalBrand[] = [
     country: 'China',
   },
   {
-    id: 'gpg-solar',
-    name: 'GPG Solar',
-    slug: 'gpg-solar',
+    id: 'epcvina',
+    name: 'EPCVINA',
+    slug: 'epcvina',
     description: 'Nhà cung cấp thiết bị điện mặt trời Việt Nam',
-    logo_url: '/brands/gpg-solar.png',
-    website: 'https://gpgsolar.vn',
+    logo_url: '/brands/epcvina.png',
+    website: 'https://epcvina.com',
     country: 'Vietnam',
   },
 ];
