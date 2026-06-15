@@ -414,8 +414,8 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
 
   return (
     <div className="flex-1 flex flex-col min-h-screen lg:ml-[64px] lg:pl-0">
-      {/* Sticky Header */}
-      <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 transition-all duration-200 ${
+      {/* ===== MOBILE: Sticky Header (giữ nguyên) ===== */}
+      <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 transition-all duration-200 lg:hidden ${
         isFirstCardVisible ? 'shadow-sm' : ''
       }`}>
         {/* Title Row */}
@@ -481,85 +481,238 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
         </div>
       </header>
 
-      {/* Empty state - All devices removed */}
-      {allDevices.length === 0 && (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
-          <div className={`w-16 h-16 mx-auto mb-3 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
-            {meta.icon}
-          </div>
-          <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
-        </div>
-      )}
-
-      {/* Device List - All Devices Grouped by Brand */}
-      <div className="space-y-6 pb-4">
-        {Object.entries(devicesByBrand).map(([brand, devices]) => (
-          <div key={brand} ref={(el) => { brandRefs.current[brand] = el; }} data-brand={brand}>
-            {/* Brand Header */}
-            <div className="sticky top-14 lg:top-16 z-10 bg-gray-50 px-4 py-2 border-y border-gray-200">
-              <h2 className="text-lg font-bold text-gray-900">{brand}</h2>
-              <p className="text-xs text-gray-500">{devices.length} sản phẩm</p>
+      {/* ===== PC: Header + Filter Bar ===== */}
+      <header className="hidden lg:block sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">
+                {meta?.label || 'Thiết bị'}
+              </h1>
+              <p className="text-sm text-gray-500 mt-0.5">
+                {allDevices.length} sản phẩm từ {brands.length} thương hiệu
+              </p>
             </div>
-            
-            {/* Device List */}
-            <div className="divide-y divide-gray-100 bg-white">
-              {devices.map((device) => {
-                const isSelected = selectedDeviceId === device.id;
-                return (
+            <div className="flex items-center gap-3">
+              {/* Search */}
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-64 px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
+                />
+                {searchQuery && (
                   <button
-                    key={device.id}
-                    onClick={() => {
-                      setSelectedDeviceId(device.id);
-                      setShowModal(true);
-                    }}
-                    className={`w-full flex items-center gap-4 p-4 hover:bg-gray-50 active:bg-gray-100 transition-colors text-left ${
-                      isSelected ? 'bg-blue-50/50' : ''
-                    }`}
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   >
-                    {/* Thumbnail */}
-                    <div className={`w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 ${meta.bg}`}>
-                      {device.images?.[0] ? (
-                        <Image
-                          src={device.images[0]}
-                          alt={device.model}
-                          width={56}
-                          height={56}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className={`w-full h-full flex items-center justify-center ${meta.color}`}>
-                          {meta.icon}
-                        </div>
-                      )}
-                    </div>
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+              {/* Sort */}
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
+                className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
+              >
+                <option value="az">Tên A-Z</option>
+                <option value="za">Tên Z-A</option>
+                <option value="price-asc">Giá tăng dần</option>
+                <option value="price-desc">Giá giảm dần</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </header>
 
-                    {/* Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <h3 className="font-semibold text-gray-900 truncate">{device.model}</h3>
-                        {isSelected && (
-                          <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+      {/* ===== MOBILE: Device List (giữ nguyên) ===== */}
+      <div className="lg:hidden space-y-6 pb-4">
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
+            <p className="text-gray-500 mt-3">Đang tải...</p>
+          </div>
+        ) : filteredDevices.length === 0 ? (
+          <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
+            <div className={`w-16 h-16 mx-auto mb-3 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
+              {meta.icon}
+            </div>
+            <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
+          </div>
+        ) : (
+          Object.entries(devicesByBrand).map(([brand, devices]) => (
+            <div key={brand} ref={(el) => { brandRefs.current[brand] = el; }} data-brand={brand}>
+              {/* Brand Header */}
+              <div className="sticky top-14 z-10 bg-gray-50 px-4 py-2 border-y border-gray-200">
+                <h2 className="text-lg font-bold text-gray-900">{brand}</h2>
+                <p className="text-xs text-gray-500">{devices.length} sản phẩm</p>
+              </div>
+              
+              {/* Device List */}
+              <div className="divide-y divide-gray-100 bg-white">
+                {devices.map((device) => {
+                  const isSelected = selectedDeviceId === device.id;
+                  return (
+                    <button
+                      key={device.id}
+                      onClick={() => {
+                        setSelectedDeviceId(device.id);
+                        setShowModal(true);
+                      }}
+                      className={`w-full flex items-center gap-4 p-4 hover:bg-gray-50 active:bg-gray-100 transition-colors text-left ${
+                        isSelected ? 'bg-blue-50/50' : ''
+                      }`}
+                    >
+                      {/* Thumbnail */}
+                      <div className={`w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 ${meta.bg}`}>
+                        {device.images?.[0] ? (
+                          <Image
+                            src={device.images[0]}
+                            alt={device.model}
+                            width={56}
+                            height={56}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className={`w-full h-full flex items-center justify-center ${meta.color}`}>
+                            {meta.icon}
+                          </div>
                         )}
                       </div>
-                      <p className="text-sm text-gray-500">{device.unit}</p>
-                    </div>
 
-                    {/* Right: Price */}
-                    {device.price && (
-                      <div className="text-right flex-shrink-0">
-                        <p className="text-xs text-gray-500 mb-0.5">Đơn giá</p>
-                        <p className="text-base font-semibold text-[#F97316]">{formatCurrency(device.price)}</p>
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <h3 className="font-semibold text-gray-900 truncate">{device.model}</h3>
+                          {isSelected && (
+                            <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                          )}
+                        </div>
+                        <p className="text-sm text-gray-500">{device.unit}</p>
+                      </div>
+
+                      {/* Right: Price */}
+                      {device.price && (
+                        <div className="text-right flex-shrink-0">
+                          <p className="text-xs text-gray-500 mb-0.5">Đơn giá</p>
+                          <p className="text-base font-semibold text-[#F97316]">{formatCurrency(device.price)}</p>
+                        </div>
+                      )}
+
+                      {/* Chevron */}
+                      <ChevronRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* ===== PC: Product Grid ===== */}
+      <div className="hidden lg:block max-w-7xl mx-auto px-6 py-8">
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
+            <p className="text-gray-500 mt-3">Đang tải...</p>
+          </div>
+        ) : filteredDevices.length === 0 ? (
+          <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
+            <div className={`w-16 h-16 mx-auto mb-3 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
+              {meta.icon}
+            </div>
+            <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {filteredDevices.map((device) => {
+              const isSelected = selectedDeviceId === device.id;
+              return (
+                <div
+                  key={device.id}
+                  onClick={() => {
+                    setSelectedDeviceId(device.id);
+                    setShowModal(true);
+                  }}
+                  className={`group bg-white rounded-2xl border-2 overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-xl hover:-translate-y-1 ${
+                    isSelected ? 'border-[#F97316] shadow-lg' : 'border-gray-200 hover:border-[#F97316]'
+                  }`}
+                >
+                  {/* Product Image */}
+                  <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
+                    {device.images?.[0] ? (
+                      <Image
+                        src={device.images[0]}
+                        alt={device.model}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className={`w-full h-full flex items-center justify-center ${meta.bg}`}>
+                        <div className={`${meta.color} opacity-30`}>
+                          {meta.icon}
+                        </div>
                       </div>
                     )}
+                    {/* Badge */}
+                    <div className="absolute top-3 left-3 flex gap-2">
+                      <span className={`px-3 py-1 text-xs font-medium rounded-full ${meta.bg} ${meta.color} backdrop-blur-sm`}>
+                        {device.brand}
+                      </span>
+                    </div>
+                    {/* Warranty Badge */}
+                    {device.warranty && (
+                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
+                        <span className="text-xs font-medium text-gray-700">BH {device.warranty} năm</span>
+                      </div>
+                    )}
+                  </div>
 
-                    {/* Chevron */}
-                    <ChevronRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
-                  </button>
-                );
-              })}
-            </div>
+                  {/* Product Info */}
+                  <div className="p-5">
+                    <h3 className="font-bold text-gray-900 text-base mb-2 line-clamp-2 group-hover:text-[#F97316] transition-colors">
+                      {device.model}
+                    </h3>
+                    
+                    {/* Specs */}
+                    <div className="space-y-2 mb-4">
+                      {Object.entries(device.specs)
+                        .slice(0, 3)
+                        .map(([key, val]) => (
+                          <div key={key} className="flex items-center justify-between text-sm">
+                            <span className="text-gray-500">{key}</span>
+                            <span className="font-medium text-gray-900">{val}</span>
+                          </div>
+                        ))}
+                    </div>
+
+                    {/* Price + CTA */}
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                      {device.price ? (
+                        <div>
+                          <p className="text-xs text-gray-500">Đơn giá</p>
+                          <p className="text-lg font-bold text-[#F97316]">{formatCurrency(device.price)}</p>
+                        </div>
+                      ) : (
+                        <div>
+                          <p className="text-xs text-gray-500">Liên hệ</p>
+                          <p className="text-sm font-medium text-gray-700">Giá tốt nhất</p>
+                        </div>
+                      )}
+                      <button className="px-4 py-2 bg-[#F97316] text-white rounded-lg text-sm font-medium group-hover:bg-[#C2410C] transition-colors">
+                        Xem chi tiết
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        ))}
+        )}
       </div>
 
       {/* Device Detail Modal */}
@@ -656,15 +809,6 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
         </>
       )}
 
-      {/* Empty state */}
-      {allDevices.length === 0 && (
-        <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
-          <div className={`w-16 h-16 mx-auto mb-3 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
-            {meta.icon}
-          </div>
-          <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
-        </div>
-      )}
 
       {/* Filter Drawer - Bottom Sheet */}
       {showFilterDrawer && (

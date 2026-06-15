@@ -43,7 +43,7 @@ export default function ComparisonSection() {
               <span style={{ color: ORANGE }}>On-Grid</span>
               <span className="text-white">?</span>
             </h2>
-            <p className="mt-3 text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+            <p className="mt-3 text-white text-sm sm:text-base max-w-xl mx-auto">
               Thiết kế hệ thống điện mặt trời tối ưu theo nhu cầu sử dụng thực tế —
               giúp giảm chi phí điện và tối đa hiệu quả đầu tư.
             </p>

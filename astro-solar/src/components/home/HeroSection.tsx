@@ -96,7 +96,7 @@ export default function HeroSection() {
           </div>
 
           {/* Slogan */}
-          <p className="mt-6 text-xs text-white/40 tracking-widest uppercase">
+          <p className="mt-6 text-xs text-white tracking-widest uppercase">
             Điện mặt trời an toàn từ chuyên gia cơ điện
           </p>
         </div>
