@@ -59,14 +59,6 @@ const suppliers = [
   { name: 'Genxgreen', category: 'Pin lưu trữ' },
 ];
 
-const financialPartners = [
-  'TPBank',
-  'VPBank',
-  'MB Bank',
-  'VietinBank',
-  'BIDV',
-  'Sacombank',
-];
 
 const clients = [
   'Samsung',
@@ -301,22 +293,7 @@ export default function AboutPage() {
               ))}
             </div>
 
-            {/* Financial partners */}
-            <div className="mt-12 pt-8 border-t border-gray-100">
-              <h3 className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
-                Đơn vị tài chính đồng hành
-              </h3>
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-                {financialPartners.map((partner) => (
-                  <div
-                    key={partner}
-                    className="border border-gray-200 rounded-lg px-5 py-3 bg-gray-50 text-gray-600 font-semibold text-sm hover:border-emerald-300 hover:bg-emerald-50 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                  >
-                    {partner}
-                  </div>
-                ))}
-              </div>
-            </div>
+
           </div>
         </section>
 
