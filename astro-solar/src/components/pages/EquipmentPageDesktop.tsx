@@ -56,10 +56,17 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   cabinet: {
     label: 'Tủ điện',
-    icon: <Plug className="h-5 w-5" />,
+    icon: <Plug className="h-5 w-5"/>,
     color: 'text-red-600',
     bg: 'bg-red-50',
     accent: 'bg-red-500',
+  },
+  'hybrid-inverter': {
+    label: 'Biến tần Hybrid',
+    icon: <TrendingUp className="h-5 w-5"/>,
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
+    accent: 'bg-orange-500',
   },
   grounding: {
     label: 'Hệ tiếp địa',
