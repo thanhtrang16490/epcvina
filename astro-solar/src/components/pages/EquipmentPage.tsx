@@ -3,9 +3,32 @@ import EquipmentPageDesktop from './EquipmentPageDesktop';
 import EquipmentSidebar from './EquipmentSidebar';
 import { useMemo, useState, useEffect } from 'react';
 import type { Device, EquipmentCategory } from '../../lib/types';
+import type { CollectionEntry } from 'astro:content';
 
 interface PageProps {
   category: string;
+}
+
+// Convert Content Collections product to Device format
+function productToDevice(product: CollectionEntry<'products'>, categoryOverride?: string): Device {
+  return {
+    id: product.id,
+    category: (categoryOverride || product.data.category) as EquipmentCategory,
+    brand: product.data.brand,
+    model: product.data.model,
+    quantity: 1,
+    unit: 'sản phẩm',
+    price: product.data.price || 0,
+    specs: {
+      'Danh mục': product.data.category,
+      'Thương hiệu': product.data.brand,
+      ...(product.data.specifications || {}),
+    },
+    features: product.data.features || [],
+    warranty: parseInt(product.data.warranty || '0') || 0,
+    images: product.data.main_image ? [product.data.main_image] : [],
+    image_url: product.data.main_image,
+  };
 }
 
 export default function EquipmentPage({ category }: PageProps) {
@@ -17,7 +40,7 @@ export default function EquipmentPage({ category }: PageProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
 
-  // Fetch all devices for sidebar counts + category devices for display
+  // Fetch products from Content Collections API
   useEffect(() => {
     const fetchDevices = async () => {
       try {
@@ -28,25 +51,9 @@ export default function EquipmentPage({ category }: PageProps) {
         const allData = await allResponse.json();
         
         if (allData.success && allData.data) {
-          const allDevicesList: Device[] = allData.data.map((product: any) => ({
-            id: product.id,
-            category: product.categories?.slug || product.category || 'panel',
-            brand: product.brands?.name || product.brand || 'Unknown',
-            model: product.name,
-            quantity: 1,
-            unit: 'sản phẩm',
-            price: product.unit_price || product.price || 0,
-            specs: {
-              'Danh mục': product.categories?.name || product.category || '',
-              'Thương hiệu': product.brands?.name || product.brand || '',
-              ...(product.specifications || {}),
-            },
-            features: product.features || [],
-            warranty: product.warranty_years || product.warranty || 0,
-            images: product.main_image || product.image_url ? [product.main_image || product.image_url] : [],
-            image_url: product.image_url || product.main_image,
-          }));
-          
+          const allDevicesList: Device[] = allData.data.map((product: any) => 
+            productToDevice(product as any)
+          );
           setAllDevices(allDevicesList);
         }
         
@@ -55,25 +62,9 @@ export default function EquipmentPage({ category }: PageProps) {
         const catData = await catResponse.json();
         
         if (catData.success && catData.data) {
-          const catDevicesList: Device[] = catData.data.map((product: any) => ({
-            id: product.id,
-            category: category as EquipmentCategory,
-            brand: product.brands?.name || product.brand || 'Unknown',
-            model: product.name,
-            quantity: 1,
-            unit: 'sản phẩm',
-            price: product.unit_price || product.price || 0,
-            specs: {
-              'Danh mục': product.categories?.name || category,
-              'Thương hiệu': product.brands?.name || product.brand || '',
-              ...(product.specifications || {}),
-            },
-            features: product.features || [],
-            warranty: product.warranty_years || product.warranty || 0,
-            images: product.main_image || product.image_url ? [product.main_image || product.image_url] : [],
-            image_url: product.image_url || product.main_image,
-          }));
-          
+          const catDevicesList: Device[] = catData.data.map((product: any) => 
+            productToDevice(product as any, category)
+          );
           setCategoryDevices(catDevicesList);
         }
       } catch (error) {
