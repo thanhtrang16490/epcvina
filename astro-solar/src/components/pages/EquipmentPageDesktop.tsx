@@ -92,6 +92,8 @@ interface PageProps {
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
+  showHero?: boolean;
+  showContent?: boolean;
 }
 
 export default function EquipmentPageDesktop({ 
@@ -102,6 +104,8 @@ export default function EquipmentPageDesktop({
   sortBy,
   onSearchChange,
   onSortChange,
+  showHero = true,
+  showContent = true,
 }: PageProps) {
   const meta = CATEGORY_META[category as EquipmentCategory];
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
@@ -155,41 +159,44 @@ export default function EquipmentPageDesktop({
 
   return (
     <div className="hidden lg:flex-1 lg:flex lg:flex-col lg:min-h-screen">
-      {/* PC Hero Section */}
-      <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#F97316]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />
-        </div>
-        <div className="relative max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className={`w-12 h-12 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
-              {meta.icon}
+      {/* PC Hero Section - Full Width */}
+      {showHero && (
+        <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#F97316]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />
+          </div>
+          <div className="relative max-w-7xl mx-auto px-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className={`w-12 h-12 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
+                {meta.icon}
+              </div>
+              <div>
+                <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
+                <h1 className="text-3xl font-bold">{meta.label}</h1>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
-              <h1 className="text-3xl font-bold">{meta.label}</h1>
+            <p className="text-gray-300 max-w-2xl">
+              Cung cấp thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
+            </p>
+            <div className="flex items-center gap-6 mt-6">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-[#F97316]">{devices.length}</span>
+                <span className="text-sm text-gray-400">sản phẩm</span>
+              </div>
+              <div className="w-px h-8 bg-gray-700" />
+              <div className="flex items-center gap-2">
+                <span className="text-2xl font-bold text-[#F97316]">{brands.length}</span>
+                <span className="text-sm text-gray-400">thương hiệu</span>
+              </div>
             </div>
           </div>
-          <p className="text-gray-300 max-w-2xl">
-            Cung cấp thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
-          </p>
-          <div className="flex items-center gap-6 mt-6">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-[#F97316]">{devices.length}</span>
-              <span className="text-sm text-gray-400">sản phẩm</span>
-            </div>
-            <div className="w-px h-8 bg-gray-700" />
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-[#F97316]">{brands.length}</span>
-              <span className="text-sm text-gray-400">thương hiệu</span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* PC Content */}
-      <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full">
+      {showContent && (
+        <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full">
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
@@ -281,6 +288,7 @@ export default function EquipmentPageDesktop({
           </div>
         )}
       </div>
+      )}
 
       {/* Device Detail Modal */}
       {showModal && devices.find((d: Device) => d.id === selectedDeviceId) && (

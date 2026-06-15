@@ -58,13 +58,28 @@ export default function EquipmentPage({ category }: PageProps) {
   }, [category]);
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen">
+    <div className="flex-1 flex flex-col">
       {/* Mobile: Render full mobile component */}
       <div className="lg:hidden flex-1">
         <EquipmentPageMobile category={category} />
       </div>
 
-      {/* Desktop: Render sidebar + desktop layout */}
+      {/* Desktop: Hero full-width (section 1) */}
+      <div className="hidden lg:block">
+        <EquipmentPageDesktop 
+          category={category} 
+          devices={allDevices}
+          loading={loading}
+          searchQuery={searchQuery}
+          sortBy={sortBy}
+          onSearchChange={setSearchQuery}
+          onSortChange={setSortBy}
+          showHero={true}
+          showContent={false}
+        />
+      </div>
+
+      {/* Desktop: Sidebar + Content (section 2) */}
       <div className="hidden lg:flex flex-1">
         <EquipmentSidebar
           category={category}
@@ -89,6 +104,8 @@ export default function EquipmentPage({ category }: PageProps) {
             sortBy={sortBy}
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
+            showHero={false}
+            showContent={true}
           />
         </div>
       </div>
