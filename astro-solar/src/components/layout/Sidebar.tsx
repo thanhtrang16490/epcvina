@@ -74,6 +74,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   { name: 'Blog', href: '/blog', icon: Newspaper },
+  { name: 'Về chúng tôi', href: '/about', icon: User },
   {
     name: 'Hỏi đáp',
     icon: MessageSquare,
@@ -382,7 +383,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Desktop Sidebar - Expandable on Hover */}
       <aside 
-        className="hidden lg:block fixed top-0 left-0 h-screen z-40 transition-all duration-300 ease-in-out overflow-hidden"
+        className="hidden lg:block fixed top-0 left-0 h-screen z-[55] transition-all duration-300 ease-in-out overflow-hidden"
         style={{
           width: isExpanded ? '280px' : '64px',
           background: 'rgba(255,255,255,0.72)',
