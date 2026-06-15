@@ -86,14 +86,26 @@ const CATEGORY_META: Record<EquipmentCategory, {
 
 interface PageProps {
   category: string;
+  devices: Device[];
+  loading: boolean;
+  searchQuery: string;
+  sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
+  onSearchChange: (query: string) => void;
+  onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
 }
 
-export default function EquipmentPageDesktop({ category, devices, loading }: PageProps & { devices: Device[]; loading: boolean }) {
+export default function EquipmentPageDesktop({ 
+  category, 
+  devices, 
+  loading,
+  searchQuery,
+  sortBy,
+  onSearchChange,
+  onSortChange,
+}: PageProps) {
   const meta = CATEGORY_META[category as EquipmentCategory];
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
 
   // Filter and sort
   const filteredDevices = useMemo(() => {
@@ -143,48 +155,38 @@ export default function EquipmentPageDesktop({ category, devices, loading }: Pag
 
   return (
     <div className="hidden lg:flex-1 lg:flex lg:flex-col lg:min-h-screen">
-      {/* PC Header */}
-      <header className="sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">{meta.label}</h1>
-              <p className="text-sm text-gray-500 mt-0.5">
-                {devices.length} sản phẩm từ {brands.length} thương hiệu
-              </p>
+      {/* PC Hero Section */}
+      <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#F97316]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-3 mb-4">
+            <div className={`w-12 h-12 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
+              {meta.icon}
             </div>
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Tìm kiếm..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-64 px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316]"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                )}
-              </div>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                className="px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-              >
-                <option value="az">Tên A-Z</option>
-                <option value="za">Tên Z-A</option>
-                <option value="price-asc">Giá tăng dần</option>
-                <option value="price-desc">Giá giảm dần</option>
-              </select>
+            <div>
+              <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
+              <h1 className="text-3xl font-bold">{meta.label}</h1>
+            </div>
+          </div>
+          <p className="text-gray-300 max-w-2xl">
+            Cung cấp thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
+          </p>
+          <div className="flex items-center gap-6 mt-6">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl font-bold text-[#F97316]">{devices.length}</span>
+              <span className="text-sm text-gray-400">sản phẩm</span>
+            </div>
+            <div className="w-px h-8 bg-gray-700" />
+            <div className="flex items-center gap-2">
+              <span className="text-2xl font-bold text-[#F97316]">{brands.length}</span>
+              <span className="text-sm text-gray-400">thương hiệu</span>
             </div>
           </div>
         </div>
-      </header>
+      </section>
 
       {/* PC Content */}
       <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full">

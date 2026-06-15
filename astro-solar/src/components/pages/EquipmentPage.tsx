@@ -13,6 +13,8 @@ export default function EquipmentPage({ category }: PageProps) {
   const [loading, setLoading] = useState(true);
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [selectedBrand, setSelectedBrand] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
 
   // Fetch devices once, share between mobile and desktop
   useEffect(() => {
@@ -68,18 +70,25 @@ export default function EquipmentPage({ category }: PageProps) {
           category={category}
           devices={allDevices}
           selectedBrand={selectedBrand}
+          searchQuery={searchQuery}
+          sortBy={sortBy}
           onSelectBrand={setSelectedBrand}
           onSelectDevice={setSelectedDeviceId}
           onShowDevice={(id) => {
             setSelectedDeviceId(id);
-            // Modal sẽ được mở từ Desktop component
           }}
+          onSearchChange={setSearchQuery}
+          onSortChange={setSortBy}
         />
         <div className="flex-1 flex flex-col">
           <EquipmentPageDesktop 
             category={category} 
             devices={allDevices}
             loading={loading}
+            searchQuery={searchQuery}
+            sortBy={sortBy}
+            onSearchChange={setSearchQuery}
+            onSortChange={setSortBy}
           />
         </div>
       </div>

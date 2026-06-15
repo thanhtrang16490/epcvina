@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench } from 'lucide-react';
+import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench, X, SlidersHorizontal } from 'lucide-react';
 import type { Device, EquipmentCategory } from '../../lib/types';
 
 const CATEGORY_META: Record<EquipmentCategory, {
@@ -68,18 +68,26 @@ interface EquipmentSidebarProps {
   category: string;
   devices: Device[];
   selectedBrand: string;
+  searchQuery: string;
+  sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
   onSelectBrand: (brand: string) => void;
   onSelectDevice: (deviceId: string) => void;
   onShowDevice: (deviceId: string) => void;
+  onSearchChange: (query: string) => void;
+  onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
 }
 
 export default function EquipmentSidebar({
   category,
   devices,
   selectedBrand,
+  searchQuery,
+  sortBy,
   onSelectBrand,
   onSelectDevice,
   onShowDevice,
+  onSearchChange,
+  onSortChange,
 }: EquipmentSidebarProps) {
   const [expandedBrands, setExpandedBrands] = useState<Record<string, boolean>>({});
   const [showBrands, setShowBrands] = useState(true);
@@ -121,6 +129,41 @@ export default function EquipmentSidebar({
   return (
     <aside className="w-64 flex-shrink-0">
       <div className="sticky top-24 space-y-6">
+        {/* Search Box */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-4">
+          <div className="flex items-center gap-2 mb-3">
+            <SlidersHorizontal className="h-4 w-4 text-gray-500" />
+            <h3 className="font-bold text-gray-900 text-sm">Bộ lọc tìm kiếm</h3>
+          </div>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Tìm thiết bị..."
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+              className="w-full px-3 py-2 pr-8 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => onSearchChange('')}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            )}
+          </div>
+          <select
+            value={sortBy}
+            onChange={(e) => onSortChange(e.target.value as typeof sortBy)}
+            className="w-full mt-2 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
+          >
+            <option value="az">Tên A-Z</option>
+            <option value="za">Tên Z-A</option>
+            <option value="price-asc">Giá tăng dần</option>
+            <option value="price-desc">Giá giảm dần</option>
+          </select>
+        </div>
+
         {/* Category Navigation */}
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-5 py-4 bg-gray-50 border-b border-gray-200">
