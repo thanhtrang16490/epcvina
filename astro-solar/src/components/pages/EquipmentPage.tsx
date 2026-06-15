@@ -60,9 +60,7 @@ export default function EquipmentPage({ category }: PageProps) {
   return (
     <div className="flex-1 flex flex-col">
       {/* Mobile: Render full mobile component */}
-      <div className="lg:hidden flex-1">
-        <EquipmentPageMobile category={category} />
-      </div>
+      <EquipmentPageMobile category={category} />
 
       {/* Desktop: Hero (section 1) + Sidebar + Content (section 2) */}
       <div className="hidden lg:flex lg:flex-col lg:flex-1">
