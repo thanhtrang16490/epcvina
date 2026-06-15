@@ -50,6 +50,24 @@ const certifications = [
   { icon: <BadgeCheck className="h-8 w-8" />, title: 'An toàn lao động', desc: 'Quản lý an toàn vệ sinh lao động' },
 ];
 
+const suppliers = [
+  { name: 'AIKO', category: 'Tấm pin mặt trời' },
+  { name: 'JA Solar', category: 'Tấm pin mặt trời' },
+  { name: 'Trina Solar', category: 'Tấm pin mặt trời' },
+  { name: 'SAJ', category: 'Biến tần Inverter' },
+  { name: 'Growatt', category: 'Biến tần Inverter' },
+  { name: 'Genxgreen', category: 'Pin lưu trữ' },
+];
+
+const financialPartners = [
+  'TPBank',
+  'VPBank',
+  'MB Bank',
+  'VietinBank',
+  'BIDV',
+  'Sacombank',
+];
+
 const clients = [
   'Samsung',
   'VinFast',
@@ -249,6 +267,55 @@ export default function AboutPage() {
                   <p className="text-sm text-gray-500">{cert.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 5.5 - Equipment Suppliers (Partners) */}
+        <section className="py-12 sm:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <p className="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 mb-2">ĐỐI TÁC CHIẾN LƯỢC</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Đơn vị cung cấp thiết bị</h2>
+              <p className="text-gray-500 mt-2 max-w-2xl mx-auto">
+                Chúng tôi chỉ sử dụng thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
+              </p>
+            </div>
+
+            {/* Supplier logos grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+              {suppliers.map((supplier) => (
+                <div
+                  key={supplier.name}
+                  className="group flex items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
+                >
+                  <div className="text-center">
+                    <div className="text-lg sm:text-xl font-bold text-gray-700 group-hover:text-emerald-600 transition-colors">
+                      {supplier.name}
+                    </div>
+                    <p className="text-[10px] sm:text-xs text-gray-400 mt-1 group-hover:text-gray-500 transition-colors">
+                      {supplier.category}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Financial partners */}
+            <div className="mt-12 pt-8 border-t border-gray-100">
+              <h3 className="text-center text-sm font-semibold text-gray-500 uppercase tracking-wider mb-6">
+                Đơn vị tài chính đồng hành
+              </h3>
+              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+                {financialPartners.map((partner) => (
+                  <div
+                    key={partner}
+                    className="border border-gray-200 rounded-lg px-5 py-3 bg-gray-50 text-gray-600 font-semibold text-sm hover:border-emerald-300 hover:bg-emerald-50 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                  >
+                    {partner}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
