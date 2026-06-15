@@ -413,7 +413,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
   }
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen lg:hidden ml-[64px] lg:ml-0 lg:pl-0">
+    <div className="flex-1 flex flex-col min-h-screen lg:hidden">
       {/* ===== MOBILE: Sticky Header (giữ nguyên) ===== */}
       <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 transition-all duration-200 lg:hidden ${
         isFirstCardVisible ? 'shadow-sm' : ''
