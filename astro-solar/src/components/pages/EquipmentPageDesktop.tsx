@@ -158,7 +158,7 @@ export default function EquipmentPageDesktop({
   }
 
   return (
-    <div className="hidden lg:flex-1 lg:flex lg:flex-col lg:min-h-screen">
+    <div className="hidden lg:flex lg:flex-col">
       {/* PC Hero Section - Full Width */}
       {showHero && (
         <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">
@@ -196,7 +196,7 @@ export default function EquipmentPageDesktop({
 
       {/* PC Content */}
       {showContent && (
-        <div className="flex-1 max-w-7xl mx-auto px-6 py-8 w-full">
+        <div className="flex-1 max-w-7xl mx-auto px-6 py-4 w-full">
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
