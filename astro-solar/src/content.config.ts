@@ -32,7 +32,29 @@ const productsCollection = defineCollection({
   }),
 });
 
+const combosCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/combos' }),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+    system_type: z.enum(['on-grid', 'hybrid']),
+    phase: z.enum(['1-phase', '3-phase']),
+    voltage: z.enum(['low', 'high']).nullable(),
+    power_kw: z.number(),
+    battery_kwh: z.number().optional(),
+    investment_million_vnd: z.number(),
+    production_min_kwh: z.number(),
+    production_max_kwh: z.number(),
+    payback_years: z.number(),
+    payback_label: z.string(),
+    roof_area_m2: z.number().optional(),
+    is_active: z.boolean().default(true),
+    display_order: z.number(),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   products: productsCollection,
+  combos: combosCollection,
 };
