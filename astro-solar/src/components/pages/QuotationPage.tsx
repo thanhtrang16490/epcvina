@@ -612,8 +612,6 @@ export default function QuotationPage() {
   const [bill, setBill] = useState(0);
   const [roofArea, setRoofArea] = useState(0);
   const [budget, setBudget] = useState(0);
-  const [buildingType, setBuildingType] = useState('');
-  const [mainGoal, setMainGoal] = useState('both');
   const [systemType, setSystemType] = useState('');
 
   // ── Selection / modal state ──
@@ -651,7 +649,7 @@ export default function QuotationPage() {
 
   const handleShowResults = () => {
     if (!isFormValid) return;
-    const computed = filterCombos(bill, roofArea, budget, systemType, buildingType, mainGoal);
+    const computed = filterCombos(bill, roofArea, budget, systemType, '', '');
     setSolutions(computed);
     setShowResults(true);
     setSelectedIndex(computed.length > 0 ? 0 : null);
@@ -660,14 +658,14 @@ export default function QuotationPage() {
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 150);
-    // POST to API with customer info + filter selections (no recommended combo IDs)
+    // POST to API with customer info + filter selections
     fetch('/api/quotations/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name, phone, email, province, address, referralCode, notes,
         systemTypeKey: systemType,
-        roofArea, monthlyBill: bill, budget, buildingType, mainGoal,
+        roofArea, monthlyBill: bill, budget,
       }),
     }).catch(() => {});
   };
