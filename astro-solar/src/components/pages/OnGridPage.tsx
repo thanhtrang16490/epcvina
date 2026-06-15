@@ -1,7 +1,7 @@
 
 
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Zap, TrendingUp, X, Battery, Layers, Plug, Cable, Shield, Wrench, ChevronRight, Sun, SlidersHorizontal, Settings, LayoutTemplate, Plus, Minus, Check, Sparkles } from 'lucide-react';
+import { Zap, TrendingUp, X, Battery, Layers, Plug, Cable, Shield, Wrench, ChevronRight, Sun, SlidersHorizontal, Settings, LayoutTemplate, Plus, Minus, Check, Sparkles, Eye, ArrowRight } from 'lucide-react';
 import Image from '../ui/Image';
 import DevicePlaceholder from '../ui/DevicePlaceholder';
 import ComboPlaceholder from '../ui/ComboPlaceholder';
@@ -760,55 +760,78 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                 {combos.map((combo) => {
                   const isSelected = selectedComboId === combo.id;
                   return (
-                    <button
+                    <div
                       key={combo.id}
-                      onClick={() => {
-                        setSelectedComboId(combo.id);
-                        setModifiedEquipment([...combo.equipment]); // Initialize with current equipment
-                        setCalculatedPower(combo.capacity); // Initialize with combo's capacity
-                        setShowModal(true);
-                      }}
-                      className={`w-full flex items-center gap-4 p-4 hover:bg-gray-50 active:bg-gray-100 transition-colors text-left ${
+                      className={`group flex flex-col p-4 hover:bg-gray-50 transition-colors ${
                         isSelected ? 'bg-blue-50/50' : ''
                       }`}
                     >
-                      {/* Thumbnail */}
-                      <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-orange-50 relative">
-                        {combo.images[0] ? (
-                          <Image
-                            src={combo.images[0]}
-                            alt={combo.name}
-                            width={56}
-                            height={56}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-orange-600">
-                            <Zap className="h-6 w-6" />
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-0.5">
-                          <h3 className="font-semibold text-gray-900 truncate">{combo.name}</h3>
-                          {isSelected && (
-                            <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                      {/* Top: Thumbnail + Info */}
+                      <div className="flex items-start gap-4 mb-3">
+                        {/* Thumbnail */}
+                        <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-orange-50 relative">
+                          {combo.images[0] ? (
+                            <Image
+                              src={combo.images[0]}
+                              alt={combo.name}
+                              width={56}
+                              height={56}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-orange-600">
+                              <Zap className="h-6 w-6" />
+                            </div>
                           )}
                         </div>
-                        <p className="text-sm text-gray-500">{combo.capacity} kWp - {combo.phase === '1-phase' ? '1 pha' : '3 pha'}</p>
+
+                        {/* Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <h3 className="font-semibold text-gray-900">{combo.name}</h3>
+                            {isSelected && (
+                              <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
+                            )}
+                          </div>
+                          <p className="text-sm text-gray-500">{combo.capacity} kWp - {combo.phase === '1-phase' ? '1 pha' : '3 pha'}</p>
+                        </div>
                       </div>
 
-                      {/* Right: Price */}
-                      <div className="text-right flex-shrink-0">
-                        <p className="text-xs text-gray-500 mb-0.5">Tổng chi phí</p>
-                        <p className="text-base font-semibold text-[#F97316]">{formatCurrency(combo.price)}</p>
-                      </div>
+                      {/* Bottom: Price + Actions */}
+                      <div className="flex items-center gap-3">
+                        {/* Price */}
+                        <div className="flex-1">
+                          <p className="text-xs text-gray-500 mb-0.5">Tổng chi phí</p>
+                          <p className="text-base font-semibold text-[#F97316]">{formatCurrency(combo.price)}</p>
+                        </div>
 
-                      {/* Chevron */}
-                      <ChevronRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
-                    </button>
+                        {/* Action Buttons */}
+                        <div className="flex gap-2">
+                          <button 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedComboId(combo.id);
+                              setModifiedEquipment([...combo.equipment]);
+                              setCalculatedPower(combo.capacity);
+                              setShowModal(true);
+                            }}
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-all duration-200 cursor-pointer min-h-[44px]"
+                            aria-label={`Xem nhanh ${combo.name}`}
+                          >
+                            <Eye className="w-4 h-4" />
+                            <span className="hidden sm:inline">Xem nhanh</span>
+                          </button>
+                          <a 
+                            href={`/combo/${combo.slug}`}
+                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer min-h-[44px]"
+                            aria-label={`Xem chi tiết ${combo.name}`}
+                          >
+                            <span className="hidden sm:inline">Chi tiết</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   );
                 })}
               </div>
