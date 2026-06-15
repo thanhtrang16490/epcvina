@@ -1,0 +1,27 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import ProductDetail from '../../components/pages/ProductDetail.tsx';
+import { getCollection } from 'astro:content';
+
+// Generate static paths for all products
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+
+if (!product) {
+  return Astro.redirect('/equipment');
+}
+---
+
+<DashboardLayout
+  title={product.data.name}
+  description={product.data.description || `Chi tiết sản phẩm ${product.data.name} - EPCVINA Solar`}
+>
+  <ProductDetail client:load product={product.data} />
+</DashboardLayout>

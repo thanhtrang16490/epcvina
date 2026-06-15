@@ -2,9 +2,9 @@ import { ArrowLeft, Check, Package, Shield, Zap, TrendingUp, Award } from 'lucid
 import { useState } from 'react';
 
 interface Product {
-  id: string;
+  id?: string;
+  slug?: string;
   name: string;
-  slug: string;
   brand: string;
   category: string;
   model: string;
@@ -12,7 +12,9 @@ interface Product {
   specifications?: Record<string, string>;
   features?: string[];
   warranty_years?: number;
+  warranty?: string;
   unit_price?: number;
+  price?: number;
   main_image?: string;
   product_type?: string;
 }
@@ -127,15 +129,18 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
 
             {/* Price */}
-            {product.unit_price && product.unit_price > 0 && (
+            {(() => {
+              const price = product.unit_price || product.price || 0;
+              return price > 0 && (
               <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-2xl border border-yellow-200">
                 <div className="text-sm text-gray-600 mb-1">Giá tham khảo:</div>
                 <div className="text-4xl font-bold text-yellow-600">
-                  {formatPrice(product.unit_price)}
+                  {formatPrice(price)}
                 </div>
                 <div className="text-sm text-gray-500 mt-1">Đã bao gồm VAT</div>
               </div>
-            )}
+              );
+            })()}
 
             {/* Description */}
             {product.description && (
@@ -167,14 +172,16 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             )}
 
             {/* Warranty */}
-            {product.warranty_years && (
+            {(product.warranty_years || product.warranty) && (
               <div className="bg-white p-6 rounded-2xl shadow-sm border">
                 <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                   <Shield className="w-5 h-5 text-blue-600" />
                   Bảo hành
                 </h3>
                 <div className="flex items-center gap-4">
-                  <div className="text-3xl font-bold text-blue-600">{product.warranty_years} năm</div>
+                  <div className="text-3xl font-bold text-blue-600">
+                    {product.warranty_years ? `${product.warranty_years} năm` : product.warranty}
+                  </div>
                   <div className="text-sm text-gray-600">Bảo hành chính hãng</div>
                 </div>
               </div>
