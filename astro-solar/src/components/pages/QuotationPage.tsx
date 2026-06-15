@@ -810,29 +810,6 @@ export default function QuotationPage() {
                 </div>
 
                 <div className="p-5 space-y-5 flex-1">
-                  {/* Building Type */}
-                  <ToggleRow
-                    label="Loại công trình"
-                    value={buildingType}
-                    onChange={setBuildingType}
-                    options={[
-                      { value: 'house', label: '🏠 Nhà phố', sub: '1 pha' },
-                      { value: 'villa', label: '🏡 Biệt thự', sub: '1 pha' },
-                      { value: 'office', label: '🏢 Văn phòng', sub: '1–3 pha' },
-                      { value: 'factory', label: '🏭 Nhà xưởng', sub: '3 pha' },
-                    ]}
-                  />
-                  {/* Main Goal */}
-                  <ToggleRow
-                    label="Mục tiêu chính"
-                    value={mainGoal}
-                    onChange={setMainGoal}
-                    options={[
-                      { value: 'save', label: '💰 Tiết kiệm', sub: 'On-Grid' },
-                      { value: 'backup', label: '🔋 Dự phòng', sub: 'Hybrid' },
-                      { value: 'both', label: '⚡ Cả hai', sub: 'Linh hoạt' },
-                    ]}
-                  />
                   {/* System Type Selector */}
                   <SystemTypeSelector value={systemType} onChange={setSystemType} />
                   {/* Monthly Bill Slider */}
