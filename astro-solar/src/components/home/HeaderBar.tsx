@@ -9,7 +9,7 @@ const navItems = [
   { label: 'Solar C&I', href: '/solar-ci' },
   { label: 'Bảo trì O&M', href: '/bao-tri' },
   { label: 'Dự án', href: '/du-an' },
-  { label: 'Về chúng tôi', href: '/about' },
+  // { label: 'Về chúng tôi', href: '/about' },
   // { label: 'Blog', href: '/blog' },
   { label: 'Liên hệ', href: '/lien-he' },
 ];
