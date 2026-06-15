@@ -3,31 +3,30 @@ import EquipmentPageDesktop from './EquipmentPageDesktop';
 import EquipmentSidebar from './EquipmentSidebar';
 import { useMemo, useState, useEffect } from 'react';
 import type { Device, EquipmentCategory } from '../../lib/types';
-import type { CollectionEntry } from 'astro:content';
 
 interface PageProps {
   category: string;
 }
 
-// Convert Content Collections product to Device format
-function productToDevice(product: CollectionEntry<'products'>, categoryOverride?: string): Device {
+// Convert API product (flat format) to Device format
+function apiProductToDevice(product: any, categoryOverride?: string): Device {
   return {
     id: product.id,
-    category: (categoryOverride || product.data.category) as EquipmentCategory,
-    brand: product.data.brand,
-    model: product.data.model,
+    category: (categoryOverride || product.category) as EquipmentCategory,
+    brand: product.brand || 'Unknown',
+    model: product.model || product.name || 'Unknown',
     quantity: 1,
     unit: 'sản phẩm',
-    price: product.data.price || 0,
+    price: product.price || 0,
     specs: {
-      'Danh mục': product.data.category,
-      'Thương hiệu': product.data.brand,
-      ...(product.data.specifications || {}),
+      'Danh mục': product.category || '',
+      'Thương hiệu': product.brand || '',
+      ...(product.specifications || {}),
     },
-    features: product.data.features || [],
-    warranty: parseInt(product.data.warranty || '0') || 0,
-    images: product.data.main_image ? [product.data.main_image] : [],
-    image_url: product.data.main_image,
+    features: product.features || [],
+    warranty: parseInt(product.warranty || '0') || 0,
+    images: product.main_image ? [product.main_image] : [],
+    image_url: product.main_image,
   };
 }
 
@@ -52,7 +51,7 @@ export default function EquipmentPage({ category }: PageProps) {
         
         if (allData.success && allData.data) {
           const allDevicesList: Device[] = allData.data.map((product: any) => 
-            productToDevice(product as any)
+            apiProductToDevice(product)
           );
           setAllDevices(allDevicesList);
         }
@@ -63,7 +62,7 @@ export default function EquipmentPage({ category }: PageProps) {
         
         if (catData.success && catData.data) {
           const catDevicesList: Device[] = catData.data.map((product: any) => 
-            productToDevice(product as any, category)
+            apiProductToDevice(product, category)
           );
           setCategoryDevices(catDevicesList);
         }
@@ -78,16 +77,6 @@ export default function EquipmentPage({ category }: PageProps) {
     
     fetchDevices();
   }, [category]);
-
-  // Debug log
-  useEffect(() => {
-    console.log('🔍 EquipmentPage State:', {
-      category,
-      allDevices: allDevices.length,
-      categoryDevices: categoryDevices.length,
-      loading,
-    });
-  }, [category, allDevices, categoryDevices, loading]);
 
   return (
     <div className="flex-1 flex flex-col">

@@ -114,7 +114,6 @@ export default function EquipmentPageDesktop({
   showHero = true,
   showContent = true,
 }: PageProps) {
-  console.log('🖥️ EquipmentPageDesktop - category:', category, 'devices:', devices.length, 'loading:', loading);
   const meta = CATEGORY_META[category as EquipmentCategory];
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
