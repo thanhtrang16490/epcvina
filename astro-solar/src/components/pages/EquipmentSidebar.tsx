@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench, X, SlidersHorizontal } from 'lucide-react';
+import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, X, SlidersHorizontal } from 'lucide-react';
 import type { Device, EquipmentCategory } from '../../lib/types';
 
 const CATEGORY_META: Record<EquipmentCategory, {
@@ -55,12 +55,6 @@ const CATEGORY_META: Record<EquipmentCategory, {
     icon: <Plug className="h-5 w-5" />,
     color: 'text-indigo-600',
     bg: 'bg-indigo-50',
-  },
-  installation: {
-    label: 'Nhân công lắp đặt',
-    icon: <Wrench className="h-5 w-5" />,
-    color: 'text-amber-600',
-    bg: 'bg-amber-50',
   },
 };
 

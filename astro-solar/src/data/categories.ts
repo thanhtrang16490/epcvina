@@ -104,12 +104,6 @@ export const localCategories: LocalCategory[] = [
     slug: 'meter',
     display_order: 15,
   },
-  {
-    id: 'installation',
-    name: 'Nhân công lắp đặt',
-    slug: 'installation',
-    display_order: 16,
-  },
 ];
 
 export function getCategories(): LocalCategory[] {
