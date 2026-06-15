@@ -32,9 +32,9 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { name: 'Trang chủ', href: '/', icon: LayoutDashboard },
-  { name: 'Báo Giá', href: '/bao-gia', icon: Calculator },
-  { name: 'Blog', href: '/blog', icon: Newspaper },
+  // { name: 'Trang chủ', href: '/', icon: LayoutDashboard },
+  // { name: 'Báo Giá', href: '/bao-gia', icon: Calculator },
+
   {
     name: 'Gói combo',
     icon: Package,
@@ -73,6 +73,7 @@ const menuItems: MenuItem[] = [
       { name: 'Mái bằng', href: '/solar-home/mai-bang', soon: true },
     ],
   },
+  { name: 'Blog', href: '/blog', icon: Newspaper },
   {
     name: 'Hỏi đáp',
     icon: MessageSquare,
