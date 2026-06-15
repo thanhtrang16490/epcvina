@@ -96,7 +96,7 @@ export default function EquipmentPage({ category }: PageProps) {
           onSearchChange={setSearchQuery}
           onSortChange={setSortBy}
           showHero={true}
-          showContent={false}
+          showContent={true}
         />
 
         {/* Section 2: Sidebar + Content */}
