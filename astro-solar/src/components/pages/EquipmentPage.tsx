@@ -113,6 +113,7 @@ export default function EquipmentPage({ category }: PageProps) {
           <EquipmentSidebar
             category={category}
             devices={allDevices}
+            categoryDevices={categoryDevices}
             selectedBrand={selectedBrand}
             searchQuery={searchQuery}
             sortBy={sortBy}

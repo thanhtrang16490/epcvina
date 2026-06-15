@@ -1,4 +1,21 @@
-export type EquipmentCategory = 'panel' | 'inverter' | 'battery' | 'mounting' | 'wiring' | 'cabinet' | 'grounding' | 'meter';
+export type EquipmentCategory = 
+  | 'panel' 
+  | 'inverter' 
+  | 'battery' 
+  | 'mounting' 
+  | 'wiring' 
+  | 'cabinet' 
+  | 'grounding' 
+  | 'meter'
+  | 'hybrid-inverter'
+  | 'on-grid-1phase'
+  | 'on-grid-3phase-lv'
+  | 'on-grid-3phase-hv'
+  | 'hybrid-1phase'
+  | 'hybrid-3phase-lv'
+  | 'hybrid-3phase-hv'
+  | 'lv-battery'
+  | 'hv-battery';
 export type SystemType = 'on-grid' | 'hybrid';
 export type PhaseType = '1-phase' | '3-phase';
 export type VoltageType = 'low' | 'high'; // áp thấp / áp cao (3-phase only)

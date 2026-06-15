@@ -2,30 +2,61 @@ import { useMemo, useState } from 'react';
 import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, X, SlidersHorizontal } from 'lucide-react';
 import type { Device, EquipmentCategory } from '../../lib/types';
 
-const CATEGORY_META: Record<EquipmentCategory, {
+const CATEGORY_META: Record<string, {
   label: string;
   icon: React.ReactNode;
   color: string;
   bg: string;
+  group?: string;
 }> = {
+  // Nhóm Tấm quang năng
   panel: {
     label: 'Tấm quang năng',
     icon: <Zap className="h-5 w-5" />,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
-  inverter: {
-    label: 'Biến tần (Inverter)',
+  
+  // Nhóm Biến tần (gộp các loại)
+  'hybrid-inverter': {
+    label: 'Biến tần Hybrid',
     icon: <TrendingUp className="h-5 w-5" />,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
+    group: 'inverter',
   },
-  battery: {
-    label: 'Pin lưu trữ',
+  'on-grid-1phase': {
+    label: 'Biến tần On-Grid 1 Pha',
+    icon: <TrendingUp className="h-5 w-5" />,
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
+    group: 'inverter',
+  },
+  'on-grid-3phase-lv': {
+    label: 'Biến tần On-Grid 3 Pha',
+    icon: <TrendingUp className="h-5 w-5" />,
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
+    group: 'inverter',
+  },
+  
+  // Nhóm Pin lưu trữ
+  'lv-battery': {
+    label: 'Pin lưu trữ áp thấp',
     icon: <Battery className="h-5 w-5" />,
     color: 'text-green-600',
     bg: 'bg-green-50',
+    group: 'battery',
   },
+  'hv-battery': {
+    label: 'Pin lưu trữ áp cao',
+    icon: <Battery className="h-5 w-5" />,
+    color: 'text-green-600',
+    bg: 'bg-green-50',
+    group: 'battery',
+  },
+  
+  // Nhóm phụ kiện
   mounting: {
     label: 'Hệ khung nhôm',
     icon: <Layers className="h-5 w-5" />,
@@ -60,7 +91,8 @@ const CATEGORY_META: Record<EquipmentCategory, {
 
 interface EquipmentSidebarProps {
   category: string;
-  devices: Device[];
+  devices: Device[]; // Tất cả products (cho category counts)
+  categoryDevices?: Device[]; // Products của category hiện tại (cho brands)
   selectedBrand: string;
   searchQuery: string;
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
@@ -74,6 +106,7 @@ interface EquipmentSidebarProps {
 export default function EquipmentSidebar({
   category,
   devices,
+  categoryDevices,
   selectedBrand,
   searchQuery,
   sortBy,
@@ -86,24 +119,27 @@ export default function EquipmentSidebar({
   const [expandedBrands, setExpandedBrands] = useState<Record<string, boolean>>({});
   const [showBrands, setShowBrands] = useState(true);
 
+  // Brands chỉ lấy từ category đang chọn
   const brands = useMemo(() => {
+    const sourceDevices = categoryDevices || devices;
     const brandSet = new Set<string>();
-    for (const device of devices) {
+    for (const device of sourceDevices) {
       if (device.brand) brandSet.add(device.brand);
     }
     return Array.from(brandSet).sort();
-  }, [devices]);
+  }, [categoryDevices, devices]);
 
   const devicesByBrand = useMemo(() => {
+    const sourceDevices = categoryDevices || devices;
     const grouped: Record<string, Device[]> = {};
-    devices.forEach(device => {
+    sourceDevices.forEach(device => {
       if (!grouped[device.brand]) {
         grouped[device.brand] = [];
       }
       grouped[device.brand].push(device);
     });
     return grouped;
-  }, [devices]);
+  }, [categoryDevices, devices]);
 
   const toggleBrand = (brand: string) => {
     setExpandedBrands(prev => ({
