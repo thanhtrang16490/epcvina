@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect } from 'react';
-import { Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench, X, Search } from 'lucide-react';
+import { Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench, X, Search, Eye, ArrowRight } from 'lucide-react';
 import Image from '../ui/Image';
 import DevicePlaceholder from '../ui/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../lib/types';
@@ -179,11 +179,7 @@ export default function EquipmentPageDesktop({
             {filteredDevices.map((device) => (
               <div
                 key={device.id}
-                onClick={() => {
-                  setSelectedDeviceId(device.id);
-                  setShowModal(true);
-                }}
-                className="group bg-white rounded-2xl border-2 border-gray-200 overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-[#F97316]"
+                className="group bg-white rounded-2xl border-2 border-gray-200 overflow-hidden transition-all duration-200 hover:shadow-xl hover:-translate-y-1 hover:border-[#F97316]"
               >
                 {/* Product Image */}
                 <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
@@ -231,21 +227,40 @@ export default function EquipmentPageDesktop({
                   </div>
 
                   {/* Price + CTA */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    {device.price ? (
-                      <div>
-                        <p className="text-xs text-gray-500">Đơn giá</p>
-                        <p className="text-lg font-bold text-[#F97316]">{formatCurrency(device.price)}</p>
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="text-xs text-gray-500">Liên hệ</p>
-                        <p className="text-sm font-medium text-gray-700">Giá tốt nhất</p>
-                      </div>
-                    )}
-                    <button className="px-4 py-2 bg-[#F97316] text-white rounded-lg text-sm font-medium hover:bg-[#C2410C] transition-colors">
-                      Xem chi tiết
-                    </button>
+                  <div className="pt-4 border-t border-gray-100">
+                    <div className="flex items-center justify-between mb-3">
+                      {device.price ? (
+                        <div>
+                          <p className="text-xs text-gray-500">Đơn giá</p>
+                          <p className="text-lg font-bold text-[#F97316]">{formatCurrency(device.price)}</p>
+                        </div>
+                      ) : (
+                        <div>
+                          <p className="text-xs text-gray-500">Liên hệ</p>
+                          <p className="text-sm font-medium text-gray-700">Giá tốt nhất</p>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedDeviceId(device.id);
+                          setShowModal(true);
+                        }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors"
+                      >
+                        <Eye className="w-4 h-4" />
+                        Xem nhanh
+                      </button>
+                      <a 
+                        href={`/equipment/${device.id}`}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-[#F97316] text-white rounded-lg text-sm font-medium hover:bg-[#C2410C] transition-colors"
+                      >
+                        Xem chi tiết
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 
 
 import { useMemo, useState, useRef, useEffect } from 'react';
-import { Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal } from 'lucide-react';
+import { Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight } from 'lucide-react';
 import Image from '../ui/Image';
 import DevicePlaceholder from '../ui/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../lib/types';
@@ -758,6 +758,24 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                     ))}
                   </ul>
                 </div>
+              </div>
+              
+              {/* Action Buttons */}
+              <div className="px-6 pb-6 flex gap-3">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 text-gray-700 rounded-xl text-sm font-medium hover:bg-gray-200 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  Đóng
+                </button>
+                <a
+                  href={`/equipment/${selectedDevice.id}`}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#F97316] text-white rounded-xl text-sm font-medium hover:bg-[#C2410C] transition-colors"
+                >
+                  Xem chi tiết
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </div>
