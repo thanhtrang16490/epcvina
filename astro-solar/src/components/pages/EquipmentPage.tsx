@@ -14,6 +14,7 @@ function apiProductToDevice(product: any, categoryOverride?: string): Device {
     id: product.id,
     category: (categoryOverride || product.category) as EquipmentCategory,
     brand: product.brand || 'Unknown',
+    name: product.name || product.model || 'Unknown',
     model: product.model || product.name || 'Unknown',
     quantity: 1,
     unit: 'sản phẩm',

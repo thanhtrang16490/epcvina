@@ -36,6 +36,9 @@ const CATEGORY_NAMES: Record<string, string> = {
   'cabinet': 'Tủ điện',
   'mounting': 'Khung nhôm mount',
   'grounding': 'Tiếp địa',
+  'inverter': 'Biến tần Hybrid',
+  'battery': 'Pin lưu trữ',
+  'accessories': 'Phụ kiện lắp đặt',
 };
 
 export default function ProductDetail({ product }: ProductDetailProps) {
@@ -88,47 +91,53 @@ export default function ProductDetail({ product }: ProductDetailProps) {
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/20 rounded-full -translate-y-1/2 translate-x-1/4" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center">
-              <Zap className="w-6 h-6 text-orange-400" />
+        <div className="relative w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center">
+                <Zap className="w-6 h-6 text-orange-400" />
+              </div>
+              <div>
+                <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
+                <h1 className="text-3xl font-bold">{CATEGORY_NAMES[product.category] || product.category}</h1>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
-              <h1 className="text-3xl font-bold">{CATEGORY_NAMES[product.category] || product.category}</h1>
-            </div>
+            <p className="text-gray-300 max-w-2xl text-base leading-relaxed">
+              Cung cấp thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
+            </p>
           </div>
-          <p className="text-gray-300 max-w-2xl text-base leading-relaxed">
-            Cung cấp thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
-          </p>
         </div>
       </section>
       
       {/* Breadcrumb */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <nav className="flex items-center space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
-            <a href="/equipment" className="hover:text-orange-600 transition-colors cursor-pointer">
-              Thiết bị
-            </a>
-            <span aria-hidden="true">/</span>
-            <a 
-              href={`/equipment?category=${product.category}`} 
-              className="hover:text-orange-600 transition-colors cursor-pointer"
-            >
-              {CATEGORY_NAMES[product.category] || product.category}
-            </a>
-            <span aria-hidden="true">/</span>
-            <span className="text-gray-900 font-medium truncate" aria-current="page">{product.name}</span>
-          </nav>
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
+          <div className="max-w-7xl mx-auto">
+            <nav className="flex items-center space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
+              <a href="/equipment" className="hover:text-orange-600 transition-colors cursor-pointer">
+                Thiết bị
+              </a>
+              <span aria-hidden="true">/</span>
+              <a 
+                href={`/equipment?category=${product.category}`} 
+                className="hover:text-orange-600 transition-colors cursor-pointer"
+              >
+                {CATEGORY_NAMES[product.category] || product.category}
+              </a>
+              <span aria-hidden="true">/</span>
+              <span className="text-gray-900 font-medium truncate" aria-current="page">{product.name}</span>
+            </nav>
+          </div>
         </div>
       </div>
 
-      {/* Main Content - GPG Solar Layout with Right Sidebar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Left: Main Content (2 columns) */}
-          <div className="lg:col-span-2 space-y-12">
+      {/* Main Content - Full Width Layout with Right Sidebar */}
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex gap-8">
+          {/* Main Content Area */}
+          <div className="flex-1 min-w-0">
+            <div className="space-y-12">
           
           {/* Section 1: Product Image + Info (2-column grid) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -370,22 +379,23 @@ export default function ProductDetail({ product }: ProductDetailProps) {
             </div>
           )}
 
-          {/* Back to Products */}
-          <div className="text-center pt-8 border-t border-gray-200">
-            <a
-              href="/equipment"
-              className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m0 0l19 19" />
-              </svg>
-              Quay lại danh sách thiết bị
-            </a>
-          </div>
+            {/* Back to Products */}
+            <div className="text-center pt-8 border-t border-gray-200">
+              <a
+                href="/equipment"
+                className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Quay lại danh sách thiết bị
+              </a>
+            </div>
+            </div>
           </div>
 
-          {/* Right Sidebar */}
-          <div className="lg:col-span-1">
+          {/* Right Sidebar - Related Products */}
+          <div className="hidden lg:block w-80 flex-shrink-0">
             <div className="sticky top-24 space-y-4">
               <h3 className="text-xl font-bold text-gray-900 mb-6">Sản phẩm liên quan</h3>
               {relatedProducts.length > 0 ? (
@@ -410,7 +420,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                     
                     {/* Title & Details on Right */}
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-semibold text-gray-900 mb-1 line-clamp-2 leading-tight">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-1 leading-snug line-clamp-2">
                         {relatedProduct.name}
                       </h4>
                       <p className="text-xs text-gray-500 mb-2">{relatedProduct.brand}</p>
@@ -432,6 +442,7 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               )}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

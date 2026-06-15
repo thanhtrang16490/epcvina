@@ -172,6 +172,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
             id: product.id,
             category: category as EquipmentCategory,
             brand: product.brand || 'Unknown',
+            name: product.name || product.model || 'Unknown',
             model: product.model || product.name,
             quantity: 1,
             unit: 'sản phẩm',
@@ -541,7 +542,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                       {/* Info */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-0.5">
-                          <h3 className="font-semibold text-gray-900 truncate">{device.model}</h3>
+                          <h3 className="font-semibold text-gray-900">{device.name}</h3>
                           {isSelected && (
                             <span className="w-2 h-2 rounded-full bg-[#F97316] flex-shrink-0" />
                           )}
@@ -629,8 +630,8 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
 
                   {/* Product Info */}
                   <div className="p-5">
-                    <h3 className="font-bold text-gray-900 text-base mb-2 line-clamp-2 group-hover:text-[#F97316] transition-colors">
-                      {device.model}
+                    <h3 className="font-bold text-gray-900 text-base leading-snug mb-2 group-hover:text-[#F97316] transition-colors">
+                      {device.name}
                     </h3>
                     
                     {/* Specs */}

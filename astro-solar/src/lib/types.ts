@@ -11,6 +11,7 @@ export interface Device {
   id: string;
   category: EquipmentCategory;
   brand: string;
+  name: string;
   model: string;
   quantity: number;
   unit: string;

@@ -212,8 +212,8 @@ export default function EquipmentPageDesktop({
 
                 {/* Product Info */}
                 <div className="p-5 space-y-4">
-                  <h3 className="font-bold text-gray-900 text-base leading-tight line-clamp-2 group-hover:text-orange-600 transition-colors duration-300 min-h-[2.5rem]">
-                    {device.model}
+                  <h3 className="font-bold text-gray-900 text-base leading-snug group-hover:text-orange-600 transition-colors duration-300">
+                    {device.name}
                   </h3>
                   
                   {/* Specs */}
