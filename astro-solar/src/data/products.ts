@@ -20,74 +20,7 @@ export interface LocalProduct {
 }
 
 export const localProducts: LocalProduct[] = [
-  // TẤM QUANG NĂNG (Solar Panels)
-  {
-    id: 'ja-solar-550w',
-    name: 'Tấm pin JA Solar JAM72D40 550W',
-    slug: 'tam-pin-ja-solar-jam72d40-550w',
-    brand: 'JA Solar',
-    category: 'panel',
-    model: 'JAM72D40-550W',
-    description: 'Tấm pin năng lượng mặt trời JA Solar 550W, hiệu suất cao, công nghệ Half-cell PERC',
-    specifications: {
-      'Công suất': '550W',
-      'Hiệu suất': '21.05%',
-      'Loại cell': 'Mono PERC Half-cell',
-      'Số lượng cell': '144 cells',
-      'Điện áp Vmp': '41.8V',
-      'Dòng điện Imp': '13.17A',
-      'Kích thước': '2278x1134x35mm',
-      'Trọng lượng': '28.6kg',
-      'Bảo hành': '15 năm',
-      'Bảo hành hiệu suất': '25 năm',
-    },
-    features: [
-      'Công nghệ Half-cell PERC tăng hiệu suất',
-      'Chịu tải gió và tuyết tốt',
-      'Chống PID',
-      'Hiệu suất module cao đến 21.05%',
-    ],
-    warranty_years: 15,
-    unit_price: 2850000,
-    main_image: '/images/products/260424.png',
-    is_available: true,
-    show_on_homepage: true,
-    product_type: 'panel',
-  },
-  {
-    id: 'canadian-solar-580w',
-    name: 'Tấm pin Canadian Solar HiKu7 580W',
-    slug: 'tam-pin-canadian-solar-hiku7-580w',
-    brand: 'Canadian Solar',
-    category: 'panel',
-    model: 'CS7L-580MS',
-    description: 'Tấm pin Canadian Solar 580W, công nghệ TOPCon, hiệu suất cao',
-    specifications: {
-      'Công suất': '580W',
-      'Hiệu suất': '22.3%',
-      'Loại cell': 'Mono TOPCon',
-      'Số lượng cell': '132 cells',
-      'Điện áp Vmp': '43.3V',
-      'Dòng điện Imp': '13.41A',
-      'Kích thước': '2278x1134x35mm',
-      'Trọng lượng': '28.5kg',
-      'Bảo hành': '15 năm',
-      'Bảo hành hiệu suất': '30 năm',
-    },
-    features: [
-      'Công nghệ TOPCon tiên tiến',
-      'Hiệu suất module lên đến 22.3%',
-      'Hệ số nhiệt độ thấp',
-      'Chống PID tiềm ẩn',
-    ],
-    warranty_years: 15,
-    unit_price: 3200000,
-    main_image: '/images/products/260424(1).png',
-    is_available: true,
-    show_on_homepage: true,
-    product_type: 'panel',
-  },
-
+  // TẤM QUANG NĂNG (Solar Panels) - AIKO only
   // BIẾN TẦN (Inverters)
   {
     id: 'huawei-5ktl-l1',

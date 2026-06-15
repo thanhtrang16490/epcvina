@@ -11,22 +11,13 @@ export interface LocalBrand {
 
 export const localBrands: LocalBrand[] = [
   {
-    id: 'ja-solar',
-    name: 'JA Solar',
-    slug: 'ja-solar',
-    description: 'Nhà sản xuất tấm pin năng lượng mặt trời hàng đầu thế giới',
-    logo_url: '/brands/ja-solar.png',
-    website: 'https://www.jasolar.com',
+    id: 'aiko',
+    name: 'AIKO',
+    slug: 'aiko',
+    description: 'Nhà sản xuất tấm pin năng lượng mặt trời hàng đầu với công nghệ ABC',
+    logo_url: '/brands/aiko.png',
+    website: 'https://www.aikosolar.com',
     country: 'China',
-  },
-  {
-    id: 'canadian-solar',
-    name: 'Canadian Solar',
-    slug: 'canadian-solar',
-    description: 'Tập đoàn năng lượng mặt trời Canada',
-    logo_url: '/brands/canadian-solar.png',
-    website: 'https://www.canadiansolar.com',
-    country: 'Canada',
   },
   {
     id: 'huawei',
