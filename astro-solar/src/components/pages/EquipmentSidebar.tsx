@@ -9,31 +9,24 @@ const CATEGORY_META: Record<string, {
   bg: string;
   group?: string;
 }> = {
-  // Nhóm Tấm quang năng
+  // Nhóm Tấm mô-đun quang điện
   panel: {
-    label: 'Tấm quang năng',
+    label: 'Tấm mô-đun quang điện',
     icon: <Zap className="h-5 w-5" />,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
   
-  // Nhóm Biến tần (gộp các loại)
+  // Nhóm Biến tần / Inverter
   'hybrid-inverter': {
-    label: 'Biến tần Hybrid',
+    label: 'Biến tần / Inverter',
     icon: <TrendingUp className="h-5 w-5" />,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     group: 'inverter',
   },
-  'on-grid-1phase': {
-    label: 'Biến tần On-Grid 1 Pha',
-    icon: <TrendingUp className="h-5 w-5" />,
-    color: 'text-orange-600',
-    bg: 'bg-orange-50',
-    group: 'inverter',
-  },
-  'on-grid-3phase-lv': {
-    label: 'Biến tần On-Grid 3 Pha',
+  'on-grid-inverter': {
+    label: 'Biến tần / Inverter',
     icon: <TrendingUp className="h-5 w-5" />,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
@@ -41,51 +34,25 @@ const CATEGORY_META: Record<string, {
   },
   
   // Nhóm Pin lưu trữ
-  'lv-battery': {
-    label: 'Pin lưu trữ áp thấp',
+  battery: {
+    label: 'Pin lưu trữ',
     icon: <Battery className="h-5 w-5" />,
     color: 'text-green-600',
     bg: 'bg-green-50',
-    group: 'battery',
-  },
-  'hv-battery': {
-    label: 'Pin lưu trữ áp cao',
-    icon: <Battery className="h-5 w-5" />,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
-    group: 'battery',
   },
   
-  // Nhóm phụ kiện
+  // Nhóm Phụ kiện lắp đặt
   mounting: {
-    label: 'Hệ khung nhôm',
+    label: 'Phụ kiện lắp đặt',
     icon: <Layers className="h-5 w-5" />,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
   },
-  wiring: {
-    label: 'Hệ dây điện',
-    icon: <Cable className="h-5 w-5" />,
+  accessories: {
+    label: 'Phụ kiện lắp đặt',
+    icon: <Shield className="h-5 w-5" />,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
-  },
-  cabinet: {
-    label: 'Tủ điện',
-    icon: <Plug className="h-5 w-5" />,
-    color: 'text-red-600',
-    bg: 'bg-red-50',
-  },
-  grounding: {
-    label: 'Hệ tiếp địa',
-    icon: <Shield className="h-5 w-5" />,
-    color: 'text-teal-600',
-    bg: 'bg-teal-50',
-  },
-  meter: {
-    label: 'Đồng hồ đo',
-    icon: <Plug className="h-5 w-5" />,
-    color: 'text-indigo-600',
-    bg: 'bg-indigo-50',
   },
 };
 

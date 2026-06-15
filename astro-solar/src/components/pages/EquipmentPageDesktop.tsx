@@ -20,74 +20,46 @@ const CATEGORY_META: Record<EquipmentCategory, {
   accent: string;
 }> = {
   panel: {
-    label: 'Tấm quang năng',
-    icon: <Zap className="h-5 w-5" />,
+    label: 'Tấm mô-đun quang điện',
+    icon: <Zap className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
   },
-  inverter: {
-    label: 'Biến tần (Inverter)',
-    icon: <TrendingUp className="h-5 w-5" />,
+  'hybrid-inverter': {
+    label: 'Biến tần / Inverter',
+    icon: <TrendingUp className="h-5 w-5"/>,
+    color: 'text-orange-600',
+    bg: 'bg-orange-50',
+    accent: 'bg-orange-500',
+  },
+  'on-grid-inverter': {
+    label: 'Biến tần / Inverter',
+    icon: <TrendingUp className="h-5 w-5"/>,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
   },
   battery: {
     label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5" />,
+    icon: <Battery className="h-5 w-5"/>,
     color: 'text-green-600',
     bg: 'bg-green-50',
     accent: 'bg-green-500',
   },
   mounting: {
-    label: 'Hệ khung nhôm',
-    icon: <Layers className="h-5 w-5" />,
+    label: 'Phụ kiện lắp đặt',
+    icon: <Layers className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
   },
-  wiring: {
-    label: 'Hệ dây điện',
-    icon: <Cable className="h-5 w-5" />,
+  accessories: {
+    label: 'Phụ kiện lắp đặt',
+    icon: <Wrench className="h-5 w-5"/>,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
     accent: 'bg-gray-500',
-  },
-  cabinet: {
-    label: 'Tủ điện',
-    icon: <Plug className="h-5 w-5"/>,
-    color: 'text-red-600',
-    bg: 'bg-red-50',
-    accent: 'bg-red-500',
-  },
-  'hybrid-inverter': {
-    label: 'Biến tần Hybrid',
-    icon: <TrendingUp className="h-5 w-5"/>,
-    color: 'text-orange-600',
-    bg: 'bg-orange-50',
-    accent: 'bg-orange-500',
-  },
-  grounding: {
-    label: 'Hệ tiếp địa',
-    icon: <Shield className="h-5 w-5" />,
-    color: 'text-teal-600',
-    bg: 'bg-teal-50',
-    accent: 'bg-teal-500',
-  },
-  meter: {
-    label: 'Đồng hồ đo',
-    icon: <Plug className="h-5 w-5" />,
-    color: 'text-indigo-600',
-    bg: 'bg-indigo-50',
-    accent: 'bg-indigo-500',
-  },
-  installation: {
-    label: 'Nhân công lắp đặt',
-    icon: <Wrench className="h-5 w-5" />,
-    color: 'text-amber-600',
-    bg: 'bg-amber-50',
-    accent: 'bg-amber-500',
   },
 };
 
