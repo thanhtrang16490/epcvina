@@ -1,12 +1,7 @@
 import type { APIRoute } from 'astro';
-import { createClient } from '@supabase/supabase-js';
+import { filterProducts, localProducts } from '../../../data/products';
 
 export const prerender = false;
-
-const supabase = createClient(
-  import.meta.env.PUBLIC_SUPABASE_URL,
-  import.meta.env.SUPABASE_SERVICE_ROLE_KEY
-);
 
 export const GET: APIRoute = async ({ url }) => {
   const searchParams = url.searchParams;
@@ -26,88 +21,55 @@ export const GET: APIRoute = async ({ url }) => {
     : undefined;
 
   try {
-    let categoryId = null;
-    if (category && category !== 'all') {
-      const { data: catData } = await supabase
-        .from('categories')
-        .select('id')
-        .eq('slug', category)
-        .single();
+    // Filter local products
+    let filtered = filterProducts({
+      category,
+      brand,
+      search,
+      minPrice,
+      maxPrice,
+      productType,
+      phase,
+      voltage,
+    });
 
-      if (catData) {
-        categoryId = catData.id;
-      } else {
-        return new Response(JSON.stringify({
-          success: true,
-          data: [],
-          count: 0,
-        }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      }
-    }
-
-    let query = supabase
-      .from('products')
-      .select(`
-        *,
-        brands (*),
-        categories (*)
-      `)
-      .eq('is_available', true);
-
+    // Filter by show_on_homepage if specified
     if (showOnHomepage === 'true') {
-      query = query.eq('show_on_homepage', true);
+      filtered = filtered.filter(p => p.show_on_homepage);
     } else if (showOnHomepage === 'false') {
-      query = query.eq('show_on_homepage', false);
+      filtered = filtered.filter(p => !p.show_on_homepage);
     }
 
-    if (categoryId) {
-      query = query.eq('category_id', categoryId);
-    }
+    // Sort by name
+    filtered.sort((a, b) => a.name.localeCompare(b.name));
 
-    if (brand) {
-      query = query.eq('brands.slug', brand);
-    }
-
-    if (productType) {
-      query = query.eq('product_type', productType);
-    }
-
-    if (phase) {
-      query = query.eq('phase', phase);
-    }
-
-    if (voltage) {
-      query = query.eq('voltage', voltage);
-    }
-
-    if (minPrice !== undefined) {
-      query = query.gte('unit_price', minPrice);
-    }
-
-    if (maxPrice !== undefined) {
-      query = query.lte('unit_price', maxPrice);
-    }
-
-    if (search) {
-      query = query.or(`name.ilike.%${search}%,model.ilike.%${search}%`);
-    }
-
-    query = query.order('name', { ascending: true });
-
-    const { data: products, error } = await query;
-
-    if (error) {
-      console.error('Supabase error:', error);
-      throw error;
-    }
+    // Transform to match Supabase response format
+    const products = filtered.map(p => ({
+      id: p.id,
+      name: p.name,
+      slug: p.slug,
+      model: p.model,
+      description: p.description,
+      specifications: p.specifications,
+      features: p.features,
+      warranty_years: p.warranty_years,
+      unit_price: p.unit_price,
+      main_image: p.main_image,
+      is_available: p.is_available,
+      show_on_homepage: p.show_on_homepage,
+      product_type: p.product_type,
+      phase: p.phase,
+      voltage: p.voltage,
+      category_id: null, // For backward compatibility
+      brand_id: null, // For backward compatibility
+      brands: { name: p.brand, slug: p.brand.toLowerCase().replace(/\s+/g, '-') },
+      categories: { name: p.category, slug: p.category },
+    }));
 
     return new Response(JSON.stringify({
       success: true,
-      data: products || [],
-      count: products?.length || 0,
+      data: products,
+      count: products.length,
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
