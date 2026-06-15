@@ -64,8 +64,9 @@ export default function EquipmentPage({ category }: PageProps) {
         <EquipmentPageMobile category={category} />
       </div>
 
-      {/* Desktop: Hero full-width (section 1) */}
-      <div className="hidden lg:block">
+      {/* Desktop: Hero (section 1) + Sidebar + Content (section 2) */}
+      <div className="hidden lg:flex lg:flex-col lg:flex-1">
+        {/* Section 1: Hero full-width */}
         <EquipmentPageDesktop 
           category={category} 
           devices={allDevices}
@@ -77,36 +78,36 @@ export default function EquipmentPage({ category }: PageProps) {
           showHero={true}
           showContent={false}
         />
-      </div>
 
-      {/* Desktop: Sidebar + Content (section 2) */}
-      <div className="hidden lg:flex flex-1">
-        <EquipmentSidebar
-          category={category}
-          devices={allDevices}
-          selectedBrand={selectedBrand}
-          searchQuery={searchQuery}
-          sortBy={sortBy}
-          onSelectBrand={setSelectedBrand}
-          onSelectDevice={setSelectedDeviceId}
-          onShowDevice={(id) => {
-            setSelectedDeviceId(id);
-          }}
-          onSearchChange={setSearchQuery}
-          onSortChange={setSortBy}
-        />
-        <div className="flex-1 flex flex-col">
-          <EquipmentPageDesktop 
-            category={category} 
+        {/* Section 2: Sidebar + Content */}
+        <div className="flex flex-1">
+          <EquipmentSidebar
+            category={category}
             devices={allDevices}
-            loading={loading}
+            selectedBrand={selectedBrand}
             searchQuery={searchQuery}
             sortBy={sortBy}
+            onSelectBrand={setSelectedBrand}
+            onSelectDevice={setSelectedDeviceId}
+            onShowDevice={(id) => {
+              setSelectedDeviceId(id);
+            }}
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
-            showHero={false}
-            showContent={true}
           />
+          <div className="flex-1 flex flex-col">
+            <EquipmentPageDesktop 
+              category={category} 
+              devices={allDevices}
+              loading={loading}
+              searchQuery={searchQuery}
+              sortBy={sortBy}
+              onSearchChange={setSearchQuery}
+              onSortChange={setSortBy}
+              showHero={false}
+              showContent={true}
+            />
+          </div>
         </div>
       </div>
     </div>
