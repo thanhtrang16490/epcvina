@@ -62,15 +62,10 @@ export default function EquipmentPage({ category }: PageProps) {
         const catData = await catResponse.json();
         
         if (catData.success && catData.data) {
-          console.log('📦 API category data:', catData.data.length, 'products');
-          const catDevicesList: Device[] = catData.data.map((product: any) => {
-            console.log('🔄 Converting product:', product.name);
-            return productToDevice(product as any, category);
-          });
-          console.log('✅ Converted devices:', catDevicesList.length);
+          const catDevicesList: Device[] = catData.data.map((product: any) => 
+            productToDevice(product as any, category)
+          );
           setCategoryDevices(catDevicesList);
-        } else {
-          console.warn('⚠️ No category data received:', catData);
         }
       } catch (error) {
         console.error('Error fetching devices:', error);
