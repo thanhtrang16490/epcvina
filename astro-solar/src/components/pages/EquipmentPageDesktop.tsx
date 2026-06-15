@@ -161,7 +161,8 @@ export default function EquipmentPageDesktop({
 
       {/* PC Content */}
       {showContent && (
-        <div className="flex-1 max-w-7xl mx-auto px-6 py-4 w-full">
+        <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-7xl mx-auto w-full">
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
@@ -271,6 +272,7 @@ export default function EquipmentPageDesktop({
             ))}
           </div>
         )}
+        </div>
       </div>
       )}
 
