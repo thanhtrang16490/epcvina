@@ -1,7 +1,7 @@
 ---
 name: "Biến tần Hybrid SAJ 8kW 1 Pha"
 brand: "SAJ"
-category: "hybrid-inverter"
+category: "inverter"
 model: "1 Pha"
 description: "Biến tần Hybrid SAJ 8kW 1 Pha - Sản phẩm chính hãng từ SAJ"
 price: 25886000

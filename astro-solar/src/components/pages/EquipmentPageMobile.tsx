@@ -32,15 +32,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     accent: 'bg-blue-500',
     gradient: 'from-blue-400 to-blue-600',
   },
-  'hybrid-inverter': {
-    label: 'Biến tần / Inverter',
-    icon: <TrendingUp className="h-5 w-5"/>,
-    color: 'text-orange-600',
-    bg: 'bg-orange-50',
-    accent: 'bg-orange-500',
-    gradient: 'from-orange-400 to-orange-600',
-  },
-  'on-grid-inverter': {
+  inverter: {
     label: 'Biến tần / Inverter',
     icon: <TrendingUp className="h-5 w-5"/>,
     color: 'text-orange-600',
@@ -55,14 +47,6 @@ const CATEGORY_META: Record<EquipmentCategory, {
     bg: 'bg-green-50',
     accent: 'bg-green-500',
     gradient: 'from-green-400 to-green-600',
-  },
-  mounting: {
-    label: 'Phụ kiện lắp đặt',
-    icon: <Layers className="h-5 w-5"/>,
-    color: 'text-purple-600',
-    bg: 'bg-purple-50',
-    accent: 'bg-purple-500',
-    gradient: 'from-purple-400 to-purple-600',
   },
   accessories: {
     label: 'Phụ kiện lắp đặt',

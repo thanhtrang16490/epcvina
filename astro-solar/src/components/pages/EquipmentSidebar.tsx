@@ -9,48 +9,27 @@ const CATEGORY_META: Record<string, {
   bg: string;
   group?: string;
 }> = {
-  // Nhóm Tấm mô-đun quang điện
   panel: {
     label: 'Tấm mô-đun quang điện',
-    icon: <Zap className="h-5 w-5" />,
+    icon: <Zap className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
-  
-  // Nhóm Biến tần / Inverter
-  'hybrid-inverter': {
+  inverter: {
     label: 'Biến tần / Inverter',
-    icon: <TrendingUp className="h-5 w-5" />,
+    icon: <TrendingUp className="h-5 w-5"/>,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
-    group: 'inverter',
   },
-  'on-grid-inverter': {
-    label: 'Biến tần / Inverter',
-    icon: <TrendingUp className="h-5 w-5" />,
-    color: 'text-orange-600',
-    bg: 'bg-orange-50',
-    group: 'inverter',
-  },
-  
-  // Nhóm Pin lưu trữ
   battery: {
     label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5" />,
+    icon: <Battery className="h-5 w-5"/>,
     color: 'text-green-600',
     bg: 'bg-green-50',
   },
-  
-  // Nhóm Phụ kiện lắp đặt
-  mounting: {
-    label: 'Phụ kiện lắp đặt',
-    icon: <Layers className="h-5 w-5" />,
-    color: 'text-purple-600',
-    bg: 'bg-purple-50',
-  },
   accessories: {
     label: 'Phụ kiện lắp đặt',
-    icon: <Shield className="h-5 w-5" />,
+    icon: <Shield className="h-5 w-5"/>,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
   },

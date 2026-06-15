@@ -1,7 +1,7 @@
 ---
 name: "Tủ điện Hybrid 3 pha 15-20kW 3 String"
 brand: "EPCVINA"
-category: "cabinet"
+category: "accessories"
 model: "3 String"
 description: "Tủ điện Hybrid 3 pha 15-20kW 3 String - Sản phẩm chính hãng từ EPCVINA"
 

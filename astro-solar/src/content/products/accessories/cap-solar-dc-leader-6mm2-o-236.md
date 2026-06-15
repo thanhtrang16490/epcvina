@@ -1,7 +1,7 @@
 ---
 name: "Cáp Solar DC LEADER 6mm² đỏ"
 brand: "LEADER"
-category: "wiring"
+category: "accessories"
 model: "6mm² đỏ"
 description: "Cáp Solar DC LEADER 6mm² đỏ - Sản phẩm chính hãng từ LEADER"
 price: 25300

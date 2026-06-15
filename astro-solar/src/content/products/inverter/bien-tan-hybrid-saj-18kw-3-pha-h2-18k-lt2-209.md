@@ -1,7 +1,7 @@
 ---
 name: "Biến tần Hybrid SAJ 18kW 3 Pha"
 brand: "SAJ"
-category: "hybrid-inverter"
+category: "inverter"
 model: "3 Pha"
 description: "Biến tần Hybrid SAJ 18kW 3 Pha - Sản phẩm chính hãng từ SAJ"
 price: 54006000

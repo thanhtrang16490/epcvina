@@ -1,7 +1,7 @@
 ---
 name: "Biến tần Hybrid HOPETREK 12kW 3 pha"
 brand: "HOPETREK"
-category: "hybrid-inverter"
+category: "inverter"
 model: "3 pha"
 description: "Biến tần Hybrid HOPETREK 12kW 3 pha - Sản phẩm chính hãng từ HOPETREK"
 price: 42424000

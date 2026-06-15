@@ -1,7 +1,7 @@
 ---
 name: "Cáp Solar DC LEADER 6mm² đen"
 brand: "LEADER"
-category: "wiring"
+category: "accessories"
 model: "6mm² đen"
 description: "Cáp Solar DC LEADER 6mm² đen - Sản phẩm chính hãng từ LEADER"
 price: 25300

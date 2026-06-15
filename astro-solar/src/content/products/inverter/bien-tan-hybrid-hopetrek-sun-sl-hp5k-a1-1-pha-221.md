@@ -1,7 +1,7 @@
 ---
 name: "Biến tần Hybrid HOPETREK 5kW 1 pha"
 brand: "HOPETREK"
-category: "hybrid-inverter"
+category: "inverter"
 model: "1 pha"
 description: "Biến tần Hybrid HOPETREK 5kW 1 pha - Sản phẩm chính hãng từ HOPETREK"
 price: 19921000
