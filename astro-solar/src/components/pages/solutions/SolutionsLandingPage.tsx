@@ -601,7 +601,8 @@ export default function SolutionsLandingPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 3 – CHỌN GIẢI PHÁP PHÙ HỢP
+          SECTION 3 – CHỌN GIẢI PHÁP PHÙ HỢP (MERGED)
+          Combines: 3 Cấp Độ + So Sánh Các Giải Pháp
           ═══════════════════════════════════════════════════════ */}
       <section
         className="py-16 sm:py-24 bg-gray-50"
@@ -614,15 +615,16 @@ export default function SolutionsLandingPage() {
                 id="solutions-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                3 Cấp Độ Giải Pháp Năng Lượng Gia Đình
+                Chọn Giải Pháp Phù Hợp
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Lựa chọn giải pháp phù hợp nhất với nhu cầu và điều kiện của gia đình bạn.
+                3 Cấp Độ Giải Pháp Năng Lượng Gia Đình – Lựa chọn giải pháp phù hợp nhất với nhu cầu và điều kiện của bạn.
               </p>
             </div>
           </AnimateIn>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          {/* Solution Cards */}
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
             {solutionTypes.map((solution, idx) => {
               const Icon = solution.icon;
               return (
@@ -691,76 +693,69 @@ export default function SolutionsLandingPage() {
               );
             })}
           </div>
-        </div>
-      </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          SECTION 3.6 – BẢNG SO SÁNH CÁC GIẢI PHÁP
-          ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-24 bg-white" aria-labelledby="comparison-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Comparison Table */}
           <AnimateIn>
-            <div className="text-center mb-12">
-              <h2
-                id="comparison-heading"
-                className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
-              >
-                So Sánh Các Giải Pháp Solar Home
-              </h2>
-              <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Bảng so sánh chi tiết giúp bạn lựa chọn giải pháp phù hợp nhất với nhu cầu gia đình.
+            <div className="text-center mb-8">
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
+                So Sánh Chi Tiết Các Giải Pháp
+              </h3>
+              <p className="text-gray-500 text-base max-w-2xl mx-auto">
+                Bảng so sánh chi tiết giúp bạn lựa chọn giải pháp phù hợp nhất.
               </p>
             </div>
           </AnimateIn>
 
           <AnimateIn delay={100}>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gray-50">
-                    <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-gray-200">Tiêu chí</th>
-                    <th className="text-center p-4 font-bold text-amber-700 border-b-2 border-amber-200 bg-amber-50">
-                      <Sun className="h-5 w-5 mx-auto mb-1" />
-                      On-Grid Solar
-                    </th>
-                    <th className="text-center p-4 font-bold text-blue-700 border-b-2 border-blue-200 bg-blue-50">
-                      <Zap className="h-5 w-5 mx-auto mb-1" />
-                      Hybrid Solar
-                    </th>
-                    <th className="text-center p-4 font-bold text-emerald-700 border-b-2 border-emerald-200 bg-emerald-50">
-                      <Battery className="h-5 w-5 mx-auto mb-1" />
-                      Hybrid + Battery
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { criterion: 'Tấm pin mặt trời', ongrid: '✓', hybrid: '✓', hybridBattery: '✓' },
-                    { criterion: 'Inverter Hybrid', ongrid: '✕', hybrid: '✓', hybridBattery: '✓' },
-                    { criterion: 'Pin lưu trữ (Battery)', ongrid: '✕', hybrid: 'Tùy chọn nâng cấp sau', hybridBattery: '✓' },
-                    { criterion: 'Kết nối điện lưới', ongrid: '✓', hybrid: '✓', hybridBattery: '✓' },
-                    { criterion: 'Hoạt động khi mất điện', ongrid: '✕', hybrid: 'Có thể (nếu có ngõ Backup)', hybridBattery: '✓' },
-                    { criterion: 'Dự phòng mất điện', ongrid: '✕', hybrid: 'Hạn chế', hybridBattery: '✓✓✓' },
-                    { criterion: 'Sử dụng điện mặt trời ban ngày', ongrid: '✓', hybrid: '✓', hybridBattery: '✓' },
-                    { criterion: 'Sử dụng điện mặt trời ban đêm', ongrid: '✕', hybrid: 'Hạn chế', hybridBattery: '✓' },
-                    { criterion: 'Lưu trữ điện dư', ongrid: '✕', hybrid: 'Có thể nâng cấp', hybridBattery: '✓' },
-                    { criterion: 'Tỷ lệ tự dùng điện mặt trời', ongrid: '30–50%', hybrid: '40–70%', hybridBattery: '70–95%' },
-                    { criterion: 'Mức độ tự chủ năng lượng', ongrid: 'Thấp', hybrid: 'Trung bình', hybridBattery: 'Cao' },
-                    { criterion: 'Khả năng mở rộng', ongrid: 'Hạn chế', hybrid: '✓✓✓', hybridBattery: '✓✓✓' },
-                    { criterion: 'Chi phí đầu tư', ongrid: '$', hybrid: '$$', hybridBattery: '$$$' },
-                    { criterion: 'Thời gian hoàn vốn', ongrid: 'Nhanh nhất', hybrid: 'Trung bình', hybridBattery: 'Dài hơn' },
-                    { criterion: 'Phù hợp EV Charger', ongrid: 'Hạn chế', hybrid: 'Tốt', hybridBattery: 'Rất tốt' },
-                    { criterion: 'Phù hợp khu vực hay mất điện', ongrid: '✕', hybrid: 'Tương đối', hybridBattery: '✓✓✓' },
-                  ].map((row, idx) => (
-                    <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                      <td className="p-4 border-b border-gray-200 text-gray-900 font-medium">{row.criterion}</td>
-                      <td className="p-4 border-b border-gray-200 text-center text-amber-700 bg-amber-50/30 font-semibold">{row.ongrid}</td>
-                      <td className="p-4 border-b border-gray-200 text-center text-blue-700 bg-blue-50/30 font-semibold">{row.hybrid}</td>
-                      <td className="p-4 border-b border-gray-200 text-center text-emerald-700 bg-emerald-50/30 font-semibold">{row.hybridBattery}</td>
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-gray-50">
+                      <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-gray-200">Tiêu chí</th>
+                      <th className="text-center p-4 font-bold text-amber-700 border-b-2 border-amber-200 bg-amber-50">
+                        <Sun className="h-5 w-5 mx-auto mb-1" />
+                        On-Grid Solar
+                      </th>
+                      <th className="text-center p-4 font-bold text-emerald-700 border-b-2 border-emerald-200 bg-emerald-50">
+                        <Zap className="h-5 w-5 mx-auto mb-1" />
+                        Hybrid Solar
+                      </th>
+                      <th className="text-center p-4 font-bold text-blue-700 border-b-2 border-blue-200 bg-blue-50">
+                        <Battery className="h-5 w-5 mx-auto mb-1" />
+                        Hybrid + Battery
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {[
+                      { criterion: 'Tấm pin mặt trời', ongrid: '✓', hybrid: '✓', hybridBattery: '✓' },
+                      { criterion: 'Inverter Hybrid', ongrid: '✕', hybrid: '✓', hybridBattery: '✓' },
+                      { criterion: 'Pin lưu trữ (Battery)', ongrid: '✕', hybrid: 'Tùy chọn nâng cấp sau', hybridBattery: '✓' },
+                      { criterion: 'Kết nối điện lưới', ongrid: '✓', hybrid: '✓', hybridBattery: '✓' },
+                      { criterion: 'Hoạt động khi mất điện', ongrid: '✕', hybrid: 'Có thể (nếu có ngõ Backup)', hybridBattery: '✓' },
+                      { criterion: 'Dự phòng mất điện', ongrid: '✕', hybrid: 'Hạn chế', hybridBattery: '✓✓✓' },
+                      { criterion: 'Sử dụng điện mặt trời ban ngày', ongrid: '✓', hybrid: '✓', hybridBattery: '✓' },
+                      { criterion: 'Sử dụng điện mặt trời ban đêm', ongrid: '✕', hybrid: 'Hạn chế', hybridBattery: '✓' },
+                      { criterion: 'Lưu trữ điện dư', ongrid: '✕', hybrid: 'Có thể nâng cấp', hybridBattery: '✓' },
+                      { criterion: 'Tỷ lệ tự dùng điện mặt trời', ongrid: '30–50%', hybrid: '40–70%', hybridBattery: '70–95%' },
+                      { criterion: 'Mức độ tự chủ năng lượng', ongrid: 'Thấp', hybrid: 'Trung bình', hybridBattery: 'Cao' },
+                      { criterion: 'Khả năng mở rộng', ongrid: 'Hạn chế', hybrid: '✓✓✓', hybridBattery: '✓✓✓' },
+                      { criterion: 'Chi phí đầu tư', ongrid: '$', hybrid: '$$', hybridBattery: '$$$' },
+                      { criterion: 'Thời gian hoàn vốn', ongrid: 'Nhanh nhất', hybrid: 'Trung bình', hybridBattery: 'Dài hơn' },
+                      { criterion: 'Phù hợp EV Charger', ongrid: 'Hạn chế', hybrid: 'Tốt', hybridBattery: 'Rất tốt' },
+                      { criterion: 'Phù hợp khu vực hay mất điện', ongrid: '✕', hybrid: 'Tương đối', hybridBattery: '✓✓✓' },
+                    ].map((row, idx) => (
+                      <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                        <td className="p-4 border-b border-gray-200 text-gray-900 font-medium">{row.criterion}</td>
+                        <td className="p-4 border-b border-gray-200 text-center text-amber-700 bg-amber-50/30 font-semibold">{row.ongrid}</td>
+                        <td className="p-4 border-b border-gray-200 text-center text-emerald-700 bg-emerald-50/30 font-semibold">{row.hybrid}</td>
+                        <td className="p-4 border-b border-gray-200 text-center text-blue-700 bg-blue-50/30 font-semibold">{row.hybridBattery}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </AnimateIn>
         </div>
