@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Sun, Zap, Battery, ChevronDown, ChevronUp } from 'lucide-react';
 
 /* ─── Tab Types ────────────────────────────────────────── */
@@ -173,32 +173,34 @@ function SystemRow({
     availablePhases.length > 0 ? availablePhases[0].key : '1-phase'
   );
   const [showAll, setShowAll] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   // Filter combos by active tab
   const filteredCombos = combos.filter(c => c.phase === activeTab);
+  const totalCombos = filteredCombos.length;
+  const visibleCount = showAll ? totalCombos : 4;
 
-  // Auto-slide when not expanded
+  // Auto-slide carousel when not expanded
   useEffect(() => {
-    if (showAll || filteredCombos.length <= 4) return;
+    if (showAll || totalCombos <= 4) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => {
-        const next = prev + 1;
+      setCarouselIndex((prev) => {
+        const nextIndex = prev + 1;
         // Reset to 0 when we've shown all combos
-        if (next >= filteredCombos.length - 3) {
+        if (nextIndex > totalCombos - visibleCount) {
           return 0;
         }
-        return next;
+        return nextIndex;
       });
     }, 3000); // Slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, [showAll, filteredCombos.length]);
+  }, [showAll, totalCombos, visibleCount]);
 
-  // Reset index when tab changes
+  // Reset carousel when tab changes
   useEffect(() => {
-    setCurrentIndex(0);
+    setCarouselIndex(0);
   }, [activeTab]);
 
   return (
@@ -241,41 +243,35 @@ function SystemRow({
       {/* Combo Grid */}
       {filteredCombos.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 overflow-hidden">
-            {!showAll && filteredCombos.length > 4 ? (
-              // Sliding view - show 4 items starting from currentIndex
-              filteredCombos.slice(currentIndex, currentIndex + 4).map((combo) => (
-                <ComboCard key={combo.id} combo={combo} variant={variant} />
-              ))
-            ) : (
-              // Static view - show all or first 4
-              filteredCombos.slice(0, showAll ? filteredCombos.length : 4).map((combo) => (
-                <ComboCard key={combo.id} combo={combo} variant={variant} />
-              ))
-            )}
+          <div className="overflow-hidden">
+            <div 
+              className="flex gap-4 transition-transform duration-700 ease-in-out"
+              style={{ 
+                transform: showAll || totalCombos <= 4 ? 'translateX(0)' : `translateX(-${carouselIndex * 25}%)`,
+                width: showAll || totalCombos <= 4 ? 'auto' : `${(totalCombos / 4) * 100}%`
+              }}
+            >
+              {filteredCombos.map((combo) => (
+                <div 
+                  key={combo.id} 
+                  className="flex-shrink-0" 
+                  style={{ width: 'calc(25% - 12px)' }}
+                >
+                  <ComboCard combo={combo} variant={variant} />
+                </div>
+              ))}
+            </div>
           </div>
 
-          {!showAll && filteredCombos.length > 4 && (
-            <div className="flex items-center justify-between mt-6">
-              {/* Slide indicators */}
-              <div className="flex gap-2">
-                {Array.from({ length: filteredCombos.length - 3 }, (_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentIndex(i)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      Math.floor(currentIndex / 1) === i
-                        ? 'bg-emerald-600 w-6'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Expand button */}
+          {filteredCombos.length > 4 && (
+            <div className="text-center mt-6">
               <button
-                onClick={() => setShowAll(!showAll)}
+                onClick={() => {
+                  setShowAll(!showAll);
+                  if (!showAll) {
+                    setCarouselIndex(0); // Reset carousel when expanding
+                  }
+                }}
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
               >
                 {showAll ? (
@@ -289,18 +285,6 @@ function SystemRow({
                     <ChevronDown className="h-4 w-4" />
                   </>
                 )}
-              </button>
-            </div>
-          )}
-
-          {showAll && filteredCombos.length > 4 && (
-            <div className="text-center mt-6">
-              <button
-                onClick={() => setShowAll(false)}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
-              >
-                Thu gọn
-                <ChevronUp className="h-4 w-4" />
               </button>
             </div>
           )}
