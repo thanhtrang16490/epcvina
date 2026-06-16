@@ -243,25 +243,35 @@ function SystemRow({
       {/* Combo Grid */}
       {filteredCombos.length > 0 ? (
         <>
-          <div className="overflow-hidden">
-            <div 
-              className="flex gap-4 transition-transform duration-700 ease-in-out"
-              style={{ 
-                transform: showAll || totalCombos <= 4 ? 'translateX(0)' : `translateX(-${carouselIndex * 25}%)`,
-                width: showAll || totalCombos <= 4 ? 'auto' : `${(totalCombos / 4) * 100}%`
-              }}
-            >
+          {showAll ? (
+            // Grid layout when expanded (no carousel)
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {filteredCombos.map((combo) => (
-                <div 
-                  key={combo.id} 
-                  className="flex-shrink-0" 
-                  style={{ width: 'calc(25% - 12px)' }}
-                >
-                  <ComboCard combo={combo} variant={variant} />
-                </div>
+                <ComboCard key={combo.id} combo={combo} variant={variant} />
               ))}
             </div>
-          </div>
+          ) : (
+            // Carousel layout when not expanded
+            <div className="overflow-hidden">
+              <div 
+                className="flex gap-4 transition-transform duration-700 ease-in-out"
+                style={{ 
+                  transform: `translateX(-${carouselIndex * 25}%)`,
+                  width: `${(totalCombos / 4) * 100}%`
+                }}
+              >
+                {filteredCombos.map((combo) => (
+                  <div 
+                    key={combo.id} 
+                    className="flex-shrink-0" 
+                    style={{ width: 'calc(25% - 12px)' }}
+                  >
+                    <ComboCard combo={combo} variant={variant} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {filteredCombos.length > 4 && (
             <div className="text-center mt-6">
