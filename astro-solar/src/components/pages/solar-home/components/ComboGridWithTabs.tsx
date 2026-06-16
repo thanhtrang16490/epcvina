@@ -230,7 +230,7 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
         className="rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-all cursor-pointer overflow-hidden flex flex-col"
         onClick={() => setShowModal(true)}
       >
-        <div className="px-3 pt-3 pb-2 rounded-lg mb-3" style={{ background: headerColors[variant] }}>
+        <div className="px-4 pt-4 pb-3" style={{ background: headerColors[variant] }}>
           <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5" style={{ background: badgeColors[variant].bg, color: badgeColors[variant].color }}>
             {variant === 'ongrid' ? <Sun className="w-2.5 h-2.5" /> : <Battery className="w-2.5 h-2.5" />}
             {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + Battery'}
@@ -238,28 +238,28 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
           <h4 className="text-base font-bold text-gray-900">{combo.name}</h4>
         </div>
 
-      <div className="space-y-1.5 mb-3">
-        <div className="flex items-center justify-between text-xs">
+        <div className="px-4 py-3 space-y-2.5">
+        <div className="flex items-center justify-between text-sm">
           <span className="text-gray-500">Công suất:</span>
           <span className="font-semibold text-gray-900">{combo.power} kWp</span>
         </div>
         {combo.battery && (
-          <div className="flex items-center justify-between text-xs">
+          <div className="flex items-center justify-between text-sm">
             <span className="text-gray-500">Pin lưu trữ:</span>
             <span className="font-semibold text-blue-600">{combo.battery} kWh</span>
           </div>
         )}
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between text-sm">
           <span className="text-gray-500">Sản lượng:</span>
           <span className="font-semibold text-emerald-600">{combo.productionMin}–{combo.productionMax} kWh/tháng</span>
         </div>
-        <div className="flex items-center justify-between text-xs">
+        <div className="flex items-center justify-between text-sm">
           <span className="text-gray-500">Hoàn vốn:</span>
           <span className="font-semibold text-gray-900">{combo.paybackStr}</span>
         </div>
-      </div>
+        </div>
 
-      <div className="pt-3 border-t border-gray-200">
+        <div className="px-4 py-3 border-t border-gray-200">
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold text-gray-900">{(combo.price / 1000000).toFixed(0)} triệu</span>
           {combo.is_popular && (
