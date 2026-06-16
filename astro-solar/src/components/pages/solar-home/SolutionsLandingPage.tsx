@@ -2,9 +2,9 @@
  * SolutionsLandingPage - Solar Home Page
  * 
  * This page has been refactored into smaller, manageable components:
- * - Data: src/components/pages/solutions/data/solar-home-data.ts
- * - Combo Cards: src/components/pages/solutions/components/OnGridCombos.tsx
- * - Combo Cards: src/components/pages/solutions/components/HybridCombos.tsx
+ * - Data: src/components/pages/solar-home/data/solar-home-data.ts
+ * - Combo Cards: src/components/pages/solar-home/components/OnGridCombos.tsx
+ * - Combo Cards: src/components/pages/solar-home/components/HybridCombos.tsx
  * 
  * Main sections (in order):
  * 1. HeroSection
