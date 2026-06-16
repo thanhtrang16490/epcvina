@@ -102,12 +102,9 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
             <div className="absolute inset-0 flex items-center justify-center p-8">
               <div className="w-full h-full bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
                 <img 
-                  src={`/images/combos/${combo.slug || combo.id}.jpg`}
+                  src="/sample-combo.jpg"
                   alt={combo.name}
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop';
-                  }}
                 />
               </div>
             </div>
