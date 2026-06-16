@@ -43,11 +43,9 @@ const ONGRID_COMBOS: ComboItem[] = [
   { id: 'og3p-157', name: 'On-Grid 15.7 kWp', power: 15.63, price: 145800000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1100, productionMax: 1300, paybackStr: '3 năm 5 tháng' },
   { id: 'og3p-188', name: 'On-Grid 18.8 kWp', power: 18.75, price: 167200000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1400, paybackStr: '3 năm 7 tháng', is_popular: true },
   { id: 'og3p-294', name: 'On-Grid 29.4 kWp', power: 29.38, price: 278000000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 2500, productionMax: 3600, paybackStr: '2 năm 7 tháng' },
-  // 3-Phase Low Voltage
-  { id: 'og3p-488', name: 'On-Grid 48.8 kWp', power: 48.75, price: 440600000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 4500, productionMax: 6000, paybackStr: '2 năm 5 tháng' },
-  { id: 'og3p-731', name: 'On-Grid 73.1 kWp', power: 73.13, price: 638900000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 6000, productionMax: 9000, paybackStr: '2 năm 5 tháng' },
-  // 3-Phase High Voltage
-  { id: 'og3p-97', name: 'On-Grid 97 kWp', power: 96.88, price: 827500000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 8000, productionMax: 11800, paybackStr: '2 năm 5 tháng' },
+  { id: 'og3p-488', name: 'On-Grid 48.8 kWp', power: 48.75, price: 440600000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 4500, productionMax: 6000, paybackStr: '2 năm 5 tháng' },
+  { id: 'og3p-731', name: 'On-Grid 73.1 kWp', power: 73.13, price: 638900000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 6000, productionMax: 9000, paybackStr: '2 năm 5 tháng' },
+  { id: 'og3p-97', name: 'On-Grid 97 kWp', power: 96.88, price: 827500000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 8000, productionMax: 11800, paybackStr: '2 năm 5 tháng' },
 ];
 
 const HYBRID_COMBOS: ComboItem[] = [
@@ -56,14 +54,18 @@ const HYBRID_COMBOS: ComboItem[] = [
   { id: 'hyb-5-10', name: 'Hybrid 5 kWp – 10 kWh', power: 5, battery: 10.24, price: 125000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 500, productionMax: 700, paybackStr: '5 năm 2 tháng' },
   { id: 'hyb-88-5', name: 'Hybrid 8.8 kWp – 5 kWh', power: 8.75, battery: 5.12, price: 145000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: '4 năm 6 tháng', is_popular: true },
   { id: 'hyb-88-10', name: 'Hybrid 8.8 kWp – 10 kWh', power: 8.75, battery: 10.24, price: 168000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: '4 năm 9 tháng' },
+  // 3-Phase Low Voltage
+  { id: 'hyb-3p-10-10', name: 'Hybrid 10 kWp 3P – 10 kWh', power: 10, battery: 10.24, price: 175000000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1100, paybackStr: '4 năm 9 tháng' },
+  { id: 'hyb-3p-15-15', name: 'Hybrid 15 kWp 3P – 15 kWh', power: 15, battery: 15.36, price: 245000000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: '5 năm 1 tháng', is_popular: true },
+  { id: 'hyb-3p-20-20', name: 'Hybrid 20 kWp 3P – 20 kWh', power: 20, battery: 20.48, price: 320000000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1600, productionMax: 2000, paybackStr: '5 năm 4 tháng' },
 ];
 
 const HYBRID_BATTERY_COMBOS: ComboItem[] = [
-  // 1-Phase
-  { id: 'hyb-88-16', name: 'Hybrid 8.8 kWp – 16 kWh', power: 8.75, battery: 16.38, price: 195000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: '5 năm 1 tháng' },
-  { id: 'hyb-107-10', name: 'Hybrid 10.7 kWp – 10 kWh', power: 10.63, battery: 10.24, price: 185000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1100, paybackStr: '4 năm 10 tháng' },
-  { id: 'hyb-107-16', name: 'Hybrid 10.7 kWp – 16 kWh', power: 10.63, battery: 16.38, price: 215000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1100, paybackStr: '5 năm 3 tháng', is_popular: true },
-  { id: 'hyb-157-16', name: 'Hybrid 15.7 kWp – 16 kWh', power: 15.63, battery: 16.38, price: 285000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: '5 năm 6 tháng' },
+  // 3-Phase High Voltage
+  { id: 'hyb-hv-30-30', name: 'Hybrid 30 kWp 3P HV – 30 kWh', power: 30, battery: 30.72, price: 450000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 2400, productionMax: 3000, paybackStr: '5 năm 6 tháng', is_popular: true },
+  { id: 'hyb-hv-40-40', name: 'Hybrid 40 kWp 3P HV – 40 kWh', power: 40, battery: 40.96, price: 580000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 3200, productionMax: 4000, paybackStr: '5 năm 9 tháng' },
+  { id: 'hyb-hv-50-50', name: 'Hybrid 50 kWp 3P HV – 50 kWh', power: 50, battery: 51.20, price: 720000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 4000, productionMax: 5000, paybackStr: '6 năm' },
+  { id: 'hyb-hv-75-75', name: 'Hybrid 75 kWp 3P HV – 75 kWh', power: 75, battery: 76.80, price: 1050000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 6000, productionMax: 7500, paybackStr: '6 năm 3 tháng' },
 ];
 
 /* ─── Combo Card Component ─────────────────────────────── */
@@ -217,7 +219,7 @@ export default function ComboGridWithTabs() {
       {/* On-Grid Solar Row */}
       <SystemRow
         title="On-Grid Solar"
-        description="Hoàn vốn nhanh, tiết kiệm 50-70% hóa đơn"
+        description="Hoàn vốn nhanh, tiết kiệm 50-70% hóa đơn – 1 pha & 3 pha"
         icon={Sun}
         iconColor="bg-gradient-to-br from-amber-500 to-orange-600"
         combos={ONGRID_COMBOS}
@@ -227,7 +229,7 @@ export default function ComboGridWithTabs() {
       {/* Hybrid Solar Row */}
       <SystemRow
         title="Hybrid Solar"
-        description="Có pin lưu trữ, sử dụng khi mất điện"
+        description="Có pin lưu trữ, sử dụng khi mất điện – 1 pha & 3 pha áp thấp"
         icon={Zap}
         iconColor="bg-gradient-to-br from-blue-500 to-indigo-600"
         combos={HYBRID_COMBOS}
@@ -237,7 +239,7 @@ export default function ComboGridWithTabs() {
       {/* Hybrid + Battery Row */}
       <SystemRow
         title="Hybrid + Battery"
-        description="Dung lượng lớn, dự phòng dài hạn"
+        description="Dung lượng lớn, dự phòng dài hạn – 3 pha áp cao"
         icon={Battery}
         iconColor="bg-gradient-to-br from-emerald-500 to-teal-600"
         combos={HYBRID_BATTERY_COMBOS}
