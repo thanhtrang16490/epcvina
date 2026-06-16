@@ -17,7 +17,7 @@ const PHASE_TABS: TabConfig[] = [
   { key: '3-phase-high', label: '3 Pha Áp Cao', icon: Battery },
 ];
 
-/* ─── Combo Data ───────────────────────────────────────── */
+/* ─── Combo Data (from SolarSolutionFinder catalog) ────── */
 interface ComboItem {
   id: string;
   name: string;
@@ -31,41 +31,58 @@ interface ComboItem {
   productionMax: number;
   paybackStr: string;
   is_popular?: boolean;
+  roofArea?: number;
+}
+
+// Helper to format payback: '4n3t' → '4 năm 3 tháng'
+function fmtPayback(s: string): string {
+  const m = s.match(/(\d+)n(\d+)t/);
+  if (!m) return s;
+  const t = parseInt(m[2]);
+  return t > 0 ? `${m[1]} năm ${t} tháng` : `${m[1]} năm`;
 }
 
 const ONGRID_COMBOS: ComboItem[] = [
   // 1-Phase
-  { id: 'og1p-5', name: 'On-Grid 5 kWp', power: 5, price: 60000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 350, productionMax: 450, paybackStr: '4 năm 3 tháng', is_popular: true },
-  { id: 'og1p-88', name: 'On-Grid 8.8 kWp', power: 8.75, price: 95000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: '2 năm 11 tháng', is_popular: true },
-  { id: 'og1p-107', name: 'On-Grid 10.7 kWp', power: 10.63, price: 110700000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1100, paybackStr: '3 năm 1 tháng' },
+  { id: 'og1p-5', name: 'On-Grid 5 kWp', power: 5, price: 60000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 350, productionMax: 450, paybackStr: fmtPayback('4n3t'), is_popular: true, roofArea: 21.6 },
+  { id: 'og1p-88', name: 'On-Grid 8.8 kWp', power: 8.75, price: 95000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: fmtPayback('2n11t'), is_popular: true, roofArea: 37.8 },
+  { id: 'og1p-107', name: 'On-Grid 10.7 kWp', power: 10.63, price: 110700000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1100, paybackStr: fmtPayback('3n1t'), roofArea: 45.9 },
   // 3-Phase
-  { id: 'og3p-107', name: 'On-Grid 10.7 kWp', power: 10.63, price: 108400000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: '3 năm 5 tháng' },
-  { id: 'og3p-157', name: 'On-Grid 15.7 kWp', power: 15.63, price: 145800000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1100, productionMax: 1300, paybackStr: '3 năm 5 tháng' },
-  { id: 'og3p-188', name: 'On-Grid 18.8 kWp', power: 18.75, price: 167200000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1400, paybackStr: '3 năm 7 tháng', is_popular: true },
-  { id: 'og3p-294', name: 'On-Grid 29.4 kWp', power: 29.38, price: 278000000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 2500, productionMax: 3600, paybackStr: '2 năm 7 tháng' },
-  { id: 'og3p-488', name: 'On-Grid 48.8 kWp', power: 48.75, price: 440600000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 4500, productionMax: 6000, paybackStr: '2 năm 5 tháng' },
-  { id: 'og3p-731', name: 'On-Grid 73.1 kWp', power: 73.13, price: 638900000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 6000, productionMax: 9000, paybackStr: '2 năm 5 tháng' },
-  { id: 'og3p-97', name: 'On-Grid 97 kWp', power: 96.88, price: 827500000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 8000, productionMax: 11800, paybackStr: '2 năm 5 tháng' },
+  { id: 'og3p-107', name: 'On-Grid 10.7 kWp', power: 10.63, price: 108400000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: fmtPayback('3n5t'), roofArea: 45.9 },
+  { id: 'og3p-157', name: 'On-Grid 15.7 kWp', power: 15.63, price: 145800000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1100, productionMax: 1300, paybackStr: fmtPayback('3n5t'), roofArea: 67.5 },
+  { id: 'og3p-188', name: 'On-Grid 18.8 kWp', power: 18.75, price: 167200000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1400, paybackStr: fmtPayback('3n7t'), is_popular: true, roofArea: 81 },
+  { id: 'og3p-294', name: 'On-Grid 29.4 kWp', power: 29.38, price: 278000000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 2500, productionMax: 3600, paybackStr: fmtPayback('2n7t'), roofArea: 126.9 },
+  { id: 'og3p-488', name: 'On-Grid 48.8 kWp', power: 48.75, price: 440600000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 4500, productionMax: 6000, paybackStr: fmtPayback('2n5t'), roofArea: 210.6 },
+  { id: 'og3p-731', name: 'On-Grid 73.1 kWp', power: 73.13, price: 638900000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 6000, productionMax: 9000, paybackStr: fmtPayback('2n5t'), roofArea: 316.1 },
+  { id: 'og3p-97', name: 'On-Grid 97 kWp', power: 96.88, price: 827500000, phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 8000, productionMax: 11800, paybackStr: fmtPayback('2n5t'), roofArea: 418.8 },
 ];
 
 const HYBRID_COMBOS: ComboItem[] = [
   // 1-Phase
-  { id: 'hyb-5-5', name: 'Hybrid 5 kWp – 5 kWh', power: 5, battery: 5.12, price: 100500000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 500, productionMax: 700, paybackStr: '4 năm 8 tháng', is_popular: true },
-  { id: 'hyb-5-10', name: 'Hybrid 5 kWp – 10 kWh', power: 5, battery: 10.24, price: 125000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 500, productionMax: 700, paybackStr: '5 năm 2 tháng' },
-  { id: 'hyb-88-5', name: 'Hybrid 8.8 kWp – 5 kWh', power: 8.75, battery: 5.12, price: 145000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: '4 năm 6 tháng', is_popular: true },
-  { id: 'hyb-88-10', name: 'Hybrid 8.8 kWp – 10 kWh', power: 8.75, battery: 10.24, price: 168000000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1000, paybackStr: '4 năm 9 tháng' },
+  { id: 'h1p-5-5', name: 'Hybrid 5 kWp – 5.12 kWh', power: 5, battery: 5.12, price: 100500000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 500, productionMax: 700, paybackStr: fmtPayback('4n8t'), is_popular: true, roofArea: 21.6 },
+  { id: 'h1p-5-10', name: 'Hybrid 5 kWp – 10.24 kWh', power: 5, battery: 10.24, price: 123600000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 400, productionMax: 600, paybackStr: fmtPayback('6n10t'), roofArea: 21.6 },
+  { id: 'h1p-88-5', name: 'Hybrid 8.8 kWp – 5.12 kWh', power: 8.75, battery: 5.12, price: 125200000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 600, productionMax: 900, paybackStr: fmtPayback('4n8t'), is_popular: true, roofArea: 37.8 },
+  { id: 'h1p-88-10', name: 'Hybrid 8.8 kWp – 10.24 kWh', power: 8.75, battery: 10.24, price: 148300000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 700, productionMax: 1000, paybackStr: fmtPayback('4n10t'), roofArea: 37.8 },
+  { id: 'h1p-107-5', name: 'Hybrid 10.7 kWp – 5.12 kWh', power: 10.63, battery: 5.12, price: 151400000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1200, paybackStr: fmtPayback('4n0t'), roofArea: 45.9 },
+  { id: 'h1p-88-16', name: 'Hybrid 8.8 kWp – 16 kWh', power: 8.75, battery: 16, price: 164800000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 600, productionMax: 900, paybackStr: fmtPayback('6n2t'), roofArea: 37.8 },
+  { id: 'h1p-107-10', name: 'Hybrid 10.7 kWp – 10.24 kWh', power: 10.63, battery: 10.24, price: 174500000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1200, paybackStr: fmtPayback('4n8t'), roofArea: 45.9 },
+  { id: 'h1p-112-16', name: 'Hybrid 11.2 kWp – 16 kWh', power: 11.25, battery: 16, price: 184600000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1200, paybackStr: fmtPayback('4n11t'), roofArea: 48.6 },
+  { id: 'h1p-107-16', name: 'Hybrid 10.7 kWp – 16 kWh', power: 10.63, battery: 16, price: 189900000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1200, paybackStr: fmtPayback('5n1t'), roofArea: 45.9 },
+  { id: 'h1p-157-16', name: 'Hybrid 15.7 kWp – 16 kWh', power: 15.63, battery: 16, price: 230800000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('4n9t'), roofArea: 67.5 },
+  { id: 'h1p-188-16', name: 'Hybrid 18.8 kWp – 16 kWh', power: 18.75, battery: 16, price: 261300000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1400, productionMax: 1600, paybackStr: fmtPayback('4n10t'), roofArea: 81 },
+  { id: 'h1p-157-32', name: 'Hybrid 15.7 kWp – 32 kWh', power: 15.63, battery: 32, price: 293500000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('6n1t'), roofArea: 67.5 },
+  { id: 'h1p-244-32', name: 'Hybrid 24.4 kWp – 32 kWh', power: 24.38, battery: 32, price: 367500000, phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 2000, productionMax: 2200, paybackStr: fmtPayback('4n11t'), roofArea: 105.3 },
   // 3-Phase Low Voltage
-  { id: 'hyb-3p-10-10', name: 'Hybrid 10 kWp 3P – 10 kWh', power: 10, battery: 10.24, price: 175000000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 800, productionMax: 1100, paybackStr: '4 năm 9 tháng' },
-  { id: 'hyb-3p-15-15', name: 'Hybrid 15 kWp 3P – 15 kWh', power: 15, battery: 15.36, price: 245000000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: '5 năm 1 tháng', is_popular: true },
-  { id: 'hyb-3p-20-20', name: 'Hybrid 20 kWp 3P – 20 kWh', power: 20, battery: 20.48, price: 320000000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1600, productionMax: 2000, paybackStr: '5 năm 4 tháng' },
+  { id: 'h3lv-107-5', name: 'Hybrid 10.7 kWp 3P – 5.12 kWh', power: 10.63, battery: 5.12, price: 177100000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 950, productionMax: 1100, paybackStr: fmtPayback('4n10t'), roofArea: 45.9 },
+  { id: 'h3lv-107-16', name: 'Hybrid 10.7 kWp 3P – 16 kWh', power: 10.63, battery: 16, price: 215600000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 900, productionMax: 1200, paybackStr: fmtPayback('5n9t'), roofArea: 45.9 },
+  { id: 'h3lv-157-16', name: 'Hybrid 15.7 kWp 3P – 16 kWh', power: 15.63, battery: 16, price: 247000000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('5n2t'), is_popular: true, roofArea: 67.5 },
+  { id: 'h3lv-244-16', name: 'Hybrid 24.4 kWp 3P – 16 kWh', power: 24.38, battery: 16, price: 321800000, phase: '3-phase-low', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n6t'), roofArea: 105.3 },
 ];
 
 const HYBRID_BATTERY_COMBOS: ComboItem[] = [
   // 3-Phase High Voltage
-  { id: 'hyb-hv-30-30', name: 'Hybrid 30 kWp 3P HV – 30 kWh', power: 30, battery: 30.72, price: 450000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 2400, productionMax: 3000, paybackStr: '5 năm 6 tháng', is_popular: true },
-  { id: 'hyb-hv-40-40', name: 'Hybrid 40 kWp 3P HV – 40 kWh', power: 40, battery: 40.96, price: 580000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 3200, productionMax: 4000, paybackStr: '5 năm 9 tháng' },
-  { id: 'hyb-hv-50-50', name: 'Hybrid 50 kWp 3P HV – 50 kWh', power: 50, battery: 51.20, price: 720000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 4000, productionMax: 5000, paybackStr: '6 năm' },
-  { id: 'hyb-hv-75-75', name: 'Hybrid 75 kWp 3P HV – 75 kWh', power: 75, battery: 76.80, price: 1050000000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 6000, productionMax: 7500, paybackStr: '6 năm 3 tháng' },
+  { id: 'h3hv-157-15', name: 'Hybrid 15.7 kWp 3P HV – 15.36 kWh', power: 15.63, battery: 15.36, price: 271700000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('5n7t'), roofArea: 67.5 },
+  { id: 'h3hv-244-15', name: 'Hybrid 24.4 kWp 3P HV – 15.36 kWh', power: 24.38, battery: 15.36, price: 345200000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n10t'), is_popular: true, roofArea: 105.3 },
 ];
 
 /* ─── Combo Card Component ─────────────────────────────── */
