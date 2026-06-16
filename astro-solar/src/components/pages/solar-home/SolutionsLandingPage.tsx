@@ -218,30 +218,35 @@ export default function SolutionsLandingPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 3 – CHỌN GIẢI PHÁP PHÙ HỢP (MERGED)
-          Combines: 3 Cấp Độ + So Sánh Các Giải Pháp
+          SECTION 3 – GIẢI PHÁP & SO SÁNH (OPTIMIZED)
+          Unified: Solution Cards + Comparison Table
           ═══════════════════════════════════════════════════════ */}
       <section
-        className="py-16 sm:py-24 bg-gray-50"
+        className="py-16 sm:py-24 bg-white"
         aria-labelledby="solutions-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
           <AnimateIn>
             <div className="text-center mb-12">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-4">
+                <Zap className="h-4 w-4" aria-hidden="true" />
+                Giải Pháp Solar Home
+              </span>
               <h2
                 id="solutions-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                Chọn Giải Pháp Phù Hợp
+                3 Giải Pháp Năng Lượng Cho Gia Đình
               </h2>
-              <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                3 Cấp Độ Giải Pháp Năng Lượng Gia Đình – Lựa chọn giải pháp phù hợp nhất với nhu cầu và điều kiện của bạn.
+              <p className="text-gray-500 text-lg max-w-3xl mx-auto">
+                Từ cơ bản đến nâng cao – Chọn giải pháp phù hợp với nhu cầu và ngân sách của bạn.
               </p>
             </div>
           </AnimateIn>
 
           {/* Solution Cards */}
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid lg:grid-cols-3 gap-6 mb-16">
             {solutionTypes.map((solution, idx) => {
               const Icon = solution.icon;
               return (
@@ -249,59 +254,42 @@ export default function SolutionsLandingPage() {
                   <div className={`relative rounded-2xl border-2 ${solution.recommended ? solution.borderColor : 'border-gray-200'} bg-white p-6 hover:shadow-xl transition-all duration-300 h-full ${solution.recommended ? 'shadow-lg' : ''}`}>
                     {solution.recommended && (
                       <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${solution.gradient}`}>
-                        Khuyến nghị
+                        Được khuyến nghị
                       </div>
                     )}
                     
-                    <div className="text-center mb-6">
-                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${solution.gradient} text-white flex items-center justify-center mx-auto mb-4`}>
-                        <Icon className="h-8 w-8" />
+                    <div className="text-center mb-5">
+                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${solution.gradient} text-white flex items-center justify-center mx-auto mb-3`}>
+                        <Icon className="h-7 w-7" />
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">
                         {solution.name}
                       </h3>
+                      <p className="text-sm text-gray-600">
+                        {solution.suitable[0]}
+                      </p>
                     </div>
 
-                    <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Phù hợp khi:</h4>
-                      <ul className="space-y-2">
-                        {solution.suitable.map((item) => (
-                          <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
-                            <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mb-6">
-                      <h4 className="text-sm font-semibold text-gray-900 mb-3">Ưu điểm:</h4>
-                      <ul className="space-y-2">
-                        {solution.advantages.map((adv) => (
-                          <li key={adv} className="flex items-start gap-2 text-sm text-gray-600">
-                            <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                            <span>{adv}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="space-y-3 mb-5">
+                      {solution.advantages.slice(0, 3).map((adv) => (
+                        <div key={adv} className="flex items-start gap-2 text-sm">
+                          <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                          <span className="text-gray-700">{adv}</span>
+                        </div>
+                      ))}
                     </div>
 
                     {solution.limitations.length > 0 && (
-                      <div className="mb-6">
-                        <h4 className="text-sm font-semibold text-gray-900 mb-3">Hạn chế:</h4>
-                        <ul className="space-y-2">
-                          {solution.limitations.map((lim) => (
-                            <li key={lim} className="flex items-start gap-2 text-sm text-gray-600">
-                              <XCircle className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
-                              <span>{lim}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="mb-5 p-3 bg-red-50 rounded-lg">
+                        <div className="flex items-start gap-2 text-sm">
+                          <XCircle className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
+                          <span className="text-red-700 text-xs">{solution.limitations[0]}</span>
+                        </div>
                       </div>
                     )}
 
                     {solution.note && (
-                      <div className={`rounded-xl ${solution.bgLight} ${solution.textColor} px-4 py-3 text-sm font-medium`}>
+                      <div className={`rounded-lg ${solution.bgLight} ${solution.textColor} px-3 py-2 text-xs font-medium`}>
                         {solution.note}
                       </div>
                     )}
@@ -311,51 +299,75 @@ export default function SolutionsLandingPage() {
             })}
           </div>
 
-          {/* Comparison Table */}
+          {/* Comparison Table - Condensed */}
           <AnimateIn>
-            <div className="text-center mb-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-                So Sánh Chi Tiết Các Giải Pháp
-              </h3>
-              <p className="text-gray-500 text-base max-w-2xl mx-auto">
-                Bảng so sánh chi tiết giúp bạn lựa chọn giải pháp phù hợp nhất.
-              </p>
-            </div>
-          </AnimateIn>
+            <div className="bg-gray-50 rounded-2xl p-6 sm:p-8">
+              <div className="text-center mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+                  So Sánh Nhanh Các Giải Pháp
+                </h3>
+                <p className="text-gray-500 text-sm">
+                  Bảng so sánh giúp bạn đưa ra quyết định đúng đắn.
+                </p>
+              </div>
 
-          <AnimateIn delay={100}>
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse">
                   <thead>
-                    <tr className="bg-gray-50">
-                      <th className="text-left p-4 font-bold text-gray-900 border-b-2 border-gray-200">Tiêu chí</th>
-                      <th className="text-center p-4 font-bold text-amber-700 border-b-2 border-amber-200 bg-amber-50">
-                        <Sun className="h-5 w-5 mx-auto mb-1" />
-                        On-Grid Solar
+                    <tr className="bg-white rounded-lg overflow-hidden">
+                      <th className="text-left p-3 font-semibold text-gray-900 text-sm">Tiêu chí</th>
+                      <th className="text-center p-3 font-semibold text-amber-700 text-sm bg-amber-50">
+                        <div className="flex items-center justify-center gap-1">
+                          <Sun className="h-4 w-4" />
+                          On-Grid
+                        </div>
                       </th>
-                      <th className="text-center p-4 font-bold text-emerald-700 border-b-2 border-emerald-200 bg-emerald-50">
-                        <Zap className="h-5 w-5 mx-auto mb-1" />
-                        Hybrid Solar
+                      <th className="text-center p-3 font-semibold text-emerald-700 text-sm bg-emerald-50">
+                        <div className="flex items-center justify-center gap-1">
+                          <Zap className="h-4 w-4" />
+                          Hybrid
+                        </div>
                       </th>
-                      <th className="text-center p-4 font-bold text-blue-700 border-b-2 border-blue-200 bg-blue-50">
-                        <Battery className="h-5 w-5 mx-auto mb-1" />
-                        Hybrid + Battery
+                      <th className="text-center p-3 font-semibold text-blue-700 text-sm bg-blue-50">
+                        <div className="flex items-center justify-center gap-1">
+                          <Battery className="h-4 w-4" />
+                          Hybrid + Battery
+                        </div>
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {comparisonData.map((row, idx) => (
-                      <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                        <td className="p-4 border-b border-gray-200 text-gray-900 font-medium">{row.criterion}</td>
-                        <td className="p-4 border-b border-gray-200 text-center text-amber-700 bg-amber-50/30 font-semibold">{row.ongrid}</td>
-                        <td className="p-4 border-b border-gray-200 text-center text-emerald-700 bg-emerald-50/30 font-semibold">{row.hybrid}</td>
-                        <td className="p-4 border-b border-gray-200 text-center text-blue-700 bg-blue-50/30 font-semibold">{row.hybridBattery}</td>
+                    {comparisonData.slice(0, 10).map((row, idx) => (
+                      <tr key={idx} className="bg-white">
+                        <td className="p-3 border-b border-gray-200 text-gray-900 text-sm">{row.criterion}</td>
+                        <td className="p-3 border-b border-gray-200 text-center text-amber-700 bg-amber-50/30 text-sm font-medium">{row.ongrid}</td>
+                        <td className="p-3 border-b border-gray-200 text-center text-emerald-700 bg-emerald-50/30 text-sm font-medium">{row.hybrid}</td>
+                        <td className="p-3 border-b border-gray-200 text-center text-blue-700 bg-blue-50/30 text-sm font-medium">{row.hybridBattery}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+
+              <div className="mt-4 text-center">
+                <p className="text-xs text-gray-500">
+                  Hiển thị 10/16 tiêu chí quan trọng nhất. Liên hệ để nhận bảng so sánh đầy đủ.
+                </p>
+              </div>
+            </div>
+          </AnimateIn>
+
+          {/* CTA */}
+          <AnimateIn delay={200}>
+            <div className="mt-10 text-center">
+              <p className="text-gray-600 mb-4">Không chắc giải pháp nào phù hợp?</p>
+              <a
+                href="/lien-he"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors shadow-lg hover:shadow-xl"
+              >
+                <Phone className="h-4 w-4" />
+                Tư vấn miễn phí với kỹ sư EPCVINA
+              </a>
             </div>
           </AnimateIn>
         </div>
