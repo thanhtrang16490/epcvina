@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, createContext, useContext } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
-import ZaloChatButton from '../ui/ZaloChatButton';
+import ZaloChatButton from '../shared/buttons/ZaloChatButton';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
