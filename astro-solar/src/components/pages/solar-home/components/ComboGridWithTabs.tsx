@@ -20,6 +20,7 @@ const PHASE_TABS: TabConfig[] = [
 /* ─── Combo Data (from SolarSolutionFinder catalog) ────── */
 interface ComboItem {
   id: string;
+  slug?: string;
   name: string;
   power: number;
   price: number;
@@ -40,6 +41,47 @@ function fmtPayback(s: string): string {
   if (!m) return s;
   const t = parseInt(m[2]);
   return t > 0 ? `${m[1]} năm ${t} tháng` : `${m[1]} năm`;
+}
+
+// Map combo IDs to content collection slugs
+const COMBO_SLUG_MAP: Record<string, string> = {
+  // On-Grid
+  'og1p-5': 'on-grid-5kw-1pha',
+  'og1p-88': 'on-grid-8.8kw-1pha',
+  'og1p-107': 'on-grid-10.7kw-1pha',
+  'og3p-107': 'on-grid-10.7kw-3pha',
+  'og3p-157': 'on-grid-15.7kw-3pha',
+  'og3p-188': 'on-grid-18.8kw-3pha',
+  'og3p-294': 'on-grid-29.4kw-3pha',
+  'og3p-488': 'on-grid-48.8kw-3pha',
+  'og3p-731': 'on-grid-73.1kw-3pha',
+  'og3p-97': 'on-grid-97kw-3pha',
+  // Hybrid 1-phase
+  'h1p-5-5': 'hybrid-5kw-1pha-5kwh',
+  'h1p-5-10': 'hybrid-5kw-1pha-10kwh',
+  'h1p-88-5': 'hybrid-8.8kw-1pha-5kwh',
+  'h1p-88-10': 'hybrid-8.8kw-1pha-10kwh',
+  'h1p-107-5': 'hybrid-10.7kw-1pha-5kwh',
+  'h1p-88-16': 'hybrid-8.8kw-1pha-16kwh',
+  'h1p-107-10': 'hybrid-10.7kw-1pha-10kwh',
+  'h1p-112-16': 'hybrid-11.2kw-1pha-16kwh',
+  'h1p-107-16': 'hybrid-10.7kw-1pha-16kwh',
+  'h1p-157-16': 'hybrid-15.7kw-1pha-16kwh',
+  'h1p-157-32': 'hybrid-15.7kw-1pha-32kwh',
+  'h1p-188-16': 'hybrid-18.8kw-1pha-16kwh',
+  'h1p-244-32': 'hybrid-24.4kw-1pha-32kwh',
+  // Hybrid 3-phase low voltage
+  'h3lv-107-5': 'hybrid-10.7kw-3pha-at-5kwh',
+  'h3lv-107-16': 'hybrid-10.7kw-3pha-at-16kwh',
+  'h3lv-157-16': 'hybrid-15.7kw-3pha-at-16kwh',
+  'h3lv-244-16': 'hybrid-24.4kw-3pha-at-16kwh',
+  // Hybrid 3-phase high voltage
+  'h3hv-157-15': 'hybrid-15.7kw-3pha-ac-15kwh',
+  'h3hv-244-15': 'hybrid-24.4kw-3pha-ac-15kwh',
+};
+
+function getComboSlug(combo: ComboItem): string {
+  return combo.slug || COMBO_SLUG_MAP[combo.id] || combo.id;
 }
 
 const ONGRID_COMBOS: ComboItem[] = [
@@ -230,14 +272,14 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
             <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4">
               <div className="flex gap-3">
                 <a
-                  href={`/solar-home/combo/${combo.id}`}
+                  href={`/solar-home/combo/${getComboSlug(combo)}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors"
                 >
                   <Phone className="h-4 w-4" />
                   Tư vấn ngay
                 </a>
                 <a
-                  href={`/solar-home/combo/${combo.id}`}
+                  href={`/solar-home/combo/${getComboSlug(combo)}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
                 >
                   Xem chi tiết combo
