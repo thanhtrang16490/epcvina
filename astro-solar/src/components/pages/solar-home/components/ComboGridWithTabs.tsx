@@ -185,13 +185,19 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
           </div>
 
           {/* CTA */}
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-3">
             <a
-              href="/lien-he"
+              href={`/solar-home/${combo.id}`}
               className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors"
             >
               <Phone className="h-4 w-4" />
               Tư vấn ngay
+            </a>
+            <a
+              href={`/solar-home/${combo.id}`}
+              className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
+            >
+              Xem chi tiết combo
             </a>
             <button
               onClick={onClose}
