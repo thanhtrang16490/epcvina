@@ -1,6 +1,6 @@
-import { Home, Building2, Factory, Hotel, UtensilsCrossed, Check, ArrowRight, Zap, Shield, Phone } from 'lucide-react';
+import { Home, Building2, Factory, Hotel, UtensilsCrossed, Check, ArrowRight, Zap, Shield, Phone, Warehouse, Wheat, Plug } from 'lucide-react';
 
-type ApplicationType = 'nha-o' | 'van-phong' | 'nha-xuong' | 'khach-san' | 'nha-hang';
+type ApplicationType = 'nha-o' | 'van-phong' | 'nha-xuong' | 'khach-san' | 'nha-hang' | 'dien-cong-nghiep' | 'dien-dan-dung' | 'dien-nong-nghiep';
 
 interface ApplicationPageProps {
   applicationType: ApplicationType;
@@ -12,6 +12,9 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Factory,
   Hotel,
   UtensilsCrossed,
+  Warehouse,
+  Wheat,
+  Plug,
 };
 
 const applicationData: Record<ApplicationType, {
@@ -97,6 +100,51 @@ const applicationData: Record<ApplicationType, {
     description: 'Nhà hàng sử dụng nhiều điện cho hệ thống điều hòa, bếp và chiếu sáng. Điện mặt trời giúp cắt giảm chi phí đáng kể.',
     systemInfo: 'Công suất: 10-50 kWp. Phù hợp mái tôn hoặc mái bằng. Khuyến nghị Hybrid để dự phòng mất điện.',
     icon: 'UtensilsCrossed',
+  },
+  'dien-cong-nghiep': {
+    title: 'Điện công nghiệp',
+    subtitle: 'Giải pháp điện mặt trời cho nhà máy, khu công nghiệp',
+    capacity: '100 kWp - 10+ MWp',
+    benefits: [
+      'Giảm 30-50% chi phí điện sản xuất',
+      'Tận dụng diện tích mái nhà xưởng lớn',
+      'Đáp ứng tiêu chuẩn xanh cho xuất khẩu',
+      'Mô hình PPA/EMC không cần vốn đầu tư',
+      'Hợp đồng dài hạn 20-25 năm',
+    ],
+    description: 'Giải pháp điện mặt trời công nghiệp dành cho nhà máy, khu công nghiệp với quy mô lớn, giúp giảm chi phí sản xuất và đáp ứng yêu cầu phát triển bền vững.',
+    systemInfo: 'Công suất: 100 kWp đến 10+ MWp. Phù hợp mái nhà xưởng, diện tích đất trống. Mô hình On-Grid hoặc Hybrid.',
+    icon: 'Warehouse',
+  },
+  'dien-dan-dung': {
+    title: 'Điện dân dụng',
+    subtitle: 'Giải pháp điện mặt trời cho hộ gia đình',
+    capacity: '3 - 15 kWp',
+    benefits: [
+      'Tiết kiệm 70-100% hóa đơn điện hàng tháng',
+      'Chủ động nguồn điện với pin lưu trữ',
+      'Hoàn vốn nhanh trong 4-6 năm',
+      'Tăng giá trị bất động sản',
+      'Góp phần bảo vệ môi trường',
+    ],
+    description: 'Hệ thống điện mặt trời dân dụng giúp gia đình tiết kiệm chi phí điện, đảm bảo nguồn điện ổn định và thân thiện với môi trường.',
+    systemInfo: 'Công suất: 3-15 kWp. Phù hợp mái tôn, mái ngói, mái bằng. Khuyến nghị Hybrid có lưu trữ.',
+    icon: 'Home',
+  },
+  'dien-nong-nghiep': {
+    title: 'Điện sản xuất nông nghiệp',
+    subtitle: 'Giải pháp điện mặt trời kết hợp nông nghiệp thông minh',
+    capacity: '10 - 500 kWp',
+    benefits: [
+      'Giảm chi phí điện cho tưới tiêu, nhà kính',
+      'Tận dụng đất nông nghiệp hiệu quả',
+      'Kết hợp sản xuất nông nghiệp và phát điện',
+      'Hỗ trợ chính sách phát triển nông nghiệp xanh',
+      'Ổn định nguồn điện vùng sâu vùng xa',
+    ],
+    description: 'Điện mặt trời ứng dụng trong nông nghiệp giúp giảm chi phí sản xuất, cung cấp điện cho hệ thống tưới tiêu, nhà kính và các thiết bị nông nghiệp.',
+    systemInfo: 'Công suất: 10-500 kWp. Phù hợp trang trại, nhà kính, vùng nông thôn. Kết hợp điện lưới hoặc độc lập.',
+    icon: 'Wheat',
   },
 };
 

@@ -111,7 +111,7 @@ const solutionTypes = [
     note: 'Giải pháp được EPCVINA khuyến nghị nhiều nhất cho nhà ở mới.',
   },
   {
-    name: 'Solar + Battery',
+    name: 'Hybrid + Battery',
     icon: Battery,
     gradient: 'from-blue-500 to-indigo-600',
     bgLight: 'bg-blue-50',

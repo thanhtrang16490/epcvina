@@ -73,6 +73,15 @@ const menuItems: MenuItem[] = [
       { name: 'Mái bằng', href: '/solar-home/mai-bang', soon: true },
     ],
   },
+  {
+    name: 'Giải pháp ứng dụng',
+    icon: Lightbulb,
+    children: [
+      { name: 'Điện công nghiệp', href: '/applications/dien-cong-nghiep' },
+      { name: 'Điện dân dụng', href: '/applications/dien-dan-dung' },
+      { name: 'Điện sản xuất nông nghiệp', href: '/applications/dien-nong-nghiep' },
+    ],
+  },
   { name: 'Blog', href: '/blog', icon: Newspaper },
   { name: 'Về chúng tôi', href: '/about', icon: User },
   {
