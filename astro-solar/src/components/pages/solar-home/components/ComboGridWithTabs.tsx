@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState } from 'react';
 import { Sun, Zap, Battery, ChevronDown, ChevronUp } from 'lucide-react';
 
 /* ─── Tab Types ────────────────────────────────────────── */
@@ -173,35 +173,9 @@ function SystemRow({
     availablePhases.length > 0 ? availablePhases[0].key : '1-phase'
   );
   const [showAll, setShowAll] = useState(false);
-  const [carouselIndex, setCarouselIndex] = useState(0);
 
   // Filter combos by active tab
   const filteredCombos = combos.filter(c => c.phase === activeTab);
-  const totalCombos = filteredCombos.length;
-  const visibleCount = showAll ? totalCombos : 4;
-
-  // Auto-slide carousel when not expanded
-  useEffect(() => {
-    if (showAll || totalCombos <= 4) return;
-
-    const interval = setInterval(() => {
-      setCarouselIndex((prev) => {
-        const nextIndex = prev + 1;
-        // Reset to 0 when we've shown all combos
-        if (nextIndex > totalCombos - visibleCount) {
-          return 0;
-        }
-        return nextIndex;
-      });
-    }, 3000); // Slide every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [showAll, totalCombos, visibleCount]);
-
-  // Reset carousel when tab changes
-  useEffect(() => {
-    setCarouselIndex(0);
-  }, [activeTab]);
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 p-6">
@@ -243,45 +217,16 @@ function SystemRow({
       {/* Combo Grid */}
       {filteredCombos.length > 0 ? (
         <>
-          {showAll ? (
-            // Grid layout when expanded (no carousel)
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {filteredCombos.map((combo) => (
-                <ComboCard key={combo.id} combo={combo} variant={variant} />
-              ))}
-            </div>
-          ) : (
-            // Carousel layout when not expanded
-            <div className="overflow-hidden">
-              <div 
-                className="flex gap-4 transition-transform duration-700 ease-in-out"
-                style={{ 
-                  transform: `translateX(-${carouselIndex * 25}%)`,
-                  width: `${(totalCombos / 4) * 100}%`
-                }}
-              >
-                {filteredCombos.map((combo) => (
-                  <div 
-                    key={combo.id} 
-                    className="flex-shrink-0" 
-                    style={{ width: 'calc(25% - 12px)' }}
-                  >
-                    <ComboCard combo={combo} variant={variant} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {filteredCombos.slice(0, showAll ? filteredCombos.length : 4).map((combo) => (
+              <ComboCard key={combo.id} combo={combo} variant={variant} />
+            ))}
+          </div>
 
           {filteredCombos.length > 4 && (
             <div className="text-center mt-6">
               <button
-                onClick={() => {
-                  setShowAll(!showAll);
-                  if (!showAll) {
-                    setCarouselIndex(0); // Reset carousel when expanding
-                  }
-                }}
+                onClick={() => setShowAll(!showAll)}
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
               >
                 {showAll ? (
