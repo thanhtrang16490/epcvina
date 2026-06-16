@@ -93,118 +93,159 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
       <div 
-        className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" 
+        className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden" 
         onClick={e => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className={`w-12 h-12 rounded-xl ${
-                variant === 'ongrid' ? 'bg-gradient-to-br from-amber-500 to-orange-600' :
-                variant === 'hybrid' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
-                'bg-gradient-to-br from-emerald-500 to-teal-600'
-              } text-white flex items-center justify-center`}>
-                {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <Battery className="h-6 w-6" />}
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900">{combo.name}</h3>
-                <p className="text-sm text-gray-500">Mã: {combo.id}</p>
+        <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
+          {/* Left: Image Section (Desktop only) */}
+          <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-gray-100 to-gray-200 relative">
+            <div className="absolute inset-0 flex items-center justify-center p-8">
+              <div className="w-full h-full bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src={`/images/combos/${combo.slug || combo.id}.jpg`}
+                  alt={combo.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop';
+                  }}
+                />
               </div>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-              <X className="h-5 w-5 text-gray-500" />
+            {/* Close button on image side */}
+            <button 
+              onClick={onClose} 
+              className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white rounded-lg transition-colors shadow-md"
+            >
+              <X className="h-5 w-5 text-gray-700" />
             </button>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="p-6 space-y-6">
-          {/* System Specs */}
-          <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <ZapIcon className="h-4 w-4 text-emerald-600" />
-              Thông số hệ thống
-            </h4>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-gray-50 rounded-lg p-3">
-                <p className="text-xs text-gray-500 mb-1">Công suất</p>
-                <p className="text-lg font-bold text-gray-900">{combo.power} kWp</p>
-              </div>
-              {combo.battery && (
-                <div className="bg-blue-50 rounded-lg p-3">
-                  <p className="text-xs text-gray-500 mb-1">Pin lưu trữ</p>
-                  <p className="text-lg font-bold text-blue-600">{combo.battery} kWh</p>
+          {/* Right: Info Section (Scrollable) */}
+          <div className="flex-1 flex flex-col max-h-[90vh] lg:max-h-full">
+            {/* Header - Mobile only close button */}
+            <div className="lg:hidden sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`w-12 h-12 rounded-xl ${
+                    variant === 'ongrid' ? 'bg-gradient-to-br from-amber-500 to-orange-600' :
+                    variant === 'hybrid' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
+                    'bg-gradient-to-br from-emerald-500 to-teal-600'
+                  } text-white flex items-center justify-center`}>
+                    {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <Battery className="h-6 w-6" />}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">{combo.name}</h3>
+                    <p className="text-sm text-gray-500">Mã: {combo.id}</p>
+                  </div>
                 </div>
-              )}
-              <div className="bg-emerald-50 rounded-lg p-3">
-                <p className="text-xs text-gray-500 mb-1">Sản lượng/tháng</p>
-                <p className="text-lg font-bold text-emerald-600">{combo.productionMin}–{combo.productionMax} kWh</p>
-              </div>
-              <div className="bg-amber-50 rounded-lg p-3">
-                <p className="text-xs text-gray-500 mb-1">Diện tích lắp đặt</p>
-                <p className="text-lg font-bold text-amber-600">~{area} m²</p>
+                <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <X className="h-5 w-5 text-gray-500" />
+                </button>
               </div>
             </div>
-          </div>
 
-          {/* Equipment */}
-          <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <Home className="h-4 w-4 text-gray-600" />
-              Thiết bị chính
-            </h4>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="text-sm text-gray-600">Tấm pin</span>
-                <span className="font-semibold text-gray-900">{combo.panel_brand} × {panelCount} tấm</span>
-              </div>
-              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <span className="text-sm text-gray-600">Biến tần</span>
-                <span className="font-semibold text-gray-900">{combo.inverter_brand} {combo.power} kW</span>
+            {/* Desktop Header */}
+            <div className="hidden lg:block sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
+              <div className="flex items-center gap-3">
+                <div className={`w-12 h-12 rounded-xl ${
+                  variant === 'ongrid' ? 'bg-gradient-to-br from-amber-500 to-orange-600' :
+                  variant === 'hybrid' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
+                  'bg-gradient-to-br from-emerald-500 to-teal-600'
+                } text-white flex items-center justify-center`}>
+                  {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <Battery className="h-6 w-6" />}
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">{combo.name}</h3>
+                  <p className="text-sm text-gray-500">Mã: {combo.id}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Financial */}
-          <div>
-            <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-gray-600" />
-              Hiệu quả tài chính
-            </h4>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-emerald-50 rounded-lg p-4">
-                <p className="text-xs text-gray-500 mb-1">Chi phí đầu tư</p>
-                <p className="text-2xl font-bold text-emerald-600">{(combo.price / 1000000).toFixed(0)} triệu</p>
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+              {/* System Specs */}
+              <div>
+                <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <ZapIcon className="h-4 w-4 text-emerald-600" />
+                  Thông số hệ thống
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-xs text-gray-500 mb-1">Công suất</p>
+                    <p className="text-lg font-bold text-gray-900">{combo.power} kWp</p>
+                  </div>
+                  {combo.battery && (
+                    <div className="bg-blue-50 rounded-lg p-3">
+                      <p className="text-xs text-gray-500 mb-1">Pin lưu trữ</p>
+                      <p className="text-lg font-bold text-blue-600">{combo.battery} kWh</p>
+                    </div>
+                  )}
+                  <div className="bg-emerald-50 rounded-lg p-3">
+                    <p className="text-xs text-gray-500 mb-1">Sản lượng/tháng</p>
+                    <p className="text-lg font-bold text-emerald-600">{combo.productionMin}–{combo.productionMax} kWh</p>
+                  </div>
+                  <div className="bg-amber-50 rounded-lg p-3">
+                    <p className="text-xs text-gray-500 mb-1">Diện tích lắp đặt</p>
+                    <p className="text-lg font-bold text-amber-600">~{area} m²</p>
+                  </div>
+                </div>
               </div>
-              <div className="bg-blue-50 rounded-lg p-4">
-                <p className="text-xs text-gray-500 mb-1">Thời gian hoàn vốn</p>
-                <p className="text-2xl font-bold text-blue-600">{combo.paybackStr}</p>
+
+              {/* Equipment */}
+              <div>
+                <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Home className="h-4 w-4 text-gray-600" />
+                  Thiết bị chính
+                </h4>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <span className="text-sm text-gray-600">Tấm pin</span>
+                    <span className="font-semibold text-gray-900">{combo.panel_brand} × {panelCount} tấm</span>
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <span className="text-sm text-gray-600">Biến tần</span>
+                    <span className="font-semibold text-gray-900">{combo.inverter_brand} {combo.power} kW</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Financial */}
+              <div>
+                <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-gray-600" />
+                  Hiệu quả tài chính
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-emerald-50 rounded-lg p-4">
+                    <p className="text-xs text-gray-500 mb-1">Chi phí đầu tư</p>
+                    <p className="text-2xl font-bold text-emerald-600">{(combo.price / 1000000).toFixed(0)} triệu</p>
+                  </div>
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <p className="text-xs text-gray-500 mb-1">Thời gian hoàn vốn</p>
+                    <p className="text-2xl font-bold text-blue-600">{combo.paybackStr}</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* CTA */}
-          <div className="flex flex-col gap-3">
-            <a
-              href={`/solar-home/${combo.id}`}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors"
-            >
-              <Phone className="h-4 w-4" />
-              Tư vấn ngay
-            </a>
-            <a
-              href={`/solar-home/${combo.id}`}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
-            >
-              Xem chi tiết combo
-            </a>
-            <button
-              onClick={onClose}
-              className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-full transition-colors"
-            >
-              Đóng
-            </button>
+            {/* Fixed CTA Buttons */}
+            <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4">
+              <div className="flex flex-col gap-3">
+                <a
+                  href={`/solar-home/${combo.id}`}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors"
+                >
+                  <Phone className="h-4 w-4" />
+                  Tư vấn ngay
+                </a>
+                <a
+                  href={`/solar-home/${combo.id}`}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
+                >
+                  Xem chi tiết combo
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
