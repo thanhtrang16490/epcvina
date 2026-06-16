@@ -93,14 +93,22 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
       <div 
-        className="bg-white rounded-2xl shadow-2xl w-full max-h-[90vh] overflow-hidden lg:w-[80vw] lg:max-w-6xl lg:aspect-[2/1]" 
+        className="bg-white rounded-2xl shadow-2xl w-full max-h-[90vh] overflow-hidden lg:w-[80vw] lg:max-w-6xl lg:aspect-[2/1] relative" 
         onClick={e => e.stopPropagation()}
       >
+        {/* Close Button - Inside modal, top right */}
+        <button 
+          onClick={onClose} 
+          className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white rounded-full transition-colors shadow-lg z-10"
+          aria-label="Đóng modal"
+        >
+          <X className="h-5 w-5 text-gray-700" />
+        </button>
         <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
-          {/* Left: Image Section (Desktop only) */}
-          <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-gray-100 to-gray-200 relative">
+          {/* Left: Image Section (Desktop only) - 50% width */}
+          <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-100 to-gray-200 relative">
             <div className="absolute inset-0 flex items-center justify-center p-8">
-              <div className="w-full aspect-square bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
+              <div className="w-full h-full bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
                 <img 
                   src="/sample-combo.jpg"
                   alt={combo.name}
@@ -108,17 +116,10 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
                 />
               </div>
             </div>
-            {/* Close button on image side */}
-            <button 
-              onClick={onClose} 
-              className="absolute top-4 right-4 p-2 bg-white/90 hover:bg-white rounded-lg transition-colors shadow-md"
-            >
-              <X className="h-5 w-5 text-gray-700" />
-            </button>
           </div>
 
-          {/* Right: Info Section (Scrollable) */}
-          <div className="flex-1 flex flex-col max-h-[90vh] lg:max-h-full">
+          {/* Right: Info Section (Scrollable) - 50% width */}
+          <div className="lg:w-1/2 flex flex-col max-h-[90vh] lg:max-h-full">
             {/* Header - Mobile only close button */}
             <div className="lg:hidden sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
               <div className="flex items-center justify-between">
