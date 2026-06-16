@@ -5,16 +5,13 @@ import ApplicationPage from '../../components/pages/application/ApplicationPage'
 
 export function getStaticPaths() {
   return [
-    // Existing application types
+    // Existing application types (using slug)
     { params: { slug: 'nha-o' } },
     { params: { slug: 'van-phong' } },
     { params: { slug: 'nha-xuong' } },
     { params: { slug: 'khach-san' } },
     { params: { slug: 'nha-hang' } },
-    // New: Giải pháp ứng dụng
-    { params: { slug: 'dien-cong-nghiep' } },
-    { params: { slug: 'dien-dan-dung' } },
-    { params: { slug: 'dien-nong-nghiep' } },
+    // Note: dien-cong-nghiep, dien-dan-dung, dien-nong-nghiep now have dedicated pages
   ];
 }
 

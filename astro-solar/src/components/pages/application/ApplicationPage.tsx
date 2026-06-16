@@ -1,9 +1,57 @@
-import { Home, Building2, Factory, Hotel, UtensilsCrossed, Check, ArrowRight, Zap, Shield, Phone, Warehouse, Wheat, Plug } from 'lucide-react';
+import { Home, Building2, Factory, Hotel, UtensilsCrossed, Check, ArrowRight, Zap, Shield, Phone, Warehouse, Wheat, Plug, TrendingUp, Clock, DollarSign, BarChart3, Leaf } from 'lucide-react';
+
+interface Benefit {
+  title: string;
+  description: string;
+}
+
+interface FinancialMetrics {
+  paybackPeriod: string;
+  lifespan: string;
+  irr: string;
+  cashflow: string;
+}
+
+interface Solution {
+  title: string;
+  description: string;
+  image: string;
+}
+
+interface InstallationStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+interface Project {
+  name: string;
+  title: string;
+  image: string;
+  capacity: string;
+  annualProduction: string;
+  annualSaving: string;
+  co2Reduction: string;
+}
 
 type ApplicationType = 'nha-o' | 'van-phong' | 'nha-xuong' | 'khach-san' | 'nha-hang' | 'dien-cong-nghiep' | 'dien-dan-dung' | 'dien-nong-nghiep';
 
 interface ApplicationPageProps {
   applicationType: ApplicationType;
+}
+
+interface ApplicationData {
+  title: string;
+  subtitle: string;
+  capacity: string;
+  benefits: string[] | Benefit[];
+  description: string;
+  systemInfo: string;
+  icon: string;
+  financialMetrics?: FinancialMetrics;
+  solutions?: Solution[];
+  installationProcess?: InstallationStep[];
+  projects?: Project[];
 }
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -17,15 +65,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Plug,
 };
 
-const applicationData: Record<ApplicationType, {
-  title: string;
-  subtitle: string;
-  capacity: string;
-  benefits: string[];
-  description: string;
-  systemInfo: string;
-  icon: string;
-}> = {
+const applicationData: Record<ApplicationType, ApplicationData> = {
   'nha-o': {
     title: 'Điện mặt trời cho Nhà ở',
     subtitle: 'Giải pháp tiết kiệm điện và chủ động nguồn năng lượng cho gia đình',
@@ -102,19 +142,80 @@ const applicationData: Record<ApplicationType, {
     icon: 'UtensilsCrossed',
   },
   'dien-cong-nghiep': {
-    title: 'Điện công nghiệp',
-    subtitle: 'Giải pháp điện mặt trời cho nhà máy, khu công nghiệp',
+    title: 'Giải Pháp Điện Mặt Trời Cho Doanh Nghiệp',
+    subtitle: 'Trong bối cảnh chi phí điện ngày càng gia tăng, điện mặt trời giúp doanh nghiệp chủ động nguồn năng lượng, giảm phụ thuộc vào lưới điện và tối ưu chi phí vận hành dài hạn. Đồng thời, đây còn là bước đi chiến lược để xây dựng hình ảnh thương hiệu xanh, đáp ứng các tiêu chuẩn ESG và nâng cao năng lực cạnh tranh trên thị trường quốc tế.',
     capacity: '100 kWp - 10+ MWp',
     benefits: [
-      'Giảm 30-50% chi phí điện sản xuất',
-      'Tận dụng diện tích mái nhà xưởng lớn',
-      'Đáp ứng tiêu chuẩn xanh cho xuất khẩu',
-      'Mô hình PPA/EMC không cần vốn đầu tư',
-      'Hợp đồng dài hạn 20-25 năm',
+      {
+        title: 'Giảm chi phí điện năng và tối ưu chi phí vận hành',
+        description: 'Hệ thống điện mặt trời áp mái giúp doanh nghiệp giảm từ 30% đến 70% chi phí điện năng tiêu thụ, đặc biệt hiệu quả đối với các mô hình sản xuất hoạt động ban ngày.',
+      },
+      {
+        title: 'Gia tăng hiệu quả đầu tư và tạo dòng tiền dài hạn',
+        description: 'Điện mặt trời không chỉ là chi phí đầu tư mà còn là tài sản sinh lời dài hạn. Với tuổi thọ hệ thống từ 25 – 30 năm, doanh nghiệp có thời gian hoàn vốn trung bình từ 3 – 5 năm.',
+      },
+      {
+        title: 'Chủ động nguồn năng lượng – giảm thiểu rủi ro vận hành',
+        description: 'Giảm phụ thuộc vào lưới điện Quốc gia. Hạn chế rủi ro gián đoạn sản xuất do mất điện và duy trì hoạt động ổn định cho dây chuyền quan trọng.',
+      },
+      {
+        title: 'Nâng cao hình ảnh thương hiệu và đáp ứng tiêu chuẩn ESG',
+        description: 'Giảm đáng kể lượng phát thải khí CO₂, thể hiện rõ cam kết phát triển bền vững và nâng cao điểm đánh giá trong các tiêu chuẩn ESG.',
+      },
     ],
     description: 'Giải pháp điện mặt trời công nghiệp dành cho nhà máy, khu công nghiệp với quy mô lớn, giúp giảm chi phí sản xuất và đáp ứng yêu cầu phát triển bền vững.',
     systemInfo: 'Công suất: 100 kWp đến 10+ MWp. Phù hợp mái nhà xưởng, diện tích đất trống. Mô hình On-Grid hoặc Hybrid.',
     icon: 'Warehouse',
+    financialMetrics: {
+      paybackPeriod: '2 – 5 năm',
+      lifespan: '25 – 30 năm',
+      irr: '15% - 25%',
+      cashflow: 'Dòng tiền ổn định',
+    },
+    solutions: [
+      {
+        title: 'Doanh nghiệp sản xuất – Nhà xưởng mái tôn, mái dốc',
+        description: 'Tối đa hóa công suất lắp đặt trên diện tích lớn, phù hợp nhu cầu tiêu thụ điện cao ban ngày.',
+        image: '/images/products/260605.jpeg',
+      },
+      {
+        title: 'Kho vận – Logistics – Mái bằng, mái rộng',
+        description: 'Tối ưu mật độ lắp đặt và khả năng chịu tải.',
+        image: '/images/products/260605(1).png',
+      },
+      {
+        title: 'Tòa nhà thương mại – Văn phòng – Trung tâm dịch vụ',
+        description: 'Nâng cao hình ảnh "công trình xanh", đạt tiêu chuẩn công trình bền vững.',
+        image: '/images/products/260605(2).png',
+      },
+    ],
+    installationProcess: [
+      { step: 1, title: 'Tư vấn', description: 'Phân tích nhu cầu và báo giá sơ bộ dựa trên hóa đơn điện.' },
+      { step: 2, title: 'Khảo sát', description: 'Đo đạc diện tích mái, hướng nắng và kết cấu hạ tầng.' },
+      { step: 3, title: 'Thiết kế', description: 'Lên bản vẽ 3D và phương án kỹ thuật tối ưu hóa hiệu suất.' },
+      { step: 4, title: 'Lắp đặt', description: 'Thi công nhanh chóng, an toàn và đảm bảo thẩm mỹ ngôi nhà.' },
+      { step: 5, title: 'Vận hành', description: 'Bàn giao hệ thống, hướng dẫn sử dụng và hỗ trợ kỹ thuật.' },
+    ],
+    projects: [
+      {
+        name: 'Thép Hòa Phát - Bình Dương',
+        title: 'Hệ thống điện mặt trời mái nhà xưởng',
+        image: '/images/products/260605(3).png',
+        capacity: '500 kWp',
+        annualProduction: '720 MWh',
+        annualSaving: '~ 1.2 Tỷ VNĐ',
+        co2Reduction: '450 Tấn',
+      },
+      {
+        name: 'Logistics Hub - Long An',
+        title: 'Giải pháp kho lạnh thông minh',
+        image: '/images/products/260605(4).png',
+        capacity: '1.2 MWp',
+        annualProduction: '1,800 MWh',
+        annualSaving: '~ 2.8 Tỷ VNĐ',
+        co2Reduction: '1,100 Tấn',
+      },
+    ],
   },
   'dien-dan-dung': {
     title: 'Điện dân dụng',
@@ -193,32 +294,51 @@ export default function ApplicationPage({ applicationType }: ApplicationPageProp
       </section>
 
       {/* Benefits */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-10">
           <div className="flex items-center gap-3 mb-8">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500">
               <Shield className="h-5 w-5 text-white" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-              Lợi ích nổi bật
+              Lợi ích cho Doanh nghiệp
             </h2>
           </div>
-          <div className="grid gap-4 sm:gap-5">
-            {data.benefits.map((benefit, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 hover:bg-orange-50 transition-colors duration-200"
-              >
-                <div className="flex-shrink-0 mt-0.5">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-500">
-                    <Check className="h-4 w-4 text-white" />
+          <div className="grid gap-6 sm:gap-8">
+            {data.benefits.map((benefit, idx) => {
+              // Handle both string and object benefits
+              if (typeof benefit === 'string') {
+                return (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 hover:bg-orange-50 transition-colors duration-200"
+                  >
+                    <div className="flex-shrink-0 mt-0.5">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-500">
+                        <Check className="h-4 w-4 text-white" />
+                      </div>
+                    </div>
+                    <span className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                      {benefit}
+                    </span>
                   </div>
+                );
+              }
+              // Handle object benefits with title and description
+              return (
+                <div
+                  key={idx}
+                  className="p-6 rounded-xl bg-gray-50 hover:bg-orange-50 transition-colors duration-200"
+                >
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-600 text-base leading-relaxed">
+                    {benefit.description}
+                  </p>
                 </div>
-                <span className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                  {benefit}
-                </span>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
