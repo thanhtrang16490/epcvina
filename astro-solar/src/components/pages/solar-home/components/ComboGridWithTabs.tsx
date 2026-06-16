@@ -93,14 +93,14 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
       <div 
-        className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden" 
+        className="bg-white rounded-2xl shadow-2xl w-full max-h-[90vh] overflow-hidden lg:w-[80vw] lg:max-w-6xl lg:aspect-[2/1]" 
         onClick={e => e.stopPropagation()}
       >
         <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
           {/* Left: Image Section (Desktop only) */}
           <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-gray-100 to-gray-200 relative">
             <div className="absolute inset-0 flex items-center justify-center p-8">
-              <div className="w-full h-full bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
+              <div className="w-full aspect-square bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
                 <img 
                   src="/sample-combo.jpg"
                   alt={combo.name}
