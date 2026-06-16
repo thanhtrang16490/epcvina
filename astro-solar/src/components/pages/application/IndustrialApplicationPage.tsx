@@ -6,8 +6,8 @@ export default function IndustrialApplicationPage() {
       {/* Hero Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/images/products/260605.jpeg')] bg-cover bg-center opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent" />
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80')] bg-cover bg-center opacity-30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
           <div className="text-center">
@@ -187,17 +187,17 @@ export default function IndustrialApplicationPage() {
             {
               title: 'Doanh nghiệp sản xuất – Nhà xưởng mái tôn, mái dốc',
               description: 'Tối đa hóa công suất lắp đặt trên diện tích lớn, phù hợp nhu cầu tiêu thụ điện cao ban ngày.',
-              image: '/images/products/260605.jpeg',
+              image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
             },
             {
               title: 'Kho vận – Logistics – Mái bằng, mái rộng',
               description: 'Tối ưu mật độ lắp đặt và khả năng chịu tải.',
-              image: '/images/products/260605(1).png',
+              image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80',
             },
             {
               title: 'Tòa nhà thương mại – Văn phòng – Trung tâm dịch vụ',
               description: 'Nâng cao hình ảnh "công trình xanh", đạt tiêu chuẩn công trình bền vững.',
-              image: '/images/products/260605(2).png',
+              image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
             },
           ].map((solution, idx) => (
             <div key={idx} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
@@ -207,7 +207,7 @@ export default function IndustrialApplicationPage() {
                   alt={solution.title}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/products/260605.jpeg';
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80';
                   }}
                 />
               </div>
@@ -269,7 +269,7 @@ export default function IndustrialApplicationPage() {
             {
               name: 'Thép Hòa Phát - Bình Dương',
               title: 'Hệ thống điện mặt trời mái nhà xưởng',
-              image: '/images/products/260605(3).png',
+              image: 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80',
               capacity: '500 kWp',
               annualProduction: '720 MWh',
               annualSaving: '~ 1.2 Tỷ VNĐ',
@@ -278,7 +278,7 @@ export default function IndustrialApplicationPage() {
             {
               name: 'Logistics Hub - Long An',
               title: 'Giải pháp kho lạnh thông minh',
-              image: '/images/products/260605(4).png',
+              image: 'https://images.unsplash.com/photo-1548337138-e87d819d58f1?w=800&q=80',
               capacity: '1.2 MWp',
               annualProduction: '1,800 MWh',
               annualSaving: '~ 2.8 Tỷ VNĐ',
@@ -292,7 +292,7 @@ export default function IndustrialApplicationPage() {
                   alt={project.title}
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/images/products/260605.jpeg';
+                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80';
                   }}
                 />
               </div>
