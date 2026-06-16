@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sun, Zap, Battery } from 'lucide-react';
+import { Sun, Zap, Battery, ChevronDown, ChevronUp } from 'lucide-react';
 
 /* ─── Tab Types ────────────────────────────────────────── */
 type PhaseType = '1-phase' | '3-phase' | '3-phase-low' | '3-phase-high';
@@ -172,6 +172,7 @@ function SystemRow({
   const [activeTab, setActiveTab] = useState<PhaseType>(
     availablePhases.length > 0 ? availablePhases[0].key : '1-phase'
   );
+  const [showAll, setShowAll] = useState(false);
 
   // Filter combos by active tab
   const filteredCombos = combos.filter(c => c.phase === activeTab);
@@ -215,11 +216,34 @@ function SystemRow({
 
       {/* Combo Grid */}
       {filteredCombos.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {filteredCombos.map((combo) => (
-            <ComboCard key={combo.id} combo={combo} variant={variant} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {filteredCombos.slice(0, showAll ? filteredCombos.length : 4).map((combo) => (
+              <ComboCard key={combo.id} combo={combo} variant={variant} />
+            ))}
+          </div>
+
+          {filteredCombos.length > 4 && (
+            <div className="text-center mt-6">
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
+              >
+                {showAll ? (
+                  <>
+                    Thu gọn
+                    <ChevronUp className="h-4 w-4" />
+                  </>
+                ) : (
+                  <>
+                    Xem thêm {filteredCombos.length - 4} combo
+                    <ChevronDown className="h-4 w-4" />
+                  </>
+                )}
+              </button>
+            </div>
+          )}
+        </>
       ) : (
         <div className="text-center py-8 text-gray-500">
           <p className="text-sm">Chưa có combo cho cấu hình này</p>
