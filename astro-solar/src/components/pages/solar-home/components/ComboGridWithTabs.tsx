@@ -80,7 +80,7 @@ const HYBRID_COMBOS: ComboItem[] = [
 ];
 
 const HYBRID_BATTERY_COMBOS: ComboItem[] = [
-  // 3-Phase High Voltage
+  // 3-Phase High Voltage (Hybrid combos with large battery capacity)
   { id: 'h3hv-157-15', name: 'Hybrid 15.7 kWp 3P HV – 15.36 kWh', power: 15.63, battery: 15.36, price: 271700000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1200, productionMax: 1500, paybackStr: fmtPayback('5n7t'), roofArea: 67.5 },
   { id: 'h3hv-244-15', name: 'Hybrid 24.4 kWp 3P HV – 15.36 kWh', power: 24.38, battery: 15.36, price: 345200000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n10t'), is_popular: true, roofArea: 105.3 },
 ];
@@ -256,7 +256,7 @@ export default function ComboGridWithTabs() {
       {/* Hybrid + Battery Row */}
       <SystemRow
         title="Hybrid + Battery"
-        description="Dung lượng lớn, dự phòng dài hạn – 3 pha áp cao"
+        description="Hybrid 3 pha áp cao – Dung lượng lớn, dự phòng dài hạn"
         icon={Battery}
         iconColor="bg-gradient-to-br from-emerald-500 to-teal-600"
         combos={HYBRID_BATTERY_COMBOS}
