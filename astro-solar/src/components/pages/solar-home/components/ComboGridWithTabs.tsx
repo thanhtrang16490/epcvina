@@ -228,7 +228,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
 
             {/* Fixed CTA Buttons */}
             <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4">
-              <div className="flex flex-col gap-3">
+              <div className="flex gap-3">
                 <a
                   href={`/solar-home/${combo.id}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors"
