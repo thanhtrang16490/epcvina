@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../../components/layout/DashboardShell';
+import ComboDetailPage from '../../../components/pages/solar-home/components/ComboDetailPage';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const combos = await getCollection('combos');
+  return combos.map((combo) => ({
+    params: { slug: combo.data.slug },
+    props: { combo },
+  }));
+}
+
+const { slug } = Astro.params;
+const { combo } = Astro.props;
+---
+
+<DashboardLayout title={`${combo.data.title} - EPC Solar`}>
+  <DashboardShell client:load>
+    <ComboDetailPage client:idle combo={JSON.parse(JSON.stringify(combo))} />
+  </DashboardShell>
+</DashboardLayout>
