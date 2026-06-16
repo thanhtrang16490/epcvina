@@ -4,22 +4,38 @@ export default function IndustrialApplicationPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#7C2D12] via-[#9A3412] to-[#7C2D12]">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-500 to-amber-400 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-gradient-to-tr from-amber-400 to-orange-500 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[url('/images/products/260605.jpeg')] bg-cover bg-center opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3 mb-6">
-              <span className="text-white/90 text-sm">Năng lượng xanh - Tương lai bền vững</span>
+            <div className="inline-block mb-6">
+              <span className="text-emerald-400 text-sm sm:text-base font-medium tracking-wide">
+                Năng lượng xanh - Tương lai bền vững
+              </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-              Giải Pháp Điện Mặt Trời Cho Doanh Nghiệp
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
+              Giải Pháp Điện Mặt Trời<br className="hidden sm:block" /> Cho Doanh Nghiệp
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              Trong bối cảnh chi phí điện ngày càng gia tăng, điện mặt trời giúp doanh nghiệp chủ động nguồn năng lượng, giảm phụ thuộc vào lưới điện và tối ưu chi phí vận hành dài hạn.
+            <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
+              Trong bối cảnh chi phí điện ngày càng gia tăng, điện mặt trời giúp doanh nghiệp chủ động nguồn năng lượng, giảm phụ thuộc vào lưới điện và tối ưu chi phí vận hành dài hạn. Đồng thời, đây còn là bước đi chiến lược để xây dựng hình ảnh thương hiệu xanh, đáp ứng các tiêu chuẩn ESG và nâng cao năng lực cạnh tranh trên thị trường quốc tế.
             </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="#benefits"
+                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Khám phá giải pháp
+              </a>
+              <a
+                href="/bao-gia"
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-3.5 rounded-lg transition-all duration-200"
+              >
+                Xem báo giá dự kiến
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -46,11 +62,11 @@ export default function IndustrialApplicationPage() {
             },
             {
               title: 'Chủ động nguồn năng lượng – giảm thiểu rủi ro vận hành',
-              description: 'Giảm phụ thuộc vào lưới điện Quốc gia. Hạn chế rủi ro gián đoạn sản xuất do mất điện và duy trì hoạt động ổn định cho dây chuyền quan trọng.',
+              description: 'Đây là yếu tố đặc biệt quan trọng đối với các ngành yêu cầu tính liên tục và ổn định cao như sản xuất, logistics, chế biến. Việc tích hợp hệ thống điện mặt trời (kết hợp pin lưu trữ nếu cần) giúp doanh nghiệp: Giảm phụ thuộc vào lưới điện Quốc gia; Hạn chế rủi ro gián đoạn sản xuất do mất điện và duy trì hoạt động ổn định cho dây chuyền quan trọng.',
             },
             {
               title: 'Nâng cao hình ảnh thương hiệu và đáp ứng tiêu chuẩn ESG',
-              description: 'Giảm đáng kể lượng phát thải khí CO₂, thể hiện rõ cam kết phát triển bền vững và nâng cao điểm đánh giá trong các tiêu chuẩn ESG.',
+              description: 'Việc sử dụng năng lượng tái tạo, đặc biệt là điện mặt trời, giúp doanh nghiệp giảm đáng kể lượng phát thải khí CO₂, qua đó thể hiện rõ cam kết phát triển bền vững và nâng cao điểm đánh giá trong các tiêu chuẩn ESG (Environmental – Social – Governance).',
             },
           ].map((benefit, idx) => (
             <div
@@ -117,6 +133,41 @@ export default function IndustrialApplicationPage() {
               </div>
               <div className="text-sm text-gray-600">Tạo nguồn thu nhập thụ động</div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Profit Chart Placeholder */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
+        <div className="bg-white rounded-2xl border border-gray-200 p-8 sm:p-10">
+          <h3 className="text-lg font-bold text-gray-900 mb-6">
+            Dự báo lợi nhuận tích lũy
+          </h3>
+          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-8 text-center">
+            <div className="mb-4">
+              <span className="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">
+                DỰ KIẾN 30 NĂM
+              </span>
+            </div>
+            <div className="flex items-end justify-center gap-2 h-64 mb-4">
+              {[...Array(10)].map((_, i) => {
+                const height = 20 + (i * 8);
+                return (
+                  <div
+                    key={i}
+                    className="w-12 bg-gradient-to-t from-emerald-600 to-emerald-400 rounded-t-lg transition-all duration-300 hover:from-emerald-700 hover:to-emerald-500"
+                    style={{ height: `${height}%` }}
+                  />
+                );
+              })}
+            </div>
+            <div className="flex justify-between text-xs text-gray-500 px-4">
+              <span>Năm 1</span>
+              <span>Năm 30</span>
+            </div>
+            <p className="text-xs text-gray-400 mt-4">
+              * Biểu đồ mang tính chất minh họa dựa trên công suất 1MWp tại khu vực miền Nam.
+            </p>
           </div>
         </div>
       </section>
