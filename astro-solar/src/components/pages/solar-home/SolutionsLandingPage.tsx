@@ -39,6 +39,7 @@ import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import HeaderBar from '../../home/layout/HeaderBar';
 import FooterSection from '../../home/layout/FooterSection';
 import { OnGridComboGrid, HybridComboGrid } from './components';
+import ComboGridWithTabs from './components/ComboGridWithTabs';
 import {
   heroHighlights,
   housingTypes,
@@ -374,9 +375,11 @@ export default function SolutionsLandingPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 3.5 – ON-GRID COMBO GRID
+          SECTION 3.5 – COMBO GRID WITH TABS
+          3 Rows: On-Grid, Hybrid, Hybrid + Battery
+          Each row has tabs: 1-Phase, 3-Phase, 3-Phase Low, 3-Phase High
           ═══════════════════════════════════════════════════════ */}
-      <section className="py-16 sm:py-20 bg-slate-50" aria-labelledby="combo-heading">
+      <section className="py-16 sm:py-20 bg-gray-50" aria-labelledby="combo-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <AnimateIn>
             <div className="text-center mb-10 sm:mb-14">
@@ -393,13 +396,7 @@ export default function SolutionsLandingPage() {
             </div>
           </AnimateIn>
 
-          <OnGridComboGrid />
-
-          <AnimateIn delay={100}>
-            <div className="mt-16">
-              <HybridComboGrid />
-            </div>
-          </AnimateIn>
+          <ComboGridWithTabs />
 
           <AnimateIn delay={200}>
             <div className="text-center mt-10">
