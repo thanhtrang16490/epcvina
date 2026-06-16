@@ -163,15 +163,18 @@ function SystemRow({
   combos: ComboItem[]; 
   variant: 'ongrid' | 'hybrid' | 'hybrid-battery';
 }) {
-  const [activeTab, setActiveTab] = useState<PhaseType>('1-phase');
-
-  // Filter combos by active tab
-  const filteredCombos = combos.filter(c => c.phase === activeTab);
-
-  // Group available phases
+  // Get available phases for this row
   const availablePhases = PHASE_TABS.filter(tab => 
     combos.some(c => c.phase === tab.key)
   );
+
+  // Initialize activeTab to first available phase (not hardcoded '1-phase')
+  const [activeTab, setActiveTab] = useState<PhaseType>(
+    availablePhases.length > 0 ? availablePhases[0].key : '1-phase'
+  );
+
+  // Filter combos by active tab
+  const filteredCombos = combos.filter(c => c.phase === activeTab);
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 p-6">
