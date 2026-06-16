@@ -65,7 +65,7 @@ const COMBO_SLUG_MAP: Record<string, string> = {
   'h1p-88-16': 'hybrid-8.8kw-1pha-16kwh',
   'h1p-107-10': 'hybrid-10.7kw-1pha-10kwh',
   'h1p-112-16': 'hybrid-11.2kw-1pha-16kwh',
-  'h1p-107-16': 'hybrid-10.7kw-1pha-16kwh',
+  'h1p-107-16': 'hybrid-10.7kw-1pha-16kwh-v2',
   'h1p-157-16': 'hybrid-15.7kw-1pha-16kwh',
   'h1p-157-32': 'hybrid-15.7kw-1pha-32kwh',
   'h1p-188-16': 'hybrid-18.8kw-1pha-16kwh',
@@ -81,7 +81,12 @@ const COMBO_SLUG_MAP: Record<string, string> = {
 };
 
 function getComboSlug(combo: ComboItem): string {
-  return combo.slug || COMBO_SLUG_MAP[combo.id] || combo.id;
+  if (combo.slug) return combo.slug;
+  const mapped = COMBO_SLUG_MAP[combo.id];
+  if (mapped) return mapped;
+  // Fallback: generate slug from combo properties
+  console.warn('No slug mapping for combo ID:', combo.id);
+  return combo.id || 'unknown';
 }
 
 const ONGRID_COMBOS: ComboItem[] = [
