@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sun, Zap, Battery, ChevronDown, ChevronUp } from 'lucide-react';
+import { Sun, Zap, Battery, ChevronDown, ChevronUp, X, Sun as SunIcon, Zap as ZapIcon, Home, Calendar, Phone } from 'lucide-react';
 
 /* ─── Tab Types ────────────────────────────────────────── */
 type PhaseType = '1-phase' | '3-phase' | '3-phase-low' | '3-phase-high';
@@ -85,8 +85,130 @@ const HYBRID_BATTERY_COMBOS: ComboItem[] = [
   { id: 'h3hv-244-15', name: 'Hybrid 24.4 kWp 3P HV – 15.36 kWh', power: 24.38, battery: 15.36, price: 345200000, phase: '3-phase-high', panel_brand: 'Aiko', inverter_brand: 'SAJ', productionMin: 1800, productionMax: 2200, paybackStr: fmtPayback('4n10t'), is_popular: true, roofArea: 105.3 },
 ];
 
+/* ─── Combo Modal Component ──────────────────────────── */
+function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'ongrid' | 'hybrid' | 'hybrid-battery'; onClose: () => void }) {
+  const panelCount = Math.ceil(combo.power * 1000 / 580);
+  const area = Math.ceil(combo.power * 4.32);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
+      <div 
+        className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto" 
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 rounded-t-2xl">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className={`w-12 h-12 rounded-xl ${
+                variant === 'ongrid' ? 'bg-gradient-to-br from-amber-500 to-orange-600' :
+                variant === 'hybrid' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
+                'bg-gradient-to-br from-emerald-500 to-teal-600'
+              } text-white flex items-center justify-center`}>
+                {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <Battery className="h-6 w-6" />}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">{combo.name}</h3>
+                <p className="text-sm text-gray-500">Mã: {combo.id}</p>
+              </div>
+            </div>
+            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+              <X className="h-5 w-5 text-gray-500" />
+            </button>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 space-y-6">
+          {/* System Specs */}
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <ZapIcon className="h-4 w-4 text-emerald-600" />
+              Thông số hệ thống
+            </h4>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-gray-50 rounded-lg p-3">
+                <p className="text-xs text-gray-500 mb-1">Công suất</p>
+                <p className="text-lg font-bold text-gray-900">{combo.power} kWp</p>
+              </div>
+              {combo.battery && (
+                <div className="bg-blue-50 rounded-lg p-3">
+                  <p className="text-xs text-gray-500 mb-1">Pin lưu trữ</p>
+                  <p className="text-lg font-bold text-blue-600">{combo.battery} kWh</p>
+                </div>
+              )}
+              <div className="bg-emerald-50 rounded-lg p-3">
+                <p className="text-xs text-gray-500 mb-1">Sản lượng/tháng</p>
+                <p className="text-lg font-bold text-emerald-600">{combo.productionMin}–{combo.productionMax} kWh</p>
+              </div>
+              <div className="bg-amber-50 rounded-lg p-3">
+                <p className="text-xs text-gray-500 mb-1">Diện tích lắp đặt</p>
+                <p className="text-lg font-bold text-amber-600">~{area} m²</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Equipment */}
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <Home className="h-4 w-4 text-gray-600" />
+              Thiết bị chính
+            </h4>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <span className="text-sm text-gray-600">Tấm pin</span>
+                <span className="font-semibold text-gray-900">{combo.panel_brand} × {panelCount} tấm</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <span className="text-sm text-gray-600">Biến tần</span>
+                <span className="font-semibold text-gray-900">{combo.inverter_brand} {combo.power} kW</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Financial */}
+          <div>
+            <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-gray-600" />
+              Hiệu quả tài chính
+            </h4>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-emerald-50 rounded-lg p-4">
+                <p className="text-xs text-gray-500 mb-1">Chi phí đầu tư</p>
+                <p className="text-2xl font-bold text-emerald-600">{(combo.price / 1000000).toFixed(0)} triệu</p>
+              </div>
+              <div className="bg-blue-50 rounded-lg p-4">
+                <p className="text-xs text-gray-500 mb-1">Thời gian hoàn vốn</p>
+                <p className="text-2xl font-bold text-blue-600">{combo.paybackStr}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="flex gap-3">
+            <a
+              href="/lien-he"
+              className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors"
+            >
+              <Phone className="h-4 w-4" />
+              Tư vấn ngay
+            </a>
+            <button
+              onClick={onClose}
+              className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-full transition-colors"
+            >
+              Đóng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Combo Card Component ─────────────────────────────── */
 function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | 'hybrid' | 'hybrid-battery' }) {
+  const [showModal, setShowModal] = useState(false);
   const panelCount = Math.ceil(combo.power * 1000 / 580);
   const isHybrid = variant !== 'ongrid';
   
@@ -103,14 +225,18 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
   };
 
   return (
-    <div className="rounded-lg border border-gray-200 bg-white hover:shadow-md transition-shadow p-4">
-      <div className="px-3 pt-3 pb-2 rounded-lg mb-3" style={{ background: headerColors[variant] }}>
-        <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5" style={{ background: badgeColors[variant].bg, color: badgeColors[variant].color }}>
-          {variant === 'ongrid' ? <Sun className="w-2.5 h-2.5" /> : <Battery className="w-2.5 h-2.5" />}
-          {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + Battery'}
-        </span>
-        <h4 className="text-base font-bold text-gray-900">{combo.name}</h4>
-      </div>
+    <>
+      <div 
+        className="rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-all cursor-pointer overflow-hidden flex flex-col"
+        onClick={() => setShowModal(true)}
+      >
+        <div className="px-3 pt-3 pb-2 rounded-lg mb-3" style={{ background: headerColors[variant] }}>
+          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5" style={{ background: badgeColors[variant].bg, color: badgeColors[variant].color }}>
+            {variant === 'ongrid' ? <Sun className="w-2.5 h-2.5" /> : <Battery className="w-2.5 h-2.5" />}
+            {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + Battery'}
+          </span>
+          <h4 className="text-base font-bold text-gray-900">{combo.name}</h4>
+        </div>
 
       <div className="space-y-1.5 mb-3">
         <div className="flex items-center justify-between text-xs">
@@ -143,7 +269,10 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
           )}
         </div>
       </div>
-    </div>
+
+      {showModal && <ComboModal combo={combo} variant={variant} onClose={() => setShowModal(false)} />}
+      </div>
+    </>
   );
 }
 
