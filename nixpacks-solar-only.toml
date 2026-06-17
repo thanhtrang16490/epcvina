@@ -1,0 +1,19 @@
+# If Dokploy continues to fail with multi-project setup,
+# use this minimal configuration for epcvinasolar only
+
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["cd epcvinasolar && npm install --no-package-lock"]
+
+[phases.build]
+cmds = ["cd epcvinasolar && npm run build"]
+
+[variables]
+HOST = "0.0.0.0"
+PORT = "3000"
+NODE_ENV = "production"
+
+[start]
+cmd = "cd epcvinasolar && node ./dist/server/entry.mjs"
