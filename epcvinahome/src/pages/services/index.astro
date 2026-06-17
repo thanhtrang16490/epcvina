@@ -28,140 +28,191 @@ import PageLayout from '../../layouts/PageLayout.astro';
           <h2 class="text-3xl font-bold text-gray-900">MEP Engineering</h2>
         </div>
         <p class="text-lg text-gray-600 max-w-3xl">
-          EPCVINA cung cấp giải pháp cơ điện tổng thể từ thiết kế, thi công, nghiệm thu đến bảo trì 
+          EPCVINA là nhà thầu có kinh nghiệm trong việc tư vấn, thiết kế và thi công các hệ thống cơ điện 
+          cho các dự án lớn như Keangnam, Lotte Center, Lotte Mart, Samsung... 
+          Cung cấp giải pháp tổng thể từ thiết kế, thi công, nghiệm thu đến bảo trì 
           cho các công trình dân dụng, thương mại và công nghiệp.
         </p>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- HVAC System -->
         <div class="group p-8 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-red-100 hover:shadow-lg transition-all">
           <div class="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">HVAC</h3>
-          <p class="text-gray-600 mb-4">Hệ thống điều hòa không khí và thông gió</p>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Hệ thống HVAC</h3>
+          <p class="text-gray-600 mb-4">Hệ thống sưởi ấm, thông gió và điều hòa không khí</p>
           <ul class="space-y-2 text-sm text-gray-600">
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Thiết kế hệ thống</span>
+              <span>Điều hòa cục bộ & trung tâm VRV</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Lắp đặt & Vận hành</span>
+              <span>Chiller & tháp giải nhiệt Cooling Tower</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Bảo trì định kỳ</span>
+              <span>Phòng sạch, trung tâm dữ liệu, nhà hát</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Thông gió và cấp gió tươi</span>
             </li>
           </ul>
         </div>
         
+        <!-- Electrical System -->
         <div class="group p-8 bg-gradient-to-br from-yellow-50 to-white rounded-xl border border-yellow-100 hover:shadow-lg transition-all">
           <div class="w-14 h-14 bg-yellow-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           </div>
           <h3 class="text-xl font-semibold text-gray-900 mb-3">Hệ thống điện</h3>
-          <p class="text-gray-600 mb-4">Thiết kế & thi công hệ thống điện công trình</p>
+          <p class="text-gray-600 mb-4">Tư vấn, thiết kế, thi công lắp đặt hệ thống điện</p>
           <ul class="space-y-2 text-sm text-gray-600">
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Điện nhẹ & Điện nặng</span>
+              <span>Điện trung thế đến 35kV</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Tủ điện & PLC</span>
+              <span>Trạm biến áp & máy phát điện</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Chiếu sáng & Ổ cắm</span>
+              <span>Điện động lực & chiếu sáng</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Hệ thống chống sét</span>
             </li>
           </ul>
         </div>
         
+        <!-- Water Supply & Drainage -->
         <div class="group p-8 bg-gradient-to-br from-cyan-50 to-white rounded-xl border border-cyan-100 hover:shadow-lg transition-all">
           <div class="w-14 h-14 bg-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">Cấp thoát nước</h3>
-          <p class="text-gray-600 mb-4">Hệ thống cấp nước và xử lý nước thải</p>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Hệ thống Cấp thoát nước</h3>
+          <p class="text-gray-600 mb-4">Thiết kế & thi công hệ thống cấp nước và xử lý nước thải</p>
           <ul class="space-y-2 text-sm text-gray-600">
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-cyan-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Cấp nước sạch</span>
+              <span>Cấp nước sạch sinh hoạt & sản xuất</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-cyan-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Thoát nước thải</span>
+              <span>Thoát nước thải & xử lý nước</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-cyan-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Xử lý nước thải</span>
+              <span>Hệ thống phòng sạch</span>
             </li>
           </ul>
         </div>
         
+        <!-- Fire Protection System (PCCC) -->
         <div class="group p-8 bg-gradient-to-br from-red-50 to-white rounded-xl border border-red-100 hover:shadow-lg transition-all">
           <div class="w-14 h-14 bg-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">PCCC</h3>
-          <p class="text-gray-600 mb-4">Hệ thống phòng cháy chữa cháy</p>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Hệ thống PCCC</h3>
+          <p class="text-gray-600 mb-4">Hệ thống phòng cháy chữa cháy tự động</p>
           <ul class="space-y-2 text-sm text-gray-600">
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Trụ cháy & Sprinkler</span>
+              <span>Trụ chữa cháy & hệ thống Sprinkler</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Báo cháy tự động</span>
+              <span>Hệ thống báo cháy tự động</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Nghiệm thu PCCC</span>
+              <span>Nghiệm thu PCCC theo quy chuẩn</span>
             </li>
           </ul>
         </div>
         
+        <!-- Utility System -->
         <div class="group p-8 bg-gradient-to-br from-purple-50 to-white rounded-xl border border-purple-100 hover:shadow-lg transition-all">
           <div class="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">Utility</h3>
-          <p class="text-gray-600 mb-4">Hệ thống kỹ thuật phụ trợ</p>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Hệ thống Utility</h3>
+          <p class="text-gray-600 mb-4">Hệ thống kỹ thuật phụ trợ cho nhà máy & tòa nhà</p>
           <ul class="space-y-2 text-sm text-gray-600">
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Khí nén & Hút bụi</span>
+              <span>Hệ thống Boiler & Khí nén</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Hơi & Nước lạnh</span>
+              <span>Xử lý nước sản xuất & sinh hoạt</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Chống sét & Tiếp địa</span>
+              <span>Cấp nước sản xuất & Phòng sạch</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Kết nối máy phục vụ sản xuất</span>
             </li>
           </ul>
         </div>
         
+        <!-- Electrical & Low Voltage Systems (BMS) -->
+        <div class="group p-8 bg-gradient-to-br from-indigo-50 to-white rounded-xl border border-indigo-100 hover:shadow-lg transition-all">
+          <div class="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/></svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Hệ thống điện nhẹ (BMS)</h3>
+          <p class="text-gray-600 mb-4">Quản lý tòa nhà, giám sát và an ninh</p>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Hệ thống mạng LAN + Tel</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Camera giám sát & chống trộm</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Hệ thống quản lý tòa nhà BMS</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Nhà thông minh SmartHome</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Maintenance Services -->
         <div class="group p-8 bg-gradient-to-br from-green-50 to-white rounded-xl border border-green-100 hover:shadow-lg transition-all">
           <div class="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3">Bảo trì</h3>
-          <p class="text-gray-600 mb-4">Bảo trì hệ thống cơ điện</p>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Bảo dưỡng & Bảo trì Cơ Điện</h3>
+          <p class="text-gray-600 mb-4">Dịch vụ sau thi công & bảo dưỡng trọn gói</p>
           <ul class="space-y-2 text-sm text-gray-600">
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Bảo trì định kỳ</span>
+              <span>Bảo hành sau thi công cơ điện</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Sửa chữa & Cải tạo</span>
+              <span>Bảo dưỡng HVAC, cấp thoát nước, PCCC</span>
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-4 h-4 mt-0.5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-              <span>Hỗ trợ 24/7</span>
+              <span>Bảo dưỡng điện & thông tin liên lạc</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-4 h-4 mt-0.5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span>Bảo dưỡng định kỳ, dự phòng & đột xuất</span>
             </li>
           </ul>
         </div>
