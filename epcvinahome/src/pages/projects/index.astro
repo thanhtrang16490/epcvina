@@ -2,7 +2,95 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 
 const allProjects = [
-  // Highlight Projects
+  // Featured Projects - From EPC.com.vn
+  {
+    title: 'Keangnam Landmark Tower',
+    category: 'MEP Commercial',
+    location: 'Phạm Hùng, Hà Nội',
+    year: '2011-2012',
+    description: 'Hệ thống Chiller, Cooling Tower, AHU, FCU, ống gió cho tòa nhà chọc trời cao nhất Việt Nam',
+    scope: ['Chiller', 'Cooling Tower', 'AHU/FCU', 'Ống gió', 'Cấp thoát nước', 'Thiết bị vệ sinh'],
+    client: 'Keangnam',
+    status: 'Hoàn thành',
+    highlight: true,
+  },
+  {
+    title: 'Department Store - Landmark 72',
+    category: 'MEP Commercial',
+    location: 'Phạm Hùng, Hà Nội',
+    year: '2011-2012',
+    description: 'Siêu thị cao cấp trong Keangnam Landmark - Hệ thống điều hòa thông gió và cấp thoát nước',
+    scope: ['HVAC', 'Cấp thoát nước', 'Thiết bị vệ sinh'],
+    client: 'Keangnam',
+    status: 'Hoàn thành',
+    highlight: true,
+  },
+  {
+    title: 'Lotte Center Hanoi',
+    category: 'MEP Commercial',
+    location: 'Hà Nội',
+    year: '2012-2014',
+    description: 'Hệ thống phòng cháy chữa cháy cho tòa nhà 65 tầng - một trong những công trình phức tạp nhất',
+    scope: ['PCCC 65 tầng'],
+    client: 'Lotte Conrals Vietnam',
+    status: 'Hoàn thành',
+    highlight: true,
+  },
+  {
+    title: 'Lotte Department Store',
+    category: 'MEP Commercial',
+    location: 'Hà Nội',
+    year: '2012-2014',
+    description: 'Trung tâm thương mại Lotte - Giải pháp MEP tổng thể từ HVAC đến PCCC và cấp thoát nước',
+    scope: ['HVAC', 'PCCC', 'Cấp thoát nước', 'Thiết bị vệ sinh'],
+    client: 'Lotte Conrals Vietnam',
+    status: 'Hoàn thành',
+    highlight: true,
+  },
+  {
+    title: 'Lotte Mart Đống Đa',
+    category: 'MEP Commercial',
+    location: 'Đống Đa, Hà Nội',
+    year: '2013-2014',
+    description: 'Hệ thống HVAC, PCCC và cấp thoát nước cho siêu thị Lotte Mart',
+    scope: ['HVAC', 'PCCC', 'Cấp thoát nước'],
+    client: 'Lotte Conrals Vietnam',
+    status: 'Hoàn thành',
+  },
+  // Samsung Projects
+  {
+    title: 'Samsung SEV - 4th Component Project (Bắc Ninh)',
+    category: 'MEP Industrial',
+    location: 'Bắc Ninh',
+    year: '2014',
+    description: 'Hệ thống điều hòa thông gió, Utility và phòng sạch cho nhà máy Samsung Electronics',
+    scope: ['HVAC', 'Utility', 'Phòng sạch'],
+    client: 'Samsung SEV Bắc Ninh',
+    status: 'Hoàn thành',
+    highlight: true,
+  },
+  {
+    title: 'Samsung SEV - 4th Component',
+    category: 'MEP Industrial',
+    location: 'Bắc Ninh',
+    year: '2014',
+    description: 'Giải pháp MEP hoàn chỉnh: HVAC, Utility, phòng sạch, CTN và thiết bị vệ sinh',
+    scope: ['HVAC', 'Utility', 'Phòng sạch', 'CTN', 'Thiết bị vệ sinh'],
+    client: 'Samsung SEV Bắc Ninh',
+    status: 'Hoàn thành',
+    highlight: true,
+  },
+  // Other Industrial Projects
+  {
+    title: 'Nhà máy thép Hà Nội (HSC)',
+    category: 'MEP Industrial',
+    location: 'Thăng Long Industrial Park, Đông Anh, Hà Nội',
+    year: '2015',
+    description: 'Dịch vụ bảo dưỡng hệ thống điều hòa thông gió cho nhà máy thép Hanoi Steel Center',
+    scope: ['Bảo dưỡng HVAC'],
+    client: 'Hanoi Steel Center (HSC)',
+    status: 'Hoàn thành',
+  },
   {
     title: 'Samsung SEVT - Thái Nguyên (Giai đoạn 1)',
     category: 'MEP Industrial',
@@ -13,19 +101,6 @@ const allProjects = [
     client: 'Samsung',
     contractor: 'Samho',
     status: 'Hoàn thành',
-    highlight: true,
-  },
-  {
-    title: 'Nhà máy Samsung Metal Line SEVT',
-    category: 'MEP Industrial',
-    location: 'Thái Nguyên',
-    year: '2014-2015',
-    description: 'Hệ thống PCCC cho dây chuyền sản xuất kim loại',
-    scope: ['Hệ thống PCCC'],
-    client: 'Samsung',
-    contractor: 'Deajung',
-    status: 'Hoàn thành',
-    highlight: true,
   },
   {
     title: 'Tổ hợp sản xuất Ô tô VinFast',
@@ -36,41 +111,6 @@ const allProjects = [
     scope: ['Đường ống công nghệ', 'HVAC', 'PCCC'],
     client: 'VinFast',
     contractor: 'Coteccons, Unicons',
-    status: 'Hoàn thành',
-    highlight: true,
-  },
-  // Commercial Projects
-  {
-    title: 'Keangnam Landmark Tower',
-    category: 'MEP Commercial',
-    location: 'Hà Nội',
-    year: '2011-2012',
-    description: 'Điều hòa thông gió, Cấp thoát nước, Lắp đặt thiết bị vệ sinh cho tòa nhà chọc trời',
-    scope: ['HVAC', 'Cấp thoát nước', 'Thiết bị vệ sinh'],
-    client: 'Keangnam',
-    contractor: 'Hitechvina',
-    status: 'Hoàn thành',
-  },
-  {
-    title: 'Lotte Center Hanoi',
-    category: 'MEP Commercial',
-    location: 'Hà Nội',
-    year: '2012-2014',
-    description: 'PCCC, Cấp thoát nước tạm, Hệ thống điều hòa thông gió',
-    scope: ['PCCC', 'Cấp thoát nước tạm', 'HVAC'],
-    client: 'Tập đoàn Lotte',
-    contractor: 'Hitechvina',
-    status: 'Hoàn thành',
-  },
-  {
-    title: 'Tổ hợp Lotte Mall Tây Hồ',
-    category: 'MEP Commercial',
-    location: 'Hà Nội',
-    year: '2021-2023',
-    description: 'MEP cho tổ hợp thương mại quy mô lớn',
-    scope: ['HVAC', 'Cấp thoát nước', 'PCCC'],
-    client: 'Lotte Properties',
-    contractor: 'Hitechvina',
     status: 'Hoàn thành',
   },
   // Hospitality Projects
@@ -163,27 +203,14 @@ const allProjects = [
     contractor: 'CT Group',
     status: 'Hoàn thành',
   },
-  // Other Samsung Projects
   {
-    title: 'Samsung SEV - Bắc Ninh (Metal Line)',
-    category: 'MEP Industrial',
-    location: 'Bắc Ninh',
-    year: '2014-2015',
-    description: 'Điều hòa thông gió, Đường ống công nghệ, Cấp thoát nước',
-    scope: ['HVAC', 'Đường ống công nghệ', 'Cấp thoát nước'],
-    client: 'Samsung',
-    contractor: 'Samho',
-    status: 'Hoàn thành',
-  },
-  {
-    title: 'Samsung SEHC - Xưởng VD3 + VD5 + DA1',
-    category: 'MEP Industrial',
-    location: 'Hồ Chí Minh',
+    title: 'Starcity Center Trần Duy Hưng',
+    category: 'MEP Residential',
+    location: 'Hà Nội',
     year: '2015-2016',
-    description: 'PCCC & Lắp đặt xưởng gia công',
-    scope: ['PCCC', 'Xưởng gia công'],
-    client: 'Samsung',
-    contractor: 'HK ENG, Samho, Seobo',
+    description: 'MEP cho tổ hợp căn hộ cao cấp',
+    scope: ['HVAC', 'Cấp thoát nước', 'PCCC'],
+    client: 'Starcity',
     status: 'Hoàn thành',
   },
 ];
@@ -198,7 +225,7 @@ const allProjects = [
           Dự án <span class="text-red-600">tiêu biểu</span>
         </h1>
         <p class="text-xl text-gray-600 leading-relaxed">
-          Hơn 200 công trình MEP đã thực hiện cho Samsung, VinFast, Lotte, Vinhomes và các đối tác lớn
+          Hơn 200 công trình MEP đã thực hiện cho Samsung, VinFast, Lotte, Keangnam, Vinhomes và các đối tác lớn
         </p>
       </div>
     </div>
@@ -213,7 +240,6 @@ const allProjects = [
             class="project-card group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all"
             data-category={project.category}
           >
-            {/* Project Image Placeholder */}
             <div class="aspect-video bg-gradient-to-br from-blue-100 to-gray-200 flex items-center justify-center">
               <svg class="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
@@ -221,9 +247,8 @@ const allProjects = [
             </div>
             
             <div class="p-6">
-              {/* Highlight Badge */}
               {project.highlight && (
-                <span class="inline-block px-3 py-1 bg-red-100 text-blue-700 text-xs font-semibold rounded-full mb-3">Nổi bật</span>
+                <span class="inline-block px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full mb-3">Nổi bật</span>
               )}
               
               <h3 class="text-lg font-semibold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
@@ -232,7 +257,6 @@ const allProjects = [
               
               <p class="text-sm text-gray-600 mb-4">{project.description}</p>
               
-              {/* Project Info */}
               <div class="space-y-2 mb-4 text-sm">
                 <div class="flex items-center gap-2 text-gray-600">
                   <svg class="w-4 h-4 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -254,19 +278,17 @@ const allProjects = [
                 </div>
               </div>
               
-              {/* Scope of Work */}
               <div class="border-t border-gray-200 pt-4 mb-4">
                 <h4 class="text-xs font-semibold text-gray-700 mb-2 uppercase">Phạm vi triển khai</h4>
                 <div class="flex flex-wrap gap-2">
                   {project.scope.map((item) => (
-                    <span class="px-2 py-1 bg-red-50 text-blue-700 text-xs rounded-md">
+                    <span class="px-2 py-1 bg-red-50 text-red-700 text-xs rounded-md">
                       {item}
                     </span>
                   ))}
                 </div>
               </div>
               
-              {/* Status */}
               <div class="flex items-center justify-between pt-4 border-t border-gray-200">
                 <span class={`inline-flex items-center gap-1 text-xs font-semibold px-3 py-1 rounded-full ${
                   project.status === 'Đang thi công'
@@ -292,19 +314,19 @@ const allProjects = [
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-4 gap-8">
         <div class="text-center">
-          <div class="text-5xl font-bold text-blue-400 mb-2">200+</div>
+          <div class="text-5xl font-bold text-red-400 mb-2">200+</div>
           <div class="text-gray-300">Dự án hoàn thành</div>
         </div>
         <div class="text-center">
-          <div class="text-5xl font-bold text-blue-400 mb-2">50+</div>
+          <div class="text-5xl font-bold text-red-400 mb-2">50+</div>
           <div class="text-gray-300">Khách hàng lớn</div>
         </div>
         <div class="text-center">
-          <div class="text-5xl font-bold text-blue-400 mb-2">15+</div>
+          <div class="text-5xl font-bold text-red-400 mb-2">15+</div>
           <div class="text-gray-300">Tỉnh thành</div>
         </div>
         <div class="text-center">
-          <div class="text-5xl font-bold text-blue-400 mb-2">2011</div>
+          <div class="text-5xl font-bold text-red-400 mb-2">2011</div>
           <div class="text-gray-300">Năm thành lập</div>
         </div>
       </div>
@@ -315,7 +337,7 @@ const allProjects = [
   <section class="py-20 bg-red-600 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl lg:text-4xl font-bold mb-6">Bạn có dự án cần tư vấn?</h2>
-      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+      <p class="text-xl text-red-100 mb-8 max-w-3xl mx-auto">
         Liên hệ để được khảo sát và tư vấn giải pháp MEP tối ưu nhất
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
