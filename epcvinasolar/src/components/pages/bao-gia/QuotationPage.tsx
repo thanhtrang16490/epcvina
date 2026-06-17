@@ -215,17 +215,17 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
   return (
     <div
       onClick={onSelect}
-      className={`animate-slide-in-up group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 ${
+      className={`animate-slide-in-up group rounded-xl border transition-all duration-200 ease-in-out cursor-pointer overflow-hidden motion-reduce:transition-none motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-offset-2 ${
         isSelected
-          ? 'border-[#D0202A] bg-red-50 shadow-md'
-          : 'border-gray-200 bg-white hover:border-[#D0202A]/40 hover:shadow-md'
+          ? 'border-[#DC2626] bg-red-50 shadow-md'
+          : 'border-gray-200 bg-white hover:border-[#DC2626]/40 hover:shadow-md'
       }`}
       style={{ animationDelay: `${index * 60}ms` }}
     >
       {/* Color bar top */}
       <div
         className="h-0.5 w-full"
-        style={{ background: isHybrid ? 'linear-gradient(90deg,#1d4ed8,#3b82f6)' : 'linear-gradient(90deg,#D0202A,#F5831F)' }}
+        style={{ background: isHybrid ? 'linear-gradient(90deg,#1d4ed8,#3b82f6)' : 'linear-gradient(90deg,#DC2626,#F5831F)' }}
       />
 
       <div className="p-3.5">
@@ -243,7 +243,7 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
                 className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full"
                 style={{
                   background: isHybrid ? 'rgba(29,78,216,0.08)' : 'rgba(234,88,12,0.08)',
-                  color: isHybrid ? '#1d4ed8' : '#D0202A',
+                  color: isHybrid ? '#1d4ed8' : '#DC2626',
                 }}
               >
                 {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
@@ -271,7 +271,7 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
           ].map(m => (
             <div key={m.label} className="bg-white py-1.5 px-1">
               <p className="text-[11px] font-bold text-[#0F172A] leading-tight">{m.value}</p>
-              {m.sub && <p className="text-[9px] text-[#D0202A] font-medium leading-none mt-0.5">{m.sub}</p>}
+              {m.sub && <p className="text-[9px] text-[#DC2626] font-medium leading-none mt-0.5">{m.sub}</p>}
               <p className="text-[9px] text-gray-400 mt-0.5">{m.label}</p>
             </div>
           ))}
@@ -297,8 +297,8 @@ function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; o
     ...(sol.battery && batteryBrand
       ? [{ icon: <Battery className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
       : []),
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#D0202A]" />, label: 'Sản lượng/tháng',  value: `${sol.productionMin}–${sol.productionMax} kWh` },
-    { icon: <Calendar className="w-3.5 h-3.5 text-[#D0202A]" />,  label: 'Hoàn vốn',          value: sol.paybackStr },
+    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng',  value: `${sol.productionMin}–${sol.productionMax} kWh` },
+    { icon: <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />,  label: 'Hoàn vốn',          value: sol.paybackStr },
     ...(sol.roofArea
       ? [{ icon: <Home className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${sol.roofArea} m²` }]
       : []),
@@ -346,7 +346,7 @@ function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; o
               className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full mb-2"
               style={{
                 background: isHybrid ? 'rgba(29,78,216,0.1)' : 'rgba(234,88,12,0.1)',
-                color: isHybrid ? '#1d4ed8' : '#D0202A',
+                color: isHybrid ? '#1d4ed8' : '#DC2626',
               }}
             >
               {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
@@ -378,7 +378,7 @@ function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; o
             </div>
             <div className="text-right">
               <p className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">Công suất</p>
-              <p className="text-[20px] font-extrabold text-[#D0202A] leading-tight mt-0.5">{sol.power} <span className="text-[13px] font-semibold text-gray-500">kWp</span></p>
+              <p className="text-[20px] font-extrabold text-[#DC2626] leading-tight mt-0.5">{sol.power} <span className="text-[13px] font-semibold text-gray-500">kWp</span></p>
             </div>
           </div>
 
@@ -405,8 +405,8 @@ function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; o
         <div className="flex gap-2.5 mx-4 my-3 flex-shrink-0">
           <a
             href="/lien-he"
-            className="btn-scale flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#D0202A] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
-            style={{ background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' }}
+            className="btn-scale flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
+            style={{ background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' }}
           >
             <Phone className="w-4 h-4" /> Xem chi tiết
           </a>
@@ -865,7 +865,7 @@ export default function QuotationPage() {
                     type="button"
                     disabled={!isFormValid}
                     className={`cursor-pointer w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-white text-base font-bold shadow-sm transition-all ${isFormValid ? 'opacity-100 btn-scale' : 'opacity-50 cursor-not-allowed'}`}
-                    style={isFormValid ? { background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' } : { background: '#9ca3af' }}
+                    style={isFormValid ? { background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' } : { background: '#9ca3af' }}
                   >
                     {submitted ? (
                       <>
@@ -915,7 +915,7 @@ export default function QuotationPage() {
                         {solutions.length > 0 ? `${solutions.length} giải pháp phù hợp — click để xem chi tiết` : 'Không có combo phù hợp với bộ lọc hiện tại'}
                       </p>
                     </div>
-                    <a href="/solar-home" className="flex items-center gap-1 text-xs text-gray-500 hover:text-[#D0202A] font-medium transition-colors">
+                    <a href="/solar-home" className="flex items-center gap-1 text-xs text-gray-500 hover:text-[#DC2626] font-medium transition-colors">
                       Xem tất cả <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -1004,8 +1004,8 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
     ...(sol.battery && batteryBrand
       ? [{ icon: <Battery className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
       : []),
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#D0202A]" />, label: 'Sản lượng/tháng', value: `${sol.productionMin}–${sol.productionMax} kWh` },
-    { icon: <Calendar className="w-3.5 h-3.5 text-[#D0202A]" />,  label: 'Hoàn vốn',         value: sol.paybackStr },
+    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng', value: `${sol.productionMin}–${sol.productionMax} kWh` },
+    { icon: <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />,  label: 'Hoàn vốn',         value: sol.paybackStr },
     ...(sol.roofArea
       ? [{ icon: <Home className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${sol.roofArea} m²` }]
       : []),
@@ -1021,7 +1021,7 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
           className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full mb-2"
           style={{
             background: isHybrid ? 'rgba(29,78,216,0.1)' : 'rgba(234,88,12,0.1)',
-            color: isHybrid ? '#1d4ed8' : '#D0202A',
+            color: isHybrid ? '#1d4ed8' : '#DC2626',
           }}
         >
           {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
@@ -1049,7 +1049,7 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
         </div>
         <div className="text-right">
           <p className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">Công suất</p>
-          <p className="text-[20px] font-extrabold text-[#D0202A] leading-tight mt-0.5">{sol.power} <span className="text-[13px] font-semibold text-gray-500">kWp</span></p>
+          <p className="text-[20px] font-extrabold text-[#DC2626] leading-tight mt-0.5">{sol.power} <span className="text-[13px] font-semibold text-gray-500">kWp</span></p>
         </div>
       </div>
 
@@ -1074,7 +1074,7 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
         <a
           href="/lien-he"
           className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm"
-          style={{ background: 'linear-gradient(135deg,#D0202A 0%,#F5831F 100%)' }}
+          style={{ background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' }}
         >
           <Phone className="w-4 h-4" /> Xem chi tiết
         </a>

@@ -18,7 +18,7 @@ const projects = [
     capacity: '15 kWp On-Grid',
     year: '2024',
     tag: 'On-Grid',
-    tagColor: 'bg-[#D0202A]',
+    tagColor: 'bg-[#DC2626]',
     bg: 'from-red-900 to-red-700',
   },
   {
@@ -45,16 +45,16 @@ export default function ProjectsPreviewSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
 
   return (
-    <section ref={sectionRef} className="py-14 sm:py-20 bg-white">
+    <section ref={sectionRef} className="py-14 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#D0202A] mb-2">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#DC2626] mb-2">
               CÔNG TRÌNH ĐÃ TRIỂN KHAI
             </p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-              Dự Án <span className="text-[#D0202A]">Thực Tế</span>
+              Dự Án <span className="text-[#DC2626]">Thực Tế</span>
             </h2>
             <p className="mt-2 text-gray-500 text-sm max-w-lg">
               200+ công trình đã hoàn thành trên toàn quốc — từ nhà dân, biệt thự đến nhà xưởng và văn phòng.
@@ -62,7 +62,7 @@ export default function ProjectsPreviewSection() {
           </div>
           <a
             href="/du-an"
-            className="inline-flex items-center gap-2 text-[#D0202A] hover:text-[#B01A22] font-semibold text-sm transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-2 text-[#DC2626] hover:text-[#B01A22] font-semibold text-sm transition-colors flex-shrink-0"
           >
             Xem tất cả dự án
             <ArrowRight className="h-4 w-4" />
@@ -116,7 +116,7 @@ export default function ProjectsPreviewSection() {
         <div className="mt-10 text-center">
           <a
             href="/du-an"
-            className="inline-flex items-center gap-2 px-7 py-3 border-2 border-[#D0202A] text-[#D0202A] hover:bg-[#D0202A] hover:text-white font-semibold rounded-full text-sm transition-all duration-200"
+            className="inline-flex items-center gap-2 px-7 py-3 border-2 border-[#DC2626] text-[#DC2626] hover:bg-[#DC2626] hover:text-white font-semibold rounded-full text-sm transition-all duration-200"
           >
             Xem toàn bộ dự án đã thi công
             <ArrowRight className="h-4 w-4" />

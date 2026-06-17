@@ -173,7 +173,7 @@ export default function ComparisonSection() {
             </a>
             <a
               href="/on-grid"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#D0202A] hover:bg-[#B01A22] text-white font-semibold rounded-full transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-semibold rounded-full transition-colors shadow-lg"
             >
               <Sun className="h-4 w-4" />
               Xem combo On-Grid

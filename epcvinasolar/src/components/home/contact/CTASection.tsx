@@ -40,7 +40,7 @@ export default function CTASection() {
     <section
       id="tu-van"
       ref={sectionRef}
-      className={`py-14 sm:py-20 bg-gradient-to-br from-[#6B1A1F] via-[#8B2020] to-[#D0202A] ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:scale-100 motion-reduce:transition-none`}
+      className={`py-14 sm:py-20 bg-gradient-to-br from-[#7F1D1D] via-[#991B1B] to-[#DC2626] ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:scale-100 motion-reduce:transition-none`}
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -81,7 +81,7 @@ export default function CTASection() {
                     onChange={handleChange}
                     required
                     placeholder="Nguyễn Văn A"
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D0202A] focus:border-transparent transition"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition"
                   />
                 </div>
                 <div>
@@ -95,7 +95,7 @@ export default function CTASection() {
                     onChange={handleChange}
                     required
                     placeholder="0988 446 113"
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D0202A] focus:border-transparent transition"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition"
                   />
                 </div>
               </div>
@@ -112,7 +112,7 @@ export default function CTASection() {
                   onChange={handleChange}
                   required
                   placeholder="Số nhà, đường, phường/xã, tỉnh/thành phố"
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D0202A] focus:border-transparent transition"
+                  className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition"
                 />
               </div>
 
@@ -128,7 +128,7 @@ export default function CTASection() {
                     value={form.bill}
                     onChange={handleChange}
                     placeholder="VD: 2.000.000 đ"
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D0202A] focus:border-transparent transition"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition"
                   />
                 </div>
                 <div>
@@ -140,7 +140,7 @@ export default function CTASection() {
                     value={form.need}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#D0202A] focus:border-transparent transition bg-white"
+                    className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition bg-white"
                   >
                     <option value="">Chọn nhu cầu...</option>
                     {NEEDS.map((n) => (
@@ -154,7 +154,7 @@ export default function CTASection() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-[#D0202A] hover:bg-[#B01A22] disabled:opacity-60 text-white font-bold rounded-xl text-sm transition-colors duration-200 shadow-lg shadow-red-200 glow-emerald motion-reduce:transition-none"
+                className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-[#DC2626] hover:bg-[#B01A22] disabled:opacity-60 text-white font-bold rounded-xl text-sm transition-colors duration-200 shadow-lg shadow-red-200 glow-emerald motion-reduce:transition-none"
               >
                 {loading ? (
                   <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />

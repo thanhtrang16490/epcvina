@@ -129,11 +129,11 @@ function MenuGroup({
         onClick={onClose}
         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
           active
-            ? 'bg-[#FEF2F2] text-[#D0202A]'
+            ? 'bg-[#FEF2F2] text-[#DC2626]'
             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
         }`}
       >
-        <Icon className={`h-5 w-5 ${active ? 'text-[#D0202A]' : 'text-gray-400'}`} />
+        <Icon className={`h-5 w-5 ${active ? 'text-[#DC2626]' : 'text-gray-400'}`} />
         {item.name}
       </a>
     );
@@ -190,11 +190,11 @@ function MenuGroup({
                 onClick={onClose}
                 className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
                   active
-                    ? 'bg-[#FEF2F2] text-[#D0202A] font-medium'
+                    ? 'bg-[#FEF2F2] text-[#DC2626] font-medium'
                     : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                 }`}
               >
-                <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#D0202A]' : 'bg-gray-300'}`} />
+                <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#DC2626]' : 'bg-gray-300'}`} />
                 {child.name}
               </a>
             );
@@ -339,7 +339,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             {user ? (
               <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-gray-50">
                 <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-7 h-7 rounded-full bg-[#D0202A] flex items-center justify-center flex-shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-[#DC2626] flex items-center justify-center flex-shrink-0">
                     <User className="h-4 w-4 text-white" />
                   </div>
                   <span className="text-sm text-gray-700 truncate">{user.name}</span>
@@ -351,7 +351,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </div>
             ) : (
               <a href="/login" onClick={onClose}
-                className="flex items-center justify-center gap-2 bg-[#D0202A] text-white rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
+                className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
               >
                 <LogIn className="h-4 w-4" />
                 <span>Đăng nhập</span>
@@ -385,7 +385,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <a href="/" className="flex items-center">
             {/* Collapsed: show only the red EPC mark */}
             {!isExpanded && (
-              <span className="w-7 h-7 rounded-md bg-[#D0202A] flex items-center justify-center flex-shrink-0">
+              <span className="w-7 h-7 rounded-md bg-[#DC2626] flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-[11px] font-black leading-none">E</span>
               </span>
             )}
@@ -415,14 +415,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isExpanded
                       ? active
-                        ? 'bg-[#FEF2F2] text-[#D0202A]'
+                        ? 'bg-[#FEF2F2] text-[#DC2626]'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                       : 'justify-center'
-                  } ${!isExpanded && active ? 'bg-[#FEF2F2] text-[#D0202A]' : ''}`}
+                  } ${!isExpanded && active ? 'bg-[#FEF2F2] text-[#DC2626]' : ''}`}
                   title={!isExpanded ? item.name : undefined}
                 >
                   <Icon className={`h-5 w-5 flex-shrink-0 ${
-                    active ? 'text-[#D0202A]' : isExpanded ? 'text-gray-400' : 'text-gray-400'
+                    active ? 'text-[#DC2626]' : isExpanded ? 'text-gray-400' : 'text-gray-400'
                   }`} />
                   {isExpanded && <span>{item.name}</span>}
                 </a>
@@ -485,11 +485,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           onClick={onClose}
                           className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
                             active
-                              ? 'bg-[#FEF2F2] text-[#D0202A] font-medium'
+                              ? 'bg-[#FEF2F2] text-[#DC2626] font-medium'
                               : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                           }`}
                         >
-                          <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#D0202A]' : 'bg-gray-300'}`} />
+                          <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#DC2626]' : 'bg-gray-300'}`} />
                           {child.name}
                         </a>
                       );
@@ -560,7 +560,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               isExpanded ? (
                 <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-gray-50">
                   <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-7 h-7 rounded-full bg-[#D0202A] flex items-center justify-center flex-shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-[#DC2626] flex items-center justify-center flex-shrink-0">
                       <User className="h-4 w-4 text-white" />
                     </div>
                     <span className="text-sm text-gray-700 truncate">{user.name}</span>
@@ -579,14 +579,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             ) : (
               isExpanded ? (
                 <a href="/login"
-                  className="flex items-center justify-center gap-2 bg-[#D0202A] text-white rounded-xl py-2.5 px-4 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
+                  className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl py-2.5 px-4 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
                 >
                   <LogIn className="h-4 w-4 flex-shrink-0" />
                   <span>Đăng nhập</span>
                 </a>
               ) : (
                 <a href="/login" title="Đăng nhập"
-                  className="w-full flex justify-center py-2 text-gray-500 hover:text-[#D0202A] transition-colors">
+                  className="w-full flex justify-center py-2 text-gray-500 hover:text-[#DC2626] transition-colors">
                   <LogIn className="h-5 w-5" />
                 </a>
               )

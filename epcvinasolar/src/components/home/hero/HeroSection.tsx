@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Sun, Zap, Shield, Factory, ClipboardCheck, FileText } from 'lucide-react';
 import { useScrollAnimation, useCountUp } from '../../../hooks/useScrollAnimation';
 
-const RED = '#D0202A';
+const RED = '#DC2626';
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -108,9 +108,9 @@ export default function HeroSection() {
             style={{ backgroundColor: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(12px)' }}
           >
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-              {[
-                { icon: <Sun className="w-7 h-7 md:w-9 md:h-9 text-[#D0202A]" />, value: `${count10}+`, label: 'Năm kinh nghiệm' },
-                { icon: <Zap className="w-7 h-7 md:w-9 md:h-9 text-[#D0202A]" />, value: `${count200}+`, label: 'Công trình đã thi công' },
+              {[  
+                { icon: <Sun className="w-7 h-7 md:w-9 md:h-9 text-[#DC2626]" />, value: `${count10}+`, label: 'Năm kinh nghiệm' },
+                { icon: <Zap className="w-7 h-7 md:w-9 md:h-9 text-[#DC2626]" />, value: `${count200}+`, label: 'Công trình đã thi công' },
                 { icon: <Factory className="w-7 h-7 md:w-9 md:h-9 text-[#1a365d]" />, value: `${count5} MWp+`, label: 'Công suất lắp đặt' },
                 { icon: <Shield className="w-7 h-7 md:w-9 md:h-9 text-[#1a365d]" />, value: `${count25} năm`, label: 'Bảo hành tấm pin' },
               ].map((stat, i) => (

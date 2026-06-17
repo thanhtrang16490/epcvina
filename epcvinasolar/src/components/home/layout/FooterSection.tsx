@@ -1,6 +1,6 @@
 import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 
-const BRAND_RED = '#D0202A';
+const BRAND_RED = '#DC2626';
 
 export default function FooterSection() {
   return (
