@@ -1,12 +1,11 @@
-# EPCVINA Multi-Site Deployment Configuration
-# Builds both epcvinahome (static) and epcvinasolar (SSR)
-# Uses root package.json as entry point for Nixpacks detection
+# EPCVINA Multi-Site Deployment
+# Root package.json provides build scripts for Nixpacks detection
 
 [phases.setup]
 nixPkgs = ["nodejs_22"]
 
 [phases.install]
-cmds = ["npm ci"]
+cmds = ["npm install --no-package-lock"]
 
 [phases.build]
 cmds = ["npm run build"]
@@ -16,8 +15,5 @@ HOST = "0.0.0.0"
 PORT = "3000"
 NODE_ENV = "production"
 
-# Start SSR server (serves both sites)
-# - epcvinasolar routes: handled by Astro SSR
-# - epcvinahome routes: served as static files from /client
 [start]
 cmd = "npm start"
