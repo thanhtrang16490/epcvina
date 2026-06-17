@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+:root {
+  /* === EPCVINA Solar Design System ===
+   * Colors extracted directly from logo:
+   *   #D0202A — Red accent bar = PRIMARY brand (EPC mark, urgency, CTA)
+   *   #F5831F — SOLAR orange = SECONDARY accent (solar energy, warmth)
+   *   #4A4F56 — EPCVINA charcoal = professional neutral
+   */
+
+  /* Primary: Logo red (#D0202A) — main CTA, active states, headings accent */
+  --color-primary: #D0202A;
+  --color-primary-hover: #B01A22;
+  --color-primary-light: #FEF2F2;
+  --color-primary-50: #FEF2F2;
+  --color-primary-100: #FEE2E2;
+  --color-primary-200: #FECACA;
+  --color-primary-500: #D0202A;
+  --color-primary-600: #B01A22;
+  --color-primary-700: #8B1219;
+
+  /* Secondary accent: Logo orange (#F5831F) — solar energy cue, hover accents */
+  --color-secondary-accent: #F5831F;
+  --color-secondary-accent-hover: #E0721A;
+  --color-secondary-accent-light: #FFF4E8;
+
+  /* Brand charcoal: Logo EPCVINA text (#4A4F56) */
+  --color-charcoal: #4A4F56;
+  --color-charcoal-hover: #3A3F45;
+  --color-charcoal-light: #F2F3F4;
+  --color-charcoal-50: #F2F3F4;
+  --color-charcoal-100: #DDDFE2;
+  --color-charcoal-800: #2C3036;
+  --color-charcoal-900: #1A1D21;
+
+  /* Eco/sustainability: Emerald */
+  --color-secondary: #059669;
+  --color-secondary-hover: #047857;
+  --color-secondary-light: #ECFDF5;
+  --color-secondary-50: #ECFDF5;
+  --color-secondary-100: #D1FAE5;
+  --color-secondary-500: #10B981;
+  --color-secondary-600: #059669;
+  --color-secondary-700: #047857;
+
+  /* Neutrals: Slate */
+  --color-neutral-900: #0F172A;
+  --color-neutral-800: #1E293B;
+  --color-neutral-700: #334155;
+  --color-neutral-600: #475569;
+  --color-neutral-500: #64748B;
+  --color-neutral-400: #94A3B8;
+  --color-neutral-300: #CBD5E1;
+  --color-neutral-200: #E2E8F0;
+  --color-neutral-100: #F1F5F9;
+  --color-neutral-50: #F8FAFC;
+
+  /* Semantic */
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+  --surface: #FFFFFF;
+  --border: #E2E8F0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand: var(--color-primary);
+  --color-brand-hover: var(--color-primary-hover);
+  --color-brand-light: var(--color-primary-light);
+  --color-brand-orange: var(--color-secondary-accent);
+  --color-charcoal: var(--color-charcoal);
+  --color-eco: var(--color-secondary);
+  --color-eco-light: var(--color-secondary-light);
+  --font-sans: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+}
+
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  background: linear-gradient(to bottom right, #FEF2F2, #ffffff, #ECFDF5);
+  color: var(--foreground);
+  font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hide scrollbar for mobile scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* iPhone safe area */
+.h-safe-area-inset-bottom {
+  height: env(safe-area-inset-bottom, 0px);
+}
+
+/* Touch action optimization */
+.touch-pan-x {
+  touch-action: pan-x;
+}
+
+/* Bottom sheet animation */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* === Homepage Animations === */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-in-left {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes counter-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out both;
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.5s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.5s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.4s ease-out both;
+}
+
+.animate-counter-up {
+  animation: counter-up 0.5s ease-out both;
+}
+
+/* Stagger delay utilities */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* === Scroll Animation Utilities === */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-scroll.animate-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.animate-on-scroll.animate-scale.animate-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delay utilities */
+.stagger-1 { transition-delay: 100ms; }
+.stagger-2 { transition-delay: 200ms; }
+.stagger-3 { transition-delay: 300ms; }
+.stagger-4 { transition-delay: 400ms; }
+.stagger-5 { transition-delay: 500ms; }
+.stagger-6 { transition-delay: 600ms; }
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+/* CTA glow effects */
+.glow-emerald {
+  transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.glow-emerald:hover {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);
+}
+
+/* Toggle row slide-in (y: -6px → 0) */
+@keyframes slide-in-down {
+  from { transform: translateY(-6px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-in-down {
+  animation: slide-in-down 0.18s ease-out both;
+}
+
+/* Fast slide-in-up variant */
+.animate-slide-in-up-fast {
+  animation: slide-in-up 0.22s ease-out both;
+}
+
+/* Slide-in from right */
+@keyframes slide-in-right {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.5s ease-out both;
+}
+
+/* Interactive button/link hover-tap scale */
+.btn-scale {
+  transition: transform 0.15s ease-out;
+}
+.btn-scale:hover {
+  transform: scale(1.02);
+}
+.btn-scale:active {
+  transform: scale(0.97);
+}
+
+/* Modal animations */
+@keyframes modal-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes modal-panel-in {
+  from { opacity: 0; transform: translateY(60px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes modal-panel-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(60px) scale(0.95); }
+}
+
+.animate-modal-backdrop-in { animation: modal-backdrop-in 0.2s ease-out both; }
+.animate-modal-backdrop-out { animation: modal-backdrop-out 0.15s ease-in both; }
+.animate-modal-panel-in { animation: modal-panel-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-modal-panel-out { animation: modal-panel-out 0.2s ease-in both; }
+
+/* Reduced motion override */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hover-lift:hover {
+    transform: none;
+  }
+  .glow-emerald:hover {
+    box-shadow: none;
+  }
+  .animate-slide-in-down,
+  .animate-slide-in-up-fast,
+  .animate-slide-in-right {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .btn-scale:hover,
+  .btn-scale:active {
+    transform: none;
+  }
+  .animate-modal-backdrop-in,
+  .animate-modal-backdrop-out,
+  .animate-modal-panel-in,
+  .animate-modal-panel-out {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,387 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const capabilities = [
+  {
+    category: 'HVAC & Chiller',
+    items: [
+      'Chiller trung tâm',
+      'Tháp giải nhiệt',
+      'AHU/FCU/PAU',
+      'Phòng sạch & Data Center Cooling',
+      'Hệ thống điều hòa VRV/VRF',
+      'Thông gió công nghiệp',
+    ],
+  },
+  {
+    category: 'Đường ống Tiện ích & Công nghệ',
+    items: [
+      'Hệ thống hơi & lò hơi',
+      'Hệ thống khí nén',
+      'DI / RO / PCW (Nước tinh khiết)',
+      'Đường ống công nghiệp',
+      'Hệ thống gas công nghiệp',
+      'Đường ống HVAC',
+    ],
+  },
+  {
+    category: 'Cấp thoát nước & PCCC',
+    items: [
+      'Hệ thống cấp nước',
+      'Hệ thống thoát nước',
+      'Xử lý nước thải',
+      'Sprinkler & Fire Alarm',
+      'FM200 / CO₂',
+      'Foam System',
+    ],
+  },
+  {
+    category: 'Điện & Điện nhẹ',
+    items: [
+      'Trung thế đến 35kV',
+      'Trạm biến áp',
+      'Hệ thống phân phối điện',
+      'Tiếp địa & chống sét',
+      'CCTV & BMS/EMS',
+      'Hệ thống dữ liệu',
+    ],
+  },
+  {
+    category: 'Điện mặt trời áp mái',
+    items: [
+      'Khảo sát mái & đánh giá kết cấu',
+      'Thiết kế thi công rooftop solar',
+      'Lắp đặt kết cấu giá đỡ & tấm pin',
+      'Tích hợp inverter & MSB',
+      'Zero Export (giới hạn phát ngược)',
+      'Hệ thống giám sát',
+    ],
+  },
+  {
+    category: 'Quản lý & Thi công',
+    items: [
+      'Quản lý dự án chuyên nghiệp',
+      'Shop Drawing & kỹ thuật',
+      'Kiểm soát chất lượng QA/QC',
+      'An toàn lao động HSE',
+      'Mua sắm vật tư thiết bị',
+      'Lập kế hoạch & tiến độ',
+    ],
+  },
+];
+
+const teamStats = [
+  { number: '500+', label: 'Nhân lực triển khai', icon: '👷' },
+  { number: '45+', label: 'Kỹ sư kỹ thuật', icon: '👨‍💼' },
+  { number: '5+', label: 'Quản lý dự án', icon: '📊' },
+  { number: '300+', label: 'Thợ kỹ thuật & tổ đội', icon: '🔧' },
+];
+
+const milestones = [
+  {
+    year: '2011',
+    title: 'Thành lập EPCVINA',
+    description: 'Bắt đầu với các dự án MEP cho Keangnam Landmark Tower',
+  },
+  {
+    year: '2014',
+    title: 'Mở rộng sang Samsung',
+    description: 'Triển khai nhiều dự án tại SEVT Thái Nguyên và SEV Bắc Ninh',
+  },
+  {
+    year: '2018',
+    title: 'Dự án VinFast',
+    description: 'Tham gia tổ hợp sản xuất ô tô VinFast tại Hải Phòng',
+  },
+  {
+    year: '2021',
+    title: 'Lotte Mall Tây Hồ',
+    description: 'MEP cho tổ hợp thương mại quy mô lớn',
+  },
+  {
+    year: '2024',
+    title: 'Shilla Starlake & Solar',
+    description: 'Khách sạn 5 sao + Mở rộng điện mặt trời công nghiệp',
+  },
+];
+---
+
+<PageLayout title="Hồ sơ năng lực – EPCVINA | Nhà thầu MEP & Năng lượng">
+  <!-- Hero Section -->
+  <section class="pt-24 lg:pt-32 bg-gradient-to-br from-blue-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div class="max-w-4xl">
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          Hồ sơ <span class="text-red-600">năng lực</span>
+        </h1>
+        <p class="text-xl text-gray-600 leading-relaxed">
+          Thành lập năm 2011, EPCVINA là nhà thầu MEP & tổng thầu EPC Solar với hơn 200 dự án 
+          cho Samsung, VinFast, Lotte, Vinhomes
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Overview -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Về EPCVINA</h2>
+          <div class="prose prose-lg text-gray-600">
+            <p class="mb-4">
+              <strong class="text-gray-900">EPCVINA</strong> là nhà thầu thi công hệ thống Cơ điện (MEP) và tổng thầu 
+              thi công hệ thống điện mặt trời áp mái công nghiệp cho các công trình công nghiệp và thương mại 
+              tại Việt Nam.
+            </p>
+            <p class="mb-4">
+              Thành lập năm 2011, EPCVINA tập trung triển khai các hệ thống kỹ thuật cho nhà máy FDI, 
+              tổ hợp sản xuất và các công trình quy mô lớn, với năng lực tổ chức thi công và kiểm soát 
+              kỹ thuật hiện trường.
+            </p>
+            <p>
+              Các dự án được triển khai theo mô hình quản lý dự án chuyên nghiệp nhằm đảm bảo 
+              <strong class="text-red-600">chất lượng – tiến độ – an toàn – khả năng vận hành ổn định</strong> 
+              của hệ thống.
+            </p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-6">
+          <div class="p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-red-100">
+            <div class="text-4xl font-bold text-red-600 mb-2">2011</div>
+            <div class="text-gray-700 font-medium">Năm thành lập</div>
+          </div>
+          <div class="p-6 bg-gradient-to-br from-green-50 to-white rounded-xl border border-green-100">
+            <div class="text-4xl font-bold text-green-600 mb-2">200+</div>
+            <div class="text-gray-700 font-medium">Dự án hoàn thành</div>
+          </div>
+          <div class="p-6 bg-gradient-to-br from-orange-50 to-white rounded-xl border border-orange-100">
+            <div class="text-4xl font-bold text-orange-600 mb-2">50+</div>
+            <div class="text-gray-700 font-medium">Khách hàng lớn</div>
+          </div>
+          <div class="p-6 bg-gradient-to-br from-purple-50 to-white rounded-xl border border-purple-100">
+            <div class="text-4xl font-bold text-purple-600 mb-2">15+</div>
+            <div class="text-gray-700 font-medium">Tỉnh thành</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team & Resources -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Năng lực nhân sự</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Đội ngũ quản lý dự án và kỹ sư chuyên ngành có kinh nghiệm triển khai các hệ thống 
+          Cơ điện (MEP) và Điện mặt trời áp mái
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-4 gap-6 mb-12">
+        {teamStats.map((stat) => (
+          <div class="p-8 bg-white rounded-xl shadow-sm border border-gray-200 text-center">
+            <div class="text-5xl mb-4">{stat.icon}</div>
+            <div class="text-4xl font-bold text-red-600 mb-2">{stat.number}</div>
+            <div class="text-gray-700 font-medium">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="bg-white rounded-xl p-8 border border-gray-200">
+        <h3 class="text-xl font-semibold text-gray-900 mb-6">Cơ cấu tổ chức dự án</h3>
+        <div class="grid md:grid-cols-3 gap-6 text-sm">
+          <div>
+            <h4 class="font-semibold text-red-600 mb-3">Ban quản lý dự án</h4>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Giám đốc dự án (PM)</li>
+              <li>• Phó giám đốc kỹ thuật</li>
+              <li>• Chỉ huy trưởng công trường</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-green-600 mb-3">Kỹ thuật & QA/QC</h4>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Shop Drawing Team</li>
+              <li>• Kỹ sư chuyên ngành (HVAC, Điện, Nước, PCCC)</li>
+              <li>• Kỹ sư QA/QC</li>
+              <li>• Cán bộ an toàn (HSE)</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-orange-600 mb-3">Thi công</h4>
+            <ul class="space-y-2 text-gray-600">
+              <li>• Đội HVAC</li>
+              <li>• Đội PCCC</li>
+              <li>• Đội Cấp thoát nước</li>
+              <li>• Đội Điện</li>
+              <li>• Đội Solar</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Capabilities -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Năng lực kỹ thuật</h2>
+        <p class="text-lg text-gray-600">Phạm vi thi công các hệ thống kỹ thuật cho công trình công nghiệp và thương mại</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {capabilities.map((cap) => (
+          <div class="p-8 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-red-100 hover:shadow-lg transition-all">
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">{cap.category}</h3>
+            <ul class="space-y-2">
+              {cap.items.map((item) => (
+                <li class="flex items-start gap-2 text-sm text-gray-700">
+                  <svg class="w-4 h-4 mt-0.5 text-red-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Organization -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Quy trình quản lý dự án</h2>
+        <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+          Mô hình quản lý dự án chuyên nghiệp, đảm bảo sự phối hợp hiệu quả giữa các bộ phận 
+          kỹ thuật, cung ứng và thi công hiện trường
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-8 bg-white rounded-xl shadow-sm border border-gray-200">
+          <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">1</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Chuẩn bị</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Khảo sát hiện trường</li>
+            <li>• Thiết kế & shop drawing</li>
+            <li>• Lập kế hoạch thi công</li>
+            <li>• Cung ứng vật tư thiết bị</li>
+          </ul>
+        </div>
+        
+        <div class="p-8 bg-white rounded-xl shadow-sm border border-gray-200">
+          <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">2</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Thi công</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Tổ chức thi công hiện trường</li>
+            <li>• Kiểm soát chất lượng QA/QC</li>
+            <li>• An toàn lao động HSE</li>
+            <li>• Giám sát tiến độ</li>
+          </ul>
+        </div>
+        
+        <div class="p-8 bg-white rounded-xl shadow-sm border border-gray-200">
+          <div class="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center text-xl font-bold mb-4">3</div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">Nghiệm thu</h3>
+          <ul class="space-y-2 text-sm text-gray-600">
+            <li>• Kiểm tra, thử nghiệm</li>
+            <li>• Nghiệm thu hệ thống</li>
+            <li>• Bàn giao cho chủ đầu tư</li>
+            <li>• Bảo hành & bảo trì</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Lịch sử phát triển</h2>
+        <p class="text-lg text-gray-600">Hành trình 15 năm xây dựng và phát triển</p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="relative">
+          <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-200"></div>
+          
+          {milestones.map((milestone, index) => (
+            <div class={`relative mb-12 ${index % 2 === 0 ? 'md:pr-1/2 md:text-right md:ml-auto md:pl-12' : 'md:pl-1/2 md:pr-12'}`}>
+              <div class={`absolute top-0 ${index % 2 === 0 ? 'right-0 md:right-auto md:left-1/2 md:-translate-x-1/2' : 'left-0 md:left-1/2 md:-translate-x-1/2'} w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center font-bold`}>
+                {milestone.year}
+              </div>
+              <div class="ml-16 md:ml-0 p-6 bg-white rounded-xl shadow-sm border border-gray-200">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">{milestone.title}</h3>
+                <p class="text-gray-600">{milestone.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section class="py-20 bg-gradient-to-br from-blue-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Tải hồ sơ năng lực</h2>
+        <p class="text-lg text-gray-600">Tài liệu chi tiết về năng lực và kinh nghiệm của EPCVINA</p>
+      </div>
+      
+      <div class="max-w-3xl mx-auto grid md:grid-cols-2 gap-6">
+        <a href="/data-epvvn/Profile EPCVINA. VN.SOLAR2026.pdf" class="flex items-center gap-4 p-6 bg-white rounded-xl border-2 border-blue-200 hover:shadow-lg hover:border-blue-400 transition-all">
+          <div class="w-14 h-14 bg-red-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1">Profile EPCVINA 2026</h3>
+            <p class="text-sm text-gray-600">PDF - Hồ sơ năng lực đầy đủ</p>
+          </div>
+        </a>
+        
+        <a href="/data-epvvn/New Brochure_EPCVINA_ VN.pdf" class="flex items-center gap-4 p-6 bg-white rounded-xl border-2 border-green-200 hover:shadow-lg hover:border-green-400 transition-all">
+          <div class="w-14 h-14 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 mb-1">Brochure EPCVINA</h3>
+            <p class="text-sm text-gray-600">PDF - Giới thiệu dịch vụ</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-red-600 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl lg:text-4xl font-bold mb-6">Cần thêm thông tin?</h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+        Liên hệ để nhận hồ sơ chi tiết hoặc được tư vấn trực tiếp về giải pháp MEP
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white hover:bg-gray-100 text-red-600 font-semibold rounded-full transition-all hover:shadow-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Liên hệ tư vấn
+        </a>
+        <a href="/projects" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold rounded-full transition-all">
+          Xem dự án tiêu biểu
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

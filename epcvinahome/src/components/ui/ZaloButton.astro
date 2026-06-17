@@ -1,0 +1,135 @@
+---
+// Zalo Chat Button - Floating Action Button
+---
+
+<div class="zalo-container">
+  <a id="zalo-btn" href="https://zalo.me/0988446113" target="_blank" rel="noopener nofollow" aria-label="Chat với EPCVINA qua Zalo">
+    <div class="zalo-circle"></div>
+    <div class="zalo-circle-fill"></div>
+    <span>
+      <img 
+        src="/icons8-zalo.svg" 
+        alt="Chat với EPCVINA trên Zalo" 
+        width="52"
+        height="52"
+        class="zalo-icon"
+      />
+    </span>
+  </a>
+</div>
+
+<style>
+  .zalo-container {
+    position: fixed;
+    width: 56px;
+    height: 56px;
+    bottom: 100px;
+    right: 35px;
+    z-index: 9999999;
+  }
+  
+  .zalo-container a {
+    display: block;
+  }
+  
+  .zalo-container span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #1182FC;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(17, 130, 252, 0.3);
+  }
+  
+  .zalo-icon {
+    object-fit: contain;
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* Pulse animation rings */
+  .zalo-circle {
+    width: 68px;
+    height: 68px;
+    top: -6px;
+    right: -6px;
+    position: absolute;
+    background-color: transparent;
+    border-radius: 100%;
+    border: 2px solid rgba(17, 130, 252, 0.8);
+    opacity: 0.5;
+    animation: pulse-ring 1.5s ease-in-out infinite;
+  }
+  
+  .zalo-circle-fill {
+    width: 80px;
+    height: 80px;
+    top: -12px;
+    right: -12px;
+    position: absolute;
+    border-radius: 100%;
+    border: 2px solid transparent;
+    background-color: rgba(17, 130, 252, 0.45);
+    opacity: 0.75;
+    animation: pulse-fill 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-ring {
+    0%, 100% {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes pulse-fill {
+    0%, 100% {
+      transform: scale(0.9);
+      opacity: 0.75;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+  }
+  
+  /* Hover effect */
+  .zalo-container a:hover span {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .zalo-container {
+      bottom: 90px;
+      right: 20px;
+    }
+    
+    .zalo-container span {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .zalo-icon {
+      width: 28px;
+      height: 28px;
+    }
+    
+    .zalo-circle {
+      width: 62px;
+      height: 62px;
+    }
+    
+    .zalo-circle-fill {
+      width: 74px;
+      height: 74px;
+    }
+  }
+</style>

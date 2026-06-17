@@ -1,0 +1,18 @@
+# EPCVINA Home - Corporate Website (Static)
+# Deployed separately on Dokploy
+
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[variables]
+NODE_ENV = "production"
+
+# Serve static files
+[start]
+cmd = "npx serve dist -l ${PORT:-3000} --single"
