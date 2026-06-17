@@ -1,0 +1,17 @@
+{
+  "name": "epcvina-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build": "npm run build:home && npm run build:solar",
+    "build:home": "cd epcvinahome && npm ci && npm run build",
+    "build:solar": "cd epcvinasolar && npm ci && npm run build && cp -r ../epcvinahome/dist/* ./dist/client/",
+    "start": "cd epcvinasolar && node ./dist/server/entry.mjs",
+    "dev:home": "cd epcvinahome && npm run dev",
+    "dev:solar": "cd epcvinasolar && npm run dev"
+  }
+}
