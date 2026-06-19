@@ -109,12 +109,10 @@ export default function Header({ onMenuClick, isHidden, mobileOnly }: HeaderProp
             </button>
           )}
 
-          {/* Title - Căn trái cạnh hamburger */}
-          <span className={`font-semibold text-lg ${
-            isHome ? 'text-gray-900' : 'text-gray-900'
-          }`}>
-            {isDetailPage ? 'Chi tiết' : pageTitle}
-          </span>
+          {/* Logo - Căn trái cạnh hamburger */}
+          <a href="/" className="flex items-center">
+            <img src="/logo-epcvina-solar.png" alt="EPC Solar" className="h-7 w-auto" />
+          </a>
 
           {/* Spacer để đẩy search & avatar sang phải */}
           <div className="flex-1" />
