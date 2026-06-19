@@ -67,11 +67,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             />
             
             {/* Page content */}
-            <main ref={mainRef} className={`flex-1 ${
-              isHomePage
-                ? ''
-                : pathname?.startsWith('/equipment') ? '' : 'pt-14 lg:pt-0'
-            } ${isHomePage ? '' : 'lg:pl-8 lg:pr-8'}`}>
+            <main ref={mainRef} className="flex-1">
               {children}
             </main>
           </div>
