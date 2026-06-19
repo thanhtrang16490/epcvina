@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { FileText, Menu, X } from 'lucide-react';
-import { useScrollContext } from '../../layout/DashboardShell';
 
 const navItems = [
   { label: 'Trang chủ', href: '/' },
@@ -16,7 +15,6 @@ const navItems = [
 export default function HeaderBar() {
   const [activePath, setActivePath] = useState('/');
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { isHeaderVisible } = useScrollContext();
 
   useEffect(() => {
     setActivePath(window.location.pathname);
@@ -24,9 +22,7 @@ export default function HeaderBar() {
 
   return (
     <header
-      className={`hidden lg:block fixed left-0 right-0 z-50 top-2 transition-transform duration-300 ${
-        isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
-      }`}
+      className="hidden lg:block fixed left-0 right-0 z-50 top-2"
     >
       <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 max-w-7xl mx-auto">
         {/* Logo - left */}
