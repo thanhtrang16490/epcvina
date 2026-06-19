@@ -39,7 +39,7 @@ const menuItems: MenuItem[] = [
     name: 'Gói combo',
     icon: Package,
     children: [
-      { name: 'Combo On-Grid', href: '/solar-home/on-grid' },
+      { name: 'Combo On-Grid', href: '/on-grid' },
       { name: 'Combo Hybrid', href: '/hybrid-bess' },
     ],
   },
