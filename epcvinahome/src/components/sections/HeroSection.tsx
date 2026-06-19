@@ -260,28 +260,28 @@ export default function HeroSection() {
             >
               {/* Hero Image */}
               <img
-                src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
+                src="/hero-image.png"
                 alt="MEP Engineering"
                 className="w-full h-full object-cover"
               />
               
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-red-600/80 via-red-600/40 to-transparent" />
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-red-600/80 via-red-600/40 to-transparent" /> */}
 
               {/* Rotating Border */}
               <div className="absolute inset-0 rounded-2xl border-4 border-white/30 animate-spin" style={{ animationDuration: '20s' }} />
               
               {/* Inner Content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-10">
+              {/* <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center z-10">
                 <svg className="w-24 h-24 mb-4 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
                 <p className="text-3xl font-bold mb-2">Công trình MEP</p>
                 <p className="text-sm opacity-90">Kỹ thuật – An toàn – Chuyên nghiệp</p>
-              </div>
+              </div> */}
 
               {/* Floating Stats Cards */}
-              <div 
+              {/* <div 
                 className="absolute top-4 right-4 bg-white rounded-xl shadow-xl p-4 animate-bounce"
                 style={{ animationDuration: '3s' }}
               >
@@ -295,7 +295,7 @@ export default function HeroSection() {
               >
                 <div className="text-2xl font-bold text-orange-600">50+</div>
                 <div className="text-xs text-gray-600">FDI Clients</div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
