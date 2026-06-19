@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { Zap, TrendingUp, X, Battery, Layers, Plug, Cable, Shield, Wrench, ChevronRight, Sun, SlidersHorizontal, Settings, Plus, Minus, Check, Sparkles, ArrowLeft } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import ComboPlaceholder from '../../shared/modals/ComboPlaceholder';
@@ -729,6 +730,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
 
   return (
     <div className="flex-1 flex flex-col min-h-screen lg:ml-[64px] lg:pl-0">
+      <HeaderBar />
       {/* Sticky Header */}
       <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 transition-all duration-200 ${
         isFirstCardVisible ? 'shadow-sm' : ''

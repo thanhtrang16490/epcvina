@@ -1,4 +1,5 @@
 import { Home, Building2, Factory, Hotel, UtensilsCrossed, Check, ArrowRight, Zap, Shield, Phone, Warehouse, Wheat, Plug, TrendingUp, Clock, DollarSign, BarChart3, Leaf } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 interface Benefit {
   title: string;
@@ -257,6 +258,7 @@ export default function ApplicationPage({ applicationType }: ApplicationPageProp
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <HeaderBar />
       {/* Hero Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#7C2D12] via-[#9A3412] to-[#7C2D12]">
         <div className="absolute inset-0 opacity-10">

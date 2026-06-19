@@ -1,4 +1,5 @@
 import { Home, Building2, Factory, Check, ArrowRight, Zap, AlertTriangle, Wrench, Phone } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 type RoofType = 'mai-ton' | 'mai-ngoi' | 'mai-bang';
 
@@ -79,6 +80,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <HeaderBar />
       {/* Hero Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#7C2D12] via-[#9A3412] to-[#7C2D12]">
         <div className="absolute inset-0 opacity-10">

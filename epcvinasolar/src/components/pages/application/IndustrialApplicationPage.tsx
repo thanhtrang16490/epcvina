@@ -1,8 +1,10 @@
 import { Warehouse, Check, ArrowRight, Zap, Shield, Phone, TrendingUp, Clock, DollarSign, BarChart3, Leaf } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 export default function IndustrialApplicationPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <HeaderBar />
       {/* Hero Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460]">
         <div className="absolute inset-0">

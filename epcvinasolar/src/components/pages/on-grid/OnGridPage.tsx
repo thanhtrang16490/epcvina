@@ -639,6 +639,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
 
   return (
     <div className="flex-1 flex flex-col min-h-screen lg:ml-[64px] lg:pl-0">
+      <HeaderBar />
       {/* Sticky Header */}
       <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 transition-all duration-200 ${
         isFirstCardVisible ? 'shadow-sm' : ''

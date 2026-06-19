@@ -1,5 +1,6 @@
 import EquipmentPageMobile from './EquipmentPageMobile';
 import EquipmentPageDesktop from './EquipmentPageDesktop';
+import HeaderBar from '../../home/layout/HeaderBar';
 import EquipmentSidebar from './EquipmentSidebar';
 import { useMemo, useState, useEffect } from 'react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
@@ -81,6 +82,7 @@ export default function EquipmentPage({ category }: PageProps) {
 
   return (
     <div className="flex-1 flex flex-col">
+      <HeaderBar />
       {/* Mobile: Render full mobile component */}
       <EquipmentPageMobile category={category} />
 

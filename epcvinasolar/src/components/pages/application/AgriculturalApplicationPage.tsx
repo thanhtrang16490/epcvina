@@ -1,8 +1,10 @@
 import { Wheat, Check, ArrowRight, Zap, Shield, Phone, TrendingUp, Clock, DollarSign, Leaf, Sun, Droplets, Factory, Warehouse, Sprout } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 export default function AgriculturalApplicationPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <HeaderBar />
       {/* Hero Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#065f46] via-[#047857] to-[#059669]">
         <div className="absolute inset-0">
