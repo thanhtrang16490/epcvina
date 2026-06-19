@@ -385,9 +385,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <a href="/" className="flex items-center">
             {/* Collapsed: show only the red EPC mark */}
             {!isExpanded && (
-              <span className="w-7 h-7 rounded-md bg-[#DC2626] flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-[11px] font-black leading-none">E</span>
-              </span>
+              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3.18 23.76c.3.17.65.19.97.07l11.46-6.62-2.5-2.5-9.93 9zm16.52-10.69L17 11.5 14.35 9.3l-10.9-6.3c-.32-.18-.68-.17-.98.01L14.37 14l5.33-5.33c.49.49.49 1.29 0 1.78l-5.63 5.63 5.43-3.14c.6-.35.97-.99.97-1.67s-.37-1.32-.97-1.67l-.8-.53zM3.55.23c-.3-.18-.65-.19-.97-.07L13.73 11.5 3.55.23z"></path>
+              </svg>
             )}
             {/* Expanded: show full logo */}
             {isExpanded && (
