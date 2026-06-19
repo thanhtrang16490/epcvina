@@ -366,15 +366,63 @@ const allProjects = [
 
 <PageLayout title="Dự án tiêu biểu – Công trình MEP & Năng lượng | EPCVINA">
   <!-- Hero Section -->
-  <section class="pt-24 lg:pt-32 bg-gradient-to-br from-blue-50 to-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+  <section class="relative pt-24 lg:pt-32 min-h-[60vh] flex items-center overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="/du-an/DU-AN-KEANG-NAM-LAND-MARK-TOWER.jpg"
+        alt="EPCVINA Featured Projects"
+        class="w-full h-full object-cover opacity-20"
+      />
+      <div class="absolute inset-0 bg-gradient-to-br from-red-900/95 via-gray-900/90 to-blue-900/85" />
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
       <div class="max-w-4xl">
-        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-          Dự án <span class="text-red-600">tiêu biểu</span>
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          Portfolio dự án
+        </div>
+        
+        <h1 class="text-4xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+          Dự án <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">tiêu biểu</span>
         </h1>
-        <p class="text-xl text-gray-600 leading-relaxed">
-          Hơn 200 công trình MEP đã thực hiện cho Samsung, VinFast, Lotte, Keangnam, Vinhomes và các đối tác lớn
+        
+        <p class="text-xl lg:text-2xl text-gray-200 leading-relaxed mb-8">
+          Hơn <span class="text-white font-bold">200 công trình MEP</span> đã thực hiện cho Samsung, VinFast, Lotte, Keangnam, Vinhomes và các đối tác lớn
         </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl lg:text-4xl font-bold text-white mb-1">200+</div>
+            <div class="text-sm text-gray-300">Công trình</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl lg:text-4xl font-bold text-white mb-1">15+</div>
+            <div class="text-sm text-gray-300">Năm kinh nghiệm</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl lg:text-4xl font-bold text-white mb-1">50+</div>
+            <div class="text-sm text-gray-300">Đối tác lớn</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div class="text-3xl lg:text-4xl font-bold text-white mb-1">100%</div>
+            <div class="text-sm text-gray-300">Hoàn thành</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+      <div class="animate-bounce">
+        <svg class="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
       </div>
     </div>
   </section>
