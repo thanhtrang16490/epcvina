@@ -67,7 +67,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             />
             
             {/* Page content */}
-            <main ref={mainRef} className="flex-1">
+            <main ref={mainRef} className="flex-1 lg:pt-20">
               {children}
             </main>
           </div>
