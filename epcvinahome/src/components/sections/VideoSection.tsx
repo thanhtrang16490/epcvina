@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 export default function VideoSection() {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -12,10 +11,9 @@ export default function VideoSection() {
           <p className="text-lg text-gray-600">Xem video giới thiệu năng lực và dự án</p>
         </div>
 
-        {/* Video Container */}
+        {/* Video Container - Coming Soon */}
         <div
-          className="relative aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl cursor-pointer group"
-          onClick={() => !isPlaying && setIsPlaying(true)}
+          className="relative aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl cursor-default"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -29,45 +27,24 @@ export default function VideoSection() {
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
 
-          {/* Play Button */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          {/* Play Button - Static */}
+          <div
+            className={`relative transition-all duration-300 ${
+              isHovered ? 'scale-110' : 'scale-100'
+            }`}
+          >
+            {/* Pulse Rings */}
+            <div className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-30" />
             <div
-              className={`relative transition-all duration-300 ${
-                isHovered && !isPlaying ? 'scale-110' : 'scale-100'
-              }`}
-            >
-              {/* Pulse Rings */}
-              {!isPlaying && (
-                <>
-                  <div className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-30" />
-                  <div
-                    className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-20"
-                    style={{ animationDelay: '0.5s' }}
-                  />
-                </>
-              )}
-
-              {/* Main Play Button */}
-              <div
-                className={`relative w-24 h-24 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  isPlaying
-                    ? 'bg-white/20 scale-95'
-                    : 'bg-red-600 hover:bg-red-700 shadow-2xl'
-                }`}
-              >
-                {isPlaying ? (
-                  <div className="text-white text-center">
-                    <svg className="w-12 h-12 mx-auto mb-2 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    <p className="text-sm">Loading...</p>
-                  </div>
-                ) : (
-                  <svg className="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                  </svg>
-                )}
-              </div>
+              className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-20"
+              style={{ animationDelay: '0.5s' }}
+            />
+          
+            {/* Main Play Button */}
+            <div className="relative w-24 h-24 rounded-full bg-red-600 shadow-2xl flex items-center justify-center">
+              <svg className="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+              </svg>
             </div>
           </div>
 
@@ -94,44 +71,6 @@ export default function VideoSection() {
           </div>
         </div>
 
-        {/* Video Modal */}
-        {isPlaying && (
-          <div
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            onClick={() => setIsPlaying(false)}
-          >
-            <div
-              className="relative w-full max-w-5xl aspect-video bg-gray-900 rounded-xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setIsPlaying(false)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors"
-              >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-
-              {/* Video Placeholder */}
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center text-white">
-                  <svg className="w-20 h-20 mx-auto mb-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-                  </svg>
-                  <p className="text-xl font-semibold mb-2">Video Player</p>
-                  <p className="text-gray-400 text-sm">
-                    Embed YouTube/Vimeo video URL here
-                  </p>
-                  <p className="text-gray-500 text-xs mt-4">
-                    Replace this with actual video embed code
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* Trust Indicators */}
         <div className="mt-8 grid grid-cols-3 gap-4 text-center">
