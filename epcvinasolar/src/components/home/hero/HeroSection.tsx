@@ -57,11 +57,14 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Brand name */}
-          <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-none mb-4 transition-all duration-700 delay-[300ms] motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            EPCVINA{' '}
-            <span style={{ color: RED }}>Solar</span>
-          </h1>
+          {/* Brand logo */}
+          <div className={`mb-4 transition-all duration-700 delay-[300ms] motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <img 
+              src="/logo-epcvina-solar-white.png" 
+              alt="EPCVINA Solar" 
+              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto drop-shadow-2xl" 
+            />
+          </div>
 
           {/* Primary descriptor */}
           <p className={`text-lg sm:text-xl md:text-2xl font-semibold text-white/90 mb-3 max-w-2xl leading-snug transition-all duration-500 delay-[500ms] motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
