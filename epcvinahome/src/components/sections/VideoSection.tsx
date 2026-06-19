@@ -23,6 +23,9 @@ export default function VideoSection() {
             src="/thumb-video.png"
             alt="EPCVINA Video Introduction"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 768px) 100vw, 80vw"
           />
 
           {/* Dark Overlay */}

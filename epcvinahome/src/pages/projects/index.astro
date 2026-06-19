@@ -374,6 +374,9 @@ const allProjects = [
         src="/du-an/DU-AN-KEANG-NAM-LAND-MARK-TOWER.jpg"
         alt="EPCVINA Featured Projects"
         class="w-full h-full object-cover opacity-20"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
       />
       <div class="absolute inset-0 bg-gradient-to-br from-red-900/95 via-gray-900/90 to-blue-900/85" />
     </div>
@@ -443,6 +446,10 @@ const allProjects = [
                   src={project.image}
                   alt={project.title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="450"
                 />
               ) : (
                 <svg class="w-16 h-16 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

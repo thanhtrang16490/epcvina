@@ -138,6 +138,9 @@ export default function HeroSection() {
           src="/hero-image.png"
           alt="EPCVINA MEP Construction"
           className="w-full h-full object-cover opacity-10"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-red-50/90 via-white/90 to-orange-50/90" />
       </div>
@@ -263,6 +266,10 @@ export default function HeroSection() {
                 src="/hero-image.png"
                 alt="MEP Engineering"
                 className="w-full h-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               
               {/* Gradient Overlay */}
