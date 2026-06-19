@@ -326,7 +326,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               className="flex items-center gap-2 px-3 py-2 rounded-xl bg-black text-white hover:bg-gray-900 transition-colors"
             >
               <svg className="h-5 w-5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.18 23.76c.3.17.65.19.97.07l11.46-6.62-2.5-2.5-9.93 9zm16.52-10.69L17 11.5 14.35 9.3l-10.9-6.3c-.32-.18-.68-.17-.98.01L14.37 14l5.33-5.33c.49.49.49 1.29 0 1.78l-5.63 5.63 5.43-3.14c.6-.35.97-.99.97-1.67s-.37-1.32-.97-1.67l-.8-.53zM3.55.23c-.3-.18-.65-.19-.97-.07L13.73 11.5 3.55.23z"/>
+                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"></path>
               </svg>
               <div className="leading-tight">
                 <div className="text-[9px] opacity-70">GET IT ON</div>
@@ -385,9 +385,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <a href="/" className="flex items-center">
             {/* Collapsed: show only the red EPC mark */}
             {!isExpanded && (
-              <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3.18 23.76c.3.17.65.19.97.07l11.46-6.62-2.5-2.5-9.93 9zm16.52-10.69L17 11.5 14.35 9.3l-10.9-6.3c-.32-.18-.68-.17-.98.01L14.37 14l5.33-5.33c.49.49.49 1.29 0 1.78l-5.63 5.63 5.43-3.14c.6-.35.97-.99.97-1.67s-.37-1.32-.97-1.67l-.8-.53zM3.55.23c-.3-.18-.65-.19-.97-.07L13.73 11.5 3.55.23z"></path>
-              </svg>
+              <span className="w-7 h-7 rounded-md bg-[#DC2626] flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-[11px] font-black leading-none">E</span>
+              </span>
             )}
             {/* Expanded: show full logo */}
             {isExpanded && (
@@ -550,7 +550,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   title="Google Play"
                 >
                   <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3.18 23.76c.3.17.65.19.97.07l11.46-6.62-2.5-2.5-9.93 9zm16.52-10.69L17 11.5 14.35 9.3l-10.9-6.3c-.32-.18-.68-.17-.98.01L14.37 14l5.33-5.33c.49.49.49 1.29 0 1.78l-5.63 5.63 5.43-3.14c.6-.35.97-.99.97-1.67s-.37-1.32-.97-1.67l-.8-.53zM3.55.23c-.3-.18-.65-.19-.97-.07L13.73 11.5 3.55.23z"/>
+                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"></path>
                   </svg>
                 </a>
               </div>
