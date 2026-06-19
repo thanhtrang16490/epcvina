@@ -204,7 +204,7 @@ export default function HeroSection() {
               </a>
 
               <a
-                href="https://epcvina-solar.com"
+                href="https://epcvina.com"
                 className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-full transition-all hover:shadow-2xl overflow-hidden"
               >
                 <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-700 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
