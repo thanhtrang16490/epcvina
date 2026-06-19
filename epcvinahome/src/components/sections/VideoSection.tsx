@@ -11,9 +11,10 @@ export default function VideoSection() {
           <p className="text-lg text-gray-600">Xem video giới thiệu năng lực và dự án</p>
         </div>
 
-        {/* Video Container - Coming Soon */}
-        <div
-          className="relative aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl cursor-default"
+        {/* Video Container */}
+        <a
+          href="#"
+          className="relative aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-2xl block group"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -27,24 +28,26 @@ export default function VideoSection() {
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
 
-          {/* Play Button - Static */}
-          <div
-            className={`relative transition-all duration-300 ${
-              isHovered ? 'scale-110' : 'scale-100'
-            }`}
-          >
-            {/* Pulse Rings */}
-            <div className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-30" />
+          {/* Play Button */}
+          <div className="absolute inset-0 flex items-center justify-center">
             <div
-              className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-20"
-              style={{ animationDelay: '0.5s' }}
-            />
-          
-            {/* Main Play Button */}
-            <div className="relative w-24 h-24 rounded-full bg-red-600 shadow-2xl flex items-center justify-center">
-              <svg className="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-              </svg>
+              className={`relative transition-all duration-300 ${
+                isHovered ? 'scale-110' : 'scale-100'
+              }`}
+            >
+              {/* Pulse Rings */}
+              <div className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-30" />
+              <div
+                className="absolute inset-0 rounded-full bg-red-600 animate-ping opacity-20"
+                style={{ animationDelay: '0.5s' }}
+              />
+
+              {/* Main Play Button */}
+              <div className="relative w-24 h-24 rounded-full bg-red-600 group-hover:bg-red-700 shadow-2xl flex items-center justify-center transition-colors">
+                <svg className="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                </svg>
+              </div>
             </div>
           </div>
 
@@ -69,7 +72,7 @@ export default function VideoSection() {
               <div className="text-xs text-gray-600">Years</div>
             </div>
           </div>
-        </div>
+        </a>
 
 
         {/* Trust Indicators */}
