@@ -6,6 +6,7 @@ import {
   X, Calendar, Building2, RefreshCw, ArrowRight,
   Sparkles,
 } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 // ─────────────────────────────────────────────
 // Types
@@ -676,6 +677,7 @@ export default function QuotationPage() {
 
   return (
     <>
+      <HeaderBar />
       <div className="min-h-screen" style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #f8fafc 100%)' }}>
 
         {/* ═══════════════════════════════════════════

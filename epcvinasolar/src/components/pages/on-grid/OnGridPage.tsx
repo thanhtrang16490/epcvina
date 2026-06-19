@@ -1,5 +1,6 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { Zap, TrendingUp, X, Battery, Layers, Plug, Cable, Shield, Wrench, ChevronRight, Sun, SlidersHorizontal, Settings, LayoutTemplate, Plus, Minus, Check, Sparkles, Eye, ArrowRight } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import ComboPlaceholder from '../../shared/modals/ComboPlaceholder';
