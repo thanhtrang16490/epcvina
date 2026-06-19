@@ -383,11 +383,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           isExpanded ? 'px-6 justify-start' : 'px-0 justify-center'
         }`}>
           <a href="/" className="flex items-center">
-            {/* Collapsed: show only the red EPC mark */}
+            {/* Collapsed: show logo favicon */}
             {!isExpanded && (
-              <span className="w-7 h-7 rounded-md bg-[#DC2626] flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-[11px] font-black leading-none">E</span>
-              </span>
+              <img src="/logo-favicon.svg" alt="EPC Solar" className="w-7 h-7 flex-shrink-0" />
             )}
             {/* Expanded: show full logo */}
             {isExpanded && (
