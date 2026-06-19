@@ -96,14 +96,14 @@ export default function Header({ onMenuClick, isHidden, mobileOnly }: HeaderProp
           {isDetailPage ? (
             <button 
               onClick={() => navigateTo('/')}
-              className="p-2 -ml-2 text-gray-600"
+              className="p-2 -ml-2 text-white"
             >
               <ChevronLeft className="h-6 w-6" />
             </button>
           ) : (
             <button 
               onClick={onMenuClick}
-              className="p-2 -ml-2 text-gray-600"
+              className="p-2 -ml-2 text-white"
             >
               <Menu className="h-6 w-6" />
             </button>
