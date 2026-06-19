@@ -135,8 +135,8 @@ export default function HeroSection() {
       {/* Hero Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80"
-          alt="MEP Construction Site"
+          src="/hero-image.png"
+          alt="EPCVINA MEP Construction"
           className="w-full h-full object-cover opacity-10"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-red-50/90 via-white/90 to-orange-50/90" />
