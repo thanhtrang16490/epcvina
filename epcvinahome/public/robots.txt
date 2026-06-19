@@ -1,0 +1,15 @@
+# EPCVINA - https://epc.com.vn
+# Robots.txt for search engine crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://epc.com.vn/sitemap-index.xml
+
+# Crawl-delay for polite crawling (optional)
+Crawl-delay: 1
+
+# Disallow admin/private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/

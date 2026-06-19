@@ -21,8 +21,8 @@ export default function VideoSection() {
         >
           {/* Background Image */}
           <img
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80"
-            alt="EPCVINA Project"
+            src="/thumb-video.png"
+            alt="EPCVINA Video Introduction"
             className="w-full h-full object-cover"
           />
 

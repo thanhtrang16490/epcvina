@@ -4,9 +4,20 @@ import '../styles/globals.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  canonicalUrl?: string;
 }
 
-const { title, description = 'EPCVINA – Nhà thầu cơ điện MEP & Giải pháp năng lượng cho công trình hiện đại' } = Astro.props;
+const { 
+  title, 
+  description = 'EPCVINA – Nhà thầu cơ điện MEP hàng đầu Việt Nam. Chuyên HVAC, điện, cấp thoát nước, PCCC cho công trình công nghiệp, thương mại và dân dụng.',
+  image = '/hero-image.png',
+  canonicalUrl
+} = Astro.props;
+
+const siteUrl = 'https://epc.com.vn';
+const currentUrl = Astro.url ? Astro.url.toString() : siteUrl;
+const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 ---
 
 <!doctype html>
@@ -14,11 +25,69 @@ const { title, description = 'EPCVINA – Nhà thầu cơ điện MEP & Giải p
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="icon" type="image/svg+xml" href="/logo-favicon.svg" />
-    <link rel="apple-touch-icon" href="/logo-epcvina.svg" />
+    
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="EPCVINA, nhà thầu MEP, cơ điện, HVAC, điện công trình, cấp thoát nước, PCCC, năng lượng mặt trời, epc.com.vn" />
+    <meta name="author" content="EPCVINA" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Vietnamese" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Canonical URL -->
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:site_name" content="EPCVINA" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={currentUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/logo-favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo-epcvina.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "EPCVINA",
+      "url": siteUrl,
+      "logo": `${siteUrl}/logo-epcvina.svg`,
+      "description": "Nhà thầu cơ điện MEP hàng đầu Việt Nam",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Khu đô thị Starlake, Tây Hồ",
+        "addressLocality": "Hà Nội",
+        "addressCountry": "VN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+84-912-019-886",
+        "contactType": "customer service",
+        "availableLanguage": "Vietnamese"
+      },
+      "sameAs": [
+        "https://www.facebook.com/epcvina",
+        "https://www.linkedin.com/company/epcvina"
+      ]
+    })} />
   </head>
   <body class="bg-white text-gray-900 antialiased">
     <slot />
