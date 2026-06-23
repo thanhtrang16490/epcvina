@@ -61,10 +61,17 @@ export default function HeroSection() {
           <div className={`mb-4 transition-all duration-700 delay-[300ms] motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <img 
               src="/logo-epcvina-solar-white.png" 
-              alt="EPCVINA Solar" 
+              alt="EPCVINA Solar - Chuyên lắp đặt điện mặt trời Hybrid & On-Grid" 
               className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto drop-shadow-2xl" 
             />
           </div>
+
+          {/* H1 - Main heading for SEO */}
+          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 max-w-4xl leading-tight transition-all duration-500 delay-[450ms] motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            Lắp Đặt Điện Mặt Trời Trọn Gói Tại Hà Nội
+            <br className="hidden sm:block" />
+            <span className="text-amber-400">Tiết Kiệm 70-90% Hóa Đơn Điện</span>
+          </h1>
 
           {/* Primary descriptor */}
           <p className={`text-lg sm:text-xl md:text-2xl font-semibold text-white/90 mb-3 max-w-2xl leading-snug transition-all duration-500 delay-[500ms] motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>

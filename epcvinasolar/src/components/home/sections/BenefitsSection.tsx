@@ -49,8 +49,13 @@ export default function BenefitsSection() {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
             Lợi Thế <span className="text-red-600">EPCVINA Solar</span>
           </h2>
-          <p className="mt-4 text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
-            Điện mặt trời an toàn từ chuyên gia cơ điện — không chỉ lắp đặt, chúng tôi thiết kế, thi công và bảo trì toàn diện theo tiêu chuẩn kỹ thuật.
+          <p className="mt-4 text-gray-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+            Khác với các đơn vị lắp đặt thông thường, EPCVINA xuất phát từ nền tảng nhà thầu cơ điện (MEP) với hơn 10 năm kinh nghiệm trong lĩnh vực điện, nước, phòng cháy chữa cháy và điều hòa không khí. 
+            Chúng tôi không chỉ lắp đặt điện mặt trời — chúng tôi <strong>thiết kế, tính toán kỹ thuật, thi công an toàn và bảo trì dài hạn</strong> theo tiêu chuẩn cơ điện chuyên nghiệp.
+          </p>
+          <p className="mt-3 text-gray-500 text-sm max-w-2xl mx-auto">
+            Mỗi công trình điện mặt trời đều được đội ngũ kỹ sư có chứng chỉ hành nghề khảo sát thực tế, thiết kế bản vẽ kỹ thuật, tính toán kết cấu mái, 
+            giải pháp chống thấm, tiếp địa, chống sét và bảo vệ quá áp — đảm bảo hệ thống hoạt động ổn định 25-30 năm.
           </p>
         </div>
 

@@ -7,37 +7,37 @@ const steps: { step: number; icon: LucideIcon; title: string; description: strin
     step: 1,
     icon: PhoneCall,
     title: 'Tiếp nhận thông tin',
-    description: 'Khách hàng liên hệ qua hotline, Zalo hoặc form. Đội tư vấn phản hồi trong vòng 2 giờ.',
+    description: 'Khách hàng liên hệ qua hotline, Zalo hoặc form đăng ký trên website. Đội ngũ tư vấn phản hồi trong vòng 2 giờ làm việc, thu thập thông tin về nhu cầu sử dụng điện, hóa đơn điện hàng tháng và diện tích mái khả dụng.',
   },
   {
     step: 2,
     icon: MapPin,
     title: 'Khảo sát thực tế',
-    description: 'Kỹ sư đến tận nơi đo đạc mái nhà, phân tích phụ tải và tư vấn công suất phù hợp.',
+    description: 'Kỹ sư có chứng chỉ hành nghề đến tận nơi đo đạc kích thước mái, hướng nắng, phân tích phụ tải điện, kiểm tra kết cấu mái và đường điện hiện tại. Tư vấn trực tiếp công suất phù hợp và loại hệ thống (On-Grid hoặc Hybrid).',
   },
   {
     step: 3,
     icon: PenTool,
     title: 'Thiết kế giải pháp',
-    description: 'Thiết kế hệ thống theo tiêu chuẩn cơ điện MEP, bao gồm sơ đồ đấu nối và vật tư chi tiết.',
+    description: 'Đội ngũ kỹ sư MEP thiết kế hệ thống theo tiêu chuẩn cơ điện, bao gồm: bản vẽ bố trí tấm pin, sơ đồ đấu nối điện, tính toán kết cấu khung đỡ, giải pháp chống thấm, tiếp địa và chống sét lan truyền. Gửi khách hàng xem xét và phê duyệt.',
   },
   {
     step: 4,
     icon: FileText,
     title: 'Báo giá',
-    description: 'Gửi báo giá minh bạch, chi tiết từng hạng mục. Hỗ trợ tư vấn phương án tài chính nếu cần.',
+    description: 'Gửi báo giá chi tiết minh bạch từng hạng mục: thiết bị (tấm pin, inverter, khung đỡ, dây dẫn, tủ điện), nhân công lắp đặt, vật tư phụ và phí vận chuyển. Hỗ trợ tư vấn phương án tài chính, trả góp nếu khách hàng có nhu cầu.',
   },
   {
     step: 5,
     icon: Wrench,
     title: 'Thi công & Nghiệm thu',
-    description: 'Thi công đúng tiến độ, đảm bảo chống thấm mái. Nghiệm thu bàn giao và hướng dẫn vận hành.',
+    description: 'Đội thi công có kinh nghiệm triển khai đúng tiến độ 3-7 ngày. Đảm bảo vệ sinh công trình, xử lý chống thấm mái 100% trước và sau khi lắp đặt. Nghiệm thu bàn giao, hướng dẫn vận hành hệ thống và cách theo dõi sản lượng qua ứng dụng điện thoại.',
   },
   {
     step: 6,
     icon: BarChart2,
     title: 'Bảo trì & Theo dõi sản lượng',
-    description: 'Bảo trì định kỳ, theo dõi sản lượng từ xa, xử lý sự cố nhanh trong 24h.',
+    description: 'EPCVINA theo dõi sản lượng hệ thống từ xa qua nền tảng giám sát. Bảo trì định kỳ 6 tháng/lần: vệ sinh tấm pin, kiểm tra đấu nối, siết chặt khung đỡ. Xử lý sự cố trong vòng 24h. Hỗ trợ kỹ thuật trọn đời hệ thống.',
   },
 ];
 
@@ -55,8 +55,13 @@ export default function ProcessSection() {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
             6 Bước Từ Tư Vấn <span className="text-[#DC2626]">Đến Vận Hành</span>
           </h2>
-          <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
-            Quy trình chuẩn cơ điện, minh bạch từng bước — đảm bảo an toàn và đúng tiến độ.
+          <p className="mt-4 text-gray-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+            Quy trình làm việc chuyên nghiệp, minh bạch và chuẩn cơ điện — từ lần liên hệ đầu tiên đến khi hệ thống vận hành ổn định.
+            Mỗi bước đều được thực hiện bởi đội ngũ kỹ sư có kinh nghiệm, đảm bảo chất lượng và an toàn tuyệt đối.
+          </p>
+          <p className="mt-3 text-gray-500 text-sm max-w-2xl mx-auto">
+            Thời gian triển khai trung bình từ 3-7 ngày tùy công suất. Chúng tôi cam kết đúng tiến độ, 
+            đảm bảo vệ sinh công trình và xử lý chống thấm mái 100% trước khi bàn giao.
           </p>
         </div>
 
