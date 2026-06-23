@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, X, SlidersHorizontal } from 'lucide-react';
+import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield, Plug, X, SlidersHorizontal } from 'lucide-react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 
 const CATEGORY_META: Record<string, {

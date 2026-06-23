@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import {
-  LayoutDashboard,
   Package,
   Sun,
   Lightbulb,
@@ -8,7 +7,6 @@ import {
   MessageSquare,
   BookOpen,
   Newspaper,
-  Calculator,
   LogIn,
   LogOut,
   User,

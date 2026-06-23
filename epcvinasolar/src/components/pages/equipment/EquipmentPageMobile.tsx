@@ -1,7 +1,7 @@
 
 
 import { useMemo, useState, useRef, useEffect } from 'react';
-import { Zap, TrendingUp, Battery, Layers, Cable, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight } from 'lucide-react';
+import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight } from 'lucide-react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
