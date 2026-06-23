@@ -37,7 +37,7 @@ const steps: { step: number; icon: LucideIcon; title: string; description: strin
     step: 6,
     icon: BarChart2,
     title: 'Bảo trì & Theo dõi sản lượng',
-    description: 'EPCVINA theo dõi sản lượng hệ thống từ xa qua nền tảng giám sát. Bảo trì định kỳ 6 tháng/lần: vệ sinh tấm pin, kiểm tra đấu nối, siết chặt khung đỡ. Xử lý sự cố trong vòng 24h. Hỗ trợ kỹ thuật trọn đời hệ thống.',
+    description: 'Solar Giá Rẻ 24h theo dõi sản lượng hệ thống từ xa qua nền tảng giám sát. Bảo trì định kỳ 6 tháng/lần: vệ sinh tấm pin, kiểm tra đấu nối, siết chặt khung đỡ. Xử lý sự cố trong vòng 24h. Hỗ trợ kỹ thuật trọn đời hệ thống.',
   },
 ];
 

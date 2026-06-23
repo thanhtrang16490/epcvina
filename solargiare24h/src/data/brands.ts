@@ -47,12 +47,12 @@ export const localBrands: LocalBrand[] = [
     country: 'China',
   },
   {
-    id: 'epcvina',
-    name: 'EPCVINA',
-    slug: 'epcvina',
-    description: 'Nhà cung cấp thiết bị điện mặt trời Việt Nam',
-    logo_url: '/brands/epcvina.png',
-    website: 'https://epcvina.com',
+    id: 'solar24h',
+    name: 'Solar Giá Rẻ 24h',
+    slug: 'solar24h',
+    description: 'Nhà cung cấp thiết bị điện mặt trời',
+    logo_url: '/favicon.svg',
+    website: 'https://solargiare24h.com',
     country: 'Vietnam',
   },
 ];

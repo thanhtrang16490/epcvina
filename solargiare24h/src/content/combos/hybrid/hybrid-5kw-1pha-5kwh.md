@@ -95,8 +95,8 @@ với công suất **5 kWp**, dung lượng lưu trữ **5.12 kWh**.
 Để được tư vấn chi tiết về giải pháp **Hy-Brid 5 kWp 1pha – 5.12 kWh**, vui lòng liên hệ:
 
 - **Hotline:** 0904 038 448
-- **Email:** info@epcvina.com
-- **Website:** https://epcvina.com
+- **Email:** contact@solargiare24h.com
+- **Website:** https://solargiare24h.com
 
 ---
 

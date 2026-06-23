@@ -118,7 +118,7 @@ export const solutionTypes: SolutionType[] = [
     ],
     limitations: [],
     recommended: true,
-    note: 'Giải pháp được EPCVINA khuyến nghị nhiều nhất cho nhà ở mới.',
+    note: 'Giải pháp được Solar Giá Rẻ 24h khuyến nghị nhiều nhất cho nhà ở mới.',
   },
   {
     name: 'Hybrid + Battery',
@@ -210,7 +210,7 @@ export const implementationSteps = [
   {
     step: '04',
     title: 'Thi công lắp đặt',
-    description: 'Đội ngũ kỹ sư EPCVINA triển khai.',
+    description: 'Đội ngũ kỹ sư Solar Giá Rẻ 24h triển khai.',
   },
   {
     step: '05',

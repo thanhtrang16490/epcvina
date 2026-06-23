@@ -367,7 +367,7 @@ export default function SolutionsLandingPage() {
                 className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors shadow-lg hover:shadow-xl"
               >
                 <Phone className="h-4 w-4" />
-                Tư vấn miễn phí với kỹ sư EPCVINA
+                Tư vấn miễn phí với kỹ sư Solar Giá Rẻ 24h
               </a>
             </div>
           </AnimateIn>
@@ -534,7 +534,7 @@ export default function SolutionsLandingPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 6 – TẠI SAO CHỌN EPCVINA SOLAR?
+          SECTION 6 – TẠI SAO CHỌN Solar Giá Rẻ 24h SOLAR?
           ═══════════════════════════════════════════════════════ */}
       <section
         className="py-16 sm:py-24 bg-white"
@@ -550,7 +550,7 @@ export default function SolutionsLandingPage() {
                 Điện Mặt Trời An Toàn Từ Chuyên Gia Cơ Điện
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Khác biệt với phần lớn đơn vị bán solar hiện nay, EPCVINA nhấn mạnh năng lực kỹ thuật, an toàn điện và chất lượng thi công.
+                Khác biệt với phần lớn đơn vị bán solar hiện nay, Solar Giá Rẻ 24h nhấn mạnh năng lực kỹ thuật, an toàn điện và chất lượng thi công.
               </p>
             </div>
           </AnimateIn>
@@ -608,7 +608,7 @@ export default function SolutionsLandingPage() {
 
           <AnimateIn delay={100}>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-              Từ hóa đơn điện hàng tháng của bạn, EPCVINA Solar sẽ đề xuất phương án phù hợp nhất giữa On-Grid, Hybrid hoặc Solar + Battery.
+              Từ hóa đơn điện hàng tháng của bạn, Solar Giá Rẻ 24h sẽ đề xuất phương án phù hợp nhất giữa On-Grid, Hybrid hoặc Solar + Battery.
             </p>
           </AnimateIn>
 
@@ -626,7 +626,7 @@ export default function SolutionsLandingPage() {
                 className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/25 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 min-h-[44px]"
               >
                 <Phone className="h-5 w-5" />
-                Tư vấn cùng kỹ sư EPCVINA Solar
+                Tư vấn cùng kỹ sư Solar Giá Rẻ 24h
               </a>
             </div>
           </AnimateIn>
@@ -634,7 +634,7 @@ export default function SolutionsLandingPage() {
           <AnimateIn delay={300}>
             <div className="pt-8 border-t border-white/10">
               <p className="text-sm text-gray-400">
-                <span className="font-semibold text-white">EPCVINA Solar</span>
+                <span className="font-semibold text-white">Solar Giá Rẻ 24h</span>
                 {' '}– Điện Mặt Trời An Toàn Từ Chuyên Gia Cơ Điện
               </p>
             </div>

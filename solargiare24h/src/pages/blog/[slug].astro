@@ -25,13 +25,13 @@ const articleSchema = {
   "description": post.data.description,
   "author": {
     "@type": "Organization",
-    "name": post.data.author || "EPC Solar",
-    "url": "https://epcvina.com"
+    "name": post.data.author || "Solar Giá Rẻ 24h",
+    "url": "https://solargiare24h.com"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "EPC Solar",
-    "url": "https://epcvina.com",
+    "name": "Solar Giá Rẻ 24h",
+    "url": "https://solargiare24h.com",
     "logo": {
       "@type": "ImageObject",
       "url": "https://solargiare24h.com/favicon.svg"
@@ -41,7 +41,7 @@ const articleSchema = {
   "dateModified": (post.data.updatedDate || post.data.publishDate).toISOString(),
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://epcvina.com/blog/${postId}`
+    "@id": `https://solargiare24h.com/blog/${postId}`
   }
 };
 
@@ -49,9 +49,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Trang Chủ", "item": "https://epcvina.com" },
-    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://epcvina.com/blog" },
-    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": `https://epcvina.com/blog/${postId}` }
+    { "@type": "ListItem", "position": 1, "name": "Trang Chủ", "item": "https://solargiare24h.com" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://solargiare24h.com/blog" },
+    { "@type": "ListItem", "position": 3, "name": post.data.title, "item": `https://solargiare24h.com/blog/${postId}` }
   ]
 };
 

@@ -186,7 +186,7 @@ const solarProjects = [
   },
 ];
 
-/* ─── MEP Projects - From EPCVINAHOME ─── */
+/* ─── MEP Projects - From Solar Giá Rẻ 24hHOME ─── */
 const mepProjects = [
   {
     name: 'Keangnam Landmark Tower',
@@ -387,7 +387,7 @@ export default function ProjectsPage() {
               Dự Án <span className="text-emerald-400">Điện Mặt Trời</span> & MEP
             </h1>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              EPCVINA SOLAR — Tổng thầu EPC hàng đầu với hơn 100 công trình điện mặt trời và MEP
+              Solar Giá Rẻ 24h SOLAR — Tổng thầu EPC hàng đầu với hơn 100 công trình điện mặt trời và MEP
               trên toàn quốc. Từ trang trại MWp đến mái nhà C&I, mỗi dự án đều cam kết chất lượng
               quốc tế.
             </p>
@@ -618,7 +618,7 @@ export default function ProjectsPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <h2 id="summary-stats-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Năng Lực <span className="text-emerald-600">EPCVINA SOLAR</span>
+                Năng Lực <span className="text-emerald-600">Solar Giá Rẻ 24h SOLAR</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
                 Tổng thầu EPC trọn gói — từ khảo sát đến vận hành dài hạn
@@ -663,7 +663,7 @@ export default function ProjectsPage() {
                 </h2>
                 <p className="text-base text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
                   Liên hệ ngay để được tư vấn giải pháp điện mặt trời & MEP phù hợp nhất.
-                  Đội ngũ EPCVINA sẵn sàng hỗ trợ từ khảo sát đến vận hành.
+                  Đội ngũ Solar Giá Rẻ 24h sẵn sàng hỗ trợ từ khảo sát đến vận hành.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a

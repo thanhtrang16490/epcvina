@@ -5,7 +5,7 @@ import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 const faqData = [
   {
     question: 'Lắp điện mặt trời có cần xin phép không?',
-    answer: 'Có. Theo Nghị định 135/2024/NĐ-CP, hệ thống điện mặt trời mái nhà dưới 1 MWp cần thông báo với Đọc điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục phép, đấu nối lưới và đăng ký bán điện dư với EVN miễn phí cho khách hàng.',
+    answer: 'Có. Theo Nghị định 135/2024/NĐ-CP, hệ thống điện mặt trời mái nhà dưới 1 MWp cần thông báo với Đọc điện lực địa phương. Solar Giá Rẻ 24h hỗ trợ toàn bộ thủ tục phép, đấu nối lưới và đăng ký bán điện dư với EVN miễn phí cho khách hàng.',
   },
   {
     question: 'Lắp điện mặt trời có thực sự tiết kiệm tiền điện không?',
@@ -17,7 +17,7 @@ const faqData = [
   },
   {
     question: 'Tấm pin mặt trời bền được bao lâu? Bảo hành như thế nào?',
-    answer: 'Tấm pin chất lượng cao có tuổi thọ trên 25 năm với hiệu suất giảm dần khoảng 0.5%/năm. EPCVINA bảo hành tấm pin 25 năm, inverter 5–10 năm, thi công 2 năm. Hỗ trợ kỹ thuật và bảo trì định kỳ trong suốt vòng đời hệ thống.',
+    answer: 'Tấm pin chất lượng cao có tuổi thọ trên 25 năm với hiệu suất giảm dần khoảng 0.5%/năm. Solar Giá Rẻ 24h bảo hành tấm pin 25 năm, inverter 5–10 năm, thi công 2 năm. Hỗ trợ kỹ thuật và bảo trì định kỳ trong suốt vòng đời hệ thống.',
   },
   {
     question: 'Hệ thống có hoạt động trong ngày mưa hoặc trời âm u không?',
@@ -25,7 +25,7 @@ const faqData = [
   },
   {
     question: 'Chi phí phát sinh sau khi lắp đặt là bao nhiêu?',
-    answer: 'Chi phí bảo trì rất thấp: chủ yếu là vệ sinh tấm pin 2–4 lần/năm (có thể tự làm bằng nước sạch). Không có chi phí nhiên liệu hay phụ tùng thay thế định kỳ. Bảo trì chuyên nghiệp khoảng 500.000–1.000.000đ/năm. EPCVINA có gói bảo trì O&M dài hạn.',
+    answer: 'Chi phí bảo trì rất thấp: chủ yếu là vệ sinh tấm pin 2–4 lần/năm (có thể tự làm bằng nước sạch). Không có chi phí nhiên liệu hay phụ tùng thay thế định kỳ. Bảo trì chuyên nghiệp khoảng 500.000–1.000.000đ/năm. Solar Giá Rẻ 24h có gói bảo trì O&M dài hạn.',
   },
 ];
 

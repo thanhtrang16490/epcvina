@@ -35,7 +35,7 @@ faq:
   - question: "Pin lưu trữ có cần thiết không?"
     answer: "Pin lưu trữ giúp dự phòng khi mất điện và sử dụng điện vào buổi tối. Đặc biệt hữu ích cho khu vực hay mất điện."
   - question: "Bảo hành các thiết bị bao lâu?"
-    answer: "Tấm pin Longi bảo hành 25 năm hiệu suất, biến tần Deye 5-10 năm, pin lưu trữ 5 năm. EPCVINA hỗ trợ kỹ thuật trọn đời."
+    answer: "Tấm pin Longi bảo hành 25 năm hiệu suất, biến tần Deye 5-10 năm, pin lưu trữ 5 năm. Solar Giá Rẻ 24h hỗ trợ kỹ thuật trọn đời."
 testimonial:
   quote: "Từ khi lắp điện mặt trời, hóa đơn điện giảm hẳn. Buổi tối có pin lưu trữ nên không lo mất điện. Đội ngũ thi công chuyên nghiệp, nhiệt tình."
   rating: 5

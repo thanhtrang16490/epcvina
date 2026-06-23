@@ -50,7 +50,7 @@ Khi lắp đặt hệ thống điện mặt trời On-Grid 5kW, bạn cần than
 
 **Khuyến nghị EPC Solar**: LONGi và Jinko là hai thương hiệu tốt nhất trong tầm giá hợp lý, bảo hành hiệu suất 25 năm từ nhà sản xuất.
 
-👉 [Xem tấm pin chính hãng tại EPCVINA](/equipment/tam-pin-mat-troi)
+👉 [Xem tấm pin chính hãng tại Solar Giá Rẻ 24h](/equipment/tam-pin-mat-troi)
 
 ### 2.2 Inverter On-Grid
 
@@ -236,7 +236,7 @@ EPC Solar đồng hành cùng bạn trong toàn bộ thủ tục đấu nối. X
 Cần khoảng **25-30m²** diện tích mái không bị che bóng. Với tấm pin 500W kích thước ~2m²/tấm, hệ 5kW cần 10 tấm.
 
 ### Có cần xin phép khi lắp điện mặt trời?
-Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **thông báo** với Điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục này **miễn phí**.
+Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **thông báo** với Điện lực địa phương. Solar Giá Rẻ 24h hỗ trợ toàn bộ thủ tục này **miễn phí**.
 
 ### Bảo hành các thiết bị bao lâu?
 - **Tấm pin:** 15 năm vật liệu, 25 năm hiệu suất
@@ -247,7 +247,7 @@ Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **th�
 ### Hệ thống có hoạt động khi mất điện?
 **Không.** Hệ On-Grid tự động ngắt khi mất điện để đảm bảo an toàn. Nếu khu vực hay mất điện, nên chọn [hệ Hybrid](/hybrid-bess) có pin lưu trữ.
 
-### EPCVINA có hỗ trợ trả góp không?
+### Solar Giá Rẻ 24h có hỗ trợ trả góp không?
 **Có.** Chúng tôi hợp tác với các ngân hàng để hỗ trợ trả góp 0-12 tháng, lãi suất ưu đãi 6-8%/năm.
 
 📞 **Vẫn còn thắc mắc?** [Liên hệ tư vấn miễn phí](/contact) hoặc gọi [0988 446 113](tel:+84988446113)
@@ -295,11 +295,11 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 
 ## 📞 Liên Hệ Tư Vấn Miễn Phí
 
-**EPCVINA Solar** - Chuyên gia điện mặt trời hàng đầu Hà Nội
+**Solar Giá Rẻ 24h Solar** - Chuyên gia điện mặt trời hàng đầu Hà Nội
 
 📱 **Hotline:** [0988 446 113](tel:+84988446113)  
-📧 **Email:** epcvina@hotmail.com  
-🌐 **Website:** https://epcvina.com  
+📧 **Email:** solargiare24h@hotmail.com  
+🌐 **Website:** https://solargiare24h.com  
 📍 **Địa chỉ:** Phòng 315, Khu TM Chung cư HVQP, Nguyễn Văn Huyên Kéo Dài, Tây Hồ, Hà Nội
 
 **Dịch vụ:**
@@ -317,4 +317,4 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 
 ---
 
-*Bài viết được cập nhật ngày 23/06/2026. Giá cả có thể thay đổi tùy thời điểm. Liên hệ EPCVINA để nhận báo giá mới nhất.*
+*Bài viết được cập nhật ngày 23/06/2026. Giá cả có thể thay đổi tùy thời điểm. Liên hệ Solar Giá Rẻ 24h để nhận báo giá mới nhất.*

@@ -12,12 +12,12 @@ const faqs: FAQ[] = [
   {
     category: '💰 Chi phí & Thanh toán',
     question: 'Lắp điện mặt trời hết bao nhiêu tiền?',
-    answer: 'Chi phí phụ thuộc vào công suất và loại hệ thống. Trung bình:\n• On-Grid 5kWp: 70-90 triệu\n• On-Grid 10kWp: 130-160 triệu\n• Hybrid 5kWp + pin: 120-150 triệu\n• Hybrid 10kWp + pin: 200-250 triệu\nEPCVINA báo giá chi tiết sau khi khảo sát miễn phí.',
+    answer: 'Chi phí phụ thuộc vào công suất và loại hệ thống. Trung bình:\n• On-Grid 5kWp: 70-90 triệu\n• On-Grid 10kWp: 130-160 triệu\n• Hybrid 5kWp + pin: 120-150 triệu\n• Hybrid 10kWp + pin: 200-250 triệu\nSolar Giá Rẻ 24h báo giá chi tiết sau khi khảo sát miễn phí.',
   },
   {
     category: '💰 Chi phí & Thanh toán',
     question: 'Có được trả góp không?',
-    answer: 'Có. EPCVINA hợp tác với các ngân hàng và tổ chức tài chính để hỗ trợ trả góp 0-12 tháng, lãi suất ưu đãi. Bạn cũng có thể thanh toán theo tiến độ: 30% đặt cọc, 40% khi lắp đặt, 30% sau nghiệm thu.',
+    answer: 'Có. Solar Giá Rẻ 24h hợp tác với các ngân hàng và tổ chức tài chính để hỗ trợ trả góp 0-12 tháng, lãi suất ưu đãi. Bạn cũng có thể thanh toán theo tiến độ: 30% đặt cọc, 40% khi lắp đặt, 30% sau nghiệm thu.',
   },
   {
     category: '💰 Chi phí & Thanh toán',
@@ -34,7 +34,7 @@ const faqs: FAQ[] = [
   {
     category: '🔧 Kỹ thuật & Lắp đặt',
     question: 'Lắp điện mặt trời có cần xin phép không?',
-    answer: 'Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp cần thông báo với Điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục:\n• Đăng ký đấu nối\n• Lắp đồng hồ 2 chiều\n• Ký hợp đồng mua bán điện với EVN\n• Hoàn toàn miễn phí',
+    answer: 'Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp cần thông báo với Điện lực địa phương. Solar Giá Rẻ 24h hỗ trợ toàn bộ thủ tục:\n• Đăng ký đấu nối\n• Lắp đồng hồ 2 chiều\n• Ký hợp đồng mua bán điện với EVN\n• Hoàn toàn miễn phí',
   },
   {
     category: '🔧 Kỹ thuật & Lắp đặt',
@@ -66,7 +66,7 @@ const faqs: FAQ[] = [
   {
     category: '🛡️ Bảo hành & Bảo trì',
     question: 'Bảo hành các thiết bị bao lâu?',
-    answer: 'EPCVINA cung cấp chế độ bảo hành:\n• Tấm pin: 15 năm bảo hành vật liệu, 25 năm bảo hành hiệu suất\n• Biến tần: 5-10 năm (tùy hãng)\n• Pin lưu trữ: 5 năm\n• Khung giàn: 10 năm\n• Thi công: 2 năm\nHỗ trợ kỹ thuật trọn đời.',
+    answer: 'Solar Giá Rẻ 24h cung cấp chế độ bảo hành:\n• Tấm pin: 15 năm bảo hành vật liệu, 25 năm bảo hành hiệu suất\n• Biến tần: 5-10 năm (tùy hãng)\n• Pin lưu trữ: 5 năm\n• Khung giàn: 10 năm\n• Thi công: 2 năm\nHỗ trợ kỹ thuật trọn đời.',
   },
   {
     category: '🛡️ Bảo hành & Bảo trì',
@@ -83,7 +83,7 @@ const faqs: FAQ[] = [
   {
     category: '📋 Thủ tục & Pháp lý',
     question: 'Cần giấy tờ gì để lắp đặt?',
-    answer: 'Hồ sơ cần thiết:\n• Sổ đỏ/sổ hồng (photo công chứng)\n• CMND/CCCD chủ hộ\n• Hóa đơn điện gần nhất\n• Giấy phép xây dựng (nếu có)\nEPCVINA hỗ trợ toàn bộ thủ tục pháp lý.',
+    answer: 'Hồ sơ cần thiết:\n• Sổ đỏ/sổ hồng (photo công chứng)\n• CMND/CCCD chủ hộ\n• Hóa đơn điện gần nhất\n• Giấy phép xây dựng (nếu có)\nSolar Giá Rẻ 24h hỗ trợ toàn bộ thủ tục pháp lý.',
   },
   {
     category: '📋 Thủ tục & Pháp lý',
@@ -93,7 +93,7 @@ const faqs: FAQ[] = [
   {
     category: '📋 Thủ tục & Pháp lý',
     question: 'Có được lắp vượt công suất đồng hồ không?',
-    answer: 'Có, nhưng cần:\n• Đề xuất tăng công suất với EVN\n• Thay đồng hồ/cáp nếu cần\n• Đóng phí nâng công suất\nEPCVINA tư vấn công suất tối ưu dựa trên hóa đơn điện và khả năng của lưới.',
+    answer: 'Có, nhưng cần:\n• Đề xuất tăng công suất với EVN\n• Thay đồng hồ/cáp nếu cần\n• Đóng phí nâng công suất\nSolar Giá Rẻ 24h tư vấn công suất tối ưu dựa trên hóa đơn điện và khả năng của lưới.',
   },
 
   // Hiệu suất & Tiết kiệm
@@ -115,24 +115,24 @@ const faqs: FAQ[] = [
 
   // Khác
   {
-    category: '🌟 Dịch vụ EPCVINA',
-    question: 'EPCVINA có gì khác biệt?',
-    answer: 'EPCVINA là công ty CP Xây lắp EPC Việt Nam với:\n• Kinh nghiệm 200+ dự án\n• Đội ngũ kỹ sư cơ điện chuyên nghiệp\n• Thiết bị Tier 1 chính hãng\n• Bảo hành nhanh 24-48h\n• Hỗ trợ trọn đời\n• Tư vấn trung thực, không over-sell',
+    category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
+    question: 'Solar Giá Rẻ 24h có gì khác biệt?',
+    answer: 'Solar Giá Rẻ 24h là công ty CP Xây lắp EPC Việt Nam với:\n• Kinh nghiệm 200+ dự án\n• Đội ngũ kỹ sư cơ điện chuyên nghiệp\n• Thiết bị Tier 1 chính hãng\n• Bảo hành nhanh 24-48h\n• Hỗ trợ trọn đời\n• Tư vấn trung thực, không over-sell',
   },
   {
-    category: '🌟 Dịch vụ EPCVINA',
+    category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
     question: 'Quy trình lắp đặt như thế nào?',
     answer: '6 bước chuẩn EPC:\n1. Khảo sát miễn phí (1-2 ngày)\n2. Thiết kế & báo giá (2-3 ngày)\n3. Ký hợp đồng & đặt cọc\n4. Lắp đặt (1-7 ngày tùy công suất)\n5. Nghiệm thu & bàn giao\n6. Đấu lưới & kích hoạt\nBảo trì định kỳ hàng năm.',
   },
   {
-    category: '🌟 Dịch vụ EPCVINA',
-    question: 'EPCVINA bảo hành như thế nào?',
+    category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
+    question: 'Solar Giá Rẻ 24h bảo hành như thế nào?',
     answer: 'Chế độ bảo hành:\n• Hotline hỗ trợ 24/7\n• Kỹ thuật đến tận nơi trong 24-48h\n• Remote support qua Zalo/phone\n• Bảo trì định kỳ 6 tháng/lần\n• Vệ sinh tấm pin theo yêu cầu\n• Thay thế thiết bị lỗi miễn phí trong BH',
   },
   {
-    category: '🌟 Dịch vụ EPCVINA',
+    category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
     question: 'Có thể xem dự án đã làm không?',
-    answer: 'Có! Bạn có thể:\n• Xem tại /du-an trên website\n• Tham quan dự án thực tế (đặt lịch trước)\n• Đọc testimonial từ khách hàng cũ\n• Liên hệ 0988 446 113 để được tư vấn\nEPCVINA minh bạch 100% về năng lực.',
+    answer: 'Có! Bạn có thể:\n• Xem tại /du-an trên website\n• Tham quan dự án thực tế (đặt lịch trước)\n• Đọc testimonial từ khách hàng cũ\n• Liên hệ 0988 446 113 để được tư vấn\nSolar Giá Rẻ 24h minh bạch 100% về năng lực.',
   },
 ];
 
@@ -143,7 +143,7 @@ const categories = [
   { name: '🛡️ Bảo hành & Bảo trì', icon: <Shield className="w-5 h-5" /> },
   { name: '📋 Thủ tục & Pháp lý', icon: <FileText className="w-5 h-5" /> },
   { name: '⚡ Hiệu suất & Tiết kiệm', icon: <Zap className="w-5 h-5" /> },
-  { name: '🌟 Dịch vụ EPCVINA', icon: <Sun className="w-5 h-5" /> },
+  { name: '🌟 Dịch vụ Solar Giá Rẻ 24h', icon: <Sun className="w-5 h-5" /> },
 ];
 
 export default function FAQPage() {

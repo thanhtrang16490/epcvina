@@ -1,4 +1,4 @@
-// Local product catalog - EPCVINA products
+// Local product catalog - Solar Giá Rẻ 24h products
 export interface LocalProduct {
   id: string;
   name: string;

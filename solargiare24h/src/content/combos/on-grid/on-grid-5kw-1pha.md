@@ -91,8 +91,8 @@ với công suất **5 kWp**.
 Để được tư vấn chi tiết về giải pháp **On-Grid 5 kWp 1 pha**, vui lòng liên hệ:
 
 - **Hotline:** 0904 038 448
-- **Email:** info@epcvina.com
-- **Website:** https://epcvina.com
+- **Email:** contact@solargiare24h.com
+- **Website:** https://solargiare24h.com
 
 ---
 

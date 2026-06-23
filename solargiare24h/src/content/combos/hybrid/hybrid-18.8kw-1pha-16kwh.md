@@ -102,8 +102,8 @@ với công suất **18.75 kWp**, dung lượng lưu trữ **16 kWh**.
 Để được tư vấn chi tiết về giải pháp **Hy-Brid 18.8 kWp 1pha – 16 kWh**, vui lòng liên hệ:
 
 - **Hotline:** 0904 038 448
-- **Email:** info@epcvina.com
-- **Website:** https://epcvina.com
+- **Email:** contact@solargiare24h.com
+- **Website:** https://solargiare24h.com
 
 ---
 

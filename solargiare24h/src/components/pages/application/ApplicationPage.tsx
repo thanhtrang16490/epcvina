@@ -108,7 +108,7 @@ const applicationData: Record<ApplicationType, ApplicationData> = {
       'Hợp đồng 20 năm, sau đó sở hữu 100% hệ thống',
       'Tích hợp với hệ thống MEP sẵn có',
     ],
-    description: 'EPCVINA cung cấp giải pháp điện mặt trời công nghiệp với mô hình Zero-CAPEX: Quỹ đầu tư năng lượng mặt trời đầu tư 100% vốn, nhà xưởng mua điện với giá ưu đãi.',
+    description: 'Solar Giá Rẻ 24h cung cấp giải pháp điện mặt trời công nghiệp với mô hình Zero-CAPEX: Quỹ đầu tư năng lượng mặt trời đầu tư 100% vốn, nhà xưởng mua điện với giá ưu đãi.',
     systemInfo: 'Công suất: 100 kWp - 1 MWp+. Mô hình PPA/EMC/ESCO. Hợp tác với Quỹ đầu tư Solar Fund.',
     icon: 'Factory',
   },

@@ -92,8 +92,8 @@ với công suất **73.13 kWp**.
 Để được tư vấn chi tiết về giải pháp **On-Grid 73.1 kWp 3 pha**, vui lòng liên hệ:
 
 - **Hotline:** 0904 038 448
-- **Email:** info@epcvina.com
-- **Website:** https://epcvina.com
+- **Email:** contact@solargiare24h.com
+- **Website:** https://solargiare24h.com
 
 ---
 

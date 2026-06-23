@@ -52,7 +52,7 @@ export default function CTASection() {
             Xem chi tiết <span className="text-amber-300">Sơ Bộ</span> Ngay Hôm Nay
           </h2>
           <p className="mt-3 text-orange-100 text-sm sm:text-base max-w-xl mx-auto">
-            Điền thông tin bên dưới — đội kỹ sư EPCVINA Solar sẽ liên hệ tư vấn và khảo sát miễn phí trong 24h.
+            Điền thông tin bên dưới — đội kỹ sư Solar Giá Rẻ 24h sẽ liên hệ tư vấn và khảo sát miễn phí trong 24h.
           </p>
         </div>
 

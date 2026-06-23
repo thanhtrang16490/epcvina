@@ -708,7 +708,7 @@ export default function SolarSolutionFinder() {
             className={`text-gray-500 text-sm sm:text-base max-w-xl mx-auto transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
             style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
           >
-            Chỉ cần nhập thông tin cơ bản, EPCVINA Solar sẽ đề xuất giải pháp phù hợp nhất
+            Chỉ cần nhập thông tin cơ bản, Solar Giá Rẻ 24h sẽ đề xuất giải pháp phù hợp nhất
             dựa trên nhu cầu sử dụng thực tế của bạn.
           </p>
 
