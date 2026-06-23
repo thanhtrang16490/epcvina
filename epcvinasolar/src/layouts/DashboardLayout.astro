@@ -182,6 +182,22 @@ const structuredData = {
   </head>
   <body class="min-h-full">
     <slot />
+    
+    <!-- JSON-LD Structured Data: Breadcrumbs -->
+    {breadcrumbs.length > 0 && (
+      <script type="application/ld+json" define:vars={{breadcrumbs}}>
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": breadcrumbs.map((item, index) => ({
+            "@type": "ListItem",
+            "position": index + 1,
+            "name": item.name,
+            "item": item.url
+          }))
+        })}
+      </script>
+    )}
   </body>
 </html>
 
