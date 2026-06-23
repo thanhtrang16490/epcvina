@@ -1,0 +1,20 @@
+# solargiare24h - Solar Product E-Commerce Site
+# Deployed separately on Dokploy
+
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["cd solargiare24h && npm ci"]
+
+[phases.build]
+cmds = ["cd solargiare24h && npm run build"]
+
+[variables]
+HOST = "0.0.0.0"
+PORT = "3000"
+NODE_ENV = "production"
+
+# Start Astro Node.js SSR server
+[start]
+cmd = "cd solargiare24h && node ./dist/server/entry.mjs"
