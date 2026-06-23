@@ -3,41 +3,48 @@ import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 
 const projects = [
   {
-    title: 'Hệ Hybrid 10 kWp — Biệt thự',
-    location: 'Quận 9, TP. HCM',
-    capacity: '10 kWp + 10 kWh BESS',
-    year: '2024',
+    slug: 'chi-ha-ha-dong-15kwp',
+    title: 'Hệ Hybrid 15 kWp — Chị Hà Hà Đông',
+    location: 'Hà Đông - Hà Nội',
+    capacity: '15 kWp + 10 kWh BESS',
+    completion: 'T7.2024',
+    system_type: 'On Grid / Hybrid',
+    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80',
     tag: 'Hybrid',
     tagColor: 'bg-blue-600',
-    // Placeholder gradient — replace with real project images
-    bg: 'from-blue-900 to-blue-700',
   },
   {
-    title: 'Hệ On-Grid 15 kWp — Văn phòng',
-    location: 'Bình Dương',
-    capacity: '15 kWp On-Grid',
-    year: '2024',
-    tag: 'On-Grid',
-    tagColor: 'bg-[#DC2626]',
-    bg: 'from-red-900 to-red-700',
-  },
-  {
-    title: 'Hệ Hybrid 24 kWp 3 pha — Nhà xưởng',
-    location: 'Long An',
-    capacity: '24 kWp + 15.36 kWh BESS',
-    year: '2023',
+    slug: 'anh-thanh-hai-duong-15kwp',
+    title: 'Hệ Hybrid 15 kWp 3 Pha — Anh Thắng Hải Dương',
+    location: 'TP. Hải Dương - Hải Dương',
+    capacity: '15 kWp + Battery',
+    completion: 'T6.2024',
+    system_type: 'Hybrid có lưu trữ',
+    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80',
     tag: 'Hybrid 3P',
     tagColor: 'bg-indigo-600',
-    bg: 'from-indigo-900 to-indigo-700',
   },
   {
-    title: 'Hệ On-Grid 30 kWp — Nhà máy',
-    location: 'Đồng Nai',
-    capacity: '30 kWp On-Grid 3 pha',
-    year: '2023',
-    tag: 'Solar C&I',
-    tagColor: 'bg-emerald-600',
-    bg: 'from-emerald-900 to-emerald-700',
+    slug: 'chu-thanh-hai-duong-22kwp',
+    title: 'Hệ Hybrid 22 kWp Công Suất Lớn — Chú Thanh Hải Dương',
+    location: 'TP. Hải Dương - Hải Dương',
+    capacity: '22 kWp + 20 kWh BESS',
+    completion: 'T6.2024',
+    system_type: 'Hybrid có lưu trữ',
+    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80',
+    tag: 'Hybrid',
+    tagColor: 'bg-blue-600',
+  },
+  {
+    slug: 'anh-trung-bac-tu-liem-15kwp',
+    title: 'Hệ On-Grid 15 kWp — Anh Trung Bắc Từ Liêm',
+    location: 'Bắc Từ Liêm - Hà Nội',
+    capacity: '15 kWp On-Grid',
+    completion: '2024',
+    system_type: 'Hòa Lưới bám tải',
+    image: 'https://images.unsplash.com/photo-1611365813446-82a78c468a1d?w=800&q=80',
+    tag: 'On-Grid',
+    tagColor: 'bg-[#DC2626]',
   },
 ];
 
@@ -73,41 +80,51 @@ export default function ProjectsPreviewSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {projects.map((p, i) => (
             <div
-              key={p.title}
+              key={p.slug}
               className={`group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
               style={{ transitionDelay: isVisible ? `${i * 100}ms` : '0ms' }}
             >
-              {/* Image placeholder — replace bg-gradient with actual <img> when photos available */}
-              <div className={`bg-gradient-to-br ${p.bg} h-48 w-full flex items-end`}>
+              {/* Project Image */}
+              <a href={`/du-an/${p.slug}`} className="block relative h-48 w-full overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                
                 {/* Type badge */}
                 <div className="absolute top-3 left-3">
                   <span className={`${p.tagColor} text-white text-[11px] font-bold px-2.5 py-1 rounded-full`}>
                     {p.tag}
                   </span>
                 </div>
-                {/* Year badge */}
+                
+                {/* Completion date badge */}
                 <div className="absolute top-3 right-3">
                   <span className="bg-black/40 text-white text-[11px] px-2 py-0.5 rounded-full backdrop-blur-sm">
-                    {p.year}
+                    {p.completion}
                   </span>
                 </div>
+                
                 {/* Capacity overlay at bottom of image */}
-                <div className="w-full px-4 pb-3 pt-8 bg-gradient-to-t from-black/70 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 px-4 pb-3 pt-8 bg-gradient-to-t from-black/70 to-transparent">
                   <div className="flex items-center gap-1.5">
                     <Zap className="h-3.5 w-3.5 text-amber-400 flex-shrink-0" />
                     <span className="text-white text-xs font-semibold">{p.capacity}</span>
                   </div>
                 </div>
-              </div>
+              </a>
 
               {/* Info card below image */}
-              <div className="bg-white px-4 py-3 border border-gray-100 rounded-b-2xl -mt-0">
-                <h3 className="font-bold text-gray-900 text-sm leading-snug mb-1">{p.title}</h3>
+              <a href={`/du-an/${p.slug}`} className="block bg-white px-4 py-3 border border-gray-100 rounded-b-2xl -mt-0 hover:bg-gray-50 transition-colors">
+                <h3 className="font-bold text-gray-900 text-sm leading-snug mb-1 line-clamp-2 group-hover:text-[#DC2626] transition-colors">{p.title}</h3>
                 <div className="flex items-center gap-1.5">
                   <MapPin className="h-3.5 w-3.5 text-gray-400 flex-shrink-0" />
                   <span className="text-xs text-gray-500">{p.location}</span>
                 </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
