@@ -2,9 +2,11 @@ import { useState, useEffect, useRef, createContext, useContext } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import ZaloChatButton from '../shared/buttons/ZaloChatButton';
+import FooterSection from '../home/layout/FooterSection';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
+  showFooter?: boolean; // Control footer visibility
 }
 
 // Scroll context for header visibility
@@ -18,7 +20,7 @@ const ScrollContext = createContext<{
 
 export const useScrollContext = () => useContext(ScrollContext);
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function DashboardLayout({ children, showFooter = true }: DashboardLayoutProps) {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -75,6 +77,9 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         
         {/* Zalo Chat Button */}
         <ZaloChatButton />
+        
+        {/* Footer - visible on equipment pages, hidden on homepage (SolarFullPage has its own footer) */}
+        {showFooter && <FooterSection />}
       </div>
     </ScrollContext.Provider>
   );
