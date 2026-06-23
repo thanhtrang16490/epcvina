@@ -35,14 +35,6 @@ const menuItems: MenuItem[] = [
   // { name: 'Báo Giá', href: '/bao-gia', icon: Calculator },
 
   {
-    name: 'Gói combo',
-    icon: Package,
-    children: [
-      { name: 'Combo On-Grid', href: '/solar-home/on-grid' },
-      { name: 'Combo Hybrid', href: '/hybrid-bess' },
-    ],
-  },
-  {
     name: 'Thiết bị',
     icon: Sun,
     children: [

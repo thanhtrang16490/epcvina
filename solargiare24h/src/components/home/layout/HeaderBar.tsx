@@ -4,12 +4,12 @@ import { useScrollContext } from '../../layout/DashboardShell';
 
 const navItems = [
   { label: 'Trang chủ', href: '/' },
-  { label: 'On-Grid', href: '/on-grid' },
-  { label: 'Hybrid', href: '/hybrid-bess' },
   { label: 'Tấm Pin', href: '/equipment/panel' },
   { label: 'Inverter', href: '/equipment/inverter' },
   { label: 'Pin Lưu Trữ', href: '/equipment/battery' },
-  { label: 'Dự Án', href: '/du-an' },
+  { label: 'Phụ Kiện', href: '/equipment/mounting' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Đối Tác', href: '/doi-tac' },
 ];
 
 export default function HeaderBar() {
