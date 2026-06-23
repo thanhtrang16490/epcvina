@@ -111,7 +111,7 @@ export default function Header({ onMenuClick, isHidden, mobileOnly }: HeaderProp
 
           {/* Logo - Căn trái cạnh hamburger */}
           <a href="/" className="flex items-center">
-            <img src="/logo-solargiare24h-solar-white.png" alt="EPC Solar" className="h-7 w-auto" />
+            <span className="text-xl font-bold text-white">Solar24h</span>
           </a>
 
           {/* Spacer để đẩy search & avatar sang phải */}

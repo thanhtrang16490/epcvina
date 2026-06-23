@@ -278,7 +278,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Header with logo */}
         <div className="relative z-10 flex items-center justify-between px-4 h-14 border-b border-white/30">
           <a href="/" className="flex items-center gap-3">
-            <img src="/logo-solargiare24h-solar.png" alt="EPC Solar" className="h-8 w-auto" />
+            <span className="text-xl font-bold text-white">Solar24h</span>
           </a>
           <button onClick={onClose} className="p-2 -mr-2 text-gray-600 hover:text-gray-900">
             <X className="h-5 w-5" />
@@ -380,13 +380,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           isExpanded ? 'px-6 justify-start' : 'px-0 justify-center'
         }`}>
           <a href="/" className="flex items-center">
-            {/* Collapsed: show logo favicon */}
+            {/* Collapsed: show short text */}
             {!isExpanded && (
-              <img src="/logo-favicon.svg" alt="EPC Solar" className="w-7 h-7 flex-shrink-0" />
+              <span className="text-lg font-bold text-emerald-600 flex-shrink-0">S24h</span>
             )}
             {/* Expanded: show full logo */}
             {isExpanded && (
-              <img src="/logo-solargiare24h-solar.png" alt="EPC Solar" className="h-8 w-auto flex-shrink-0" />
+              <span className="text-lg font-bold text-gray-900">Solar24h</span>
             )}
           </a>
         </div>

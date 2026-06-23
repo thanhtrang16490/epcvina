@@ -11,7 +11,9 @@ export default function FooterSection() {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1 pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <div className="mb-4">
-              <img src="/logo-solargiare24h-solar-white.png" alt="Solar Giá Rẻ 24h" width={160} height={48} className="h-9 sm:h-12 w-auto" loading="lazy" />
+              <span className="text-2xl sm:text-3xl font-bold text-white block">
+                Solar24h
+              </span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-1">
               Hệ thống điện mặt trời chính hãng, giá tốt.
