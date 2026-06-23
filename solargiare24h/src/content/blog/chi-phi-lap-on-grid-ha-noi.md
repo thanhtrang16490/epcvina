@@ -317,4 +317,23 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 
 ---
 
+## 🤝 Đối Tác Thi Công: EPCVINA Solar
+
+Bài viết này được hợp tác với **EPCVINA Solar** - Tổng thầu EPC #1 Việt Nam về điện mặt trời.
+
+**Tại sao chọn EPCVINA?**
+- ✅ 100+ dự án đã triển khai trên toàn quốc
+- ✅ Đối tác chính thức Longi, Deye, Pylontech
+- ✅ Bảo hành 25 năm tấm pin, hỗ trợ trọn đời
+- ✅ Giá cả cạnh tranh, minh bạch
+
+👉 **Liên hệ EPCVINA Solar:**
+- 🌐 Website: [epcvina.com](https://epcvina.com)
+- 📞 Hotline: 0988 446 113
+- 📧 Email: epcvina@hotmail.com
+- 📋 [Xem dự án thực tế](https://epcvina.com/du-an)
+- 💰 [Nhận báo giá chi tiết](https://epcvina.com/bao-gia)
+
+---
+
 *Bài viết được cập nhật ngày 23/06/2026. Giá cả có thể thay đổi tùy thời điểm. Liên hệ Solar Giá Rẻ 24h để nhận báo giá mới nhất.*

@@ -13,6 +13,7 @@ import {
   ChevronDown,
   ChevronRight,
   X,
+  Handshake,
 } from 'lucide-react';
 // Supabase is loaded dynamically to avoid adding it to every page's client bundle.
 
@@ -81,6 +82,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   { name: 'Blog', href: '/blog', icon: Newspaper },
+  { name: 'Đối tác', href: '/doi-tac', icon: Handshake },
   {
     name: 'Hỏi đáp',
     icon: MessageSquare,

@@ -1,0 +1,289 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import HeaderBar from '../components/home/layout/HeaderBar';
+import FooterSection from '../components/home/layout/FooterSection';
+---
+
+<DashboardLayout
+  title="Đối Tác Chiến Lược - EPCVINA Solar | Solar Giá Rẻ 24h"
+  description="Solar Giá Rẻ 24h hợp tác chiến lược với EPCVINA Solar - Tổng thầu EPC #1 Việt Nam. Hơn 100+ dự án điện mặt trời đã triển khai."
+  keywords="đối tác solar, epcvina, tổng thầu EPC, điện mặt trời Việt Nam, hợp tác chiến lược"
+  breadcrumbs={[{name: "Trang Chủ", url: "/"}, {name: "Đối Tác", url: "/doi-tac"}]}
+>
+  <!-- Organization Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Solar Giá Rẻ 24h",
+    "url": "https://solargiare24h.com",
+    "partner": {
+      "@type": "Organization",
+      "name": "EPCVINA Solar",
+      "url": "https://epcvina.com",
+      "description": "Tổng thầu EPC hàng đầu Việt Nam về điện mặt trời",
+      "foundingDate": "2020",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "minValue": 50,
+        "maxValue": 200
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hà Nội",
+        "addressCountry": "VN"
+      },
+      "sameAs": [
+        "https://epcvina.com/du-an",
+        "https://epcvina.com/equipment",
+        "https://epcvina.com/blog"
+      ]
+    }
+  })} />
+
+  <div class="min-h-screen bg-white">
+    <HeaderBar client:load />
+    
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Hero Section -->
+      <section class="text-center mb-16">
+        <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          Đối Tác Chiến Lược
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Solar Giá Rẻ 24h tự hào hợp tác với <strong class="text-emerald-600">EPCVINA Solar</strong> 
+          - Tổng thầu EPC hàng đầu Việt Nam trong lĩnh vực điện mặt trời
+        </p>
+      </section>
+
+      <!-- Partner Profile -->
+      <section class="mb-16">
+        <div class="bg-gradient-to-br from-emerald-50 to-green-50 rounded-2xl p-8 sm:p-12 border border-emerald-100">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+              EPCVINA Solar - Tổng Thầu EPC #1 Việt Nam
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                <h3 class="text-lg font-semibold text-emerald-700 mb-3">🏢 Thông Tin Công Ty</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li><strong>Tên đầy đủ:</strong> Công ty Cổ phần Xây lắp EPC Việt Nam</li>
+                  <li><strong>Thương hiệu:</strong> EPCVINA Solar</li>
+                  <li><strong>Lĩnh vực:</strong> Tổng thầu EPC điện mặt trời</li>
+                  <li><strong>Website:</strong> 
+                    <a href="https://epcvina.com" target="_blank" rel="noopener noreferrer" 
+                       class="text-emerald-600 hover:text-emerald-700 underline">
+                      epcvina.com
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h3 class="text-lg font-semibold text-emerald-700 mb-3">📊 Năng Lực</h3>
+                <ul class="space-y-2 text-gray-700">
+                  <li>✅ <strong>100+</strong> dự án đã triển khai</li>
+                  <li>✅ <strong>50-200</strong> nhân sự kỹ thuật</li>
+                  <li>✅ Đối tác chính thức Longi, Deye, Pylontech</li>
+                  <li>✅ ISO 9001:2015 Certified</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <a href="https://epcvina.com" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-4 rounded-lg transition-colors text-lg">
+                Truy Cập Website EPCVINA
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0 0L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partnership Benefits -->
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+          Tại Sao Chúng Tôi Hợp Tác Với EPCVINA?
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">🏆</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Thương Hiệu Uy Tín</h3>
+            <p class="text-gray-600">
+              EPCVINA là tổng thầu EPC hàng đầu với hơn 100 dự án điện mặt trời 
+              đã triển khai thành công trên toàn quốc.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">⚡</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Năng Lực Kỹ Thuật</h3>
+            <p class="text-gray-600">
+              Đội ngũ kỹ sư giàu kinh nghiệm, chứng chỉ quốc tế. 
+              Khả năng triển khai dự án từ 5kWp đến 1MWp+.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">🔧</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Sản Phẩm Chính Hãng</h3>
+            <p class="text-gray-600">
+              Chỉ sử dụng thiết bị Tier 1: Longi, JA Solar, Trina, Deye, Pylontech. 
+              Bảo hành chính hãng 25 năm.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">💰</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Giá Cả Cạnh Tranh</h3>
+            <p class="text-gray-600">
+              Là tổng thầu trực tiếp, EPCVINA cung cấp giá tốt nhất thị trường 
+              với chất lượng cao nhất.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">🛡️</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Bảo Hành Dài Hạn</h3>
+            <p class="text-gray-600">
+              Bảo hành tấm pin 25 năm, inverter 5-10 năm, thi công 2 năm. 
+              Hỗ trợ kỹ thuật trọn đời.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-4xl mb-4">🌟</div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">Dịch Vụ Xuất Sắc</h3>
+            <p class="text-gray-600">
+              Khảo sát miễn phí, thiết kế tối ưu, thi công nhanh chóng. 
+              Xử lý sự cố trong 24h.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products & Services -->
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+          Sản Phẩm & Dịch Vụ Từ EPCVINA
+        </h2>
+        
+        <div class="space-y-6">
+          <a href="https://epcvina.com/equipment/panel" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="block bg-white rounded-xl p-6 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">☀️</div>
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Tấm Pin Năng Lượng Mặt Trời</h3>
+                <p class="text-gray-600 mb-2">
+                  Longi, JA Solar, Trina Solar - Hiệu suất 21-22%, bảo hành 25 năm
+                </p>
+                <span class="text-emerald-600 font-semibold text-sm">Xem chi tiết →</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://epcvina.com/equipment/inverter" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="block bg-white rounded-xl p-6 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🔌</div>
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Biến Tần (Inverter)</h3>
+                <p class="text-gray-600 mb-2">
+                  Deye, Growatt, Huawei - On-Grid & Hybrid, hiệu suất 97-98%
+                </p>
+                <span class="text-emerald-600 font-semibold text-sm">Xem chi tiết →</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://epcvina.com/equipment/battery" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="block bg-white rounded-xl p-6 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🔋</div>
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Pin Lưu Trữ (Battery)</h3>
+                <p class="text-gray-600 mb-2">
+                  Pylontech, Deye, Dyness - Lithium LFP, dung lượng 5-100kWh
+                </p>
+                <span class="text-emerald-600 font-semibold text-sm">Xem chi tiết →</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://epcvina.com/du-an" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="block bg-white rounded-xl p-6 border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all">
+            <div class="flex items-start gap-4">
+              <div class="text-3xl">🏗️</div>
+              <div class="flex-1">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">Dịch Vụ Lắp Đặt Trọn Gói</h3>
+                <p class="text-gray-600 mb-2">
+                  Khảo sát → Thiết kế → Thi công → Vận hành → Bảo hành 25 năm
+                </p>
+                <span class="text-emerald-600 font-semibold text-sm">Xem dự án thực tế →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="bg-gradient-to-r from-emerald-600 to-green-600 rounded-2xl p-8 sm:p-12 text-center text-white">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          Liên Hệ EPCVINA Ngay Hôm Nay
+        </h2>
+        <p class="text-xl mb-8 opacity-90">
+          Nhận tư vấn miễn phí & báo giá chi tiết cho dự án điện mặt trời của bạn
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://epcvina.com/lien-he" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 bg-white text-emerald-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg transition-colors text-lg">
+            📞 Liên Hệ Tư Vấn
+          </a>
+          <a href="https://epcvina.com/bao-gia" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-8 py-4 rounded-lg transition-colors text-lg border-2 border-white">
+            💰 Nhận Báo Giá
+          </a>
+        </div>
+
+        <div class="mt-8 grid sm:grid-cols-3 gap-4 text-sm">
+          <div>
+            <p class="font-semibold">📱 Hotline</p>
+            <p>0988 446 113</p>
+          </div>
+          <div>
+            <p class="font-semibold">📧 Email</p>
+            <p>epcvina@hotmail.com</p>
+          </div>
+          <div>
+            <p class="font-semibold">🌐 Website</p>
+            <p>epcvina.com</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <FooterSection />
+  </div>
+</DashboardLayout>
