@@ -81,7 +81,6 @@ const menuItems: MenuItem[] = [
     ],
   },
   { name: 'Blog', href: '/blog', icon: Newspaper },
-  { name: 'Về chúng tôi', href: '/about', icon: User },
   {
     name: 'Hỏi đáp',
     icon: MessageSquare,
