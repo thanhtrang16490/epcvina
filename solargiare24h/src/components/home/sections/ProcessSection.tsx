@@ -19,7 +19,7 @@ const steps: { step: number; icon: LucideIcon; title: string; description: strin
     step: 3,
     icon: PenTool,
     title: 'Thiết kế giải pháp',
-    description: 'Đội ngũ kỹ sư MEP thiết kế hệ thống theo tiêu chuẩn cơ điện, bao gồm: bản vẽ bố trí tấm pin, sơ đồ đấu nối điện, tính toán kết cấu khung đỡ, giải pháp chống thấm, tiếp địa và chống sét lan truyền. Gửi khách hàng xem xét và phê duyệt.',
+    description: 'Đội ngũ kỹ thuật thiết kế hệ thống chuyên nghiệp, bao gồm: bản vẽ bố trí tấm pin, sơ đồ đấu nối điện, tính toán kết cấu khung đỡ, giải pháp chống thấm, tiếp địa và chống sét lan truyền. Gửi khách hàng xem xét và phê duyệt.',
   },
   {
     step: 4,
@@ -56,8 +56,8 @@ export default function ProcessSection() {
             6 Bước Từ Tư Vấn <span className="text-[#DC2626]">Đến Vận Hành</span>
           </h2>
           <p className="mt-4 text-gray-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
-            Quy trình làm việc chuyên nghiệp, minh bạch và chuẩn cơ điện — từ lần liên hệ đầu tiên đến khi hệ thống vận hành ổn định.
-            Mỗi bước đều được thực hiện bởi đội ngũ kỹ sư có kinh nghiệm, đảm bảo chất lượng và an toàn tuyệt đối.
+            Quy trình làm việc chuyên nghiệp, minh bạch — từ lần liên hệ đầu tiên đến khi hệ thống vận hành ổn định.
+            Mỗi bước đều được thực hiện bởi đội ngũ kỹ thuật có kinh nghiệm, đảm bảo chất lượng và an toàn tuyệt đối.
           </p>
           <p className="mt-3 text-gray-500 text-sm max-w-2xl mx-auto">
             Thời gian triển khai trung bình từ 3-7 ngày tùy công suất. Chúng tôi cam kết đúng tiến độ, 

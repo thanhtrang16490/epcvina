@@ -1,13 +1,8 @@
-import { Zap, ShieldCheck, Cpu, CloudRain, Wrench, Building2 } from 'lucide-react';
+import { Zap, ShieldCheck, Cpu, CloudRain, Wrench } from 'lucide-react';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import type { LucideIcon } from 'lucide-react';
 
 const benefits: { icon: LucideIcon; title: string; description: string }[] = [
-  {
-    icon: Building2,
-    title: 'Thiết kế chuẩn cơ điện',
-    description: 'Mọi hệ thống đều được thiết kế theo tiêu chuẩn cơ điện MEP bởi kỹ sư có chứng chỉ hành nghề, đảm bảo tính kỹ thuật và pháp lý.',
-  },
   {
     icon: ShieldCheck,
     title: 'An toàn điện, chống sét, tiếp địa',
@@ -28,11 +23,6 @@ const benefits: { icon: LucideIcon; title: string; description: string }[] = [
     title: 'Bảo trì dài hạn',
     description: 'Cam kết bảo trì định kỳ, theo dõi sản lượng từ xa, xử lý sự cố nhanh trong 24h — đồng hành cùng khách hàng trong suốt vòng đời hệ thống.',
   },
-  {
-    icon: Zap,
-    title: 'Nền tảng nhà thầu MEP toàn diện',
-    description: 'EPCVINA có nền tảng từ nhà thầu cơ điện MEP, HVAC, PCCC, Electrical, Plumbing — đảm bảo thi công Solar tích hợp hoàn chỉnh trong một dự án.',
-  },
 ];
 
 export default function BenefitsSection() {
@@ -44,18 +34,14 @@ export default function BenefitsSection() {
         {/* Section header */}
         <div className="text-center mb-12">
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-red-600 mb-3">
-            TẠI SAO CHỌN EPCVINA SOLAR
+            TẠI SAO CHỌN SOLAR GIÁ RẺ 24h
           </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
-            Lợi Thế <span className="text-red-600">EPCVINA Solar</span>
+            Lợi Thế <span className="text-red-600">Sản Phẩm Chính Hãng</span>
           </h2>
           <p className="mt-4 text-gray-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
-            Khác với các đơn vị lắp đặt thông thường, EPCVINA xuất phát từ nền tảng nhà thầu cơ điện (MEP) với hơn 10 năm kinh nghiệm trong lĩnh vực điện, nước, phòng cháy chữa cháy và điều hòa không khí. 
-            Chúng tôi không chỉ lắp đặt điện mặt trời — chúng tôi <strong>thiết kế, tính toán kỹ thuật, thi công an toàn và bảo trì dài hạn</strong> theo tiêu chuẩn cơ điện chuyên nghiệp.
-          </p>
-          <p className="mt-3 text-gray-500 text-sm max-w-2xl mx-auto">
-            Mỗi công trình điện mặt trời đều được đội ngũ kỹ sư có chứng chỉ hành nghề khảo sát thực tế, thiết kế bản vẽ kỹ thuật, tính toán kết cấu mái, 
-            giải pháp chống thấm, tiếp địa, chống sét và bảo vệ quá áp — đảm bảo hệ thống hoạt động ổn định 25-30 năm.
+            Chúng tôi cung cấp hệ thống điện mặt trời chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới. 
+            Mỗi sản phẩm đều được chọn lọc kỹ càng, đảm bảo chất lượng cao, hiệu suất ổn định và <strong>tiết kiệm 70-90% hóa đơn điện</strong>.
           </p>
         </div>
 
