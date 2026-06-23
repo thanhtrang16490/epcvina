@@ -30,13 +30,9 @@ export default function HeaderBar() {
       <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 max-w-7xl mx-auto">
         {/* Logo - left */}
         <a href="/" className="flex-shrink-0">
-          <img
-            src="/logo-epcvina-solar-white.png"
-            alt="Solar Giá Rẻ 24h"
-            width={160}
-            height={40}
-            className="h-10 w-auto drop-shadow-sm"
-          />
+          <span className="text-2xl font-bold text-white drop-shadow-lg">
+            Solar Giá Rẻ 24h
+          </span>
         </a>
 
         {/* Nav pill - center (desktop only) */}
