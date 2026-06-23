@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EquipmentPage from '../../components/pages/equipment/EquipmentPage';
+
+export const prerender = false;
+
+const { category } = Astro.params;
+---
+
+<DashboardLayout 
+  title={`Thiết Bị Điện Mặt Trời - ${category?.toUpperCase() || 'Tất Cả'} | Solar Giá Rẻ 24h`}
+  description={`Danh mục thiết bị điện mặt trời: ${category || 'tất cả sản phẩm'}. Sản phẩm chính hãng, giá tốt, bảo hành dài hạn.`}
+  breadcrumbs={[
+    {name: "Trang Chủ", url: "/"}, 
+    {name: "Thiết Bị", url: "/equipment"},
+    {name: category?.toUpperCase() || 'Tất Cả', url: `/equipment/${category || ''}`}
+  ]}
+>
+  <DashboardShell client:load>
+    <EquipmentPage category={category!} client:idle />
+  </DashboardShell>
+</DashboardLayout>

@@ -38,8 +38,14 @@ const relatedProjects = allProjects
 ---
 
 <DashboardLayout
-  title={product.data.name}
-  description={product.data.description || `Chi tiết sản phẩm ${product.data.name} - EPCVINA Solar`}
+  title={`${product.data.name} - Solar Giá Rẻ 24h`}
+  description={product.data.description || `Chi tiết sản phẩm ${product.data.name} - Thiết bị điện mặt trời chính hãng`}
+  breadcrumbs={[
+    {name: "Trang Chủ", url: "/"},
+    {name: "Thiết Bị", url: "/equipment"},
+    {name: product.data.category?.toUpperCase() || 'Sản Phẩm', url: `/equipment/${product.data.category || ''}`},
+    {name: product.data.name, url: `/equipment/${product.id.replace('.md', '')}`}
+  ]}
 >
   <DashboardShell client:load>
     <ProductDetail 

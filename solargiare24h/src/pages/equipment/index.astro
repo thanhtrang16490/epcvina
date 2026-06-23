@@ -1,0 +1,18 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EquipmentPage from '../../components/pages/equipment/EquipmentPage';
+
+export const prerender = true;
+---
+
+<DashboardLayout 
+  title="Thiết Bị Điện Mặt Trời Chính Hãng - Solar Giá Rẻ 24h"
+  description="Tấm pin, biến tần, pin lưu trữ và phụ kiện điện mặt trời chính hãng từ các thương hiệu Tier 1: Longi, Deye, Pylontech, JA Solar."
+  keywords="thiết bị điện mặt trời, tấm pin năng lượng, biến tần solar, pin lưu trữ, phụ kiện solar, Longi, Deye, Pylontech"
+  breadcrumbs={[{name: "Trang Chủ", url: "/"}, {name: "Thiết Bị", url: "/equipment"}]}
+>
+  <DashboardShell client:load>
+    <EquipmentPage category="panel" client:idle />
+  </DashboardShell>
+</DashboardLayout>
