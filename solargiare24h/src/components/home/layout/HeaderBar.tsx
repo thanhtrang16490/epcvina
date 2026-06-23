@@ -23,7 +23,7 @@ export default function HeaderBar() {
 
   return (
     <header
-      className={`hidden lg:block fixed left-0 right-0 z-50 top-2 transition-transform duration-300 ${
+      className={`hidden fixed left-0 right-0 z-50 top-2 transition-transform duration-300 ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
