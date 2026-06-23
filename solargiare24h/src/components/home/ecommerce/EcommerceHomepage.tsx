@@ -1,14 +1,17 @@
 import { useState } from 'react';
-import { ShoppingCart, Heart, Star, Filter, Grid3X3, List, ChevronRight } from 'lucide-react';
+import { ShoppingCart, Heart, Star, Filter, Grid3X3, List, ChevronRight, Check } from 'lucide-react';
 import { getCombos, localCombos } from '../../../data/combos';
+import { useCart } from '../../../context/CartContext';
 
 const BRAND_ORANGE = '#f97316';
 const BRAND_RED = '#dc2626';
 
 export default function EcommerceHomepage() {
+  const { addToCart } = useCart();
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('popular');
+  const [addedToCartId, setAddedToCartId] = useState<string | null>(null);
 
   const categories = [
     { id: 'all', label: 'Tất cả sản phẩm', count: localCombos.length },
@@ -26,6 +29,20 @@ export default function EcommerceHomepage() {
 
   const formatPrice = (million: number) => {
     return `${million.toLocaleString('vi-VN')} triệu`;
+  };
+
+  const handleAddToCart = (combo: any) => {
+    addToCart({
+      id: combo.id,
+      name: combo.name,
+      price: combo.investment_million_vnd,
+      originalPrice: Math.round(combo.investment_million_vnd * 1.2),
+      capacity: `${combo.power_kw} kWp`,
+      systemType: combo.system_type,
+      phase: combo.phase,
+    });
+    setAddedToCartId(combo.id);
+    setTimeout(() => setAddedToCartId(null), 2000);
   };
 
   return (
@@ -270,10 +287,25 @@ export default function EcommerceHomepage() {
                         </p>
                       </div>
                       <button
-                        className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition-all"
+                        onClick={() => handleAddToCart(combo)}
+                        disabled={addedToCartId === combo.id}
+                        className={`font-semibold px-4 py-2 rounded-lg flex items-center gap-2 transition-all ${
+                          addedToCartId === combo.id
+                            ? 'bg-green-500 text-white'
+                            : 'bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white'
+                        }`}
                       >
-                        <ShoppingCart className="h-4 w-4" />
-                        Mua ngay
+                        {addedToCartId === combo.id ? (
+                          <>
+                            <Check className="h-4 w-4" />
+                            Đã thêm
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingCart className="h-4 w-4" />
+                            Thêm vào giỏ
+                          </>
+                        )}
                       </button>
                     </div>
                   </div>

@@ -1,11 +1,16 @@
 import HeaderBar from './HeaderBar';
-import EcommerceHomepage from '../ecommerce/EcommerceHomepage';
+import CatalogHomepage from '../ecommerce/CatalogHomepage';
+import CartSidebar from '../../ecommerce/CartSidebar';
+import { CartProvider } from '../../../context/CartContext';
 
 export default function SolarFullPage() {
   return (
-    <div className="min-h-screen bg-white scroll-smooth">
-      <HeaderBar />
-      <EcommerceHomepage />
-    </div>
+    <CartProvider>
+      <div className="min-h-screen bg-white scroll-smooth">
+        <HeaderBar />
+        <CatalogHomepage />
+        <CartSidebar />
+      </div>
+    </CartProvider>
   );
 }

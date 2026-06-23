@@ -1,7 +1,7 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
-import BaoTriPage from '../components/pages/bao-tri/BaoTriPage';
+// import BaoTriPage from '../components/pages/bao-tri/BaoTriPage';
 ---
 
 <DashboardLayout
@@ -11,6 +11,8 @@ import BaoTriPage from '../components/pages/bao-tri/BaoTriPage';
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Dịch Vụ", url: "https://epcvina.com"}, {name: "Bảo Trì", url: "https://epcvina.com/bao-tri"}]}
 >
   <DashboardShell client:load>
-    <BaoTriPage client:idle />
+    <div class="py-20 text-center">
+      <p class="text-gray-600">Trang bảo trì đang được cập nhật</p>
+    </div>
   </DashboardShell>
 </DashboardLayout>
