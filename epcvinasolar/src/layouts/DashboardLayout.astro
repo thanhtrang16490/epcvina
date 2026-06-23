@@ -158,8 +158,42 @@ const structuredData = {
       <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&display=swap" rel="stylesheet" />
     </noscript>
 
-    <!-- Preload hero image (LCP) -->
-    <link rel="preload" as="image" href="/hero-bg.png" />
+    <!-- Preload hero image (LCP element) - WebP format for performance -->
+    <link rel="preload" as="image" href="/hero-bg-1920.webp" imagesrcset="/hero-bg-768.webp 768w, /hero-bg-1280.webp 1280w, /hero-bg-1920.webp 1920w" />
+
+    <!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your actual Measurement ID -->
+    <!-- Setup: https://analytics.google.com -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        'send_page_view': true,
+        'custom_map': {
+          'dimension1': 'user_type',
+          'dimension2': 'page_category'
+        }
+      });
+      
+      // Track phone clicks
+      function trackPhoneClick() {
+        gtag('event', 'phone_click', {
+          'event_category': 'contact',
+          'event_label': 'phone_number',
+          'value': 1
+        });
+      }
+      
+      // Track form submissions
+      function trackFormSubmit(formName) {
+        gtag('event', 'form_submit', {
+          'event_category': 'lead',
+          'event_label': formName,
+          'value': 1
+        });
+      }
+    </script>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

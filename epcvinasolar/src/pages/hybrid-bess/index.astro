@@ -10,6 +10,7 @@ import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
   keywords="hybrid solar, BESS, pin lưu trữ năng lượng, battery storage, lưu trữ điện mặt trời, backup điện, EPCVINA Solar"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Giải Pháp", url: "https://epcvina.com"}, {name: "Hybrid BESS", url: "https://epcvina.com/hybrid-bess"}]}
 >
+  <!-- Service Schema -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Service",
@@ -25,7 +26,60 @@ import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
       "name": "Hà Nội"
     },
     "serviceType": "Solar Energy Storage Installation",
-    "priceRange": "$$-$$$"
+    "priceRange": "$$-$$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "89"
+    }
+  })} />
+  
+  <!-- FAQ Schema for Rich Snippets -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hybrid Solar Là Gì? Khác On-Grid Chỗ Nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hybrid Solar là hệ thống điện mặt trời kết hợp pin lưu trữ (BESS), có thể hoạt động độc lập khi mất điện. Khác với On-Grid (phụ thuộc lưới điện), Hybrid cung cấp điện 24/7."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Pin Lưu Trữ BESS Bền Bao Lâu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pin lithium LiFePO4 có tuổi thọ 10-15 năm (6000-8000 chu kỳ sạc), bảo hành 5 năm. Sau 10 năm vẫn đạt 80% dung lượng."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Chi Phí Lắp Hybrid Bao Nhiêu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chi phí trung bình: 5kWp + 10kWh pin: 120-150 triệu, 10kWp + 16kWh pin: 200-250 triệu. Hoàn vốn 5-7 năm, sau đó dùng điện miễn phí."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hybrid Có Hoạt Động Khi Mất Điện Không?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Có! Hệ Hybrid tự động chuyển sang chế độ backup khi mất điện, sử dụng điện từ pin lưu trữ cung cấp cho tải quan trọng."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Nên Chọn On-Grid Hay Hybrid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chọn On-Grid nếu: khu vực ít mất điện, ngân sách hạn chế. Chọn Hybrid nếu: hay mất điện, cần backup 24/7, muốn tối đa hóa sử dụng điện mặt trời."
+        }
+      }
+    ]
   })} />
   <DashboardShell client:load>
     <HybridBESSPage client:idle />

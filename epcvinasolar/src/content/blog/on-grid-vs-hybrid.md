@@ -30,7 +30,7 @@ Hệ thống điện mặt trời **On-Grid** (còn gọi là hệ thống hoà 
 - **Mất điện lưới = mất điện hoàn toàn** (do bảo vệ an toàn anti-islanding)
 - Chi phí đầu tư thấp hơn Hybrid từ 30–50%
 
-Xem thêm chi tiết về giải pháp [điện mặt trời On-Grid tại EPC Solar](/on-grid).
+Xem thêm chi tiết về giải pháp [điện mặt trời On-Grid tại EPC Solar](/on-grid) hoặc [xem bảng giá combo On-Grid](/on-grid).
 
 ---
 
@@ -51,7 +51,7 @@ Hệ thống **Hybrid** kết hợp năng lượng mặt trời với hệ thố
 - **Tối ưu hoá tự tiêu thụ** — giảm tối đa lệ thuộc vào EVN
 - Chi phí đầu tư cao hơn On-Grid do có thêm ắc-quy và inverter Hybrid
 
-Khám phá giải pháp [điện mặt trời Hybrid & BESS tại EPC Solar](/hybrid-bess).
+Khám phá giải pháp [điện mặt trời Hybrid & BESS tại EPC Solar](/hybrid-bess) hoặc [xem combo Hybrid 5kW](/hybrid-bess/hybrid-5kw-1pha-5kwh).
 
 ---
 
@@ -87,6 +87,8 @@ Khám phá giải pháp [điện mặt trời Hybrid & BESS tại EPC Solar](/hy
 **Tiết kiệm hàng tháng ước tính**: 1,5–2,5 triệu VNĐ/tháng (tùy mức tiêu thụ và giờ nắng).
 
 **ROI**: Hoàn vốn trong **4–6 năm**, sau đó hưởng điện gần như miễn phí.
+
+👉 [Tính toán chi phí lắp đặt On-Grid cho nhà bạn](/bao-gia)
 
 ### Chi phí Hybrid điển hình (5kW + 10kWh ắc-quy):
 
