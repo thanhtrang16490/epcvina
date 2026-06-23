@@ -2,11 +2,51 @@ import { Quote, Star } from 'lucide-react';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 
 const reviews = [
-  { name: 'Anh Minh', location: 'Quận 7, TP.HCM', quote: 'Lắp hệ 10kWp được 6 tháng, tiền điện giảm từ 3 triệu còn 200k/tháng. Rất hài lòng với dịch vụ!', rating: 5 },
-  { name: 'Chị Hương', location: 'Bình Dương', quote: 'Nhà hay bị cúp điện, từ khi lắp Hybrid có pin lưu trữ không còn lo mất điện nữa.', rating: 5 },
-  { name: 'Anh Tuấn', location: 'Đồng Nai', quote: 'Đội ngũ tư vấn nhiệt tình, lắp đặt nhanh trong 1 ngày. Hệ thống chạy ổn định.', rating: 5 },
-  { name: 'Chị Mai', location: 'Quận 2, TP.HCM', quote: 'Đầu tư 150 triệu, mỗi tháng tiết kiệm 2.5 triệu tiền điện. Hoàn vốn nhanh hơn dự kiến!', rating: 5 },
-  { name: 'Anh Phong', location: 'Long An', quote: 'Bảo hành tốt, có vấn đề gì gọi là có người đến kiểm tra ngay. Yên tâm sử dụng.', rating: 5 },
+  {
+    name: 'Chị Hà',
+    location: 'Hà Đông - Hà Nội',
+    capacity: '15 kWp Hybrid',
+    quote: 'Từ khi lắp điện mặt trời, hóa đơn điện giảm hẳn. Buổi tối có pin lưu trữ nên không lo mất điện. Đội ngũ thi công chuyên nghiệp, nhiệt tình.',
+    rating: 5,
+    aspect: 'Tiết kiệm chi phí & Dịch vụ tốt',
+    completion: 'T7.2024',
+  },
+  {
+    name: 'Anh Thắng',
+    location: 'TP. Hải Dương - Hải Dương',
+    capacity: '15 kWp Hybrid 3P',
+    quote: 'Chất lượng thi công tuyệt vời, sơn tĩnh điện rất đẹp và bền. Hệ thống hoạt động ổn định, tiết kiệm được nhiều điện. Rất hài lòng!',
+    rating: 5,
+    aspect: 'Chất lượng thi công & Thẩm mỹ',
+    completion: 'T6.2024',
+  },
+  {
+    name: 'Chú Thanh',
+    location: 'TP. Hải Dương - Hải Dương',
+    capacity: '22 kWp Hybrid',
+    quote: 'Công trình phức tạp nhưng đội ngũ thi công rất chuyên nghiệp. Lắp trên cao 6m mà vẫn an toàn, nhanh chóng. Giờ không lo mất điện với 20kWh pin lưu trữ!',
+    rating: 5,
+    aspect: 'Thi công phức tạp & Chuyên nghiệp',
+    completion: 'T6.2024',
+  },
+  {
+    name: 'Anh Thắng',
+    location: 'Thanh Miện - Hải Dương',
+    capacity: '15 kWp On-Grid',
+    quote: 'Lắp trên tầng 7 mà thi công nhanh và an toàn. Giờ tiết kiệm được gần 3 triệu tiền điện mỗi tháng. Cảm ơn đội ngũ EPCVINA!',
+    rating: 5,
+    aspect: 'Thi công an toàn & Tiết kiệm điện',
+    completion: '2024',
+  },
+  {
+    name: 'Anh Quỳnh',
+    location: 'Châu Thái - Hải Dương',
+    capacity: '6.5 kWp Hybrid',
+    quote: 'Diện tích mái nhỏ nhưng vẫn lắp được 6.5 kWp. Pin lưu trữ 10kWh dùng thoải mái buổi tối. Anh em thi công nhiệt tình, cẩn thận.',
+    rating: 5,
+    aspect: 'Tối ưu diện tích & Pin lưu trữ',
+    completion: '2024',
+  },
 ];
 
 export default function ReviewsSection() {
@@ -35,7 +75,7 @@ export default function ReviewsSection() {
           <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-5 pb-4 touch-pan-x">
           {reviews.map((review, i) => (
             <div
-              key={review.name}
+              key={review.name + review.location}
               className={`w-[320px] flex-shrink-0 snap-start bg-white shadow-md rounded-xl p-6 flex flex-col transition-all duration-200 hover:shadow-lg hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
               style={{ transitionDelay: isVisible ? `${i * 100}ms` : '0ms' }}
             >
@@ -57,9 +97,22 @@ export default function ReviewsSection() {
                 ))}
               </div>
 
+              {/* Aspect tag */}
+              <div className="mb-3">
+                <span className="inline-block px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-100">
+                  {review.aspect}
+                </span>
+              </div>
+
               {/* Name & location */}
               <p className="font-semibold text-gray-900 text-sm">{review.name}</p>
-              <p className="text-gray-400 text-xs">{review.location}</p>
+              <p className="text-gray-400 text-xs mb-2">{review.location}</p>
+              
+              {/* Capacity & completion */}
+              <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
+                <span className="font-medium">{review.capacity}</span>
+                <span>{review.completion}</span>
+              </div>
             </div>
           ))}
           </div>
