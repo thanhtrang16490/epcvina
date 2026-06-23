@@ -144,10 +144,19 @@ const structuredData = {
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
     <link rel="apple-touch-icon" href="/logo-epcvina-solar.png?v=2" />
 
-    <!-- Fonts -->
+    <!-- Fonts - Optimized for Mobile -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
+    <!-- Load only necessary weights to reduce bundle size -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&display=swap" 
+      rel="stylesheet" 
+      media="print" 
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,500;8..144,600;8..144,700&display=swap" rel="stylesheet" />
+    </noscript>
 
     <!-- Preload hero image (LCP) -->
     <link rel="preload" as="image" href="/hero-bg.png" />
@@ -167,13 +176,33 @@ const structuredData = {
       })} />
     )}
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VLQ1GQBQL"></script>
+    <!-- Google Analytics - Deferred for Mobile Performance -->
+    <script 
+      async 
+      src="https://www.googletagmanager.com/gtag/js?id=G-2VLQ1GQBQL"
+      onload="window.gtagLoaded=true"
+    ></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-2VLQ1GQBQL');
+      // Defer GA initialization until after page load on mobile
+      function initGA() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2VLQ1GQBQL', {
+          'send_page_view': false, // Manual control
+          'transport_type': 'beacon' // Better for mobile
+        });
+        gtag('event', 'page_view');
+      }
+      
+      // Initialize after page load to not block rendering
+      if (document.readyState === 'complete') {
+        setTimeout(initGA, 100);
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(initGA, 100);
+        });
+      }
     </script>
 
     <!-- Theme color -->
