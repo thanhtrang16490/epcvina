@@ -26,57 +26,163 @@ const heroStats = [
   { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: '100%', label: 'Hài lòng', gradient: 'from-cyan-600 to-cyan-500' },
 ];
 
-/* ─── Solar Projects ─── */
+/* ─── Solar Projects - From GIGASOLAR Data ─── */
 const solarProjects = [
   {
-    name: 'Trang trại Điện mặt trời Bình Thuận',
-    capacity: '~42 MWp',
-    type: 'Solar Farm',
-    location: 'Bình Thuận',
-    year: '2020',
+    name: 'Chị Hà - Hà Đông',
+    capacity: '15 kWp',
+    type: 'On Grid / Hybrid',
+    location: 'Hà Đông - Hà Nội',
+    year: 'T7.2024',
+    details: 'Tấm Pin: Longi 550 Wp, Biến tần: Deye 10kW, Pin lưu trữ: Deye 10kWh',
+    note: 'Mái hiên 2 mặt kính',
     image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
-    alt: 'Trang trại điện mặt trời Bình Thuận công suất 42 MWp',
+    alt: 'Dự án điện mặt trời 15 kWp tại Hà Đông, Hà Nội',
     tagColor: 'bg-emerald-100 text-emerald-700',
   },
   {
-    name: 'Trang trại Điện mặt trời Khánh Hòa',
-    capacity: '~35 MWp',
-    type: 'Solar Farm',
-    location: 'Khánh Hòa',
-    year: '2020',
+    name: 'Anh Thắng - TP. Hải Dương',
+    capacity: '15 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'TP. Hải Dương - Hải Dương',
+    year: 'T6.2024',
+    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 12KW 3phase, Battery: Bettenergy',
+    note: 'Sơn tĩnh điện toàn giàn khung, Đổ betong chân cột',
     image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
-    alt: 'Trang trại điện mặt trời Khánh Hòa công suất 35 MWp',
-    tagColor: 'bg-emerald-100 text-emerald-700',
+    alt: 'Dự án điện mặt trời Hybrid 15 kWp tại Hải Dương',
+    tagColor: 'bg-blue-100 text-blue-700',
   },
   {
-    name: 'Điện mặt trời mái nhà C&I Thái Nguyên',
-    capacity: '~12.6 MWp',
-    type: 'Rooftop C&I',
-    location: 'Thái Nguyên',
-    year: '2021',
+    name: 'Anh Linh - Dương Nội',
+    capacity: '7.5 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'Dương Nội - Hà Nội',
+    year: 'T9.2024',
+    details: 'Tấm Pin: Longi 550 Wp, Biến tần: Deye 8kW 3phase, Pin lưu trữ: SMB 10kWh',
+    note: 'Sơn tĩnh điện toàn giàn khung, Mái hiên 2 mặt kính, Tầng cao 7 tầng',
     image: 'https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=400&q=80',
-    alt: 'Hệ thống điện mặt trời mái nhà C&I Thái Nguyên',
-    tagColor: 'bg-sky-100 text-sky-700',
+    alt: 'Dự án điện mặt trời Hybrid 7.5 kWp tại Dương Nội, Hà Nội',
+    tagColor: 'bg-blue-100 text-blue-700',
   },
   {
-    name: 'Điện mặt trời mái nhà C&I Nghệ An',
-    capacity: '~7.3 MWp',
-    type: 'Rooftop C&I',
-    location: 'Nghệ An',
-    year: '2022',
+    name: 'Chị Hà - Long Biên',
+    capacity: '5.4 kWp',
+    type: 'Hòa Lưới bám tải',
+    location: 'Long Biên - Hà Nội',
+    year: 'T3.2024',
+    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Growatt 5Kw 1phase',
+    note: 'Sơn tĩnh điện toàn giàn khung, Mái hiên 2 mặt kính, Tầng cao 6 tầng',
     image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=400&q=80',
-    alt: 'Hệ thống điện mặt trời mái nhà C&I Nghệ An',
+    alt: 'Dự án điện mặt trời 5.4 kWp tại Long Biên, Hà Nội',
     tagColor: 'bg-sky-100 text-sky-700',
   },
   {
-    name: 'Điện mặt trời mái nhà C&I Nam Định',
-    capacity: '~4.8 MWp',
-    type: 'Rooftop C&I',
-    location: 'Nam Định',
-    year: '2022',
+    name: 'Anh Thọ - Uông Bí',
+    capacity: '5.4 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'Uông Bí - Quảng Ninh',
+    year: 'T10.2023',
+    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, Battery: PowerX 5kwh',
+    note: 'Áp mái tôn',
     image: 'https://images.unsplash.com/photo-1548337138-e87d889cc369?w=400&q=80',
-    alt: 'Hệ thống điện mặt trời mái nhà C&I Nam Định',
+    alt: 'Dự án điện mặt trời Hybrid 5.4 kWp tại Uông Bí, Quảng Ninh',
+    tagColor: 'bg-blue-100 text-blue-700',
+  },
+  {
+    name: 'Anh Tùng - Tây Tựu',
+    capacity: '6.5 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'Tây Tựu - Hà Nội',
+    year: 'T12.2024',
+    details: 'Tấm pin: Longi 580 WP, Biến tần: SolaX 6Kwp 1phase, Battery: SMB 5Kwp',
+    note: 'Làm trên tầng cao 6 tầng',
+    image: 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=400&q=80',
+    alt: 'Dự án điện mặt trời Hybrid 6.5 kWp tại Tây Tựu, Hà Nội',
+    tagColor: 'bg-blue-100 text-blue-700',
+  },
+  {
+    name: 'Anh Quỳnh - Chùa Thầy',
+    capacity: '6.5 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'Chùa Thầy - Hà Nội',
+    year: 'T10.2024',
+    details: 'Tấm pin: Longi 545 Wp, Biến tần SolaX 6Kwp 1 phase, Battery: Triple power 10Kwp',
+    note: 'Làm trên tầng cao 3 tầng',
+    image: 'https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=400&q=80',
+    alt: 'Dự án điện mặt trời Hybrid 6.5 kWp tại Chùa Thầy, Hà Nội',
+    tagColor: 'bg-blue-100 text-blue-700',
+  },
+  {
+    name: 'Anh Tú - Sơn Tây',
+    capacity: '5 kWp',
+    type: 'Hòa Lưới bám tải',
+    location: 'Sơn Tây - Hà Nội',
+    year: 'T2.2024',
+    details: 'Tấm pin: Longi 580 Wp, Biến tần: Growatt 5kwp 1 phase',
+    note: 'Áp mái tôn',
+    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
+    alt: 'Dự án điện mặt trời 5 kWp tại Sơn Tây, Hà Nội',
     tagColor: 'bg-sky-100 text-sky-700',
+  },
+  {
+    name: 'Anh Trung - Bắc Từ Liêm',
+    capacity: '15 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'Bắc Từ Liêm - Hà Nội',
+    year: 'T3.2024',
+    details: 'Tấm pin: Longi 580 Wp 2 mặt kính, Biến tần: Deye 12kwp 3phase, Battery: Bettenergy 10kwp',
+    note: 'Mái hiên 2 mặt kính, Tầng cao 6 tầng',
+    image: 'https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=400&q=80',
+    alt: 'Dự án điện mặt trời Hybrid 15 kWp tại Bắc Từ Liêm, Hà Nội',
+    tagColor: 'bg-blue-100 text-blue-700',
+  },
+  {
+    name: 'Anh Quyền - TP. Hải Dương',
+    capacity: '5 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'TP. Hải Dương - Hải Dương',
+    year: 'T4.2024',
+    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, Battery: PowerX 5kwh',
+    note: 'Dựng khung trên mái ngói, giảm độ dốc tăng hiệu suất',
+    image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=400&q=80',
+    alt: 'Dự án điện mặt trời Hybrid 5 kWp tại Hải Dương',
+    tagColor: 'bg-blue-100 text-blue-700',
+  },
+  {
+    name: 'Anh Thắng - Thanh Miện',
+    capacity: '15 kWp',
+    type: 'Hòa lưới bám tải',
+    location: 'Thanh Miện - Hải Dương',
+    year: 'T4.2024',
+    details: 'Tấm pin: Longi 580 Wp, Biến tần: Deye 15kwp 3phase',
+    note: 'Làm khung trên tầng cao 7 tầng',
+    image: 'https://images.unsplash.com/photo-1548337138-e87d889cc369?w=400&q=80',
+    alt: 'Dự án điện mặt trời 15 kWp tại Thanh Miện, Hải Dương',
+    tagColor: 'bg-sky-100 text-sky-700',
+  },
+  {
+    name: 'Chú Thanh - TP. Hải Dương',
+    capacity: '22 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'TP. Hải Dương - Hải Dương',
+    year: 'T6.2024',
+    details: 'Tấm pin: Longi 580 Wp, Biến tần: Deye 10Kwp 1 phase, Battery: SMB 20Kwp',
+    note: 'Sơn tĩnh điện toàn giàn khung, Độ cao >6m, Đấu nối 2 biến tần Parallel',
+    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
+    alt: 'Dự án điện mặt trời Hybrid 22 kWp tại Hải Dương',
+    tagColor: 'bg-blue-100 text-blue-700',
+  },
+  {
+    name: 'Anh Quý - Việt Yên',
+    capacity: '6 kWp',
+    type: 'Hybrid có lưu trữ',
+    location: 'Việt Yên - Bắc Giang',
+    year: 'T10.2024',
+    details: 'Tấm pin: Longi 580 Wp, Biến tần: Solis 6Kwp 3 phase, Battery: Lvtopsun 10Kwp',
+    note: '',
+    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
+    alt: 'Dự án điện mặt trời Hybrid 6 kWp tại Việt Yên, Bắc Giang',
+    tagColor: 'bg-blue-100 text-blue-700',
   },
 ];
 
@@ -332,49 +438,79 @@ export default function ProjectsPage() {
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {solarProjects.map((project) => (
-                <div
-                  key={project.name}
-                  className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none"
-                >
-                  <div className="aspect-video overflow-hidden relative">
-                    <img
-                      src={project.image}
-                      alt={project.alt}
-                      loading="lazy"
-                      width={400}
-                      height={225}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true" />
-                    <div className="absolute bottom-3 left-4 right-4">
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/90 backdrop-blur-sm text-white">
-                          {project.capacity}
-                        </span>
-                        <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${project.tagColor}`}>
-                          {project.type}
-                        </span>
+              {solarProjects.map((project) => {
+                // Map project names to actual slug file names
+                const slugMap: Record<string, string> = {
+                  'Chị Hà - Hà Đông': 'chi-ha-ha-dong-15kwp',
+                  'Anh Thắng - TP. Hải Dương': 'anh-thanh-hai-duong-15kwp',
+                  'Anh Linh - Dương Nội': 'anh-linh-duong-noi-7-5kwp',
+                  'Chị Hà - Long Biên': 'chi-ha-long-bien-5-4kwp',
+                  'Anh Thọ - Uông Bí': 'anh-tho-uong-bi-5-4kwp',
+                  'Anh Tùng - Tây Tựu': 'anh-tung-tay-tuu-6-5kwp',
+                  'Anh Quỳnh - Chùa Thầy': 'anh-quynh-chua-thay-6-5kwp',
+                  'Anh Tú - Sơn Tây': 'anh-tu-son-tay-5kwp',
+                  'Anh Trung - Bắc Từ Liêm': 'anh-trung-bac-tu-liem-15kwp',
+                  'Anh Quyền - TP. Hải Dương': 'anh-quyen-hai-duong-5kwp',
+                  'Anh Thắng - Thanh Miện': 'anh-thang-thanh-mien-15kwp',
+                  'Chú Thanh - TP. Hải Dương': 'chu-thanh-hai-duong-22kwp',
+                  'Anh Quý - Việt Yên': 'anh-quy-viet-yen-6kwp',
+                };
+                
+                const slug = slugMap[project.name] || project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                
+                return (
+                  <a
+                    key={project.name}
+                    href={`/du-an/${slug}`}
+                    className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none cursor-pointer block"
+                  >
+                    <div className="aspect-video overflow-hidden relative">
+                      <img
+                        src={project.image}
+                        alt={project.alt}
+                        loading="lazy"
+                        width={400}
+                        height={225}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true" />
+                      <div className="absolute bottom-3 left-4 right-4">
+                        <div className="flex items-center gap-2">
+                          <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/90 backdrop-blur-sm text-white">
+                            {project.capacity}
+                          </span>
+                          <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${project.tagColor}`}>
+                            {project.type}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-base font-bold text-gray-900 mb-3 line-clamp-2 leading-snug">
-                      {project.name}
-                    </h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                        {project.location}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4 text-gray-400" aria-hidden="true" />
-                        {project.year}
-                      </span>
+                    <div className="p-5">
+                      <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2 leading-snug">
+                        {project.name}
+                      </h3>
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                        <span className="flex items-center gap-1">
+                          <MapPin className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                          {project.location}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                          {project.year}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-600 leading-relaxed mb-2 line-clamp-2">
+                        {project.details}
+                      </p>
+                      {project.note && (
+                        <p className="text-xs text-emerald-600 font-medium line-clamp-1">
+                          ⚡ {project.note}
+                        </p>
+                      )}
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </a>
+                );
+              })}
             </div>
           </div>
         </section>

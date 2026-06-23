@@ -18,6 +18,23 @@ const { product } = Astro.props;
 if (!product) {
   return Astro.redirect('/equipment');
 }
+
+// Fetch related projects that use this product
+const allProjects = await getCollection('projects');
+const productId = product.id.replace('.md', '');
+const productCategory = product.data.category;
+const relatedProjects = allProjects
+  .filter(project => {
+    // Check if project equipment items reference this product
+    const equipmentItems = project.data.equipment_items || [];
+    return equipmentItems.some(item => {
+      const productSlug = item.product_slug || '';
+      return productSlug.includes(productId) || 
+             productId.includes(productSlug.split('/').pop() || '') ||
+             productSlug.includes(productCategory);
+    });
+  })
+  .slice(0, 3); // Limit to 3 projects
 ---
 
 <DashboardLayout
@@ -25,6 +42,10 @@ if (!product) {
   description={product.data.description || `Chi tiết sản phẩm ${product.data.name} - EPCVINA Solar`}
 >
   <DashboardShell client:load>
-    <ProductDetail client:load product={product.data} />
+    <ProductDetail 
+      client:load 
+      product={product.data}
+      relatedProjects={relatedProjects}
+    />
   </DashboardShell>
 </DashboardLayout>

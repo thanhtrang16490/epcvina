@@ -53,8 +53,53 @@ const combosCollection = defineCollection({
   }),
 });
 
+const projectsCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  schema: z.object({
+    title: z.string(),
+    customer: z.string(),
+    capacity: z.string(),
+    system_type: z.string(),
+    location: z.string(),
+    completion_date: z.string(),
+    equipment: z.string(),
+    equipment_items: z.array(z.object({
+      label: z.string(),
+      value: z.string(),
+      product_slug: z.string().optional(),
+    })).optional(),
+    special_notes: z.string().optional(),
+    description: z.string(),
+    challenges: z.string().optional(),
+    solution: z.string().optional(),
+    results: z.string().optional(),
+    // Performance & ROI data
+    performance: z.object({
+      annual_production_kwh: z.number().optional(),
+      annual_savings_vnd: z.number().optional(),
+      payback_years: z.number().optional(),
+      co2_reduction_kg: z.number().optional(),
+      self_sufficiency_percent: z.number().optional(),
+    }).optional(),
+    // FAQ section for rich snippets
+    faq: z.array(z.object({
+      question: z.string(),
+      answer: z.string(),
+    })).optional(),
+    testimonial: z.object({
+      quote: z.string(),
+      rating: z.number().min(1).max(5).default(5),
+      aspect: z.string().optional(), // e.g., "Tiết kiệm chi phí", "Chất lượng dịch vụ"
+    }).optional(),
+    image: z.string(),
+    gallery: z.array(z.string()).optional(),
+    is_featured: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   products: productsCollection,
   combos: combosCollection,
+  projects: projectsCollection,
 };

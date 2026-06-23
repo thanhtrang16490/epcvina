@@ -1,0 +1,23 @@
+{
+  "app": {
+    "title": "EPCVINA Solar",
+    "textColor": "white",
+    "headerColor": "#DC2626",
+    "statusBar": "normal",
+    "actionBarHidden": false,
+    "hideAndroidBottomNavigationBar": false,
+    "hideIOSSafeAreaBottom": false,
+    "selfControlLoading": false
+  },
+  "listCSS": [],
+  "listSyncJS": [],
+  "listAsyncJS": [],
+  "template": {
+    "name": "zaui-market",
+    "apiUrl": "",
+    "oaIDtoOpenChat": "4318657068771012646",
+    "logoUrl": "https://epcvina.com/logo-epcvina-solar.png",
+    "shopName": "EPCVINA Solar",
+    "shopAddress": "Hà Nội, Việt Nam"
+  }
+}
