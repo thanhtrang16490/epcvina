@@ -79,11 +79,9 @@ export default function HeroSection() {
 
           {/* Brand logo */}
           <div className={`mb-4 transition-all duration-700 delay-[300ms] motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <img 
-              src="/logo-epcvina-solar-white.png" 
-              alt="Solar Giá Rẻ 24h - Chuyên cung cấp hệ thống điện mặt trời" 
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto drop-shadow-2xl" 
-            />
+            <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white drop-shadow-2xl block text-center">
+              Solar24h
+            </span>
           </div>
 
           {/* H1 - Main heading for SEO */}
