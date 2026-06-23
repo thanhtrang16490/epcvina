@@ -1,9 +1,7 @@
 User-agent: *
 Allow: /
-Disallow: /login
-Disallow: /api/
 
-Sitemap: https://epcvina.com/sitemap-index.xml
+Sitemap: https://solargiare24h.com/sitemap-index.xml
 
 User-agent: AhrefsBot
 Crawl-delay: 10
