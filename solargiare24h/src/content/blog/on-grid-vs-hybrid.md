@@ -199,7 +199,7 @@ A: Có, nhưng cần chọn inverter On-Grid có hỗ trợ nâng cấp Hybrid n
 
 **Q: Hệ thống Hybrid có cần xin phép lắp đặt đặc biệt không?**
 
-A: Về cơ bản, thủ tục tương tự On-Grid. Tuy nhiên, hệ thống có ắc-quy cần tuân thủ thêm một số quy định về PCCC và lưu trữ điện. EPC Solar hỗ trợ toàn bộ hồ sơ thủ tục.
+A: Về cơ bản, thủ tục tương tự On-Grid. Tuy nhiên, hệ thống có pin lưu trữ cần tuân thủ thêm một số quy định về an toàn điện. Chúng tôi hỗ trợ toàn bộ hồ sơ thủ tục.
 
 **Q: Giá điện tăng thì ảnh hưởng thế nào?**
 
