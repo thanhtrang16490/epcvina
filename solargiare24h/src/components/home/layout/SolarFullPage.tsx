@@ -1,5 +1,5 @@
 import HeaderBar from './HeaderBar';
-import CatalogHomepage from '../ecommerce/CatalogHomepage';
+import GigaDigitalHomepage from '../ecommerce/GigaDigitalHomepage';
 import CartSidebar from '../../ecommerce/CartSidebar';
 import { CartProvider } from '../../../context/CartContext';
 
@@ -8,7 +8,7 @@ export default function SolarFullPage() {
     <CartProvider>
       <div className="min-h-screen bg-white scroll-smooth">
         <HeaderBar />
-        <CatalogHomepage />
+        <GigaDigitalHomepage />
         <CartSidebar />
       </div>
     </CartProvider>
