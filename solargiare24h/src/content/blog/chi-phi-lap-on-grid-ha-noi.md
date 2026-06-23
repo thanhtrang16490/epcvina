@@ -254,6 +254,88 @@ Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **th�
 
 ---
 
+## 7.5. Case Studies Thực Tế Từ EPCVINA Solar
+
+### Case Study 1: Anh Thắng - Thanh Miện, Hải Dương (15kWp On-Grid)
+
+**Thông tin dự án:**
+- **Công suất**: 15kWp On-Grid 3 pha
+- **Tấm pin**: Longi 500W x 30 tấm
+- **Inverter**: Deye 15kW 3 pha
+- **Mái nhà**: Tầng 7, mái bằng bê tông
+- **Thi công**: 2 ngày
+- **Chi phí**: 195 triệu VNĐ (trọn gói)
+
+**Kết quả sau 6 tháng:**
+- Sản lượng trung bình: 1,800 kWh/tháng
+- Tiết kiệm: 2.8 triệu VNĐ/tháng
+- Hoàn vốn dự kiến: 5.8 năm
+- Lợi ích 25 năm: ~420 triệu VNĐ
+
+**Nhận xét của khách hàng:**
+> *"Lắp trên tầng 7 mà thi công nhanh và an toàn. Đội ngũ EPCVINA chuyên nghiệp, từ khảo sát đến vận hành chỉ 1 tuần. Giờ tiết kiệm được gần 3 triệu tiền điện mỗi tháng."*
+
+👉 **Xem dự án chi tiết**: [epcvina.com/du-an/chi-ha-ha-dong-15kwp](https://epcvina.com/du-an/chi-ha-ha-dong-15kwp)
+
+### Case Study 2: Chị Hà - Hà Đông, Hà Nội (15kWp Hybrid)
+
+**Thông tin dự án:**
+- **Công suất**: 15kWp Hybrid + 30kWh pin lưu trữ
+- **Tấm pin**: Longi 500W x 30 tấm
+- **Inverter**: Deye Hybrid 15kW 3 pha
+- **Pin lưu trữ**: Pylontech 30kWh (3 module 10kWh)
+- **Mái nhà**: Biệt thự, mái ngói
+- **Thi công**: 3 ngày
+- **Chi phí**: 320 triệu VNĐ (trọn gói)
+
+**Kết quả sau 3 tháng:**
+- Sản lượng trung bình: 1,750 kWh/tháng
+- Tự chủ năng lượng: 85%
+- Backup khi mất điện: 12-15 giờ
+- Tiết kiệm: 2.5 triệu VNĐ/tháng
+
+**Nhận xét của khách hàng:**
+> *"Khu nhà hay mất điện, từ ngày lắp Hybrid không lo nữa. Pin lưu trữ 30kWh dùng cả đêm thoải mái. Tấm pin Longi bảo hành 25 năm, biến tần Deye 10 năm, EPCVINA hỗ trợ kỹ thuật trọn đời. Rất yên tâm!"*
+
+👉 **Xem dự án chi tiết**: [epcvina.com/du-an/anh-thang-thanh-mien-15kwp](https://epcvina.com/du-an/anh-thang-thanh-mien-15kwp)
+
+### Case Study 3: Công Ty ABC - KCN Thăng Long (100kWp On-Grid)
+
+**Thông tin dự án:**
+- **Công suất**: 100kWp On-Grid công nghiệp
+- **Tấm pin**: JA Solar 550W x 182 tấm
+- **Inverter**: Huawei 100kW 3 pha
+- **Mái nhà**: Nhà xưởng, mái tôn
+- **Diện tích**: 600m²
+- **Thi công**: 7 ngày
+- **Chi phí**: 1.2 tỷ VNĐ
+
+**Kết quả sau 12 tháng:**
+- Sản lượng trung bình: 12,500 kWh/tháng
+- Tiết kiệm: 28 triệu VNĐ/tháng
+- Giảm CO2: 180 tấn/năm
+- Hoàn vốn dự kiến: 3.6 năm
+
+**Nhận xét:**
+> *"EPCVINA thi công rất chuyên nghiệp, không làm gián đoạn sản xuất. Hệ thống vận hành ổn định 12 tháng, tiết kiệm được hơn 300 triệu tiền điện. Chúng tôi đang dự định mở rộng thêm 200kWp."*
+
+👉 **Xem thêm dự án công nghiệp**: [epcvina.com/du-an](https://epcvina.com/du-an)
+
+---
+
+**📊 Tổng kết từ 100+ dự án của EPCVINA:**
+
+| Loại Dự Án | Số Lượng | ROI Trung Bình | Hài Lòng |
+|------------|----------|----------------|----------|
+| Nhà dân dụng (5-20kWp) | 65+ | 3-5 năm | 98% |
+| Doanh nghiệp (50-500kWp) | 25+ | 3-4 năm | 97% |
+| Công nghiệp (1MWp+) | 10+ | 3-4.5 năm | 99% |
+
+👉 **Xem tất cả dự án**: [epcvina.com/du-an](https://epcvina.com/du-an)  
+👉 **Đăng ký khảo sát miễn phí**: [epcvina.com/lien-he](https://epcvina.com/lien-he)
+
+---
+
 ## 8. Tại Sao Nên Chọn EPC Solar?
 
 Với hơn 500 công trình đã thi công tại Hà Nội và các tỉnh miền Bắc, EPC Solar cam kết:
