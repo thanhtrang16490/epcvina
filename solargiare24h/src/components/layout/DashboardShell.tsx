@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, createContext, useContext } from 'react';
 import Sidebar from './Sidebar';
-import Header from './Header';
 import ZaloChatButton from '../shared/buttons/ZaloChatButton';
 import FooterSection from '../home/layout/FooterSection';
 import BackToTop from '../ui/BackToTop';
@@ -62,13 +61,6 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
 
           {/* Main content - offset by sidebar on desktop */}
           <div className="flex-1 flex flex-col min-w-0 lg:ml-16">
-            {/* Header: mobile-only hamburger toggle (all pages have their own HeaderBar for desktop navigation) */}
-            <Header
-              onMenuClick={() => setIsSidebarOpen(true)}
-              isHidden={!isHeaderVisible}
-              mobileOnly={true}
-            />
-            
             {/* Page content */}
             <main ref={mainRef} className="flex-1">
               {children}

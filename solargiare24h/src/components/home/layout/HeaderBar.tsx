@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FileText, Menu, X, ShoppingCart, Search } from 'lucide-react';
+import { FileText, Menu, X, Search } from 'lucide-react';
 import { useScrollContext } from '../../layout/DashboardShell';
 
 const navItems = [
@@ -62,14 +62,6 @@ export default function HeaderBar() {
           {/* Search Icon */}
           <button className="p-2 bg-white/60 backdrop-blur-2xl rounded-full shadow border border-white/40 text-gray-700 hover:bg-white transition-colors">
             <Search className="h-5 w-5" />
-          </button>
-
-          {/* Cart Icon */}
-          <button className="relative p-2 bg-white/60 backdrop-blur-2xl rounded-full shadow border border-white/40 text-gray-700 hover:bg-white transition-colors">
-            <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
-              0
-            </span>
           </button>
           {/* Phone CTA - hidden on mobile */}
           <a

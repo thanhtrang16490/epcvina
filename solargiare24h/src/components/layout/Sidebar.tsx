@@ -7,9 +7,6 @@ import {
   MessageSquare,
   BookOpen,
   Newspaper,
-  LogIn,
-  LogOut,
-  User,
   ChevronDown,
   ChevronRight,
   X,
@@ -325,30 +322,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               </div>
             </a>
           </div>
-          {/* User auth */}
-          <div className="pt-2">
-            {user ? (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-gray-50">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-7 h-7 rounded-full bg-[#DC2626] flex items-center justify-center flex-shrink-0">
-                    <User className="h-4 w-4 text-white" />
-                  </div>
-                  <span className="text-sm text-gray-700 truncate">{user.name}</span>
-                </div>
-                <button onClick={handleLogout} title="Đăng xuất"
-                  className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
-                  <LogOut className="h-4 w-4" />
-                </button>
-              </div>
-            ) : (
-              <a href="/login" onClick={onClose}
-                className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
-              >
-                <LogIn className="h-4 w-4" />
-                <span>Đăng nhập</span>
-              </a>
-            )}
-          </div>
           </>)}
         </nav>
       </aside>
@@ -543,42 +516,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   </svg>
                 </a>
               </div>
-            )}
-            {/* User auth */}
-            {user ? (
-              isExpanded ? (
-                <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-gray-50">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-7 h-7 rounded-full bg-[#DC2626] flex items-center justify-center flex-shrink-0">
-                      <User className="h-4 w-4 text-white" />
-                    </div>
-                    <span className="text-sm text-gray-700 truncate">{user.name}</span>
-                  </div>
-                  <button onClick={handleLogout} title="Đăng xuất"
-                    className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
-                    <LogOut className="h-4 w-4" />
-                  </button>
-                </div>
-              ) : (
-                <button onClick={handleLogout} title="Đăng xuất"
-                  className="w-full flex justify-center py-2 text-gray-400 hover:text-red-600 transition-colors">
-                  <LogOut className="h-5 w-5" />
-                </button>
-              )
-            ) : (
-              isExpanded ? (
-                <a href="/login"
-                  className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl py-2.5 px-4 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
-                >
-                  <LogIn className="h-4 w-4 flex-shrink-0" />
-                  <span>Đăng nhập</span>
-                </a>
-              ) : (
-                <a href="/login" title="Đăng nhập"
-                  className="w-full flex justify-center py-2 text-gray-500 hover:text-[#DC2626] transition-colors">
-                  <LogIn className="h-5 w-5" />
-                </a>
-              )
             )}
           </div>
         </nav>

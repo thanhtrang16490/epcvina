@@ -1,15 +1,12 @@
 import { useState } from 'react';
-import { ShoppingCart, Search, ChevronRight, Star, Zap, Battery, TrendingUp, Shield, ArrowRight } from 'lucide-react';
-import { useCart } from '../../../context/CartContext';
+import { Search, ChevronRight, Star, Zap, Battery, TrendingUp, Shield, ArrowRight } from 'lucide-react';
 import { localProducts } from '../../../data/products';
 
 const BRAND_ORANGE = '#f97316';
 const BRAND_RED = '#dc2626';
 
 export default function GigaDigitalHomepage() {
-  const { addToCart } = useCart();
   const [searchQuery, setSearchQuery] = useState('');
-  const [addedToCartId, setAddedToCartId] = useState<string | null>(null);
 
   // Product categories
   const categories = [
@@ -54,19 +51,6 @@ export default function GigaDigitalHomepage() {
       currency: 'VND',
       minimumFractionDigits: 0,
     }).format(price);
-  };
-
-  const handleAddToCart = (product: any) => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.unit_price || 50, // Default price for demo
-      capacity: product.specifications.power || product.model,
-      systemType: product.category,
-      phase: product.phase || 'N/A',
-    });
-    setAddedToCartId(product.id);
-    setTimeout(() => setAddedToCartId(null), 2000);
   };
 
   return (
@@ -243,26 +227,11 @@ export default function GigaDigitalHomepage() {
                     <span className="text-xs text-gray-500 ml-1">(5.0)</span>
                   </div>
 
-                  {/* Price & CTA */}
-                  <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                  {/* Price */}
+                  <div className="pt-2 border-t border-gray-100">
                     <p className="text-base font-bold text-red-600">
                       {formatPrice(product.unit_price)}
                     </p>
-                    <button
-                      onClick={() => handleAddToCart(product)}
-                      disabled={addedToCartId === product.id}
-                      className={`p-2 rounded-lg transition-all ${
-                        addedToCartId === product.id
-                          ? 'bg-green-500 text-white'
-                          : 'bg-orange-500 hover:bg-orange-600 text-white'
-                      }`}
-                    >
-                      {addedToCartId === product.id ? (
-                        <span className="text-sm">✓</span>
-                      ) : (
-                        <ShoppingCart className="h-4 w-4" />
-                      )}
-                    </button>
                   </div>
                 </div>
               </div>
