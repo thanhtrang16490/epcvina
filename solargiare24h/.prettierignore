@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+public/
+*.config.js
+*.config.mjs
+package-lock.json

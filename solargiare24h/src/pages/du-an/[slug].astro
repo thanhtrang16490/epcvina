@@ -1,0 +1,1004 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/layout/HeaderBar';
+import FooterSection from '../../components/home/layout/FooterSection';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map(project => ({
+    params: { slug: project.id.replace('.md', '') },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const projectSlug = project.id.replace('.md', '');
+
+// Get related projects
+const allProjects = await getCollection('projects');
+const relatedProjects = allProjects
+  .filter(p => 
+    p.id !== project.id && 
+    (p.data.system_type === project.data.system_type || 
+     p.data.capacity === project.data.capacity)
+  )
+  .slice(0, 3);
+
+const tagColors: Record<string, string> = {
+  'Hybrid có lưu trữ': 'bg-blue-100 text-blue-700',
+  'Hòa Lưới bám tải': 'bg-sky-100 text-sky-700',
+  'On Grid / Hybrid': 'bg-emerald-100 text-emerald-700',
+};
+
+const testimonial = project.data.testimonial;
+
+// Gallery pagination
+const gallery = project.data.gallery || [];
+const initialCount = 4;
+const expandedCount = 8;
+const hasMore = gallery.length > initialCount;
+const hasMoreAfterExpand = gallery.length > expandedCount;
+
+// Fetch product images for equipment items
+const allProducts = await getCollection('products');
+const equipmentWithImages = project.data.equipment_items?.map(item => {
+  if (item.product_slug) {
+    const productSlug = item.product_slug; // e.g., "panel/tam-pin-mat-troi-longi-550w-hi-mo-5"
+    // Try to match by finding product where category + slug matches
+    const product = allProducts.find(p => {
+      // Extract slug from product id (remove .md)
+      const productId = p.id.replace('.md', '');
+      // Match: "panel/tam-pin-mat-troi-longi-550w-hi-mo-5" includes "tam-pin-mat-troi-longi-550w-hi-mo-5"
+      return productId === productSlug || productSlug.includes(productId) || productId.includes(productSlug.split('/').pop() || '');
+    });
+    return {
+      ...item,
+      product_image: product?.data.main_image,
+    };
+  }
+  return { ...item, product_image: null };
+});
+
+// Extract performance data
+const performance = project.data.performance;
+const faq = project.data.faq || [];
+---
+
+<DashboardLayout
+  title={`${project.data.title} | EPCVINA Solar`}
+  description={project.data.description}
+  keywords={`dự án điện mặt trời, ${project.data.system_type}, ${project.data.location}, ${project.data.capacity}`}
+  breadcrumbs={[
+    {name: "Trang Chủ", url: "/"}, 
+    {name: "Dự Án", url: "/du-an"},
+    {name: project.data.title, url: ""}
+  ]}
+  ogImage={project.data.image}
+>
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json" define:vars={{project}}>\n    JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": project.data.title,
+      "description": project.data.description,
+      "image": project.data.image,
+      "author": {
+        "@type": "Organization",
+        "name": "EPCVINA Solar"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "EPCVINA Solar",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://epcvina.com/logo-epcvina.svg"
+        }
+      },
+      "datePublished": project.data.completion_date,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://epcvina.com/du-an/${project.id.replace('.md', '')}`
+      }
+    })
+  </script>
+  <DashboardShell client:load>
+    <div class="min-h-screen bg-white">
+      <HeaderBar client:load />
+    
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+      <!-- Background Image with Overlay -->
+      <div class="absolute inset-0">
+        <img 
+          src={project.data.image} 
+          alt={project.data.title}
+          class="w-full h-full object-cover opacity-15"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <!-- Enhanced gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-slate-900/80 to-slate-900"></div>
+        <!-- Decorative gradient orb -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <!-- Back Link -->
+        <a 
+          href="/du-an" 
+          class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 mb-8 transition-colors group"
+        >
+          <span class="transform group-hover:-translate-x-1 transition-transform">←</span> 
+          <span>Quay lại danh sách dự án</span>
+        </a>
+        
+        <!-- Badge & Title -->
+        <div class="max-w-4xl">
+          <!-- System Type Badge -->
+          <div class="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-md rounded-full px-5 py-2.5 text-sm font-semibold text-emerald-300 mb-6 border border-emerald-400/30 shadow-lg shadow-emerald-500/10">
+            <span class="text-lg">☀️</span>
+            <span>{project.data.system_type}</span>
+          </div>
+          
+          <!-- Main Title -->
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+            {project.data.title}
+          </h1>
+          
+          <!-- Description -->
+          <p class="text-lg sm:text-xl text-gray-300 mb-10 leading-relaxed max-w-3xl">
+            {project.data.description}
+          </p>
+        </div>
+        
+        <!-- Quick Info Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10">
+          <!-- Capacity -->
+          <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-5 border border-white/20 hover:bg-white/15 hover:border-emerald-400/40 transition-all group">
+            <div class="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform">⚡</div>
+            <div class="text-xs sm:text-sm text-gray-400 mb-1">Công suất</div>
+            <div class="text-xl sm:text-2xl font-bold text-emerald-400">{project.data.capacity}</div>
+          </div>
+          
+          <!-- Location -->
+          <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-5 border border-white/20 hover:bg-white/15 hover:border-emerald-400/40 transition-all group">
+            <div class="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform">📍</div>
+            <div class="text-xs sm:text-sm text-gray-400 mb-1">Vị trí</div>
+            <div class="text-lg sm:text-xl font-bold">{project.data.location.split(' - ').pop()}</div>
+          </div>
+          
+          <!-- Completion Date -->
+          <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-5 border border-white/20 hover:bg-white/15 hover:border-emerald-400/40 transition-all group">
+            <div class="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform">📅</div>
+            <div class="text-xs sm:text-sm text-gray-400 mb-1">Hoàn thành</div>
+            <div class="text-lg sm:text-xl font-bold">{project.data.completion_date}</div>
+          </div>
+          
+          <!-- Customer -->
+          <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 sm:p-5 border border-white/20 hover:bg-white/15 hover:border-emerald-400/40 transition-all group">
+            <div class="text-2xl sm:text-3xl mb-2 group-hover:scale-110 transition-transform">👤</div>
+            <div class="text-xs sm:text-sm text-gray-400 mb-1">Khách hàng</div>
+            <div class="text-lg sm:text-xl font-bold">{project.data.customer}</div>
+          </div>
+        </div>
+        
+        <!-- Trust Badges & CTA -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 pt-6 border-t border-white/10">
+          <!-- Trust Signals -->
+          <div class="flex flex-wrap gap-4 sm:gap-6 text-sm text-gray-400">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400">✓</span>
+              <span>Bảo hành 25 năm</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400">✓</span>
+              <span>Hỗ trợ 24/7</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-400">✓</span>
+              <span>500+ dự án</span>
+            </div>
+          </div>
+          
+          <!-- CTA Button -->
+          <a 
+            href="/lien-he"
+            class="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-semibold px-8 py-3.5 rounded-lg transition-all shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 hover:-translate-y-0.5 whitespace-nowrap"
+          >
+            <span>📞</span>
+            <span>Tư vấn miễn phí</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Project Overview Section -->
+    <section class="py-12 sm:py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">📋 Tổng quan dự án</h2>
+          <p class="text-gray-600 text-base">Thông tin chi tiết về giải pháp và thiết bị sử dụng</p>
+        </div>
+        
+        <div class="grid lg:grid-cols-3 gap-8">
+          <!-- Main Content - Left 2/3 -->
+          <div class="lg:col-span-2 space-y-8">
+            <!-- Description -->
+            <div class="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100">
+              <h3 class="text-xl font-bold text-gray-900 mb-4">📝 Mô tả dự án</h3>
+              <p class="text-gray-700 leading-relaxed">{project.data.description}</p>
+            </div>
+            
+            <!-- Markdown Content -->
+            <article class="prose prose-lg max-w-none">
+              <Content />
+            </article>
+            
+            <!-- Special Notes -->
+            {project.data.special_notes && (
+              <div class="p-6 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg">
+                <div class="flex items-start gap-3">
+                  <div class="text-2xl flex-shrink-0 mt-1">🔧</div>
+                  <div>
+                    <h3 class="text-lg font-bold text-amber-900 mb-2">Đặc điểm công trình</h3>
+                    <p class="text-amber-800">{project.data.special_notes}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <!-- Sidebar - Right 1/3 -->
+          <aside class="space-y-6">
+            <!-- Equipment Card -->
+            <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-100">
+              <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                🔧 <span>Thiết bị chính</span>
+              </h3>
+                        
+              {equipmentWithImages && equipmentWithImages.length > 0 ? (
+                <div class="space-y-3">
+                  {equipmentWithImages.map((item) => (
+                    <a 
+                      href={item.product_slug ? `/equipment/${item.product_slug}` : '#'}
+                      class={`bg-white rounded-lg p-3 border border-emerald-200 hover:border-emerald-400 transition-all group flex items-center gap-3 ${item.product_slug ? 'cursor-pointer hover:shadow-md' : 'cursor-default'}`}
+                    >
+                      <!-- Product Image -->
+                      {item.product_image ? (
+                        <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden bg-gray-100">
+                          <img 
+                            src={item.product_image}
+                            alt={item.value}
+                            loading="lazy"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          />
+                        </div>
+                      ) : (
+                        <div class="flex-shrink-0 w-16 h-16 rounded-lg bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center text-2xl">
+                          🔧
+                        </div>
+                      )}
+                      
+                      <!-- Equipment Info -->
+                      <div class="flex-1 min-w-0">
+                        <div class="text-xs text-gray-500 mb-1">{item.label}</div>
+                        <div class="text-sm font-semibold text-gray-900 truncate">{item.value}</div>
+                      </div>
+                      
+                      <!-- Arrow Icon -->
+                      {item.product_slug && (
+                        <div class="flex-shrink-0 text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                          →
+                        </div>
+                      )}
+                    </a>
+                  ))}
+                </div>
+              ) : (
+                <div class="space-y-3">
+                  {project.data.equipment.split('\n').map((item) => {
+                    const parts = item.split(':');
+                    const label = parts[0]?.trim();
+                    const value = parts.slice(1).join(':').trim();
+                    return (
+                      <div class="bg-white rounded-lg p-3 border border-emerald-200">
+                        <div class="text-xs text-gray-500 mb-1">{label}</div>
+                        <div class="text-sm font-semibold text-gray-900">{value}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            
+            <!-- Project Info Card -->
+            <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+              <h3 class="text-lg font-bold text-gray-900 mb-4">ℹ️ Thông tin</h3>
+              <div class="space-y-3">
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-sm text-gray-600">Loại hệ thống</span>
+                  <span class="text-sm font-semibold text-gray-900">{project.data.system_type}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-sm text-gray-600">Công suất</span>
+                  <span class="text-sm font-semibold text-emerald-600">{project.data.capacity}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-sm text-gray-600">Vị trí</span>
+                  <span class="text-sm font-semibold text-gray-900">{project.data.location}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                  <span class="text-sm text-gray-600">Hoàn thành</span>
+                  <span class="text-sm font-semibold text-gray-900">{project.data.completion_date}</span>
+                </div>
+                <div class="flex justify-between items-center py-2">
+                  <span class="text-sm text-gray-600">Khách hàng</span>
+                  <span class="text-sm font-semibold text-gray-900">{project.data.customer}</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- CTA Card -->
+            <div class="bg-gradient-to-br from-emerald-600 to-emerald-500 rounded-2xl p-6 text-white">
+              <h3 class="text-lg font-bold mb-3">💡 Bạn quan tâm?</h3>
+              <p class="text-emerald-100 mb-4 text-sm leading-relaxed">
+                Liên hệ ngay để được tư vấn giải pháp tương tự cho công trình của bạn
+              </p>
+              <a 
+                href="/lien-he"
+                class="flex items-center justify-center gap-2 bg-white text-emerald-600 font-semibold px-6 py-3 rounded-lg hover:bg-emerald-50 transition-colors w-full"
+              >
+                📞 Tư vấn miễn phí
+              </a>
+              <div class="mt-3 text-center">
+                <a href="tel:0988446113" class="text-sm text-emerald-100 hover:text-white transition-colors">
+                  Hoặc gọi: 0988 446 113
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    {project.data.gallery && project.data.gallery.length > 0 && (
+      <section class="py-12 sm:py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">📸 Thư viện ảnh dự án</h2>
+            <p class="text-gray-600 text-base">Hình ảnh thực tế quá trình thi công và hoàn thiện</p>
+          </div>
+          
+          <!-- Gallery Grid -->
+          <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {gallery.slice(0, initialCount).map((img, index) => (
+              <div class="gallery-item group relative aspect-square overflow-hidden rounded-xl bg-gray-200 cursor-pointer hover:shadow-lg transition-shadow" data-gallery="project">
+                <img 
+                  src={img}
+                  alt={`${project.data.title} - Ảnh ${index + 1}`}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <div class="text-white">
+                    <div class="text-sm font-semibold">Ảnh {index + 1}</div>
+                    <div class="text-xs text-gray-300">Nhấn để phóng to</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            
+            {hasMore && gallery.slice(initialCount, expandedCount).map((img, index) => (
+              <div class="gallery-item hidden group relative aspect-square overflow-hidden rounded-xl bg-gray-200 cursor-pointer hover:shadow-lg transition-shadow" data-gallery="project" style="display: none;">
+                <img 
+                  src={img}
+                  alt={`${project.data.title} - Ảnh ${initialCount + index + 1}`}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <div class="text-white">
+                    <div class="text-sm font-semibold">Ảnh {initialCount + index + 1}</div>
+                    <div class="text-xs text-gray-300">Nhấn để phóng to</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            
+            {hasMoreAfterExpand && gallery.slice(expandedCount).map((img, index) => (
+              <div class="gallery-item hidden group relative aspect-square overflow-hidden rounded-xl bg-gray-200 cursor-pointer hover:shadow-lg transition-shadow" data-gallery="project" data-extra="true" style="display: none;">
+                <img 
+                  src={img}
+                  alt={`${project.data.title} - Ảnh ${expandedCount + index + 1}`}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                  <div class="text-white">
+                    <div class="text-sm font-semibold">Ảnh {expandedCount + index + 1}</div>
+                    <div class="text-xs text-gray-300">Nhấn để phóng to</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <!-- Show More Button -->
+          {hasMore && (
+            <div class="text-center mt-6">
+              <button 
+                id="show-more-btn"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl transition-colors shadow-md hover:shadow-lg"
+              >
+                <span id="show-more-text">Xem thêm {gallery.length - initialCount} ảnh</span>
+                <span class="text-xl">↓</span>
+              </button>
+            </div>
+          )}
+          
+          <p class="text-center text-sm text-gray-500 mt-4">💡 Nhấn vào ảnh để xem chi tiết</p>
+        </div>
+      </section>
+    )}
+    
+    <!-- Performance & ROI Section -->
+    {performance && (
+      <section class="py-12 sm:py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">📊 Hiệu suất & ROI dự kiến</h2>
+            <p class="text-gray-600 text-base">Ước tính dựa trên công suất {project.data.capacity} và vị trí lắp đặt</p>
+          </div>
+          
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+            {performance.annual_production_kwh && (
+              <div class="bg-white rounded-2xl p-6 border border-blue-100 hover:shadow-xl transition-all hover:-translate-y-1">
+                <div class="text-4xl mb-3">⚡</div>
+                <div class="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">
+                  {performance.annual_production_kwh.toLocaleString('vi-VN')}
+                </div>
+                <div class="text-sm text-gray-600">kWh/năm</div>
+                <div class="text-xs text-gray-500 mt-2">Sản lượng điện tạo ra</div>
+              </div>
+            )}
+            
+            {performance.annual_savings_vnd && (
+              <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:shadow-xl transition-all hover:-translate-y-1">
+                <div class="text-4xl mb-3">💰</div>
+                <div class="text-xl sm:text-2xl font-bold text-emerald-600 mb-1">
+                  {(performance.annual_savings_vnd / 1000000).toFixed(0)} triệu
+                </div>
+                <div class="text-sm text-gray-600">VNĐ/năm</div>
+                <div class="text-xs text-gray-500 mt-2">Tiết kiệm dự kiến</div>
+              </div>
+            )}
+            
+            {performance.co2_reduction_kg && (
+              <div class="bg-white rounded-2xl p-6 border border-green-100 hover:shadow-xl transition-all hover:-translate-y-1">
+                <div class="text-4xl mb-3">🌱</div>
+                <div class="text-2xl sm:text-3xl font-bold text-green-600 mb-1">
+                  {(performance.co2_reduction_kg / 1000).toFixed(1)} tấn
+                </div>
+                <div class="text-sm text-gray-600">CO2/năm</div>
+                <div class="text-xs text-gray-500 mt-2">Giảm phát thải</div>
+              </div>
+            )}
+            
+            {performance.self_sufficiency_percent && (
+              <div class="bg-white rounded-2xl p-6 border border-purple-100 hover:shadow-xl transition-all hover:-translate-y-1">
+                <div class="text-4xl mb-3">🔋</div>
+                <div class="text-2xl sm:text-3xl font-bold text-purple-600 mb-1">
+                  {performance.self_sufficiency_percent}%
+                </div>
+                <div class="text-sm text-gray-600">Tự chủ điện</div>
+                <div class="text-xs text-gray-500 mt-2">Tỷ lệ tự cung cấp</div>
+              </div>
+            )}
+          </div>
+          
+          {performance.payback_years && (
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-6 sm:p-8 text-white shadow-xl">
+              <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                <div class="text-5xl sm:text-6xl">📈</div>
+                <div class="flex-1 text-center sm:text-left">
+                  <div class="text-lg sm:text-xl font-semibold mb-2">Thời gian hoàn vốn dự kiến</div>
+                  <div class="text-4xl sm:text-5xl font-bold mb-2">{performance.payback_years} năm</div>
+                  <div class="text-sm text-emerald-100">Hệ thống hoạt động 25-30 năm, lợi ích dài hạn rất lớn</div>
+                </div>
+                <div class="text-6xl sm:text-7xl font-bold opacity-20">{performance.payback_years}yr</div>
+              </div>
+            </div>
+          )}
+          
+          <p class="text-center text-xs text-gray-500 mt-6">
+            * Số liệu ước tính dựa trên điều kiện thực tế, có thể thay đổi tùy theo thời tiết và mức tiêu thụ
+          </p>
+        </div>
+      </section>
+    )}
+    
+    <!-- Benefits Section -->
+    <section class="py-12 sm:py-16 bg-gradient-to-br from-emerald-50 to-teal-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">✨ Lợi ích hệ thống mang lại</h2>
+          <p class="text-gray-600 text-base">Những giá trị thực tế từ dự án điện mặt trời</p>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">💰</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Tiết kiệm chi phí</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Giảm 70-90% hóa đơn điện hàng tháng, hoàn vốn 3-5 năm</p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">🌱</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Bảo vệ môi trường</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Giảm phát thải CO2, góp phần chống biến đổi khí hậu</p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">🔋</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Chủ động nguồn điện</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Không lo mất điện với hệ thống lưu trữ backup</p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">📊</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Giám sát từ xa</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Theo dõi hiệu suất qua app điện thoại 24/7</p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">🛡️</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Bảo hành dài hạn</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Tấm pin 25-30 năm, biến tần 5-10 năm</p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-6 border border-emerald-100 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">🏠</div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">Tăng giá trị BĐS</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">Nâng cao giá trị và thẩm mỹ công trình</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Customer Testimonial Section -->
+    {testimonial && (
+      <section class="py-12 sm:py-16 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">💬 Khách hàng nói gì về chúng tôi</h2>
+            <p class="text-gray-600 text-base">Phản hồi thực tế từ khách hàng sau khi sử dụng dịch vụ</p>
+          </div>
+          
+          <div class="bg-white rounded-2xl p-8 sm:p-10 shadow-lg border border-amber-100">
+            <!-- Quote Icon -->
+            <div class="text-6xl text-amber-300 mb-4">"</div>
+            
+            <!-- Testimonial Quote -->
+            <blockquote class="text-lg sm:text-xl text-gray-700 leading-relaxed mb-6 italic">
+              {testimonial.quote}
+            </blockquote>
+            
+            <!-- Rating Stars -->
+            <div class="flex items-center gap-1 mb-4">
+              {Array.from({ length: 5 }, (_, i) => (
+                <span class={`text-2xl ${i < testimonial!.rating ? 'text-amber-400' : 'text-gray-300'}`}>★</span>
+              ))}
+              <span class="ml-2 text-sm text-gray-600 font-medium">{testimonial!.rating}/5</span>
+            </div>
+            
+            <!-- Customer Info -->
+            <div class="flex items-center gap-4 pt-6 border-t border-gray-200">
+              <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold text-xl">
+                {project.data.customer.charAt(0)}
+              </div>
+              <div class="flex-1">
+                <div class="font-bold text-gray-900 text-lg">{project.data.customer}</div>
+                <div class="text-sm text-gray-600 flex items-center gap-2">
+                  📍 {project.data.location}
+                  <span class="text-gray-400">•</span>
+                  📅 {project.data.completion_date}
+                </div>
+                {testimonial!.aspect && (
+                  <div class="mt-1">
+                    <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">
+                      {testimonial!.aspect}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div class="text-amber-500 text-4xl">
+                ✓
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+    
+    <!-- FAQ Section -->
+    {faq.length > 0 && (
+      <section class="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">❓ Câu hỏi thường gặp</h2>
+            <p class="text-gray-600 text-base">Giải đáp thắc mắc về dự án và hệ thống điện mặt trời</p>
+          </div>
+          
+          <div class="space-y-4">
+            {faq.map((item, index) => (
+              <details class="group bg-white rounded-xl border border-gray-200 hover:border-emerald-300 transition-colors open:shadow-lg">
+                <summary class="flex items-center justify-between cursor-pointer p-6 text-left">
+                  <div class="flex items-start gap-3 flex-1">
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">
+                      {index + 1}
+                    </div>
+                    <h3 class="text-base sm:text-lg font-semibold text-gray-900 flex-1">
+                      {item.question}
+                    </h3>
+                  </div>
+                  <div class="flex-shrink-0 ml-4 text-emerald-600 transform group-open:rotate-180 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </summary>
+                <div class="px-6 pb-6 pt-0 text-gray-700 leading-relaxed">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+          
+          <div class="mt-8 p-6 bg-emerald-50 rounded-xl border border-emerald-200">
+            <div class="flex items-start gap-3">
+              <div class="text-2xl flex-shrink-0">💡</div>
+              <div>
+                <h4 class="font-semibold text-emerald-900 mb-1">Vẫn còn thắc mắc?</h4>
+                <p class="text-sm text-emerald-800">
+                  Liên hệ với chúng tôi để được tư vấn chi tiết về dự án và giải pháp phù hợp nhất.
+                </p>
+                <a 
+                  href="/lien-he"
+                  class="inline-flex items-center gap-2 mt-3 text-emerald-700 font-semibold hover:text-emerald-800 transition-colors"
+                >
+                  <span>📞</span>
+                  <span>Tư vấn miễn phí →</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+    
+    <!-- Related Projects Section -->
+    <section class="py-12 sm:py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">🔗 Dự án tương tự</h2>
+          <p class="text-gray-600 text-base">Khám phá các dự án khác có cùng giải pháp</p>
+        </div>
+        
+        {relatedProjects.length > 0 && (
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedProjects.map((relatedProject) => {
+              const relatedSlug = relatedProject.id.replace('.md', '');
+              const tagColor = tagColors[relatedProject.data.system_type] || 'bg-gray-100 text-gray-700';
+              
+              return (
+                <a 
+                  href={`/du-an/${relatedSlug}`}
+                  class="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-all duration-200 group block"
+                >
+                  <div class="aspect-video overflow-hidden relative">
+                    <img 
+                      src={relatedProject.data.image}
+                      alt={relatedProject.data.title}
+                      loading="lazy"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div class="absolute bottom-3 left-4 right-4">
+                      <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/90 backdrop-blur-sm text-white">
+                          {relatedProject.data.capacity}
+                        </span>
+                        <span class={`px-2.5 py-1 rounded-full text-xs font-semibold ${tagColor}`}>
+                          {relatedProject.data.system_type}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-5">
+                    <h3 class="text-base font-bold text-gray-900 mb-2 line-clamp-2 leading-snug group-hover:text-emerald-600 transition-colors">
+                      {relatedProject.data.title}
+                    </h3>
+                    <div class="flex items-center justify-between text-sm text-gray-500">
+                      <span class="flex items-center gap-1">
+                        📍 {relatedProject.data.location}
+                      </span>
+                      <span class="flex items-center gap-1">
+                        📅 {relatedProject.data.completion_date}
+                      </span>
+                    </div>
+                    <p class="text-xs text-gray-600 mt-2 line-clamp-2">
+                      {relatedProject.data.description}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        )}
+        
+        {relatedProjects.length === 0 && (
+          <div class="text-center py-8">
+            <p class="text-gray-500">Chưa có dự án tương tự</p>
+          </div>
+        )}
+        
+        <div class="text-center mt-8">
+          <a 
+            href="/du-an"
+            class="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold transition-colors"
+          >
+            Xem tất cả dự án →
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-12 sm:py-16 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="text-4xl mb-6">🚀</div>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4">Sẵn sàng bắt đầu dự án của bạn?</h2>
+        <p class="text-gray-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+          Liên hệ ngay để được khảo sát miễn phí và nhận báo giá chi tiết trong 24h
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/lien-he"
+            class="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors duration-200 hover:shadow-xl min-h-[44px]"
+          >
+            📝 Đăng ký tư vấn miễn phí
+          </a>
+          <a
+            href="tel:0988446113"
+            class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base border border-white/20 transition-colors min-h-[44px]"
+          >
+            📞 0988 446 113
+          </a>
+        </div>
+      </div>
+    </section>
+      
+      <FooterSection />
+    </div>
+  </DashboardShell>
+</DashboardLayout>
+
+<!-- Lightbox Modal Script -->
+<script defer>
+  document.addEventListener('DOMContentLoaded', function() {
+    const galleryItems = document.querySelectorAll('[data-gallery="project"]');
+    if (galleryItems.length === 0) return;
+
+    // Create lightbox modal
+    const lightbox = document.createElement('div');
+    lightbox.id = 'gallery-lightbox';
+    lightbox.style.cssText = `
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      cursor: pointer;
+    `;
+
+    const lightboxImg = document.createElement('img');
+    lightboxImg.style.cssText = `
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    `;
+
+    const closeBtn = document.createElement('div');
+    closeBtn.innerHTML = '✕';
+    closeBtn.style.cssText = `
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: background 0.2s;
+    `;
+    closeBtn.onmouseenter = () => closeBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+    closeBtn.onmouseleave = () => closeBtn.style.background = 'rgba(255, 255, 255, 0.1)';
+
+    const navPrev = document.createElement('button');
+    navPrev.innerHTML = '‹';
+    navPrev.style.cssText = `
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 48px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    `;
+    navPrev.onmouseenter = () => navPrev.style.background = 'rgba(255, 255, 255, 0.2)';
+    navPrev.onmouseleave = () => navPrev.style.background = 'rgba(255, 255, 255, 0.1)';
+
+    const navNext = document.createElement('button');
+    navNext.innerHTML = '›';
+    navNext.style.cssText = `
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 48px;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    `;
+    navNext.onmouseenter = () => navNext.style.background = 'rgba(255, 255, 255, 0.2)';
+    navNext.onmouseleave = () => navNext.style.background = 'rgba(255, 255, 255, 0.1)';
+
+    lightbox.appendChild(lightboxImg);
+    lightbox.appendChild(closeBtn);
+    lightbox.appendChild(navPrev);
+    lightbox.appendChild(navNext);
+    document.body.appendChild(lightbox);
+
+    let currentIndex = 0;
+    const images = Array.from(galleryItems).map(item => {
+      const img = item.querySelector('img');
+      return img?.src || '';
+    }).filter(Boolean);
+
+    function showImage(index) {
+      if (index < 0 || index >= images.length) return;
+      currentIndex = index;
+      lightboxImg.src = images[index];
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideLightbox() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => showImage(index));
+    });
+
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hideLightbox();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) hideLightbox();
+    });
+
+    navPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showImage((currentIndex - 1 + images.length) % images.length);
+    });
+
+    navNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      showImage((currentIndex + 1) % images.length);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display !== 'flex') return;
+      if (e.key === 'Escape') hideLightbox();
+      if (e.key === 'ArrowLeft') showImage((currentIndex - 1 + images.length) % images.length);
+      if (e.key === 'ArrowRight') showImage((currentIndex + 1) % images.length);
+    });
+  });
+  
+  // Gallery Show More functionality
+  const showMoreBtn = document.getElementById('show-more-btn');
+  if (showMoreBtn) {
+    const hiddenItems = document.querySelectorAll('.gallery-item.hidden');
+    const showMoreText = document.getElementById('show-more-text');
+    let isExpanded = false;
+    
+    showMoreBtn.addEventListener('click', () => {
+      if (!isExpanded) {
+        // Show images 5-8
+        hiddenItems.forEach(item => {
+          if (!item.hasAttribute('data-extra')) {
+            item.style.display = 'block';
+            item.classList.remove('hidden');
+          }
+        });
+        
+        // Check if there are more extra images
+        const extraItems = document.querySelectorAll('.gallery-item.hidden[data-extra="true"]');
+        if (extraItems.length > 0 && showMoreText) {
+          showMoreText.textContent = `Xem thêm ${extraItems.length} ảnh nữa`;
+        } else {
+          showMoreBtn.style.display = 'none';
+        }
+        
+        isExpanded = true;
+      } else {
+        // Show all remaining images
+        hiddenItems.forEach(item => {
+          item.style.display = 'block';
+          item.classList.remove('hidden');
+        });
+        showMoreBtn.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+<!-- Sticky Mobile CTA -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-3 md:hidden z-50 shadow-lg">
+  <a 
+    href="/lien-he"
+    class="flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold py-3.5 px-6 rounded-lg transition-all shadow-lg shadow-emerald-500/30 active:scale-95"
+  >
+    <span class="text-xl">📞</span>
+    <span>Tư vấn miễn phí</span>
+    <span class="text-sm opacity-90">•</span>
+    <span class="text-sm">Báo giá ngay</span>
+  </a>
+</div>
+
+<!-- Add padding to body on mobile to account for sticky CTA -->
+<style is:inline>
+  @media (max-width: 768px) {
+    body {
+      padding-bottom: 80px !important;
+    }
+  }
+</style>

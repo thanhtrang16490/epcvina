@@ -1,0 +1,16 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import BaoTriPage from '../components/pages/bao-tri/BaoTriPage';
+---
+
+<DashboardLayout
+  title="Bảo Trì & Bảo Dưỡng Hệ Thống Điện Mặt Trời | EPC Solar"
+  description="Dịch vụ bảo trì, vệ sinh, sửa chữa hệ thống điện mặt trời chuyên nghiệp. Đội ngũ kỹ thuật giàu kinh nghiệm. Phản hồi nhanh trong 24h tại Hà Nội."
+  keywords="bảo trì điện mặt trời, O&M solar, vệ sinh tấm pin, giám sát hệ thống, EPCVINA"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Dịch Vụ", url: "https://epcvina.com"}, {name: "Bảo Trì", url: "https://epcvina.com/bao-tri"}]}
+>
+  <DashboardShell client:load>
+    <BaoTriPage client:idle />
+  </DashboardShell>
+</DashboardLayout>

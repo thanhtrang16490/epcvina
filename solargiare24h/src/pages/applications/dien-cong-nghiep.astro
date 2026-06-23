@@ -1,0 +1,11 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import IndustrialApplicationPage from '../../components/pages/application/IndustrialApplicationPage';
+---
+
+<DashboardLayout title="Điện Công Nghiệp - EPC Solar">
+  <DashboardShell client:load>
+    <IndustrialApplicationPage client:idle />
+  </DashboardShell>
+</DashboardLayout>

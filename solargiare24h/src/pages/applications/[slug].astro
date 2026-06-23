@@ -1,0 +1,24 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import ApplicationPage from '../../components/pages/application/ApplicationPage';
+
+export function getStaticPaths() {
+  return [
+    // Existing application types (using slug)
+    { params: { slug: 'nha-o' } },
+    { params: { slug: 'van-phong' } },
+    { params: { slug: 'nha-xuong' } },
+    { params: { slug: 'khach-san' } },
+    { params: { slug: 'nha-hang' } },
+    // Note: dien-cong-nghiep, dien-dan-dung, dien-nong-nghiep now have dedicated pages
+  ];
+}
+
+const { slug } = Astro.params;
+---
+<DashboardLayout title="Ứng dụng - EPC Solar">
+  <DashboardShell client:load>
+    <ApplicationPage applicationType={slug as any} client:idle />
+  </DashboardShell>
+</DashboardLayout>

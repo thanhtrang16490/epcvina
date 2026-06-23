@@ -1,0 +1,20 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolutionPage from '../../components/pages/solar-home/SolutionPage';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'mai-ton' } },
+    { params: { slug: 'mai-ngoi' } },
+    { params: { slug: 'mai-bang' } },
+  ];
+}
+
+const { slug } = Astro.params;
+---
+<DashboardLayout title="Giải pháp lắp đặt - EPC Solar">
+  <DashboardShell client:load>
+    <SolutionPage roofType={slug as any} client:idle />
+  </DashboardShell>
+</DashboardLayout>

@@ -1,0 +1,13 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EquipmentPage from '../../components/pages/equipment/EquipmentPage';
+
+export const prerender = true;
+---
+
+<DashboardLayout title="Thiết bị năng lượng mặt trời - EPCVINA Solar">
+  <DashboardShell client:load>
+    <EquipmentPage category="panel" client:idle />
+  </DashboardShell>
+</DashboardLayout>

@@ -1,0 +1,72 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import FAQPage from '../components/pages/FAQPage.tsx';
+
+// FAQ data for schema markup (matching the component data)
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Lắp điện mặt trời hết bao nhiêu tiền?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chi phí phụ thuộc vào công suất và loại hệ thống. Trung bình: On-Grid 5kWp: 70-90 triệu, On-Grid 10kWp: 130-160 triệu, Hybrid 5kWp + pin: 120-150 triệu, Hybrid 10kWp + pin: 200-250 triệu. EPCVINA báo giá chi tiết sau khi khảo sát miễn phí."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bao lâu hoàn vốn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Thời gian hoàn vốn trung bình: On-Grid: 3-5 năm, Hybrid: 5-7 năm. Sau khi hoàn vốn, bạn sử dụng điện miễn phí trong 25-30 năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Lắp điện mặt trời có cần xin phép không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp cần thông báo với Điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục đăng ký đấu nối, lắp đồng hồ 2 chiều, ký hợp đồng mua bán điện với EVN - hoàn toàn miễn phí."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tấm pin mặt trời bền bao lâu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tấm pin chất lượng cao có tuổi thọ 25-30 năm, bảo hành hiệu suất 25 năm (vẫn đạt 80-85% sau 25 năm), suy giảm 0.5-0.7%/năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hệ thống có hoạt động khi mất điện không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On-Grid: KHÔNG hoạt động khi mất điện (an toàn cho kỹ thuật viên). Hybrid: CÓ hoạt động nhờ pin lưu trữ, cung cấp điện cho tải quan trọng."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bảo hành các thiết bị bao lâu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tấm pin: 15 năm bảo hành vật liệu, 25 năm bảo hành hiệu suất. Biến tần: 5-10 năm. Pin lưu trữ: 5 năm. Khung giàn: 10 năm. Thi công: 2 năm. Hỗ trợ kỹ thuật trọn đời."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title="Câu Hỏi Thường Gặp | EPCVINA Solar - Giải Đáp Thắc Mắc Điện Mặt Trời"
+  description="Giải đáp 30+ câu hỏi thường gặp về điện mặt trời: chi phí, lắp đặt, bảo hành, thủ tục EVN, hiệu suất, tiết kiệm. Tư vấn miễn phí 0988 446 113"
+  keywords="câu hỏi điện mặt trời, FAQ solar, lắp đặt điện mặt trời, bảo hành tấm pin, thủ tục EVN, chi phí điện mặt trời"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <DashboardShell client:load showFooter={true}>
+    <FAQPage client:visible />
+  </DashboardShell>
+</DashboardLayout>
