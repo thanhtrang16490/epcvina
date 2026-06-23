@@ -1,0 +1,15 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import FAQPage from '../components/pages/FAQPage.tsx';
+---
+
+<DashboardLayout
+  title="Câu Hỏi Thường Gặp | EPCVINA Solar - Giải Đáp Thắc Mắc Điện Mặt Trời"
+  description="Giải đáp 30+ câu hỏi thường gặp về điện mặt trời: chi phí, lắp đặt, bảo hành, thủ tục EVN, hiệu suất, tiết kiệm. Tư vấn miễn phí 0988 446 113"
+  keywords="câu hỏi điện mặt trời, FAQ solar, lắp đặt điện mặt trời, bảo hành tấm pin, thủ tục EVN, chi phí điện mặt trời"
+>
+  <DashboardShell client:load showFooter={true}>
+    <FAQPage client:load />
+  </DashboardShell>
+</DashboardLayout>

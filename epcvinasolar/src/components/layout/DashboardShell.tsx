@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import ZaloChatButton from '../shared/buttons/ZaloChatButton';
 import FooterSection from '../home/layout/FooterSection';
+import BackToTop from '../ui/BackToTop';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -80,6 +81,9 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
         
         {/* Footer - visible on equipment pages, hidden on homepage (SolarFullPage has its own footer) */}
         {showFooter && <FooterSection />}
+        
+        {/* Back to Top Button */}
+        <BackToTop />
       </div>
     </ScrollContext.Provider>
   );
