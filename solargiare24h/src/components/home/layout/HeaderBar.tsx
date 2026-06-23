@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
-import { FileText, Menu, X } from 'lucide-react';
+import { FileText, Menu, X, ShoppingCart, Search } from 'lucide-react';
 import { useScrollContext } from '../../layout/DashboardShell';
 
 const navItems = [
   { label: 'Trang chủ', href: '/' },
-  { label: 'Solar Home', href: '/solar-home' },
-  { label: 'Hybrid & BESS', href: '/hybrid-bess' },
-  { label: 'EV Charger', href: '/ev-charger' },
-  { label: 'Solar C&I', href: '/solar-ci' },
-  { label: 'Bảo trì O&M', href: '/bao-tri' },
-  { label: 'Dự án', href: '/du-an' },
-  { label: 'Liên hệ', href: '/lien-he' },
+  { label: 'On-Grid', href: '/on-grid' },
+  { label: 'Hybrid', href: '/hybrid-bess' },
+  { label: 'Tấm Pin', href: '/equipment/panel' },
+  { label: 'Inverter', href: '/equipment/inverter' },
+  { label: 'Pin Lưu Trữ', href: '/equipment/battery' },
+  { label: 'Dự Án', href: '/du-an' },
 ];
 
 export default function HeaderBar() {
@@ -33,7 +32,7 @@ export default function HeaderBar() {
         <a href="/" className="flex-shrink-0">
           <img
             src="/logo-epcvina-solar-white.png"
-            alt="EPCVINA Solar"
+            alt="Solar Giá Rẻ 24h"
             width={160}
             height={40}
             className="h-10 w-auto drop-shadow-sm"
@@ -64,6 +63,18 @@ export default function HeaderBar() {
 
         {/* Right side */}
         <div className="flex items-center gap-2">
+          {/* Search Icon */}
+          <button className="p-2 bg-white/60 backdrop-blur-2xl rounded-full shadow border border-white/40 text-gray-700 hover:bg-white transition-colors">
+            <Search className="h-5 w-5" />
+          </button>
+
+          {/* Cart Icon */}
+          <button className="relative p-2 bg-white/60 backdrop-blur-2xl rounded-full shadow border border-white/40 text-gray-700 hover:bg-white transition-colors">
+            <ShoppingCart className="h-5 w-5" />
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+              0
+            </span>
+          </button>
           {/* Phone CTA - hidden on mobile */}
           <a
             href="/bao-gia"
