@@ -52,7 +52,9 @@ export default function FooterSection() {
               </a>
               {/* YouTube */}
               <a
-                href="#"
+                href="https://www.youtube.com/@EPCVINA"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = BRAND_RED)}
@@ -65,7 +67,9 @@ export default function FooterSection() {
               </a>
               {/* TikTok */}
               <a
-                href="#"
+                href="https://www.tiktok.com/@epcvina"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = '#111')}
