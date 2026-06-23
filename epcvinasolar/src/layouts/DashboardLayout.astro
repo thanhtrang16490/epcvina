@@ -45,7 +45,11 @@ const structuredData = {
   "openingHours": "Mo-Sa 08:00-17:30",
   "priceRange": "$$",
   "sameAs": [
-    "https://www.facebook.com/epcvina"
+    "https://www.facebook.com/epcvina",
+    "https://www.youtube.com/@epcvina",
+    "https://www.linkedin.com/company/epcvina",
+    "https://zalo.me/epcvina",
+    "https://www.tiktok.com/@epcvina"
   ],
   "serviceArea": {
     "@type": "GeoCircle",
@@ -93,20 +97,47 @@ const structuredData = {
     <link rel="canonical" href={canonicalURL.href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook / Zalo -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content="vi_VN" />
-    <meta property="og:site_name" content="EPC Solar" />
+    <meta property="og:site_name" content="EPCVINA Solar" />
+    <meta property="og:image:type" content="image/png" />
+    
+    <!-- Facebook App ID (for Facebook Insights) -->
+    <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
+    
+    <!-- Zalo / Vietnamese Social Networks -->
+    <meta property="og:updated_time" content={new Date().toISOString()} />
+    <meta name="zalo-app-id" content="YOUR_ZALO_APP_ID" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@epcvina" />
+    <meta name="twitter:creator" content="@epcvina" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL.href} />
+    <meta name="twitter:image:alt" content={title} />
+    
+    <!-- Pinterest -->
+    <meta name="pinterest-rich-pin" content="true" />
+    <meta property="og:image" content={ogImageURL.href} />
+    
+    <!-- LinkedIn -->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="627" />
+    
+    <!-- WhatsApp -->
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logo-favicon.svg?v=2" />
