@@ -37,10 +37,30 @@ export default function HeroSection() {
       style={{ height: '100dvh', minHeight: '600px' }}
     >
       {/* ─── Background Image + Overlay ─── */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero-bg.png')", transform: `translateY(${scrollY * 0.3}px)` }}
-      />
+      {/* Background Image - Responsive with WebP */}
+      <picture>
+        <source 
+          media="(max-width: 768px)" 
+          srcSet="/hero-bg-768.webp" 
+        />
+        <source 
+          media="(max-width: 1280px)" 
+          srcSet="/hero-bg-1280.webp" 
+        />
+        <source 
+          media="(min-width: 1281px)" 
+          srcSet="/hero-bg-1920.webp" 
+        />
+        <img
+          src="/hero-bg.webp"
+          alt="EPCVINA Solar - Giải pháp điện mặt trời trọn gói"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
+      </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
 
       {/* ─── Content ─── */}

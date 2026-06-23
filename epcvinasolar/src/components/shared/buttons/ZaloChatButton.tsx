@@ -1,5 +1,12 @@
-
-
+/**
+ * ZaloChatButton - Lazy loaded for mobile performance
+ * 
+ * Optimizations:
+ * - Pure HTML/CSS (no external scripts)
+ * - Should be rendered with client:idle on mobile
+ * - Animations use CSS transforms (GPU accelerated)
+ * - Fixed position, doesn't block content
+ */
 export default function ZaloChatButton() {
   const zaloPhone = '0988446113';
   const zaloUrl = `https://zalo.me/${zaloPhone}`;
