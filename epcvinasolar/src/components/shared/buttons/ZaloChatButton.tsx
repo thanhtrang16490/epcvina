@@ -37,7 +37,7 @@ export default function ZaloChatButton() {
             position: fixed;
             width: 56px;
             height: 56px;
-            bottom: 100px;
+            bottom: 160px;
             z-index: 9999999;
           }
           .zalo-container.right {
