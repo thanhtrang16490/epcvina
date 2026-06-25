@@ -25,7 +25,7 @@ const steps: { step: number; icon: LucideIcon; title: string; description: strin
     step: 4,
     icon: FileText,
     title: 'Báo giá',
-    description: 'Gửi báo giá chi tiết minh bạch từng hạng mục: thiết bị (tấm pin, inverter, khung đỡ, dây dẫn, tủ điện), nhân công lắp đặt, vật tư phụ và phí vận chuyển. Hỗ trợ tư vấn phương án tài chính, trả góp nếu khách hàng có nhu cầu.',
+    description: 'Gửi báo giá chi tiết minh bạch từng hạng mục: thiết bị (tấm pin, inverter, khung đỡ, dây dẫn, tủ điện), nhân công lắp đặt, vật tư phụ và phí vận chuyển.',
   },
   {
     step: 5,

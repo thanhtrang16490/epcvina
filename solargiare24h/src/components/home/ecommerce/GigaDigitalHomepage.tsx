@@ -273,13 +273,6 @@ export default function GigaDigitalHomepage() {
             </div>
             <div className="text-center">
               <div className="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">💳</span>
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Trả góp 0%</h3>
-              <p className="text-sm text-gray-600">Hỗ trợ tài chính linh hoạt</p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center mx-auto mb-4">
                 <span className="text-3xl">📞</span>
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Tư vấn 24/7</h3>

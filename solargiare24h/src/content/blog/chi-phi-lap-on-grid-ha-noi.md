@@ -179,8 +179,6 @@ Nếu tấm pin đặt xa tủ điện (>20m), chi phí dây cáp tăng đáng k
 
 ### 4.4 Chính Sách Hỗ Trợ
 
-Hiện tại, một số ngân hàng như BIDV, Agribank có gói vay ưu đãi cho điện mặt trời với lãi suất 6–8%/năm, hỗ trợ trả góp trong 3–5 năm. EPC Solar có thể hỗ trợ kết nối với các đơn vị cho vay uy tín.
-
 📖 **Đọc thêm:** [On-Grid vs Hybrid: Nên chọn cái nào?](/blog/on-grid-vs-hybrid)
 
 ---
@@ -246,9 +244,6 @@ Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **th�
 
 ### Hệ thống có hoạt động khi mất điện?
 **Không.** Hệ On-Grid tự động ngắt khi mất điện để đảm bảo an toàn. Nếu khu vực hay mất điện, nên chọn [hệ Hybrid](/hybrid-bess) có pin lưu trữ.
-
-### Solar Giá Rẻ 24h có hỗ trợ trả góp không?
-**Có.** Chúng tôi hợp tác với các ngân hàng để hỗ trợ trả góp 0-12 tháng, lãi suất ưu đãi 6-8%/năm.
 
 📞 **Vẫn còn thắc mắc?** [Liên hệ tư vấn miễn phí](/contact) hoặc gọi [0988 446 113](tel:+84988446113)
 

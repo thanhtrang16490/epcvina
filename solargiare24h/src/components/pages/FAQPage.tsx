@@ -16,11 +16,6 @@ const faqs: FAQ[] = [
   },
   {
     category: '💰 Chi phí & Thanh toán',
-    question: 'Có được trả góp không?',
-    answer: 'Có. Solar Giá Rẻ 24h hợp tác với các ngân hàng và tổ chức tài chính để hỗ trợ trả góp 0-12 tháng, lãi suất ưu đãi. Bạn cũng có thể thanh toán theo tiến độ: 30% đặt cọc, 40% khi lắp đặt, 30% sau nghiệm thu.',
-  },
-  {
-    category: '💰 Chi phí & Thanh toán',
     question: 'Bao lâu hoàn vốn?',
     answer: 'Thời gian hoàn vốn trung bình:\n• On-Grid: 3-5 năm\n• Hybrid: 5-7 năm\nSau khi hoàn vốn, bạn sử dụng điện miễn phí trong 25-30 năm. Với giá điện tăng 10-15%/năm, lợi ích sẽ càng lớn.',
   },

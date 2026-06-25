@@ -194,9 +194,6 @@ Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **th�
 ### 3. Bảo hành có uy tín không?
 EPCVINA là công ty cổ phần có pháp nhân rõ ràng, đã thông báo Bộ Công Thương. Bảo hành 25 năm được ghi rõ trong hợp đồng.
 
-### 4. Có hỗ trợ trả góp không?
-**Có.** EPCVINA hợp tác với BIDV, Agribank để hỗ trợ trả góp 0-12 tháng, lãi suất 6-8%/năm.
-
 👉 **Tìm hiểu thêm**: [epcvina.com/faq](https://epcvina.com/faq)
 
 ---
