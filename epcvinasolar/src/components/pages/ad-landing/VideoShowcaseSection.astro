@@ -1,0 +1,158 @@
+---
+// VideoShowcaseSection.astro - Static video showcase (no React needed)
+---
+
+<section class="py-16 sm:py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+        Quy Trình Thi Công Thực Tế
+      </h2>
+      <p class="text-xl text-slate-300">Xem cách chúng tôi biến mái nhà bạn thành nhà máy điện mini</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <!-- Video Player -->
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-700">
+        <div class="relative aspect-video bg-slate-800">
+          <img 
+            src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80" 
+            alt="Thi công điện mặt trời" 
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          
+          <!-- Play Button Overlay -->
+          <div class="absolute inset-0 bg-black/50 flex items-center justify-center group cursor-pointer">
+            <div class="bg-white/90 rounded-full p-6 group-hover:bg-white transition-all group-hover:scale-110">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 text-orange-600 ml-1"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+
+          <!-- Video Duration Badge -->
+          <div class="absolute bottom-4 right-4 bg-black/80 px-3 py-1 rounded-md text-sm font-semibold">
+            1:45
+          </div>
+        </div>
+
+        <!-- Video Caption -->
+        <div class="absolute top-4 left-4 bg-orange-600 px-4 py-2 rounded-lg text-sm font-bold">
+          DỰ ÁN 15 KWP - CHỊ HÀ
+        </div>
+      </div>
+
+      <!-- Process Steps -->
+      <div class="space-y-6">
+        <h3 class="text-2xl font-bold mb-6">6 Bước Triển Khai</h3>
+        
+        <!-- Step 01 -->
+        <div class="flex gap-4 items-start group">
+          <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+            01
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-bold text-lg">Khảo sát miễn phí</h4>
+              <span class="text-sm text-slate-400 bg-slate-800 px-2 py-1 rounded">30 phút</span>
+            </div>
+            <p class="text-sm text-slate-300">Đo mái nhà, đánh giá hướng nắng, phân tích hóa đơn điện</p>
+          </div>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="flex gap-4 items-start group">
+          <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+            02
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-bold text-lg">Thiết kế hệ thống</h4>
+              <span class="text-sm text-slate-400 bg-slate-800 px-2 py-1 rounded">1-2 ngày</span>
+            </div>
+            <p class="text-sm text-slate-300">Tối ưu vị trí tấm pin, tính toán sản lượng, báo giá chi tiết</p>
+          </div>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="flex gap-4 items-start group">
+          <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+            03
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-bold text-lg">Ký hợp đồng</h4>
+              <span class="text-sm text-slate-400 bg-slate-800 px-2 py-1 rounded">15 phút</span>
+            </div>
+            <p class="text-sm text-slate-300">Minh bạch từng hạng mục, thanh toán theo tiến độ</p>
+          </div>
+        </div>
+
+        <!-- Step 04 -->
+        <div class="flex gap-4 items-start group">
+          <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+            04
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-bold text-lg">Thi công lắp đặt</h4>
+              <span class="text-sm text-slate-400 bg-slate-800 px-2 py-1 rounded">1-2 ngày</span>
+            </div>
+            <p class="text-sm text-slate-300">Đội ngũ 3-5 người, an toàn tuyệt đối, vệ sinh sạch sẽ</p>
+          </div>
+        </div>
+
+        <!-- Step 05 -->
+        <div class="flex gap-4 items-start group">
+          <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+            05
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-bold text-lg">Kích hoạt & nghiệm thu</h4>
+              <span class="text-sm text-slate-400 bg-slate-800 px-2 py-1 rounded">2 giờ</span>
+            </div>
+            <p class="text-sm text-slate-300">Test hệ thống, hướng dẫn sử dụng app giám sát</p>
+          </div>
+        </div>
+
+        <!-- Step 06 -->
+        <div class="flex gap-4 items-start group">
+          <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
+            06
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <h4 class="font-bold text-lg">Bảo hành trọn đời</h4>
+              <span class="text-sm text-slate-400 bg-slate-800 px-2 py-1 rounded">10+ năm</span>
+            </div>
+            <p class="text-sm text-slate-300">Hỗ trợ kỹ thuật 24/7, bảo trì định kỳ miễn phí</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 pt-12 border-t border-slate-700">
+      <div class="text-center space-y-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 mx-auto mb-2 text-orange-500"><path d="M2 20h20"/><path d="M5 20V10.75"/><path d="M19 20V4a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16"/><path d="M19 10.75V20"/><path d="M9 20v-5"/><path d="M15 20v-5"/></svg>
+        <h4 class="font-bold text-lg">An toàn tuyệt đối</h4>
+        <p class="text-sm text-slate-400">Bảo hộ lao động, dây an toàn</p>
+      </div>
+      <div class="text-center space-y-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 mx-auto mb-2 text-orange-500"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <h4 class="font-bold text-lg">Thi công nhanh</h4>
+        <p class="text-sm text-slate-400">1-2 ngày hoàn thành</p>
+      </div>
+      <div class="text-center space-y-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 mx-auto mb-2 text-orange-500"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        <h4 class="font-bold text-lg">Vệ sinh sạch sẽ</h4>
+        <p class="text-sm text-slate-400">Không để lại rác thải</p>
+      </div>
+      <div class="text-center space-y-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 mx-auto mb-2 text-orange-500"><path d="M14.5 22.5L18.5 18.5"/><path d="m18 9 3 3-9 9-4 1 1-4Z"/><path d="M16 16c-1.7-1.7-4.3-1.7-6 0"/></svg>
+        <h4 class="font-bold text-lg">Báo cáo tiến độ</h4>
+        <p class="text-sm text-slate-400">Ảnh thực tế từng bước</p>
+      </div>
+    </div>
+  </div>
+</section>

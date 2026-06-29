@@ -1,0 +1,193 @@
+---
+// FAQSection.astro - Static FAQ with native HTML accordion (no React needed)
+---
+
+<section id="faq" class="py-16 sm:py-20 bg-slate-50">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+        Câu Hỏi Thường Gặp
+      </h2>
+      <p class="text-xl text-slate-600">Giải đáp mọi thắc mắc về điện mặt trời</p>
+    </div>
+
+    <div class="space-y-4">
+      <!-- FAQ 1 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Điện mặt trời có hiệu quả không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Có. Trung bình giảm 70-85% hóa đơn điện. Hệ thống hoạt động 25-30 năm, hoàn vốn trong 3-5 năm.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 2 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Nhà tôi có phù hợp không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Hầu hết các mái nhà đều lắp được. Chúng tôi khảo sát miễn phí để đánh giá chính xác.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 3 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Bao lâu hoàn vốn?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Trung bình 3-5 năm cho On-Grid, 5-7 năm cho Hybrid. Sau đó sử dụng điện miễn phí 20+ năm.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 4 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Mất điện có dùng được không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Hệ On-Grid sẽ ngắt khi mất điện (an toàn). Hệ Hybrid có pin lưu trữ nên vẫn dùng được.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 5 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Có thể sạc xe điện không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Có. Chúng tôi tích hợp EV Charger vào hệ Hybrid, sạc miễn phí từ năng lượng mặt trời.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 6 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Mưa nhiều có đủ điện không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Tấm pin vẫn sản xuất điện khi mưa (giảm 10-20%). Hệ thống được thiết kế dựa trên dữ liệu thời tiết địa phương.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 7 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Có phải bảo trì thường xuyên không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Không. Chỉ cần vệ sinh tấm pin 2-4 lần/năm. Chúng tôi bảo hành 10 năm toàn bộ hệ thống.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 8 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">15 kWp phù hợp với đối tượng nào?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Phù hợp gia đình sử dụng điện 3-5 triệu/tháng, diện tích mái 80-100m2, muốn tiết kiệm 70-90% hóa đơn điện.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 9 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Pin lưu trữ có cần thiết không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Pin lưu trữ giúp dự phòng khi mất điện và sử dụng điện vào buổi tối. Đặc biệt hữu ích cho khu vực hay mất điện.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 10 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Bảo hành các thiết bị bao lâu?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Tấm pin bảo hành 10 năm, biến tần 5-10 năm, pin lưu trữ 5 năm. EPCVINA hỗ trợ kỹ thuật trọn đời.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 11 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Thi công có ảnh hưởng sinh hoạt không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Không. Thi công nhanh 1-2 ngày, không ảnh hưởng đến sinh hoạt hàng ngày.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 12 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Có được hỗ trợ vay ngân hàng không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Hiện tại chúng tôi không hỗ trợ trả góp. Khách hàng thanh toán theo tiến độ hợp đồng.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 13 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Hệ thống có tự động ngắt khi sự cố?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Có. Hệ thống có nhiều lớp bảo vệ: chống quá tải, chống đoản mạch, chống sét, tiếp địa an toàn.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 14 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Có thể mở rộng hệ thống sau này không?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">Có. Hệ Hybrid cho phép thêm pin lưu trữ hoặc mở rộng tấm pin sau này.</p>
+        </div>
+      </details>
+
+      <!-- FAQ 15 -->
+      <details class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden group">
+        <summary class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all cursor-pointer list-none">
+          <span class="text-lg font-semibold text-slate-900 pr-4">Quy trình thanh toán như thế nào?</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-slate-500 flex-shrink-0 transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="px-6 pb-6">
+          <p class="text-slate-700 leading-relaxed">30% đặt cọc, 60% khi giao thiết bị, 10% sau nghiệm thu. Minh bạch từng hạng mục.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="text-slate-600 mb-4">Vẫn còn thắc mắc?</p>
+      <a
+        href="tel:0988446113"
+        onclick="if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'faq_hotline_click', { event_category: 'conversion' }); }"
+        class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-lg transition-all cursor-pointer min-h-[44px]"
+        aria-label="Gọi tư vấn 0988 446 113"
+      >
+        Gọi Tư Vấn Ngay: 0988 446 113
+      </a>
+    </div>
+  </div>
+</section>
