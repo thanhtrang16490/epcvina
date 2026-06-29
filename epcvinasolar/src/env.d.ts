@@ -11,3 +11,8 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+// Google Analytics gtag type declaration
+interface Window {
+  gtag?: (...args: any[]) => void;
+}
