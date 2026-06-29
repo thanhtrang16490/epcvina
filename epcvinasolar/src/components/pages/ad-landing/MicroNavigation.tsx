@@ -1,0 +1,90 @@
+import { Phone, MessageCircle } from 'lucide-react';
+
+export default function MicroNavigation() {
+  const navItems = [
+    { label: 'Dự án thực tế', href: '#du-an' },
+    { label: 'Bảng giá tham khảo', href: '#bang-gia' },
+    { label: 'Chính sách bảo hành', href: '#bao-hanh' },
+  ];
+
+  return (
+    <nav className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <a href="#" className="flex items-center gap-2">
+            <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white font-black text-xl px-3 py-1 rounded">
+              EPC
+            </div>
+            <div>
+              <span className="text-slate-900 font-bold text-lg">EPCVINA</span>
+              <span className="text-orange-600 font-bold text-lg ml-1">SOLAR</span>
+            </div>
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            {navItems.map((item, i) => (
+              <a
+                key={i}
+                href={item.href}
+                className="text-slate-700 hover:text-orange-600 font-medium text-sm transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
+          {/* Right Actions */}
+          <div className="flex items-center gap-3">
+            {/* Hotline - Desktop */}
+            <a
+              href="tel:0988446113"
+              onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_hotline_click', { event_category: 'conversion' })}
+              className="hidden lg:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-all"
+            >
+              <Phone className="w-4 h-4" />
+              <span>0988 446 113</span>
+            </a>
+
+            {/* Zalo Button */}
+            <a
+              href="https://zalo.me/0988446113"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_zalo_click', { event_category: 'conversion' })}
+              className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-all"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Chat Zalo</span>
+            </a>
+
+            {/* CTA Button */}
+            <a
+              href="#contact"
+              onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_cta_click', { event_category: 'conversion' })}
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-5 py-2 rounded-lg transition-all shadow-md hover:shadow-lg"
+            >
+              Nhận tư vấn miễn phí
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile Navigation - Scrollable */}
+        <div className="md:hidden overflow-x-auto -mx-4 px-4 py-2 border-t border-slate-200">
+          <div className="flex gap-4 min-w-max">
+            {navItems.map((item, i) => (
+              <a
+                key={i}
+                href={item.href}
+                className="text-slate-700 hover:text-orange-600 font-medium text-sm whitespace-nowrap transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle, Shield, Award, Users, Phone } from 'lucide-react';
+import MicroNavigation from './MicroNavigation';
 import HeroSection from './HeroSection';
 import CalculatorSection from './CalculatorSection';
 import VideoShowcaseSection from './VideoShowcaseSection';
@@ -32,6 +33,7 @@ export default function DienMatTroiGiaDinh() {
 
   return (
     <div className="min-h-screen">
+      <MicroNavigation />
       <HeroSection />
       <SocialProofSection />
       <CalculatorSection onSubmit={(data) => setFormData(prev => ({ ...prev, message: `Hộ gia đình cần lắp điện mặt trời. Hệ đề xuất: ${data.system_size} kWp` }))} />
@@ -42,7 +44,7 @@ export default function DienMatTroiGiaDinh() {
       <PaymentOptionsSection />
 
       {/* Why EPCVINA */}
-      <section className="py-16 sm:py-20 bg-slate-900 text-white">
+      <section id="bao-hanh" className="py-16 sm:py-20 bg-slate-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Tại Sao Chọn EPCVINA</h2>
@@ -66,7 +68,7 @@ export default function DienMatTroiGiaDinh() {
       </section>
 
       {/* Equipment Brands */}
-      <section className="py-16 bg-white">
+      <section id="bang-gia" className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Thiết Bị Chính Hãng</h2>

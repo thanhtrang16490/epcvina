@@ -11,14 +11,17 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-              Điện Mặt Trời Được Thiết Kế
-              <span className="block text-yellow-400 mt-2">Theo Chính Ngôi Nhà Của Bạn</span>
+              Điện Mặt Trời Gia Đình
+              <span className="block text-orange-500 mt-2">An Toàn Từ Chuyên Gia Cơ Điện</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-300">Thiết kế dựa trên:</p>
-
             <div className="space-y-3">
-              {['Hóa đơn điện hàng tháng', 'Diện tích mái thực tế', 'Ngân sách đầu tư', 'Nhu cầu dùng điện khi mất điện', 'Kế hoạch sử dụng xe điện'].map((item, i) => (
+              {[
+                'Giảm 50-90% tiền điện hàng tháng',
+                'Có điện khi mất điện (Hybrid)',
+                'Thiết kế theo mái nhà thực tế',
+                'Thi công bởi đội ngũ 15 năm kinh nghiệm MEP',
+              ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" />
                   <span className="text-lg">{item}</span>
@@ -29,11 +32,11 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <a href="#calculator" className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all shadow-lg hover:shadow-xl">
                 <Calculator className="w-5 h-5" />
-                Nhận Thiết Kế Sơ Bộ
+                Nhận thiết kế sơ bộ trong 5 phút
               </a>
               <a href="tel:0988446113" onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'hotline_click', { event_category: 'conversion' })} className="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-xl text-lg transition-all">
                 <Phone className="w-5 h-5" />
-                Gọi Ngay: 0988 446 113
+                Gọi ngay: 0988 446 113
               </a>
             </div>
           </div>
