@@ -1,14 +1,43 @@
 ---
 // HeroSection.astro - Static hero section (no React needed)
+// Image optimization handled via responsive srcset
 ---
 
 <section class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
   <div class="absolute inset-0 opacity-20">
     <picture>
-      <source media="(max-width: 768px)" srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=768&q=80" />
-      <source media="(max-width: 1280px)" srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1280&q=80" />
-      <source media="(min-width: 1281px)" srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80" />
-      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80" alt="Solar panels" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <source 
+        media="(max-width: 768px)" 
+        srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=768&fm=webp&q=75" 
+        type="image/webp"
+      />
+      <source 
+        media="(max-width: 1280px)" 
+        srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1280&fm=webp&q=80" 
+        type="image/webp"
+      />
+      <source 
+        media="(min-width: 1281px)" 
+        srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&fm=webp&q=80" 
+        type="image/webp"
+      />
+      <!-- Fallback JPEG -->
+      <source 
+        media="(max-width: 768px)" 
+        srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=768&q=75"
+      />
+      <source 
+        media="(max-width: 1280px)" 
+        srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1280&q=80"
+      />
+      <img 
+        src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80" 
+        alt="Tấm pin năng lượng mặt trời trên mái nhà gia đình"
+        class="w-full h-full object-cover" 
+        loading="eager" 
+        fetchpriority="high"
+        decoding="async"
+      />
     </picture>
   </div>
   
