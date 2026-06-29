@@ -19,9 +19,9 @@ export default function PaymentOptionsSection() {
               subtitle: 'Không lo rủi ro',
               items: [
                 '30% đặt cọc khi ký hợp đồng',
-                '40% khi giao thiết bị đến công trình',
-                '30% sau nghiệm thu & bàn giao',
-                'Giữ lại tiền đến khi hài lòng 100%',
+                '60% khi giao thiết bị đến công trình',
+                '10% sau nghiệm thu & bàn giao',
+                'Giữ lại 10% đến khi hài lòng 100%',
               ],
               highlight: 'Bạn kiểm soát dòng tiền, không phải trả trước toàn bộ',
               color: 'from-blue-500 to-blue-600',
