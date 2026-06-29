@@ -33,7 +33,7 @@ export default function PaymentOptionsSection() {
               items: [
                 'Báo giá chi tiết từng hạng mục',
                 'Không thêm phí khảo sát, thiết kế',
-                'Bảo hành miễn phí 25 năm',
+                'Bảo hành miễn phí 10 năm',
                 'Bảo trì định kỳ không tốn phí',
               ],
               highlight: 'Giá cuối cùng = Giá trong hợp đồng, không ẩn phí',
@@ -98,7 +98,7 @@ export default function PaymentOptionsSection() {
                   ['Lãi suất', '0% - Không vay', '8-12%/năm'],
                   ['Rủi ro tài chính', 'Thấp - Trả theo tiến độ', 'Cao - Phải trả dù không hài lòng'],
                   ['Thủ tục', 'Không cần', 'Phức tạp, 2-4 tuần'],
-                  ['Bảo hành', '25 năm miễn phí', 'Tùy gói, có thể mất phí'],
+                  ['Bảo hành', '10 năm miễn phí', 'Tùy gói, có thể mất phí'],
                   ['Áp lực tâm lý', 'Không', 'Có - Nợ hàng tháng'],
                 ].map((row, i) => (
                   <tr key={i}>

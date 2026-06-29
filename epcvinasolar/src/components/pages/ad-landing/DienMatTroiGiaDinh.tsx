@@ -50,7 +50,7 @@ export default function DienMatTroiGiaDinh() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {[
-              { icon: Shield, title: 'Bảo hành 25 năm', desc: 'Hiệu suất tấm pin' },
+              { icon: Shield, title: 'Bảo hành 10 năm', desc: 'Toàn bộ hệ thống' },
               { icon: Award, title: '13+ dự án', desc: 'Đã triển khai thành công' },
               { icon: Users, title: '150+ kWp', desc: 'Công suất lắp đặt' },
               { icon: CheckCircle, title: 'Thiết bị chính hãng', desc: 'Longi, Aiko, Deye' },

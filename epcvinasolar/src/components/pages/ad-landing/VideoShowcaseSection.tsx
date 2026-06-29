@@ -51,7 +51,7 @@ export default function VideoShowcaseSection() {
               { step: '03', title: 'Ký hợp đồng', desc: 'Minh bạch từng hạng mục, thanh toán theo tiến độ', time: '15 phút' },
               { step: '04', title: 'Thi công lắp đặt', desc: 'Đội ngũ 3-5 người, an toàn tuyệt đối, vệ sinh sạch sẽ', time: '1-2 ngày' },
               { step: '05', title: 'Kích hoạt & nghiệm thu', desc: 'Test hệ thống, hướng dẫn sử dụng app giám sát', time: '2 giờ' },
-              { step: '06', title: 'Bảo hành trọn đời', desc: 'Hỗ trợ kỹ thuật 24/7, bảo trì định kỳ miễn phí', time: '25+ năm' },
+              { step: '06', title: 'Bảo hành trọn đời', desc: 'Hỗ trợ kỹ thuật 24/7, bảo trì định kỳ miễn phí', time: '10+ năm' },
             ].map((item, i) => (
               <div key={i} className="flex gap-4 items-start group">
                 <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center font-bold text-lg group-hover:scale-110 transition-transform">
