@@ -13,13 +13,11 @@ export default function MicroNavigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 cursor-pointer" aria-label="EPCVINA Solar Homepage">
-            <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white font-black text-xl px-3 py-1 rounded">
-              EPC
-            </div>
-            <div>
-              <span className="text-slate-900 font-bold text-lg">EPCVINA</span>
-              <span className="text-orange-600 font-bold text-lg ml-1">SOLAR</span>
-            </div>
+            <img 
+              src="/logo-epcvina-solar.png" 
+              alt="EPCVINA Solar" 
+              className="h-10 w-auto object-contain"
+            />
           </a>
 
           {/* Desktop Navigation */}
