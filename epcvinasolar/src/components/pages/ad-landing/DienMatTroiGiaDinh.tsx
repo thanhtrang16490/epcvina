@@ -32,7 +32,7 @@ export default function DienMatTroiGiaDinh() {
   };
 
   return (
-    <div className="min-h-screen pt-16 md:pt-20">
+    <div className="min-h-screen pt-20 md:pt-20">
       <MicroNavigation />
       <HeroSection />
       <SocialProofSection />
@@ -107,7 +107,7 @@ export default function DienMatTroiGiaDinh() {
                   </div>
                 ))}
               </div>
-              <a href="tel:0988446113" className="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-8 py-4 rounded-xl text-lg hover:bg-slate-100 transition-all">
+              <a href="tel:0988446113" className="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-8 py-4 rounded-xl text-lg hover:bg-slate-100 transition-all min-h-[44px]">
                 <Phone className="w-5 h-5" />
                 Gọi Ngay: 0988 446 113
               </a>
@@ -143,7 +143,7 @@ export default function DienMatTroiGiaDinh() {
                   placeholder="VD: Lắp hệ hybrid 10kWp, có pin lưu trữ..."
                 />
               </div>
-              <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg text-lg transition-all">
+              <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg text-lg transition-all min-h-[44px]">
                 Gửi Yêu Cầu Tư Vấn
               </button>
             </form>

@@ -200,5 +200,6 @@ const serviceSchema = {
   {/* Service Schema */}
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   
-  <FamilyLandingPage client:load />
+  {/* Mobile Optimization: Use client:visible for below-fold React components */}
+  <FamilyLandingPage client:visible />
 </DashboardLayout>
