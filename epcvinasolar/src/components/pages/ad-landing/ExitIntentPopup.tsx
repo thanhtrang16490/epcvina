@@ -18,8 +18,18 @@ export default function ExitIntentPopup() {
       }
     };
 
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShow(false);
+      }
+    };
+
     document.addEventListener('mouseout', handleMouseLeave);
-    return () => document.removeEventListener('mouseout', handleMouseLeave);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mouseout', handleMouseLeave);
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, [hasShown]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -49,7 +59,8 @@ export default function ExitIntentPopup() {
         {/* Close Button */}
         <button
           onClick={() => setShow(false)}
-          className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 transition-all"
+          className="absolute top-4 right-4 z-10 bg-white/90 hover:bg-white rounded-full p-2 transition-all cursor-pointer"
+          aria-label="Đóng popup"
         >
           <X className="w-5 h-5 text-slate-600" />
         </button>

@@ -1,4 +1,4 @@
-import { Users, Award, TrendingDown, Leaf } from 'lucide-react';
+import { Users, Award, TrendingDown, Leaf, Star, Trophy, Scroll } from 'lucide-react';
 
 export default function SocialProofSection() {
   return (
@@ -57,15 +57,24 @@ export default function SocialProofSection() {
         <div className="mt-16 pt-8 border-t border-white/30">
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <p className="text-3xl font-bold mb-2">⭐ 4.9/5.0</p>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Star className="w-8 h-8 text-yellow-400" fill="currentColor" />
+                <p className="text-3xl font-bold">4.9/5.0</p>
+              </div>
               <p className="text-sm opacity-90">Đánh giá trung bình từ khách hàng</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <p className="text-3xl font-bold mb-2">🏆 TOP 10</p>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Trophy className="w-8 h-8 text-yellow-400" />
+                <p className="text-3xl font-bold">TOP 10</p>
+              </div>
               <p className="text-sm opacity-90">Nhà thầu điện mặt trời uy tín tại miền Bắc</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <p className="text-3xl font-bold mb-2">📜 Chứng chỉ</p>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Scroll className="w-8 h-8 text-yellow-400" />
+                <p className="text-3xl font-bold">Chứng chỉ</p>
+              </div>
               <p className="text-sm opacity-90">Năng lực xây dựng & điện mặt trời</p>
             </div>
           </div>

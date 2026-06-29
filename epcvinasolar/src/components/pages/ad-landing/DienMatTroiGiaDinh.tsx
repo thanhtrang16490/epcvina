@@ -32,7 +32,7 @@ export default function DienMatTroiGiaDinh() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16 md:pt-20">
       <MicroNavigation />
       <HeroSection />
       <SocialProofSection />

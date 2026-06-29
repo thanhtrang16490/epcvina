@@ -1,4 +1,4 @@
-import { TrendingDown, ArrowRight } from 'lucide-react';
+import { TrendingDown, ArrowRight, Wallet } from 'lucide-react';
 
 export default function BeforeAfterBillsSection() {
   const bills = [
@@ -110,7 +110,10 @@ export default function BeforeAfterBillsSection() {
 
               {/* Annual Savings */}
               <div className="bg-green-50 p-4 border-t border-green-200">
-                <p className="text-sm text-green-700 mb-1">💰 Tiết kiệm hàng năm</p>
+                <div className="flex items-center gap-2 mb-1">
+                  <Wallet className="w-5 h-5 text-green-600" />
+                  <p className="text-sm text-green-700">Tiết kiệm hàng năm</p>
+                </div>
                 <p className="text-2xl font-bold text-green-600">
                   {(bill.savings * 12 / 1000000).toFixed(0)}.000.000đ
                 </p>
