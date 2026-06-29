@@ -1,0 +1,18 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import FamilyLandingPage from '../components/pages/ad-landing/DienMatTroiGiaDinh';
+
+export const prerender = true;
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Cho Gia Đình 2026 - Giá Tốt, Lắp Đặt Nhanh | EPCVINA Solar"
+  description="Lắp điện mặt trời cho gia đình từ 49 triệu. Tiết kiệm đến 70% hóa đơn điện. Bảo hành 25 năm. Hỗ trợ trả góp 0%. Tư vấn miễn phí 0988 446 113."
+  keywords="điện mặt trời gia đình, điện năng lượng mặt trời, lắp điện mặt trời, solar home, on-grid, hybrid, tiết kiệm điện, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Cho Gia Đình', url: 'https://epcvina.com/dien-mat-troi-gia-dinh' }
+  ]}
+>
+  <FamilyLandingPage client:load />
+</DashboardLayout>
