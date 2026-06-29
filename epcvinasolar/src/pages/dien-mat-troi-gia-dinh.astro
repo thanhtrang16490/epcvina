@@ -3,16 +3,146 @@ import DashboardLayout from '../layouts/DashboardLayout.astro';
 import FamilyLandingPage from '../components/pages/ad-landing/DienMatTroiGiaDinh';
 
 export const prerender = true;
+
+// SEO-optimized metadata for ad landing page
+const seoTitle = 'Điện Mặt Trời Gia Đình 2026 - Giảm 90% Tiền Điện | EPCVINA Solar';
+const seoDescription = 'Lắp điện mặt trời gia đình từ 60 triệu. Giảm 50-90% hóa đơn điện, có điện khi mất điện. Bảo hành 10 năm, 500+ gia đình tin dùng. Tư vấn miễn phí: 0988 446 113';
+const seoKeywords = 'điện mặt trời gia đình, điện mặt trời hybrid, điện mặt trời on-grid, lắp điện mặt trời hà nội, giá điện mặt trời 2026, pin lưu trữ điện, EPCVINA Solar, giảm tiền điện';
+
+// FAQ Schema for rich snippets
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Điện mặt trời có hiệu quả không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. Trung bình giảm 70-85% hóa đơn điện. Hệ thống hoạt động 25-30 năm, hoàn vốn trong 3-5 năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bao lâu hoàn vốn điện mặt trời?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trung bình 3-5 năm cho On-Grid, 5-7 năm cho Hybrid. Sau đó sử dụng điện miễn phí 20+ năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mất điện có dùng được điện mặt trời không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hệ On-Grid sẽ ngắt khi mất điện (an toàn). Hệ Hybrid có pin lưu trữ nên vẫn dùng được bình thường."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "15 kWp phù hợp với đối tượng nào?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Phù hợp gia đình sử dụng điện 3-5 triệu/tháng, diện tích mái 80-100m2, muốn tiết kiệm 70-90% hóa đơn điện."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Bảo hành điện mặt trời bao lâu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tấm pin bảo hành 10 năm, biến tần 5-10 năm, pin lưu trữ 5 năm. EPCVINA hỗ trợ kỹ thuật trọn đời."
+      }
+    }
+  ]
+};
+
+// Product Schema for combos
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Gói Điện Mặt Trời Gia Đình EPCVINA",
+  "description": "Hệ thống điện mặt trời trọn gói cho gia đình: On-Grid và Hybrid với pin lưu trữ",
+  "brand": {
+    "@type": "Brand",
+    "name": "EPCVINA Solar"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "VND",
+    "lowPrice": "60000000",
+    "highPrice": "219000000",
+    "offerCount": "5",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "500",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+
+// Service Schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Lắp đặt điện mặt trời gia đình",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "EPCVINA Solar",
+    "telephone": "+84988446113",
+    "areaServed": {
+      "@type": "State",
+      "name": "Hà Nội và miền Bắc Việt Nam"
+    }
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Gói điện mặt trời",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Điện mặt trời On-Grid 5kWp"
+        },
+        "price": "60000000",
+        "priceCurrency": "VND"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Điện mặt trời Hybrid 8.8kWp"
+        },
+        "price": "148300000",
+        "priceCurrency": "VND"
+      }
+    ]
+  }
+};
 ---
 
 <DashboardLayout
-  title="Điện Mặt Trời Cho Gia Đình 2026 - Giá Tốt, Lắp Đặt Nhanh | EPCVINA Solar"
-  description="Lắp điện mặt trời cho gia đình từ 49 triệu. Tiết kiệm đến 70% hóa đơn điện. Bảo hành 25 năm. Hỗ trợ trả góp 0%. Tư vấn miễn phí 0988 446 113."
-  keywords="điện mặt trời gia đình, điện năng lượng mặt trời, lắp điện mặt trời, solar home, on-grid, hybrid, tiết kiệm điện, EPCVINA Solar"
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
   breadcrumbs={[
     { name: 'Trang chủ', url: 'https://epcvina.com' },
-    { name: 'Điện Mặt Trời Cho Gia Đình', url: 'https://epcvina.com/dien-mat-troi-gia-dinh' }
+    { name: 'Điện Mặt Trời Gia Đình', url: 'https://epcvina.com/dien-mat-troi-gia-dinh' }
   ]}
 >
+  {/* FAQ Schema for rich snippets */}
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  
+  {/* Product Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  
+  {/* Service Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  
   <FamilyLandingPage client:load />
 </DashboardLayout>
