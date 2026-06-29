@@ -2,9 +2,14 @@ import { useState } from 'react';
 import { CheckCircle, Shield, Award, Users, Phone } from 'lucide-react';
 import HeroSection from './HeroSection';
 import CalculatorSection from './CalculatorSection';
+import VideoShowcaseSection from './VideoShowcaseSection';
+import SocialProofSection from './SocialProofSection';
 import ProjectsSection from './ProjectsSection';
+import BeforeAfterBillsSection from './BeforeAfterBillsSection';
 import TestimonialsSection from './TestimonialsSection';
+import PaymentOptionsSection from './PaymentOptionsSection';
 import FAQSection from './FAQSection';
+import ExitIntentPopup from './ExitIntentPopup';
 
 export default function DienMatTroiGiaDinh() {
   const [formData, setFormData] = useState({
@@ -28,9 +33,13 @@ export default function DienMatTroiGiaDinh() {
   return (
     <div className="min-h-screen">
       <HeroSection />
+      <SocialProofSection />
       <CalculatorSection onSubmit={(data) => setFormData(prev => ({ ...prev, message: `Hộ gia đình cần lắp điện mặt trời. Hệ đề xuất: ${data.system_size} kWp` }))} />
+      <VideoShowcaseSection />
+      <BeforeAfterBillsSection />
       <ProjectsSection />
       <TestimonialsSection />
+      <PaymentOptionsSection />
 
       {/* Why EPCVINA */}
       <section className="py-16 sm:py-20 bg-slate-900 text-white">
@@ -139,6 +148,9 @@ export default function DienMatTroiGiaDinh() {
           </div>
         </div>
       </section>
+
+      {/* Exit Intent Popup */}
+      <ExitIntentPopup />
     </div>
   );
 }

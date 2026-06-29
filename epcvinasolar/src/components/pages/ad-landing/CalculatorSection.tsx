@@ -8,7 +8,7 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
     roofArea: '',
     needs: [] as string[],
   });
-  const [showResults, setShowResults] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
   const [results, setResults] = useState<any>(null);
 
   const toggleNeed = (need: string) => {
@@ -54,7 +54,7 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
       monthlySavings,
       comboIndex,
     });
-    setShowResults(true);
+    setShowComparison(true);
   };
 
   return (
@@ -138,7 +138,7 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
           </div>
 
           <div className="space-y-6">
-            {!showResults ? (
+            {!showComparison ? (
               <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 flex items-center justify-center h-full">
                 <div className="text-center">
                   <Calculator className="w-16 h-16 text-orange-500 mx-auto mb-4" />
@@ -186,6 +186,55 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
                     </div>
                   </div>
 
+                  {/* 25-Year Savings Projection */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <h5 className="font-bold text-blue-900 mb-3">📊 Dự Kiến Tiết Kiệm 25 Năm</h5>
+                    <div className="grid grid-cols-3 gap-3 text-center">
+                      <div>
+                        <p className="text-xs text-blue-700">5 năm</p>
+                        <p className="text-lg font-bold text-blue-900">{(results.monthlySavings * 12 * 5 / 1000000).toFixed(0)} tr</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-blue-700">10 năm</p>
+                        <p className="text-lg font-bold text-blue-900">{(results.monthlySavings * 12 * 10 / 1000000).toFixed(0)} tr</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-blue-700">25 năm</p>
+                        <p className="text-lg font-bold text-blue-900">{(results.monthlySavings * 12 * 25 / 1000000).toFixed(0)} tr</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* On-Grid vs Hybrid Comparison */}
+                  <button 
+                    onClick={() => setShowComparison(!showComparison)}
+                    className="w-full mb-4 bg-slate-100 hover:bg-slate-200 text-slate-900 font-semibold py-3 rounded-lg transition-all"
+                  >
+                    {showComparison ? '▼' : '▶'} So Sánh On-Grid vs Hybrid
+                  </button>
+
+                  {showComparison && (
+                    <div className="grid grid-cols-2 gap-4 mb-6">
+                      <div className="bg-orange-50 border-2 border-orange-200 rounded-lg p-4">
+                        <h5 className="font-bold text-orange-900 mb-2">On-Grid</h5>
+                        <ul className="text-sm space-y-1 text-slate-700">
+                          <li>✅ Giá rẻ hơn 40-50%</li>
+                          <li>✅ Tiết kiệm tối đa</li>
+                          <li>❌ Mất điện = ngừng</li>
+                          <li>✅ Hoàn vốn nhanh</li>
+                        </ul>
+                      </div>
+                      <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+                        <h5 className="font-bold text-blue-900 mb-2">Hybrid</h5>
+                        <ul className="text-sm space-y-1 text-slate-700">
+                          <li>✅ Có pin lưu trữ</li>
+                          <li>✅ Dùng khi mất điện</li>
+                          <li>✅ Độc lập lưới điện</li>
+                          <li>❌ Đầu tư cao hơn</li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                   {results.combo.battery_kwh && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                       <div className="flex items-center gap-2 mb-2">
