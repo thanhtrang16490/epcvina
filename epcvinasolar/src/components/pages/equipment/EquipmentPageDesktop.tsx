@@ -204,7 +204,7 @@ export default function EquipmentPageDesktop({
                       {device.brand}
                     </span>
                   </div>
-                  {device.warranty && (
+                  {device.warranty && device.warranty > 0 && (
                     <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full shadow-sm">
                       <span className="text-xs font-semibold text-gray-700">🛡️ {device.warranty} năm</span>
                     </div>

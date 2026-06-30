@@ -621,7 +621,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                       </span>
                     </div>
                     {/* Warranty Badge */}
-                    {device.warranty && (
+                    {device.warranty && device.warranty > 0 && (
                       <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
                         <span className="text-xs font-medium text-gray-700">BH {device.warranty} năm</span>
                       </div>
