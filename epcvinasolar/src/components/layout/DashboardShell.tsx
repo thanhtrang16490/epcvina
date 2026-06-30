@@ -60,8 +60,8 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
           {/* Sidebar - always visible on desktop, mobile drawer */}
           <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-          {/* Main content - full width, sidebar is fixed/overlaid */}
-          <div className="flex-1 flex flex-col min-w-0">
+          {/* Main content - full width, accounting for sidebar */}
+          <div className="flex-1 flex flex-col min-w-0 lg:ml-16">
             {/* Header: mobile-only hamburger toggle (all pages have their own HeaderBar for desktop navigation) */}
             <Header
               onMenuClick={() => setIsSidebarOpen(true)}
