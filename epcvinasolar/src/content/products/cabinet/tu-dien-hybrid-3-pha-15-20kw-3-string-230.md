@@ -2,7 +2,7 @@
 name: "Tủ Điện Hybrid 3 Pha 15-20kW 3 String"
 brand: "GPG Solar"
 model: "Hybrid 15-20kW 3 String"
-category: "accessories"
+category: "cabinet"
 main_image: "/images/products/260604(1).png"
 description: "Tủ điện Hybrid 3 pha 15kW - 20kW 3 string dành cho các hệ thống điện năng lượng mặt trời có lưu trữ (Hybrid). Tủ điện được các kỹ sư GPG SOLAR thiết kế và lắp đặt theo tiêu chuẩn quốc tế, đảm bảo đóng ngắt và chuyển mạch khi có mất điện hoặc xảy ra sự cố. Luôn giữ cho hệ thống điện mặt trời Hybrid và các thiết bị điện của gia đình bạn an toàn, tuổi thọ cao.
 

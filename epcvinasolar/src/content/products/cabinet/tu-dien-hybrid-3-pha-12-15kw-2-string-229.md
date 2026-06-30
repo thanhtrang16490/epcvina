@@ -2,7 +2,7 @@
 name: "Tủ Điện Hybrid 3 Pha 12-15kW 2 String"
 brand: "GPG Solar"
 model: "Hybrid 12-15kW 2 String"
-category: "accessories"
+category: "cabinet"
 main_image: "/images/products/260604(1).png"
 description: "Tủ điện Hybrid 3 pha 12kW - 15kW 2 string dành cho các hệ thống điện năng lượng mặt trời có lưu trữ (Hybrid). Tủ điện được các kỹ sư GPG SOLAR thiết kế và lắp đặt theo tiêu chuẩn quốc tế, đảm bảo đóng ngắt và chuyển mạch khi có mất điện hoặc xảy ra sự cố. Luôn giữ cho hệ thống điện mặt trời Hybrid và các thiết bị điện của gia đình bạn an toàn, tuổi thọ cao.\n\nCung cấp đầy đủ các MCB bảo vệ, chống sét lan truyền, giúp bảo vệ hệ thống điện mặt trời và các thiết bị khỏi các sự cố như ngắn mạch hay quá dòng. Thiết kế tối ưu dành cho các dòng Inverter Hybrid 2 string trên thị trường, đảm bảo an toàn và luôn cung cấp nguồn điện dự phòng một cách liền mạch.\n\nCác thiết bị MCB, MCCB đóng ngắt, chống sét DC/AC, ATS đều được lựa chọn kỹ càng từ các thương hiệu nổi tiếng, đảm bảo hiệu quả và độ tin cậy cao. Tủ điện được thiết kế kín đáo và thẩm mỹ, giúp bảo vệ khỏi tác động từ côn trùng, động vật nhỏ và hạn chế nguy cơ tiếp xúc ngoài ý muốn, đảm bảo an toàn và ổn định trong quá trình vận hành.\n\nBảo hành 1 năm với tất cả các phụ kiện đi kèm"
 specifications:

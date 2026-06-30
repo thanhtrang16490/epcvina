@@ -5,6 +5,10 @@ export type EquipmentCategory =
   | 'battery'
   | 'lv-battery'
   | 'hv-battery'
+  | 'mounting'
+  | 'wiring'
+  | 'cabinet'
+  | 'grounding'
   | 'accessories';
 export type SystemType = 'on-grid' | 'hybrid';
 export type PhaseType = '1-phase' | '3-phase';

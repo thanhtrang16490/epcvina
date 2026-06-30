@@ -1,7 +1,7 @@
 
 
 import { useMemo, useState, useRef, useEffect } from 'react';
-import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight } from 'lucide-react';
+import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight, Layers, Cable } from 'lucide-react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
@@ -71,6 +71,38 @@ const CATEGORY_META: Record<EquipmentCategory, {
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
     gradient: 'from-purple-400 to-purple-600',
+  },
+  mounting: {
+    label: 'Hệ khung nhôm',
+    icon: <Layers className="h-5 w-5"/>,
+    color: 'text-purple-600',
+    bg: 'bg-purple-50',
+    accent: 'bg-purple-500',
+    gradient: 'from-purple-400 to-purple-600',
+  },
+  wiring: {
+    label: 'Hệ dây điện',
+    icon: <Cable className="h-5 w-5"/>,
+    color: 'text-gray-600',
+    bg: 'bg-gray-100',
+    accent: 'bg-gray-500',
+    gradient: 'from-gray-400 to-gray-600',
+  },
+  cabinet: {
+    label: 'Tủ điện',
+    icon: <Shield className="h-5 w-5"/>,
+    color: 'text-indigo-600',
+    bg: 'bg-indigo-50',
+    accent: 'bg-indigo-500',
+    gradient: 'from-indigo-400 to-indigo-600',
+  },
+  grounding: {
+    label: 'Hệ tiếp địa',
+    icon: <Plug className="h-5 w-5"/>,
+    color: 'text-yellow-600',
+    bg: 'bg-yellow-50',
+    accent: 'bg-yellow-500',
+    gradient: 'from-yellow-400 to-yellow-600',
   },
   accessories: {
     label: 'Phụ kiện lắp đặt',

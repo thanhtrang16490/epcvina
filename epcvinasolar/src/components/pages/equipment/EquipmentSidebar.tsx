@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield, Plug, X, SlidersHorizontal } from 'lucide-react';
+import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield, Plug, X, SlidersHorizontal, Layers, Cable } from 'lucide-react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 
 const CATEGORY_META: Record<string, {
@@ -44,6 +44,30 @@ const CATEGORY_META: Record<string, {
     icon: <Battery className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
+  },
+  mounting: {
+    label: 'Hệ khung nhôm',
+    icon: <Layers className="h-5 w-5"/>,
+    color: 'text-purple-600',
+    bg: 'bg-purple-50',
+  },
+  wiring: {
+    label: 'Hệ dây điện',
+    icon: <Cable className="h-5 w-5"/>,
+    color: 'text-gray-600',
+    bg: 'bg-gray-100',
+  },
+  cabinet: {
+    label: 'Tủ điện',
+    icon: <Shield className="h-5 w-5"/>,
+    color: 'text-indigo-600',
+    bg: 'bg-indigo-50',
+  },
+  grounding: {
+    label: 'Hệ tiếp địa',
+    icon: <Plug className="h-5 w-5"/>,
+    color: 'text-yellow-600',
+    bg: 'bg-yellow-50',
   },
   accessories: {
     label: 'Phụ kiện lắp đặt',

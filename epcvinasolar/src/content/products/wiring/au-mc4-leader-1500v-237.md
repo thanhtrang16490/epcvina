@@ -2,7 +2,7 @@
 name: "Đầu Nối MC4 Leader 1500V"
 brand: "Leader"
 model: "MC4 1500V"
-category: "accessories"
+category: "wiring"
 main_image: "/images/products/260605(5).jpeg"
 description: "Đầu nối MC4 là phụ kiện thiết yếu trong các hệ thống điện năng lượng mặt trời, đóng vai trò kết nối các tấm pin thành một hệ thống vận hành hoàn chỉnh và đồng bộ. Bên cạnh chức năng kết nối, đầu nối MC4 1500V còn có tác dụng bảo vệ hệ thống dây dẫn, ngăn ngừa hiện tượng chập điện, từ đó đảm bảo sự ổn định và an toàn trong suốt quá trình vận hành.
 

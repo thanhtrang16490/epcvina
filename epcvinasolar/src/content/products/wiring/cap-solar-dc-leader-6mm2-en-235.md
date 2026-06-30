@@ -2,7 +2,7 @@
 name: "Cáp Solar DC Leader 6mm² Đen"
 brand: "Leader"
 model: "DC 6mm² Đen"
-category: "accessories"
+category: "wiring"
 main_image: "/images/products/260605(7).png"
 description: "Cáp điện DC Leader là thương hiệu được tin dùng rộng rãi trong lĩnh vực điện mặt trời, với sự hiện diện mạnh mẽ trên thị trường toàn cầu lẫn tại Việt Nam. Sản phẩm được đánh giá cao nhờ chất lượng vật liệu vượt trội, bao gồm độ bền cơ học cao, khả năng chịu nhiệt tốt và tính chống ăn mòn hiệu quả, những đặc tính thiết yếu đối với các công trình vận hành lâu dài ngoài trời. Chính nhờ những ưu điểm đó, cáp DC Leader trở thành lựa chọn hàng đầu trong các hệ thống lắp đặt điện mặt trời hiện nay.
 
