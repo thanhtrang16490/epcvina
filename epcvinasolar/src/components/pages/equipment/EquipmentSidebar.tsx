@@ -15,7 +15,7 @@ const CATEGORY_META: Record<string, {
     color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
-  inverter: {
+  'on-grid-inverter': {
     label: 'Biến tần On-Grid',
     icon: <TrendingUp className="h-5 w-5"/>,
     color: 'text-orange-600',

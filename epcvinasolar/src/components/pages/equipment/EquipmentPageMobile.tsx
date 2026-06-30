@@ -32,7 +32,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     accent: 'bg-blue-500',
     gradient: 'from-blue-400 to-blue-600',
   },
-  inverter: {
+  'on-grid-inverter': {
     label: 'Biến tần On-Grid',
     icon: <TrendingUp className="h-5 w-5"/>,
     color: 'text-orange-600',

@@ -1,6 +1,6 @@
 export type EquipmentCategory = 
   | 'panel'
-  | 'inverter'
+  | 'on-grid-inverter'
   | 'hybrid-inverter'
   | 'battery'
   | 'lv-battery'
