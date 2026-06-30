@@ -226,92 +226,95 @@ export default function EquipmentPageDesktop({
       {showContent && (
         <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="max-w-7xl mx-auto w-full">
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-sm text-gray-600 mb-4">
-          <a href="/" className="hover:text-[#F97316] transition-colors">Trang chủ</a>
-          <ChevronRight className="h-3 w-3" />
-          <a href="/equipment/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
-          <ChevronRight className="h-3 w-3" />
-          <span className="text-gray-900 font-medium">{meta?.label || 'Danh mục'}</span>
-        </div>
-
-        {/* Horizontal Search & Filter Bar */}
+        {/* Horizontal Search & Filter Bar with Breadcrumbs */}
         <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6">
           <div className="flex items-center gap-3">
-            {/* Collapsible Search */}
-            {showSearch ? (
-              <div className="flex-1 relative">
-                <input
-                  type="text"
-                  placeholder="Tìm thiết bị..."
-                  value={searchQuery}
-                  onChange={(e) => onSearchChange(e.target.value)}
-                  className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
-                  autoFocus
-                />
-                {searchQuery && (
+            {/* Breadcrumbs - Left Side */}
+            <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
+              <a href="/" className="hover:text-[#F97316] transition-colors">Trang chủ</a>
+              <ChevronRight className="h-3 w-3" />
+              <a href="/equipment/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
+              <ChevronRight className="h-3 w-3" />
+              <span className="text-gray-900 font-medium">{meta?.label || 'Danh mục'}</span>
+            </div>
+
+            {/* Filter Options - Right Side */}
+            <div className="flex items-center gap-3">
+              {/* Collapsible Search */}
+              {showSearch ? (
+                <div className="relative w-64">
+                  <input
+                    type="text"
+                    placeholder="Tìm thiết bị..."
+                    value={searchQuery}
+                    onChange={(e) => onSearchChange(e.target.value)}
+                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
+                    autoFocus
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => onSearchChange('')}
+                      className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
                   <button
-                    onClick={() => onSearchChange('')}
-                    className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    onClick={() => {
+                      setShowSearch(false);
+                      onSearchChange('');
+                    }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-100 rounded"
                   >
                     <X className="h-4 w-4" />
                   </button>
-                )}
+                </div>
+              ) : (
                 <button
-                  onClick={() => {
-                    setShowSearch(false);
-                    onSearchChange('');
-                  }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-100 rounded"
+                  onClick={() => setShowSearch(true)}
+                  className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-[#F97316] transition-colors"
+                  title="Tìm kiếm"
                 >
-                  <X className="h-4 w-4" />
+                  <Search className="h-4 w-4 text-gray-600" />
                 </button>
-              </div>
-            ) : (
-              <button
-                onClick={() => setShowSearch(true)}
-                className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-[#F97316] transition-colors"
-                title="Tìm kiếm"
+              )}
+              
+              {/* Grid Filter - Product Display Columns */}
+              <select
+                value={gridColumns}
+                onChange={(e) => onGridColumnsChange?.(Number(e.target.value))}
+                className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
               >
-                <Search className="h-4 w-4 text-gray-600" />
-              </button>
-            )}
-            
-            {/* Grid Filter - Product Display Columns */}
-            <select
-              value={gridColumns}
-              onChange={(e) => onGridColumnsChange?.(Number(e.target.value))}
-              className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-            >
-              <option value={1}>1 cột</option>
-              <option value={2}>2 cột</option>
-              <option value={3}>3 cột</option>
-              <option value={4}>4 cột</option>
-            </select>
-            
-            {/* Product Limit */}
-            <select
-              value={productLimit}
-              onChange={(e) => onProductLimitChange?.(Number(e.target.value))}
-              className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-            >
-              <option value={16}>16 SP</option>
-              <option value={24}>24 SP</option>
-              <option value={32}>32 SP</option>
-              <option value={40}>40 SP</option>
-            </select>
-            
-            {/* Sort Dropdown */}
-            <select
-              value={sortBy}
-              onChange={(e) => onSortChange(e.target.value as typeof sortBy)}
-              className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-            >
-              <option value="az">A-Z</option>
-              <option value="za">Z-A</option>
-              <option value="price-asc">Giá ↑</option>
-              <option value="price-desc">Giá ↓</option>
-            </select>
+                <option value={1}>1 cột</option>
+                <option value={2}>2 cột</option>
+                <option value={3}>3 cột</option>
+                <option value={4}>4 cột</option>
+              </select>
+              
+              {/* Product Limit */}
+              <select
+                value={productLimit}
+                onChange={(e) => onProductLimitChange?.(Number(e.target.value))}
+                className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
+              >
+                <option value={16}>16 SP</option>
+                <option value={24}>24 SP</option>
+                <option value={32}>32 SP</option>
+                <option value={40}>40 SP</option>
+              </select>
+              
+              {/* Sort Dropdown */}
+              <select
+                value={sortBy}
+                onChange={(e) => onSortChange(e.target.value as typeof sortBy)}
+                className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
+              >
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+                <option value="price-asc">Giá ↑</option>
+                <option value="price-desc">Giá ↓</option>
+              </select>
+            </div>
           </div>
         </div>
 
