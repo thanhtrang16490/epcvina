@@ -822,7 +822,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                             <span>Xem nhanh</span>
                           </button>
                           <a 
-                            href={`/combo/${combo.slug}`}
+                            href={`/solar-home/he-thong/${combo.slug}`}
                             className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer min-h-[44px]"
                             aria-label={`Xem chi tiết ${combo.name}`}
                           >

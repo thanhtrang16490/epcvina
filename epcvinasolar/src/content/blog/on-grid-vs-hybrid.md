@@ -51,7 +51,7 @@ Hệ thống **Hybrid** kết hợp năng lượng mặt trời với hệ thố
 - **Tối ưu hoá tự tiêu thụ** — giảm tối đa lệ thuộc vào EVN
 - Chi phí đầu tư cao hơn On-Grid do có thêm ắc-quy và inverter Hybrid
 
-Khám phá giải pháp [điện mặt trời Hybrid & BESS tại EPC Solar](/solar-home/hybrid) hoặc [xem combo Hybrid 5kW](/solar-home/combo/hybrid-5kw-1pha-5kwh).
+Khám phá giải pháp [điện mặt trời Hybrid & BESS tại EPC Solar](/solar-home/hybrid) hoặc [xem combo Hybrid 5kW](/solar-home/he-thong/hybrid-5kw-1pha-5kwh).
 
 ---
 

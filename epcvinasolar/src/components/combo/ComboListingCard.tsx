@@ -25,7 +25,7 @@ export interface ComboCardData {
 
 interface ComboListingCardProps {
   combo: ComboCardData;
-  basePath: string; // '/solar-home/combo'
+  basePath: string; // '/solar-home/he-thong'
   onQuickView?: (combo: ComboCardData) => void;
 }
 

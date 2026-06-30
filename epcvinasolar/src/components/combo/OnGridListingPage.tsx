@@ -176,7 +176,7 @@ export default function OnGridListingPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {phase1.map(combo => (
-              <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/combo" />
+              <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/he-thong" />
             ))}
           </div>
         </section>
@@ -197,7 +197,7 @@ export default function OnGridListingPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {phase3.map(combo => (
-              <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/combo" />
+              <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/he-thong" />
             ))}
           </div>
         </section>

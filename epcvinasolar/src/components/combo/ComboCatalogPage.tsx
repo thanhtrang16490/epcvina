@@ -181,7 +181,7 @@ export default function ComboCatalogPage() {
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Combo Hệ Thống Điện</h1>
         <div className="grid grid-cols-2 gap-3">
           {filteredCombos.map(combo => (
-            <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/combo" />
+            <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/he-thong" />
           ))}
         </div>
       </div>
@@ -308,7 +308,7 @@ export default function ComboCatalogPage() {
           ) : (
             <div className={gridColumns === 1 ? 'flex flex-col gap-4' : `grid grid-cols-1 sm:grid-cols-2 ${gridColumns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'} gap-6`}>
               {filteredCombos.map(combo => (
-                <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/combo" />
+                <ComboListingCard key={combo.id} combo={combo} basePath="/solar-home/he-thong" />
               ))}
             </div>
           )}

@@ -277,14 +277,14 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
             <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4">
               <div className="flex gap-3">
                 <a
-                  href={`/solar-home/combo/${getComboSlug(combo)}`}
+                  href={`/solar-home/he-thong/${getComboSlug(combo)}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors"
                 >
                   <Phone className="h-4 w-4" />
                   Tư vấn ngay
                 </a>
                 <a
-                  href={`/solar-home/combo/${getComboSlug(combo)}`}
+                  href={`/solar-home/he-thong/${getComboSlug(combo)}`}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border-2 border-emerald-600 text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
                 >
                   Xem chi tiết combo
