@@ -104,8 +104,11 @@ interface PageProps {
   loading: boolean;
   searchQuery: string;
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
+  selectedGrid?: string;
+  gridOptions?: string[];
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
+  onGridChange?: (grid: string) => void;
   showHero?: boolean;
   showContent?: boolean;
 }
@@ -116,8 +119,11 @@ export default function EquipmentPageDesktop({
   loading,
   searchQuery,
   sortBy,
+  selectedGrid,
+  gridOptions = [],
   onSearchChange,
   onSortChange,
+  onGridChange,
   showHero = true,
   showContent = true,
 }: PageProps) {
@@ -137,6 +143,18 @@ export default function EquipmentPageDesktop({
       );
     }
     
+    // Filter by grid if selected
+    if (selectedGrid && category === 'panel') {
+      filtered = filtered.filter(device => {
+        const cellCount = device.specs['Số lượng cell'];
+        if (cellCount) {
+          const match = cellCount.match(/\((\d+×\d+)\)/);
+          return match && match[1] === selectedGrid;
+        }
+        return false;
+      });
+    }
+    
     switch (sortBy) {
       case 'az':
         filtered.sort((a, b) => a.model.localeCompare(b.model));
@@ -153,7 +171,7 @@ export default function EquipmentPageDesktop({
     }
     
     return filtered;
-  }, [devices, searchQuery, sortBy]);
+  }, [devices, searchQuery, sortBy, selectedGrid, category]);
 
   const brands = useMemo(() => {
     const brandSet = new Set<string>();
@@ -233,6 +251,20 @@ export default function EquipmentPageDesktop({
                 </button>
               )}
             </div>
+            
+            {/* Grid Filter - Only show for panels */}
+            {category === 'panel' && gridOptions.length > 0 && (
+              <select
+                value={selectedGrid || ''}
+                onChange={(e) => onGridChange?.(e.target.value)}
+                className="px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white min-w-[140px]"
+              >
+                <option value="">Tất cả Grid</option>
+                {gridOptions.map((grid: string) => (
+                  <option key={grid} value={grid}>{grid}</option>
+                ))}
+              </select>
+            )}
             
             {/* Sort Dropdown */}
             <select

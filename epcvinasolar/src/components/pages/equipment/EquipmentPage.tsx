@@ -40,6 +40,7 @@ export default function EquipmentPage({ category }: PageProps) {
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
+  const [selectedGrid, setSelectedGrid] = useState<string>('');
 
   // Fetch products from Content Collections API
   useEffect(() => {
@@ -80,6 +81,22 @@ export default function EquipmentPage({ category }: PageProps) {
     fetchDevices();
   }, [category]);
 
+  // Extract grid options from category devices (for panels)
+  const gridOptions = useMemo(() => {
+    const gridSet = new Set<string>();
+    for (const device of categoryDevices) {
+      const cellCount = device.specs['Số lượng cell'];
+      if (cellCount) {
+        // Extract grid pattern like "6×22" from "132 (6×22)"
+        const match = cellCount.match(/\((\d+×\d+)\)/);
+        if (match) {
+          gridSet.add(match[1]);
+        }
+      }
+    }
+    return Array.from(gridSet).sort();
+  }, [categoryDevices]);
+
   return (
     <div className="flex-1 flex flex-col">
       <HeaderBar />
@@ -110,6 +127,7 @@ export default function EquipmentPage({ category }: PageProps) {
             selectedBrand={selectedBrand}
             searchQuery={searchQuery}
             sortBy={sortBy}
+            selectedGrid={selectedGrid}
             onSelectBrand={setSelectedBrand}
             onSelectDevice={setSelectedDeviceId}
             onShowDevice={(id) => {
@@ -117,6 +135,7 @@ export default function EquipmentPage({ category }: PageProps) {
             }}
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
+            onGridChange={setSelectedGrid}
           />
           <div className="flex-1 flex flex-col pl-6 pr-6">
             <EquipmentPageDesktop 
@@ -125,8 +144,11 @@ export default function EquipmentPage({ category }: PageProps) {
               loading={loading}
               searchQuery={searchQuery}
               sortBy={sortBy}
+              selectedGrid={selectedGrid}
+              gridOptions={gridOptions}
               onSearchChange={setSearchQuery}
               onSortChange={setSortBy}
+              onGridChange={setSelectedGrid}
               showHero={false}
               showContent={true}
             />
