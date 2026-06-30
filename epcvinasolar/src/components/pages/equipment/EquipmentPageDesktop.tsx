@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, Eye, ArrowRight, Layers, Cable, Search, ChevronRight } from 'lucide-react';
+import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, Eye, Layers, Cable, Search, ChevronRight, List, Grid3x3, Grid2x2, ArrowDownAZ, ArrowUpAZ, ArrowUp, ArrowDown } from 'lucide-react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
@@ -18,6 +18,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   color: string;
   bg: string;
   accent: string;
+  description: string;
 }> = {
   panel: {
     label: 'Tấm mô-đun quang điện',
@@ -25,6 +26,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
+    description: 'Tấm pin mặt trời hiệu suất cao từ các thương hiệu Tier 1, công nghệ Mono/Poly PERC, bảo hành hiệu suất lên đến 25 năm.',
   },
   'on-grid-inverter': {
     label: 'Biến tần On-Grid',
@@ -32,6 +34,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
+    description: 'Bộ biến tần hòa lưới hiệu suất chuyển đổi đến 99%, tích hợp MPPT thông minh, phù hợp hệ thống điện mặt trời nối lưới.',
   },
   'hybrid-inverter': {
     label: 'Biến tần Hybrid',
@@ -39,13 +42,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
-  },
-  battery: {
-    label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5"/>,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
-    accent: 'bg-green-500',
+    description: 'Bộ biến tần Hybrid kết hợp điện mặt trời và lưu trữ pin, tối ưu tự dùng, đảm bảo nguồn điện liên tục 24/7.',
   },
   'lv-battery': {
     label: 'Pin lưu trữ áp thấp',
@@ -53,6 +50,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-green-600',
     bg: 'bg-green-50',
     accent: 'bg-green-500',
+    description: 'Pin lưu trữ áp thấp 48V dễ lắp đặt, phù hợp hệ thống gia đình và thương mại nhỏ, tích hợp BMS thông minh.',
   },
   'hv-battery': {
     label: 'Pin lưu trữ áp cao',
@@ -60,6 +58,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
+    description: 'Pin lưu trữ áp cao hiệu suất cao, phù hợp hệ thống công suất lớn, giảm tổn hao truyền tải và tăng hiệu quả lưu trữ.',
   },
   mounting: {
     label: 'Hệ khung nhôm',
@@ -67,6 +66,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
+    description: 'Hệ khung nhôm hợp kim cường độ cao, chống ăn mòn, chịu được gió bão cấp 12, phù hợp mọi loại mái và địa hình.',
   },
   wiring: {
     label: 'Hệ dây điện',
@@ -74,6 +74,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-gray-600',
     bg: 'bg-gray-100',
     accent: 'bg-gray-500',
+    description: 'Dây điện và đầu nối chuyên dụng cho điện mặt trời, chịu được tia UV, nhiệt độ cao, đảm bảo an toàn và bền bỉ.',
   },
   cabinet: {
     label: 'Tủ điện',
@@ -81,6 +82,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-indigo-600',
     bg: 'bg-indigo-50',
     accent: 'bg-indigo-500',
+    description: 'Tủ điện phân phối và bảo vệ hệ thống, tích hợp APTomat, chống sét lan, đảm bảo an toàn điện cho toàn hệ thống.',
   },
   grounding: {
     label: 'Hệ tiếp địa',
@@ -88,6 +90,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-yellow-600',
     bg: 'bg-yellow-50',
     accent: 'bg-yellow-500',
+    description: 'Hệ thống tiếp địa và chống sét, bảo vệ thiết bị và con người, đảm bảo an toàn cho toàn bộ hệ thống điện mặt trời.',
   },
   accessories: {
     label: 'Phụ kiện lắp đặt',
@@ -95,6 +98,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
     color: 'text-gray-600',
     bg: 'bg-gray-100',
     accent: 'bg-gray-500',
+    description: 'Phụ kiện lắp đặt đầy đủ: bulong, kẹp biên, kẹp giữa, ray trượt, khớp nối... hoàn thiện hệ thống điện mặt trời.',
   },
 };
 
@@ -223,9 +227,7 @@ export default function EquipmentPageDesktop({
                 <h1 className="text-3xl font-bold">{meta.label}</h1>
               </div>
             </div>
-            <p className="text-gray-300 max-w-2xl">
-              Cung cấp thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
-            </p>
+            <p className="text-gray-300 max-w-2xl">{meta?.description}</p>
             <div className="flex items-center gap-6 mt-6">
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold text-[#F97316]">{devices.length}</span>
@@ -243,8 +245,8 @@ export default function EquipmentPageDesktop({
 
       {/* PC Content */}
       {showContent && (
-        <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-4">
-        <div className="max-w-7xl mx-auto w-full">
+        <div className="flex-1 w-full">
+        <div className="w-full">
         {/* Horizontal Search & Filter Bar with Breadcrumbs */}
         <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6">
           <div className="flex items-center gap-3">
@@ -300,41 +302,108 @@ export default function EquipmentPageDesktop({
                 )}
               </div>
               
-              {/* Grid Filter - Product Display Columns */}
-              <select
-                value={gridColumns}
-                onChange={(e) => onGridColumnsChange?.(Number(e.target.value))}
-                className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-              >
-                <option value={1}>1 cột</option>
-                <option value={2}>2 cột</option>
-                <option value={3}>3 cột</option>
-                <option value={4}>4 cột</option>
-              </select>
+              {/* Layout View Icons */}
+              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+                <button
+                  onClick={() => onGridColumnsChange?.(1)}
+                  className={`p-2 rounded transition-colors ${
+                    gridColumns === 1
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Danh sách 1 cột"
+                >
+                  <List className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onGridColumnsChange?.(3)}
+                  className={`p-2 rounded transition-colors ${
+                    gridColumns === 3
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Lưới 3 cột"
+                >
+                  <Grid3x3 className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onGridColumnsChange?.(4)}
+                  className={`p-2 rounded transition-colors ${
+                    gridColumns === 4
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Lưới 4 cột"
+                >
+                  <Grid2x2 className="h-4 w-4" />
+                </button>
+              </div>
               
               {/* Product Limit */}
-              <select
-                value={productLimit}
-                onChange={(e) => onProductLimitChange?.(Number(e.target.value))}
-                className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-              >
-                <option value={16}>16 SP</option>
-                <option value={24}>24 SP</option>
-                <option value={32}>32 SP</option>
-                <option value={40}>40 SP</option>
-              </select>
+              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+                {[16, 24, 32, 40].map((limit) => (
+                  <button
+                    key={limit}
+                    onClick={() => onProductLimitChange?.(limit)}
+                    className={`px-2.5 py-1.5 text-xs font-medium rounded transition-colors ${
+                      productLimit === limit
+                        ? 'bg-[#F97316] text-white'
+                        : 'text-gray-600 hover:bg-gray-100'
+                    }`}
+                    title={`${limit} sản phẩm`}
+                  >
+                    {limit}
+                  </button>
+                ))}
+              </div>
               
-              {/* Sort Dropdown */}
-              <select
-                value={sortBy}
-                onChange={(e) => onSortChange(e.target.value as typeof sortBy)}
-                className="px-3 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-              >
-                <option value="az">A-Z</option>
-                <option value="za">Z-A</option>
-                <option value="price-asc">Giá ↑</option>
-                <option value="price-desc">Giá ↓</option>
-              </select>
+              {/* Sort Options */}
+              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+                <button
+                  onClick={() => onSortChange('az')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'az'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Sắp xếp A-Z"
+                >
+                  <ArrowDownAZ className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onSortChange('za')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'za'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Sắp xếp Z-A"
+                >
+                  <ArrowUpAZ className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onSortChange('price-asc')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'price-asc'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Giá tăng dần"
+                >
+                  <ArrowUp className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onSortChange('price-desc')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'price-desc'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Giá giảm dần"
+                >
+                  <ArrowDown className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -352,27 +421,34 @@ export default function EquipmentPageDesktop({
             <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
           </div>
         ) : (
-          <div className={`grid grid-cols-1 sm:grid-cols-2 ${
-            gridColumns === 1 ? 'lg:grid-cols-1' :
-            gridColumns === 2 ? 'lg:grid-cols-2' :
-            gridColumns === 3 ? 'lg:grid-cols-3' :
-            'lg:grid-cols-4'
-          } gap-6`}>
+          <div className={`${
+            gridColumns === 1 
+              ? 'flex flex-col gap-4' 
+              : `grid grid-cols-1 sm:grid-cols-2 ${
+                  gridColumns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'
+                } gap-6`
+          }`}>
             {filteredDevices.map((device) => (
               <div
                 key={device.id}
-                className="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-300 cursor-pointer"
+                className={`group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-300 cursor-pointer ${
+                  gridColumns === 1
+                    ? 'flex flex-row hover:translate-x-2'
+                    : 'hover:-translate-y-2'
+                }`}
                 role="article"
                 aria-label={device.model}
               >
                 {/* Product Image */}
-                <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
+                <div className={`relative bg-gray-50 overflow-hidden ${
+                  gridColumns === 1 ? 'w-48 flex-shrink-0' : 'w-full aspect-square'
+                }`}>
                   {device.images?.[0] ? (
                     <Image
                       src={device.images[0]}
                       alt={device.model}
                       fill
-                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-500 ease-out"
+                      className="object-contain p-4 group-hover:scale-110 transition-transform duration-500 ease-out"
                     />
                   ) : (
                     <div className={`w-full h-full flex items-center justify-center ${meta.bg}`}>
@@ -390,13 +466,29 @@ export default function EquipmentPageDesktop({
                       <span className="text-xs font-semibold text-gray-700">🛡️ {device.warranty} năm</span>
                     </div>
                   )}
+                  {/* Hover overlay with eye icon for quick view */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedDeviceId(device.id);
+                        setShowModal(true);
+                      }}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/80 backdrop-blur-sm rounded-full p-3 hover:bg-white hover:scale-110 transform transition-all duration-200 cursor-pointer shadow-lg"
+                      aria-label={`Xem nhanh ${device.model}`}
+                    >
+                      <Eye className="w-5 h-5 text-gray-700" />
+                    </button>
+                  </div>
                 </div>
 
                 {/* Product Info */}
-                <div className="p-5 space-y-4">
-                  <h3 className="font-bold text-gray-900 text-base leading-snug group-hover:text-orange-600 transition-colors duration-300">
-                    {device.name}
-                  </h3>
+                <div className={`p-5 space-y-4 ${gridColumns === 1 ? 'flex-1 min-w-0 flex flex-col justify-between' : ''}`}>
+                  <a href={`/equipment/${device.id}`} className="block">
+                    <h3 className="font-bold text-gray-900 text-base leading-snug hover:text-orange-600 transition-colors duration-300">
+                      {device.name}
+                    </h3>
+                  </a>
                   
                   {/* Specs */}
                   <div className="space-y-2.5">
@@ -410,43 +502,19 @@ export default function EquipmentPageDesktop({
                       ))}
                   </div>
 
-                  {/* Price + CTA */}
-                  <div className="pt-4 border-t border-gray-100 space-y-3">
-                    <div className="flex items-center justify-between">
-                      {device.price ? (
-                        <div>
-                          <p className="text-xs text-gray-500 mb-0.5">Đơn giá</p>
-                          <p className="text-lg font-bold text-orange-600">{formatCurrency(device.price)}</p>
-                        </div>
-                      ) : (
-                        <div>
-                          <p className="text-xs text-gray-500 mb-0.5">Liên hệ</p>
-                          <p className="text-sm font-semibold text-orange-600">Giá tốt nhất</p>
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex gap-2">
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedDeviceId(device.id);
-                          setShowModal(true);
-                        }}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-all duration-200 cursor-pointer min-h-[44px]"
-                        aria-label={`Xem nhanh ${device.model}`}
-                      >
-                        <Eye className="w-4 h-4" />
-                        <span className="hidden sm:inline">Xem nhanh</span>
-                      </button>
-                      <a 
-                        href={`/equipment/${device.id}`}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer min-h-[44px]"
-                        aria-label={`Xem chi tiết ${device.model}`}
-                      >
-                        <span className="hidden sm:inline">Chi tiết</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </a>
-                    </div>
+                  {/* Price */}
+                  <div className="pt-4 border-t border-gray-100">
+                    {device.price ? (
+                      <div>
+                        <p className="text-xs text-gray-500 mb-0.5">Đơn giá</p>
+                        <p className="text-lg font-bold text-orange-600">{formatCurrency(device.price)}</p>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-xs text-gray-500 mb-0.5">Liên hệ</p>
+                        <p className="text-sm font-semibold text-orange-600">Giá tốt nhất</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

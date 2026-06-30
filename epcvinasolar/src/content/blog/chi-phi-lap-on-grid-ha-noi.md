@@ -245,7 +245,7 @@ Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **th�
 - **Hỗ trợ kỹ thuật:** Trọn đời
 
 ### Hệ thống có hoạt động khi mất điện?
-**Không.** Hệ On-Grid tự động ngắt khi mất điện để đảm bảo an toàn. Nếu khu vực hay mất điện, nên chọn [hệ Hybrid](/hybrid-bess) có pin lưu trữ.
+**Không.** Hệ On-Grid tự động ngắt khi mất điện để đảm bảo an toàn. Nếu khu vực hay mất điện, nên chọn [hệ Hybrid](/solar-home/hybrid) có pin lưu trữ.
 
 ### EPCVINA có hỗ trợ trả góp không?
 **Có.** Chúng tôi hợp tác với các ngân hàng để hỗ trợ trả góp 0-12 tháng, lãi suất ưu đãi 6-8%/năm.

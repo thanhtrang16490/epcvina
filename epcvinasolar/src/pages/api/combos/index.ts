@@ -30,11 +30,14 @@ export const GET: APIRoute = async ({ url }) => {
       id: combo.id,
       slug: combo.slug,
       name: combo.name,
+      system_type: combo.system_type,
       systemType: combo.system_type,
       category: 'residential',
       phase: combo.phase,
       voltage: combo.voltage,
+      power: combo.power_kw,
       capacity: combo.power_kw,
+      battery: combo.battery_kwh || 0,
       panelBrand: 'AIKO',
       panelCount: Math.ceil(combo.power_kw * 1000 / 650), // Approximate panel count based on 650W panels
       panelModel: 'Stellar 2N 66-202',
@@ -46,6 +49,10 @@ export const GET: APIRoute = async ({ url }) => {
       images: [],
       price: combo.investment_million_vnd * 1000000, // Convert to VND
       features: [],
+      monthly_production: Math.round((combo.production_min_kwh + combo.production_max_kwh) / 2),
+      payback_period: combo.payback_years,
+      installation_area: combo.roof_area_m2,
+      is_popular: combo.display_order <= 5,
       estimatedOutput: {
         monthly: {
           min: combo.production_min_kwh,
@@ -56,7 +63,7 @@ export const GET: APIRoute = async ({ url }) => {
         monthly: Math.round((combo.production_min_kwh + combo.production_max_kwh) / 2 * 2800),
         yearly: Math.round((combo.production_min_kwh + combo.production_max_kwh) / 2 * 2800 * 12),
       },
-      paybackPeriod: combo.payback_years,
+      paybackYears: combo.payback_years,
       roi: 0,
       areaRequired: combo.roof_area_m2,
       warranty: {

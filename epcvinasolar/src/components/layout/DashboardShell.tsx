@@ -62,11 +62,10 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
 
           {/* Main content - full width, accounting for sidebar */}
           <div className="flex-1 flex flex-col min-w-0 lg:ml-16">
-            {/* Header: mobile-only hamburger toggle (all pages have their own HeaderBar for desktop navigation) */}
+            {/* Header: mobile-only hamburger toggle */}
             <Header
               onMenuClick={() => setIsSidebarOpen(true)}
               isHidden={!isHeaderVisible}
-              mobileOnly={true}
             />
             
             {/* Page content */}

@@ -48,14 +48,6 @@ const CATEGORY_META: Record<EquipmentCategory, {
     accent: 'bg-blue-500',
     gradient: 'from-blue-400 to-blue-600',
   },
-  battery: {
-    label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5"/>,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
-    accent: 'bg-green-500',
-    gradient: 'from-green-400 to-green-600',
-  },
   'lv-battery': {
     label: 'Pin lưu trữ áp thấp',
     icon: <Battery className="h-5 w-5"/>,

@@ -1,29 +1,29 @@
 import { useState, useEffect } from 'react';
-import { Sun, Zap, TrendingUp, Shield } from 'lucide-react';
+import { Battery, Zap, Shield, Clock } from 'lucide-react';
 import HeaderBar from '../home/layout/HeaderBar';
 import ComboListingCard from './ComboListingCard';
 import type { ComboCardData } from './ComboListingCard';
 
 // Fallback data when API returns empty
 const FALLBACK_COMBOS: ComboCardData[] = [
-  { id: 'og1p-5', slug: 'og1p-5-5kw', name: 'Hệ On-Grid 5 kWp 1 pha', power: 5, battery: 0, price: 54500000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og1p-8', slug: 'og1p-8-8kw', name: 'Hệ On-Grid 8.8 kWp 1 pha', power: 8.8, battery: 0, price: 86400000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og1p-10', slug: 'og1p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 1 pha', power: 10.7, battery: 0, price: 100600000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-10', slug: 'og3p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 3 pha', power: 10.7, battery: 0, price: 98500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-15', slug: 'og3p-15-7kw', name: 'Hệ On-Grid 15.7 kWp 3 pha', power: 15.7, battery: 0, price: 132500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol', is_popular: true },
-  { id: 'og3p-18', slug: 'og3p-18-8kw', name: 'Hệ On-Grid 18.8 kWp 3 pha', power: 18.8, battery: 0, price: 152000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-29', slug: 'og3p-29-4kw', name: 'Hệ On-Grid 29.4 kWp 3 pha', power: 29.4, battery: 0, price: 252700000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-48', slug: 'og3p-48-8kw', name: 'Hệ On-Grid 48.8 kWp 3 pha', power: 48.8, battery: 0, price: 400500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'hyb-5-5', slug: 'hybrid-5kw-1pha-5kwh', name: 'Hybrid 5 kWp 1 pha – 5 kWh', power: 5, battery: 5.12, price: 100500000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
+  { id: 'hyb-5-10', slug: 'hybrid-5kw-1pha-10kwh', name: 'Hybrid 5 kWp 1 pha – 10 kWh', power: 5, battery: 10.24, price: 125000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'hyb-88-5', slug: 'hybrid-88kw-1pha-5kwh', name: 'Hybrid 8.8 kWp 1 pha – 5 kWh', power: 8.75, battery: 5.12, price: 145000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
+  { id: 'hyb-88-10', slug: 'hybrid-88kw-1pha-10kwh', name: 'Hybrid 8.8 kWp 1 pha – 10 kWh', power: 8.75, battery: 10.24, price: 168000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'hyb-88-16', slug: 'hybrid-88kw-1pha-16kwh', name: 'Hybrid 8.8 kWp 1 pha – 16 kWh', power: 8.75, battery: 16.38, price: 195000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'hyb-107-10', slug: 'hybrid-107kw-1pha-10kwh', name: 'Hybrid 10.7 kWp 1 pha – 10 kWh', power: 10.63, battery: 10.24, price: 185000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'hyb-107-16', slug: 'hybrid-107kw-1pha-16kwh', name: 'Hybrid 10.7 kWp 1 pha – 16 kWh', power: 10.63, battery: 16.38, price: 215000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
+  { id: 'hyb-157-16', slug: 'hybrid-157kw-1pha-16kwh', name: 'Hybrid 15.7 kWp 1 pha – 16 kWh', power: 15.63, battery: 16.38, price: 285000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
 ];
 
-export default function OnGridListingPage() {
+export default function HybridListingPage() {
   const [combos, setCombos] = useState<ComboCardData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchCombos() {
       try {
-        const res = await fetch('/api/combos?system_type=on-grid');
+        const res = await fetch('/api/combos?system_type=hybrid');
         if (res.ok) {
           const data = await res.json();
           if (data && data.length > 0) {
@@ -34,7 +34,7 @@ export default function OnGridListingPage() {
               power: c.power || 0,
               battery: c.battery || 0,
               price: c.price || 0,
-              system_type: 'on-grid' as const,
+              system_type: 'hybrid' as const,
               phase: c.phase || '1-phase',
               panel_brand: c.panel_brand,
               inverter_brand: c.inverter_brand,
@@ -49,7 +49,7 @@ export default function OnGridListingPage() {
           }
         }
       } catch (e) {
-        console.error('Failed to fetch on-grid combos:', e);
+        console.error('Failed to fetch hybrid combos:', e);
       }
       setCombos(FALLBACK_COMBOS);
       setLoading(false);
@@ -84,8 +84,8 @@ export default function OnGridListingPage() {
           {/* Background image */}
           <div className="absolute inset-0" aria-hidden="true">
             <img
-              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80"
-              alt="Hệ thống điện mặt trời On-Grid hòa lưới"
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80"
+              alt="Hệ thống điện mặt trời Hybrid với pin lưu trữ"
               className="w-full h-full object-cover"
               loading="eager"
               width={1200}
@@ -96,50 +96,50 @@ export default function OnGridListingPage() {
 
           {/* Decorative glow */}
           <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-400/10 rounded-full -translate-y-1/3 translate-x-1/4" />
-            <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-amber-500/10 rounded-full translate-y-1/3 -translate-x-1/4" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full -translate-y-1/3 translate-x-1/4" />
+            <div className="absolute bottom-0 left-0 w-[350px] h-[350px] bg-emerald-500/10 rounded-full translate-y-1/3 -translate-x-1/4" />
           </div>
 
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm border border-white/20 mb-6">
-              <Zap className="h-4 w-4 text-orange-400" />
-              <span>Giải Pháp Tiết Kiệm Điện 70-90%</span>
+              <Battery className="h-4 w-4 text-blue-400" />
+              <span>Giải Pháp Điện Độc Lập 24/7</span>
             </div>
 
             {/* H1 */}
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
               Điện Mặt Trời{' '}
-              <span className="text-orange-400">On-Grid</span> Hòa Lưới
+              <span className="text-blue-400">Hybrid</span> Có Pin Lưu Trữ
             </h1>
 
             {/* Description */}
             <p className="text-lg text-gray-300 max-w-2xl mb-8 leading-relaxed">
-              Hệ thống điện mặt trời On-Grid kết hợp với điện lưới, giúp tiết kiệm 70-90% hóa đơn điện. 
-              Hoàn vốn nhanh 3-5 năm, bảo hành 25 năm.
+              Hệ thống Hybrid kết hợp điện mặt trời và pin lưu trữ, đảm bảo nguồn điện liên tục 24/7, 
+              ngay cả khi mất điện lưới. Tối ưu tự dùng, giảm phụ thuộc vào điện lưới.
             </p>
 
             {/* Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
               <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                <TrendingUp className="h-8 w-8 text-orange-400 flex-shrink-0" />
+                <Shield className="h-8 w-8 text-blue-400 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-white">Tiết kiệm 70-90%</p>
-                  <p className="text-xs text-gray-400">Hóa đơn điện hàng tháng</p>
+                  <p className="text-sm font-semibold text-white">Điện 24/7</p>
+                  <p className="text-xs text-gray-400">Có pin lưu trữ dự phòng</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                <Shield className="h-8 w-8 text-emerald-400 flex-shrink-0" />
+                <Zap className="h-8 w-8 text-emerald-400 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-white">Bảo hành 25 năm</p>
-                  <p className="text-xs text-gray-400">Tấm pin Tier 1</p>
+                  <p className="text-sm font-semibold text-white">Tối ưu tự dùng</p>
+                  <p className="text-xs text-gray-400">Giảm 90% tiền điện</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                <Zap className="h-8 w-8 text-amber-400 flex-shrink-0" />
+                <Clock className="h-8 w-8 text-amber-400 flex-shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-white">Hoàn vốn 3-5 năm</p>
-                  <p className="text-xs text-gray-400">Hiệu suất cao</p>
+                  <p className="text-sm font-semibold text-white">Hoàn vốn 4-6 năm</p>
+                  <p className="text-xs text-gray-400">Bảo hành 25 năm</p>
                 </div>
               </div>
             </div>
@@ -152,14 +152,14 @@ export default function OnGridListingPage() {
         {/* Mobile Page Header */}
         <div className="lg:hidden mb-8">
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-              <Sun className="h-5 w-5 text-orange-600" />
+            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+              <Battery className="h-5 w-5 text-blue-600" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo On-Grid</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo Hybrid</h1>
           </div>
           <p className="text-gray-500 text-sm sm:text-base max-w-3xl">
-            Hệ thống điện mặt trời On-Grid (Không Pin lưu trữ), là hệ thống vận hành kết hợp giữa 
-            điện mặt trời và nguồn điện lưới. Giải pháp phù hợp với hóa đơn tiền điện từ 1.5 triệu/tháng.
+            Hệ thống điện mặt trời Hybrid có pin lưu trữ, đảm bảo nguồn điện liên tục 24/7, 
+            ngay cả khi mất điện lưới. Phù hợp với gia đình cần nguồn điện ổn định và độc lập.
           </p>
         </div>
 
@@ -168,10 +168,10 @@ export default function OnGridListingPage() {
         <section className="mb-12">
           <div className="mb-6">
             <h2 className="text-xl font-bold text-gray-900">
-              Điện mặt trời On-Grid cho nguồn điện 1 pha
+              Điện mặt trời Hybrid 1 pha cho nguồn điện 1 pha
             </h2>
             <p className="text-sm text-gray-500 mt-1">
-              Bám tấm mặt trời On-Grid 1 pha bao gồm: 5 kWp, 8.8 kWp, 10 kWp
+              Hệ thống Hybrid 1 pha với pin lưu trữ, phù hợp cho gia đình. Bao gồm: 5 kWp, 8.8 kWp, 10.7 kWp, 15.7 kWp
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -187,12 +187,11 @@ export default function OnGridListingPage() {
         <section className="mb-12">
           <div className="mb-6">
             <h2 className="text-xl font-bold text-gray-900">
-              Điện mặt trời On-Grid cho nguồn điện 3 pha
+              Điện mặt trời Hybrid 3 pha cho nguồn điện 3 pha
             </h2>
             <p className="text-sm text-gray-500 mt-1">
-              Hệ thống điện mặt trời On-Grid 3 pha. Phù hợp với hộ gia đình, văn phòng, nhà xưởng, 
-              nhà hàng chủ yếu dùng điện vào ban ngày. Bám tấm mặt trời On-Grid 3 pha bao gồm: 10 kWp, 
-              15 kWp, 20 kWp, 30 kWp, 50 kWp và lớn hơn.
+              Hệ thống Hybrid 3 pha với pin lưu trữ, phù hợp cho gia đình lớn, văn phòng, nhà xưởng.
+              Bao gồm: 10 kWp, 15 kWp, 20 kWp, 30 kWp và lớn hơn.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

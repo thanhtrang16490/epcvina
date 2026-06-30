@@ -1,0 +1,33 @@
+---
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../../components/layout/DashboardShell';
+import HybridListingPage from '../../../components/combo/HybridListingPage';
+---
+
+<DashboardLayout
+  title="Combo Hybrid Solar - Giải Pháp Điện Độc Lập 24/7 | EPC Solar"
+  description="Hệ thống điện mặt trời Hybrid có pin lưu trữ - đảm bảo nguồn điện liên tục 24/7. Combo trọn gói từ 5kW-15kW. Hoàn vốn 4-6 năm. Lắp đặt chuyên nghiệp tại Hà Nội."
+  keywords="combo hybrid, điện mặt trời hybrid, pin lưu trữ, solar hybrid, EPC Solar hybrid, hệ thống điện độc lập, điện mặt trời có pin"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Solar Home", url: "https://epcvina.com/solar-home"}, {name: "Hybrid", url: "https://epcvina.com/solar-home/hybrid"}]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Lắp Đặt Hệ Thống Điện Mặt Trời Hybrid",
+    "description": "Lắp đặt hệ thống điện mặt trời hybrid có pin lưu trữ trọn gói, đảm bảo nguồn điện 24/7. Bảo hành 25 năm. Tư vấn miễn phí tại Hà Nội.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "EPC Solar",
+      "url": "https://epcvina.com"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Hà Nội"
+    },
+    "serviceType": "Hybrid Solar Panel Installation",
+    "priceRange": "$$$"
+  })} />
+  <DashboardShell client:load>
+    <HybridListingPage client:idle />
+  </DashboardShell>
+</DashboardLayout>

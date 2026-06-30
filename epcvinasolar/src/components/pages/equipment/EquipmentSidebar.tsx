@@ -27,12 +27,6 @@ const CATEGORY_META: Record<string, {
     color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
-  battery: {
-    label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5"/>,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
-  },
   'lv-battery': {
     label: 'Pin lưu trữ áp thấp',
     icon: <Battery className="h-5 w-5"/>,
@@ -129,7 +123,7 @@ export default function EquipmentSidebar({
   }, [categoryDevices, devices]);
 
   return (
-    <aside className="w-64 flex-shrink-0 ml-4">
+    <aside className="w-64 flex-shrink-0">
       <div className="sticky top-24 space-y-4">
         {/* Category Navigation */}
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">

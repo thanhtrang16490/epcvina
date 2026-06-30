@@ -5,7 +5,7 @@ import { useScrollContext } from '../../layout/DashboardShell';
 const navItems = [
   { label: 'Trang chủ', href: '/' },
   { label: 'Solar Home', href: '/solar-home' },
-  { label: 'Hybrid & BESS', href: '/hybrid-bess' },
+  { label: 'Hybrid & BESS', href: '/solar-home/hybrid' },
   { label: 'EV Charger', href: '/ev-charger' },
   { label: 'Solar C&I', href: '/solar-ci' },
   { label: 'Bảo trì O&M', href: '/bao-tri' },

@@ -104,8 +104,8 @@ export default function FooterSection() {
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Sản phẩm</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo On-Grid</a></li>
-              <li><a href="/hybrid-bess" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo Hybrid</a></li>
+              <li><a href="/solar-home/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo On-Grid</a></li>
+              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo Hybrid</a></li>
               <li><a href="/equipment/panel" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Tấm quang năng</a></li>
               <li><a href="/equipment/hybrid-inverter" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Biến tần Hybrid</a></li>
               <li><a href="/equipment/hv-battery" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Pin lưu trữ BESS</a></li>
@@ -117,7 +117,7 @@ export default function FooterSection() {
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Dịch vụ</h3>
             <ul className="space-y-3 text-sm">
               <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar Home</a></li>
-              <li><a href="/hybrid-bess" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Hybrid & BESS</a></li>
+              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Hybrid & BESS</a></li>
               <li><a href="/applications/nha-xuong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar C&I</a></li>
               <li><a href="/applications/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Văn phòng</a></li>
               <li><a href="/du-an" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Dự án đã thi công</a></li>

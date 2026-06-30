@@ -1,4 +1,7 @@
-import { Sun, Battery, Zap } from 'lucide-react';
+import { Eye } from 'lucide-react';
+import Image from '../ui/Image';
+
+const DEFAULT_COMBO_IMAGE = '/sample-combo.jpg';
 
 export interface ComboCardData {
   id: string;
@@ -22,14 +25,15 @@ export interface ComboCardData {
 
 interface ComboListingCardProps {
   combo: ComboCardData;
-  basePath: string; // '/on-grid' or '/hybrid'
+  basePath: string; // '/solar-home/combo'
+  onQuickView?: (combo: ComboCardData) => void;
 }
 
 function formatVND(amount: number): string {
   return new Intl.NumberFormat('vi-VN').format(amount) + ' đ';
 }
 
-export default function ComboListingCard({ combo, basePath }: ComboListingCardProps) {
+export default function ComboListingCard({ combo, basePath, onQuickView }: ComboListingCardProps) {
   const monthlyProduction = combo.monthly_production || Math.round(combo.power * 4 * 30);
   const paybackPeriod = combo.payback_period || (combo.price > 0 ? Math.round((combo.price / (monthlyProduction * 3500 * 12)) * 10) / 10 : 0);
   const area = combo.installation_area || Math.round(combo.power * 4.3);
@@ -48,110 +52,101 @@ export default function ComboListingCard({ combo, basePath }: ComboListingCardPr
     : `${paybackYears} năm`;
 
   return (
-    <div className="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col">
-      {/* Popular badge */}
-      {combo.is_popular && (
-        <div className="absolute top-3 right-3 z-10">
-          <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
-            Bán chạy
+    <div className="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-300 hover:-translate-y-2 flex flex-col">
+      {/* Product image */}
+      <div className="relative w-full aspect-[4/3] bg-gray-50 overflow-hidden">
+        <Image
+          src={combo.image || DEFAULT_COMBO_IMAGE}
+          alt={combo.name}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+        />
+        {/* System type badge */}
+        <div className="absolute top-3 left-3 z-10">
+          <span className={`text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm ${
+            combo.system_type === 'hybrid'
+              ? 'bg-blue-500/90 text-white'
+              : 'bg-orange-500/90 text-white'
+          }`}>
+            {combo.system_type === 'hybrid' ? 'Hybrid' : 'On-Grid'}
           </span>
         </div>
-      )}
-
-      {/* Product image area */}
-      <div className="relative bg-gray-50 px-4 pt-4 pb-3 flex items-center justify-center gap-3 min-h-[120px]">
-        {/* Panel icon */}
-        <div className="flex flex-col items-center gap-1">
-          <div className="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center">
-            <Sun className="h-7 w-7 text-blue-600" />
-          </div>
-          <span className="text-[10px] text-gray-500">{Math.ceil(combo.power * 1000 / 580)} tấm</span>
-        </div>
-
-        {/* Inverter icon */}
-        <div className="flex flex-col items-center gap-1">
-          <div className="w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center">
-            <Zap className="h-7 w-7 text-orange-600" />
-          </div>
-          <span className="text-[10px] text-gray-500">Biến tần</span>
-        </div>
-
-        {/* Battery icon (hybrid only) */}
-        {combo.system_type === 'hybrid' && combo.battery > 0 && (
-          <div className="flex flex-col items-center gap-1">
-            <div className="w-14 h-14 bg-orange-100 rounded-lg flex items-center justify-center">
-              <Battery className="h-7 w-7 text-orange-600" />
-            </div>
-            <span className="text-[10px] text-gray-500">{combo.battery} kWh</span>
-          </div>
-        )}
-      </div>
-
-      {/* Title & Brands */}
-      <div className="px-4 pt-3 pb-2">
-        <div className="flex items-center gap-2 flex-wrap">
-          <h3 className="font-semibold text-gray-900 text-sm leading-snug">{combo.name}</h3>
-          {combo.voltage && (
-            <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ${
-              combo.voltage === 'low' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'
-            }`}>
-              {combo.voltage === 'low' ? 'AT' : 'AC'}
+        {/* Popular badge */}
+        {combo.is_popular && (
+          <div className="absolute top-3 right-3 z-10">
+            <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+              Bán chạy
             </span>
-          )}
-        </div>
-        <p className="text-xs text-gray-500 mt-1">{brands}</p>
-      </div>
-
-      {/* Price */}
-      <div className="px-4 py-2 border-t border-gray-100">
-        <p className="text-[10px] text-gray-400 uppercase tracking-wider font-medium">Giá niêm yết</p>
-        <p className="text-lg font-bold text-red-600 mt-0.5">{formatVND(combo.price)}</p>
-      </div>
-
-      {/* Specs */}
-      <div className="px-4 py-2 text-xs text-gray-600 space-y-1.5 border-t border-gray-100 flex-1">
-        <div className="flex justify-between">
-          <span>{combo.panel_brand || 'Aiko'}:</span>
-          <span className="font-medium text-gray-900">{combo.power} kWp</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Biến tần: {combo.inverter_brand || (combo.system_type === 'hybrid' ? 'SAJ' : 'Auxsol')}</span>
-          <span className="font-medium text-gray-900">{combo.power} kW</span>
-        </div>
-        {combo.system_type === 'hybrid' && combo.battery > 0 && (
-          <div className="flex justify-between">
-            <span>Lưu trữ: {combo.battery_brand || 'Genxgreen'}</span>
-            <span className="font-medium text-gray-900">{combo.battery} kWh</span>
           </div>
         )}
-        <div className="flex justify-between">
-          <span>Sản Lượng:</span>
-          <span className="font-medium text-gray-900">{monthlyProduction} kWh/tháng</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Hoàn Vốn:</span>
-          <span className="font-medium text-gray-900">{paybackLabel}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Diện tích lắp đặt:</span>
-          <span className="font-medium text-gray-900">{area} m²</span>
+        {/* Hover overlay with eye icon for quick view */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onQuickView?.(combo);
+            }}
+            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/80 backdrop-blur-sm rounded-full p-3 hover:bg-white hover:scale-110 transform transition-all duration-200 cursor-pointer shadow-lg"
+            aria-label={`Xem nhanh ${combo.name}`}
+          >
+            <Eye className="w-5 h-5 text-gray-700" />
+          </button>
         </div>
       </div>
 
-      {/* Actions */}
-      <div className="px-4 pb-4 pt-2 flex gap-2">
-        <a
-          href={`${basePath}/${combo.slug}`}
-          className="flex-1 text-center py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-sm font-medium rounded-lg transition-colors"
-        >
-          Xem chi tiết
+      {/* Combo Info */}
+      <div className="p-4 space-y-3 flex-1 flex flex-col">
+        <a href={`${basePath}/${combo.slug}`} className="block">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h3 className="font-bold text-gray-900 text-sm leading-snug hover:text-orange-600 transition-colors duration-300">
+              {combo.name}
+            </h3>
+            {combo.voltage && (
+              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ${
+                combo.voltage === 'low' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700'
+              }`}>
+                {combo.voltage === 'low' ? 'AT' : 'AC'}
+              </span>
+            )}
+          </div>
         </a>
-        <a
-          href="tel:0988446113"
-          className="flex-1 text-center py-2.5 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
-        >
-          Liên hệ
-        </a>
+        <p className="text-xs text-gray-500">{brands}</p>
+
+        {/* Specs */}
+        <div className="space-y-1.5 text-xs text-gray-600 flex-1">
+          <div className="flex justify-between">
+            <span>{combo.panel_brand || 'Aiko'}:</span>
+            <span className="font-medium text-gray-900">{combo.power} kWp</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Biến tần:</span>
+            <span className="font-medium text-gray-900">{combo.inverter_brand || (combo.system_type === 'hybrid' ? 'SAJ' : 'Auxsol')} {combo.power} kW</span>
+          </div>
+          {combo.system_type === 'hybrid' && combo.battery > 0 && (
+            <div className="flex justify-between">
+              <span>Lưu trữ:</span>
+              <span className="font-medium text-gray-900">{combo.battery} kWh</span>
+            </div>
+          )}
+          <div className="flex justify-between">
+            <span>Sản lượng:</span>
+            <span className="font-medium text-gray-900">{monthlyProduction} kWh/tháng</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Hoàn vốn:</span>
+            <span className="font-medium text-gray-900">{paybackLabel}</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Diện tích:</span>
+            <span className="font-medium text-gray-900">{area} m²</span>
+          </div>
+        </div>
+
+        {/* Price */}
+        <div className="pt-3 border-t border-gray-100">
+          <p className="text-[10px] text-gray-400 uppercase tracking-wider font-medium">Giá niêm yết</p>
+          <p className="text-lg font-bold text-orange-600">{formatVND(combo.price)}</p>
+        </div>
       </div>
     </div>
   );

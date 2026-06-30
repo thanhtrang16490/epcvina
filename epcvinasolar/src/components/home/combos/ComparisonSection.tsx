@@ -165,14 +165,14 @@ export default function ComparisonSection() {
           {/* CTA buttons */}
           <div className="mt-8 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="/hybrid-bess"
+              href="/solar-home/hybrid"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full transition-colors shadow-lg"
             >
               <Battery className="h-4 w-4" />
               Xem combo Hybrid
             </a>
             <a
-              href="/on-grid"
+              href="/solar-home/on-grid"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-semibold rounded-full transition-colors shadow-lg"
             >
               <Sun className="h-4 w-4" />

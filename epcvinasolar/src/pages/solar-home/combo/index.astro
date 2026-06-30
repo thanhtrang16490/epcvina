@@ -1,0 +1,16 @@
+---
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../../components/layout/DashboardShell';
+import ComboCatalogPage from '../../../components/combo/ComboCatalogPage';
+---
+
+<DashboardLayout
+  title="Combo Hệ Thống Điện Mặt Trời - On-Grid & Hybrid | EPC Solar"
+  description="Tất cả combo hệ thống điện mặt trời: On-Grid hòa lưới, Hybrid có pin lưu trữ. Từ 5kW đến 50kW. Tiết kiệm 70-90% tiền điện. Bảo hành 25 năm."
+  keywords="combo điện mặt trời, combo solar, combo on-grid, combo hybrid, gói lắp đặt điện mặt trời, EPC Solar combo"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Solar Home", url: "https://epcvina.com/solar-home"}, {name: "Combo", url: "https://epcvina.com/solar-home/combo"}]}
+>
+  <DashboardShell client:load>
+    <ComboCatalogPage client:idle />
+  </DashboardShell>
+</DashboardLayout>

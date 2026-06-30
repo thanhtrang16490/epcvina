@@ -51,7 +51,7 @@ Hệ thống **Hybrid** kết hợp năng lượng mặt trời với hệ thố
 - **Tối ưu hoá tự tiêu thụ** — giảm tối đa lệ thuộc vào EVN
 - Chi phí đầu tư cao hơn On-Grid do có thêm ắc-quy và inverter Hybrid
 
-Khám phá giải pháp [điện mặt trời Hybrid & BESS tại EPC Solar](/hybrid-bess) hoặc [xem combo Hybrid 5kW](/hybrid-bess/hybrid-5kw-1pha-5kwh).
+Khám phá giải pháp [điện mặt trời Hybrid & BESS tại EPC Solar](/solar-home/hybrid) hoặc [xem combo Hybrid 5kW](/solar-home/combo/hybrid-5kw-1pha-5kwh).
 
 ---
 
@@ -179,7 +179,7 @@ Sau hơn 10 năm lắp đặt hàng trăm hệ thống điện mặt trời tạ
 
 ### Với ngân sách 90–130 triệu VNĐ → Chọn Hybrid
 
-Hệ thống [Hybrid với ắc-quy LiFePO4](/hybrid-bess) mang lại sự an tâm tuyệt đối. Đặc biệt phù hợp với gia đình có trẻ nhỏ, người già, hoặc thiết bị cần điện liên tục.
+Hệ thống [Hybrid với ắc-quy LiFePO4](/solar-home/hybrid) mang lại sự an tâm tuyệt đối. Đặc biệt phù hợp với gia đình có trẻ nhỏ, người già, hoặc thiết bị cần điện liên tục.
 
 ### Lộ trình 2 bước (tiết kiệm nhất):
 
@@ -218,4 +218,4 @@ Cả hai giải pháp đều là khoản đầu tư sinh lời — câu hỏi ch
 
 **Bước tiếp theo**: Liên hệ EPC Solar để được khảo sát mái nhà miễn phí và nhận báo giá chi tiết trong vòng 24 giờ. Đội ngũ kỹ thuật của chúng tôi sẽ tư vấn giải pháp tối ưu nhất dựa trên thực tế mái nhà, thói quen tiêu thụ điện và ngân sách của gia đình bạn.
 
-👉 [Xem chi tiết hệ thống On-Grid](/on-grid) | [Xem chi tiết hệ thống Hybrid](/hybrid-bess) | [Liên hệ tư vấn](/contact)
+👉 [Xem chi tiết hệ thống On-Grid](/solar-home/on-grid) | [Xem chi tiết hệ thống Hybrid](/solar-home/hybrid) | [Liên hệ tư vấn](/lien-he)
