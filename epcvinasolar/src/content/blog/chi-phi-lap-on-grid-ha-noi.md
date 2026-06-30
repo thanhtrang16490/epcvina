@@ -14,7 +14,7 @@ image: "/images/blog/chi-phi-on-grid-ha-noi.webp"
 
 Bài viết này cung cấp thông tin chi tiết và minh bạch nhất về chi phí lắp đặt điện mặt trời On-Grid năm 2026, giúp bạn đưa ra quyết định đầu tư thông minh.
 
-👉 **Xem nhanh:** [Combo On-Grid 5kW](/on-grid/on-grid-5kw-1pha) | [Báo giáinstant](/bao-gia) | [Tư vấn miễn phí](/contact)
+👉 **Xem nhanh:** [Combo On-Grid 5kW](/on-grid/on-grid-5kw-1pha) | [Báo giáinstant](/bao-gia) | [Tư vấn miễn phí](/lien-he)
 
 ---
 
@@ -181,7 +181,7 @@ Nếu tấm pin đặt xa tủ điện (>20m), chi phí dây cáp tăng đáng k
 
 Hiện tại, một số ngân hàng như BIDV, Agribank có gói vay ưu đãi cho điện mặt trời với lãi suất 6–8%/năm, hỗ trợ trả góp trong 3–5 năm. EPC Solar có thể hỗ trợ kết nối với các đơn vị cho vay uy tín.
 
-📖 **Đọc thêm:** [On-Grid vs Hybrid: Nên chọn cái nào?](/blog/on-grid-vs-hybrid)
+📖 **Đọc thêm:** [On-Grid vs Hybrid: Nên chọn cái nào?](/tin-tuc/on-grid-vs-hybrid)
 
 ---
 
@@ -226,7 +226,7 @@ Kể từ năm 2025, Việt Nam áp dụng cơ chế **bù trừ điện năng**
 
 EPC Solar đồng hành cùng bạn trong toàn bộ thủ tục đấu nối. Xem thêm tại trang [điện mặt trời On-Grid](/on-grid) của chúng tôi.
 
-📖 **Đọc thêm:** [Quy trình lắp đặt solar từ A-Z](/blog/quy-trinh-lap-dat-solar)
+📖 **Đọc thêm:** [Quy trình lắp đặt solar từ A-Z](/tin-tuc/quy-trinh-lap-dat-solar)
 
 ---
 
@@ -250,7 +250,7 @@ Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **th�
 ### EPCVINA có hỗ trợ trả góp không?
 **Có.** Chúng tôi hợp tác với các ngân hàng để hỗ trợ trả góp 0-12 tháng, lãi suất ưu đãi 6-8%/năm.
 
-📞 **Vẫn còn thắc mắc?** [Liên hệ tư vấn miễn phí](/contact) hoặc gọi [0988 446 113](tel:+84988446113)
+📞 **Vẫn còn thắc mắc?** [Liên hệ tư vấn miễn phí](/lien-he) hoặc gọi [0988 446 113](tel:+84988446113)
 
 ---
 
@@ -310,10 +310,10 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 - ✅ Bảo hành 2-25 năm
 
 👉 **Hành động ngay:**
-- [Yêu cầu khảo sát miễn phí](/contact)
+- [Yêu cầu khảo sát miễn phí](/lien-he)
 - [Xem combo On-Grid](/on-grid)
 - [Tính toán ROI của bạn](/bao-gia)
-- [Đọc thêm về Hybrid](/blog/on-grid-vs-hybrid)
+- [Đọc thêm về Hybrid](/tin-tuc/on-grid-vs-hybrid)
 
 ---
 

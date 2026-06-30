@@ -1047,7 +1047,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
               <p className="text-sm text-gray-500">Vui lòng đăng nhập để sử dụng tính năng này</p>
             </div>
             <a
-              href="/login"
+              href="/dang-nhap"
               className="w-full py-3 px-4 bg-[#F97316] text-white rounded-xl font-semibold text-center hover:bg-[#C2410C] transition-colors"
             >
               Đăng nhập

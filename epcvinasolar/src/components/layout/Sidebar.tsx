@@ -76,18 +76,18 @@ const menuItems: MenuItem[] = [
     name: 'Giải pháp ứng dụng',
     icon: Lightbulb,
     children: [
-      { name: 'Điện công nghiệp', href: '/applications/dien-cong-nghiep' },
-      { name: 'Điện dân dụng', href: '/applications/dien-dan-dung' },
-      { name: 'Điện sản xuất nông nghiệp', href: '/applications/dien-nong-nghiep' },
+      { name: 'Điện công nghiệp', href: '/ung-dung/dien-cong-nghiep' },
+      { name: 'Điện dân dụng', href: '/ung-dung/dien-dan-dung' },
+      { name: 'Điện sản xuất nông nghiệp', href: '/ung-dung/dien-nong-nghiep' },
     ],
   },
-  { name: 'Blog', href: '/blog', icon: Newspaper },
-  { name: 'Về chúng tôi', href: '/about', icon: User },
+  { name: 'Blog', href: '/tin-tuc', icon: Newspaper },
+  { name: 'Về chúng tôi', href: '/ve-chung-toi', icon: User },
   {
     name: 'Hỏi đáp',
     icon: MessageSquare,
     children: [
-      { name: 'Câu hỏi thường gặp', href: '/faq', soon: true },
+      { name: 'Câu hỏi thường gặp', href: '/hoi-dap', soon: true },
       { name: 'Chính sách bảo hành', href: '/warranty', soon: true },
       { name: 'Đánh giá khách hàng', href: '/reviews', soon: true },
     ],
@@ -349,7 +349,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </button>
               </div>
             ) : (
-              <a href="/login" onClick={onClose}
+              <a href="/dang-nhap" onClick={onClose}
                 className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
               >
                 <LogIn className="h-4 w-4" />
@@ -575,7 +575,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               )
             ) : (
               isExpanded ? (
-                <a href="/login"
+                <a href="/dang-nhap"
                   className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl py-2.5 px-4 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
                 >
                   <LogIn className="h-4 w-4 flex-shrink-0" />

@@ -294,6 +294,6 @@ A: Vẫn chạy, nhưng sản lượng thấp hơn (thường 20–40% so với 
 
 Quy trình lắp đặt điện mặt trời tại EPC Solar được chuẩn hóa qua hàng trăm dự án — **minh bạch, chuyên nghiệp và đúng tiến độ**. Từ bước tư vấn đầu tiên đến khi bạn nhìn thấy đồng hồ điện quay ngược, mọi bước đều có kỹ sư EPC Solar đồng hành.
 
-**Bắt đầu hành trình tiết kiệm điện ngay hôm nay**: [Liên hệ EPC Solar](/contact) để đặt lịch khảo sát miễn phí.
+**Bắt đầu hành trình tiết kiệm điện ngay hôm nay**: [Liên hệ EPC Solar](/lien-he) để đặt lịch khảo sát miễn phí.
 
-👉 [Xem giải pháp On-Grid](/on-grid) | [Liên hệ tư vấn ngay](/contact)
+👉 [Xem giải pháp On-Grid](/on-grid) | [Liên hệ tư vấn ngay](/lien-he)

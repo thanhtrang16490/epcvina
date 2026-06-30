@@ -118,10 +118,10 @@ export default function FooterSection() {
             <ul className="space-y-3 text-sm">
               <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar Home</a></li>
               <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Hybrid & BESS</a></li>
-              <li><a href="/applications/nha-xuong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar C&I</a></li>
-              <li><a href="/applications/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Văn phòng</a></li>
+              <li><a href="/ung-dung/nha-xuong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar C&I</a></li>
+              <li><a href="/ung-dung/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Văn phòng</a></li>
               <li><a href="/du-an" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Dự án đã thi công</a></li>
-              <li><a href="/blog" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Blog</a></li>
+              <li><a href="/tin-tuc" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Blog</a></li>
             </ul>
           </div>
 
@@ -167,8 +167,8 @@ export default function FooterSection() {
         <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-gray-500 text-center sm:text-left">
           <p>&copy; {new Date().getFullYear()} EPCVINA Solar — Công ty CP Xây Lắp EPC Việt Nam. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="/privacy" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Chính sách bảo mật</a>
-            <a href="/terms" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Điều khoản sử dụng</a>
+            <a href="/chinh-sach-bao-mat" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Chính sách bảo mật</a>
+            <a href="/dieu-khoan" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Điều khoản sử dụng</a>
           </div>
         </div>
       </div>

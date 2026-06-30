@@ -1824,7 +1824,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                   Hủy
                 </button>
                 <a
-                  href="/login"
+                  href="/dang-nhap"
                   className="flex-1 py-2.5 px-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl text-sm font-semibold text-center hover:from-purple-700 hover:to-blue-700 transition-all"
                 >
                   Đăng nhập
