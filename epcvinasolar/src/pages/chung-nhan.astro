@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ChungNhanPage from '../components/pages/brand/ChungNhanPage';
+
+export const prerender = true;
+
+const seoTitle = 'Chứng Nhận & Năng Lực Nhà Thầu EPCVINA Solar';
+const seoDescription = 'EPCVINA có đầy đủ chứng chỉ năng lực xây dựng, ISO 9001, an toàn điện. Đại lý ủy quyền LONGi, Deye, SAJ, Hopetrek. 500+ công trình.';
+const seoKeywords = 'chứng nhận EPCVINA, năng lực nhà thầu, chứng chỉ điện mặt trời, đại lý ủy quyền solar, EPCVINA';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Chứng Nhận', url: 'https://epcvina.com/chung-nhan' }
+  ]}
+>
+  <ChungNhanPage client:visible />
+</DashboardLayout>

@@ -1,0 +1,54 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Thái Nguyên',
+  slug: 'thai-nguyen',
+  region: 'Thái Nguyên',
+  description: 'EPCVINA cung cấp điện mặt trời tại Thái Nguyên cho gia đình, doanh nghiệp, trường học, bệnh viện. Phục vụ TP Thái Nguyên, Sông Công, Phổ Yên, Đại Từ, Đồng Hỷ.',
+  solarPotential: 'Trung Bình - Cao',
+  avgSunHours: '1.400 - 1.600',
+  installedCapacity: '80+ kWp',
+  customersServed: '35+',
+  popularSystems: ['On-Grid 3-5kWp gia đình', 'Hybrid 5-15kWp cho trường học', 'Hệ thống cho bệnh viện 10-30kWp'],
+  benefits: [
+    'Thái Nguyên có tiềm năng điện mặt trời khá, đặc biệt khu vực phía nam',
+    'Phù hợp cho trường học, bệnh viện giảm chi phí điện',
+    'EPCVINA tư vấn giải pháp phù hợp điều kiện khí hậu vùng núi',
+    'Hỗ trợ trả góp, giảm áp lực tài chính',
+    'Bảo hành dài hạn, bảo trì định kỳ miễn phí'
+  ],
+  faqs: [
+    { q: 'Thái Nguyên có lắp được điện mặt trời không?', a: 'Có. Thái Nguyên có 1.400-1.600 giờ nắng/năm. Khu vực phía nam tỉnh có tiềm năng tốt nhất.' },
+    { q: 'Vùng núi có ảnh hưởng hiệu suất không?', a: 'Vùng núi cao có thể có sương mù sáng, nhưng EPCVINA tư vấn góc nghiêng và hướng phù hợp để tối ưu hiệu suất.' },
+    { q: 'Có hỗ trợ trả góp không?', a: 'Có. EPCVINA liên kết với ngân hàng hỗ trợ trả góp 0-12 tháng, giảm áp lực tài chính.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Thái Nguyên 2026 - Lắp Đặt Toàn Tỉnh | EPCVINA"
+  description="Lắp điện mặt trời tại Thái Nguyên ✓ Giảm 70-90% tiền điện ✓ Hỗ trợ trả góp ✓ Bảo hành 25 năm ✓ 35+ khách hàng. LH: 0988 446 113"
+  keywords="điện mặt trời thái nguyên, solar thái nguyên, điện mặt trời phổ yên, EPCVINA thái nguyên"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Thái Nguyên', url: 'https://epcvina.com/dien-mat-troi-thai-nguyen' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>

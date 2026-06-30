@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import QuyTrinhThiCongPage from '../components/pages/brand/QuyTrinhThiCongPage';
+
+export const prerender = true;
+
+const seoTitle = 'Quy Trình Thi Công Điện Mặt Trời 7 Bước | EPCVINA Solar';
+const seoDescription = 'Quy trình thi công điện mặt trời chuyên nghiệp 7 bước: Khảo sát → Thiết kế → Ký HĐ → Cung cấp thiết bị → Lắp đặt → Đấu nối → Bàn giao. EPCVINA';
+const seoKeywords = 'quy trình thi công solar, lắp đặt điện mặt trời, quy trình EPC, thi công điện mặt trời EPCVINA';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Quy Trình Thi Công', url: 'https://epcvina.com/quy-trinh-thi-cong' }
+  ]}
+>
+  <QuyTrinhThiCongPage client:visible />
+</DashboardLayout>

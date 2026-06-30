@@ -1,0 +1,55 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import KienThucHubPage from '../../components/pages/kienthuc/KienThucHubPage';
+
+export const prerender = true;
+
+const seoTitle = 'Kiến Thức Điện Mặt Trời 2026 - Tổng Hợp Từ A-Z | EPCVINA';
+const seoDescription = 'Thư viện kiến thức điện mặt trời đầy đủ: hướng dẫn lắp đặt, chi phí, chính sách, pin lưu trữ, kỹ thuật. Cập nhật mới nhất 2026.';
+const seoKeywords = 'kiến thức điện mặt trời, tài liệu solar, hướng dẫn lắp điện mặt trời, điện mặt trời cơ bản, pin lưu trữ, EPCVINA';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Điện mặt trời có những loại hệ thống nào?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có 3 loại chính: On-Grid (hòa lưới), Hybrid (kết hợp lưu trữ), và Off-Grid (độc lập). Mỗi loại phù hợp với nhu cầu khác nhau."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chi phí lắp điện mặt trời bao nhiêu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Từ 40-300 triệu tùy công suất. Hệ 3kWp cho gia đình từ 40 triệu, hệ 10kWp từ 110 triệu. Hoàn vốn 3-6 năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Thời gian hoàn vốn của điện mặt trời?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Trung bình 3-6 năm tùy công suất, vị trí và mức tiêu thụ điện. Sau hoàn vốn, hệ thống tạo điện miễn phí 20-25 năm."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Kiến Thức', url: 'https://epcvina.com/kien-thuc' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <KienThucHubPage client:visible />
+</DashboardLayout>

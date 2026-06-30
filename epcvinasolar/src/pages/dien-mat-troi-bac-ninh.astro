@@ -1,0 +1,54 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Bắc Ninh',
+  slug: 'bac-ninh',
+  region: 'Bắc Ninh',
+  description: 'EPCVINA triển khai điện mặt trời tại Bắc Ninh - trung tâm công nghiệp lớn miền Bắc. Phục vụ TP Bắc Ninh, Từ Sơn, Yên Phong, Quế Võ, Thuận Thành và các khu công nghiệp.',
+  solarPotential: 'Cao',
+  avgSunHours: '1.450 - 1.600',
+  installedCapacity: '200+ kWp',
+  customersServed: '60+',
+  popularSystems: ['On-Grid cho nhà máy 50-200kWp', 'Hybrid cho gia đình 5-10kWp', 'Hệ thống cho KCN vừa và nhỏ'],
+  benefits: [
+    'Bắc Ninh có nhiều KCN, nhu cầu điện lớn, chi phí điện cao',
+    'Điện mặt trời giúp doanh nghiệp giảm 40-60% chi phí điện',
+    'Đáp ứng tiêu chuẩn xanh cho doanh nghiệp FDI',
+    'Hỗ trợ ESG reporting cho các tập đoàn đa quốc gia',
+    'Đội ngũ EPCVINA có kinh nghiệm lắp đặt tại các KCN Bắc Ninh'
+  ],
+  faqs: [
+    { q: 'Doanh nghiệp tại Bắc Ninh có nên lắp điện mặt trời?', a: 'Rất nên. Bắc Ninh có nhiều KCN với giá điện bậc cao. Điện mặt trời giúp giảm 40-60% chi phí, hoàn vốn 3-5 năm.' },
+    { q: 'Lắp cho nhà máy có phức tạp không?', a: 'EPCVINA có kinh nghiệm triển khai hệ thống 50-200kWp cho nhà máy. Quy trình chuyên nghiệp, không ảnh hưởng sản xuất.' },
+    { q: 'Có hỗ trợ ESG reporting không?', a: 'Có. EPCVINA cung cấp báo cáo giảm phát thải CO2, hỗ trợ doanh nghiệp FDI đáp ứng tiêu chuẩn ESG.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Bắc Ninh 2026 - KCN & Doanh Nghiệp | EPCVINA"
+  description="Lắp điện mặt trời tại Bắc Ninh ✓ Giảm 40-60% chi phí điện ✓ Hoàn vốn 3-5 năm ✓ Chuyên KCN, nhà máy ✓ ESG reporting. Tư vấn: 0988 446 113"
+  keywords="điện mặt trời bắc ninh, solar KCN bắc ninh, điện mặt trời doanh nghiệp, EPCVINA bắc ninh"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Bắc Ninh', url: 'https://epcvina.com/dien-mat-troi-bac-ninh' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>

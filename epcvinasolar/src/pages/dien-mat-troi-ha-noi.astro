@@ -1,0 +1,72 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Hà Nội',
+  slug: 'ha-noi',
+  region: 'Hà Nội & Vùng Lân Cận',
+  description: 'EPCVINA là đơn vị hàng đầu về lắp đặt điện mặt trời tại Hà Nội với hơn 200 công trình đã triển khai. Phục vụ tất cả các quận huyện: Hoàn Kiếm, Ba Đình, Đống Đa, Cầu Giấy, Thanh Xuân, Long Biên, Hà Đông, Nam Từ Liêm, Bắc Từ Liêm, Hoàng Mai, Thanh Trì...',
+  solarPotential: 'Cao',
+  avgSunHours: '1.500 - 1.700',
+  installedCapacity: '500+ kWp',
+  customersServed: '200+',
+  popularSystems: ['On-Grid 3-5kWp cho nhà phố', 'Hybrid 5-10kWp có lưu trữ', 'Hệ thống cho biệt thự 10-20kWp'],
+  benefits: [
+    'Giờ nắng cao: 1.500-1.700 giờ/năm, hiệu suất hệ thống đạt 15-18%',
+    'Tiết kiệm 70-90% chi phí điện hàng tháng cho gia đình',
+    'Hoàn vốn nhanh: 3-5 năm nhờ giá điện bậc cao tại Hà Nội',
+    'Tăng giá trị bất động sản khi lắp hệ thống solar',
+    'Góp phần giảm ô nhiễm không khí cho thủ đô',
+    'Hỗ trợ thủ tục đấu nối EVN Hà Nội nhanh chóng'
+  ],
+  faqs: [
+    { q: 'Lắp điện mặt trời tại Hà Nội có hiệu quả không?', a: 'Có. Hà Nội có 1.500-1.700 giờ nắng/năm, thuộc khu vực có tiềm năng điện mặt trời cao. Hệ thống hoạt động tốt từ tháng 4 đến tháng 10.' },
+    { q: 'Chi phí lắp đặt tại Hà Nội bao nhiêu?', a: 'Từ 40 triệu cho hệ 3kWp nhà phố đến 200+ triệu cho biệt thự 15kWp. Hoàn vốn 3-5 năm.' },
+    { q: 'Thủ tục đấu nối EVN Hà Nội mất bao lâu?', a: 'EPCVINA hỗ trợ toàn bộ thủ tục. Thời gian đấu nối khoảng 15-30 ngày làm việc.' },
+    { q: 'Bảo hành hệ thống như thế nào?', a: 'Pin mặt trời bảo hành 25 năm, inverter 10 năm, lắp đặt 5 năm. Bảo trì miễn phí năm đầu.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "EPCVINA Solar - Điện Mặt Trời Hà Nội",
+  "description": "Lắp đặt điện mặt trời tại Hà Nội. EPCVINA - Đơn vị thi công uy tín với 200+ công trình.",
+  "url": "https://epcvina.com/dien-mat-troi-ha-noi",
+  "telephone": "0988446113",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Hà Nội",
+    "addressCountry": "VN"
+  },
+  "areaServed": "Hà Nội"
+};
+---
+
+<DashboardLayout
+  title={`Điện Mặt Trời Hà Nội 2026 - Lắp Đặt Uy Tín | EPCVINA`}
+  description="Lắp điện mặt trời tại Hà Nội ✓ Giảm 70-90% tiền điện ✓ Hoàn vốn 3-5 năm ✓ Bảo hành 25 năm ✓ Hơn 200 công trình. Tư vấn miễn phí: 0988 446 113"
+  keywords="điện mặt trời hà nội, lắp điện mặt trời tại hà nội, solar hà nội, điện mặt trời EVN, EPCVINA hà nội"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Hà Nội', url: 'https://epcvina.com/dien-mat-troi-ha-noi' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>

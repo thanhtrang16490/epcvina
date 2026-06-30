@@ -1,0 +1,54 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Quảng Ninh',
+  slug: 'quang-ninh',
+  region: 'Quảng Ninh',
+  description: 'EPCVINA triển khai điện mặt trời tại Quảng Ninh - tỉnh có tiềm năng năng lượng mặt trời lớn. Phục vụ Hạ Long, Cẩm Phả, Móng Cái, Uông Bí, Đông Triều và các khu du lịch.',
+  solarPotential: 'Rất Cao',
+  avgSunHours: '1.600 - 1.800',
+  installedCapacity: '100+ kWp',
+  customersServed: '45+',
+  popularSystems: ['Hybrid cho resort 10-30kWp', 'On-Grid cho gia đình 3-8kWp', 'Hệ thống cho tàu du lịch'],
+  benefits: [
+    'Quảng Ninh có số giờ nắng cao nhất miền Bắc: 1.600-1.800 giờ/năm',
+    'Lý tưởng cho điện mặt trời kết hợp du lịch tại Hạ Long',
+    'Giúp resort, khách sạn tiết kiệm chi phí điện đáng kể',
+    'Tăng giá trị thương hiệu xanh cho doanh nghiệp du lịch',
+    'EPCVINA có giải pháp chống chịu thời tiết biển đảo'
+  ],
+  faqs: [
+    { q: 'Quảng Ninh có tiềm năng điện mặt trời thế nào?', a: 'Quảng Ninh có 1.600-1.800 giờ nắng/năm, thuộc top đầu cả nước về tiềm năng điện mặt trời.' },
+    { q: 'Lắp cho resort tại Hạ Long có được không?', a: 'Có. EPCVINA chuyên lắp cho resort, khách sạn tại Hạ Long, Tuần Châu, giúp giảm 50-70% chi phí điện.' },
+    { q: 'Có lắp được trên đảo không?', a: 'Có. EPCVINA cung cấp giải pháp Off-Grid cho các đảo, kết hợp pin lưu trữ đảm bảo điện 24/7.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Quảng Ninh 2026 - Hạ Long & Du Lịch | EPCVINA"
+  description="Lắp điện mặt trời tại Quảng Ninh ✓ Giờ nắng cao nhất miền Bắc ✓ Giải pháp resort, du lịch ✓ Giảm 50-70% tiền điện. LH: 0988 446 113"
+  keywords="điện mặt trời quảng ninh, solar hạ long, điện mặt trời resort, EPCVINA quảng ninh"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Quảng Ninh', url: 'https://epcvina.com/dien-mat-troi-quang-ninh' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>

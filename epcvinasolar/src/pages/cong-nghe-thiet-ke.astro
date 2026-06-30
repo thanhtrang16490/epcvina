@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import CongNgheThietKePage from '../components/pages/brand/CongNgheThietKePage';
+
+export const prerender = true;
+
+const seoTitle = 'Công Nghệ Thiết Kế Điện Mặt Trời PVSyst | EPCVINA';
+const seoDescription = 'EPCVINA sử dụng PVSyst, Helioscope, AutoCAD để thiết kế hệ thống điện mặt trời. Mô phỏng 3D, tối ưu sản lượng, an toàn theo IEC.';
+const seoKeywords = 'thiết kế điện mặt trời, PVSyst, Helioscope, công nghệ solar, thiết kế 3D mái, EPCVINA';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Công Nghệ Thiết Kế', url: 'https://epcvina.com/cong-nghe-thiet-ke' }
+  ]}
+>
+  <CongNgheThietKePage client:visible />
+</DashboardLayout>

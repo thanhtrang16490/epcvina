@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ChinhSachPage from '../components/pages/brand/ChinhSachPage';
+
+export const prerender = true;
+
+const seoTitle = 'Chính Sách Công Ty EPCVINA Solar 2026';
+const seoDescription = 'Tổng hợp chính sách EPCVINA: Bảo mật, Thanh toán, Đổi trả, Chăm sóc khách hàng, Bảo hành, Vận chuyển. Minh bạch, công bằng.';
+const seoKeywords = 'chính sách EPCVINA, chính sách bảo mật, chính sách thanh toán solar, chính sách bảo hành, EPCVINA';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Chính Sách', url: 'https://epcvina.com/chinh-sach' }
+  ]}
+>
+  <ChinhSachPage client:visible />
+</DashboardLayout>

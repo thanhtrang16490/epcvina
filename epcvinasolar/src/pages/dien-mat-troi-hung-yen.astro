@@ -1,0 +1,54 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Hưng Yên',
+  slug: 'hung-yen',
+  region: 'Hưng Yên',
+  description: 'EPCVINA cung cấp giải pháp điện mặt trời tại Hưng Yên cho hộ gia đình, doanh nghiệp, khu công nghiệp. Phục vụ TP Hưng Yên, Mỹ Hào, Văn Lâm, Khoái Châu, Yên Mỹ và các huyện lân cận.',
+  solarPotential: 'Cao',
+  avgSunHours: '1.500 - 1.650',
+  installedCapacity: '150+ kWp',
+  customersServed: '80+',
+  popularSystems: ['On-Grid 3-5kWp gia đình', 'Hybrid 8-15kWp cho trang trại', 'Hệ thống cho KCN 50-100kWp'],
+  benefits: [
+    'Hưng Yên có bức xạ mặt trời cao, lý tưởng cho điện mặt trời',
+    'Phù hợp cho mô hình điện mặt trời kết hợp nông nghiệp',
+    'Tiết kiệm chi phí điện cho trang trại, nhà xưởng',
+    'Hoàn vốn nhanh 3-5 năm, lợi nhuận 20+ năm',
+    'EPCVINA có đội ngũ kỹ thuật tại Hưng Yên, hỗ trợ nhanh'
+  ],
+  faqs: [
+    { q: 'Điện mặt trời tại Hưng Yên có hiệu quả không?', a: 'Hưng Yên có bức xạ mặt trời thuộc top cao miền Bắc, đặc biệt phù hợp cho hệ thống solar kết hợp nông nghiệp.' },
+    { q: 'Có lắp được cho trang trại không?', a: 'Có. EPCVINA chuyên lắp hệ thống solar cho trang trại, kết hợp agrisolar giúp tăng hiệu quả sử dụng đất.' },
+    { q: 'Chi phí lắp cho trang trại bao nhiêu?', a: 'Từ 100-500 triệu tùy công suất. Hệ 20kWp từ 180 triệu, hoàn vốn 4-5 năm.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Hưng Yên 2026 - Lắp Đặt Uy Tín | EPCVINA"
+  description="Lắp điện mặt trời tại Hưng Yên ✓ Giảm 70-90% tiền điện ✓ Hoàn vốn 3-5 năm ✓ Bảo hành 25 năm ✓ 80+ khách hàng. Tư vấn miễn phí: 0988 446 113"
+  keywords="điện mặt trời hưng yên, lắp điện mặt trời hưng yên, solar hưng yên, EPCVINA hưng yên"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Hưng Yên', url: 'https://epcvina.com/dien-mat-troi-hung-yen' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>

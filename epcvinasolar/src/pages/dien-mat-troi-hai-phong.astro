@@ -1,0 +1,54 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Hải Phòng',
+  slug: 'hai-phong',
+  region: 'Hải Phòng',
+  description: 'EPCVINA lắp đặt điện mặt trời tại Hải Phòng - thành phố cảng lớn nhất miền Bắc. Phục vụ TP Hải Phòng, Thủy Nguyên, An Dương, Kiến An, Đồ Sơn và các khu công nghiệp.',
+  solarPotential: 'Rất Cao',
+  avgSunHours: '1.550 - 1.750',
+  installedCapacity: '180+ kWp',
+  customersServed: '70+',
+  popularSystems: ['On-Grid cho cảng biển 100kWp+', 'Hybrid cho gia đình 5-10kWp', 'Hệ thống cho khu du lịch Đồ Sơn'],
+  benefits: [
+    'Hải Phòng có bức xạ mặt trời cao nhất miền Bắc nhờ gần biển',
+    'Phù hợp cho hệ thống solar kết hợp chống ăn mòn muối biển',
+    'Giảm chi phí điện cho cảng biển, nhà máy, khu du lịch',
+    'Thiết bị chống chịu môi trường biển, bền bỉ',
+    'EPCVINA có giải pháp chuyên biệt cho vùng ven biển'
+  ],
+  faqs: [
+    { q: 'Điện mặt trời tại Hải Phòng có tốt hơn Hà Nội?', a: 'Hải Phòng có bức xạ mặt trời cao hơn Hà Nội khoảng 5-10% nhờ gần biển, đặc biệt khu vực Đồ Sơn, Cát Hải.' },
+    { q: 'Gần biển có ảnh hưởng thiết bị không?', a: 'EPCVINA sử dụng thiết bị chống ăn mòn muối biển, khung nhôm anodized, ốc vít inox 304 cho khu vực ven biển.' },
+    { q: 'Lắp cho khách sạn, resort có được không?', a: 'Có. EPCVINA chuyên lắp cho khách sạn, resort tại Đồ Sơn, Cát Bà giúp giảm chi phí điện và tăng hình ảnh xanh.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Hải Phòng 2026 - Lắp Đặt Ven Biển | EPCVINA"
+  description="Lắp điện mặt trời tại Hải Phòng ✓ Bức xạ cao nhất miền Bắc ✓ Chống ăn mòn biển ✓ Giảm 70-90% tiền điện ✓ 70+ khách hàng. LH: 0988 446 113"
+  keywords="điện mặt trời hải phòng, solar hải phòng, điện mặt trời đồ sơn, EPCVINA hải phòng"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Hải Phòng', url: 'https://epcvina.com/dien-mat-troi-hai-phong' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>

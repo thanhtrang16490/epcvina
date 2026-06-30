@@ -1,0 +1,54 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Hải Dương',
+  slug: 'hai-duong',
+  region: 'Hải Dương',
+  description: 'EPCVINA cung cấp giải pháp điện mặt trời tại Hải Dương cho gia đình, doanh nghiệp, cơ sở sản xuất. Phục vụ TP Hải Dương, Chí Linh, Cẩm Giàng, Nam Sách, Thanh Hà và các huyện.',
+  solarPotential: 'Cao',
+  avgSunHours: '1.500 - 1.650',
+  installedCapacity: '120+ kWp',
+  customersServed: '55+',
+  popularSystems: ['On-Grid 3-8kWp gia đình', 'Hybrid 10-20kWp cho xưởng', 'Hệ thống cho làng nghề 5-15kWp'],
+  benefits: [
+    'Hải Dương có tiềm năng điện mặt trời tốt, nắng đều quanh năm',
+    'Phù hợp cho cơ sở sản xuất, làng nghề giảm chi phí điện',
+    'Hoàn vốn nhanh 3-5 năm, tiết kiệm lâu dài',
+    'EPCVINA có đội ngũ hỗ trợ nhanh tại Hải Dương',
+    'Tư vấn miễn phí, khảo sát tận nơi trong 24h'
+  ],
+  faqs: [
+    { q: 'Lắp điện mặt trời tại Hải Dương có tiết kiệm không?', a: 'Có. Hải Dương có 1.500-1.650 giờ nắng/năm. Hệ thống giúp giảm 70-90% chi phí điện, hoàn vốn 3-5 năm.' },
+    { q: 'Làng nghề có nên lắp điện mặt trời?', a: 'Rất nên. Các làng nghề tiêu thụ điện lớn, lắp solar giúp giảm chi phí sản xuất, tăng cạnh tranh.' },
+    { q: 'Thời gian lắp đặt bao lâu?', a: 'Từ khảo sát đến hoàn công: 7-15 ngày cho hệ gia đình, 15-30 ngày cho hệ doanh nghiệp.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Hải Dương 2026 - Lắp Đặt Nhanh | EPCVINA"
+  description="Lắp điện mặt trời tại Hải Dương ✓ Giảm 70-90% tiền điện ✓ Hoàn vốn 3-5 năm ✓ Khảo sát 24h ✓ 55+ khách hàng. Tư vấn: 0988 446 113"
+  keywords="điện mặt trời hải dương, solar hải dương, điện mặt trời chí linh, EPCVINA hải dương"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Hải Dương', url: 'https://epcvina.com/dien-mat-troi-hai-duong' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>

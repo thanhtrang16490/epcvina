@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import BaoHanhPage from '../components/pages/brand/BaoHanhPage';
+
+export const prerender = true;
+
+const seoTitle = 'Chính Sách Bảo Hành Điện Mặt Trời 2026 | EPCVINA Solar';
+const seoDescription = 'Bảo hành pin mặt trời 25 năm, inverter 10 năm, lắp đặt 5 năm. Quy trình minh bạch, tiếp nhận 48h. EPCVINA cam kết đồng hành trọn đời.';
+const seoKeywords = 'bảo hành điện mặt trời, chính sách bảo hành solar, bảo hành pin mặt trời 25 năm, EPCVINA bảo hành';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Chính Sách Bảo Hành', url: 'https://epcvina.com/bao-hanh' }
+  ]}
+>
+  <BaoHanhPage client:visible />
+</DashboardLayout>

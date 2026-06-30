@@ -1,0 +1,151 @@
+import { MapPin, Phone, CheckCircle, Sun, Zap, Shield, ArrowRight, Star } from 'lucide-react';
+
+interface ProvincePageProps {
+  province: {
+    name: string;
+    slug: string;
+    region: string;
+    description: string;
+    solarPotential: string;
+    avgSunHours: string;
+    installedCapacity: string;
+    customersServed: string;
+    popularSystems: string[];
+    benefits: string[];
+    faqs: { q: string; a: string }[];
+  };
+}
+
+export default function ProvinceLandingPage({ province }: ProvincePageProps) {
+  return (
+    <div className="min-h-screen pt-20 md:pt-20">
+      {/* Hero */}
+      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 mb-4">
+            <MapPin className="w-5 h-5 text-orange-400" />
+            <span className="text-blue-200">EPCVINA Solar tại {province.region}</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-bold mb-6">
+            Lắp Điện Mặt Trời Tại {province.name}
+          </h1>
+          <p className="text-xl text-blue-100 max-w-3xl mb-8">
+            {province.description}
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <a href="tel:0988446113" className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-lg transition-all flex items-center gap-2">
+              <Phone className="w-5 h-5" /> Gọi Tư Vấn: 0988 446 113
+            </a>
+            <a href="/bao-gia-dien-mat-troi" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
+              Nhận Báo Giá Miễn Phí
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-8 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <Sun className="w-8 h-8 text-amber-500 mx-auto mb-2" />
+              <p className="text-2xl font-bold text-slate-900">{province.avgSunHours}</p>
+              <p className="text-sm text-slate-600">Giờ nắng trung bình/năm</p>
+            </div>
+            <div>
+              <Zap className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+              <p className="text-2xl font-bold text-slate-900">{province.solarPotential}</p>
+              <p className="text-sm text-slate-600">Tiềm năng điện mặt trời</p>
+            </div>
+            <div>
+              <Shield className="w-8 h-8 text-green-500 mx-auto mb-2" />
+              <p className="text-2xl font-bold text-slate-900">{province.installedCapacity}</p>
+              <p className="text-sm text-slate-600">Công suất đã lắp đặt</p>
+            </div>
+            <div>
+              <Star className="w-8 h-8 text-orange-500 mx-auto mb-2" />
+              <p className="text-2xl font-bold text-slate-900">{province.customersServed}</p>
+              <p className="text-sm text-slate-600">Khách hàng tại {province.name}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
+            Tại Sao Nên Lắp Điện Mặt Trời Tại {province.name}?
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {province.benefits.map((benefit, i) => (
+              <div key={i} className="flex items-start gap-3 bg-white rounded-xl p-5 border border-slate-200">
+                <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
+                <p className="text-slate-700">{benefit}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Systems */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
+            Hệ Thống Phổ Biến Tại {province.name}
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {province.popularSystems.map((system, i) => (
+              <div key={i} className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4">
+                  <Sun className="w-6 h-6" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2">{system}</h3>
+                <a href="/bao-gia-dien-mat-troi" className="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center gap-1">
+                  Xem chi phí <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">
+            Câu Hỏi Thường Gặp Về Điện Mặt Trời Tại {province.name}
+          </h2>
+          <div className="space-y-4">
+            {province.faqs.map((faq, i) => (
+              <div key={i} className="bg-white rounded-xl p-6 border border-slate-200">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">{faq.q}</h3>
+                <p className="text-slate-600">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-gradient-to-r from-orange-600 to-amber-500 text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Sẵn Sàng Lắp Điện Mặt Trời Tại {province.name}?
+          </h2>
+          <p className="text-xl text-orange-100 mb-8">
+            Liên hệ ngay để được tư vấn miễn phí và nhận báo giá tốt nhất.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="tel:0988446113" className="bg-white text-orange-600 font-bold px-8 py-3 rounded-lg hover:bg-orange-50 transition-all flex items-center gap-2">
+              <Phone className="w-5 h-5" /> 0988 446 113
+            </a>
+            <a href="/lien-he" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+              Yêu Cầu Báo Giá
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

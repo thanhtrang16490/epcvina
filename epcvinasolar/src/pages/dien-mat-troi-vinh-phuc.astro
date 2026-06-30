@@ -1,0 +1,54 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+
+export const prerender = true;
+
+const province = {
+  name: 'Vĩnh Phúc',
+  slug: 'vinh-phuc',
+  region: 'Vĩnh Phúc',
+  description: 'EPCVINA lắp đặt điện mặt trời tại Vĩnh Phúc cho hộ gia đình, doanh nghiệp, khu công nghiệp. Phục vụ TP Vĩnh Yên, Phúc Yên, Bình Xuyên, Yên Lạc, Mê Linh.',
+  solarPotential: 'Cao',
+  avgSunHours: '1.500 - 1.650',
+  installedCapacity: '130+ kWp',
+  customersServed: '50+',
+  popularSystems: ['On-Grid 5-10kWp gia đình', 'Hybrid cho KCN 20-100kWp', 'Hệ thống cho trang trại 10-30kWp'],
+  benefits: [
+    'Vĩnh Phúc có nhiều KCN lớn, nhu cầu điện cao',
+    'Bức xạ mặt trời tốt, phù hợp lắp solar',
+    'Giảm chi phí điện cho sản xuất công nghiệp',
+    'Hoàn vốn nhanh nhờ giá điện công nghiệp cao',
+    'EPCVINA hỗ trợ thủ tục nhanh chóng tại Vĩnh Phúc'
+  ],
+  faqs: [
+    { q: 'Vĩnh Phúc có nên lắp điện mặt trời không?', a: 'Có. Vĩnh Phúc có bức xạ tốt và nhiều KCN. Lắp solar giúp giảm chi phí điện, hoàn vốn 3-5 năm.' },
+    { q: 'Lắp cho khu công nghiệp có phức tạp?', a: 'EPCVINA có kinh nghiệm lắp hệ 20-100kWp cho KCN. Không ảnh hưởng sản xuất, thi công nhanh.' },
+    { q: 'Giá điện công nghiệp tại Vĩnh Phúc?', a: 'Giá điện công nghiệp bậc cao từ 2.500-3.000đ/kWh. Lắp solar giúp tiết kiệm đáng kể.' }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": province.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<DashboardLayout
+  title="Điện Mặt Trời Vĩnh Phúc 2026 - KCN & Gia Đình | EPCVINA"
+  description="Lắp điện mặt trời tại Vĩnh Phúc ✓ Giảm chi phí điện KCN ✓ Hoàn vốn 3-5 năm ✓ 50+ khách hàng ✓ Hỗ trợ nhanh. LH: 0988 446 113"
+  keywords="điện mặt trời vĩnh phúc, solar vĩnh phúc, điện mặt trời KCN, EPCVINA vĩnh phúc"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Vĩnh Phúc', url: 'https://epcvina.com/dien-mat-troi-vinh-phuc' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <ProvinceLandingPage client:visible province={province} />
+</DashboardLayout>
