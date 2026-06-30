@@ -102,7 +102,7 @@ export default function EquipmentPage({ category }: PageProps) {
         />
 
         {/* Section 2: Sidebar + Content only */}
-        <div className="flex flex-1">
+        <div className="flex flex-1 gap-6">
           <EquipmentSidebar
             category={category}
             devices={allDevices}
@@ -118,7 +118,7 @@ export default function EquipmentPage({ category }: PageProps) {
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
           />
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col pl-6">
             <EquipmentPageDesktop 
               category={category} 
               devices={categoryDevices}
