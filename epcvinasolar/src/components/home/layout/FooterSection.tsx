@@ -37,7 +37,7 @@ export default function FooterSection() {
               </a>
               {/* Facebook */}
               <a
-                href="https://www.facebook.com/profile.php?id=61590381766646"
+                href="https://www.facebook.com/epcvinacom"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
