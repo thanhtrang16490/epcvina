@@ -1,0 +1,55 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import NhaPhoLandingPage from '../components/pages/nhapho/NhaPhoLandingPage';
+
+export const prerender = true;
+
+const seoTitle = 'Điện Mặt Trời Nhà Phố 2026 - Giảm 80% Tiền Điện | EPCVINA Solar';
+const seoDescription = 'Lắp điện mặt trời cho nhà phố, nhà ống. Giảm 70-90% hóa đơn điện. Thi công nhanh 1-2 ngày. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113';
+const seoKeywords = 'điện mặt trời nhà phố, điện mặt trời nhà ống, lắp điện mặt trời cho nhà, điện mặt trời gia đình Hà Nội, EPCVINA Solar';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Nhà phố có lắp được điện mặt trời không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. Nhà phố thường có mái 30-60m2, phù hợp lắp hệ 3-8kWp. EPCVINA khảo sát miễn phí để đánh giá hướng nắng và kết cấu mái."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Nhà ống có đủ diện tích lắp pin không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. Nhà ống 30-50m2 mái có thể lắp 3-5kWp, giảm 50-70% tiền điện. Hệ 5kWp từ 60 triệu, hoàn vốn 3-5 năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Thi công có ảnh hưởng sinh hoạt không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Không. Thi công nhanh 1-2 ngày, không ảnh hưởng đến sinh hoạt. EPCVINA cam kết sạch sẽ, an toàn."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Nhà Phố', url: 'https://epcvina.com/dien-mat-troi-nha-pho' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <NhaPhoLandingPage client:visible />
+</DashboardLayout>

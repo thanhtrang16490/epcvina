@@ -1,0 +1,71 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import BESSLandingPage from '../components/pages/bess/BESSLandingPage';
+
+export const prerender = true;
+
+const seoTitle = 'Hệ Thống Pin Lưu Trữ BESS 2026 - Lưu Điện Gia Đình & Doanh Nghiệp | EPCVINA';
+const seoDescription = 'Lắp đặt hệ thống pin lưu trữ BESS cho gia đình và doanh nghiệp. Lưu trữ năng lượng mặt trời, có điện khi mất điện. Bảo hành 5 năm. Tư vấn miễn phí: 0988 446 113';
+const seoKeywords = 'pin lưu trữ BESS, hệ thống lưu trữ điện, battery storage, pin lithium, lưu trữ năng lượng mặt trời, BESS gia đình, EPCVINA';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Pin BESS là gì?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BESS (Battery Energy Storage System) là hệ thống lưu trữ năng lượng bằng pin lithium. Lưu điện dư thừa từ điện mặt trời để dùng khi cần."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Tại sao cần pin lưu trữ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pin lưu trữ giúp: 1) Có điện khi mất điện lưới, 2) Dùng điện mặt trời vào ban đêm, 3) Tăng tự chủ năng lượng, 4) Giảm phụ thuộc vào điện lưới."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chi phí pin lưu trữ bao nhiêu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pin 5kWh từ 35-50 triệu, pin 10kWh từ 70-100 triệu, pin 15kWh từ 100-150 triệu. Giá phụ thuộc vào thương hiệu và công nghệ pin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pin lưu trữ dùng được bao lâu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pin lithium có tuổi thọ 10-15 năm (6000+ chu kỳ). Bảo hành 5 năm. Sau 10 năm vẫn đạt 80% dung lượng."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Có thể lắp pin lưu trữ riêng không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có thể lắp riêng hoặc kết hợp với hệ điện mặt trời có sẵn. EPCVINA tư vấn giải pháp phù hợp với nhu cầu và ngân sách."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Hệ Thống Pin Lưu Trữ BESS', url: 'https://epcvina.com/he-thong-pin-luu-tru-bess' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <BESSLandingPage client:visible />
+</DashboardLayout>

@@ -1,0 +1,55 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import SacXeDienLandingPage from '../components/pages/sacxe/SacXeDienLandingPage';
+
+export const prerender = true;
+
+const seoTitle = 'Sạc Xe Điện Tại Nhà 2026 - Lắp Đặt Trạm Sạc Gia Đình | EPCVINA Solar';
+const seoDescription = 'Lắp đặt trạm sạc xe điện tại nhà. Tích hợp năng lượng mặt trời, sạc VF3/VF5/VF6. Tiết kiệm 50% chi phí sạc. Tư vấn miễn phí: 0988 446 113';
+const seoKeywords = 'sạc xe điện tại nhà, trạm sạc xe điện gia đình, lắp sạc VF3, sạc VF5, sạc VF6, V-GREEN, EPCVINA Solar';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Có thể lắp trạm sạc tại nhà không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. EPCVINA lắp đặt trạm sạc Wallbox tại nhà cho VF3, VF5, VF6. Công suất 7-22kW, sạc đầy 4-8 tiếng."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chi phí lắp trạm sạc bao nhiêu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Từ 15-50 triệu tùy loại trạm. Trạm 7kW từ 15 triệu, trạm 22kW từ 30 triệu. Kết hợp điện mặt trời giảm 50% chi phí sạc."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Có thể kết hợp điện mặt trời để sạc xe không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. Kết hợp điện mặt trời với trạm sạc giúp giảm 50-70% chi phí sạc. Xe chạy hoàn toàn bằng năng lượng sạch."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Sạc Xe Điện Tại Nhà', url: 'https://epcvina.com/sac-xe-dien-tai-nha' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <SacXeDienLandingPage client:visible />
+</DashboardLayout>

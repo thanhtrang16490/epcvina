@@ -1,0 +1,40 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import BaoGiaLandingPage from '../components/pages/baogia/BaoGiaLandingPage';
+
+export const prerender = true;
+
+const seoTitle = 'Báo Giá Điện Mặt Trời 2026 - Bảng Giá Trọn Gói Từ 60 Triệu | EPCVINA Solar';
+const seoDescription = 'Báo giá điện mặt trời 2026: On-Grid từ 60 triệu, Hybrid từ 120 triệu. Bảng giá trọn gói, minh bạch. Tư vấn miễn phí: 0988 446 113';
+const seoKeywords = 'báo giá điện mặt trời, giá điện mặt trời 2026, chi phí lắp điện mặt trời, giá điện mặt trời hybrid, giá pin lưu trữ, EPCVINA Solar';
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Báo Giá Điện Mặt Trời EPCVINA 2026",
+  "description": "Bảng báo giá điện mặt trời trọn gói cho gia đình và doanh nghiệp",
+  "brand": { "@type": "Brand", "name": "EPCVINA Solar" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "VND",
+    "lowPrice": "60000000",
+    "highPrice": "500000000",
+    "offerCount": "15",
+    "availability": "https://schema.org/InStock"
+  }
+};
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Báo Giá Điện Mặt Trời', url: 'https://epcvina.com/bao-gia-dien-mat-troi' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  <BaoGiaLandingPage client:visible />
+</DashboardLayout>

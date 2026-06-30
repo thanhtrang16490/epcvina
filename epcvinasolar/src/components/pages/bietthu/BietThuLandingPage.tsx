@@ -1,0 +1,127 @@
+import { CheckCircle, Phone, Gem } from 'lucide-react';
+import SocialProofSection from '../ad-landing/SocialProofSection';
+import FAQSection from '../ad-landing/FAQSection';
+
+export default function BietThuLandingPage() {
+  return (
+    <div className="min-h-screen pt-20 md:pt-20">
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2 mb-4">
+              <Gem className="w-8 h-8 text-yellow-400" />
+              <span className="text-yellow-400 font-semibold">Giải Pháp Cao Cấp Cho Biệt Thự</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+              Điện Mặt Trời Biệt Thự - Sang Trọng & Tiết Kiệm
+            </h1>
+            <p className="text-xl text-slate-300 mb-8">
+              Hệ Hybrid cao cấp, thẩm mỹ kiến trúc. Giảm 70-90% hóa đơn điện 5-20 triệu. Có điện khi mất điện.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a href="tel:0988446113" className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all">
+                <Phone className="w-5 h-5" />
+                Tư Vấn Cao Cấp
+              </a>
+              <a href="/bao-gia-dien-mat-troi" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20">
+                Xem Báo Giá
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SocialProofSection />
+
+      {/* Why Villa Solar */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Tại Sao Biệt Thự Nên Lắp Điện Mặt Trời?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: 'Hóa Đơn Cao', desc: 'Biệt thự dùng 5-20 triệu/tháng. Hệ 10-20kWp giảm 70-90% chi phí điện.' },
+              { title: 'Mái Rộng', desc: 'Mái 100-300m2 lý tưởng cho hệ công suất lớn. Tận dụng không gian hiệu quả.' },
+              { title: 'Thẩm Mỹ', desc: 'Pin all-black sang trọng. Lắp đặt chuyên nghiệp, đảm bảo kiến trúc biệt thự.' },
+            ].map((item, i) => (
+              <div key={i} className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-slate-50">
+                <div className="w-14 h-14 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+                  <Gem className="w-7 h-7 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                <p className="text-slate-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Systems */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-4">Gói Cao Cấp Cho Biệt Thự</h2>
+          <p className="text-center text-slate-600 mb-12">Hệ Hybrid + Pin lưu trữ - Tự chủ năng lượng, sang trọng</p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              { power: '10 kWp + 10kWh', price: '200-250 triệu', saving: '3-4 triệu/tháng', backup: '8-12 giờ' },
+              { power: '15 kWp + 15kWh', price: '300-380 triệu', saving: '4-6 triệu/tháng', backup: '12-18 giờ', popular: true },
+              { power: '20 kWp + 20kWh', price: '400-500 triệu', saving: '6-8 triệu/tháng', backup: '18-24 giờ' },
+            ].map((item, i) => (
+              <div key={i} className={`rounded-xl p-8 ${item.popular ? 'bg-gradient-to-br from-purple-600 to-purple-700 text-white ring-4 ring-purple-200' : 'bg-white border border-slate-200'}`}>
+                {item.popular && <div className="text-center mb-4"><span className="bg-white text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">Khuyên dùng</span></div>}
+                <h3 className={`text-2xl font-bold text-center mb-2 ${item.popular ? 'text-white' : ''}`}>{item.power}</h3>
+                <p className={`text-center text-3xl font-bold mb-6 ${item.popular ? 'text-white' : 'text-purple-600'}`}>{item.price}</p>
+                <ul className={`space-y-2 text-sm ${item.popular ? 'text-white/90' : ''}`}>
+                  <li><strong>Tiết kiệm:</strong> {item.saving}</li>
+                  <li><strong>Dự phòng:</strong> {item.backup}</li>
+                  <li><strong>Hoàn vốn:</strong> 4-6 năm</li>
+                </ul>
+                <a href="/lien-he" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-purple-600 hover:bg-slate-100' : 'bg-purple-600 text-white hover:bg-purple-700'}`}>
+                  Tư Vấn Riêng
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Features */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Tiêu Chuẩn Cao Cấp</h2>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[
+              'Pin all-black thẩm mỹ cao, bảo hành 25 năm',
+              'Biến tần Hybrid cao cấp Deye, SMA',
+              'Pin lưu trữ BYD, Pylontech chính hãng',
+              'Lắp đặt hidden hoặc flush-mount',
+              'Giám sát online qua app điện thoại',
+              'Bảo hành 10 năm, hỗ trợ VIP 24/7',
+              'Khảo sát thiết kế 3D miễn phí',
+              'Đội kỹ sư chuyên nghiệp 10+ năm',
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 p-4 bg-slate-50 rounded-lg">
+                <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                <span className="text-lg">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <FAQSection />
+
+      {/* CTA */}
+      <section className="py-16 bg-gradient-to-r from-purple-700 to-purple-800 text-white">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Tư Vấn Giải Pháp Riêng Cho Biệt Thự</h2>
+          <p className="text-xl mb-8 opacity-90">EPCVINA khảo sát miễn phí, thiết kế giải pháp tối ưu cho biệt thự của bạn</p>
+          <a href="tel:0988446113" className="inline-flex items-center gap-2 bg-white text-purple-700 font-bold px-8 py-4 rounded-xl text-lg hover:bg-slate-100 transition-all">
+            <Phone className="w-5 h-5" />
+            Gọi Ngay: 0988 446 113
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+}

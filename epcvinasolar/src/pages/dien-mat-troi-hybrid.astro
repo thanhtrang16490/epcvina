@@ -1,0 +1,71 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import HybridBESSPage from '../components/pages/hybrid/HybridBESSPage';
+
+export const prerender = true;
+
+const seoTitle = 'Điện Mặt Trời Hybrid & BESS 2026 - Có Điện Khi Mất Điện | EPCVINA Solar';
+const seoDescription = 'Hệ thống điện mặt trời Hybrid kết hợp pin lưu trữ BESS. Giảm 70-90% tiền điện, có điện khi mất điện. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113';
+const seoKeywords = 'điện mặt trời hybrid, hệ thống hybrid, pin lưu trữ BESS, điện mặt trời có lưu trữ, hybrid solar, BESS, EPCVINA Solar, mất điện vẫn có điện';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Hệ thống Hybrid là gì?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hệ thống Hybrid kết hợp điện mặt trời với pin lưu trữ. Vừa giảm tiền điện, vừa có điện dự phòng khi mất điện lưới."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pin BESS là gì?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BESS (Battery Energy Storage System) là hệ thống lưu trữ năng lượng bằng pin. Lưu điện dư thừa ban ngày để dùng ban đêm hoặc khi mất điện."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hybrid khác On-Grid như thế nào?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On-Grid chỉ phát điện lên lưới, mất điện thì ngắt. Hybrid có pin lưu trữ nên vẫn dùng được khi mất điện, tự chủ năng lượng cao hơn."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chi phí hệ Hybrid bao nhiêu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Từ 120-250 triệu tùy công suất. Gói 5kWp + pin 5kWh từ 120 triệu, gói 10kWp + pin 10kWh từ 200 triệu. Hoàn vốn 5-7 năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pin lưu trữ dùng được bao lâu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pin lithium có tuổi thọ 10-15 năm, bảo hành 5 năm. Sau 10 năm vẫn đạt 80% dung lượng ban đầu."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Hybrid', url: 'https://epcvina.com/dien-mat-troi-hybrid' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <HybridBESSPage client:visible />
+</DashboardLayout>
