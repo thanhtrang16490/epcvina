@@ -129,8 +129,8 @@ export default function EquipmentSidebar({
   }, [categoryDevices, devices]);
 
   return (
-    <aside className="w-64 flex-shrink-0 ml-6">
-      <div className="sticky top-24 space-y-6">
+    <aside className="w-64 flex-shrink-0 ml-4">
+      <div className="sticky top-24 space-y-4">
         {/* Category Navigation */}
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-5 py-4 bg-gray-50 border-b border-gray-200">
