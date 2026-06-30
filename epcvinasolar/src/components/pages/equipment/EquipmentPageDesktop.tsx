@@ -105,9 +105,11 @@ interface PageProps {
   searchQuery: string;
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
   gridColumns?: number;
+  productLimit?: number;
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
   onGridColumnsChange?: (columns: number) => void;
+  onProductLimitChange?: (limit: number) => void;
   showHero?: boolean;
   showContent?: boolean;
 }
@@ -119,9 +121,11 @@ export default function EquipmentPageDesktop({
   searchQuery,
   sortBy,
   gridColumns = 4,
+  productLimit = 24,
   onSearchChange,
   onSortChange,
   onGridColumnsChange,
+  onProductLimitChange,
   showHero = true,
   showContent = true,
 }: PageProps) {
@@ -156,8 +160,13 @@ export default function EquipmentPageDesktop({
         break;
     }
     
+    // Apply product limit
+    if (productLimit > 0) {
+      filtered = filtered.slice(0, productLimit);
+    }
+    
     return filtered;
-  }, [devices, searchQuery, sortBy]);
+  }, [devices, searchQuery, sortBy, productLimit]);
 
   const brands = useMemo(() => {
     const brandSet = new Set<string>();
@@ -248,6 +257,18 @@ export default function EquipmentPageDesktop({
               <option value={2}>2 cột</option>
               <option value={3}>3 cột</option>
               <option value={4}>4 cột</option>
+            </select>
+            
+            {/* Product Limit */}
+            <select
+              value={productLimit}
+              onChange={(e) => onProductLimitChange?.(Number(e.target.value))}
+              className="px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white min-w-[140px]"
+            >
+              <option value={16}>16 sản phẩm</option>
+              <option value={24}>24 sản phẩm</option>
+              <option value={32}>32 sản phẩm</option>
+              <option value={40}>40 sản phẩm</option>
             </select>
             
             {/* Sort Dropdown */}

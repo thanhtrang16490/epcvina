@@ -41,6 +41,7 @@ export default function EquipmentPage({ category }: PageProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
   const [gridColumns, setGridColumns] = useState<number>(4);
+  const [productLimit, setProductLimit] = useState<number>(24);
 
   // Fetch products from Content Collections API
   useEffect(() => {
@@ -127,9 +128,11 @@ export default function EquipmentPage({ category }: PageProps) {
               searchQuery={searchQuery}
               sortBy={sortBy}
               gridColumns={gridColumns}
+              productLimit={productLimit}
               onSearchChange={setSearchQuery}
               onSortChange={setSortBy}
               onGridColumnsChange={setGridColumns}
+              onProductLimitChange={setProductLimit}
               showHero={false}
               showContent={true}
             />
