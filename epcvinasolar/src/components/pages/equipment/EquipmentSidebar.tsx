@@ -104,7 +104,6 @@ export default function EquipmentSidebar({
   onSearchChange,
   onSortChange,
 }: EquipmentSidebarProps) {
-  const [expandedBrands, setExpandedBrands] = useState<Record<string, boolean>>({});
   const [showBrands, setShowBrands] = useState(true);
 
   // Brands chỉ lấy từ category đang chọn
@@ -128,21 +127,6 @@ export default function EquipmentSidebar({
     });
     return grouped;
   }, [categoryDevices, devices]);
-
-  const toggleBrand = (brand: string) => {
-    setExpandedBrands(prev => ({
-      ...prev,
-      [brand]: !prev[brand]
-    }));
-  };
-
-  useMemo(() => {
-    if (brands.length > 0 && Object.keys(expandedBrands).length === 0) {
-      const initial: Record<string, boolean> = {};
-      brands.forEach(b => initial[b] = true);
-      setExpandedBrands(initial);
-    }
-  }, [brands]);
 
   return (
     <aside className="w-64 flex-shrink-0 ml-6">
@@ -200,53 +184,27 @@ export default function EquipmentSidebar({
             <div className="p-3 max-h-96 overflow-y-auto">
               {brands.map((brand) => {
                 const brandDevices = devicesByBrand[brand] || [];
-                const isExpanded = expandedBrands[brand];
                 const isSelected = selectedBrand === brand;
                 return (
-                  <div key={brand} className="mb-1">
-                    <button
-                      onClick={() => {
-                        toggleBrand(brand);
-                        onSelectBrand(brand);
-                      }}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all ${
-                        isSelected ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 flex-1 min-w-0">
-                        <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                          isSelected ? 'bg-[#F97316]' : 'bg-gray-300'
-                        }`} />
-                        <span className="text-sm font-medium truncate">{brand}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500">{brandDevices.length}</span>
-                        {isExpanded ? (
-                          <ChevronUp className="h-3 w-3 text-gray-400" />
-                        ) : (
-                          <ChevronDown className="h-3 w-3 text-gray-400" />
-                        )}
-                      </div>
-                    </button>
-                    {isExpanded && (
-                      <div className="ml-5 mt-1 space-y-1">
-                        {brandDevices.slice(0, 5).map((device) => (
-                          <button
-                            key={device.id}
-                            onClick={() => onShowDevice(device.id)}
-                            className="w-full text-left px-3 py-1.5 text-xs text-gray-600 hover:text-[#F97316] hover:bg-orange-50 rounded transition-colors truncate"
-                          >
-                            {device.model}
-                          </button>
-                        ))}
-                        {brandDevices.length > 5 && (
-                          <p className="px-3 py-1 text-xs text-gray-400">
-                            +{brandDevices.length - 5} sản phẩm khác
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                  <button
+                    key={brand}
+                    onClick={() => {
+                      onSelectBrand(brand);
+                    }}
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all mb-1 ${
+                      isSelected ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                        isSelected ? 'bg-[#F97316]' : 'bg-gray-300'
+                      }`} />
+                      <span className="text-sm font-medium truncate">{brand}</span>
+                    </div>
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                      {brandDevices.length}
+                    </span>
+                  </button>
                 );
               })}
             </div>
