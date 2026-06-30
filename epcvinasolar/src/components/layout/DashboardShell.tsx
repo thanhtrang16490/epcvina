@@ -70,7 +70,7 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
             />
             
             {/* Page content */}
-            <main ref={mainRef} className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <main ref={mainRef} className="flex-1 w-full">
               {children}
             </main>
           </div>
