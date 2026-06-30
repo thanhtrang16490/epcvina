@@ -1,7 +1,7 @@
 ---
 name: "Biến tần Hybrid Deye 10kW 1 Pha SUN-10K-SG04LP1"
 brand: "Deye"
-category: "inverter"
+category: "hybrid-inverter"
 model: "SUN-10K-SG04LP1"
 description: "Biến tần Hybrid Deye 10kW 1 Pha SUN-10K-SG04LP1 là dòng biến tần hybrid áp thấp phổ biến nhất hiện nay, được tin dùng trong các hệ thống điện mặt trời kết hợp lưu trữ. Deye là thương hiệu hàng đầu Trung Quốc với hơn 20 năm kinh nghiệm trong ngành năng lượng tái tạo. Biến tần hỗ trợ parallel lên đến 16 unit, tương thích với hầu hết các loại pin lưu trữ lithium trên thị trường."
 main_image: "/images/products/260522.jpeg"

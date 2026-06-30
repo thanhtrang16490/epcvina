@@ -1,6 +1,7 @@
 export type EquipmentCategory = 
   | 'panel'
   | 'inverter'
+  | 'hybrid-inverter'
   | 'battery'
   | 'accessories';
 export type SystemType = 'on-grid' | 'hybrid';

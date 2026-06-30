@@ -2,7 +2,7 @@
 name: "Biến tần Hybrid Hope Trek SUN-SL-HP5K-A1 5kW 1 Pha"
 brand: "Hope Trek"
 model: "SUN-SL-HP5K-A1"
-category: "inverter"
+category: "hybrid-inverter"
 main_image: "/images/products/260508(4).png"
 description: "Hope Trek SUN-SL-HP5K-A1 là biến tần hybrid 1 pha công suất 5 kW thuộc thế hệ thiết bị quản lý năng lượng thông minh. Thiết bị tích hợp đồng thời khả năng xử lý điện từ tấm pin mặt trời, sạc/xả pin lưu trữ Li-ion và kết nối lưới điện, giúp người dùng chủ động điều phối nguồn năng lượng theo nhu cầu thực tế trong suốt 24 giờ.
 

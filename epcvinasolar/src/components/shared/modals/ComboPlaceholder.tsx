@@ -130,7 +130,7 @@ export default function ComboPlaceholder({
             {/* Block 1: Solar Panels */}
             <div className="flex items-center gap-1.5">
               <span className="text-3xl font-extrabold text-green-600 leading-none w-12 text-right">
-                {String(Math.max(1, panelCount)).padStart(2, '0')}
+                {String(panelCount).padStart(2, '0')}
               </span>
               <div className="flex-1">
                 <div className="text-xs font-medium text-gray-700 leading-tight">Tấm 640 Wp</div>
@@ -141,7 +141,7 @@ export default function ComboPlaceholder({
             {/* Block 2: Inverter */}
             <div className="flex items-center gap-1.5 pt-3 border-t border-gray-200">
               <span className="text-3xl font-extrabold text-green-600 leading-none w-12 text-right">
-                {String(Math.max(1, inverterCount)).padStart(2, '0')}
+                {String(inverterCount).padStart(2, '0')}
               </span>
               <div className="flex-1">
                 <div className="text-xs font-medium text-gray-700 leading-tight">Biến tần</div>

@@ -27,11 +27,18 @@ const CATEGORY_META: Record<EquipmentCategory, {
     accent: 'bg-blue-500',
   },
   inverter: {
-    label: 'Biến tần / Inverter',
+    label: 'Biến tần On-Grid',
     icon: <TrendingUp className="h-5 w-5"/>,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
+  },
+  'hybrid-inverter': {
+    label: 'Biến tần Hybrid',
+    icon: <TrendingUp className="h-5 w-5"/>,
+    color: 'text-blue-600',
+    bg: 'bg-blue-50',
+    accent: 'bg-blue-500',
   },
   battery: {
     label: 'Pin lưu trữ',
@@ -204,7 +211,7 @@ export default function EquipmentPageDesktop({
                       {device.brand}
                     </span>
                   </div>
-                  {device.warranty && device.warranty > 0 && (
+                  {device.warranty && (
                     <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full shadow-sm">
                       <span className="text-xs font-semibold text-gray-700">🛡️ {device.warranty} năm</span>
                     </div>

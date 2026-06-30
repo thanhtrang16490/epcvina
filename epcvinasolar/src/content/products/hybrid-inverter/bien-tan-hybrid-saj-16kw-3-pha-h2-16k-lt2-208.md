@@ -1,31 +1,31 @@
 ---
-name: "Biến tần Hybrid SAJ 18kW 3 Pha H2-18K-LT2"
+name: "Biến tần Hybrid SAJ 16kW 3 Pha H2-16K-LT2"
 brand: "SAJ"
-model: "H2-18K-LT2"
-category: "inverter"
+model: "H2-16K-LT2"
+category: "hybrid-inverter"
 main_image: "/images/products/260522.jpeg"
-description: "Biến tần Hybrid SAJ 18kW 3 Pha H2-18K-LT2 của thương hiệu SAJ đến từ nội địa Trung Quốc, với lịch sử hình thành và phát triển lâu dài, uy tín. Các loại biến tần SAJ được sản xuất theo tiêu chuẩn Châu Âu, bảo hành 10 năm để khách hàng yên tâm lựa chọn SAJ inverter.
+description: "Biến tần Hybrid SAJ 16kW 3 Pha H2-16K-LT2 của thương hiệu SAJ đến từ nội địa Trung Quốc, với lịch sử hình thành và phát triển lâu dài, uy tín. Các loại biến tần SAJ được sản xuất theo tiêu chuẩn Châu Âu, bảo hành 10 năm để khách hàng yên tâm lựa chọn SAJ inverter.
 
-Biến tần Hybrid SAJ 18kW 3 Pha H2-18K-LT2 là dòng biến tần áp cao, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng và thương mại. Sản phẩm không chỉ chuyển đổi cao, mà còn vận hành êm ái, bền bỉ với chuẩn chống nước IP66, phù hợp cho mọi điều kiện thời tiết.
+Biến tần Hybrid SAJ 16kW 3 Pha H2-16K-LT2 là dòng biến tần áp cao, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng và thương mại. Sản phẩm không chỉ chuyển đổi cao, mà còn vận hành êm ái, bền bỉ với chuẩn chống nước IP66, phù hợp cho mọi điều kiện thời tiết.
 
 Hệ thống năng lượng hybrid có nhu cầu lưu trữ và sử dụng điện tối ưu theo thời gian thực. Dòng biến tần với mức điện cho phép từ 40 – 60V, tương thích với các dòng pin lưu trữ lithium điện năng lượng mặt trời áp thấp và acquy.
 
 Biến tần này là lựa chọn tốt nhất trong tầm phân khúc hiện nay, sẽ giúp gia đình bạn tối ưu hóa năng lượng, giảm chi phí điện và đảm bảo cấp điện ổn định."
 specifications:
-  "Công suất đầu ra AC định mức": "18kW"
-  "Dòng điện đầu ra AC định mức": "27.3A"
-  "Dòng điện đầu ra AC tối đa": "30.0A"
+  "Công suất đầu ra AC định mức": "16kW"
+  "Dòng điện đầu ra AC định mức": "24.2A"
+  "Dòng điện đầu ra AC tối đa": "26.7A"
   "Loại phase": "3 pha"
   "Hiệu suất tối đa": "98.5%"
   "Loại inverter": "Hybrid"
   "Loại chế độ lắp đặt": "On Grid, Hybrid"
-  "Công suất biểu kiến đầu ra": "19800VA"
+  "Công suất biểu kiến đầu ra": "17600VA"
   "Điện áp AC đầu ra định mức": "3L/N/PE 220/380, 230/400"
   "Tần số đầu ra định mức": "50,60/45~55, 55~65"
   "Tổng độ méo sóng hài (THDi)": "<3%"
   "Dòng điện 1 chiều rò vào lưới": "<0.5%In"
   "Chuyển đổi thời gian": "< 10ms"
-  "Công suất đầu vào PV tối đa": "36kW"
+  "Công suất đầu vào PV tối đa": "32kW"
   "Điện áp đầu vào PV tối đa": "1000V"
   "Điện áp khởi động": "150V"
   "Dòng vào PV tối đa": "40A + 40A"
@@ -39,8 +39,8 @@ specifications:
   "Loại pin": "Lithium, Axit-chì (Lead-Acid)"
   "Dải điện áp pin từ": "40V"
   "Dải điện áp pin tới": "60V"
-  "Dòng sạc tối đa": "350A"
-  "Dòng xả tối đa": "350A"
+  "Dòng sạc tối đa": "320A"
+  "Dòng xả tối đa": "320A"
   "Số lượng pin đầu vào": "Tự thích ứng với BMS"
   "Sạc cho pin Li-ion": "2"
   "Chiều dài": "470mm"

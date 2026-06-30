@@ -1,32 +1,32 @@
 ---
-name: "Biến tần Hybrid SAJ 10kW 1 Pha H2-10K-LS2"
+name: "Biến tần Hybrid SAJ 8kW 1 Pha H2-8K-LS2"
 brand: "SAJ"
-model: "H2-10K-LS2"
-category: "inverter"
+model: "H2-8K-LS2"
+category: "hybrid-inverter"
 main_image: "/images/products/260522.jpeg"
-description: "Biến tần Hybrid SAJ 10kW 1 Pha H2-10K-LS2 của thương hiệu SAJ đến từ nội địa Trung Quốc, với lịch sử hình thành và phát triển lâu dài, uy tín. Các loại biến tần SAJ được sản xuất theo tiêu chuẩn Châu Âu, bảo hành 10 năm để khách hàng yên tâm lựa chọn SAJ inverter.
+description: "Biến tần Hybrid SAJ 8kW 1 Pha H2-8K-LS2 của thương hiệu SAJ đến từ nội địa Trung Quốc, với lịch sử hình thành và phát triển lâu dài, uy tín. Các loại biến tần SAJ được sản xuất theo tiêu chuẩn Châu Âu, bảo hành 10 năm để khách hàng yên tâm lựa chọn SAJ inverter.
 
-Biến tần Hybrid SAJ 10kW 1 Pha H2-10K-LS2 là dòng biến tần áp thấp, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng và thương mại nhỏ. Sản phẩm không chỉ chuyển đổi cao, mà còn vận hành êm ái, bền bỉ với chuẩn chống nước IP65, phù hợp cho mọi điều kiện thời tiết.
+Biến tần Hybrid SAJ 8kW 1 Pha H2-8K-LS2 là dòng biến tần áp thấp, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng và thương mại nhỏ. Sản phẩm không chỉ chuyển đổi cao, mà còn vận hành êm ái, bền bỉ với chuẩn chống nước IP65, phù hợp cho mọi điều kiện thời tiết.
 
 Hệ thống năng lượng hybrid có nhu cầu lưu trữ và sử dụng điện tối ưu theo thời gian thực. Dòng biến tần với mức điện áp cho phép từ 40 – 60V, tương thích với các dòng pin lưu trữ lithium điện năng lượng mặt trời áp thấp và acquy.
 
 Biến tần này là lựa chọn tốt nhất trong tầm phân khúc hiện nay, sẽ giúp gia đình bạn tối ưu hóa năng lượng, giảm chi phí điện và đảm bảo cấp điện ổn định."
 specifications:
-  "Công suất đầu ra AC định mức": "10kW"
-  "Dòng điện đầu ra AC định mức": "43.5A"
-  "Dòng điện đầu ra AC tối đa": "45.5A"
+  "Công suất đầu ra AC định mức": "8kW"
+  "Dòng điện đầu ra AC định mức": "34.8A"
+  "Dòng điện đầu ra AC tối đa": "40A"
   "Loại phase": "1 pha"
   "Hiệu suất tối đa": "97.6%"
   "Loại inverter": "Hybrid"
   "Loại chế độ lắp đặt": "On Grid, Hybrid"
   "Điện áp AC đầu vào đinh mức": "L+N+PE, 220,230,240/180~280"
   "Tần số lưới AC đầu vào định mức": "50, 60HZ"
-  "Dòng điện đầu vào AC tối đa": "91A"
-  "Công suất biểu kiến đầu ra": "10000VA, 60s"
+  "Dòng điện đầu vào AC tối đa": "80A"
+  "Công suất biểu kiến đầu ra": "8800VA, 60s"
   "Điện áp AC đầu ra định mức": "L+N+PE, 220,230,240/180~280"
   "Tần số đầu ra định mức": "50,60/45~55, 55~65"
   "Tổng độ méo sóng hài (THDi)": "<3%"
-  "Công suất đầu vào PV tối đa": "20kW"
+  "Công suất đầu vào PV tối đa": "16kW"
   "Điện áp đầu vào PV tối đa": "500V"
   "Điện áp khởi động": "80V"
   "Dòng vào PV tối đa": "40A + 40A"
@@ -40,8 +40,8 @@ specifications:
   "Loại pin": "Lithium, Axit-chì (Lead-Acid)"
   "Dải điện áp pin từ": "40V"
   "Dải điện áp pin tới": "60V"
-  "Dòng sạc tối đa": "240A"
-  "Dòng xả tối đa": "240A"
+  "Dòng sạc tối đa": "190A"
+  "Dòng xả tối đa": "190A"
   "Chiều dài": "380mm"
   "Chiều rộng": "241mm"
   "Chiều cao": "590mm"
@@ -67,10 +67,10 @@ specifications:
   "Giao tiếp inverter": "WiFi/Ethernet/4G (Optional)"
 features:
   - "Hiệu suất cao, tối ưu chuyển đổi: Hỗ trợ, tối ưu chuyển đổi từ các tấm pin công suất lớn. Công suất lắp đặt DC gấp 2 lần giúp tối ưu sản lượng điện trong những điều kiện nắng kém."
-  - "Hỗ trợ lưu trữ điện thông minh, vận hành mượt mà: Hỗ trợ máy phát/cổng dự phòng, cung cấp khả năng vận hành ổn định, linh hoạt không gây gián đoạn khi mất điện."
+  - "Hỗ trợ lưu trữ điện thông minh: Hỗ trợ máy phát/cổng dự phòng, cung cấp khả năng vận hành ổn định, không gây gián đoạn khi mất điện."
   - "Tích hợp công nghệ hiện đại: Có thể cài đặt không phát lên lưới thông qua thiết bị Smart metter và cài đặt qua App điện thoại. Tránh gây phát ngược lên lưới."
   - "Độ bền cao, hoạt động ổn định: Thiết kế bền bỉ với khung nhôm cao cấp, chống nước IP65, phù hợp nhiều điều kiện ngoài trời như ẩm, bụi bẩn, hoặc nhiệt độ cao."
-  - "Hệ thống bảo vệ an toàn: Chống quá tải, ngắn mạch, quá áp, bảo vệ tối đa cho thiết bị và hệ thống điện."
   - "Giám sát, điều khiển hoạt động từ xa: Bộ phát tín hiệu thông qua WIFI 2.4Ghz, truyền tải dữ liệu nhanh chóng. Phần mềm SAJ trực quan, hiện đại, dễ dàng theo dõi sản lượng điện, tình trạng pin lưu trữ và hiệu suất hệ thống."
+  - "Hệ thống bảo vệ an toàn: Chống quá tải, ngắn mạch, quá áp, bảo vệ tối đa cho thiết bị và hệ thống điện."
 ---
 

@@ -2,7 +2,7 @@
 name: "Biến tần Hybrid SAJ 6kW 1 Pha H2-6K-LS2"
 brand: "SAJ"
 model: "H2-6K-LS2"
-category: "inverter"
+category: "hybrid-inverter"
 main_image: "/images/products/260522.jpeg"
 description: "Biến tần Hybrid SAJ 6kW 1 Pha H2-6K-LS2 của thương hiệu SAJ đến từ nội địa Trung Quốc, với lịch sử hình thành và phát triển lâu dài, uy tín. Các loại biến tần SAJ được sản xuất theo tiêu chuẩn Châu Âu, bảo hành 10 năm để khách hàng yên tâm lựa chọn SAJ inverter.
 

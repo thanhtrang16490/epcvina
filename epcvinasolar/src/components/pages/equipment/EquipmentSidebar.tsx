@@ -16,10 +16,16 @@ const CATEGORY_META: Record<string, {
     bg: 'bg-blue-50',
   },
   inverter: {
-    label: 'Biến tần / Inverter',
+    label: 'Biến tần On-Grid',
     icon: <TrendingUp className="h-5 w-5"/>,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
+  },
+  'hybrid-inverter': {
+    label: 'Biến tần Hybrid',
+    icon: <TrendingUp className="h-5 w-5"/>,
+    color: 'text-blue-600',
+    bg: 'bg-blue-50',
   },
   battery: {
     label: 'Pin lưu trữ',

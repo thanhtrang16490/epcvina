@@ -2,7 +2,7 @@
 name: "Biến tần Hybrid Hope Trek SUN-TL-HP10K-A1 10kW 3 Pha"
 brand: "Hope Trek"
 model: "SUN-TL-HP10K-A1"
-category: "inverter"
+category: "hybrid-inverter"
 main_image: "/images/products/260508(2).png"
 description: "Biến tần Hybrid Hope Trek SUN-TL-HP10K-A1 10kW 3 Pha là dòng biến tần hybrid đến từ thương hiệu Hope Trek, được sản xuất theo tiêu chuẩn chất lượng quốc tế, với chính sách bảo hành lên đến 10 năm, mang đến sự an tâm tuyệt đối cho khách hàng trong suốt quá trình sử dụng.
 

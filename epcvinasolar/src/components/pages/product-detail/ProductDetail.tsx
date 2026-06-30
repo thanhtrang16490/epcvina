@@ -47,6 +47,7 @@ interface ProductDetailProps {
 const CATEGORY_NAMES: Record<string, string> = {
   'panel': 'Tấm quang năng',
   'hybrid-inverter': 'Biến tần Hybrid',
+  'inverter': 'Biến tần On-Grid',
   'on-grid-1phase': 'Biến tần On-Grid 1 Pha',
   'on-grid-3phase-lv': 'Biến tần On-Grid 3 Pha Hạ Thế',
   'on-grid-3phase-hv': 'Biến tần On-Grid 3 Pha Trung Thế',
@@ -56,7 +57,6 @@ const CATEGORY_NAMES: Record<string, string> = {
   'cabinet': 'Tủ điện',
   'mounting': 'Khung nhôm mount',
   'grounding': 'Tiếp địa',
-  'inverter': 'Biến tần Hybrid',
   'battery': 'Pin lưu trữ',
   'accessories': 'Phụ kiện lắp đặt',
 };
