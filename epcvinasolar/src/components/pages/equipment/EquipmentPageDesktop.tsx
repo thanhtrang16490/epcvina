@@ -212,6 +212,42 @@ export default function EquipmentPageDesktop({
       {showContent && (
         <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="max-w-7xl mx-auto w-full">
+        {/* Horizontal Search & Filter Bar */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6">
+          <div className="flex items-center gap-4">
+            {/* Search Input */}
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                placeholder="Tìm thiết bị..."
+                value={searchQuery}
+                onChange={(e) => onSearchChange(e.target.value)}
+                className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => onSearchChange('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            
+            {/* Sort Dropdown */}
+            <select
+              value={sortBy}
+              onChange={(e) => onSortChange(e.target.value as typeof sortBy)}
+              className="px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white min-w-[180px]"
+            >
+              <option value="az">Tên A-Z</option>
+              <option value="za">Tên Z-A</option>
+              <option value="price-asc">Giá tăng dần</option>
+              <option value="price-desc">Giá giảm dần</option>
+            </select>
+          </div>
+        </div>
+
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
