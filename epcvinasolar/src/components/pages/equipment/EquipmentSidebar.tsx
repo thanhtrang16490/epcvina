@@ -33,6 +33,18 @@ const CATEGORY_META: Record<string, {
     color: 'text-green-600',
     bg: 'bg-green-50',
   },
+  'lv-battery': {
+    label: 'Pin lưu trữ áp thấp',
+    icon: <Battery className="h-5 w-5"/>,
+    color: 'text-green-600',
+    bg: 'bg-green-50',
+  },
+  'hv-battery': {
+    label: 'Pin lưu trữ áp cao',
+    icon: <Battery className="h-5 w-5"/>,
+    color: 'text-purple-600',
+    bg: 'bg-purple-50',
+  },
   accessories: {
     label: 'Phụ kiện lắp đặt',
     icon: <Shield className="h-5 w-5"/>,

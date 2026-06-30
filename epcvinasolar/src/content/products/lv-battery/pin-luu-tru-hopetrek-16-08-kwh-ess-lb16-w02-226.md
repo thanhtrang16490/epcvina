@@ -2,7 +2,7 @@
 name: "Pin Lưu Trữ Hopetrek 16.08 kWh ESS-LB16-W02"
 brand: "Hope Trek"
 model: "ESS-LB16-W02"
-category: "battery"
+category: "lv-battery"
 main_image: "/images/products/260605.jpeg"
 description: "Pin lưu trữ Hopetrek ESS-LB16-W02 sử dụng công nghệ pin lithium sắt phosphate (LiFePO4), với dung lượng 16.08kWh và điện áp danh định 51.2V, đáp ứng nhu cầu lưu trữ điện năng lớn cho hệ thống điện mặt trời hybrid. Sản phẩm có dung lượng pin 314Ah, phù hợp cho biệt thự, nhà phố hoặc các hệ thống cần sử dụng nguồn điện dự phòng ổn định trong thời gian dài.
 

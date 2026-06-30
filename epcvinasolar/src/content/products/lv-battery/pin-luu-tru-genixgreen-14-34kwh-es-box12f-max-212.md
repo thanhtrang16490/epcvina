@@ -2,7 +2,7 @@
 name: "Pin Lưu Trữ Genix Green 14.34kWh ES-BOX12F MAX"
 brand: "Genix Green"
 model: "ES-BOX12F MAX"
-category: "battery"
+category: "lv-battery"
 main_image: "/images/products/260604.png"
 description: "Pin lưu trữ Genix Green 14.34kWh ES-BOX12F MAX sử dụng công nghệ pin lithium sắt phosphate (LiFePO4), với điện áp danh định 51.2V và dung lượng 280Ah, đáp ứng nhu cầu lưu trữ điện năng cho các hệ thống điện mặt trời hybrid. Sản phẩm có dung lượng 14.34kWh, phù hợp cho các hộ gia đình hoặc hệ thống cần sử dụng điện ổn định và liên tục.
 

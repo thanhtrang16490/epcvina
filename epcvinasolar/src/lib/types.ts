@@ -3,6 +3,8 @@ export type EquipmentCategory =
   | 'inverter'
   | 'hybrid-inverter'
   | 'battery'
+  | 'lv-battery'
+  | 'hv-battery'
   | 'accessories';
 export type SystemType = 'on-grid' | 'hybrid';
 export type PhaseType = '1-phase' | '3-phase';

@@ -2,7 +2,7 @@
 name: "Pin Lưu Trữ Hopetrek 5.12 kWh ESS-LB5-W05"
 brand: "Hope Trek"
 model: "ESS-LB5-W05"
-category: "battery"
+category: "lv-battery"
 main_image: "/images/products/260605(1).png"
 description: "Pin lưu trữ Hopetrek ESS-LB5-W05 sử dụng công nghệ pin lithium sắt phosphate (LiFePO4), với dung lượng 5.12kWh và điện áp danh định 51.2V, đáp ứng tốt nhu cầu lưu trữ điện năng cho hệ thống điện mặt trời hybrid gia đình. Sản phẩm có dung lượng pin 100Ah, phù hợp cho các hộ gia đình cần tối ưu hóa lượng điện mặt trời tự dùng và đảm bảo nguồn điện dự phòng ổn định.
 

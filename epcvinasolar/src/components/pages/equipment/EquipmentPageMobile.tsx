@@ -56,6 +56,22 @@ const CATEGORY_META: Record<EquipmentCategory, {
     accent: 'bg-green-500',
     gradient: 'from-green-400 to-green-600',
   },
+  'lv-battery': {
+    label: 'Pin lưu trữ áp thấp',
+    icon: <Battery className="h-5 w-5"/>,
+    color: 'text-green-600',
+    bg: 'bg-green-50',
+    accent: 'bg-green-500',
+    gradient: 'from-green-400 to-green-600',
+  },
+  'hv-battery': {
+    label: 'Pin lưu trữ áp cao',
+    icon: <Battery className="h-5 w-5"/>,
+    color: 'text-purple-600',
+    bg: 'bg-purple-50',
+    accent: 'bg-purple-500',
+    gradient: 'from-purple-400 to-purple-600',
+  },
   accessories: {
     label: 'Phụ kiện lắp đặt',
     icon: <Wrench className="h-5 w-5"/>,

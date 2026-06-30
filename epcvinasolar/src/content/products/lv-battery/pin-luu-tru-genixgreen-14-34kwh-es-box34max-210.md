@@ -2,7 +2,7 @@
 name: "Pin Lưu Trữ Genix Green 14.34kWh ES-BOX34MAX"
 brand: "Genix Green"
 model: "ES-BOX34MAX"
-category: "battery"
+category: "lv-battery"
 main_image: "/images/products/260604(1).png"
 description: "Pin lưu trữ Genix Green 14.34kWh ES-BOX34MAX sử dụng công nghệ pin lithium sắt phosphate (LiFePO4), cho độ an toàn cao, ổn định nhiệt tốt và tuổi thọ dài. Đây là dòng pin áp thấp (Low Voltage), phù hợp sử dụng với các biến tần hybrid hỗ trợ hệ pin 48V.
 
