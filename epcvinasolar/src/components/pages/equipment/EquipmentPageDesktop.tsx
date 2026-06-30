@@ -254,7 +254,7 @@ export default function EquipmentPageDesktop({
             <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
               <a href="/" className="hover:text-[#F97316] transition-colors">Trang chủ</a>
               <ChevronRight className="h-3 w-3" />
-              <a href="/equipment/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
+              <a href="/thiet-bi/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
               <ChevronRight className="h-3 w-3" />
               <span className="text-gray-900 font-medium">{meta?.label || 'Danh mục'}</span>
             </div>
@@ -484,7 +484,7 @@ export default function EquipmentPageDesktop({
 
                 {/* Product Info */}
                 <div className={`p-5 space-y-4 ${gridColumns === 1 ? 'flex-1 min-w-0 flex flex-col justify-between' : ''}`}>
-                  <a href={`/equipment/${device.id}`} className="block">
+                  <a href={`/thiet-bi/${device.id}`} className="block">
                     <h3 className="font-bold text-gray-900 text-base leading-snug hover:text-orange-600 transition-colors duration-300">
                       {device.name}
                     </h3>

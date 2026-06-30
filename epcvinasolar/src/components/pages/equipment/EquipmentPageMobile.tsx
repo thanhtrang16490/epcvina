@@ -819,7 +819,7 @@ export default function EquipmentCategoryPage({ category }: PageProps) {
                   Đóng
                 </button>
                 <a
-                  href={`/equipment/${selectedDevice.id}`}
+                  href={`/thiet-bi/${selectedDevice.id}`}
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-[#F97316] text-white rounded-xl text-sm font-medium hover:bg-[#C2410C] transition-colors"
                 >
                   Xem chi tiết

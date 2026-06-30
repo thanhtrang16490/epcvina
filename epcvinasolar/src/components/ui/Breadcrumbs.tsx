@@ -23,7 +23,7 @@ interface BreadcrumbsProps {
  * Usage:
  * <Breadcrumbs items={[
  *   { name: 'Trang chủ', url: '/' },
- *   { name: 'Thiết bị', url: '/equipment' },
+ *   { name: 'Thiết bị', url: '/thiet-bi' },
  *   { name: 'Tấm pin năng lượng mặt trời' }
  * ]} />
  */

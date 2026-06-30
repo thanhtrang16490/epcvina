@@ -50,7 +50,7 @@ Khi lắp đặt hệ thống điện mặt trời On-Grid 5kW, bạn cần than
 
 **Khuyến nghị EPC Solar**: LONGi và Jinko là hai thương hiệu tốt nhất trong tầm giá hợp lý, bảo hành hiệu suất 25 năm từ nhà sản xuất.
 
-👉 [Xem tấm pin chính hãng tại EPCVINA](/equipment/tam-pin-mat-troi)
+👉 [Xem tấm pin chính hãng tại EPCVINA](/thiet-bi/tam-pin-mat-troi)
 
 ### 2.2 Inverter On-Grid
 
@@ -65,7 +65,7 @@ Inverter là "trái tim" của hệ thống, chuyển đổi điện DC từ t�
 
 **Khuyến nghị EPC Solar**: Huawei SUN2000 series là lựa chọn hàng đầu — độ bền vượt trội, ứng dụng FusionSolar thông minh, và mạng lưới bảo hành rộng khắp Hà Nội.
 
-👉 [Xem inverter On-Grid chính hãng](/equipment/inverter-on-grid)
+👉 [Xem inverter On-Grid chính hãng](/thiet-bi/inverter-on-grid)
 
 ### 2.3 Khung Giá Và Phụ Kiện
 

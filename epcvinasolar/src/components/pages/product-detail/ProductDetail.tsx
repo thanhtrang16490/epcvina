@@ -134,12 +134,12 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
         <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
           <div className="max-w-7xl mx-auto">
             <nav className="flex items-center space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
-              <a href="/equipment" className="hover:text-orange-600 transition-colors cursor-pointer">
+              <a href="/thiet-bi" className="hover:text-orange-600 transition-colors cursor-pointer">
                 Thiết bị
               </a>
               <span aria-hidden="true">/</span>
               <a 
-                href={`/equipment?category=${product.category}`} 
+                href={`/thiet-bi?category=${product.category}`} 
                 className="hover:text-orange-600 transition-colors cursor-pointer"
               >
                 {CATEGORY_NAMES[product.category] || product.category}
@@ -499,7 +499,7 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
             {/* Back to Products */}
             <div className="text-center pt-8 border-t border-gray-200">
               <a
-                href="/equipment"
+                href="/thiet-bi"
                 className="inline-flex items-center gap-2 text-orange-600 hover:text-orange-700 font-semibold transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -519,7 +519,7 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
                 relatedProducts.map((relatedProduct) => (
                   <a
                     key={relatedProduct.id}
-                    href={`/equipment/${relatedProduct.slug || relatedProduct.id}`}
+                    href={`/thiet-bi/${relatedProduct.slug || relatedProduct.id}`}
                     className="flex gap-3 bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow p-3 cursor-pointer"
                   >
                     {/* Image on Left */}

@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { product } = Astro.props;
 
 if (!product) {
-  return Astro.redirect('/equipment');
+  return Astro.redirect('/thiet-bi');
 }
 
 // Fetch related projects that use this product

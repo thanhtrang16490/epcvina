@@ -265,7 +265,7 @@ const faq = project.data.faq || [];
                 <div class="space-y-3">
                   {equipmentWithImages.map((item) => (
                     <a 
-                      href={item.product_slug ? `/equipment/${item.product_slug}` : '#'}
+                      href={item.product_slug ? `/thiet-bi/${item.product_slug}` : '#'}
                       class={`bg-white rounded-lg p-3 border border-emerald-200 hover:border-emerald-400 transition-all group flex items-center gap-3 ${item.product_slug ? 'cursor-pointer hover:shadow-md' : 'cursor-default'}`}
                     >
                       <!-- Product Image -->
