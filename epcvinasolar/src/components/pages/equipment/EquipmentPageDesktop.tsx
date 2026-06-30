@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, Eye, ArrowRight, Layers, Cable, Search, ChevronRight } from 'lucide-react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
@@ -133,6 +133,25 @@ export default function EquipmentPageDesktop({
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Auto-collapse search when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSearch(false);
+        onSearchChange('');
+      }
+    };
+
+    if (showSearch) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showSearch, onSearchChange]);
 
   // Filter and sort
   const filteredDevices = useMemo(() => {
@@ -241,43 +260,45 @@ export default function EquipmentPageDesktop({
             {/* Filter Options - Right Side */}
             <div className="flex items-center gap-3">
               {/* Collapsible Search */}
-              {showSearch ? (
-                <div className="relative w-64">
-                  <input
-                    type="text"
-                    placeholder="Tìm thiết bị..."
-                    value={searchQuery}
-                    onChange={(e) => onSearchChange(e.target.value)}
-                    className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
-                    autoFocus
-                  />
-                  {searchQuery && (
+              <div ref={searchRef}>
+                {showSearch ? (
+                  <div className="relative w-64">
+                    <input
+                      type="text"
+                      placeholder="Tìm thiết bị..."
+                      value={searchQuery}
+                      onChange={(e) => onSearchChange(e.target.value)}
+                      className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
+                      autoFocus
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => onSearchChange('')}
+                        className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
                     <button
-                      onClick={() => onSearchChange('')}
-                      className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      onClick={() => {
+                        setShowSearch(false);
+                        onSearchChange('');
+                      }}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-100 rounded"
                     >
                       <X className="h-4 w-4" />
                     </button>
-                  )}
+                  </div>
+                ) : (
                   <button
-                    onClick={() => {
-                      setShowSearch(false);
-                      onSearchChange('');
-                    }}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-100 rounded"
+                    onClick={() => setShowSearch(true)}
+                    className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-[#F97316] transition-colors"
+                    title="Tìm kiếm"
                   >
-                    <X className="h-4 w-4" />
+                    <Search className="h-4 w-4 text-gray-600" />
                   </button>
-                </div>
-              ) : (
-                <button
-                  onClick={() => setShowSearch(true)}
-                  className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-[#F97316] transition-colors"
-                  title="Tìm kiếm"
-                >
-                  <Search className="h-4 w-4 text-gray-600" />
-                </button>
-              )}
+                )}
+              </div>
               
               {/* Grid Filter - Product Display Columns */}
               <select
