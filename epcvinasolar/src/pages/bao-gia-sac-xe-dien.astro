@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import BaoGiaSacXePage from '../components/pages/baogiasac/BaoGiaSacXePage';
+
+export const prerender = true;
+
+const seoTitle = 'Báo Giá Trạm Sạc Xe Điện 2026 - Wallbox Chính Hãng | EPCVINA Solar';
+const seoDescription = 'Bảng giá trạm sạc xe điện 2026: 7kW từ 15 triệu, 22kW từ 30 triệu. Tương thích VF3, VF5, VF6. Lắp đặt nhanh 1 ngày.';
+const seoKeywords = 'báo giá trạm sạc xe điện, giá trạm sạc wallbox, giá sạc VF3 VF5 VF6, EPCVINA Solar';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Báo Giá Trạm Sạc Xe Điện', url: 'https://epcvina.com/bao-gia-sac-xe-dien' }
+  ]}
+>
+  <BaoGiaSacXePage client:visible />
+</DashboardLayout>

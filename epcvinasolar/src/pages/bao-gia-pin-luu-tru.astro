@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import BaoGiaPinLuuTruPage from '../components/pages/baogiapin/BaoGiaPinLuuTruPage';
+
+export const prerender = true;
+
+const seoTitle = 'Báo Giá Pin Lưu Trữ BESS 2026 - Bảng Giá Mới Nhất | EPCVINA Solar';
+const seoDescription = 'Bảng giá pin lưu trữ BESS 2026: 5kWh từ 35 triệu, 10kWh từ 70 triệu. Pin BYD, Pylontech chính hãng. Bảo hành 5 năm.';
+const seoKeywords = 'báo giá pin lưu trữ, giá pin BESS, giá pin lithium, pin lưu trữ giá rẻ, EPCVINA Solar';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Báo Giá Pin Lưu Trữ', url: 'https://epcvina.com/bao-gia-pin-luu-tru' }
+  ]}
+>
+  <BaoGiaPinLuuTruPage client:visible />
+</DashboardLayout>

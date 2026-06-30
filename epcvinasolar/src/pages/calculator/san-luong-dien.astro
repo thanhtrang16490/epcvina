@@ -1,0 +1,18 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import SanLuongDienPage from '../../components/pages/calculator/SanLuongDienPage';
+
+export const prerender = true;
+---
+
+<DashboardLayout
+  title="Tính Sản Lượng Điện Mặt Trời | EPCVINA"
+  description="Tính sản lượng điện mặt trời theo công suất, vị trí địa lý. Ước tính sản lượng theo tháng/năm."
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Công Cụ', url: 'https://epcvina.com/calculator' },
+    { name: 'Sản Lượng Điện', url: 'https://epcvina.com/calculator/san-luong-dien' }
+  ]}
+>
+  <SanLuongDienPage client:visible />
+</DashboardLayout>

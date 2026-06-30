@@ -1,0 +1,55 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import HoKinhDoanhLandingPage from '../components/pages/hkd/HoKinhDoanhLandingPage';
+
+export const prerender = true;
+
+const seoTitle = 'Điện Mặt Trời Hộ Kinh Doanh 2026 - Giảm Chi Phí, Tăng Lợi Nhuận | EPCVINA';
+const seoDescription = 'Giải pháp điện mặt trời cho hộ kinh doanh, cửa hàng, nhà hàng. Giảm 70-90% chi phí điện. Hoàn vốn 3-5 năm. Tư vấn miễn phí: 0988 446 113';
+const seoKeywords = 'điện mặt trời hộ kinh doanh, điện mặt trời cửa hàng, điện mặt trời nhà hàng, giảm tiền điện kinh doanh, EPCVINA Solar';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Hộ kinh doanh có nên lắp điện mặt trời?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có. Hộ kinh doanh thường dùng điện 3-10 triệu/tháng. Điện mặt trời giảm 70-90% chi phí, hoàn vốn 3-4 năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Chi phí lắp cho hộ kinh doanh bao nhiêu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Từ 60-150 triệu tùy công suất. Hệ 5kWp từ 60 triệu, hệ 10kWp từ 110 triệu. Hoàn vốn 3-5 năm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Có phải xin phép lắp điện mặt trời không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Theo Nghị định 135/2024, hệ dưới 1MWp chỉ cần thông báo Điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục miễn phí."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Điện Mặt Trời Hộ Kinh Doanh', url: 'https://epcvina.com/dien-mat-troi-ho-kinh-doanh' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <HoKinhDoanhLandingPage client:visible />
+</DashboardLayout>

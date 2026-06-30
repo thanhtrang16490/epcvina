@@ -1,0 +1,18 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import ThoiGianHoanVonPage from '../../components/pages/calculator/ThoiGianHoanVonPage';
+
+export const prerender = true;
+---
+
+<DashboardLayout
+  title="Tính Thời Gian Hoàn Vốn Điện Mặt Trời | EPCVINA"
+  description="Tính thời gian hoàn vốn hệ thống điện mặt trời. Dựa trên chi phí, sản lượng và giá điện."
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Công Cụ', url: 'https://epcvina.com/calculator' },
+    { name: 'Thời Gian Hoàn Vốn', url: 'https://epcvina.com/calculator/thoi-gian-hoan-von' }
+  ]}
+>
+  <ThoiGianHoanVonPage client:visible />
+</DashboardLayout>

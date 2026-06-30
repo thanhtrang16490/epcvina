@@ -1,0 +1,18 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import SacXeDienCalcPage from '../../components/pages/calculator/SacXeDienCalcPage';
+
+export const prerender = true;
+---
+
+<DashboardLayout
+  title="Tính Chi Phí Sạc Xe Điện | EPCVINA"
+  description="Tính chi phí sạc xe điện tại nhà. So sánh sạc thường vs kết hợp điện mặt trời."
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Công Cụ', url: 'https://epcvina.com/calculator' },
+    { name: 'Sạc Xe Điện', url: 'https://epcvina.com/calculator/sac-xe-dien' }
+  ]}
+>
+  <SacXeDienCalcPage client:visible />
+</DashboardLayout>

@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import TuVanGiaiPhapPage from '../components/pages/tuvan/TuVanGiaiPhapPage';
+
+export const prerender = true;
+
+const seoTitle = 'Tư Vấn Giải Pháp Điện Mặt Trời - Khảo Sát Miễn Phí | EPCVINA Solar';
+const seoDescription = 'Tư vấn giải pháp điện mặt trời miễn phí. Khảo sát tại nhà, thiết kế 3D, báo giá chi tiết. Hotline: 0988 446 113';
+const seoKeywords = 'tư vấn điện mặt trời, khảo sát điện mặt trời miễn phí, thiết kế hệ thống solar, EPCVINA Solar';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Tư Vấn Giải Pháp', url: 'https://epcvina.com/tu-van-giai-phap' }
+  ]}
+>
+  <TuVanGiaiPhapPage client:visible />
+</DashboardLayout>

@@ -1,0 +1,23 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import CalculatorMainPage from '../../components/pages/calculator/CalculatorMainPage';
+
+export const prerender = true;
+
+const seoTitle = 'Công Cụ Tính Toán Điện Mặt Trời - Tính Chi Phí, Sản Lượng | EPCVINA';
+const seoDescription = 'Công cụ tính toán điện mặt trời miễn phí: Chi phí đầu tư, sản lượng điện, thời gian hoàn vốn, pin lưu trữ. EPCVINA Solar';
+const seoKeywords = 'tính toán điện mặt trời, calculator solar, chi phí lắp điện mặt trời, sản lượng điện, thời gian hoàn vốn';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Công Cụ Tính Toán', url: 'https://epcvina.com/calculator' }
+  ]}
+>
+  <CalculatorMainPage client:visible />
+</DashboardLayout>
