@@ -84,13 +84,11 @@ interface EquipmentSidebarProps {
   selectedBrand: string;
   searchQuery: string;
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
-  selectedGrid?: string;
   onSelectBrand: (brand: string) => void;
   onSelectDevice: (deviceId: string) => void;
   onShowDevice: (deviceId: string) => void;
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
-  onGridChange?: (grid: string) => void;
 }
 
 export default function EquipmentSidebar({
@@ -100,32 +98,13 @@ export default function EquipmentSidebar({
   selectedBrand,
   searchQuery,
   sortBy,
-  selectedGrid,
   onSelectBrand,
   onSelectDevice,
   onShowDevice,
   onSearchChange,
   onSortChange,
-  onGridChange,
 }: EquipmentSidebarProps) {
   const [showBrands, setShowBrands] = useState(true);
-
-  // Extract grid options from products
-  const gridOptions = useMemo(() => {
-    const sourceDevices = categoryDevices || devices;
-    const gridSet = new Set<string>();
-    for (const device of sourceDevices) {
-      const cellCount = device.specs['Số lượng cell'];
-      if (cellCount) {
-        // Extract grid pattern like "6×22" from "132 (6×22)"
-        const match = cellCount.match(/\((\d+×\d+)\)/);
-        if (match) {
-          gridSet.add(match[1]);
-        }
-      }
-    }
-    return Array.from(gridSet).sort();
-  }, [categoryDevices, devices]);
 
   // Brands chỉ lấy từ category đang chọn
   const brands = useMemo(() => {

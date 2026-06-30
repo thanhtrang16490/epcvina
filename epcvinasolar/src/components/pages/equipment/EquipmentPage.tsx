@@ -40,7 +40,7 @@ export default function EquipmentPage({ category }: PageProps) {
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
-  const [selectedGrid, setSelectedGrid] = useState<string>('');
+  const [gridColumns, setGridColumns] = useState<number>(4);
 
   // Fetch products from Content Collections API
   useEffect(() => {
@@ -81,22 +81,6 @@ export default function EquipmentPage({ category }: PageProps) {
     fetchDevices();
   }, [category]);
 
-  // Extract grid options from category devices (for panels)
-  const gridOptions = useMemo(() => {
-    const gridSet = new Set<string>();
-    for (const device of categoryDevices) {
-      const cellCount = device.specs['Số lượng cell'];
-      if (cellCount) {
-        // Extract grid pattern like "6×22" from "132 (6×22)"
-        const match = cellCount.match(/\((\d+×\d+)\)/);
-        if (match) {
-          gridSet.add(match[1]);
-        }
-      }
-    }
-    return Array.from(gridSet).sort();
-  }, [categoryDevices]);
-
   return (
     <div className="flex-1 flex flex-col">
       <HeaderBar />
@@ -119,7 +103,7 @@ export default function EquipmentPage({ category }: PageProps) {
         />
 
         {/* Section 2: Sidebar + Content only */}
-        <div className="flex flex-1 gap-6">
+        <div className="flex flex-1 gap-3">
           <EquipmentSidebar
             category={category}
             devices={allDevices}
@@ -127,7 +111,6 @@ export default function EquipmentPage({ category }: PageProps) {
             selectedBrand={selectedBrand}
             searchQuery={searchQuery}
             sortBy={sortBy}
-            selectedGrid={selectedGrid}
             onSelectBrand={setSelectedBrand}
             onSelectDevice={setSelectedDeviceId}
             onShowDevice={(id) => {
@@ -135,20 +118,18 @@ export default function EquipmentPage({ category }: PageProps) {
             }}
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
-            onGridChange={setSelectedGrid}
           />
-          <div className="flex-1 flex flex-col pl-6 pr-6">
+          <div className="flex-1 flex flex-col pl-3 pr-3">
             <EquipmentPageDesktop 
               category={category} 
               devices={categoryDevices}
               loading={loading}
               searchQuery={searchQuery}
               sortBy={sortBy}
-              selectedGrid={selectedGrid}
-              gridOptions={gridOptions}
+              gridColumns={gridColumns}
               onSearchChange={setSearchQuery}
               onSortChange={setSortBy}
-              onGridChange={setSelectedGrid}
+              onGridColumnsChange={setGridColumns}
               showHero={false}
               showContent={true}
             />

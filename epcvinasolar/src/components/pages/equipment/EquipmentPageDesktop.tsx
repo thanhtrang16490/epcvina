@@ -104,11 +104,10 @@ interface PageProps {
   loading: boolean;
   searchQuery: string;
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
-  selectedGrid?: string;
-  gridOptions?: string[];
+  gridColumns?: number;
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
-  onGridChange?: (grid: string) => void;
+  onGridColumnsChange?: (columns: number) => void;
   showHero?: boolean;
   showContent?: boolean;
 }
@@ -119,11 +118,10 @@ export default function EquipmentPageDesktop({
   loading,
   searchQuery,
   sortBy,
-  selectedGrid,
-  gridOptions = [],
+  gridColumns = 4,
   onSearchChange,
   onSortChange,
-  onGridChange,
+  onGridColumnsChange,
   showHero = true,
   showContent = true,
 }: PageProps) {
@@ -143,18 +141,6 @@ export default function EquipmentPageDesktop({
       );
     }
     
-    // Filter by grid if selected
-    if (selectedGrid && category === 'panel') {
-      filtered = filtered.filter(device => {
-        const cellCount = device.specs['Số lượng cell'];
-        if (cellCount) {
-          const match = cellCount.match(/\((\d+×\d+)\)/);
-          return match && match[1] === selectedGrid;
-        }
-        return false;
-      });
-    }
-    
     switch (sortBy) {
       case 'az':
         filtered.sort((a, b) => a.model.localeCompare(b.model));
@@ -171,7 +157,7 @@ export default function EquipmentPageDesktop({
     }
     
     return filtered;
-  }, [devices, searchQuery, sortBy, selectedGrid, category]);
+  }, [devices, searchQuery, sortBy]);
 
   const brands = useMemo(() => {
     const brandSet = new Set<string>();
@@ -252,19 +238,17 @@ export default function EquipmentPageDesktop({
               )}
             </div>
             
-            {/* Grid Filter - Only show for panels */}
-            {category === 'panel' && gridOptions.length > 0 && (
-              <select
-                value={selectedGrid || ''}
-                onChange={(e) => onGridChange?.(e.target.value)}
-                className="px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white min-w-[140px]"
-              >
-                <option value="">Tất cả Grid</option>
-                {gridOptions.map((grid: string) => (
-                  <option key={grid} value={grid}>{grid}</option>
-                ))}
-              </select>
-            )}
+            {/* Grid Filter - Product Display Columns */}
+            <select
+              value={gridColumns}
+              onChange={(e) => onGridColumnsChange?.(Number(e.target.value))}
+              className="px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white min-w-[140px]"
+            >
+              <option value={1}>1 cột</option>
+              <option value={2}>2 cột</option>
+              <option value={3}>3 cột</option>
+              <option value={4}>4 cột</option>
+            </select>
             
             {/* Sort Dropdown */}
             <select
@@ -293,7 +277,12 @@ export default function EquipmentPageDesktop({
             <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className={`grid grid-cols-1 sm:grid-cols-2 ${
+            gridColumns === 1 ? 'lg:grid-cols-1' :
+            gridColumns === 2 ? 'lg:grid-cols-2' :
+            gridColumns === 3 ? 'lg:grid-cols-3' :
+            'lg:grid-cols-4'
+          } gap-6`}>
             {filteredDevices.map((device) => (
               <div
                 key={device.id}
