@@ -118,7 +118,7 @@ export default function EquipmentPage({ category }: PageProps) {
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
           />
-          <div className="flex-1 flex flex-col pl-6">
+          <div className="flex-1 flex flex-col pl-6 pr-6">
             <EquipmentPageDesktop 
               category={category} 
               devices={categoryDevices}

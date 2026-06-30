@@ -145,7 +145,7 @@ export default function EquipmentSidebar({
   }, [brands]);
 
   return (
-    <aside className="w-64 flex-shrink-0">
+    <aside className="w-64 flex-shrink-0 ml-6">
       <div className="sticky top-24 space-y-6">
         {/* Search Box */}
         <div className="bg-white rounded-2xl border border-gray-200 p-4">
