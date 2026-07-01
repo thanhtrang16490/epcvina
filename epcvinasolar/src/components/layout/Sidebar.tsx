@@ -69,7 +69,7 @@ const menuItems: MenuItem[] = [
     children: [
       { name: 'Mái tôn', href: '/solar-home/mai-ton' },
       { name: 'Mái ngói', href: '/solar-home/mai-ngoi' },
-      { name: 'Mái bằng', href: '/solar-home/mai-bang', soon: true },
+      { name: 'Mái bằng', href: '/solar-home/mai-bang' },
     ],
   },
   {
