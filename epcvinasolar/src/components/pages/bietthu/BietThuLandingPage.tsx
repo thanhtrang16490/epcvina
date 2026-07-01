@@ -1,6 +1,5 @@
 import { CheckCircle, Phone, Gem } from 'lucide-react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
-import FAQSection from '../ad-landing/FAQSection';
 
 export default function BietThuLandingPage() {
   return (
@@ -109,7 +108,31 @@ export default function BietThuLandingPage() {
         </div>
       </section>
 
-      <FAQSection />
+      {/* FAQ */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Câu Hỏi Biệt Thự</h2>
+          <div className="space-y-4">
+            {[
+              { q: 'Biệt thự nên lắp hệ on-grid hay hybrid?', a: 'Nếu hóa đơn điện 5-20 triệu/tháng và cần dự phòng khi mất điện, nên lắp hệ hybrid + pin lưu trữ. Nếu chỉ muốn giảm tiền điện, hệ on-grid đủ dùng. Biệt thự thường có mái rộng 100-300m2, lý tưởng cho hệ 10-20kWp.' },
+              { q: 'Pin all-black là gì? Có khác gì pin thường?', a: 'Pin all-black có khung đen, cell đen, thẩm mỹ cao hơn pin thường (khung bạc, cell xanh). Hiệu suất tương đương nhưng phù hợp biệt thự sang trọng. Giá cao hơn 10-15%. Bảo hành 25 năm như pin thường.' },
+              { q: 'Lắp điện mặt trời có ảnh hưởng kiến trúc biệt thự không?', a: 'Không. EPCVINA thiết kế 3D trước khi lắp. Pin lắp sát mái, dây đi âm. Có thể lắp hidden-mount (giấu khung) hoặc flush-mount (ốp sát). Đảm bảo thẩm mỹ kiến trúc biệt thự.' },
+              { q: 'Chi phí lắp cho biệt thự bao nhiêu?', a: 'Từ 200-500 triệu tùy công suất. Hệ 10kWp+10kWh từ 200 triệu, hệ 15kWp+15kWh từ 300 triệu, hệ 20kWp+20kWh từ 400 triệu. EPCVINA báo giá chi tiết sau khảo sát miễn phí.' },
+              { q: 'Có thể giám sát hệ thống từ xa không?', a: 'Có. Tất cả hệ đều có app giám sát online. Theo dõi sản xuất điện, tiêu thụ, pin lưu trữ qua điện thoại. Cảnh báo sự cố tự động. Hỗ trợ kỹ thuật từ xa.' },
+            ].map((faq, i) => (
+              <details key={i} className="group bg-white rounded-xl border border-slate-200 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-all">
+                  <span className="text-lg font-semibold text-slate-900 pr-4">{faq.q}</span>
+                  <span className="text-slate-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-slate-700 leading-relaxed">{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-purple-700 to-purple-800 text-white">

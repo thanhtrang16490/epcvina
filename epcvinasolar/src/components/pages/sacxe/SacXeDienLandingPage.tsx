@@ -1,6 +1,5 @@
 import { CheckCircle, Phone, Car } from 'lucide-react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
-import FAQSection from '../ad-landing/FAQSection';
 
 export default function SacXeDienLandingPage() {
   return (
@@ -137,7 +136,31 @@ export default function SacXeDienLandingPage() {
         </div>
       </section>
 
-      <FAQSection />
+      {/* FAQ */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Câu Hỏi Sạc Xe Điện</h2>
+          <div className="space-y-4">
+            {[
+              { q: 'Trạm sạc tại nhà có cần xin phép không?', a: 'Không cần xin phép. Lắp trạm sạc tại nhà là thiết bị điện gia dụng. Chỉ cần ổ cắm 16A (7kW) hoặc aptomat riêng (11-22kW). EPCVINA hỗ trợ lắp đặt trọn gói.' },
+              { q: 'Sạc xe bằng năng lượng mặt trời có nhanh hơn không?', a: 'Tốc độ sạc phụ thuộc công suất trạm (7-22kW), không phụ thuộc nguồn điện. Kết hợp solar giảm chi phí điện, không giảm tốc độ sạc. Sạc 7kW: 5-6 giờ, 11kW: 4-5 giờ.' },
+              { q: 'Có thể sạc nhiều xe cùng lúc không?', a: 'Có. Trạm sạc hỗ trợ load balancing, chia công suất khi sạc 2 xe. Ví dụ: 2 xe cùng sạc, mỗi xe nhận 50% công suất. Phù hợp gia đình có 2 xe điện.' },
+              { q: 'Trạm sạc có tương thích với xe VinFast không?', a: 'Có. Trạm Wallbox sử dụng chuẩn Type 2 (AC) tương thích VF3, VF5, VF6, VF8, VF9. Có dây sạc đi kèm hoặc mua riêng. Cài đặt qua app, hẹn giờ sạc, giám sát từ xa.' },
+              { q: 'Chi phí lắp trạm sạc bao nhiêu?', a: 'Từ 15-50 triệu tùy công suất. Trạm 7kW từ 15-20 triệu, 11kW từ 20-30 triệu, 22kW từ 30-50 triệu. Bao gồm thiết bị + lắp đặt + dây cáp. Bảo hành 2-5 năm.' },
+            ].map((faq, i) => (
+              <details key={i} className="group bg-white rounded-xl border border-slate-200 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-all">
+                  <span className="text-lg font-semibold text-slate-900 pr-4">{faq.q}</span>
+                  <span className="text-slate-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-slate-700 leading-relaxed">{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-green-600 to-emerald-700 text-white">

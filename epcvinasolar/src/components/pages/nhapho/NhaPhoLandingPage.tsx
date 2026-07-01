@@ -1,7 +1,6 @@
 import { CheckCircle, Home, Zap, Phone } from 'lucide-react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
 import CalculatorSection from '../ad-landing/CalculatorSection';
-import FAQSection from '../ad-landing/FAQSection';
 
 export default function NhaPhoLandingPage() {
   return (
@@ -109,7 +108,31 @@ export default function NhaPhoLandingPage() {
         </div>
       </section>
 
-      <FAQSection />
+      {/* FAQ */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Câu Hỏi Nhà Phố</h2>
+          <div className="space-y-4">
+            {[
+              { q: 'Nhà phố mái nhỏ có lắp được điện mặt trời không?', a: 'Có. Nhà phố, nhà ống có mái 30-60m2 lắp được hệ 3-8kWp. Pin lắp sát mái, không chiếm diện tích. EPCVINA khảo sát miễn phí, tư vấn vị trí tối ưu.' },
+              { q: 'Nhà phố nên lắp hệ on-grid hay hybrid?', a: 'Nếu hóa đơn 2-5 triệu/tháng, hệ on-grid 3-8kWp là đủ, hoàn vốn 3-5 năm. Nếu cần dự phòng khi mất điện, thêm pin lưu trữ hybrid. Hệ on-grid tiết kiệm chi phí nhất.' },
+              { q: 'Lắp trên mái tôn được không?', a: 'Được. Mái tôn, mái ngói, mái bằng đều lắp được. Mái tôn dùng kẹp tôn, mái ngói dùng móc ngói, mái bằng dùng khung nâng. Không khoan thủng mái, không thấm dột.' },
+              { q: 'Thi công có ảnh hưởng sinh hoạt không?', a: 'Không. Thi công nhanh 1-2 ngày. Không ồn, không bụi. Dây đi âm tường hoặc máng cáp. Không ảnh hưởng sinh hoạt gia đình.' },
+              { q: 'Sau hoàn vốn có còn tiết kiệm không?', a: 'Có. Hệ thống hoạt động 25-30 năm. Sau hoàn vốn 3-5 năm, tiếp tục tiết kiệm 20-25 năm. Chi phí bảo trì rất thấp, chỉ vệ sinh pin 1-2 lần/năm.' },
+            ].map((faq, i) => (
+              <details key={i} className="group bg-white rounded-xl border border-slate-200 overflow-hidden">
+                <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-slate-50 transition-all">
+                  <span className="text-lg font-semibold text-slate-900 pr-4">{faq.q}</span>
+                  <span className="text-slate-500 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <div className="px-6 pb-6">
+                  <p className="text-slate-700 leading-relaxed">{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-orange-600 to-orange-700 text-white">
