@@ -9,11 +9,21 @@ const activePartners = partners
   .filter(p => p.data.is_active)
   .sort((a, b) => a.data.display_order - b.data.display_order);
 
-const seoTitle = 'Đối tác chính hãng - Thiết bị điện mặt trời | EPCVINA Solar';
-const seoDescription = 'Danh sách đối tác chính hãng của EPCVINA Solar: AIKO, Huawei, Growatt, Pylontech, SAJ, Deye, Longi và các thương hiệu hàng đầu.';
+const seoTitle = 'Đối Tác Chính Hãng - Thiết Bị Điện Mặt Trời AIKO, Huawei, Growatt | EPCVINA Solar';
+const seoDescription = 'Danh sách đối tác chính hãng của EPCVINA Solar: AIKO, Huawei, Growatt, Pylontech, SAJ, Deye, Longi. Cam kết hàng chính hãng, bảo hành đầy đủ.';
+const seoKeywords = 'đối tác điện mặt trời, thương hiệu solar chính hãng, AIKO Solar, Huawei Solar, Growatt, Pylontech, EPCVINA đối tác';
 ---
 
-<DashboardLayout title={seoTitle} description={seoDescription}>
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Đối Tác', url: 'https://epcvina.com/doi-tac' }
+  ]}
+>
   <DashboardShell client:load>
     <PartnersList client:idle partners={activePartners} />
   </DashboardShell>

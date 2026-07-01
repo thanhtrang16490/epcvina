@@ -4,7 +4,17 @@ import DashboardShell from '../../components/layout/DashboardShell';
 import AgriculturalApplicationPage from '../../components/pages/application/AgriculturalApplicationPage';
 ---
 
-<DashboardLayout title="Điện Nông Nghiệp - EPC Solar">
+<DashboardLayout
+  title="Điện Mặt Trời Nông Nghiệp - Agrivoltaics Kết Hợp Sản Xuất | EPCVINA Solar"
+  description="Giải pháp điện mặt trời kết hợp nông nghiệp (agrivoltaics). Vừa sản xuất điện vừa canh tác. Phù hợp trang trại, nhà kính, vườn cây ăn quả."
+  keywords="điện mặt trời nông nghiệp, agrivoltaics, solar nông trại, điện mặt trời nhà kính, EPCVINA Solar"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Ứng Dụng', url: 'https://epcvina.com/ung-dung/dien-nong-nghiep' },
+    { name: 'Điện Nông Nghiệp', url: 'https://epcvina.com/ung-dung/dien-nong-nghiep' }
+  ]}
+>
   <DashboardShell client:load>
     <AgriculturalApplicationPage client:idle />
   </DashboardShell>

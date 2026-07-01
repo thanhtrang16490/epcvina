@@ -4,7 +4,17 @@ import DashboardShell from '../../components/layout/DashboardShell';
 import ResidentialApplicationPage from '../../components/pages/application/ResidentialApplicationPage';
 ---
 
-<DashboardLayout title="Điện Dân Dụng - EPC Solar">
+<DashboardLayout
+  title="Điện Mặt Trời Gia Đình - Hộ Gia Đình, Nhà Phố, Biệt Thự | EPCVINA Solar"
+  description="Giải pháp điện mặt trời cho hộ gia đình, nhà phố, biệt thự. Combo on-grid & hybrid từ 3-20kWp. Giảm 70-90% tiền điện, hoàn vốn 3-5 năm."
+  keywords="điện mặt trời gia đình, solar nhà phố, điện mặt trời biệt thự, combo gia đình, EPCVINA Solar"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Ứng Dụng', url: 'https://epcvina.com/ung-dung/dien-dan-dung' },
+    { name: 'Điện Dân Dụng', url: 'https://epcvina.com/ung-dung/dien-dan-dung' }
+  ]}
+>
   <DashboardShell client:load>
     <ResidentialApplicationPage client:idle />
   </DashboardShell>

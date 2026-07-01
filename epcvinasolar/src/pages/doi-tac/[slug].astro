@@ -15,11 +15,22 @@ export async function getStaticPaths() {
 }
 
 const { partner } = Astro.props;
-const seoTitle = `Đối tác ${partner.data.name} - Thiết bị điện mặt trời chính hãng | EPCVINA Solar`;
+const seoTitle = `Đối Tác ${partner.data.name} - Thiết Bị Điện Mặt Trời Chính Hãng ${partner.data.country || ''} | EPCVINA Solar`;
 const seoDescription = partner.data.short_description;
+const seoKeywords = `${partner.data.name.toLowerCase()}, thiết bị ${partner.data.name.toLowerCase()} chính hãng, ${partner.data.brand_type || 'thương hiệu solar'}, đại lý ${partner.data.name.toLowerCase()} EPCVINA`;
 ---
 
-<DashboardLayout title={seoTitle} description={seoDescription}>
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Đối Tác', url: 'https://epcvina.com/doi-tac' },
+    { name: partner.data.name, url: `https://epcvina.com/doi-tac/${partner.data.slug}` }
+  ]}
+>
   <DashboardShell client:load>
     <PartnerPage client:idle partner={partner} />
   </DashboardShell>

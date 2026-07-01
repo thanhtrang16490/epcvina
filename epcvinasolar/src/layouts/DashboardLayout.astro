@@ -110,12 +110,8 @@ const structuredData = {
     <meta property="og:site_name" content="EPCVINA Solar" />
     <meta property="og:image:type" content="image/png" />
     
-    <!-- Facebook App ID (for Facebook Insights) -->
-    <meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
-    
     <!-- Zalo / Vietnamese Social Networks -->
     <meta property="og:updated_time" content={new Date().toISOString()} />
-    <meta name="zalo-app-id" content="YOUR_ZALO_APP_ID" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -126,18 +122,8 @@ const structuredData = {
     <meta name="twitter:image" content={ogImageURL.href} />
     <meta name="twitter:image:alt" content={title} />
     
-    <!-- Pinterest -->
+    <!-- Pinterest Rich Pin -->
     <meta name="pinterest-rich-pin" content="true" />
-    <meta property="og:image" content={ogImageURL.href} />
-    
-    <!-- LinkedIn -->
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="627" />
-    
-    <!-- WhatsApp -->
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logo-favicon.svg?v=2" />
@@ -161,54 +147,8 @@ const structuredData = {
     <!-- Preload hero image (LCP element) - WebP format for performance -->
     <link rel="preload" as="image" href="/hero-bg-1920.webp" imagesrcset="/hero-bg-768.webp 768w, /hero-bg-1280.webp 1280w, /hero-bg-1920.webp 1920w" />
 
-    <!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your actual Measurement ID -->
-    <!-- Setup: https://analytics.google.com -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX', {
-        'send_page_view': true,
-        'custom_map': {
-          'dimension1': 'user_type',
-          'dimension2': 'page_category'
-        }
-      });
-      
-      // Track phone clicks
-      function trackPhoneClick() {
-        gtag('event', 'phone_click', {
-          'event_category': 'contact',
-          'event_label': 'phone_number',
-          'value': 1
-        });
-      }
-      
-      // Track form submissions
-      function trackFormSubmit(formName) {
-        gtag('event', 'form_submit', {
-          'event_category': 'lead',
-          'event_label': formName,
-          'value': 1
-        });
-      }
-    </script>
-
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-    {breadcrumbs && breadcrumbs.length > 0 && (
-      <script type="application/ld+json" set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": breadcrumbs.map((item, index) => ({
-          "@type": "ListItem",
-          "position": index + 1,
-          "name": item.name,
-          "item": item.url
-        }))
-      })} />
-    )}
 
     <!-- Google Analytics - Deferred for Mobile Performance -->
     <script 

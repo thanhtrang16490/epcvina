@@ -4,7 +4,17 @@ import DashboardShell from '../../components/layout/DashboardShell';
 import IndustrialApplicationPage from '../../components/pages/application/IndustrialApplicationPage';
 ---
 
-<DashboardLayout title="Điện Công Nghiệp - EPC Solar">
+<DashboardLayout
+  title="Điện Mặt Trời Công Nghiệp - Nhà Xưởng, KCN 100kWp-5MWp | EPCVINA Solar"
+  description="Giải pháp điện mặt trời cho khu công nghiệp, nhà xưởng. Công suất 100kWp-5MWp, hoàn vốn 4-6 năm, tuổi thọ 30+ năm. EPCVINA - đối tác tin cậy doanh nghiệp."
+  keywords="điện mặt trời công nghiệp, solar nhà xưởng, điện mặt trời KCN, solar C&I, tiết kiệm điện doanh nghiệp, EPCVINA"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Ứng Dụng', url: 'https://epcvina.com/ung-dung/dien-cong-nghiep' },
+    { name: 'Điện Công Nghiệp', url: 'https://epcvina.com/ung-dung/dien-cong-nghiep' }
+  ]}
+>
   <DashboardShell client:load>
     <IndustrialApplicationPage client:idle />
   </DashboardShell>

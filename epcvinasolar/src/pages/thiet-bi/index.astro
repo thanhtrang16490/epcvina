@@ -6,7 +6,16 @@ import EquipmentPage from '../../components/pages/equipment/EquipmentPage';
 export const prerender = true;
 ---
 
-<DashboardLayout title="Thiết bị năng lượng mặt trời - EPCVINA Solar">
+<DashboardLayout
+  title="Thiết Bị Điện Mặt Trời Chính Hãng - Pin, Inverter, Pin Lưu Trữ | EPCVINA Solar"
+  description="Danh mục thiết bị điện mặt trời chính hãng: tấm pin AIKO, Huawei, Longi; inverter Growatt, SAJ, Deye; pin lưu trữ Pylontech, BYD. Bảo hành chính hãng 25 năm."
+  keywords="thiết bị điện mặt trời, pin mặt trời chính hãng, inverter solar, pin lưu trữ BESS, khung giàn mounting, EPCVINA Solar"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Thiết Bị', url: 'https://epcvina.com/thiet-bi' }
+  ]}
+>
   <DashboardShell client:load>
     <EquipmentPage category="panel" client:idle />
   </DashboardShell>
