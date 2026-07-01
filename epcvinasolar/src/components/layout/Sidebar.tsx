@@ -67,9 +67,9 @@ const menuItems: MenuItem[] = [
     name: 'Giải pháp thi công',
     icon: Lightbulb,
     children: [
-      { name: 'Mái tôn', href: '/solar-home/mai-ton' },
-      { name: 'Mái ngói', href: '/solar-home/mai-ngoi' },
-      { name: 'Mái bằng', href: '/solar-home/mai-bang' },
+      { name: 'Mái tôn', href: '/giai-phap-thi-cong-mai-ton' },
+      { name: 'Mái ngói', href: '/giai-phap-thi-cong-mai-ngoi' },
+      { name: 'Mái bằng', href: '/giai-phap-thi-cong-mai-bang' },
     ],
   },
   {

@@ -1,7 +1,7 @@
 ---
-import DashboardLayout from '../../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../../components/layout/DashboardShell';
-import MaiNgoiPage from '../../../components/pages/solar-home/MaiNgoiPage';
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import MaiNgoiPage from '../components/pages/solar-home/MaiNgoiPage';
 
 export const prerender = true;
 
@@ -72,8 +72,7 @@ const serviceSchema = {
   ogImage="/hero-bg-1920.webp"
   breadcrumbs={[
     { name: 'Trang chủ', url: 'https://epcvina.com' },
-    { name: 'Giải pháp thi công', url: 'https://epcvina.com/solar-home' },
-    { name: 'Mái ngói', url: 'https://epcvina.com/solar-home/mai-ngoi' }
+    { name: 'Giải pháp thi công mái ngói', url: 'https://epcvina.com/giai-phap-thi-cong-mai-ngoi' }
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
