@@ -1,0 +1,26 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import PartnerPage from '../../components/pages/partner/PartnerPage';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const partners = await getCollection('partners');
+  return partners
+    .filter(p => p.data.is_active)
+    .map(partner => ({
+      params: { slug: partner.data.slug },
+      props: { partner },
+    }));
+}
+
+const { partner } = Astro.props;
+const seoTitle = `Đối tác ${partner.data.name} - Thiết bị điện mặt trời chính hãng | EPCVINA Solar`;
+const seoDescription = partner.data.short_description;
+---
+
+<DashboardLayout title={seoTitle} description={seoDescription}>
+  <DashboardShell client:load>
+    <PartnerPage client:idle partner={partner} />
+  </DashboardShell>
+</DashboardLayout>

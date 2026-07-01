@@ -97,9 +97,28 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const partnersCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/partners' }),
+  schema: z.object({
+    name: z.string(),
+    slug: z.string(),
+    short_description: z.string(),
+    description: z.string(),
+    logo: z.string().optional(),
+    country: z.string().optional(),
+    founded_year: z.number().optional(),
+    website: z.string().optional(),
+    brand_type: z.string().optional(),
+    products: z.array(z.string()).optional(),
+    is_active: z.boolean().default(true),
+    display_order: z.number().default(0),
+  }),
+});
+
 export const collections = {
   blog: blogCollection,
   products: productsCollection,
   combos: combosCollection,
   projects: projectsCollection,
+  partners: partnersCollection,
 };

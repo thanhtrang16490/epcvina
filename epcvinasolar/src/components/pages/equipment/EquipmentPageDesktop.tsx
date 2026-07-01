@@ -266,7 +266,7 @@ export default function EquipmentPageDesktop({
             <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
               <a href="/" className="hover:text-[#F97316] transition-colors">Trang chủ</a>
               <ChevronRight className="h-3 w-3" />
-              <a href="/thiet-bi/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
+              <a href="/thiet-bi/danh-sach/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
               <ChevronRight className="h-3 w-3" />
               <span className="text-gray-900 font-medium">{meta?.label || 'Danh mục'}</span>
             </div>

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield, Plug, X, SlidersHorizontal, Layers, Cable } from 'lucide-react';
+import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield, Plug, X, SlidersHorizontal, Layers, Cable, ExternalLink } from 'lucide-react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
+import { localBrands } from '../../../data/brands';
 
 const CATEGORY_META: Record<string, {
   label: string;
@@ -103,6 +104,15 @@ export default function EquipmentSidebar({
   const [showBrands, setShowBrands] = useState(true);
 
   // Brands chỉ lấy từ category đang chọn
+  // Map brand name → slug for link generation
+  const brandSlugMap = useMemo(() => {
+    const map: Record<string, string> = {};
+    for (const b of localBrands) {
+      map[b.name.toLowerCase()] = b.slug;
+    }
+    return map;
+  }, []);
+
   const brands = useMemo(() => {
     const sourceDevices = categoryDevices || devices;
     const brandSet = new Set<string>();
@@ -139,7 +149,7 @@ export default function EquipmentSidebar({
               return (
                 <a
                   key={key}
-                  href={`/thiet-bi/${key}`}
+                  href={`/thiet-bi/danh-sach/${key}`}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
                     isActive
                       ? 'bg-[#F97316] text-white'
@@ -178,16 +188,39 @@ export default function EquipmentSidebar({
           </div>
           {showBrands && (
             <div className="p-3 max-h-96 overflow-y-auto">
-              {brands.map((brand) => {
-                const brandDevices = devicesByBrand[brand] || [];
-                const isSelected = selectedBrand === brand;
+              {/* All brands - clear filter */}
+              <a
+                href={`/thiet-bi/danh-sach/${category}`}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all mb-1 ${
+                  !selectedBrand ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex items-center gap-2 flex-1 min-w-0">
+                  <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                    !selectedBrand ? 'bg-[#F97316]' : 'bg-gray-300'
+                  }`} />
+                  <span className="text-sm font-medium truncate">Tất cả</span>
+                </div>
+                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                  {(categoryDevices || devices).length}
+                </span>
+              </a>
+              {brands.map((brandName) => {
+                const brandDevices = devicesByBrand[brandName] || [];
+                const isSelected = selectedBrand === brandName;
+                const slug = brandSlugMap[brandName.toLowerCase()];
+                const href = slug ? `/doi-tac/${slug}` : undefined;
                 return (
-                  <button
-                    key={brand}
-                    onClick={() => {
-                      onSelectBrand(brand);
+                  <a
+                    key={brandName}
+                    href={href || '#'}
+                    onClick={(e) => {
+                      if (!href) {
+                        e.preventDefault();
+                        onSelectBrand(brandName);
+                      }
                     }}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all mb-1 ${
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all mb-1 group ${
                       isSelected ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
                     }`}
                   >
@@ -195,12 +228,15 @@ export default function EquipmentSidebar({
                       <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
                         isSelected ? 'bg-[#F97316]' : 'bg-gray-300'
                       }`} />
-                      <span className="text-sm font-medium truncate">{brand}</span>
+                      <span className="text-sm font-medium truncate">{brandName}</span>
+                      {href && (
+                        <ExternalLink className="h-3 w-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                      )}
                     </div>
                     <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
                       {brandDevices.length}
                     </span>
-                  </button>
+                  </a>
                 );
               })}
             </div>

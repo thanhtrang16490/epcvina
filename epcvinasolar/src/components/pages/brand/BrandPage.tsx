@@ -4,6 +4,7 @@ import HeaderBar from '../../home/layout/HeaderBar';
 import EquipmentSidebar from '../equipment/EquipmentSidebar';
 import { useMemo, useState, useEffect } from 'react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
+import { localBrands } from '../../../data/brands';
 
 interface PageProps {
   brand: string;
@@ -44,6 +45,12 @@ export default function BrandPage({ brand, brandName }: PageProps) {
   const [gridColumns, setGridColumns] = useState<number>(4);
   const [productLimit, setProductLimit] = useState<number>(24);
 
+  // Resolve actual brand name from slug for API filtering
+  const actualBrandName = useMemo(() => {
+    const brandEntry = localBrands.find(b => b.slug === brand);
+    return brandEntry?.name || brandName || brand;
+  }, [brand, brandName]);
+
   // Fetch products from Content Collections API
   useEffect(() => {
     const fetchDevices = async () => {
@@ -61,13 +68,13 @@ export default function BrandPage({ brand, brandName }: PageProps) {
           setAllDevices(allDevicesList);
         }
         
-        // Fetch brand-specific products for display
-        const brandResponse = await fetch(`/api/products?brand=${brand}`);
+        // Fetch brand-specific products using actual brand NAME (not slug)
+        const brandResponse = await fetch(`/api/products?brand=${encodeURIComponent(actualBrandName)}`);
         const brandData = await brandResponse.json();
         
         if (brandData.success && brandData.data) {
           const brandDevicesList: Device[] = brandData.data.map((product: any) => 
-            apiProductToDevice(product, brandName || brand)
+            apiProductToDevice(product, actualBrandName)
           );
           setBrandDevices(brandDevicesList);
         }
@@ -81,7 +88,7 @@ export default function BrandPage({ brand, brandName }: PageProps) {
     };
     
     fetchDevices();
-  }, [brand, brandName]);
+  }, [brand, actualBrandName]);
 
   return (
     <div className="flex-1 flex flex-col">

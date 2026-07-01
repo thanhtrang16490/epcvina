@@ -46,21 +46,21 @@ const menuItems: MenuItem[] = [
     name: 'Thiết bị',
     icon: Sun,
     children: [
-      { name: 'Tấm quang năng', href: '/thiet-bi/panel' },
-      { name: 'Biến tần On-Grid', href: '/thiet-bi/on-grid-inverter' },
-      { name: 'Biến tần Hybrid', href: '/thiet-bi/hybrid-inverter' },
-      { name: 'Pin lưu trữ áp cao', href: '/thiet-bi/hv-battery' },
-      { name: 'Pin lưu trữ áp thấp', href: '/thiet-bi/lv-battery' },
+      { name: 'Tấm quang năng', href: '/thiet-bi/danh-sach/panel' },
+      { name: 'Biến tần On-Grid', href: '/thiet-bi/danh-sach/on-grid-inverter' },
+      { name: 'Biến tần Hybrid', href: '/thiet-bi/danh-sach/hybrid-inverter' },
+      { name: 'Pin lưu trữ áp cao', href: '/thiet-bi/danh-sach/hv-battery' },
+      { name: 'Pin lưu trữ áp thấp', href: '/thiet-bi/danh-sach/lv-battery' },
     ],
   },
   {
     name: 'Phụ kiện',
     icon: Wrench,
     children: [
-      { name: 'Hệ khung nhôm', href: '/thiet-bi/mounting' },
-      { name: 'Hệ dây điện', href: '/thiet-bi/wiring' },
-      { name: 'Tủ điện', href: '/thiet-bi/cabinet' },
-      { name: 'Hệ tiếp địa', href: '/thiet-bi/grounding' },
+      { name: 'Hệ khung nhôm', href: '/thiet-bi/danh-sach/mounting' },
+      { name: 'Hệ dây điện', href: '/thiet-bi/danh-sach/wiring' },
+      { name: 'Tủ điện', href: '/thiet-bi/danh-sach/cabinet' },
+      { name: 'Hệ tiếp địa', href: '/thiet-bi/danh-sach/grounding' },
     ],
   },
   {
@@ -70,6 +70,17 @@ const menuItems: MenuItem[] = [
       { name: 'Mái tôn', href: '/giai-phap-thi-cong-mai-ton' },
       { name: 'Mái ngói', href: '/giai-phap-thi-cong-mai-ngoi' },
       { name: 'Mái bằng', href: '/giai-phap-thi-cong-mai-bang' },
+    ],
+  },
+  {
+    name: 'Đối tác',
+    icon: Sun,
+    children: [
+      { name: 'Tất cả đối tác', href: '/doi-tac' },
+      { name: 'AIKO', href: '/doi-tac/aiko' },
+      { name: 'Huawei', href: '/doi-tac/huawei' },
+      { name: 'Growatt', href: '/doi-tac/growatt' },
+      { name: 'Pylontech', href: '/doi-tac/pylontech' },
     ],
   },
   {

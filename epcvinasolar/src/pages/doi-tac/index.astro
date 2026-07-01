@@ -1,0 +1,20 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import PartnersList from '../../components/pages/partner/PartnersList';
+import { getCollection } from 'astro:content';
+
+const partners = await getCollection('partners');
+const activePartners = partners
+  .filter(p => p.data.is_active)
+  .sort((a, b) => a.data.display_order - b.data.display_order);
+
+const seoTitle = 'Đối tác chính hãng - Thiết bị điện mặt trời | EPCVINA Solar';
+const seoDescription = 'Danh sách đối tác chính hãng của EPCVINA Solar: AIKO, Huawei, Growatt, Pylontech, SAJ, Deye, Longi và các thương hiệu hàng đầu.';
+---
+
+<DashboardLayout title={seoTitle} description={seoDescription}>
+  <DashboardShell client:load>
+    <PartnersList client:idle partners={activePartners} />
+  </DashboardShell>
+</DashboardLayout>

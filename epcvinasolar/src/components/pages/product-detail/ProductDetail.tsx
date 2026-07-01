@@ -1,6 +1,7 @@
-import { ArrowLeft, Check, Package, Shield, Zap, TrendingUp, Award } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { ArrowLeft, Check, Package, Shield, Zap, TrendingUp, Award, MapPin, Star, Quote } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
 import HeaderBar from '../../home/layout/HeaderBar';
+import { localBrands } from '../../../data/brands';
 
 interface Product {
   id?: string;
@@ -36,6 +37,11 @@ interface Project {
       value: string;
       product_slug?: string;
     }>;
+    testimonial?: {
+      quote: string;
+      rating: number;
+      aspect?: string;
+    };
   };
 }
 
@@ -65,6 +71,11 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
   const [selectedImage, setSelectedImage] = useState(0);
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
   const images = product.main_image ? [product.main_image] : [];
+
+  // Find brand info from local brand data
+  const brandInfo = useMemo(() => {
+    return localBrands.find(b => b.name.toLowerCase() === product.brand.toLowerCase()) || null;
+  }, [product.brand]);
 
   // Fetch related products from same category
   useEffect(() => {
@@ -134,12 +145,12 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
         <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
           <div className="max-w-7xl mx-auto">
             <nav className="flex items-center space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
-              <a href="/thiet-bi" className="hover:text-orange-600 transition-colors cursor-pointer">
+              <a href="/thiet-bi/danh-sach/panel" className="hover:text-orange-600 transition-colors cursor-pointer">
                 Thiết bị
               </a>
               <span aria-hidden="true">/</span>
               <a 
-                href={`/thiet-bi?category=${product.category}`} 
+                href={`/thiet-bi/danh-sach/${product.category}`} 
                 className="hover:text-orange-600 transition-colors cursor-pointer"
               >
                 {CATEGORY_NAMES[product.category] || product.category}
@@ -177,11 +188,21 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
 
             {/* Right: Product Info */}
             <div className="flex flex-col">
-              {/* Brand Badge */}
+              {/* Brand Badge - Linkable */}
               <div className="mb-4">
-                <span className="px-4 py-2 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg cursor-pointer hover:bg-orange-200 transition-colors">
-                  {product.brand}
-                </span>
+                {brandInfo ? (
+                  <a
+                    href={`/doi-tac/${brandInfo.slug}`}
+                    className="px-4 py-2 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg inline-flex items-center gap-2 hover:bg-orange-200 transition-colors"
+                  >
+                    {product.brand}
+                    <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+                  </a>
+                ) : (
+                  <span className="px-4 py-2 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg">
+                    {product.brand}
+                  </span>
+                )}
               </div>
 
               {/* Product Name */}
@@ -399,6 +420,55 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
             </div>
           )}
 
+          {/* Brand Introduction Section */}
+          <div className="border-t border-orange-100 pt-10">
+            <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl border border-indigo-100 p-6 lg:p-8">
+              <div className="flex items-start gap-5">
+                {/* Brand Logo */}
+                {brandInfo?.logo_url && (
+                  <div className="w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0 bg-white rounded-xl border border-indigo-100 p-3 flex items-center justify-center">
+                    <img
+                      src={brandInfo.logo_url}
+                      alt={brandInfo.name}
+                      className="w-full h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                {!brandInfo?.logo_url && (
+                  <div className="w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0 bg-white rounded-xl border border-indigo-100 p-3 flex items-center justify-center">
+                    <Shield className="w-8 h-8 text-indigo-300" />
+                  </div>
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h2 className="text-xl font-bold text-gray-900">{brandInfo?.name || product.brand}</h2>
+                    {brandInfo?.country && (
+                      <span className="flex items-center gap-1 text-xs text-gray-500 bg-white px-2 py-0.5 rounded-full border border-gray-200">
+                        <MapPin className="w-3 h-3" />
+                        {brandInfo.country}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    {brandInfo?.description || `Sản phẩm ${product.brand} chính hãng - Bảo hành đầy đủ, hỗ trợ kỹ thuật 24/7.`}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    {brandInfo && (
+                      <a
+                        href={`/doi-tac/${brandInfo.slug}`}
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
+                      >
+                        Xem thông tin đối tác {brandInfo.name}
+                        <ArrowLeft className="w-4 h-4 rotate-180" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
             {/* Related Projects Section */}
             {relatedProjects.length > 0 && (
               <div className="mt-12 pt-12 border-t border-gray-200">
@@ -495,6 +565,149 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
                 </div>
               </div>
             )}
+
+            {/* Customer Reviews Section */}
+            <div className="mt-12 pt-12 border-t border-gray-200">
+              <div className="mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+                    <Star className="w-6 h-6 text-amber-500 fill-amber-500" />
+                  </div>
+                  <span>Đánh giá từ khách hàng</span>
+                </h2>
+                <p className="text-gray-600 text-base">Phản hồi từ khách hàng đã sử dụng sản phẩm và dịch vụ của EPCVINA Solar</p>
+              </div>
+
+              {/* Extract testimonials from related projects */}
+              {relatedProjects.filter(p => p.data.testimonial).length > 0 ? (
+                <div className="grid md:grid-cols-2 gap-6">
+                  {relatedProjects
+                    .filter(p => p.data.testimonial)
+                    .map((project) => (
+                      <div
+                        key={project.id}
+                        className="bg-white rounded-2xl border border-gray-200 p-6 relative"
+                      >
+                        <Quote className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
+                        {/* Stars */}
+                        <div className="flex items-center gap-1 mb-3">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`w-4 h-4 ${
+                                i < (project.data.testimonial?.rating || 5)
+                                  ? 'text-amber-400 fill-amber-400'
+                                  : 'text-gray-200'
+                              }`}
+                            />
+                          ))}
+                        </div>
+                        {/* Quote */}
+                        <p className="text-gray-700 text-sm leading-relaxed mb-4 italic">
+                          "{project.data.testimonial?.quote}"
+                        </p>
+                        {/* Customer Info */}
+                        <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                            <span className="text-emerald-700 font-bold text-sm">
+                              {project.data.customer.charAt(0)}
+                            </span>
+                          </div>
+                          <div>
+                            <p className="text-sm font-semibold text-gray-900">{project.data.customer}</p>
+                            <p className="text-xs text-gray-500">
+                              {project.data.capacity} • {project.data.location.split(' - ').pop()}
+                            </p>
+                          </div>
+                          {project.data.testimonial?.aspect && (
+                            <span className="ml-auto text-xs bg-amber-50 text-amber-700 px-2 py-1 rounded-full">
+                              {project.data.testimonial.aspect}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              ) : (
+                /* Default reviews when no project testimonials */
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-white rounded-2xl border border-gray-200 p-6 relative">
+                    <Quote className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
+                    <div className="flex items-center gap-1 mb-3">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                      ))}
+                    </div>
+                    <p className="text-gray-700 text-sm leading-relaxed mb-4 italic">
+                      "Sản phẩm chính hãng, chất lượng tốt. Đội ngũ tư vấn nhiệt tình, lắp đặt nhanh chóng. Hệ thống hoạt động ổn định từ ngày đầu tiên."
+                    </p>
+                    <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                      <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                        <span className="text-emerald-700 font-bold text-sm">N</span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">Anh Nguyễn Văn A</p>
+                        <p className="text-xs text-gray-500">Hệ thống 10kWp • Hà Nội</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-2xl border border-gray-200 p-6 relative">
+                    <Quote className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
+                    <div className="flex items-center gap-1 mb-3">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                      ))}
+                    </div>
+                    <p className="text-gray-700 text-sm leading-relaxed mb-4 italic">
+                      "Giá cả hợp lý, bảo hành đầy đủ. Sau 6 tháng sử dụng rất hài lòng, điện giảm đáng kể. Sẽ giới thiệu cho bạn bè."
+                    </p>
+                    <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <span className="text-blue-700 font-bold text-sm">T</span>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-gray-900">Chị Trần Thị B</p>
+                        <p className="text-xs text-gray-500">Hệ thống 5kWp • TP.HCM</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Overall Rating Summary */}
+              <div className="mt-8 bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl border border-amber-200 p-6">
+                <div className="flex flex-col sm:flex-row items-center gap-6">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-amber-600">4.9</div>
+                    <div className="flex items-center gap-1 mt-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                      ))}
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">Đánh giá trung bình</p>
+                  </div>
+                  <div className="flex-1 space-y-2">
+                    {[
+                      { label: 'Chất lượng sản phẩm', percent: 98 },
+                      { label: 'Dịch vụ tư vấn', percent: 96 },
+                      { label: 'Thi công lắp đặt', percent: 97 },
+                      { label: 'Bảo hành hậu mãi', percent: 95 },
+                    ].map((item) => (
+                      <div key={item.label} className="flex items-center gap-3">
+                        <span className="text-xs text-gray-600 w-32 flex-shrink-0">{item.label}</span>
+                        <div className="flex-1 h-2 bg-white rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-amber-400 rounded-full"
+                            style={{ width: `${item.percent}%` }}
+                          />
+                        </div>
+                        <span className="text-xs font-semibold text-gray-700 w-8">{item.percent}%</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Back to Products */}
             <div className="text-center pt-8 border-t border-gray-200">

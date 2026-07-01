@@ -106,9 +106,9 @@ export default function FooterSection() {
             <ul className="space-y-3 text-sm">
               <li><a href="/solar-home/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo On-Grid</a></li>
               <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo Hybrid</a></li>
-              <li><a href="/thiet-bi/panel" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Tấm quang năng</a></li>
-              <li><a href="/thiet-bi/hybrid-inverter" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Biến tần Hybrid</a></li>
-              <li><a href="/thiet-bi/hv-battery" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Pin lưu trữ BESS</a></li>
+              <li><a href="/thiet-bi/danh-sach/panel" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Tấm quang năng</a></li>
+              <li><a href="/thiet-bi/danh-sach/hybrid-inverter" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Biến tần Hybrid</a></li>
+              <li><a href="/thiet-bi/danh-sach/hv-battery" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Pin lưu trữ BESS</a></li>
             </ul>
           </div>
 
