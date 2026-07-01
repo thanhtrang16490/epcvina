@@ -104,6 +104,8 @@ const CATEGORY_META: Record<EquipmentCategory, {
 
 interface PageProps {
   category: string;
+  brand?: string;
+  brandName?: string;
   devices: Device[];
   loading: boolean;
   searchQuery: string;
@@ -120,6 +122,8 @@ interface PageProps {
 
 export default function EquipmentPageDesktop({ 
   category, 
+  brand,
+  brandName,
   devices, 
   loading,
   searchQuery,
@@ -133,7 +137,15 @@ export default function EquipmentPageDesktop({
   showHero = true,
   showContent = true,
 }: PageProps) {
-  const meta = CATEGORY_META[category as EquipmentCategory];
+  // Use brand metadata if in brand mode, otherwise use category metadata
+  const meta = brand ? {
+    label: `Thương hiệu ${brandName || brand}`,
+    icon: <Shield className="h-5 w-5"/>,
+    color: 'text-indigo-600',
+    bg: 'bg-indigo-50',
+    accent: 'bg-indigo-500',
+    description: `Sản phẩm chính hãng ${brandName || brand} - Bảo hành chính hãng, hỗ trợ kỹ thuật 24/7`,
+  } : CATEGORY_META[category as EquipmentCategory];
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);

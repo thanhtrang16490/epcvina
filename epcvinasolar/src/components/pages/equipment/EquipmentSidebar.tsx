@@ -73,6 +73,7 @@ const CATEGORY_META: Record<string, {
 
 interface EquipmentSidebarProps {
   category: string;
+  brand?: string;
   devices: Device[]; // Tất cả products (cho category counts)
   categoryDevices?: Device[]; // Products của category hiện tại (cho brands)
   selectedBrand: string;
@@ -87,6 +88,7 @@ interface EquipmentSidebarProps {
 
 export default function EquipmentSidebar({
   category,
+  brand,
   devices,
   categoryDevices,
   selectedBrand,

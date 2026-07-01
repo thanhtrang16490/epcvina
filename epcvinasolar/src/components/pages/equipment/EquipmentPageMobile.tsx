@@ -182,10 +182,19 @@ function SpecRow({ label, value, highlight }: { label: string; value: string; hi
 // ── Page ───────────────────────────────────────────────────────
 interface PageProps {
   category: string;
+  brand?: string;
 }
 
-export default function EquipmentCategoryPage({ category }: PageProps) {
-  const meta = CATEGORY_META[category as EquipmentCategory];
+export default function EquipmentCategoryPage({ category, brand }: PageProps) {
+  // Use brand metadata if in brand mode, otherwise use category metadata
+  const meta = brand ? {
+    label: `Thương hiệu ${brand}`,
+    icon: <Shield className="h-5 w-5"/>,
+    color: 'text-indigo-600',
+    bg: 'bg-indigo-50',
+    accent: 'bg-indigo-500',
+    gradient: 'from-indigo-400 to-indigo-600',
+  } : CATEGORY_META[category as EquipmentCategory];
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
