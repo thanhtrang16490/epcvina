@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../../components/layout/DashboardShell';
 import MaiNgoiPage from '../../../components/pages/solar-home/MaiNgoiPage';
 
 export const prerender = true;
@@ -77,5 +78,7 @@ const serviceSchema = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <MaiNgoiPage client:visible />
+  <DashboardShell client:load>
+    <MaiNgoiPage client:idle />
+  </DashboardShell>
 </DashboardLayout>

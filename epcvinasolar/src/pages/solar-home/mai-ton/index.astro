@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../../components/layout/DashboardShell';
 import MaiTonPage from '../../../components/pages/solar-home/MaiTonPage';
 
 export const prerender = true;
@@ -34,5 +35,7 @@ const serviceSchema = {
 <DashboardLayout title={seoTitle} description={seoDescription} keywords={seoKeywords}>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <MaiTonPage client:visible />
+  <DashboardShell client:load>
+    <MaiTonPage client:visible />
+  </DashboardShell>
 </DashboardLayout>
