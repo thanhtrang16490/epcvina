@@ -1,0 +1,38 @@
+---
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import MaiTonPage from '../../../components/pages/solar-home/MaiTonPage';
+
+export const prerender = true;
+
+const seoTitle = 'Giải Pháp Thi Công Điện Mặt Trời Mái Tôn 2026 | EPCVINA Solar';
+const seoDescription = 'Hướng dẫn chi tiết cách lắp pin năng lượng mặt trời trên mái tôn an toàn, bền bỉ. Thi công nhanh 1-2 ngày, chống thấm tuyệt đối, giảm nhiệt 2-10°C. Liên hệ 0988 446 113.';
+const seoKeywords = 'lắp điện mặt trời mái tôn, pin mặt trời mái tôn, cách lắp pin trên mái tôn, điện mặt trời áp mái tôn, chi phí lắp pin mái tôn, phụ kiện mái tôn';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Mái tôn nào lắp được điện mặt trời?", "acceptedAnswer": { "@type": "Answer", "text": "Hầu hết mọi loại tôn đều lắp được: tôn sóng vuông, standing seam, tôn sóng tròn. Độ dày tối thiểu 0.4mm. Mái tôn cũ cần kiểm tra kết cấu xà gồ trước khi lắp." } },
+    { "@type": "Question", "name": "Lắp pin mặt trời mái tôn có bị dột không?", "acceptedAnswer": { "@type": "Answer", "text": "Không, nếu dùng chân L kèm ron cao su và bơm keo silicon chống thấm đúng kỹ thuật. EPCVINA bảo hành chống thấm 5 năm cho mọi công trình mái tôn." } },
+    { "@type": "Question", "name": "Chi phí lắp điện mặt trời mái tôn bao nhiêu?", "acceptedAnswer": { "@type": "Answer", "text": "Mái tôn có chi phí lắp đặt thấp nhất. Hệ 3kWp từ 40 triệu, 5kWp từ 60 triệu, 10kWp từ 110 triệu. Hoàn vốn 3-5 năm." } },
+    { "@type": "Question", "name": "Hệ thống chịu được gió bão cấp mấy?", "acceptedAnswer": { "@type": "Answer", "text": "Khung nhôm AL6005-T5 + kẹp Inox 304 chịu được gió cấp 12 (trên 100 km/h). EPCVINA tính toán chịu lực theo tiêu chuẩn TCVN cho từng khu vực." } },
+    { "@type": "Question", "name": "Thời gian lắp đặt mái tôn bao lâu?", "acceptedAnswer": { "@type": "Answer", "text": "Nhanh nhất trong các loại mái. 1-2 ngày cho hộ gia đình 3-10kWp. 3-7 ngày cho nhà xưởng 50-200kWp. Mái tôn không cần tháo/lắp phức tạp như mái ngói." } }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Lắp điện mặt trời mái tôn",
+  "provider": { "@type": "Organization", "name": "EPCVINA Solar", "url": "https://epcvinasolar.com" },
+  "areaServed": { "@type": "Country", "name": "Việt Nam" },
+  "description": "Dịch vụ lắp đặt điện mặt trời trên mái tôn chuyên nghiệp. Thi công nhanh 1-2 ngày, chống thấm tuyệt đối, giảm nhiệt 2-10°C, tiết kiệm 70-90% chi phí điện.",
+  "offers": { "@type": "Offer", "priceCurrency": "VND", "price": "40000000" }
+};
+---
+
+<DashboardLayout title={seoTitle} description={seoDescription} keywords={seoKeywords}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <MaiTonPage client:visible />
+</DashboardLayout>
