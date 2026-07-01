@@ -312,6 +312,38 @@ export default function MaiBangPage() {
         </div>
       </section>
 
+      {/* Accessories & Mounting */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-slate-900 mb-3 text-center">
+            Phụ Kiện Lắp Đặt Chuyên Dụng
+          </h2>
+          <p className="text-slate-600 text-center mb-10 max-w-2xl mx-auto">
+            100% phụ kiện nhôm AL6005-T5 và Inox 304 chống ăn mòn, bền bỉ 30+ năm
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { name: 'Thanh rail nhôm AL6005-T5', desc: 'Dài 2.1m, dạng chữ U, cố định trên sàn bê tông. Nhẹ, bền, chống ăn mòn.' },
+              { name: 'Khung nghiêng cố định', desc: 'Tạo góc nghiêng 5-15° tối ưu cho mái bằng. Nhôm AL6005-T5, chịu gió cấp 12.' },
+              { name: 'Khối bê tông đối trọng', desc: 'Hệ dằn tải không khoan đục, bảo vệ 100% chống thấm nguyên thủy của sàn.' },
+              { name: 'Kẹp giữa (Mid clamp)', desc: 'Cố định khoảng cách giữa các tấm pin. AL6005-T5 + Inox 304, L=40mm.' },
+              { name: 'Kẹp biên (End clamp)', desc: 'Cố định 2 đầu ngoài cùng của dãy pin vào rail. Siết chặt bằng bulong inox.' },
+              { name: 'Keo chống thấm chuyên dụng', desc: 'Trám kín lỗ khoan neo, ngăn nước rỉ tuyệt đối. Bền bỉ mọi thời tiết.' },
+            ].map((acc, i) => (
+              <div key={i} className="bg-white rounded-xl p-5 border border-slate-200">
+                <h3 className="font-bold text-slate-900 mb-1 text-sm">{acc.name}</h3>
+                <p className="text-xs text-slate-600">{acc.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <a href="/thiet-bi/mounting" className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-800 font-semibold transition-all">
+              Xem chi tiết hệ khung nhôm nhôm AL6005-T5 <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Maintenance */}
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -359,6 +391,25 @@ export default function MaiBangPage() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Solutions */}
+      <section className="py-12 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">
+            Giải Pháp Thi Công Khác
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <a href="/giai-phap-thi-cong-mai-ton" className="bg-blue-50 rounded-xl p-5 border border-blue-200 hover:shadow-md transition-all">
+              <h3 className="font-bold text-blue-800 mb-1">Điện Mặt Trời Mái Tôn</h3>
+              <p className="text-sm text-slate-600">Cho nhà xưởng, nhà ở. Thi công nhanh 1-2 ngày, giảm nhiệt 2-10°C.</p>
+            </a>
+            <a href="/giai-phap-thi-cong-mai-ngoi" className="bg-amber-50 rounded-xl p-5 border border-amber-200 hover:shadow-md transition-all">
+              <h3 className="font-bold text-amber-800 mb-1">Điện Mặt Trời Mái Ngói</h3>
+              <p className="text-sm text-slate-600">Cho nhà phố, biệt thự. Móc ngói Inox 304, chống thấm kép.</p>
+            </a>
           </div>
         </div>
       </section>

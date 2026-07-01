@@ -236,6 +236,11 @@ export default function MaiTonPage() {
               </div>
             ))}
           </div>
+          <div className="mt-8 text-center">
+            <a href="/thiet-bi/mounting" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-all">
+              Xem chi tiết hệ khung nhôm nhôm AL6005-T5 <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -321,6 +326,25 @@ export default function MaiTonPage() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Related Solutions */}
+      <section className="py-12 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">
+            Giải Pháp Thi Công Khác
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <a href="/giai-phap-thi-cong-mai-ngoi" className="bg-amber-50 rounded-xl p-5 border border-amber-200 hover:shadow-md transition-all">
+              <h3 className="font-bold text-amber-800 mb-1">Điện Mặt Trời Mái Ngói</h3>
+              <p className="text-sm text-slate-600">Cho nhà phố, biệt thự. Móc ngói Inox 304, chống thấm kép.</p>
+            </a>
+            <a href="/giai-phap-thi-cong-mai-bang" className="bg-emerald-50 rounded-xl p-5 border border-emerald-200 hover:shadow-md transition-all">
+              <h3 className="font-bold text-emerald-800 mb-1">Điện Mặt Trời Mái Bằng</h3>
+              <p className="text-sm text-slate-600">Cho sân thượng, sàn bê tông. Góc nghiêng tùy chỉnh 5-15°.</p>
+            </a>
           </div>
         </div>
       </section>
