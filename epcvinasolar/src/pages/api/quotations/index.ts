@@ -4,16 +4,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
     
-    // Log quotation request (in production, send to email or external service)
-    console.log('📋 New Quotation Request:', {
-      name: body.name,
-      phone: body.phone,
-      email: body.email,
-      province: body.province,
-      system_type: body.system_type,
-      monthly_bill: body.monthly_bill,
-      timestamp: new Date().toISOString(),
-    });
+    // TODO: Send quotation request to email or external service
 
     return new Response(JSON.stringify({ 
       success: true, 

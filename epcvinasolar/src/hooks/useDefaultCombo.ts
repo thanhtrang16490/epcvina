@@ -44,14 +44,13 @@ const DEFAULT_COMBO: ComboData = {
 function mapProductTypeToCategory(productType: string, specs?: Record<string, any>): EquipmentCategory | null {
   const effectiveType = specs?.intended_product_type || productType;
   if (effectiveType === 'panel') return 'panel';
-  if (effectiveType === 'inverter') return 'inverter';
-  if (effectiveType === 'battery') return 'battery';
+  if (effectiveType === 'inverter') return 'on-grid-inverter'; // Default to on-grid for default combo
+  if (effectiveType === 'battery') return 'lv-battery'; // Default to LV battery
   if (effectiveType === 'mounting') return 'mounting';
   if (effectiveType === 'wiring') return 'wiring';
   if (effectiveType === 'cabinet') return 'cabinet';
   if (effectiveType === 'grounding') return 'grounding';
-  if (effectiveType === 'meter') return 'meter';
-  if (effectiveType === 'installation' || effectiveType === 'labor') return 'installation';
+  if (effectiveType === 'meter' || effectiveType === 'installation' || effectiveType === 'labor') return 'accessories';
   return null;
 }
 
@@ -79,7 +78,6 @@ export function useDefaultCombo(): UseDefaultComboResult {
         const listResult = await listResponse.json();
         
         if (!listResult.success || !listResult.data || listResult.data.length === 0) {
-          console.log('No on-grid combos found, using default');
           setCombo(DEFAULT_COMBO);
           setDevices([]);
           setLoading(false);
@@ -91,8 +89,6 @@ export function useDefaultCombo(): UseDefaultComboResult {
           c.name?.includes('5.1') && c.name?.includes('1 Pha')
         ) || listResult.data[0];
 
-        console.log('Selected combo:', rawCombo);
-
         // Step 2: Fetch full combo details with combo_items
         const detailResponse = await fetch(`/api/combos/${rawCombo.slug}`);
         
@@ -101,7 +97,6 @@ export function useDefaultCombo(): UseDefaultComboResult {
         }
 
         const detailResult = await detailResponse.json();
-        console.log('Combo detail:', detailResult);
 
         if (!detailResult.success || !detailResult.data) {
           throw new Error('Invalid combo detail response');
@@ -128,8 +123,6 @@ export function useDefaultCombo(): UseDefaultComboResult {
         const equipment: Device[] = [];
         
         if (fullCombo.combo_items && Array.isArray(fullCombo.combo_items)) {
-          console.log('Combo items:', fullCombo.combo_items);
-          
           for (const item of fullCombo.combo_items) {
             const product = item.product;
             if (!product) continue;
@@ -146,7 +139,7 @@ export function useDefaultCombo(): UseDefaultComboResult {
             if (category === 'panel' && nameParts.includes('Solar')) {
               const solarIndex = nameParts.indexOf('Solar');
               brand = nameParts.slice(solarIndex - 1, solarIndex + 1).join(' ');
-            } else if (category === 'inverter' && nameParts.includes('Auxsol')) {
+            } else if ((category === 'on-grid-inverter' || category === 'hybrid-inverter') && nameParts.includes('Auxsol')) {
               brand = 'Auxsol';
             } else if (product.brand?.name) {
               brand = product.brand.name;
@@ -155,6 +148,7 @@ export function useDefaultCombo(): UseDefaultComboResult {
             const device: Device = {
               id: product.id || `${fullCombo.slug}-${category}`,
               category: category,
+              name: product.name || model,
               brand: brand,
               model: model,
               quantity: item.quantity || 1,
@@ -168,18 +162,16 @@ export function useDefaultCombo(): UseDefaultComboResult {
             };
 
             equipment.push(device);
-            console.log('Added device:', device);
           }
         }
 
         // Fallback: if no combo_items, create from combo fields
         if (equipment.length === 0) {
-          console.log('No combo_items, using fallback from combo fields');
-          
           if (fullCombo.panel_count && fullCombo.panel_brand) {
             equipment.push({
               id: `${fullCombo.slug}-panel`,
               category: 'panel',
+              name: `${fullCombo.panel_brand} ${fullCombo.capacity_kw}kWp`,
               brand: fullCombo.panel_brand,
               model: `${fullCombo.panel_brand} ${fullCombo.capacity_kw}kWp`,
               quantity: fullCombo.panel_count,
@@ -194,7 +186,8 @@ export function useDefaultCombo(): UseDefaultComboResult {
           if (fullCombo.inverter_count && fullCombo.inverter_brand) {
             equipment.push({
               id: `${fullCombo.slug}-inverter`,
-              category: 'inverter',
+              category: 'on-grid-inverter',
+              name: `${fullCombo.inverter_brand} ${fullCombo.capacity_kw}kW`,
               brand: fullCombo.inverter_brand,
               model: `${fullCombo.inverter_brand} ${fullCombo.capacity_kw}kW`,
               quantity: fullCombo.inverter_count,
@@ -208,7 +201,6 @@ export function useDefaultCombo(): UseDefaultComboResult {
         }
 
         mappedCombo.equipment = equipment;
-        console.log('Final equipment:', equipment);
         
         setCombo(mappedCombo);
         setDevices(equipment);
@@ -244,14 +236,12 @@ export function useDefaultCombo(): UseDefaultComboResult {
                   const normalized = normalizeTemplate(rawTemplate);
                   setTemplate(normalized);
                   setTemplateItems(normalized.items);
-                  console.log('Loaded template:', normalized.name, 'items:', normalized.items.length);
                 }
               }
             }
           }
-        } catch (templateErr) {
+        } catch {
           // Non-fatal: template loading failure just means we fall back to devices
-          console.warn('Template fetch failed (non-fatal):', templateErr);
         }
         
       } catch (err) {
