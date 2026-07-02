@@ -26,7 +26,6 @@ import {
   Sparkles,
 } from 'lucide-react';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 
 /* ─── Stats ─── */
 const stats = [
@@ -655,7 +654,6 @@ export default function BaoTriPage() {
           </div>
         </section>
 
-        <FooterSection />
       </div>
     </div>
   );

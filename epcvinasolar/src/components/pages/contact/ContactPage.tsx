@@ -13,7 +13,6 @@ import {
   Sun,
 } from 'lucide-react';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 
 /* ─── Contact Info Cards ─── */
 const contactCards = [
@@ -490,7 +489,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <FooterSection />
     </div>
   );
 }

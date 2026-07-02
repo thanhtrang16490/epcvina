@@ -37,7 +37,6 @@ import {
 } from 'lucide-react';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 import { OnGridComboGrid, HybridComboGrid } from './components';
 import ComboGridWithTabs from './components/ComboGridWithTabs';
 import {
@@ -645,7 +644,6 @@ export default function SolutionsLandingPage() {
       {/* ═══════════════════════════════════════════════════════
           SECTION 8 – FOOTER
           ═══════════════════════════════════════════════════════ */}
-      <FooterSection />
     </div>
   );
 }

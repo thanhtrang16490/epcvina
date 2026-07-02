@@ -18,7 +18,6 @@ import {
   HardHat,
 } from 'lucide-react';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 
 const stats = [
   { value: '500+', label: 'Kỹ sư kỹ thuật' },
@@ -315,7 +314,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <FooterSection />
       </div>
     </div>
   );

@@ -27,7 +27,6 @@ import {
   Home,
 } from 'lucide-react';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 
 /* ─── EPCVINA Charging Network Stats ─── */
 const vgreenStats = [
@@ -633,7 +632,6 @@ export default function EVChargerPage() {
           </div>
         </section>
 
-        <FooterSection />
       </div>
     </div>
   );

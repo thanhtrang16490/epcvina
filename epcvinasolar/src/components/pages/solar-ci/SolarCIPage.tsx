@@ -31,7 +31,6 @@ import {
   Globe,
 } from 'lucide-react';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 
 /* ─── Client Types (with images) ─── */
 const clientTypes = [
@@ -484,7 +483,6 @@ export default function SolarCIPage() {
           </div>
         </section>
 
-        <FooterSection />
       </div>
     </div>
   );

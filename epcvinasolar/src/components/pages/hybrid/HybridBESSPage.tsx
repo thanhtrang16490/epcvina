@@ -32,7 +32,6 @@ import {
 } from 'lucide-react';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 
 
 /* ─── Data ──────────────────────────────────────────────── */
@@ -1103,7 +1102,6 @@ export default function HybridBESSPage() {
       {/* ═══════════════════════════════════════════════════════
           FOOTER
           ═══════════════════════════════════════════════════════ */}
-      <FooterSection />
     </div>
   );
 }

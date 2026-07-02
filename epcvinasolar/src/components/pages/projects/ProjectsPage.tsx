@@ -16,7 +16,6 @@ import {
   Globe,
 } from 'lucide-react';
 import HeaderBar from '../../home/layout/HeaderBar';
-import FooterSection from '../../home/layout/FooterSection';
 
 /* ─── Stats ─── */
 const heroStats = [
@@ -687,7 +686,6 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        <FooterSection />
       </div>
     </div>
   );
