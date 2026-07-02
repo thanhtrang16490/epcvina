@@ -164,11 +164,19 @@ export default function FooterSection() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-xs text-gray-500 text-center sm:text-left">
-          <p>&copy; {new Date().getFullYear()} EPCVINA Solar — Công ty CP Xây Lắp EPC Việt Nam. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <a href="/chinh-sach-bao-mat" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Chính sách bảo mật</a>
-            <a href="/dieu-khoan" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Điều khoản sử dụng</a>
+        <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 space-y-3 text-xs text-gray-500">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
+            <p>&copy; {new Date().getFullYear()} EPCVINA Solar — Công ty CP Xây Lắp EPC Việt Nam. All rights reserved.</p>
+            <div className="flex items-center gap-4">
+              <a href="/chinh-sach-bao-mat" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Chính sách bảo mật</a>
+              <a href="/dieu-khoan" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Điều khoản sử dụng</a>
+            </div>
+          </div>
+          <div className="text-center sm:text-left leading-relaxed text-gray-500/80">
+            <p>CÔNG TY CỔ PHẦN XÂY LẮP EPC VIỆT NAM (EPC VINA.,JSC)</p>
+            <p>Giấy chứng nhận đăng ký doanh nghiệp số 0105313377 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 17/05/2011.</p>
+            <p>Địa chỉ văn phòng: Phòng 315 - Khu TM chung cư Học viện Quốc Phòng, Đ. Võ Chí Công, Q. Tây Hồ, Hà Nội. Điện thoại: 0988.446.113.</p>
+            <p>Người đại diện theo pháp luật: Ông Lương Thanh Đỉnh.</p>
           </div>
         </div>
       </div>
