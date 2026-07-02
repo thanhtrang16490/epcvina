@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import KetHopSacXeLandingPage from '../components/pages/kethop/KetHopSacXeLandingPage';
 
 export const prerender = true;
@@ -43,5 +44,7 @@ const faqSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <KetHopSacXeLandingPage client:visible />
+  <DashboardShell client:load>
+      <KetHopSacXeLandingPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

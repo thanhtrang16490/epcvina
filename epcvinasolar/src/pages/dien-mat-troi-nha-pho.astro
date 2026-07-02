@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import NhaPhoLandingPage from '../components/pages/nhapho/NhaPhoLandingPage';
 
 export const prerender = true;
@@ -51,5 +52,7 @@ const faqSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <NhaPhoLandingPage client:visible />
+  <DashboardShell client:load>
+      <NhaPhoLandingPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

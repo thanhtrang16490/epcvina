@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import CoLuuTruLandingPage from '../components/pages/coluutru/CoLuuTruLandingPage';
 
 export const prerender = true;
@@ -51,5 +52,7 @@ const faqSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <CoLuuTruLandingPage client:visible />
+  <DashboardShell client:load>
+      <CoLuuTruLandingPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

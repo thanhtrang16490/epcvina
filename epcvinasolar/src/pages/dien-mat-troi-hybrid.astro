@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import HybridBESSPage from '../components/pages/hybrid/HybridBESSPage';
 
 export const prerender = true;
@@ -67,5 +68,7 @@ const faqSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <HybridBESSPage client:visible />
+  <DashboardShell client:load>
+      <HybridBESSPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
 import KienThucHubPage from '../../components/pages/kienthuc/KienThucHubPage';
 
 export const prerender = true;
@@ -51,5 +52,7 @@ const faqSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <KienThucHubPage client:visible />
+  <DashboardShell client:load>
+      <KienThucHubPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

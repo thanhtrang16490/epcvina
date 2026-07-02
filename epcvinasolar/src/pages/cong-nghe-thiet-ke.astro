@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import CongNgheThietKePage from '../components/pages/brand/CongNgheThietKePage';
 
 export const prerender = true;
@@ -19,5 +20,7 @@ const seoKeywords = 'thiết kế điện mặt trời, PVSyst, Helioscope, côn
     { name: 'Công Nghệ Thiết Kế', url: 'https://epcvina.com/cong-nghe-thiet-ke' }
   ]}
 >
-  <CongNgheThietKePage client:visible />
+  <DashboardShell client:load>
+      <CongNgheThietKePage client:visible />
+    </DashboardShell>
 </DashboardLayout>

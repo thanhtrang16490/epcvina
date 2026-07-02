@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
 
 export const prerender = true;
@@ -68,5 +69,7 @@ const localBusinessSchema = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-  <ProvinceLandingPage client:visible province={province} />
+  <DashboardShell client:load>
+      <ProvinceLandingPage client:visible province={province} />
+    </DashboardShell>
 </DashboardLayout>

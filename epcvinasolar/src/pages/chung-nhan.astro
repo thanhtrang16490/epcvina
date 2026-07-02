@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import ChungNhanPage from '../components/pages/brand/ChungNhanPage';
 
 export const prerender = true;
@@ -19,5 +20,7 @@ const seoKeywords = 'chứng nhận EPCVINA, năng lực nhà thầu, chứng ch
     { name: 'Chứng Nhận', url: 'https://epcvina.com/chung-nhan' }
   ]}
 >
-  <ChungNhanPage client:visible />
+  <DashboardShell client:load>
+      <ChungNhanPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

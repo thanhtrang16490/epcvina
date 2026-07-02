@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import FamilyLandingPage from '../components/pages/ad-landing/DienMatTroiGiaDinh';
 
 export const prerender = true;
@@ -201,5 +202,7 @@ const serviceSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   
   {/* Mobile Optimization: Use client:visible for below-fold React components */}
-  <FamilyLandingPage client:visible />
+  <DashboardShell client:load>
+      <FamilyLandingPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

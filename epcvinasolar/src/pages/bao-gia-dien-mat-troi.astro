@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import BaoGiaLandingPage from '../components/pages/baogia/BaoGiaLandingPage';
 
 export const prerender = true;
@@ -36,5 +37,7 @@ const productSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
-  <BaoGiaLandingPage client:visible />
+  <DashboardShell client:load>
+      <BaoGiaLandingPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

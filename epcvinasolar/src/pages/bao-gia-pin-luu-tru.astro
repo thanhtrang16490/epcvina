@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import BaoGiaPinLuuTruPage from '../components/pages/baogiapin/BaoGiaPinLuuTruPage';
 
 export const prerender = true;
@@ -19,5 +20,7 @@ const seoKeywords = 'báo giá pin lưu trữ, giá pin BESS, giá pin lithium, 
     { name: 'Báo Giá Pin Lưu Trữ', url: 'https://epcvina.com/bao-gia-pin-luu-tru' }
   ]}
 >
-  <BaoGiaPinLuuTruPage client:visible />
+  <DashboardShell client:load>
+      <BaoGiaPinLuuTruPage client:visible />
+    </DashboardShell>
 </DashboardLayout>

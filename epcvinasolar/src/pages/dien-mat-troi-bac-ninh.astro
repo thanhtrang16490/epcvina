@@ -1,5 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
 import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
 
 export const prerender = true;
@@ -50,5 +51,7 @@ const faqSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <ProvinceLandingPage client:visible province={province} />
+  <DashboardShell client:load>
+      <ProvinceLandingPage client:visible province={province} />
+    </DashboardShell>
 </DashboardLayout>
