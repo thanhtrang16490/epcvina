@@ -6,7 +6,7 @@ export default function FooterSection() {
   return (
     <footer style={{ backgroundColor: '#1A1D21' }} className="text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12">
 
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1 pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
@@ -122,6 +122,19 @@ export default function FooterSection() {
               <li><a href="/ung-dung/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Văn phòng</a></li>
               <li><a href="/du-an" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Dự án đã thi công</a></li>
               <li><a href="/tin-tuc" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Blog</a></li>
+            </ul>
+          </div>
+
+          {/* Policies */}
+          <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
+            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Chính sách</h3>
+            <ul className="space-y-3 text-sm">
+              <li><a href="/chinh-sach-bao-mat" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách bảo mật</a></li>
+              <li><a href="/chinh-sach-thanh-toan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách thanh toán</a></li>
+              <li><a href="/bao-hanh" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách bảo hành</a></li>
+              <li><a href="/chinh-sach-doi-tra" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách đổi trả</a></li>
+              <li><a href="/chinh-sach-giao-nhan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách giao nhận</a></li>
+              <li><a href="/dieu-khoan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Điều khoản sử dụng</a></li>
             </ul>
           </div>
 

@@ -1,0 +1,135 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+---
+
+<DashboardLayout
+  title="Chính Sách Đổi Trả & Hủy Dịch Vụ - EPCVINA Solar"
+  description="Chính sách đổi trả, hoàn tiền và hủy dịch vụ lắp đặt điện mặt trời EPCVINA. Minh bạch, bảo vệ quyền lợi khách hàng."
+  keywords="chính sách đổi trả, hoàn tiền solar, hủy dịch vụ điện mặt trời, EPCVINA"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Chính Sách Đổi Trả", url: "https://epcvina.com/chinh-sach-doi-tra"}]}
+>
+  <DashboardShell client:load>
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div class="mb-8">
+        <a href="/chinh-sach" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">← Tất cả chính sách</a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Chính Sách Đổi Trả & Hủy Dịch Vụ</h1>
+      <p class="text-sm text-gray-500 mb-10">Cập nhật lần cuối: tháng 6 năm 2025</p>
+
+      <div class="prose prose-gray max-w-none space-y-8 text-gray-700 leading-relaxed">
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">1. Đổi trả thiết bị</h2>
+          <p>EPCVINA cam kết đổi trả thiết bị trong các trường hợp sau:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li><strong>Lỗi nhà sản xuất:</strong> Đổi mới trong vòng 30 ngày kể từ ngày giao thiết bị.</li>
+            <li><strong>Thiếu phụ kiện hoặc sai chủng loại:</strong> Bổ sung hoặc đổi đúng trong vòng 7 ngày làm việc, miễn phí.</li>
+            <li><strong>Hư hỏng do vận chuyển:</strong> EPCVINA chịu trách nhiệm đổi mới hoàn toàn, không tính phí.</li>
+            <li><strong>Lỗi trong quá trình sử dụng (trong thời gian bảo hành):</strong> Sửa chữa hoặc thay thế miễn phí theo chính sách bảo hành.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">2. Hoàn tiền</h2>
+          <p>Hoàn tiền được áp dụng trong các trường hợp:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li>EPCVINA không thể khắc phục lỗi thiết bị sau <strong>3 lần sửa chữa</strong> liên tiếp — hoàn tiền 100% giá trị thiết bị lỗi.</li>
+            <li>Hủy hợp đồng trước khi thi công — hoàn lại tiền đặt cọc sau khi trừ chi phí khảo sát, thiết kế (nếu có).</li>
+            <li>Thiết bị không đúng chủng loại đã thỏa thuận và EPCVINA không thể đổi trả kịp — hoàn tiền phần chênh lệch hoặc toàn bộ nếu khách hàng không đồng ý thiết bị thay thế.</li>
+          </ul>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-4 text-sm">
+            <p class="font-semibold text-amber-800 mb-1">Lưu ý:</p>
+            <p class="text-amber-700">Không hoàn tiền cho thiệt hại do khách hàng tự ý sửa chữa, lắp đặt bởi đơn vị khác, hoặc sử dụng sai hướng dẫn của nhà sản xuất.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">3. Hủy dịch vụ</h2>
+          <p>Khách hàng có quyền hủy dịch vụ tại các giai đoạn:</p>
+          <div class="overflow-x-auto mt-3">
+            <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Giai đoạn hủy</th>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Điều kiện hoàn tiền</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Sau ký hợp đồng, trước đặt thiết bị</td>
+                  <td class="px-4 py-3">Hoàn 90% tiền đặt cọc (trừ chi phí khảo sát, thiết kế)</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Sau khi đặt thiết bị, trước giao hàng</td>
+                  <td class="px-4 py-3">Hoàn 50% tiền đặt cọc (trừ chi phí đặt hàng nhà cung cấp)</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">Sau khi thiết bị đã giao đến công trình</td>
+                  <td class="px-4 py-3">Không hoàn tiền đặt cọc; thiết bị đã cắt theo đơn đặt hàng không trả lại được</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-3 text-sm text-gray-500">Thời gian xử lý hủy: 3–5 ngày làm việc kể từ khi nhận được yêu cầu bằng văn bản.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">4. Quy trình yêu cầu đổi trả</h2>
+          <div class="space-y-4 mt-3">
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm">1</span>
+              <div>
+                <p class="font-semibold text-gray-900">Liên hệ EPCVINA</p>
+                <p class="text-sm text-gray-600">Gọi hotline 0988 446 113 hoặc gửi yêu cầu qua email/Zalo trong vòng 7 ngày kể từ khi phát hiện lỗi.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm">2</span>
+              <div>
+                <p class="font-semibold text-gray-900">Cung cấp thông tin</p>
+                <p class="text-sm text-gray-600">Ảnh/video lỗi thiết bị, số hợp đồng, ngày giao hàng. EPCVINA xác nhận trong 48h.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm">3</span>
+              <div>
+                <p class="font-semibold text-gray-900">Kiểm tra và xử lý</p>
+                <p class="text-sm text-gray-600">Kỹ thuật viên đến tận nơi kiểm tra (nếu cần). EPCVINA ra quyết định đổi trả/hoàn tiền trong 5–7 ngày.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-8 h-8 bg-red-100 text-red-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-sm">4</span>
+              <div>
+                <p class="font-semibold text-gray-900">Hoàn tất</p>
+                <p class="text-sm text-gray-600">Giao thiết bị mới hoặc hoàn tiền vào tài khoản trong 7–15 ngày làm việc.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">5. Trường hợp không áp dụng</h2>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li>Thiết bị đã hết thời hạn bảo hành theo chính sách.</li>
+            <li>Thiệt hại do thiên tai, hỏa hoạn, tai nạn không phải lỗi nhà sản xuất.</li>
+            <li>Khách hàng tự ý tháo lắp, sửa chữa không có sự đồng ý của EPCVINA.</li>
+            <li>Thiết bị bị ăn mòn, oxy hóa do môi trường vượt tiêu chuẩn thiết kế.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">6. Liên hệ</h2>
+          <div class="bg-gray-50 rounded-xl p-5 space-y-1 text-sm">
+            <p class="font-semibold text-gray-900">Phòng Chăm sóc Khách hàng — EPCVINA Solar</p>
+            <p>Điện thoại: <a href="tel:0988446113" class="text-[#DC2626] hover:underline">0988 446 113</a></p>
+            <p>Email: <a href="mailto:epcvinasolar@gmail.com" class="text-[#DC2626] hover:underline">epcvinasolar@gmail.com</a></p>
+            <p>Zalo: <a href="https://zalo.me/0988446113" class="text-[#DC2626] hover:underline">0988 446 113</a></p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </DashboardShell>
+</DashboardLayout>

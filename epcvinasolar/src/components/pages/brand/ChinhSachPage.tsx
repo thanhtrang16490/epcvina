@@ -5,6 +5,7 @@ const policies = [
     title: 'Chính Sách Bảo Mật Thông Tin',
     icon: Shield,
     color: 'bg-blue-100 text-blue-700',
+    href: '/chinh-sach-bao-mat',
     content: [
       'EPCVINA cam kết bảo mật thông tin cá nhân của khách hàng theo quy định pháp luật.',
       'Thông tin chỉ được sử dụng cho mục đích tư vấn, báo giá và chăm sóc khách hàng.',
@@ -16,6 +17,7 @@ const policies = [
     title: 'Chính Sách Thanh Toán',
     icon: Scale,
     color: 'bg-emerald-100 text-emerald-700',
+    href: '/chinh-sach-thanh-toan',
     content: [
       'Đặt cọc 30% khi ký hợp đồng để xác nhận đơn hàng và đặt thiết bị.',
       'Thanh toán 40% khi thiết bị được giao đến công trình.',
@@ -28,6 +30,7 @@ const policies = [
     title: 'Chính Sách Đổi Trả & Hoàn Tiền',
     icon: Clock,
     color: 'bg-amber-100 text-amber-700',
+    href: '/chinh-sach-doi-tra',
     content: [
       'Thiết bị lỗi nhà sản xuất: Đổi mới trong vòng 30 ngày đầu.',
       'Thiết bị hỏng trong thời gian bảo hành: Sửa chữa hoặc thay thế miễn phí.',
@@ -39,6 +42,7 @@ const policies = [
     title: 'Chính Sách Chăm Sóc Khách Hàng',
     icon: Heart,
     color: 'bg-pink-100 text-pink-700',
+    href: '/lien-he',
     content: [
       'Tư vấn miễn phí 24/7 qua hotline, Zalo, email.',
       'Bảo trì miễn phí năm đầu tiên sau lắp đặt.',
@@ -51,6 +55,7 @@ const policies = [
     title: 'Chính Sách Bảo Hành',
     icon: FileText,
     color: 'bg-purple-100 text-purple-700',
+    href: '/bao-hanh',
     content: [
       'Pin mặt trời: Bảo hành hiệu suất 25 năm, sản phẩm 12 năm.',
       'Inverter: Bảo hành 10 năm chính hãng.',
@@ -59,9 +64,10 @@ const policies = [
     ],
   },
   {
-    title: 'Chính Sách Vận Chuyển & Lắp Đặt',
+    title: 'Chính Sách Giao Nhận & Triển Khai',
     icon: Users,
     color: 'bg-cyan-100 text-cyan-700',
+    href: '/chinh-sach-giao-nhan',
     content: [
       'Miễn phí vận chuyển trong bán kính 50km từ văn phòng EPCVINA.',
       'Phí vận chuyển ngoài khu vực: Thỏa thuận theo thực tế.',
@@ -96,13 +102,16 @@ export default function ChinhSachPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
             {policies.map((policy, i) => (
-              <div key={i} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+              <a key={i} href={policy.href} className="block bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 hover:shadow-md hover:border-slate-300 transition-all group">
                 <div className="flex items-start gap-4">
                   <div className={`${policy.color} w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0`}>
                     <policy.icon className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-xl font-bold text-slate-900 mb-4">{policy.title}</h2>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <h2 className="text-xl font-bold text-slate-900">{policy.title}</h2>
+                      <span className="text-slate-400 group-hover:text-[#DC2626] transition-colors text-sm flex-shrink-0">Xem chi tiết →</span>
+                    </div>
                     <div className="space-y-3">
                       {policy.content.map((item, ii) => (
                         <div key={ii} className="flex items-start gap-3">
@@ -113,7 +122,7 @@ export default function ChinhSachPage() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -130,12 +139,24 @@ export default function ChinhSachPage() {
               <Shield className="w-8 h-8 text-emerald-500 mx-auto mb-2" />
               <p className="font-semibold text-slate-900">Chính Sách Bảo Hành</p>
             </a>
+            <a href="/chinh-sach-thanh-toan" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
+              <Scale className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+              <p className="font-semibold text-slate-900">Chính Sách Thanh Toán</p>
+            </a>
+            <a href="/chinh-sach-doi-tra" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
+              <Clock className="w-8 h-8 text-amber-500 mx-auto mb-2" />
+              <p className="font-semibold text-slate-900">Chính Sách Đổi Trả</p>
+            </a>
+            <a href="/chinh-sach-giao-nhan" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
+              <Users className="w-8 h-8 text-cyan-500 mx-auto mb-2" />
+              <p className="font-semibold text-slate-900">Chính Sách Giao Nhận</p>
+            </a>
             <a href="/quy-trinh-thi-cong" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
-              <FileText className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+              <FileText className="w-8 h-8 text-indigo-500 mx-auto mb-2" />
               <p className="font-semibold text-slate-900">Quy Trình Thi Công</p>
             </a>
             <a href="/chung-nhan" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
-              <Scale className="w-8 h-8 text-amber-500 mx-auto mb-2" />
+              <Scale className="w-8 h-8 text-purple-500 mx-auto mb-2" />
               <p className="font-semibold text-slate-900">Chứng Nhận</p>
             </a>
           </div>
