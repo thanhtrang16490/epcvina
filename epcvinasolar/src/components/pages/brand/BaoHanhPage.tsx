@@ -1,4 +1,4 @@
-import { Shield, CheckCircle, Clock, Medal, Phone, WarningCircle, Wrench, Sun, Lightning, BatteryHigh, Tools, ClipboardText } from '@phosphor-icons/react';
+import { Shield, CheckCircle, Clock, Medal, Phone, WarningCircle, Wrench, Sun, Lightning, BatteryHigh, ClipboardText } from '@phosphor-icons/react';
 
 const warrantyItems = [
   {
