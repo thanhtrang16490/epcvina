@@ -1,0 +1,261 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+---
+
+<DashboardLayout
+  title="Hướng Dẫn Sử Dụng Hệ Thống Điện Mặt Trời | EPCVINA Solar"
+  description="Hướng dẫn sử dụng hệ thống điện mặt trời đúng cách: giám sát app, vận hành hàng ngày, tối ưu hiệu suất, xử lý sự cố cơ bản. EPCVINA Solar."
+  keywords="hướng dẫn sử dụng điện mặt trời, cách dùng solar, app giám sát, vận hành hệ thống solar, EPCVINA"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Hướng Dẫn Sử Dụng", url: "https://epcvina.com/huong-dan-su-dung"}]}
+>
+  <DashboardShell client:load>
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div class="mb-8">
+        <a href="/" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">← Trang chủ</a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Hướng Dẫn Sử Dụng Hệ Thống Điện Mặt Trời</h1>
+      <p class="text-sm text-gray-500 mb-10">Cập nhật lần cuối: tháng 6 năm 2025</p>
+
+      <div class="prose prose-gray max-w-none space-y-8 text-gray-700 leading-relaxed">
+
+        <!-- 1. Tổng quan -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">1. Tổng quan hệ thống</h2>
+          <p>Sau khi lắp đặt, hệ thống điện mặt trời của bạn gồm các thành phần chính:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li><strong>Tấm pin mặt trời:</strong> Hấp thụ ánh sáng và chuyển thành điện một chiều (DC).</li>
+            <li><strong>Inverter (Biến tần):</strong> Chuyển đổi điện DC thành điện xoay chiều (AC) để sử dụng.</li>
+            <li><strong>Tủ điện & hệ thống bảo vệ:</strong> Cầu dao, chống sét lan, aptomat.</li>
+            <li><strong>Đồng hồ 2 chiều:</strong> Đo lường điện sản xuất và điện mua từ lưới (đăng ký với EVN).</li>
+            <li><strong>Pin lưu trữ (nếu có – hệ Hybrid):</strong> Lưu trữ điện dư để dùng khi mất điện hoặc ban đêm.</li>
+            <li><strong>App giám sát:</strong> Theo dõi sản lượng real-time trên điện thoại.</li>
+          </ul>
+        </section>
+
+        <!-- 2. App giám sát -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">2. Sử dụng App giám sát</h2>
+          <p>EPCVINA cài đặt app giám sát trên điện thoại sau khi bàn giao hệ thống.</p>
+
+          <h3 class="text-lg font-medium text-gray-900 mt-4 mb-2">2.1. Đăng nhập lần đầu</h3>
+          <div class="space-y-3 mt-2">
+            <div class="flex items-start gap-3">
+              <span class="w-7 h-7 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs">1</span>
+              <p>Tải app theo hướng dẫn của kỹ thuật viên (thường là FusionSolar, SolarGo, hoặc iSolarCloud tùy inverter).</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-7 h-7 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs">2</span>
+              <p>Đăng nhập bằng tài khoản EPCVINA cung cấp (số điện thoại + mật khẩu mặc định).</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="w-7 h-7 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs">3</span>
+              <p>Đổi mật khẩu ngay lần đầu để bảo mật tài khoản.</p>
+            </div>
+          </div>
+
+          <h3 class="text-lg font-medium text-gray-900 mt-5 mb-2">2.2. Các thông tin cần theo dõi</h3>
+          <div class="overflow-x-auto mt-3">
+            <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Thông số</th>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Ý nghĩa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Công suất hiện tại (kW)</td>
+                  <td class="px-4 py-3">Hệ thống đang phát bao nhiêu điện</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Sản lượng hôm nay (kWh)</td>
+                  <td class="px-4 py-3">Tổng điện sản xuất trong ngày</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Sản lượng tháng (kWh)</td>
+                  <td class="px-4 py-3">Tổng điện sản xuất trong tháng</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">Trạng thái inverter</td>
+                  <td class="px-4 py-3">Bình thường (xanh) / Cảnh báo (vàng) / Lỗi (đỏ)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4 text-sm">
+            <p class="font-semibold text-blue-800 mb-1">Mẹo:</p>
+            <p class="text-blue-700">Kiểm tra app ít nhất 1 lần/tuần. Nếu thấy sản lượng giảm bất thường (>20% so với ngày nắng tương tự), liên hệ EPCVINA để kiểm tra.</p>
+          </div>
+        </section>
+
+        <!-- 3. Vận hành hàng ngày -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">3. Vận hành hàng ngày</h2>
+          <p>Hệ thống điện mặt trời hoạt động hoàn toàn tự động. Tuy nhiên, bạn nên:</p>
+          <ul class="list-disc pl-6 space-y-1 mt-2">
+            <li><strong>Sáng:</strong> Hệ thống tự khởi động khi có ánh nắng. Không cần thao tác.</li>
+            <li><strong>Tối:</strong> Hệ thống tự ngắt khi không còn nắng. Inverter sẽ chuyển sang chế độ chờ.</li>
+            <li><strong>Khi mất điện:</strong>
+              <ul class="list-circle pl-5 mt-1 space-y-1">
+                <li>On-Grid: Hệ thống tự ngắt (an toàn cho kỹ thuật viên EVN).</li>
+                <li>Hybrid: Pin lưu trữ tự động cấp điện cho tải ưu tiên (đèn, tủ lạnh, wifi...).</li>
+              </ul>
+            </li>
+            <li><strong>Khi trời mưa bão:</strong> Hệ thống có chống sét cơ bản. Nên tắt aptomat DC nếu có cảnh báo giông bão mạnh.</li>
+          </ul>
+        </section>
+
+        <!-- 4. Tối ưu hiệu suất -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">4. Tối ưu hiệu suất hệ thống</h2>
+          <div class="space-y-4 mt-3">
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+              <h4 class="font-semibold text-gray-900 mb-1">Vệ sinh tấm pin</h4>
+              <p class="text-sm text-gray-600">Lau rửa tấm pin 2-4 lần/năm vào buổi sáng sớm hoặc chiều mát. Bụi bẩn có thể giảm 5-15% hiệu suất. Sử dụng nước sạch, khăn mềm hoặc bàn chải lông mềm. Không dùng nước nóng hoặc hóa chất tẩy rửa.</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+              <h4 class="font-semibold text-gray-900 mb-1">Không che bóng tấm pin</h4>
+              <p class="text-sm text-gray-600">Cắt tỉa cây cối xung quanh để tránh bóng râm che tấm pin. Chỉ cần 1 tấm pin bị che, cả chuỗi có thể giảm sản lượng.</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+              <h4 class="font-semibold text-gray-900 mb-1">Sử dụng điện vào ban ngày</h4>
+              <p class="text-sm text-gray-600">Ưu tiên dùng thiết bị công suất lớn (máy giặt, bình nóng lạnh, bơm nước) vào khung giờ 9h-15h để tận dụng điện mặt trời, giảm điện mua từ lưới.</p>
+            </div>
+            <div class="bg-white border border-gray-200 rounded-lg p-4">
+              <h4 class="font-semibold text-gray-900 mb-1">Theo dõi định kỳ</h4>
+              <p class="text-sm text-gray-600">Kiểm tra app giám sát hàng tuần. So sánh sản lượng tháng với dự tính. Nếu giảm bất thường, liên hệ EPCVINA để được hỗ trợ.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Xử lý sự cố cơ bản -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">5. Xử lý sự cố cơ bản</h2>
+          <p>Trước khi gọi kỹ thuật viên, bạn có thể kiểm tra:</p>
+          <div class="overflow-x-auto mt-3">
+            <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Sự cố</th>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Kiểm tra</th>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Cách xử lý</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">App hiển thị "Ngoại tuyến"</td>
+                  <td class="px-4 py-3">Kiểm tra kết nối WiFi của inverter</td>
+                  <td class="px-4 py-3">Khởi động lại router WiFi. Đợi 5 phút, kiểm tra lại.</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Sản lượng = 0 vào ngày nắng</td>
+                  <td class="px-4 py-3">Kiểm tra aptomat DC/AC</td>
+                  <td class="px-4 py-3">Bật lại aptomat. Nếu vẫn không, gọi EPCVINA.</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Inverter báo lỗi (đèn đỏ)</td>
+                  <td class="px-4 py-3">Xem mã lỗi trên app</td>
+                  <td class="px-4 py-3">Ghi lại mã lỗi, gọi hotline 0988 446 113.</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">Sản lượng giảm bất thường</td>
+                  <td class="px-4 py-3">Kiểm tra tấm pin bị che/bẩn</td>
+                  <td class="px-4 py-3">Vệ sinh tấm pin hoặc cắt tỉa cây che.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4 mt-4 text-sm">
+            <p class="font-semibold text-red-800 mb-1">Lưu ý an toàn:</p>
+            <p class="text-red-700">Không tự ý tháo lắp, sửa chữa thiết bị điện. Mọi thao tác trên tủ điện, inverter cần có kỹ thuật viên chuyên môn. Gọi ngay hotline <a href="tel:0988446113" class="underline font-bold">0988 446 113</a> nếu phát hiện mùi khét, tiếng nổ hoặc khói.</p>
+          </div>
+        </section>
+
+        <!-- 6. Lịch bảo trì khuyến nghị -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">6. Lịch bảo trì khuyến nghị</h2>
+          <div class="overflow-x-auto mt-3">
+            <table class="w-full text-sm border border-gray-200 rounded-lg overflow-hidden">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Hạng mục</th>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Tần suất</th>
+                  <th class="px-4 py-3 text-left font-semibold text-gray-900 border-b">Ghi chú</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Vệ sinh tấm pin</td>
+                  <td class="px-4 py-3">2-4 lần/năm</td>
+                  <td class="px-4 py-3">Mùa khô bụi nhiều nên vệ sinh thường xuyên hơn</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Kiểm tra aptomat, đầu nối</td>
+                  <td class="px-4 py-3">6 tháng/lần</td>
+                  <td class="px-4 py-3">Phát hiện điểm nóng, lỏng kết nối</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Kiểm tra khung giàn</td>
+                  <td class="px-4 py-3">1 năm/lần</td>
+                  <td class="px-4 py-3">Phát hiện rỉ sét, lỏng bu lông</td>
+                </tr>
+                <tr class="border-b">
+                  <td class="px-4 py-3 font-medium">Bảo dưỡng inverter</td>
+                  <td class="px-4 py-3">1 năm/lần</td>
+                  <td class="px-4 py-3">Cập nhật firmware, kiểm tra quạt tản nhiệt</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-medium">Kiểm tra tổng thể hệ thống</td>
+                  <td class="px-4 py-3">1 năm/lần</td>
+                  <td class="px-4 py-3">EPCVINA bảo trì miễn phí năm đầu tiên</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-3 text-sm text-gray-500">Đăng ký gói bảo trì hàng năm tại <a href="/bao-tri" class="text-[#DC2626] hover:underline font-medium">trang Bảo trì</a> để được ưu đãi.</p>
+        </section>
+
+        <!-- 7. Câu hỏi thường gặp -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">7. Câu hỏi thường gặp khi sử dụng</h2>
+          <div class="space-y-4 mt-3">
+            <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <summary class="px-4 py-3 font-medium text-gray-900 cursor-pointer hover:bg-gray-50">Hệ thống có cần tắt vào ban đêm không?</summary>
+              <div class="px-4 pb-3 text-sm text-gray-600">Không cần. Inverter tự động chuyển sang chế độ chờ (standby) khi không có ánh nắng. Việc tắt/bật thủ công không cần thiết và có thể làm giảm sản lượng ngày hôm sau.</div>
+            </details>
+            <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <summary class="px-4 py-3 font-medium text-gray-900 cursor-pointer hover:bg-gray-50">Có cần thay pin lưu trữ không?</summary>
+              <div class="px-4 pb-3 text-sm text-gray-600">Pin lưu trữ LFP có tuổi thọ 6000+ chu kỳ (~10-15 năm). Sau thời gian này, dung lượng giảm còn ~70%. EPCVINA hỗ trợ kiểm tra và tư vấn thay thế khi cần.</div>
+            </details>
+            <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <summary class="px-4 py-3 font-medium text-gray-900 cursor-pointer hover:bg-gray-50">Mưa bão có nên tắt hệ thống không?</summary>
+              <div class="px-4 pb-3 text-sm text-gray-600">Hệ thống có chống sét cơ bản. Với bão cấp 12 trở lên, nên tắt aptomat DC để bảo vệ an toàn. Sau bão, kiểm tra tấm pin xem có bị dịch chuyển hoặc vỡ không trước khi bật lại.</div>
+            </details>
+            <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <summary class="px-4 py-3 font-medium text-gray-900 cursor-pointer hover:bg-gray-50">Tôi có thể mở rộng hệ thống sau này không?</summary>
+              <div class="px-4 pb-3 text-sm text-gray-600">Có thể. Tuy nhiên cần khảo sát lại inverter (có đủ công suất không), khung giàn (có đủ chỗ không), và giấy phép đấu nối. Liên hệ EPCVINA để được tư vấn miễn phí.</div>
+            </details>
+          </div>
+        </section>
+
+        <!-- 8. Liên hệ -->
+        <section>
+          <h2 class="text-xl font-semibold text-gray-900 mb-3">8. Hỗ trợ kỹ thuật</h2>
+          <div class="bg-gray-50 rounded-xl p-5 space-y-1 text-sm">
+            <p class="font-semibold text-gray-900">Phòng Kỹ Thuật — EPCVINA Solar</p>
+            <p>Hotline: <a href="tel:0988446113" class="text-[#DC2626] hover:underline font-medium">0988 446 113</a></p>
+            <p>Email: <a href="mailto:epcvinasolar@gmail.com" class="text-[#DC2626] hover:underline">epcvinasolar@gmail.com</a></p>
+            <p>Zalo: <a href="https://zalo.me/0988446113" class="text-[#DC2626] hover:underline">0988 446 113</a></p>
+            <p>Giờ hỗ trợ: Thứ 2 – Chủ nhật, 7:00 – 20:00</p>
+            <p class="mt-2 text-gray-500">Sự cố khẩn cấp (khói, cháy, nổ): Gọi ngay <a href="tel:114" class="text-[#DC2626] hover:underline font-bold">114</a> (Cứu hỏa) rồi gọi EPCVINA.</p>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </DashboardShell>
+</DashboardLayout>
