@@ -1,7 +1,9 @@
-import { ArrowLeft, Check, Package, Shield, Zap, TrendingUp, Award, MapPin, Star, Quote } from 'lucide-react';
+import { ArrowLeft, Check, Package, Shield, Zap, TrendingUp, Award, MapPin, Star, Quote, ShoppingCart } from 'lucide-react';
 import { useState, useEffect, useMemo } from 'react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import { localBrands } from '../../../data/brands';
+import { CartProvider, useCart } from '../../../hooks/useCart';
+import CartSidebar from '../equipment/CartSidebar';
 
 interface Product {
   id?: string;
@@ -68,6 +70,37 @@ const CATEGORY_NAMES: Record<string, string> = {
 };
 
 export default function ProductDetail({ product, relatedProjects = [] }: ProductDetailProps) {
+  return (
+    <CartProvider>
+      <ProductDetailInner product={product} relatedProjects={relatedProjects} />
+      <CartButton />
+      <CartSidebar />
+    </CartProvider>
+  );
+}
+
+// Floating cart button
+function CartButton() {
+  const { totalItems, toggleCart } = useCart();
+  return (
+    <button
+      onClick={toggleCart}
+      className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#F97316] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#C2410C] transition-all hover:scale-110 active:scale-95"
+      aria-label="Giỏ hàng"
+    >
+      <ShoppingCart className="w-6 h-6" />
+      {totalItems > 0 && (
+        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full animate-bounce">
+          {totalItems > 9 ? '9+' : totalItems}
+        </span>
+      )}
+    </button>
+  );
+}
+
+function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProps) {
+  const { addItem } = useCart();
+  const [addedToCart, setAddedToCart] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
   const images = product.main_image ? [product.main_image] : [];
@@ -239,12 +272,37 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
                 >
                   Liên hệ tư vấn
                 </a>
-                <a
-                  href="/bao-gia"
-                  className="flex-1 bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold border-2 border-orange-600 hover:bg-orange-50 transition-all text-center text-sm cursor-pointer min-h-[44px] flex items-center justify-center"
+                <button
+                  onClick={() => {
+                    addItem({
+                      id: product.slug || product.id || product.name,
+                      name: product.name,
+                      brand: product.brand,
+                      price: product.price || product.unit_price || 0,
+                      image: product.main_image || '',
+                      category: product.category,
+                    });
+                    setAddedToCart(true);
+                    setTimeout(() => setAddedToCart(false), 2000);
+                  }}
+                  className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all text-center text-sm cursor-pointer min-h-[44px] flex items-center justify-center gap-2 ${
+                    addedToCart
+                      ? 'bg-green-500 text-white border-2 border-green-500'
+                      : 'bg-white text-green-600 border-2 border-green-600 hover:bg-green-50'
+                  }`}
                 >
-                  Báo giá chi tiết
-                </a>
+                  {addedToCart ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Đã thêm
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-4 h-4" />
+                      Thêm vào giỏ
+                    </>
+                  )}
+                </button>
               </div>
             </div>
           </div>
