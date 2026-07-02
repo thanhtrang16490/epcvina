@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Building2, CheckCircle, AlertTriangle, Wrench, Phone, Shield, ArrowRight, ChevronDown, ChevronUp, Ruler, Droplets, Sun, Wind, Zap, Award, Mountain, Layers } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 const benefits = [
   {
@@ -140,6 +141,7 @@ export default function MaiBangPage() {
 
   return (
     <div className="min-h-screen pt-20 md:pt-20">
+      <HeaderBar />
       {/* Hero */}
       <section className="bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 text-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

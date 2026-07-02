@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Home, CheckCircle, AlertTriangle, Wrench, Phone, Shield, Clock, ArrowRight, ChevronDown, ChevronUp, Ruler, Droplets, Sun, Wind, Zap, Award } from 'lucide-react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 const technicalRequirements = [
   {
@@ -90,6 +91,7 @@ export default function MaiNgoiPage() {
 
   return (
     <div className="min-h-screen pt-20 md:pt-20">
+      <HeaderBar />
       {/* Hero */}
       <section className="bg-gradient-to-br from-amber-900 via-orange-800 to-red-900 text-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
