@@ -73,7 +73,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    name: 'Đối tác',
+    name: 'Đối tác & Nhãn hàng',
     icon: Sun,
     children: [
       { name: 'Tất cả đối tác', href: '/doi-tac' },
@@ -81,6 +81,8 @@ const menuItems: MenuItem[] = [
       { name: 'Huawei', href: '/doi-tac/huawei' },
       { name: 'Growatt', href: '/doi-tac/growatt' },
       { name: 'Pylontech', href: '/doi-tac/pylontech' },
+      { name: 'BYD', href: '/doi-tac/byd' },
+      { name: 'QUANG MINH TECH', href: '/doi-tac/quang-minh-tech' },
     ],
   },
   {
