@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FileText, Menu, X } from 'lucide-react';
+import { FileText, List, X } from '@phosphor-icons/react';
 import { useScrollContext } from '../../layout/DashboardShell';
 
 const navItems = [
@@ -50,7 +50,7 @@ export default function HeaderBar() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`relative px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[11px] md:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                className={`relative px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[11px] md:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
                   isActive
                     ? 'bg-gray-900 text-white shadow-md'
                     : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'
@@ -67,19 +67,19 @@ export default function HeaderBar() {
           {/* Phone CTA - hidden on mobile */}
           <a
             href="/bao-gia"
-            className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-5 py-2.5 text-sm font-semibold shadow-md transition-colors"
+            className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-5 py-2.5 text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
           >
-            <FileText className="h-4 w-4" />
+            <FileText className="h-4 w-4" weight="bold" />
             <span>Nhận Báo Giá</span>
           </a>
 
           {/* Hamburger - mobile only */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 text-gray-700"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 text-gray-700 active:scale-[0.97]"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="h-5 w-5" weight="bold" /> : <List className="h-5 w-5" weight="bold" />}
           </button>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function HeaderBar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`px-5 py-3 text-sm font-medium transition-colors ${
+                  className={`px-5 py-3 text-sm font-medium transition-colors active:scale-[0.98] ${
                     isActive
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-700 hover:bg-white/60'
@@ -111,9 +111,9 @@ export default function HeaderBar() {
               <a
                 href="/bao-gia"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full"
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full active:scale-[0.98]"
               >
-                <FileText className="h-4 w-4" />
+                <FileText className="h-4 w-4" weight="bold" />
                 <span>Nhận Báo Giá</span>
               </a>
             </div>

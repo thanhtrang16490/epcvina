@@ -1,5 +1,5 @@
-import { Quote, Star } from 'lucide-react';
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
+import { motion } from 'motion/react';
+import { Star } from '@phosphor-icons/react';
 
 const reviews = [
   {
@@ -50,23 +50,27 @@ const reviews = [
 ];
 
 export default function ReviewsSection() {
-  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.15 });
-
   return (
-    <section ref={sectionRef} className="py-12 sm:py-16 bg-gray-50">
+    <section className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+        <motion.div
+          className="text-center mb-10"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             Khách hàng nói gì về chúng tôi?
           </h2>
           <p className="text-gray-500 mt-2">
             Hơn 200+ công trình đã tin tưởng lắp đặt
           </p>
-        </div>
+        </motion.div>
 
         {/* Horizontal scroll carousel */}
-        <p className="sm:hidden text-xs text-gray-400 text-center mb-2 animate-pulse">← Vuốt để xem thêm →</p>
+        <p className="sm:hidden text-xs text-gray-400 text-center mb-2 animate-pulse">&larr; Vuốt để xem thêm &rarr;</p>
         <div className="relative">
           {/* Left fade */}
           <div className="absolute left-0 top-0 bottom-4 w-6 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10 sm:hidden" aria-hidden="true" />
@@ -74,13 +78,16 @@ export default function ReviewsSection() {
           <div className="absolute right-0 top-0 bottom-4 w-6 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10 sm:hidden" aria-hidden="true" />
           <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-5 pb-4 touch-pan-x">
           {reviews.map((review, i) => (
-            <div
+            <motion.div
               key={review.name + review.location}
-              className={`w-[320px] flex-shrink-0 snap-start bg-white shadow-md rounded-xl p-6 flex flex-col transition-all duration-200 hover:shadow-lg hover:-translate-y-1 motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-              style={{ transitionDelay: isVisible ? `${i * 100}ms` : '0ms' }}
+              className="w-[320px] flex-shrink-0 snap-start bg-white border border-gray-200 rounded-xl p-6 flex flex-col"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08, duration: 0.4 }}
             >
-              {/* Quotation mark */}
-              <Quote className="h-8 w-8 text-orange-200 mb-3 flex-shrink-0" />
+              {/* Typographic quotation mark */}
+              <span className="text-4xl leading-none text-orange-200 font-serif mb-2 select-none" aria-hidden="true">&ldquo;</span>
 
               {/* Quote text */}
               <p className="text-gray-700 text-sm leading-relaxed flex-1 mb-4">
@@ -92,7 +99,8 @@ export default function ReviewsSection() {
                 {Array.from({ length: review.rating }).map((_, i) => (
                   <Star
                     key={i}
-                    className="h-4 w-4 fill-amber-400 text-amber-400"
+                    className="h-4 w-4 text-amber-400"
+                    weight="fill"
                   />
                 ))}
               </div>
@@ -107,13 +115,13 @@ export default function ReviewsSection() {
               {/* Name & location */}
               <p className="font-semibold text-gray-900 text-sm">{review.name}</p>
               <p className="text-gray-400 text-xs mb-2">{review.location}</p>
-              
+
               {/* Capacity & completion */}
               <div className="flex items-center justify-between text-xs text-gray-500 pt-2 border-t border-gray-100">
                 <span className="font-medium">{review.capacity}</span>
                 <span>{review.completion}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
           </div>
         </div>

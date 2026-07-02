@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
+import { motion } from 'motion/react';
+import { CaretDown } from '@phosphor-icons/react';
 
 const faqData = [
   {
@@ -29,24 +29,31 @@ const faqData = [
   },
 ];
 
-function FAQItem({ question, answer, staggerClass }: { question: string; answer: string; staggerClass: string }) {
+function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`border border-gray-200 rounded-xl overflow-hidden animate-on-scroll ${staggerClass}`}>
+    <motion.div
+      className="border border-gray-200 rounded-xl overflow-hidden"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.06, duration: 0.35 }}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition-colors motion-reduce:transition-none"
+        className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition-colors active:scale-[0.99]"
       >
         <span className="font-medium text-gray-900 pr-4">{question}</span>
-        <ChevronDown
-          className={`h-5 w-5 text-gray-400 flex-shrink-0 transition-transform duration-200 motion-reduce:transition-none ${
+        <CaretDown
+          className={`h-5 w-5 text-gray-400 flex-shrink-0 transition-transform duration-200 ${
             isOpen ? 'rotate-180' : ''
           }`}
+          weight="bold"
         />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-out motion-reduce:transition-none ${
+        className={`overflow-hidden transition-all duration-300 ease-out ${
           isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
@@ -54,30 +61,30 @@ function FAQItem({ question, answer, staggerClass }: { question: string; answer:
           {answer}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function FAQSection() {
-  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
-  const staggerClasses = ['stagger-1', 'stagger-2', 'stagger-3', 'stagger-4', 'stagger-5', 'stagger-6'];
-
   return (
-    <section
-      ref={sectionRef}
-      className={`py-12 sm:py-16 bg-gray-50 ${isVisible ? 'animate-visible' : ''} transition-all duration-600 ease-out motion-reduce:transition-none`}
-    >
+    <section className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div className="flex items-end justify-between mb-8">
+        <motion.div
+          className="flex items-end justify-between mb-8"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+        >
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Hỏi đáp</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Hỏi đáp</h2>
             <p className="text-gray-500 mt-2">Những câu hỏi thường gặp về điện mặt trời</p>
           </div>
-          <a href="/hoi-dap" className="text-[#DC2626] hover:text-[#B01A22] font-medium text-sm">
+          <a href="/hoi-dap" className="text-[#DC2626] hover:text-[#B01A22] font-medium text-sm active:scale-[0.98]">
             Tìm hiểu thêm
           </a>
-        </div>
+        </motion.div>
 
         {/* FAQ Items */}
         <div className="space-y-3">
@@ -86,7 +93,7 @@ export default function FAQSection() {
               key={item.question}
               question={item.question}
               answer={item.answer}
-              staggerClass={isVisible ? `animate-visible ${staggerClasses[i] || ''}` : staggerClasses[i] || ''}
+              index={i}
             />
           ))}
         </div>

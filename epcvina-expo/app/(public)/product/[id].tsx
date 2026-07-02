@@ -75,7 +75,7 @@ export default function PublicProductDetailScreen() {
     try {
       await Share.share({
         title: product.name,
-        message: `${product.name} - ${formatPrice(product.price)}\n\nXem thêm tại ứng dụng APPE JV`,
+        message: `${product.name} - ${formatPrice(product.price)}\n\nXem thêm tại ứng dụng EPCVINA`,
       })
     } catch {
       // Silently fail

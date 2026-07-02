@@ -11,7 +11,7 @@ interface PublicHeaderProps {
 }
 
 export default function PublicHeader({ 
-  title = 'APPE JV', 
+  title = 'EPCVINA', 
   showBackButton = false,
   showLoginButton = true 
 }: PublicHeaderProps) {
@@ -42,7 +42,7 @@ export default function PublicHeader({
         {/* Center */}
         <View style={styles.centerSection}>
           <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>Thức ăn chăn nuôi chất lượng cao</Text>
+          <Text style={styles.subtitle}>Giải pháp điện mặt trời chất lượng cao</Text>
         </View>
 
         {/* Right Side */}

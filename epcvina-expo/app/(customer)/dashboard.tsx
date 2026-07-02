@@ -135,7 +135,7 @@ export default function CustomerDashboard() {
             Xin chào{user?.full_name ? `, ${user.full_name}` : ''}! 👋
           </Text>
           <Text style={styles.welcomeSubtitle}>
-            Chào mừng bạn đến với APPE JV
+            Chào mừng bạn đến với EPCVINA
           </Text>
         </View>
 

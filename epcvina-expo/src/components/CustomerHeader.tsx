@@ -19,7 +19,7 @@ export default function CustomerHeader({
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.logoTitle}>APPE JV</Text>
+        <Text style={styles.logoTitle}>EPCVINA</Text>
       </View>
       <View style={styles.headerActions}>
         {showNotification && <NotificationButton userId={user?.id} color="#10b981" />}

@@ -101,7 +101,7 @@ export default function DirectorMenu() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.logoTitle}>APPE JV</Text>
+          <Text style={styles.logoTitle}>EPCVINA</Text>
         </View>
         <TouchableOpacity
           style={styles.closeButton}
@@ -199,7 +199,7 @@ export default function DirectorMenu() {
         </TouchableOpacity>
 
         {/* App Version */}
-        <Text style={styles.version}>DirectorApp · APPE JV · v1.0.0</Text>
+        <Text style={styles.version}>DirectorApp · EPCVINA · v1.0.0</Text>
       </ScrollView>
     </SafeAreaView>
   )

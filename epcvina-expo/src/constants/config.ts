@@ -8,7 +8,7 @@
 
 export const APP_CONFIG = {
   /** App display name */
-  name: 'APPE JV',
+  name: 'EPCVINA',
 
   /** Support hotline - override via EXPO_PUBLIC_HOTLINE env var */
   hotline: process.env.EXPO_PUBLIC_HOTLINE ?? '0123456789',

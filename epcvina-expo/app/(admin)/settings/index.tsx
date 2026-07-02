@@ -12,7 +12,7 @@ export default function SettingsScreen() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [settings, setSettings] = useState({
-    companyName: 'APPE JV',
+    companyName: 'EPCVINA',
     companyEmail: '',
     companyPhone: '',
     companyAddress: '',

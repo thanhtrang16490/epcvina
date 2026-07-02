@@ -1,43 +1,40 @@
+import { motion } from 'motion/react';
 import {
-  Zap,
-  Battery,
-  Building2,
+  Lightning,
+  Building,
   Clock,
   Sun,
-  TrendingUp,
+  TrendUp,
   XCircle,
-  CheckCircle2,
-} from 'lucide-react';
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
+  CheckCircle,
+} from '@phosphor-icons/react';
 
-const NAVY = '#1a365d';
 const ORANGE = '#ea580c';
 
 export default function ComparisonSection() {
-  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
-
   return (
-    <section
-      ref={sectionRef}
-      className={`bg-white ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none`}
-    >
-      {/* ── Part 1: Visual hero cards — inherits hero background ── */}
+    <section className="bg-white">
+      {/* Visual hero cards — inherits hero background */}
       <div className="relative py-12 sm:py-16 overflow-hidden">
-        {/* Same background image as HeroSection */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/hero-background Large.jpeg')" }}
         />
-        {/* Same gradient overlay as HeroSection */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/75" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
           {/* Section label + headline */}
-          <div className="text-center mb-8 sm:mb-10">
+          <motion.div
+            className="text-center mb-8 sm:mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-amber-400 mb-3">
               CHỌN HỆ THỐNG PHÙ HỢP
             </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight">
               <span style={{ color: '#60a5fa' }}>Hybrid</span>{' '}
               <span className="text-white/60">hay</span>{' '}
               <span style={{ color: ORANGE }}>On-Grid</span>
@@ -47,10 +44,16 @@ export default function ComparisonSection() {
               Thiết kế hệ thống điện mặt trời tối ưu theo nhu cầu sử dụng thực tế —
               giúp giảm chi phí điện và tối đa hiệu quả đầu tư.
             </p>
-          </div>
+          </motion.div>
 
           {/* Side-by-side hero cards + VS badge */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-0 max-w-3xl mx-auto">
+          <motion.div
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-0 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
             {/* HYBRID Card */}
             <div
               className="flex-1 rounded-2xl sm:rounded-r-none p-4 sm:p-6 border border-white/10 text-white flex flex-col"
@@ -61,23 +64,23 @@ export default function ComparisonSection() {
               </h3>
               <ul className="space-y-2 flex-1">
                 <li className="flex items-start gap-2">
-                  <Battery className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" />
+                  <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
                   <span className="text-xs sm:text-sm">Có lưu trữ (Battery)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Zap className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" />
+                  <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
                   <span className="text-xs sm:text-sm">Hoạt động khi mất điện</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <TrendingUp className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" />
+                  <TrendUp className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
                   <span className="text-xs sm:text-sm">Tiết kiệm tối đa</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Building2 className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" />
+                  <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
                   <span className="text-xs sm:text-sm">Chi phí đầu tư cao hơn</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" />
+                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
                   <span className="text-xs sm:text-sm">Hoàn vốn 5–7 năm</span>
                 </li>
               </ul>
@@ -105,8 +108,7 @@ export default function ComparisonSection() {
             </div>
 
             {/* VS divider */}
-            <div className="flex items-center justify-center z-10 sm:-mx-5 relative
-                my-[-0.75rem] sm:my-0">
+            <div className="flex items-center justify-center z-10 sm:-mx-5 relative my-[-0.75rem] sm:my-0">
               <div
                 className="w-9 h-9 sm:w-12 sm:h-12 rounded-full flex items-center justify-center text-sm sm:text-lg font-black shadow-2xl border-4 border-white/20 z-20 relative"
                 style={{ background: 'linear-gradient(135deg, #1a365d 50%, #ea580c 50%)', color: '#fff' }}
@@ -125,23 +127,23 @@ export default function ComparisonSection() {
               </h3>
               <ul className="space-y-2 flex-1">
                 <li className="flex items-start gap-2">
-                  <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" />
+                  <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
                   <span className="text-xs sm:text-sm">Không lưu trữ điện</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Zap className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" />
+                  <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
                   <span className="text-xs sm:text-sm">Phụ thuộc vào lưới điện</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Building2 className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" />
+                  <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
                   <span className="text-xs sm:text-sm">Chi phí đầu tư thấp hơn</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" />
+                  <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
                   <span className="text-xs sm:text-sm">Hoàn vốn nhanh hơn</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" />
+                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
                   <span className="text-xs sm:text-sm">Hoàn vốn 3–4 năm</span>
                 </li>
               </ul>
@@ -160,26 +162,31 @@ export default function ComparisonSection() {
                 </svg>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* CTA buttons */}
-          <div className="mt-8 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div
+            className="mt-8 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
             <a
               href="/solar-home/hybrid"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
-              <Battery className="h-4 w-4" />
+              <Lightning className="h-4 w-4" weight="bold" />
               Xem combo Hybrid
             </a>
             <a
               href="/solar-home/on-grid"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-semibold rounded-full transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
-              <Sun className="h-4 w-4" />
+              <Sun className="h-4 w-4" weight="bold" />
               Xem combo On-Grid
             </a>
-           
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

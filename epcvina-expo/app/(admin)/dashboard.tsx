@@ -101,7 +101,7 @@ export default function AdminDashboard() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.logoTitle}>APPE JV</Text>
+          <Text style={styles.logoTitle}>EPCVINA</Text>
           <View style={styles.adminBadge}>
             <Text style={styles.adminBadgeText}>ADMIN</Text>
           </View>

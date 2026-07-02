@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { X, Phone, Gift } from 'lucide-react';
+import { X, Phone, Gift } from '@phosphor-icons/react';
 
 export default function ExitIntentPopup() {
   const [show, setShow] = useState(false);
@@ -40,7 +40,7 @@ export default function ExitIntentPopup() {
         event_label: formData.phone,
       });
     }
-    alert('✅ Đã nhận số điện thoại! Chúng tôi sẽ gọi tư vấn trong 30 phút.');
+    alert('Đã nhận số điện thoại! Chúng tôi sẽ gọi tư vấn trong 30 phút.');
     setShow(false);
   };
 
@@ -67,7 +67,7 @@ export default function ExitIntentPopup() {
 
         {/* Header */}
         <div className="bg-gradient-to-r from-orange-600 to-orange-500 p-6 text-white text-center">
-          <Gift className="w-16 h-16 mx-auto mb-3" />
+          <Gift className="w-16 h-16 mx-auto mb-3" weight="duotone" />
           <h3 className="text-2xl font-bold mb-2">Đừng Bỏ Lỡ!</h3>
           <p className="text-sm opacity-90">Nhận báo giá chi tiết qua Zalo trong 5 phút</p>
         </div>
@@ -76,12 +76,14 @@ export default function ExitIntentPopup() {
         <div className="p-6 space-y-4">
           <div className="space-y-3">
             {[
-              '✓ Báo giá chi tiết từng hạng mục',
-              '✓ Tư vấn giải pháp tối ưu nhất',
-              '✓ Khảo sát miễn phí tại nhà',
-              '✓ Không cam kết, không áp lực',
+              'Báo giá chi tiết từng hạng mục',
+              'Tư vấn giải pháp tối ưu nhất',
+              'Khảo sát miễn phí tại nhà',
+              'Không cam kết, không áp lực',
             ].map((item, i) => (
-              <p key={i} className="text-slate-700 text-sm">{item}</p>
+              <p key={i} className="text-slate-700 text-sm flex items-center gap-2">
+                <span className="text-emerald-500">&#10003;</span> {item}
+              </p>
             ))}
           </div>
 
@@ -108,7 +110,7 @@ export default function ExitIntentPopup() {
             </button>
 
             <p className="text-xs text-center text-slate-500">
-              🔒 Bảo mật tuyệt đối, không spam
+              Bảo mật tuyệt đối, không spam
             </p>
           </form>
 

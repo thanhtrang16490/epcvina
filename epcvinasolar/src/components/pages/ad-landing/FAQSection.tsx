@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { CaretDown, CaretUp } from '@phosphor-icons/react';
 import { FAQ_DATA } from './data';
 
 export default function FAQSection() {
@@ -24,9 +24,9 @@ export default function FAQSection() {
               >
                 <span className="text-lg font-semibold text-slate-900 pr-4">{faq.q}</span>
                 {openIndex === i ? (
-                  <ChevronUp className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                  <CaretUp className="w-5 h-5 text-slate-500 flex-shrink-0" weight="bold" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-slate-500 flex-shrink-0" />
+                  <CaretDown className="w-5 h-5 text-slate-500 flex-shrink-0" weight="bold" />
                 )}
               </button>
 

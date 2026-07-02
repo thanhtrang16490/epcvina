@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { Phone, Envelope, MapPin, ChatCircle } from '@phosphor-icons/react';
 
 const BRAND_RED = '#DC2626';
 
@@ -17,7 +17,7 @@ export default function FooterSection() {
               Điện mặt trời an toàn từ chuyên gia cơ điện.
             </p>
             <p className="text-xs text-gray-500 leading-relaxed mb-5">
-              Tư vấn · Thiết kế · Lắp đặt · Bảo trì
+              Tư vấn &middot; Thiết kế &middot; Lắp đặt &middot; Bảo trì
             </p>
 
             {/* Social links */}
@@ -27,7 +27,7 @@ export default function FooterSection() {
                 href="https://zalo.me/0988446113"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#1a3a5c' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = '#1452a0')}
                 onMouseOut={e => (e.currentTarget.style.backgroundColor = '#1a3a5c')}
@@ -40,7 +40,7 @@ export default function FooterSection() {
                 href="https://www.facebook.com/epcvinacom"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = BRAND_RED)}
                 onMouseOut={e => (e.currentTarget.style.backgroundColor = '#374151')}
@@ -55,7 +55,7 @@ export default function FooterSection() {
                 href="https://www.youtube.com/@EPCVINA"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = BRAND_RED)}
                 onMouseOut={e => (e.currentTarget.style.backgroundColor = '#374151')}
@@ -70,7 +70,7 @@ export default function FooterSection() {
                 href="https://www.tiktok.com/@epcvina"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = '#111')}
                 onMouseOut={e => (e.currentTarget.style.backgroundColor = '#374151')}
@@ -81,34 +81,17 @@ export default function FooterSection() {
                 </svg>
               </a>
             </div>
-
-            {/* BCT Registration Badge */}
-            {/* <div className="mt-5">
-              <a
-                href="http://online.gov.vn/Home/WebDetails/110771"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Xác nhận đăng ký Bộ Công Thương"
-              >
-                <img
-                  src="/logo-da-thong-bao-bo-cong-thuong.webp"
-                  alt="Đã thông báo Bộ Công Thương"
-                  className="h-10 w-auto"
-                  loading="lazy"
-                />
-              </a>
-            </div> */}
           </div>
 
           {/* Products */}
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Sản phẩm</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/solar-home/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo On-Grid</a></li>
-              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Combo Hybrid</a></li>
-              <li><a href="/thiet-bi/danh-sach/panel" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Tấm quang năng</a></li>
-              <li><a href="/thiet-bi/danh-sach/hybrid-inverter" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Biến tần Hybrid</a></li>
-              <li><a href="/thiet-bi/danh-sach/hv-battery" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Pin lưu trữ BESS</a></li>
+              <li><a href="/solar-home/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Combo On-Grid</a></li>
+              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Combo Hybrid</a></li>
+              <li><a href="/thiet-bi/danh-sach/panel" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Tấm quang năng</a></li>
+              <li><a href="/thiet-bi/danh-sach/hybrid-inverter" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Biến tần Hybrid</a></li>
+              <li><a href="/thiet-bi/danh-sach/hv-battery" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Pin lưu trữ BESS</a></li>
             </ul>
           </div>
 
@@ -116,12 +99,12 @@ export default function FooterSection() {
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Dịch vụ</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar Home</a></li>
-              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Hybrid & BESS</a></li>
-              <li><a href="/ung-dung/nha-xuong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Solar C&I</a></li>
-              <li><a href="/ung-dung/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Văn phòng</a></li>
-              <li><a href="/du-an" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Dự án đã thi công</a></li>
-              <li><a href="/tin-tuc" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Blog</a></li>
+              <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar Home</a></li>
+              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Hybrid & BESS</a></li>
+              <li><a href="/ung-dung/nha-xuong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar C&I</a></li>
+              <li><a href="/ung-dung/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Văn phòng</a></li>
+              <li><a href="/du-an" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Dự án đã thi công</a></li>
+              <li><a href="/tin-tuc" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Blog</a></li>
             </ul>
           </div>
 
@@ -129,12 +112,12 @@ export default function FooterSection() {
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Chính sách</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/chinh-sach-bao-mat" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách bảo mật</a></li>
-              <li><a href="/chinh-sach-thanh-toan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách thanh toán</a></li>
-              <li><a href="/bao-hanh" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách bảo hành</a></li>
-              <li><a href="/chinh-sach-doi-tra" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách đổi trả</a></li>
-              <li><a href="/chinh-sach-giao-nhan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Chính sách giao nhận</a></li>
-              <li><a href="/dieu-khoan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block motion-reduce:transition-none">Điều khoản sử dụng</a></li>
+              <li><a href="/chinh-sach-bao-mat" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách bảo mật</a></li>
+              <li><a href="/chinh-sach-thanh-toan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách thanh toán</a></li>
+              <li><a href="/bao-hanh" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách bảo hành</a></li>
+              <li><a href="/chinh-sach-doi-tra" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách đổi trả</a></li>
+              <li><a href="/chinh-sach-giao-nhan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách giao nhận</a></li>
+              <li><a href="/dieu-khoan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Điều khoản sử dụng</a></li>
             </ul>
           </div>
 
@@ -143,32 +126,32 @@ export default function FooterSection() {
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Liên hệ</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: BRAND_RED }} />
+                <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" weight="fill" style={{ color: BRAND_RED }} />
                 <span className="text-gray-400 leading-relaxed">
                   Phòng 315, Khu thương mại – Chung cư Học viện Quốc phòng,<br className="sm:hidden" />
                   Đường Xuân Tảo, Q. Tây Hồ, Hà Nội
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 flex-shrink-0" style={{ color: BRAND_RED }} />
-                <a href="tel:0988446113" className="hover:text-white transition-colors cursor-pointer py-1 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">
+                <Phone className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
+                <a href="tel:0988446113" className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]">
                   0988 446 113 <span className="text-gray-500">(Mrs. Giang)</span>
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MessageCircle className="h-4 w-4 flex-shrink-0" style={{ color: BRAND_RED }} />
+                <ChatCircle className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
                 <a
                   href="https://zalo.me/0988446113"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors cursor-pointer py-1 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                  className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]"
                 >
                   Zalo: 0988 446 113
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 flex-shrink-0" style={{ color: BRAND_RED }} />
-                <a href="mailto:epcvinasolar@gmail.com" className="hover:text-white transition-colors cursor-pointer py-1 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">
+                <Envelope className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
+                <a href="mailto:epcvinasolar@gmail.com" className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]">
                   epcvinasolar@gmail.com
                 </a>
               </li>
@@ -181,8 +164,8 @@ export default function FooterSection() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
             <p>&copy; {new Date().getFullYear()} EPCVINA Solar — Công ty CP Xây Lắp EPC Việt Nam. All rights reserved.</p>
             <div className="flex items-center gap-4">
-              <a href="/chinh-sach-bao-mat" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Chính sách bảo mật</a>
-              <a href="/dieu-khoan" className="hover:text-gray-300 transition-colors cursor-pointer py-1 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">Điều khoản sử dụng</a>
+              <a href="/chinh-sach-bao-mat" className="hover:text-gray-300 transition-colors cursor-pointer py-1">Chính sách bảo mật</a>
+              <a href="/dieu-khoan" className="hover:text-gray-300 transition-colors cursor-pointer py-1">Điều khoản sử dụng</a>
             </div>
           </div>
           <div className="text-center sm:text-left leading-relaxed text-gray-500/80">

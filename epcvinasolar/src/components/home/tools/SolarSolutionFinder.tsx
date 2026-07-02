@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
+import { motion } from 'motion/react';
 import {
-  Zap, Shield, Home, Building2, CheckCircle2,
-  RefreshCw, ChevronDown, Battery, Sun, TrendingUp,
-  Sparkles, ArrowRight, BarChart3, Cpu, Info,
-  Phone, Calendar, Star, Leaf, ChevronRight,
-} from 'lucide-react';
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
+  Lightning, Shield, House, Building, CheckCircle,
+  ArrowsClockwise, CaretDown, Sun, TrendUp,
+  ArrowRight, ChartBar, Cpu, Info,
+  Phone, Calendar, Star, CaretRight,
+} from '@phosphor-icons/react';
 
 // ─────────────────────────────────────────────
 // Types
@@ -117,7 +117,7 @@ function SelectInput({ label, icon, value, options, onChange }: SelectInputProps
             <option key={o.value} value={o.value}>{o.label}</option>
           ))}
         </select>
-        <ChevronDown className="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+        <CaretDown className="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" weight="bold" />
       </div>
     </div>
   );
@@ -170,12 +170,12 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
                   color: isHybrid ? '#1d4ed8' : '#DC2626',
                 }}
               >
-                {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+                {isHybrid ? <Lightning className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
                 {isHybrid ? 'Hybrid' : 'On-Grid'}
               </span>
               {sol.battery && (
                 <span className="inline-flex items-center gap-1 text-[11px] text-gray-500">
-                  <Battery className="w-3 h-3" />{sol.battery}
+                  <Lightning className="w-3 h-3" />{sol.battery}
                 </span>
               )}
             </div>
@@ -217,14 +217,14 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
 
   const specs: { icon: React.ReactNode; label: string; value: string }[] = [
     { icon: <Sun className="w-3.5 h-3.5 text-amber-500" />,     label: `Tấm ${panelBrand}`,          value: `${panelCount} tấm · ${sol.power} kWp` },
-    { icon: <Zap className="w-3.5 h-3.5 text-blue-500" />,      label: `Biến tần ${inverterBrand}`,   value: `${sol.power} kW` },
+    { icon: <Lightning className="w-3.5 h-3.5 text-blue-500" />,      label: `Biến tần ${inverterBrand}`,   value: `${sol.power} kW` },
     ...(sol.battery && batteryBrand
-      ? [{ icon: <Battery className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
+      ? [{ icon: <Lightning className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
       : []),
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng',           value: `${sol.productionMin}–${sol.productionMax} kWh` },
+    { icon: <ChartBar className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng',           value: `${sol.productionMin}–${sol.productionMax} kWh` },
     { icon: <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />,  label: 'Hoàn vốn',                  value: sol.paybackStr },
     ...(sol.roofArea
-      ? [{ icon: <Home className="w-3.5 h-3.5 text-gray-400" />,  label: 'Diện tích lắp đặt',          value: `${sol.roofArea} m²` }]
+      ? [{ icon: <House className="w-3.5 h-3.5 text-gray-400" />,  label: 'Diện tích lắp đặt',          value: `${sol.roofArea} m²` }]
       : []),
   ];
 
@@ -248,7 +248,7 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
               color: isHybrid ? '#1d4ed8' : '#DC2626',
             }}
           >
-            {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+            {isHybrid ? <Lightning className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
             {isHybrid ? 'Hệ Hybrid' : 'Hệ On-Grid'}
           </span>
           {/* Name */}
@@ -398,7 +398,7 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
       {/* Label */}
       <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
         <span className="w-8 h-8 rounded-lg bg-[#FFF4E8] flex items-center justify-center text-[#F5831F] flex-shrink-0">
-          <Zap className="w-4 h-4" />
+          <Lightning className="w-4 h-4" />
         </span>
         Loại hệ thống mong muốn
       </div>
@@ -409,8 +409,8 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
         value={kind}
         onChange={handleKind}
         options={[
-          { value: 'hybrid',   label: '⚡ Hybrid',   sub: 'Lưu trữ + dự phòng' },
-          { value: 'on-grid',  label: '☀️ On-Grid',  sub: 'Nối lưới trực tiếp' },
+          { value: 'hybrid',   label: 'Hybrid',   sub: 'Lưu trữ + dự phòng' },
+          { value: 'on-grid',  label: 'On-Grid',  sub: 'Nối lưới trực tiếp' },
         ]}
         accentBlue={kind === 'hybrid'}
       />
@@ -628,7 +628,6 @@ const VISIBLE_LIMIT = 8;
 export default function SolarSolutionFinder() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const detailRef = useRef<HTMLDivElement>(null);
-  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [bill, setBill] = useState(0);
   const [roofArea, setRoofArea] = useState(0);
   const [budget, setBudget] = useState(0);
@@ -683,9 +682,12 @@ export default function SolarSolutionFinder() {
   const selectedSol = selectedIndex !== null ? displaySolutions[selectedIndex] : null;
 
   return (
-    <section
-      ref={sectionRef}
-      className={`w-full py-10 md:py-16 px-3 sm:px-4 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:translate-y-0 motion-reduce:transition-none`}
+    <motion.section
+      className="w-full py-10 md:py-16 px-3 sm:px-4"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.5 }}
       style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #f8fafc 100%)' }}
     >
       <div className="max-w-[1440px] mx-auto">
@@ -693,20 +695,20 @@ export default function SolarSolutionFinder() {
         {/* ─── Header ─── */}
         <div className="text-center mb-10">
           <p
-            className={`text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-3 transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+            className={`text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-3  `}
           >
             TƯ VẤN GIẢI PHÁP ĐIỆN MẶT TRỜI
           </p>
           <h2
-            className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-3 leading-tight transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}
-            style={{ transitionDelay: isVisible ? '50ms' : '0ms' }}
+            className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-3 leading-tight  `}
+            
           >
             Hệ Thống Nào{' '}
             <span style={{ color: '#f59e0b' }}>Phù Hợp Với Bạn?</span>
           </h2>
           <p
-            className={`text-gray-500 text-sm sm:text-base max-w-xl mx-auto transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
-            style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
+            className={`text-gray-500 text-sm sm:text-base max-w-xl mx-auto  `}
+            
           >
             Chỉ cần nhập thông tin cơ bản, EPCVINA Solar sẽ đề xuất giải pháp phù hợp nhất
             dựa trên nhu cầu sử dụng thực tế của bạn.
@@ -725,7 +727,7 @@ export default function SolarSolutionFinder() {
               />
             ) : (
               <div className="flex flex-col items-center justify-center py-16 text-gray-400">
-                <CheckCircle2 className="w-8 h-8 mb-2 text-gray-200" />
+                <CheckCircle className="w-8 h-8 mb-2 text-gray-200" />
                 <p className="text-sm">Nhập thông số để xem đề xuất</p>
               </div>
             )}
@@ -737,7 +739,7 @@ export default function SolarSolutionFinder() {
 
           {/* ── LEFT: Calculator Card ── */}
           <div
-            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5'}`}
+            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full  `}
           >
             {/* Card header */}
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
@@ -758,7 +760,7 @@ export default function SolarSolutionFinder() {
 
               <SliderInput
                 label="Hóa đơn điện hàng tháng"
-                icon={<Building2 className="w-4 h-4" />}
+                icon={<Building className="w-4 h-4" />}
                 value={bill}
                 min={0} max={100000000} step={500000}
                 onChange={setBill}
@@ -774,7 +776,7 @@ export default function SolarSolutionFinder() {
 
               <SliderInput
                 label="Diện tích mái có sẵn"
-                icon={<Home className="w-4 h-4" />}
+                icon={<House className="w-4 h-4" />}
                 value={roofArea}
                 min={0} max={500} step={5}
                 onChange={setRoofArea}
@@ -789,7 +791,7 @@ export default function SolarSolutionFinder() {
 
               <SliderInput
                 label="Ngân sách đầu tư"
-                icon={<TrendingUp className="w-4 h-4" />}
+                icon={<TrendUp className="w-4 h-4" />}
                 value={budget}
                 min={0} max={2000000000} step={5000000}
                 onChange={setBudget}
@@ -811,7 +813,7 @@ export default function SolarSolutionFinder() {
                 onClick={handleReset}
                 className="btn-scale flex items-center gap-1.5 px-4 py-3 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all"
               >
-                <RefreshCw className="w-4 h-4" />
+                <ArrowsClockwise className="w-4 h-4" />
                 Đặt lại
               </button>
             </div>
@@ -819,8 +821,8 @@ export default function SolarSolutionFinder() {
 
           {/* ── CENTER: Recommendations ── */}
           <div
-            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-            style={{ transitionDelay: isVisible ? '100ms' : '0ms' }}
+            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full  `}
+            
           >
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex items-center gap-2">
@@ -879,8 +881,8 @@ export default function SolarSolutionFinder() {
 
           {/* ── RIGHT: Selected Detail ── */}
           <div
-            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden h-full transition-all duration-500 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-5'}`}
-            style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}
+            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden h-full  `}
+            
             ref={detailRef}
             id="solution-detail-panel"
           >
@@ -891,7 +893,7 @@ export default function SolarSolutionFinder() {
               />
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center text-gray-400">
-                <CheckCircle2 className="w-10 h-10 mb-3 text-gray-200" />
+                <CheckCircle className="w-10 h-10 mb-3 text-gray-200" />
                 <p className="text-sm">Chọn một giải pháp để xem chi tiết</p>
               </div>
             )}
@@ -925,6 +927,6 @@ export default function SolarSolutionFinder() {
         }
         input[type=range]:focus { outline: none; }
       `}</style>
-    </section>
+    </motion.section>
   );
 }

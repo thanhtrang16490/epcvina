@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>APPE JV</string>
+    <string>EPCVINA</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,8 +27,8 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>appejv</string>
-          <string>com.appejv.app</string>
+          <string>epcvina</string>
+          <string>com.epcvina.app</string>
         </array>
       </dict>
     </array>

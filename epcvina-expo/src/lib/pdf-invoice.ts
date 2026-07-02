@@ -136,7 +136,7 @@ function generateInvoiceHTML(order: InvoiceOrder, items: InvoiceItem[]): string 
   <!-- Header -->
   <div class="header">
     <div class="company">
-      <div class="company-name">APPE JV</div>
+      <div class="company-name">EPCVINA</div>
       <div class="company-sub">Hệ thống quản lý bán hàng</div>
     </div>
     <div class="invoice-info">
@@ -215,7 +215,7 @@ function generateInvoiceHTML(order: InvoiceOrder, items: InvoiceItem[]): string 
   <!-- Footer -->
   <div class="footer">
     <div class="footer-text">Cảm ơn quý khách đã tin tưởng sử dụng dịch vụ của chúng tôi!</div>
-    <div class="footer-brand">APPE JV — epcvina.com</div>
+    <div class="footer-brand">EPCVINA — epcvina.com</div>
   </div>
 </body>
 </html>

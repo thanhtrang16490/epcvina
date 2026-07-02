@@ -1,4 +1,4 @@
-import { TrendingDown, ArrowRight, Wallet } from 'lucide-react';
+import { TrendDown, ArrowRight, Wallet } from '@phosphor-icons/react';
 
 export default function BeforeAfterBillsSection() {
   const bills = [
@@ -101,7 +101,7 @@ export default function BeforeAfterBillsSection() {
 
                 {/* Savings Badge */}
                 <div className="bg-gradient-to-r from-orange-500 to-yellow-500 rounded-xl p-4 text-white text-center">
-                  <TrendingDown className="w-6 h-6 mx-auto mb-2" />
+                  <TrendDown className="w-6 h-6 mx-auto mb-2" weight="duotone" />
                   <p className="text-sm font-semibold opacity-90 mb-1">Tiết kiệm hàng tháng</p>
                   <p className="text-4xl font-black">{(bill.savings / 1000000).toFixed(1)} triệu</p>
                   <p className="text-lg font-bold mt-1">Giảm {bill.savingsPercent}%</p>
@@ -111,7 +111,7 @@ export default function BeforeAfterBillsSection() {
               {/* Annual Savings */}
               <div className="bg-green-50 p-4 border-t border-green-200">
                 <div className="flex items-center gap-2 mb-1">
-                  <Wallet className="w-5 h-5 text-green-600" />
+                  <Wallet className="w-5 h-5 text-green-600" weight="duotone" />
                   <p className="text-sm text-green-700">Tiết kiệm hàng năm</p>
                 </div>
                 <p className="text-2xl font-bold text-green-600">

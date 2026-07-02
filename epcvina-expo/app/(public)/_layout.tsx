@@ -38,8 +38,8 @@ function PublicHeader() {
             />
           </View>
           <View style={styles.brandTextContainer}>
-            <Text style={styles.brandName}>APPE JV</Text>
-            <Text style={styles.brandSubtitle}>Thức ăn chăn nuôi</Text>
+            <Text style={styles.brandName}>EPCVINA</Text>
+            <Text style={styles.brandSubtitle}>Điện mặt trời EPCVINA</Text>
           </View>
         </View>
 

@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
+import { motion } from 'motion/react';
+import { PaperPlaneRight, CheckCircle } from '@phosphor-icons/react';
 
 const NEEDS = [
   { value: 'solar', label: 'Solar Home' },
@@ -12,7 +12,6 @@ const NEEDS = [
 ];
 
 export default function CTASection() {
-  const { ref: sectionRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -39,28 +38,39 @@ export default function CTASection() {
   return (
     <section
       id="tu-van"
-      ref={sectionRef}
-      className={`py-14 sm:py-20 bg-gradient-to-br from-[#7F1D1D] via-[#991B1B] to-[#DC2626] ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'} transition-all duration-600 ease-out motion-reduce:opacity-100 motion-reduce:scale-100 motion-reduce:transition-none`}
+      className="py-14 sm:py-20 bg-gradient-to-br from-[#7F1D1D] via-[#991B1B] to-[#DC2626]"
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-10">
+        <motion.div
+          className="text-center mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+        >
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-orange-200 mb-3">
             ĐĂNG KÝ TƯ VẤN MIỄN PHÍ
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight">
             Xem chi tiết <span className="text-amber-300">Sơ Bộ</span> Ngay Hôm Nay
           </h2>
           <p className="mt-3 text-orange-100 text-sm sm:text-base max-w-xl mx-auto">
             Điền thông tin bên dưới — đội kỹ sư EPCVINA Solar sẽ liên hệ tư vấn và khảo sát miễn phí trong 24h.
           </p>
-        </div>
+        </motion.div>
 
         {/* Form card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
+        <motion.div
+          className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           {submitted ? (
             <div className="flex flex-col items-center justify-center py-10 gap-4 text-center">
-              <CheckCircle className="h-14 w-14 text-green-500" />
+              <CheckCircle className="h-14 w-14 text-green-500" weight="fill" />
               <h3 className="text-xl font-bold text-gray-900">Đã nhận thông tin!</h3>
               <p className="text-gray-500 text-sm max-w-xs">
                 Cảm ơn bạn đã đăng ký. Chúng tôi sẽ liên hệ trong vòng 24 giờ để tư vấn và sắp xếp khảo sát miễn phí.
@@ -154,12 +164,12 @@ export default function CTASection() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-[#DC2626] hover:bg-[#B01A22] disabled:opacity-60 text-white font-bold rounded-xl text-sm transition-colors duration-200 shadow-lg shadow-red-200 glow-emerald motion-reduce:transition-none"
+                className="w-full flex items-center justify-center gap-2 py-3 px-6 bg-[#DC2626] hover:bg-[#B01A22] disabled:opacity-60 text-white font-bold rounded-xl text-sm active:scale-[0.98] transition-colors duration-200 shadow-lg shadow-red-200"
               >
                 {loading ? (
                   <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
                 ) : (
-                  <Send className="h-4 w-4" />
+                  <PaperPlaneRight className="h-4 w-4" weight="bold" />
                 )}
                 {loading ? 'Đang gửi...' : 'Đăng ký tư vấn miễn phí'}
               </button>
@@ -169,7 +179,7 @@ export default function CTASection() {
               </p>
             </form>
           )}
-        </div>
+        </motion.div>
 
         {/* Or call directly */}
         <p className="text-center text-orange-200 text-sm mt-6">
@@ -183,3 +193,4 @@ export default function CTASection() {
     </section>
   );
 }
+'use client';

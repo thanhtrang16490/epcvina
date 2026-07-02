@@ -1,4 +1,4 @@
-import { Phone, MessageCircle } from 'lucide-react';
+import { Phone, ChatCircle } from '@phosphor-icons/react';
 
 export default function MicroNavigation() {
   const navItems = [
@@ -55,7 +55,7 @@ export default function MicroNavigation() {
               className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-all cursor-pointer min-h-[44px]"
               aria-label="Chat Zalo với EPCVINA"
             >
-              <MessageCircle className="w-4 h-4" />
+              <ChatCircle className="w-4 h-4" weight="bold" />
               <span>Chat Zalo</span>
             </a>
 

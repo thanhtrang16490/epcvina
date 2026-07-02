@@ -1,8 +1,8 @@
-# 🚀 Đề xuất cải tiến APPEJV Expo - Ứng dụng Sales Chuyên nghiệp
+# 🚀 Đề xuất cải tiến EPCVINA Expo - Ứng dụng Sales Chuyên nghiệp
 
 ## 📊 Executive Summary
 
-**Hiện trạng**: APPEJV Expo đã có nền tảng sales vững chắc với core flow (dashboard → selling → orders → reports/menu). Code quality tốt (hooks, memo, optimistic updates, skeleton loading, role-based access). Tuy nhiên thiếu **design system nhất quán**, **speed optimizations** (barcode, keyboard shortcuts), **advanced CRM features** (pipeline, loyalty), và **enterprise-grade UX** (offline sync, biometric, advanced analytics).
+**Hiện trạng**: EPCVINA Expo đã có nền tảng sales vững chắc với core flow (dashboard → selling → orders → reports/menu). Code quality tốt (hooks, memo, optimistic updates, skeleton loading, role-based access). Tuy nhiên thiếu **design system nhất quán**, **speed optimizations** (barcode, keyboard shortcuts), **advanced CRM features** (pipeline, loyalty), và **enterprise-grade UX** (offline sync, biometric, advanced analytics).
 
 **Mục tiêu**: Biến thành **Sales App chuyên nghiệp** như POS system (KiotViet, Haravan, Lightspeed) với:
 - **Tốc độ tạo đơn < 10s** (scan + quick add)

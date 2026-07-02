@@ -230,7 +230,7 @@ export default function UsersScreen() {
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text style={styles.logoTitle}>APPE JV</Text>
+          <Text style={styles.logoTitle}>EPCVINA</Text>
         </View>
         <TouchableOpacity 
           style={styles.menuButton}
