@@ -122,6 +122,33 @@ export const localBrands: LocalBrand[] = [
     website: 'https://www.longi.com',
     country: 'China',
   },
+  {
+    id: 'ja-solar',
+    name: 'JA Solar',
+    slug: 'ja-solar',
+    description: 'Nhà sản xuất tấm pin năng lượng mặt trời hàng đầu thế giới với công nghệ N-Type TOPCon',
+    logo_url: '',
+    website: 'https://www.jasolar.com',
+    country: 'China',
+  },
+  {
+    id: 'canadian-solar',
+    name: 'Canadian Solar',
+    slug: 'canadian-solar',
+    description: 'Nhà sản xuất tấm pin năng lượng mặt trời toàn cầu với công nghệ N-Type TOPCon và Mono PERC',
+    logo_url: '',
+    website: 'https://www.canadiansolar.com',
+    country: 'Canada',
+  },
+  {
+    id: 'sharp',
+    name: 'Sharp',
+    slug: 'sharp',
+    description: 'Thương hiệu điện tử Nhật Bản với dòng tấm pin N-Type TOPCon công nghệ tiên tiến',
+    logo_url: '',
+    website: 'https://www.sharp.com',
+    country: 'Japan',
+  },
 ];
 
 export function getBrands(): LocalBrand[] {
