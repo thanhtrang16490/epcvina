@@ -2,7 +2,7 @@
 
 import Image from '../../ui/Image';
 import { Sun, Lightning, BatteryHigh, Gauge, Shield, TrendUp } from '@phosphor-icons/react';
-import type { Device } from '../../lib/types';
+import type { Device } from '../../../lib/types';
 
 interface DevicePlaceholderProps {
   device: Device;
@@ -14,9 +14,11 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
     switch (device.category) {
       case 'panel':
         return { icon: Sun, bg: 'bg-amber-100', color: 'text-amber-600' };
-      case 'inverter':
+      case 'on-grid-inverter':
+      case 'hybrid-inverter':
         return { icon: Lightning, bg: 'bg-blue-100', color: 'text-blue-600' };
-      case 'battery':
+      case 'lv-battery':
+      case 'hv-battery':
         return { icon: BatteryHigh, bg: 'bg-green-100', color: 'text-green-600' };
       case 'mounting':
         return { icon: Shield, bg: 'bg-red-100', color: 'text-red-600' };
@@ -62,7 +64,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
           value: `${device.specs['Bảo hành']} năm`,
         });
       }
-    } else if (device.category === 'inverter') {
+    } else if (device.category === 'on-grid-inverter' || device.category === 'hybrid-inverter') {
       // Inverter specs
       if (device.specs['Công suất']) {
         specs.push({
@@ -83,7 +85,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
           value: `${device.specs['Bảo hành']} năm`,
         });
       }
-    } else if (device.category === 'battery') {
+    } else if (device.category === 'lv-battery' || device.category === 'hv-battery') {
       // BatteryHigh specs
       if (device.specs['Dung lượng']) {
         specs.push({
