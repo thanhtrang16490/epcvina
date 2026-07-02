@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Calculator } from 'lucide-react';
+import { CheckCircle, Phone, Calculator } from '@phosphor-icons/react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
 import FAQSection from '../ad-landing/FAQSection';
 

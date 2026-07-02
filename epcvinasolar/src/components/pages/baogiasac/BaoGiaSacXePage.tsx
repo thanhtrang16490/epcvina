@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Car, Zap, Shield, Clock, Award } from 'lucide-react';
+import { CheckCircle, Phone, Car, Lightning, Shield, Clock, Medal } from '@phosphor-icons/react';
 
 export default function BaoGiaSacXePage() {
   return (
@@ -53,7 +53,7 @@ export default function BaoGiaSacXePage() {
                 </ul>
                 <div className={`text-sm space-y-1 mb-6 py-3 px-4 rounded-lg ${item.popular ? 'bg-white/20' : 'bg-slate-50'}`}>
                   <div className="flex items-center gap-2"><Clock className="w-4 h-4" /> Thời gian sạc: <strong>{item.time}</strong></div>
-                  <div className="flex items-center gap-2"><Zap className="w-4 h-4" /> Tốc độ: <strong>{item.range}</strong></div>
+                  <div className="flex items-center gap-2"><Lightning className="w-4 h-4" /> Tốc độ: <strong>{item.range}</strong></div>
                 </div>
                 <a href="/lien-he" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-green-600 hover:bg-slate-100' : 'bg-green-600 text-white hover:bg-green-700'}`}>
                   Nhận Báo Giá Chi Tiết
@@ -64,16 +64,16 @@ export default function BaoGiaSacXePage() {
         </div>
       </section>
 
-      {/* Why Home Charging */}
+      {/* Why House Charging */}
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Tại Sao Lắp Trạm Sạc Tại Nhà?</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
               { icon: Car, title: 'Tiện Lợi', desc: 'Sạc qua đêm, sáng đầy pin. Không cần ra trạm công cộng. Sẵn sàng mỗi khi cần đi.' },
-              { icon: Zap, title: 'Tiết Kiệm 70%', desc: 'Kết hợp điện mặt trời giảm 50-70% chi phí sạc. Giá điện rẻ hơn trạm công cộng.' },
+              { icon: Lightning, title: 'Tiết Kiệm 70%', desc: 'Kết hợp điện mặt trời giảm 50-70% chi phí sạc. Giá điện rẻ hơn trạm công cộng.' },
               { icon: Shield, title: 'An Toàn', desc: 'Trạm chính hãng, bảo vệ quá dòng, quá nhiệt, rò điện. Lắp đặt chuyên nghiệp.' },
-              { icon: Award, title: 'Đầu Tư Hiệu Quả', desc: 'Hoàn vốn 3-5 năm. Tăng giá trị bất động sản. Xu hướng tất yếu.' },
+              { icon: Medal, title: 'Đầu Tư Hiệu Quả', desc: 'Hoàn vốn 3-5 năm. Tăng giá trị bất động sản. Xu hướng tất yếu.' },
             ].map((item, i) => (
               <div key={i} className="text-center p-6 bg-white rounded-xl">
                 <item.icon className="w-12 h-12 mx-auto text-green-600 mb-4" />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Home, CheckCircle, AlertTriangle, Wrench, Phone, Shield, Clock, ArrowRight, ChevronDown, ChevronUp, Ruler, Droplets, Sun, Wind, Zap, Award } from 'lucide-react';
+import { House, CheckCircle, Warning, Wrench, Phone, Shield, Clock, ArrowRight, CaretDown, CaretUp, Ruler, Drop, Sun, Wind, Lightning, Medal } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 const technicalRequirements = [
@@ -9,7 +9,7 @@ const technicalRequirements = [
     desc: 'Mái ngói có trọng lượng nặng. Khi thêm pin (30-35kg/tấm + khung đỡ), hệ xà gồ thép hoặc gỗ phải đảm bảo chịu lực bền vững. Không được làm xô lệch, rạn nứt ngói xung quanh.',
   },
   {
-    icon: Droplets,
+    icon: Drop,
     title: 'Chống thấm dột',
     desc: 'Sử dụng móc ngói Inox 304 xuyên khe ngói vào xà gồ, không khoan đục bề mặt. Bơm keo silicon + foam chống thấm vào lỗ bắt vít và khe hở. Hạ ngói về vị trí cũ khít khao, không vênh.',
   },
@@ -96,7 +96,7 @@ export default function MaiNgoiPage() {
       <section className="bg-gradient-to-br from-amber-900 via-orange-800 to-red-900 text-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 mb-4">
-            <Home className="w-5 h-5 text-amber-400" />
+            <House className="w-5 h-5 text-amber-400" />
             <span className="text-amber-200 text-sm font-medium">Giải pháp thi công mái ngói</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight">
@@ -262,7 +262,7 @@ export default function MaiNgoiPage() {
             {/* Risks */}
             <div className="bg-white rounded-2xl border border-red-200 p-6">
               <div className="flex items-center gap-3 mb-4">
-                <AlertTriangle className="w-6 h-6 text-red-500" />
+                <Warning className="w-6 h-6 text-red-500" />
                 <h3 className="text-xl font-bold text-red-700">Rủi ro khi tự thi công</h3>
               </div>
               <div className="space-y-3">
@@ -283,7 +283,7 @@ export default function MaiNgoiPage() {
             {/* Benefits */}
             <div className="bg-white rounded-2xl border border-green-200 p-6">
               <div className="flex items-center gap-3 mb-4">
-                <Award className="w-6 h-6 text-green-500" />
+                <Medal className="w-6 h-6 text-green-500" />
                 <h3 className="text-xl font-bold text-green-700">Lợi ích khi chọn EPCVINA</h3>
               </div>
               <div className="space-y-3">
@@ -339,9 +339,9 @@ export default function MaiNgoiPage() {
                 >
                   <span className="font-semibold text-slate-900 pr-4">{faq.q}</span>
                   {openFaq === i ? (
-                    <ChevronUp className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <CaretUp className="w-5 h-5 text-slate-400 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <CaretDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
                   )}
                 </button>
                 {openFaq === i && (

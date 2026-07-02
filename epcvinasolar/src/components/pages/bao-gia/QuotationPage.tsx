@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  FileText, Sun, Phone, User, Mail, MapPin, Hash,
-  MessageSquare, Home, Zap, Battery, CheckCircle2,
-  ChevronDown, Info, BarChart3, TrendingUp,
-  X, Calendar, Building2, RefreshCw, ArrowRight,
-  Sparkles,
-} from 'lucide-react';
+  FileText, Sun, Phone, User, Envelope, MapPin, Hash,
+  Chat, House, Lightning, BatteryHigh, CheckCircle,
+  CaretDown, Info, ChartBar, TrendUp,
+  X, Calendar, Building, ArrowsClockwise, ArrowRight,
+  Sparkle,
+} from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 // ─────────────────────────────────────────────
@@ -160,7 +160,7 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
     <div className="space-y-3">
       <div className="flex items-center gap-2 text-sm font-medium text-gray-700">
         <span className="w-8 h-8 rounded-lg bg-[#FFF4E8] flex items-center justify-center text-[#F5831F] flex-shrink-0">
-          <Zap className="w-4 h-4" />
+          <Lightning className="w-4 h-4" />
         </span>
         Loại hệ thống mong muốn
       </div>
@@ -247,12 +247,12 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
                   color: isHybrid ? '#1d4ed8' : '#DC2626',
                 }}
               >
-                {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+                {isHybrid ? <Lightning className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
                 {isHybrid ? 'Hybrid' : 'On-Grid'}
               </span>
               {sol.battery && (
                 <span className="inline-flex items-center gap-1 text-[11px] text-gray-500">
-                  <Battery className="w-3 h-3" />{sol.battery}
+                  <BatteryHigh className="w-3 h-3" />{sol.battery}
                 </span>
               )}
             </div>
@@ -294,14 +294,14 @@ function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; o
 
   const specs: { icon: React.ReactNode; label: string; value: string }[] = [
     { icon: <Sun className="w-3.5 h-3.5 text-amber-500" />,     label: `Tấm ${panelBrand}`,          value: `${panelCount} tấm · ${sol.power} kWp` },
-    { icon: <Zap className="w-3.5 h-3.5 text-blue-500" />,      label: `Biến tần ${inverterBrand}`,   value: `${sol.power} kW` },
+    { icon: <Lightning className="w-3.5 h-3.5 text-blue-500" />,      label: `Biến tần ${inverterBrand}`,   value: `${sol.power} kW` },
     ...(sol.battery && batteryBrand
-      ? [{ icon: <Battery className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
+      ? [{ icon: <BatteryHigh className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
       : []),
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng',  value: `${sol.productionMin}–${sol.productionMax} kWh` },
+    { icon: <ChartBar className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng',  value: `${sol.productionMin}–${sol.productionMax} kWh` },
     { icon: <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />,  label: 'Hoàn vốn',          value: sol.paybackStr },
     ...(sol.roofArea
-      ? [{ icon: <Home className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${sol.roofArea} m²` }]
+      ? [{ icon: <House className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${sol.roofArea} m²` }]
       : []),
   ];
 
@@ -350,7 +350,7 @@ function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; o
                 color: isHybrid ? '#1d4ed8' : '#DC2626',
               }}
             >
-              {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+              {isHybrid ? <Lightning className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
               {isHybrid ? 'Hệ Hybrid' : 'Hệ On-Grid'}
             </span>
             {/* Name */}
@@ -739,7 +739,7 @@ export default function QuotationPage() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <Envelope className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="example@mail.com"
                         className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#F5831F] focus:ring-2 focus:ring-[#F5831F]/20 outline-none transition-all" />
                     </div>
@@ -757,7 +757,7 @@ export default function QuotationPage() {
                         <option value="">Chọn tỉnh/thành phố</option>
                         {PROVINCES.map(p => <option key={p} value={p}>{p}</option>)}
                       </select>
-                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                      <CaretDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                     </div>
                   </div>
 
@@ -789,7 +789,7 @@ export default function QuotationPage() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">Ghi chú thêm</label>
                     <div className="relative">
-                      <MessageSquare className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                      <Chat className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
                       <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={3} placeholder="Yêu cầu cụ thể hoặc thông tin bổ sung..."
                         className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#F5831F] focus:ring-2 focus:ring-[#F5831F]/20 outline-none resize-none transition-all" />
                     </div>
@@ -815,7 +815,7 @@ export default function QuotationPage() {
                   {/* Monthly Bill Slider */}
                   <SliderInput
                     label="Hóa đơn điện hàng tháng"
-                    icon={<Building2 className="w-4 h-4" />}
+                    icon={<Building className="w-4 h-4" />}
                     value={bill}
                     min={0} max={100000000} step={500000}
                     onChange={setBill}
@@ -831,7 +831,7 @@ export default function QuotationPage() {
                   {/* Roof Area Slider */}
                   <SliderInput
                     label="Diện tích mái có sẵn"
-                    icon={<Home className="w-4 h-4" />}
+                    icon={<House className="w-4 h-4" />}
                     value={roofArea}
                     min={0} max={500} step={5}
                     onChange={setRoofArea}
@@ -846,7 +846,7 @@ export default function QuotationPage() {
                   {/* Budget Slider */}
                   <SliderInput
                     label="Ngân sách đầu tư"
-                    icon={<TrendingUp className="w-4 h-4" />}
+                    icon={<TrendUp className="w-4 h-4" />}
                     value={budget}
                     min={0} max={2000000000} step={5000000}
                     onChange={setBudget}
@@ -871,12 +871,12 @@ export default function QuotationPage() {
                   >
                     {submitted ? (
                       <>
-                        <CheckCircle2 className="w-5 h-5" />
+                        <CheckCircle className="w-5 h-5" />
                         Đã gửi — Xem đề xuất bên dưới
                       </>
                     ) : (
                       <>
-                        <Sparkles className="w-5 h-5" />
+                        <Sparkle className="w-5 h-5" />
                         Nhận Báo Giá
                       </>
                     )}
@@ -886,7 +886,7 @@ export default function QuotationPage() {
                     type="button"
                     className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all"
                   >
-                    <RefreshCw className="w-4 h-4" />
+                    <ArrowsClockwise className="w-4 h-4" />
                     Đặt lại
                   </button>
                 </div>
@@ -1002,14 +1002,14 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
 
   const specs: { icon: React.ReactNode; label: string; value: string }[] = [
     { icon: <Sun className="w-3.5 h-3.5 text-amber-500" />,     label: `Tấm ${panelBrand}`,          value: `${panelCount} tấm · ${sol.power} kWp` },
-    { icon: <Zap className="w-3.5 h-3.5 text-blue-500" />,      label: `Biến tần ${inverterBrand}`,   value: `${sol.power} kW` },
+    { icon: <Lightning className="w-3.5 h-3.5 text-blue-500" />,      label: `Biến tần ${inverterBrand}`,   value: `${sol.power} kW` },
     ...(sol.battery && batteryBrand
-      ? [{ icon: <Battery className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
+      ? [{ icon: <BatteryHigh className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${batteryBrand}`, value: sol.battery }]
       : []),
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng', value: `${sol.productionMin}–${sol.productionMax} kWh` },
+    { icon: <ChartBar className="w-3.5 h-3.5 text-[#DC2626]" />, label: 'Sản lượng/tháng', value: `${sol.productionMin}–${sol.productionMax} kWh` },
     { icon: <Calendar className="w-3.5 h-3.5 text-[#DC2626]" />,  label: 'Hoàn vốn',         value: sol.paybackStr },
     ...(sol.roofArea
-      ? [{ icon: <Home className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${sol.roofArea} m²` }]
+      ? [{ icon: <House className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${sol.roofArea} m²` }]
       : []),
   ];
 
@@ -1026,7 +1026,7 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
             color: isHybrid ? '#1d4ed8' : '#DC2626',
           }}
         >
-          {isHybrid ? <Zap className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
+          {isHybrid ? <Lightning className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
           {isHybrid ? 'Hệ Hybrid' : 'Hệ On-Grid'}
         </span>
         <h3 className="text-[17px] font-bold text-[#0F172A] leading-snug">{sol.name}</h3>

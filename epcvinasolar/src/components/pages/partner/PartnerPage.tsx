@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Globe, ArrowRight, Shield, Package, CheckCircle } from 'lucide-react';
+import { MapPin, Calendar, Globe, ArrowRight, Shield, Package, CheckCircle } from '@phosphor-icons/react';
 import { useMemo, useState, useEffect } from 'react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import type { Device, EquipmentCategory } from '../../../lib/types';

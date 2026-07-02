@@ -1,4 +1,4 @@
-import { MapPin, Phone, CheckCircle, Sun, Zap, Shield, ArrowRight, Star } from 'lucide-react';
+import { MapPin, Phone, CheckCircle, Sun, Lightning, Shield, ArrowRight, Star } from '@phosphor-icons/react';
 
 interface ProvincePageProps {
   province: {
@@ -53,7 +53,7 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
               <p className="text-sm text-slate-600">Giờ nắng trung bình/năm</p>
             </div>
             <div>
-              <Zap className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+              <Lightning className="w-8 h-8 text-blue-500 mx-auto mb-2" />
               <p className="text-2xl font-bold text-slate-900">{province.solarPotential}</p>
               <p className="text-sm text-slate-600">Tiềm năng điện mặt trời</p>
             </div>

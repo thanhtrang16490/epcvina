@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Battery, Zap, Shield, Clock, Award } from 'lucide-react';
+import { CheckCircle, Phone, BatteryHigh, Lightning, Shield, Clock, Medal } from '@phosphor-icons/react';
 
 export default function BaoGiaPinLuuTruPage() {
   return (
@@ -8,7 +8,7 @@ export default function BaoGiaPinLuuTruPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <Battery className="w-8 h-8 text-yellow-400" />
+              <BatteryHigh className="w-8 h-8 text-yellow-400" />
               <span className="text-yellow-400 font-semibold">Bảng Giá Pin Lưu Trữ BESS 2026</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">Báo Giá Pin Lưu Trữ BESS Chính Hãng</h1>
@@ -69,10 +69,10 @@ export default function BaoGiaPinLuuTruPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Tại Sao Cần Pin Lưu Trữ BESS?</h2>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { icon: Zap, title: 'Có Điện Khi Mất Điện', desc: 'Pin tự động cấp điện cho tải ưu tiên khi mất lưới. Không gián đoạn sinh hoạt.' },
-              { icon: Battery, title: 'Dùng Điện Ban Đêm', desc: 'Lưu trữ điện dư ban ngày, sử dụng vào buổi tối. Giảm mua điện từ lưới.' },
+              { icon: Lightning, title: 'Có Điện Khi Mất Điện', desc: 'Pin tự động cấp điện cho tải ưu tiên khi mất lưới. Không gián đoạn sinh hoạt.' },
+              { icon: BatteryHigh, title: 'Dùng Điện Ban Đêm', desc: 'Lưu trữ điện dư ban ngày, sử dụng vào buổi tối. Giảm mua điện từ lưới.' },
               { icon: Shield, title: 'Tự Chủ 80-90%', desc: 'Giảm phụ thuộc vào điện lưới. Tăng khả năng tự chủ năng lượng.' },
-              { icon: Award, title: 'Đầu Tư Bền Vững', desc: 'Hoàn vốn 5-7 năm. Bảo hành 5-10 năm. Tuổi thọ 15+ năm.' },
+              { icon: Medal, title: 'Đầu Tư Bền Vững', desc: 'Hoàn vốn 5-7 năm. Bảo hành 5-10 năm. Tuổi thọ 15+ năm.' },
             ].map((item, i) => (
               <div key={i} className="text-center p-6 bg-white rounded-xl">
                 <item.icon className="w-12 h-12 mx-auto text-orange-500 mb-4" />

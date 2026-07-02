@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield, Plug, X, SlidersHorizontal, Layers, Cable, ExternalLink } from 'lucide-react';
+import { CaretDown, CaretUp, Lightning, TrendUp, BatteryHigh, Shield, Plug, X, SlidersHorizontal, Stack, CableCar, Export } from '@phosphor-icons/react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 import { localBrands } from '../../../data/brands';
 
@@ -12,43 +12,43 @@ const CATEGORY_META: Record<string, {
 }> = {
   panel: {
     label: 'Tấm mô-đun quang điện',
-    icon: <Zap className="h-5 w-5"/>,
+    icon: <Lightning className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
   'on-grid-inverter': {
     label: 'Biến tần On-Grid',
-    icon: <TrendingUp className="h-5 w-5"/>,
+    icon: <TrendUp className="h-5 w-5"/>,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
   },
   'hybrid-inverter': {
     label: 'Biến tần Hybrid',
-    icon: <TrendingUp className="h-5 w-5"/>,
+    icon: <TrendUp className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
   },
   'lv-battery': {
     label: 'Pin lưu trữ áp thấp',
-    icon: <Battery className="h-5 w-5"/>,
+    icon: <BatteryHigh className="h-5 w-5"/>,
     color: 'text-green-600',
     bg: 'bg-green-50',
   },
   'hv-battery': {
     label: 'Pin lưu trữ áp cao',
-    icon: <Battery className="h-5 w-5"/>,
+    icon: <BatteryHigh className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
   },
   mounting: {
     label: 'Hệ khung nhôm',
-    icon: <Layers className="h-5 w-5"/>,
+    icon: <Stack className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
   },
   wiring: {
     label: 'Hệ dây điện',
-    icon: <Cable className="h-5 w-5"/>,
+    icon: <CableCar className="h-5 w-5"/>,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
   },
@@ -183,7 +183,7 @@ export default function EquipmentSidebar({
               onClick={() => setShowBrands(!showBrands)}
               className="p-1 hover:bg-gray-200 rounded transition-colors"
             >
-              {showBrands ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+              {showBrands ? <CaretUp className="h-4 w-4" /> : <CaretDown className="h-4 w-4" />}
             </button>
           </div>
           {showBrands && (
@@ -230,7 +230,7 @@ export default function EquipmentSidebar({
                       }`} />
                       <span className="text-sm font-medium truncate">{brandName}</span>
                       {href && (
-                        <ExternalLink className="h-3 w-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                        <Export className="h-3 w-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
                       )}
                     </div>
                     <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">

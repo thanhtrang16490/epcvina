@@ -5,7 +5,7 @@ import EquipmentSidebar from './EquipmentSidebar';
 import CartSidebar from './CartSidebar';
 import { CartProvider, useCart } from '../../../hooks/useCart';
 import { useMemo, useState, useEffect } from 'react';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from '@phosphor-icons/react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 
 interface PageProps {

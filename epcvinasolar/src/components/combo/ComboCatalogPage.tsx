@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
-import { Sun, Zap, Battery, Shield, Search, ChevronRight, List, Grid3x3, Grid2x2, ArrowDownAZ, ArrowUpAZ, ArrowUp, ArrowDown, X, Package } from 'lucide-react';
+import { Sun, Lightning, BatteryHigh, Shield, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown, X, Package } from '@phosphor-icons/react';
 import HeaderBar from '../home/layout/HeaderBar';
 import ComboListingCard from './ComboListingCard';
 import type { ComboCardData } from './ComboListingCard';
@@ -7,9 +7,9 @@ import type { ComboCardData } from './ComboListingCard';
 // Combo categories for sidebar
 const COMBO_CATEGORIES = [
   { id: 'on-grid-1pha', label: 'On-Grid 1 pha', icon: <Sun className="h-5 w-5" />, color: 'text-orange-600', bg: 'bg-orange-50', system_type: 'on-grid' as const, phase: '1-phase' },
-  { id: 'on-grid-3pha', label: 'On-Grid 3 pha', icon: <Zap className="h-5 w-5" />, color: 'text-blue-600', bg: 'bg-blue-50', system_type: 'on-grid' as const, phase: '3-phase' },
-  { id: 'hybrid-1pha', label: 'Hybrid 1 pha', icon: <Battery className="h-5 w-5" />, color: 'text-emerald-600', bg: 'bg-emerald-50', system_type: 'hybrid' as const, phase: '1-phase' },
-  { id: 'hybrid-3pha', label: 'Hybrid 3 pha', icon: <Battery className="h-5 w-5" />, color: 'text-purple-600', bg: 'bg-purple-50', system_type: 'hybrid' as const, phase: '3-phase' },
+  { id: 'on-grid-3pha', label: 'On-Grid 3 pha', icon: <Lightning className="h-5 w-5" />, color: 'text-blue-600', bg: 'bg-blue-50', system_type: 'on-grid' as const, phase: '3-phase' },
+  { id: 'hybrid-1pha', label: 'Hybrid 1 pha', icon: <BatteryHigh className="h-5 w-5" />, color: 'text-emerald-600', bg: 'bg-emerald-50', system_type: 'hybrid' as const, phase: '1-phase' },
+  { id: 'hybrid-3pha', label: 'Hybrid 3 pha', icon: <BatteryHigh className="h-5 w-5" />, color: 'text-purple-600', bg: 'bg-purple-50', system_type: 'hybrid' as const, phase: '3-phase' },
 ];
 
 // All combos fallback data
@@ -252,9 +252,9 @@ export default function ComboCatalogPage() {
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
                 <a href="/" className="hover:text-orange-600 transition-colors">Trang chủ</a>
-                <ChevronRight className="h-3 w-3" />
-                <a href="/solar-home" className="hover:text-orange-600 transition-colors">Solar Home</a>
-                <ChevronRight className="h-3 w-3" />
+                <CaretRight className="h-3 w-3" />
+                <a href="/solar-home" className="hover:text-orange-600 transition-colors">Solar House</a>
+                <CaretRight className="h-3 w-3" />
                 <span className="text-gray-900 font-medium">{activeCatMeta?.label || 'Tất cả Combo'}</span>
               </div>
               <div className="flex items-center gap-3">
@@ -270,14 +270,14 @@ export default function ComboCatalogPage() {
                     </div>
                   ) : (
                     <button onClick={() => setShowSearch(true)} className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-orange-500 transition-colors" title="Tìm kiếm">
-                      <Search className="h-4 w-4 text-gray-600" />
+                      <MagnifyingGlass className="h-4 w-4 text-gray-600" />
                     </button>
                   )}
                 </div>
                 <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
                   <button onClick={() => setGridColumns(1)} className={`p-2 rounded transition-colors ${gridColumns === 1 ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="1 cột"><List className="h-4 w-4" /></button>
-                  <button onClick={() => setGridColumns(3)} className={`p-2 rounded transition-colors ${gridColumns === 3 ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="3 cột"><Grid3x3 className="h-4 w-4" /></button>
-                  <button onClick={() => setGridColumns(4)} className={`p-2 rounded transition-colors ${gridColumns === 4 ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="4 cột"><Grid2x2 className="h-4 w-4" /></button>
+                  <button onClick={() => setGridColumns(3)} className={`p-2 rounded transition-colors ${gridColumns === 3 ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="3 cột"><GridNine className="h-4 w-4" /></button>
+                  <button onClick={() => setGridColumns(4)} className={`p-2 rounded transition-colors ${gridColumns === 4 ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="4 cột"><GridFour className="h-4 w-4" /></button>
                 </div>
                 <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
                   {[16, 24, 32, 40].map((limit) => (
@@ -285,8 +285,8 @@ export default function ComboCatalogPage() {
                   ))}
                 </div>
                 <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
-                  <button onClick={() => setSortBy('az')} className={`p-2 rounded transition-colors ${sortBy === 'az' ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="A-Z"><ArrowDownAZ className="h-4 w-4" /></button>
-                  <button onClick={() => setSortBy('za')} className={`p-2 rounded transition-colors ${sortBy === 'za' ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Z-A"><ArrowUpAZ className="h-4 w-4" /></button>
+                  <button onClick={() => setSortBy('az')} className={`p-2 rounded transition-colors ${sortBy === 'az' ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="A-Z"><SortAscending className="h-4 w-4" /></button>
+                  <button onClick={() => setSortBy('za')} className={`p-2 rounded transition-colors ${sortBy === 'za' ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Z-A"><SortDescending className="h-4 w-4" /></button>
                   <button onClick={() => setSortBy('price-asc')} className={`p-2 rounded transition-colors ${sortBy === 'price-asc' ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Giá tăng"><ArrowUp className="h-4 w-4" /></button>
                   <button onClick={() => setSortBy('price-desc')} className={`p-2 rounded transition-colors ${sortBy === 'price-desc' ? 'bg-orange-500 text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Giá giảm"><ArrowDown className="h-4 w-4" /></button>
                 </div>

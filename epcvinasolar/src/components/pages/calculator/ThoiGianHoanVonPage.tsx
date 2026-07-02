@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Clock, ArrowLeft } from 'lucide-react';
+import { Clock, ArrowLeft } from '@phosphor-icons/react';
 
 export default function ThoiGianHoanVonPage() {
   const [cost, setCost] = useState(80);

@@ -89,7 +89,7 @@ export default function ReviewsSection() {
               {/* Typographic quotation mark */}
               <span className="text-4xl leading-none text-orange-200 font-serif mb-2 select-none" aria-hidden="true">&ldquo;</span>
 
-              {/* Quote text */}
+              {/* Quotes text */}
               <p className="text-gray-700 text-sm leading-relaxed flex-1 mb-4">
                 {review.quote}
               </p>

@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Shield, ArrowRight } from 'lucide-react';
+import { MapPin, Calendar, Shield, ArrowRight } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 interface PartnerData {

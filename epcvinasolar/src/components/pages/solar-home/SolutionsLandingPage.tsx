@@ -1,5 +1,5 @@
 /**
- * SolutionsLandingPage - Solar Home Page
+ * SolutionsLandingPage - Solar House Page
  * 
  * This page has been refactored into smaller, manageable components:
  * - Data: src/components/pages/solar-home/data/solar-home-data.ts
@@ -19,23 +19,23 @@
 
 import {
   Sun,
-  TrendingUp,
-  Home,
+  TrendUp,
+  House,
   Users,
   Headphones,
-  Zap,
+  Lightning,
   ArrowRight,
   Phone,
   Clock,
-  Building2,
-  Battery,
-  CheckCircle2,
+  Building,
+  BatteryHigh,
+  CheckCircle,
   XCircle,
-  Smartphone,
-  BarChart3,
+  DeviceMobile,
+  ChartBar,
   Calendar,
-} from 'lucide-react';
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
+} from '@phosphor-icons/react';
+import { motion } from 'motion/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import { OnGridComboGrid, HybridComboGrid } from './components';
 import ComboGridWithTabs from './components/ComboGridWithTabs';
@@ -61,19 +61,16 @@ function AnimateIn({
   className?: string;
   delay?: number;
 }) {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.15 });
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
-        isVisible
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-8'
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-15%' }}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: delay / 1000 }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -159,7 +156,7 @@ export default function SolutionsLandingPage() {
                   className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/25 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 min-h-[44px]"
                 >
                   Tính Nhanh Hiệu Quả Đầu Tư
-                  <Zap className="h-5 w-5" />
+                  <Lightning className="h-5 w-5" />
                 </a>
               </div>
             </div>
@@ -204,7 +201,7 @@ export default function SolutionsLandingPage() {
                     <ul className="space-y-2">
                       {housing.features.map((feature) => (
                         <li key={feature} className="flex items-start gap-2 text-sm text-gray-600">
-                          <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                          <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
                           <span>{feature}</span>
                         </li>
                       ))}
@@ -230,8 +227,8 @@ export default function SolutionsLandingPage() {
           <AnimateIn>
             <div className="text-center mb-12">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold mb-4">
-                <Zap className="h-4 w-4" aria-hidden="true" />
-                Giải Pháp Solar Home
+                <Lightning className="h-4 w-4" aria-hidden="true" />
+                Giải Pháp Solar House
               </span>
               <h2
                 id="solutions-heading"
@@ -273,7 +270,7 @@ export default function SolutionsLandingPage() {
                     <div className="space-y-3 mb-5">
                       {solution.advantages.slice(0, 3).map((adv) => (
                         <div key={adv} className="flex items-start gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                          <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
                           <span className="text-gray-700">{adv}</span>
                         </div>
                       ))}
@@ -324,14 +321,14 @@ export default function SolutionsLandingPage() {
                       </th>
                       <th className="text-center p-3 font-semibold text-emerald-700 text-sm bg-emerald-50">
                         <div className="flex items-center justify-center gap-1">
-                          <Zap className="h-4 w-4" />
+                          <Lightning className="h-4 w-4" />
                           Hybrid
                         </div>
                       </th>
                       <th className="text-center p-3 font-semibold text-blue-700 text-sm bg-blue-50">
                         <div className="flex items-center justify-center gap-1">
-                          <Battery className="h-4 w-4" />
-                          Hybrid + Battery
+                          <BatteryHigh className="h-4 w-4" />
+                          Hybrid + BatteryHigh
                         </div>
                       </th>
                     </tr>
@@ -375,7 +372,7 @@ export default function SolutionsLandingPage() {
 
       {/* ═══════════════════════════════════════════════════════
           SECTION 3.5 – COMBO GRID WITH TABS
-          3 Rows: On-Grid, Hybrid, Hybrid + Battery
+          3 Rows: On-Grid, Hybrid, Hybrid + BatteryHigh
           Each row has tabs: 1-Phase, 3-Phase, 3-Phase Low, 3-Phase High
           ═══════════════════════════════════════════════════════ */}
       <section className="py-16 sm:py-20 bg-gray-50" aria-labelledby="combo-heading">
@@ -458,7 +455,7 @@ export default function SolutionsLandingPage() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {calculatorResults.map((item) => (
                     <div key={item} className="flex items-center gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0" />
                       <span className="text-sm text-gray-700">{item}</span>
                     </div>
                   ))}
@@ -569,7 +566,7 @@ export default function SolutionsLandingPage() {
                     <ul className="space-y-3">
                       {item.items.map((detail) => (
                         <li key={detail} className="flex items-start gap-2 text-gray-600">
-                          <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                          <CheckCircle className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                           <span>{detail}</span>
                         </li>
                       ))}
@@ -607,7 +604,7 @@ export default function SolutionsLandingPage() {
 
           <AnimateIn delay={100}>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-              Từ hóa đơn điện hàng tháng của bạn, EPCVINA Solar sẽ đề xuất phương án phù hợp nhất giữa On-Grid, Hybrid hoặc Solar + Battery.
+              Từ hóa đơn điện hàng tháng của bạn, EPCVINA Solar sẽ đề xuất phương án phù hợp nhất giữa On-Grid, Hybrid hoặc Solar + BatteryHigh.
             </p>
           </AnimateIn>
 

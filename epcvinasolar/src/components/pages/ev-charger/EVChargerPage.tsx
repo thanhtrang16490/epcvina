@@ -1,39 +1,38 @@
 import {
   Sun,
-  Battery,
-  Zap,
+  BatteryHigh,
+  Lightning,
   Leaf,
   Clock,
-  TrendingUp,
-  Building2,
+  TrendUp,
+  Building,
   ShoppingBag,
   Car,
   MapPin,
-  CheckCircle2,
+  CheckCircle,
   ArrowRight,
   Cpu,
-  Activity,
+  Pulse,
   Shield,
-  Wifi,
-  DollarSign,
+  WifiHigh,
+  CurrencyDollar,
   Timer,
   Handshake,
   Plug,
-  Smartphone,
+  DeviceMobile,
   Globe,
-  Fuel,
-  Hotel,
-  Building,
-  Home,
-} from 'lucide-react';
+  GasPump,
+  Buildings,
+  House,
+} from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 /* ─── EPCVINA Charging Network Stats ─── */
 const epcvinaStats = [
   { icon: <Plug className="h-6 w-6" aria-hidden="true" />, value: '150,000+', label: 'Cổng sạc trên toàn quốc', gradient: 'from-cyan-600 to-cyan-500' },
   { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '63', label: 'Tỉnh/Thành phủ sóng', gradient: 'from-blue-600 to-blue-500' },
-  { icon: <Zap className="h-6 w-6" aria-hidden="true" />, value: '18 triệu+', label: 'Phiên sạc hoàn thành', gradient: 'from-cyan-500 to-cyan-400' },
-  { icon: <Battery className="h-6 w-6" aria-hidden="true" />, value: '400 triệu kWh', label: 'Tổng điện năng cung cấp', gradient: 'from-violet-600 to-violet-500' },
+  { icon: <Lightning className="h-6 w-6" aria-hidden="true" />, value: '18 triệu+', label: 'Phiên sạc hoàn thành', gradient: 'from-cyan-500 to-cyan-400' },
+  { icon: <BatteryHigh className="h-6 w-6" aria-hidden="true" />, value: '400 triệu kWh', label: 'Tổng điện năng cung cấp', gradient: 'from-violet-600 to-violet-500' },
 ];
 
 /* ─── Featured Charger Products (with images) ─── */
@@ -66,7 +65,7 @@ const featuredChargers = [
     tagColor: 'bg-violet-100 text-violet-700',
   },
   {
-    name: 'Home Charger',
+    name: 'House Charger',
     power: '7–22kW',
     desc: 'Giải pháp sạc tại nhà tiện lợi, an toàn',
     image: 'https://images.unsplash.com/photo-1616361264896-2f4e35dab75a?w=400&q=80',
@@ -99,7 +98,7 @@ const chargerLineup = [
 
 /* ─── 99 Siêu Trạm Stats ─── */
 const superStationStats = [
-  { icon: <Building2 className="h-6 w-6" aria-hidden="true" />, value: '99', label: 'Siêu trạm sạc', color: 'text-cyan-400' },
+  { icon: <Building className="h-6 w-6" aria-hidden="true" />, value: '99', label: 'Siêu trạm sạc', color: 'text-cyan-400' },
   { icon: <MapPin className="h-6 w-6" aria-hidden="true" />, value: '34', label: 'Tỉnh/Thành', color: 'text-cyan-300' },
   { icon: <Car className="h-6 w-6" aria-hidden="true" />, value: '100', label: 'Xe sạc đồng thời/trạm', color: 'text-blue-400' },
   { icon: <Timer className="h-6 w-6" aria-hidden="true" />, value: '15 phút', label: 'Sạc nhanh từ NLTT', color: 'text-violet-400' },
@@ -107,10 +106,10 @@ const superStationStats = [
 
 /* ─── Pricing ─── */
 const pricingItems = [
-  { icon: <Zap className="h-5 w-5" aria-hidden="true" />, label: 'Giá sạc', value: '3,858 VNĐ/kWh', note: '(đã VAT)', color: 'bg-cyan-50 text-cyan-600' },
+  { icon: <Lightning className="h-5 w-5" aria-hidden="true" />, label: 'Giá sạc', value: '3,858 VNĐ/kWh', note: '(đã VAT)', color: 'bg-cyan-50 text-cyan-600' },
   { icon: <Timer className="h-5 w-5" aria-hidden="true" />, label: 'Phí giữ chỗ', value: 'Miễn phí 10 phút đầu', note: 'Sau đó 1,000–4,000 VNĐ/phút', color: 'bg-cyan-50 text-cyan-600' },
-  { icon: <DollarSign className="h-5 w-5" aria-hidden="true" />, label: 'Tối đa', value: '1 triệu VNĐ/phiên', note: '', color: 'bg-blue-50 text-blue-600' },
-  { icon: <Smartphone className="h-5 w-5" aria-hidden="true" />, label: 'Thanh toán', value: 'App EPCVINA', note: 'Nhanh chóng, tiện lợi', color: 'bg-violet-50 text-violet-600' },
+  { icon: <CurrencyDollar className="h-5 w-5" aria-hidden="true" />, label: 'Tối đa', value: '1 triệu VNĐ/phiên', note: '', color: 'bg-blue-50 text-blue-600' },
+  { icon: <DeviceMobile className="h-5 w-5" aria-hidden="true" />, label: 'Thanh toán', value: 'App EPCVINA', note: 'Nhanh chóng, tiện lợi', color: 'bg-violet-50 text-violet-600' },
 ];
 
 /* ─── Application images ─── */
@@ -130,19 +129,19 @@ const applicationCards = [
 /* ─── Franchise Venues ─── */
 const franchiseVenues = [
   { icon: <Car className="h-6 w-6" aria-hidden="true" />, label: 'Bãi đỗ xe' },
-  { icon: <Fuel className="h-6 w-6" aria-hidden="true" />, label: 'Trạm xăng' },
-  { icon: <Building2 className="h-6 w-6" aria-hidden="true" />, label: 'Bến xe' },
+  { icon: <GasPump className="h-6 w-6" aria-hidden="true" />, label: 'Trạm xăng' },
+  { icon: <Building className="h-6 w-6" aria-hidden="true" />, label: 'Bến xe' },
   { icon: <ShoppingBag className="h-6 w-6" aria-hidden="true" />, label: 'TTTM' },
-  { icon: <Hotel className="h-6 w-6" aria-hidden="true" />, label: 'Khách sạn' },
+  { icon: <Buildings className="h-6 w-6" aria-hidden="true" />, label: 'Khách sạn' },
   { icon: <Building className="h-6 w-6" aria-hidden="true" />, label: 'Chung cư' },
-  { icon: <Home className="h-6 w-6" aria-hidden="true" />, label: 'Văn phòng' },
+  { icon: <House className="h-6 w-6" aria-hidden="true" />, label: 'Văn phòng' },
 ];
 
 /* ─── LINK Platform Features ─── */
 const linkFeatures = [
   { icon: <Cpu className="h-6 w-6" aria-hidden="true" />, title: 'Hệ thống quản lý LINK', desc: 'Giám sát và điều phối toàn bộ mạng lưới trạm sạc thông minh' },
-  { icon: <Wifi className="h-6 w-6" aria-hidden="true" />, title: 'Giám sát real-time', desc: 'Theo dõi tình trạng hoạt động qua cloud 24/7' },
-  { icon: <Smartphone className="h-6 w-6" aria-hidden="true" />, title: 'App EPCVINA', desc: 'Tìm trạm, thanh toán, xem lịch sử sạc trong một ứng dụng' },
+  { icon: <WifiHigh className="h-6 w-6" aria-hidden="true" />, title: 'Giám sát real-time', desc: 'Theo dõi tình trạng hoạt động qua cloud 24/7' },
+  { icon: <DeviceMobile className="h-6 w-6" aria-hidden="true" />, title: 'App EPCVINA', desc: 'Tìm trạm, thanh toán, xem lịch sử sạc trong một ứng dụng' },
   { icon: <MapPin className="h-6 w-6" aria-hidden="true" />, title: 'Phủ sóng dày đặc', desc: '3.5km (nội đô) · 65km (cao tốc) — luôn có trạm gần bạn' },
 ];
 
@@ -150,13 +149,13 @@ const linkFeatures = [
 const epcvinaServices = [
   { icon: <MapPin className="h-6 w-6" aria-hidden="true" />, title: 'Khảo sát', desc: 'Đánh giá vị trí, điều kiện lắp đặt hệ thống solar cho trạm sạc' },
   { icon: <Cpu className="h-6 w-6" aria-hidden="true" />, title: 'Thiết kế', desc: 'Thiết kế hệ thống điện mặt trời + BESS tối ưu cho trạm sạc EPCVINA' },
-  { icon: <Building2 className="h-6 w-6" aria-hidden="true" />, title: 'Thi công', desc: 'Lắp đặt chuyên nghiệp, đúng tiến độ, đảm bảo chất lượng' },
-  { icon: <Activity className="h-6 w-6" aria-hidden="true" />, title: 'Vận hành O&M', desc: 'Bảo trì định kỳ, giám sát hiệu suất, xử lý sự cố 24/7' },
+  { icon: <Building className="h-6 w-6" aria-hidden="true" />, title: 'Thi công', desc: 'Lắp đặt chuyên nghiệp, đúng tiến độ, đảm bảo chất lượng' },
+  { icon: <Pulse className="h-6 w-6" aria-hidden="true" />, title: 'Vận hành O&M', desc: 'Bảo trì định kỳ, giám sát hiệu suất, xử lý sự cố 24/7' },
 ];
 
 /* ─── EPCVINA Value Props ─── */
 const epcvinaValues = [
-  { icon: <TrendingUp className="h-7 w-7" aria-hidden="true" />, title: 'Giảm chi phí điện sạc', value: '60–80%', desc: 'So với sử dụng điện lưới thông thường', gradient: 'from-cyan-600 to-cyan-500' },
+  { icon: <TrendUp className="h-7 w-7" aria-hidden="true" />, title: 'Giảm chi phí điện sạc', value: '60–80%', desc: 'So với sử dụng điện lưới thông thường', gradient: 'from-cyan-600 to-cyan-500' },
   { icon: <Leaf className="h-7 w-7" aria-hidden="true" />, title: 'Năng lượng sạch', value: '100%', desc: 'Solar + Wind + BESS — không phát thải', gradient: 'from-green-600 to-green-500' },
   { icon: <Clock className="h-7 w-7" aria-hidden="true" />, title: 'Vận hành liên tục', value: '24/7', desc: 'Hoạt động không gián đoạn với pin dự phòng', gradient: 'from-blue-600 to-blue-500' },
   { icon: <Shield className="h-7 w-7" aria-hidden="true" />, title: 'Bảo hành dài hạn', value: 'ISO 9001', desc: 'Chứng nhận chất lượng quốc tế', gradient: 'from-cyan-500 to-cyan-400' },
@@ -187,7 +186,7 @@ export default function EVChargerPage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 sm:pt-36 pb-16 sm:pb-24 text-center flex flex-col items-center justify-center min-h-[60vh] sm:min-h-[70vh]">
             {/* EPCVINA badge */}
             <div className="inline-flex items-center gap-2 bg-cyan-500/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-base border border-cyan-400/30 mb-6">
-              <Zap className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+              <Lightning className="h-4 w-4 text-cyan-400" aria-hidden="true" />
               <span className="text-cyan-300 font-semibold tracking-wide">EPCVINA Charging</span>
               <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" aria-hidden="true" />
             </div>
@@ -376,7 +375,7 @@ export default function EVChargerPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-cyan-500/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-base font-semibold text-cyan-300 mb-4 border border-cyan-400/30">
-                <Zap className="h-4 w-4" aria-hidden="true" />
+                <Lightning className="h-4 w-4" aria-hidden="true" />
                 Dự án trọng điểm 2026
               </div>
               <h2 id="super-station-heading" className="text-2xl sm:text-3xl font-bold">
@@ -400,7 +399,7 @@ export default function EVChargerPage() {
             </div>
             <div className="grid sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
               {[
-                { icon: <DollarSign className="h-5 w-5" aria-hidden="true" />, text: 'Đầu tư 10,000 tỷ VNĐ' },
+                { icon: <CurrencyDollar className="h-5 w-5" aria-hidden="true" />, text: 'Đầu tư 10,000 tỷ VNĐ' },
                 { icon: <Timer className="h-5 w-5" aria-hidden="true" />, text: 'Sạc nhanh 15 phút từ NLTT' },
                 { icon: <Leaf className="h-5 w-5" aria-hidden="true" />, text: '100% Solar + Wind + BESS' },
               ].map((item) => (
@@ -458,7 +457,7 @@ export default function EVChargerPage() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { icon: <DollarSign className="h-4 w-4" aria-hidden="true" />, text: 'Doanh thu đảm bảo: 750 VNĐ/kWh cho đối tác' },
+                    { icon: <CurrencyDollar className="h-4 w-4" aria-hidden="true" />, text: 'Doanh thu đảm bảo: 750 VNĐ/kWh cho đối tác' },
                     { icon: <Clock className="h-4 w-4" aria-hidden="true" />, text: 'Cam kết hợp đồng 10 năm' },
                     { icon: <Shield className="h-4 w-4" aria-hidden="true" />, text: 'EPCVINA cung cấp: công nghệ, đào tạo, hỗ trợ, marketing' },
                   ].map((item) => (
@@ -560,9 +559,9 @@ export default function EVChargerPage() {
               <div className="flex items-center justify-center gap-3 mb-4">
                 <Sun className="h-6 w-6 text-amber-400" aria-hidden="true" />
                 <span className="text-xl font-bold text-white" aria-hidden="true">+</span>
-                <Battery className="h-6 w-6 text-cyan-400" aria-hidden="true" />
+                <BatteryHigh className="h-6 w-6 text-cyan-400" aria-hidden="true" />
                 <span className="text-xl font-bold text-white" aria-hidden="true">+</span>
-                <Zap className="h-6 w-6 text-violet-400" aria-hidden="true" />
+                <Lightning className="h-6 w-6 text-violet-400" aria-hidden="true" />
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
                 Solar + BESS + Trạm Sạc = Hệ Sinh Thái Xanh Hoàn Chỉnh
@@ -611,7 +610,7 @@ export default function EVChargerPage() {
               </div>
               <div className="relative">
                 <div className="w-16 h-16 mx-auto bg-white/10 rounded-2xl flex items-center justify-center mb-6 border border-white/20">
-                  <Zap className="h-8 w-8 text-cyan-300" aria-hidden="true" />
+                  <Lightning className="h-8 w-8 text-cyan-300" aria-hidden="true" />
                 </div>
                 <h2 id="cta-heading" className="text-2xl sm:text-3xl font-bold text-white mb-4">
                   Sẵn sàng lắp đặt trạm sạc EPCVINA?

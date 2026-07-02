@@ -1,27 +1,27 @@
 import {
   Sun,
-  Building2,
+  Building,
   MapPin,
   Calendar,
   ArrowRight,
   Phone,
-  Zap,
-  Award,
+  Lightning,
+  Medal,
   ShieldCheck,
-  CheckCircle2,
+  CheckCircle,
   Handshake,
   Factory,
   Gauge,
-  TrendingUp,
+  TrendUp,
   Globe,
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 /* ─── Stats ─── */
 const heroStats = [
   { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '100+', label: 'Công trình', gradient: 'from-emerald-600 to-emerald-500' },
-  { icon: <Zap className="h-6 w-6" aria-hidden="true" />, value: '42 MWp', label: 'Lớn nhất', gradient: 'from-green-600 to-green-500' },
-  { icon: <Award className="h-6 w-6" aria-hidden="true" />, value: '15+', label: 'Năm kinh nghiệm', gradient: 'from-teal-600 to-teal-500' },
+  { icon: <Lightning className="h-6 w-6" aria-hidden="true" />, value: '42 MWp', label: 'Lớn nhất', gradient: 'from-green-600 to-green-500' },
+  { icon: <Medal className="h-6 w-6" aria-hidden="true" />, value: '15+', label: 'Năm kinh nghiệm', gradient: 'from-teal-600 to-teal-500' },
   { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: '100%', label: 'Hài lòng', gradient: 'from-cyan-600 to-cyan-500' },
 ];
 
@@ -45,7 +45,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'TP. Hải Dương - Hải Dương',
     year: 'T6.2024',
-    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 12KW 3phase, Battery: Bettenergy',
+    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 12KW 3phase, BatteryHigh: Bettenergy',
     note: 'Sơn tĩnh điện toàn giàn khung, Đổ betong chân cột',
     image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 15 kWp tại Hải Dương',
@@ -81,7 +81,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'Uông Bí - Quảng Ninh',
     year: 'T10.2023',
-    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, Battery: PowerX 5kwh',
+    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, BatteryHigh: PowerX 5kwh',
     note: 'Áp mái tôn',
     image: 'https://images.unsplash.com/photo-1548337138-e87d889cc369?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 5.4 kWp tại Uông Bí, Quảng Ninh',
@@ -93,7 +93,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'Tây Tựu - Hà Nội',
     year: 'T12.2024',
-    details: 'Tấm pin: Longi 580 WP, Biến tần: SolaX 6Kwp 1phase, Battery: SMB 5Kwp',
+    details: 'Tấm pin: Longi 580 WP, Biến tần: SolaX 6Kwp 1phase, BatteryHigh: SMB 5Kwp',
     note: 'Làm trên tầng cao 6 tầng',
     image: 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 6.5 kWp tại Tây Tựu, Hà Nội',
@@ -105,7 +105,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'Chùa Thầy - Hà Nội',
     year: 'T10.2024',
-    details: 'Tấm pin: Longi 545 Wp, Biến tần SolaX 6Kwp 1 phase, Battery: Triple power 10Kwp',
+    details: 'Tấm pin: Longi 545 Wp, Biến tần SolaX 6Kwp 1 phase, BatteryHigh: Triple power 10Kwp',
     note: 'Làm trên tầng cao 3 tầng',
     image: 'https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 6.5 kWp tại Chùa Thầy, Hà Nội',
@@ -129,7 +129,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'Bắc Từ Liêm - Hà Nội',
     year: 'T3.2024',
-    details: 'Tấm pin: Longi 580 Wp 2 mặt kính, Biến tần: Deye 12kwp 3phase, Battery: Bettenergy 10kwp',
+    details: 'Tấm pin: Longi 580 Wp 2 mặt kính, Biến tần: Deye 12kwp 3phase, BatteryHigh: Bettenergy 10kwp',
     note: 'Mái hiên 2 mặt kính, Tầng cao 6 tầng',
     image: 'https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 15 kWp tại Bắc Từ Liêm, Hà Nội',
@@ -141,7 +141,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'TP. Hải Dương - Hải Dương',
     year: 'T4.2024',
-    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, Battery: PowerX 5kwh',
+    details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, BatteryHigh: PowerX 5kwh',
     note: 'Dựng khung trên mái ngói, giảm độ dốc tăng hiệu suất',
     image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 5 kWp tại Hải Dương',
@@ -165,7 +165,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'TP. Hải Dương - Hải Dương',
     year: 'T6.2024',
-    details: 'Tấm pin: Longi 580 Wp, Biến tần: Deye 10Kwp 1 phase, Battery: SMB 20Kwp',
+    details: 'Tấm pin: Longi 580 Wp, Biến tần: Deye 10Kwp 1 phase, BatteryHigh: SMB 20Kwp',
     note: 'Sơn tĩnh điện toàn giàn khung, Độ cao >6m, Đấu nối 2 biến tần Parallel',
     image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 22 kWp tại Hải Dương',
@@ -177,7 +177,7 @@ const solarProjects = [
     type: 'Hybrid có lưu trữ',
     location: 'Việt Yên - Bắc Giang',
     year: 'T10.2024',
-    details: 'Tấm pin: Longi 580 Wp, Biến tần: Solis 6Kwp 3 phase, Battery: Lvtopsun 10Kwp',
+    details: 'Tấm pin: Longi 580 Wp, Biến tần: Solis 6Kwp 3 phase, BatteryHigh: Lvtopsun 10Kwp',
     note: '',
     image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
     alt: 'Dự án điện mặt trời Hybrid 6 kWp tại Việt Yên, Bắc Giang',
@@ -188,13 +188,13 @@ const solarProjects = [
 /* ─── MEP Projects - From EPCVINAHOME ─── */
 const mepProjects = [
   {
-    name: 'Keangnam Landmark Tower',
+    name: 'Keangnam Bank Tower',
     client: 'Keangnam',
     scope: 'Chiller, Cooling Tower, AHU/FCU, Ống gió, Cấp thoát nước',
     year: '2011-2012',
     location: 'Hà Nội',
     image: '/du-an/DU-AN-KEANG-NAM-LAND-MARK-TOWER.jpg',
-    alt: 'Keangnam Landmark Tower - Tòa nhà chọc trời cao nhất Việt Nam',
+    alt: 'Keangnam Bank Tower - Tòa nhà chọc trời cao nhất Việt Nam',
     tagColor: 'bg-emerald-100 text-emerald-700',
   },
   {
@@ -345,12 +345,12 @@ const clientNames = ['Samsung', 'VinCom', 'VinFast', 'Lotte', 'Keangnam', 'Đạ
 /* ─── Client Icons ─── */
 const clientIcons: Record<string, React.ReactNode> = {
   Samsung: <Factory className="h-6 w-6" aria-hidden="true" />,
-  VinCom: <Building2 className="h-6 w-6" aria-hidden="true" />,
+  VinCom: <Building className="h-6 w-6" aria-hidden="true" />,
   VinFast: <Gauge className="h-6 w-6" aria-hidden="true" />,
   Lotte: <Handshake className="h-6 w-6" aria-hidden="true" />,
-  Keangnam: <Building2 className="h-6 w-6" aria-hidden="true" />,
+  Keangnam: <Building className="h-6 w-6" aria-hidden="true" />,
   'Đại sứ quán HQ': <Globe className="h-6 w-6" aria-hidden="true" />,
-  Coteccons: <CheckCircle2 className="h-6 w-6" aria-hidden="true" />,
+  Coteccons: <CheckCircle className="h-6 w-6" aria-hidden="true" />,
 };
 
 export default function ProjectsPage() {
@@ -519,7 +519,7 @@ export default function ProjectsPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-base font-semibold text-amber-300 mb-4 border border-amber-400/30">
-                <Building2 className="h-4 w-4" aria-hidden="true" />
+                <Building className="h-4 w-4" aria-hidden="true" />
                 Cơ điện (MEP)
               </div>
               <h2 id="mep-projects-heading" className="text-2xl sm:text-3xl font-bold">
@@ -574,7 +574,7 @@ export default function ProjectsPage() {
             </div>
             <div className="mt-8 text-center">
               <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-full px-5 py-2.5 text-base text-emerald-300 font-medium">
-                <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
+                <CheckCircle className="h-4 w-4" aria-hidden="true" />
                 15+ năm kinh nghiệm M&E — ISO 9001:2015
               </div>
             </div>
@@ -626,8 +626,8 @@ export default function ProjectsPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { icon: <Sun className="h-6 w-6" aria-hidden="true" />, value: '5+', label: 'Dự án Solar Farm MWp', gradient: 'from-emerald-600 to-emerald-500' },
-                { icon: <Building2 className="h-6 w-6" aria-hidden="true" />, value: '10+', label: 'Dự án MEP đa quốc gia', gradient: 'from-amber-600 to-amber-500' },
-                { icon: <TrendingUp className="h-6 w-6" aria-hidden="true" />, value: '100+ MWp', label: 'Tổng công suất đã thi công', gradient: 'from-green-600 to-green-500' },
+                { icon: <Building className="h-6 w-6" aria-hidden="true" />, value: '10+', label: 'Dự án MEP đa quốc gia', gradient: 'from-amber-600 to-amber-500' },
+                { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, value: '100+ MWp', label: 'Tổng công suất đã thi công', gradient: 'from-green-600 to-green-500' },
                 { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: 'ISO 9001', label: 'Chứng nhận chất lượng', gradient: 'from-teal-600 to-teal-500' },
               ].map((stat) => (
                 <div

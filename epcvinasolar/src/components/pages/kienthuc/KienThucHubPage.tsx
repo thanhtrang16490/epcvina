@@ -1,4 +1,4 @@
-import { BookOpen, Sun, Battery, Zap, Calculator, Shield, Wrench, ChevronRight, Phone } from 'lucide-react';
+import { BookOpen, Sun, BatteryHigh, Lightning, Calculator, Shield, Wrench, CaretRight, Phone } from '@phosphor-icons/react';
 
 const categories = [
   {
@@ -30,7 +30,7 @@ const categories = [
   {
     slug: 'pin-luu-tru',
     name: 'Pin Lưu Trữ & BESS',
-    icon: Battery,
+    icon: BatteryHigh,
     color: 'bg-emerald-100 text-emerald-700',
     desc: 'Tìm hiểu về pin lưu trữ điện, hệ thống BESS, công nghệ Lithium và ứng dụng trong điện mặt trời.',
     articles: [
@@ -69,7 +69,7 @@ const categories = [
   {
     slug: 'ung-dung-thuc-te',
     name: 'Ứng Dụng Thực Tế',
-    icon: Zap,
+    icon: Lightning,
     color: 'bg-cyan-100 text-cyan-700',
     desc: 'Case study thực tế, kinh nghiệm lắp đặt, câu chuyện khách hàng và xu hướng ứng dụng.',
     articles: [
@@ -160,7 +160,7 @@ export default function KienThucHubPage() {
                       href={`/tin-tuc/${article.slug}`}
                       className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition-colors group"
                     >
-                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      <CaretRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       <span>{article.title}</span>
                     </a>
                   ))}
@@ -169,7 +169,7 @@ export default function KienThucHubPage() {
                   href={`/kien-thuc/${cat.slug}`}
                   className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:text-blue-800"
                 >
-                  Xem tất cả <ChevronRight className="w-4 h-4" />
+                  Xem tất cả <CaretRight className="w-4 h-4" />
                 </a>
               </div>
             ))}

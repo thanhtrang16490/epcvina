@@ -1,45 +1,45 @@
 import {
-  Building2,
+  Building,
   Factory,
   ShoppingBag,
-  Hotel,
-  Server,
-  HeartPulse,
-  Droplets,
+  Buildings,
+  HardDrives,
+  Heartbeat,
+  Drop,
   PiggyBank,
-  TrendingUp,
-  Award,
-  Landmark,
+  TrendUp,
+  Medal,
+  Bank,
   ShieldCheck,
   Thermometer,
   Warehouse,
   HardHat,
-  ClipboardCheck,
+  ClipboardText,
   Cpu,
   Sun,
   Wrench,
-  FileCheck,
-  Zap,
-  CheckCircle2,
+  File,
+  Lightning,
+  CheckCircle,
   ArrowRight,
   Phone,
-  Cog,
+  Gear,
   Gauge,
   Leaf,
   Clock,
   Shield,
   Globe,
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 /* ─── Client Types (with images) ─── */
 const clientTypes = [
   { icon: <Factory className="h-6 w-6" aria-hidden="true" />, label: 'Nhà máy & Xưởng sản xuất', desc: '2000–10000 m²', image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80', alt: 'Nhà máy sản xuất với hệ thống điện mặt trời trên mái' },
   { icon: <ShoppingBag className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm thương mại & Siêu thị', desc: 'Diện tích mái lớn', image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=80', alt: 'Trung tâm thương mại lắp điện mặt trời' },
-  { icon: <Hotel className="h-6 w-6" aria-hidden="true" />, label: 'Tòa nhà văn phòng & Khách sạn', desc: 'Tiết kiệm vận hành', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80', alt: 'Tòa nhà văn phòng với hệ thống điện mặt trời' },
+  { icon: <Buildings className="h-6 w-6" aria-hidden="true" />, label: 'Tòa nhà văn phòng & Khách sạn', desc: 'Tiết kiệm vận hành', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80', alt: 'Tòa nhà văn phòng với hệ thống điện mặt trời' },
   { icon: <Warehouse className="h-6 w-6" aria-hidden="true" />, label: 'Kho bãi & Trung tâm logistics', desc: 'Mái rộng, tối ưu lắp đặt', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80', alt: 'Kho bãi logistics lắp điện mặt trời mái' },
-  { icon: <Server className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm dữ liệu & Server farm', desc: 'Nhu cầu điện liên tục', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=80', alt: 'Trung tâm dữ liệu sử dụng điện mặt trời' },
-  { icon: <HeartPulse className="h-6 w-6" aria-hidden="true" />, label: 'Cơ sở y tế & Bệnh viện', desc: 'An ninh năng lượng', image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80', alt: 'Bệnh viện với hệ thống điện mặt trời an toàn' },
+  { icon: <HardDrives className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm dữ liệu & HardDrives farm', desc: 'Nhu cầu điện liên tục', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=80', alt: 'Trung tâm dữ liệu sử dụng điện mặt trời' },
+  { icon: <Heartbeat className="h-6 w-6" aria-hidden="true" />, label: 'Cơ sở y tế & Bệnh viện', desc: 'An ninh năng lượng', image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80', alt: 'Bệnh viện với hệ thống điện mặt trời an toàn' },
 ];
 
 const benefits = [
@@ -50,19 +50,19 @@ const benefits = [
     gradient: 'from-cyan-600 to-cyan-500',
   },
   {
-    icon: <TrendingUp className="h-6 w-6" aria-hidden="true" />,
+    icon: <TrendUp className="h-6 w-6" aria-hidden="true" />,
     title: 'ROI Cao',
     desc: 'Hoàn vốn 4–6 năm, tuổi thọ 30+ năm = 24 năm lợi nhuận ròng',
     gradient: 'from-green-600 to-green-500',
   },
   {
-    icon: <Award className="h-6 w-6" aria-hidden="true" />,
+    icon: <Medal className="h-6 w-6" aria-hidden="true" />,
     title: 'Nâng Cao Giá Trị',
     desc: 'Chứng chỉ Green Building, cam kết Net-Zero, hỗ trợ ESG',
     gradient: 'from-blue-600 to-blue-500',
   },
   {
-    icon: <Landmark className="h-6 w-6" aria-hidden="true" />,
+    icon: <Bank className="h-6 w-6" aria-hidden="true" />,
     title: 'Chính Sách Hỗ Trợ',
     desc: 'Bán điện dư theo NĐ 135/2024, ưu đãi thuế',
     gradient: 'from-cyan-500 to-cyan-400',
@@ -89,27 +89,27 @@ const systemTiers = [
 ];
 
 const processSteps = [
-  { step: 1, title: 'Tư Vấn & Khảo Sát', time: '1–2 tuần', icon: <ClipboardCheck className="h-6 w-6" aria-hidden="true" /> },
+  { step: 1, title: 'Tư Vấn & Khảo Sát', time: '1–2 tuần', icon: <ClipboardText className="h-6 w-6" aria-hidden="true" /> },
   { step: 2, title: 'Thiết Kế Kỹ Thuật', time: '2–3 tuần', icon: <Cpu className="h-6 w-6" aria-hidden="true" /> },
-  { step: 3, title: 'Phê Duyệt & Cấp Phép', time: '2–4 tuần', icon: <FileCheck className="h-6 w-6" aria-hidden="true" /> },
+  { step: 3, title: 'Phê Duyệt & Cấp Phép', time: '2–4 tuần', icon: <File className="h-6 w-6" aria-hidden="true" /> },
   { step: 4, title: 'Thi Công Lắp Đặt', time: '4–8 tuần', icon: <HardHat className="h-6 w-6" aria-hidden="true" /> },
-  { step: 5, title: 'Kiểm Tra & Đấu Nối', time: '1–2 tuần', icon: <Zap className="h-6 w-6" aria-hidden="true" /> },
-  { step: 6, title: 'Vận Hành & O&M', time: '30 năm', icon: <Cog className="h-6 w-6" aria-hidden="true" /> },
+  { step: 5, title: 'Kiểm Tra & Đấu Nối', time: '1–2 tuần', icon: <Lightning className="h-6 w-6" aria-hidden="true" /> },
+  { step: 6, title: 'Vận Hành & O&M', time: '30 năm', icon: <Gear className="h-6 w-6" aria-hidden="true" /> },
 ];
 
 const epcServices = [
-  { icon: <ClipboardCheck className="h-6 w-6" aria-hidden="true" />, label: 'Tư vấn & Khảo sát chi tiết' },
+  { icon: <ClipboardText className="h-6 w-6" aria-hidden="true" />, label: 'Tư vấn & Khảo sát chi tiết' },
   { icon: <Cpu className="h-6 w-6" aria-hidden="true" />, label: 'Thiết kế hệ thống PV (PVsyst, AutoCAD Solar)' },
   { icon: <HardHat className="h-6 w-6" aria-hidden="true" />, label: 'Lắp đặt, giám sát chất lượng' },
-  { icon: <Zap className="h-6 w-6" aria-hidden="true" />, label: 'Đấu nối lưới, thủ tục pháp lý' },
-  { icon: <Award className="h-6 w-6" aria-hidden="true" />, label: 'Hỗ trợ cấp chứng chỉ Green Building' },
+  { icon: <Lightning className="h-6 w-6" aria-hidden="true" />, label: 'Đấu nối lưới, thủ tục pháp lý' },
+  { icon: <Medal className="h-6 w-6" aria-hidden="true" />, label: 'Hỗ trợ cấp chứng chỉ Green Building' },
   { icon: <Wrench className="h-6 w-6" aria-hidden="true" />, label: 'Vận hành & Bảo dưỡng 30 năm' },
 ];
 
 const stats = [
   { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '40,000+', label: 'MWp tiềm năng khu công nghiệp VN', gradient: 'from-cyan-600 to-cyan-500' },
   { icon: <PiggyBank className="h-6 w-6" aria-hidden="true" />, value: '12–15 triệu', label: 'VNĐ/kWp chi phí hiện tại', gradient: 'from-green-600 to-green-500' },
-  { icon: <TrendingUp className="h-6 w-6" aria-hidden="true" />, value: '4–6 năm', label: 'Hoàn vốn', gradient: 'from-blue-600 to-blue-500' },
+  { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, value: '4–6 năm', label: 'Hoàn vốn', gradient: 'from-blue-600 to-blue-500' },
   { icon: <Shield className="h-6 w-6" aria-hidden="true" />, value: '30+', label: 'Năm tuổi thọ', gradient: 'from-cyan-500 to-cyan-400' },
 ];
 
@@ -172,7 +172,7 @@ export default function SolarCIPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-cyan-50 rounded-full px-4 py-1.5 text-base font-semibold text-cyan-700 mb-4">
-                <Building2 className="h-4 w-4" aria-hidden="true" />
+                <Building className="h-4 w-4" aria-hidden="true" />
                 Đối tượng khách hàng
               </div>
               <h2 id="client-types-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -216,7 +216,7 @@ export default function SolarCIPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 text-base font-semibold text-cyan-700 mb-4">
-                <TrendingUp className="h-4 w-4" aria-hidden="true" />
+                <TrendUp className="h-4 w-4" aria-hidden="true" />
                 Lợi ích vượt trội
               </div>
               <h2 id="benefits-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -316,7 +316,7 @@ export default function SolarCIPage() {
                     <div className="flex justify-between items-center">
                       <span className="text-gray-500">ROI</span>
                       <span className="inline-flex items-center gap-1 bg-cyan-100 text-cyan-700 rounded-full px-3 py-1 text-xs font-medium">
-                        <TrendingUp className="h-3 w-3" aria-hidden="true" />
+                        <TrendUp className="h-3 w-3" aria-hidden="true" />
                         {tier.roi}
                       </span>
                     </div>
@@ -367,7 +367,7 @@ export default function SolarCIPage() {
               {/* Left: services */}
               <div>
                 <div className="inline-flex items-center gap-2 bg-cyan-50 rounded-full px-4 py-1.5 text-base font-semibold text-cyan-700 mb-4">
-                  <Cog className="h-4 w-4" aria-hidden="true" />
+                  <Gear className="h-4 w-4" aria-hidden="true" />
                   Dịch vụ EPC trọn gói
                 </div>
                 <h2 id="epc-services-heading" className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
@@ -400,11 +400,11 @@ export default function SolarCIPage() {
                 <h3 className="text-xl font-bold mb-6">Tại sao chọn EPCVINA SOLAR?</h3>
                 <ul className="space-y-4">
                   {[
-                    { icon: <CheckCircle2 className="h-5 w-5" aria-hidden="true" />, text: 'Tổng thầu EPC — một đầu mối duy nhất' },
+                    { icon: <CheckCircle className="h-5 w-5" aria-hidden="true" />, text: 'Tổng thầu EPC — một đầu mối duy nhất' },
                     { icon: <Clock className="h-5 w-5" aria-hidden="true" />, text: '15+ năm kinh nghiệm M&E & điện mặt trời' },
                     { icon: <Shield className="h-5 w-5" aria-hidden="true" />, text: 'Thiết bị chính hãng — bảo hành 25 năm' },
-                    { icon: <Award className="h-5 w-5" aria-hidden="true" />, text: 'Giám sát chất lượng ISO 9001:2015' },
-                    { icon: <FileCheck className="h-5 w-5" aria-hidden="true" />, text: 'Hỗ trợ thủ tục pháp lý & đấu nối EVN' },
+                    { icon: <Medal className="h-5 w-5" aria-hidden="true" />, text: 'Giám sát chất lượng ISO 9001:2015' },
+                    { icon: <File className="h-5 w-5" aria-hidden="true" />, text: 'Hỗ trợ thủ tục pháp lý & đấu nối EVN' },
                     { icon: <Wrench className="h-5 w-5" aria-hidden="true" />, text: 'O&M chuyên nghiệp — vận hành 30 năm' },
                   ].map((item) => (
                     <li key={item.text} className="flex items-start gap-3">

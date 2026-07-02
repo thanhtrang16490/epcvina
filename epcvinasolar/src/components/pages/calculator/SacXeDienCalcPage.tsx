@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Car, ArrowLeft } from 'lucide-react';
+import { Car, ArrowLeft } from '@phosphor-icons/react';
 
 export default function SacXeDienCalcPage() {
   const [batterySize, setBatterySize] = useState(60);

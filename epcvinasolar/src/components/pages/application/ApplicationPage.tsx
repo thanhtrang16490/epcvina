@@ -1,4 +1,4 @@
-import { Home, Building2, Factory, Hotel, UtensilsCrossed, Check, ArrowRight, Zap, Shield, Phone, Warehouse, Wheat, Plug, TrendingUp, Clock, DollarSign, BarChart3, Leaf } from 'lucide-react';
+import { House, Building, Factory, Buildings, ForkKnife, Check, ArrowRight, Lightning, Shield, Phone, Warehouse, Grains, Plug, TrendUp, Clock, CurrencyDollar, ChartBar, Leaf } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 interface Benefit {
@@ -56,13 +56,13 @@ interface ApplicationData {
 }
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
-  Home,
-  Building2,
+  House,
+  Building,
   Factory,
-  Hotel,
-  UtensilsCrossed,
+  Buildings,
+  ForkKnife,
   Warehouse,
-  Wheat,
+  Grains,
   Plug,
 };
 
@@ -80,7 +80,7 @@ const applicationData: Record<ApplicationType, ApplicationData> = {
     ],
     description: 'Hệ thống điện mặt trời Hybrid cho nhà ở giúp gia đình bạn chủ động nguồn điện, tiết kiệm chi phí và đảm bảo luôn có điện sử dụng ngay cả khi mất điện lưới.',
     systemInfo: 'Công suất phù hợp: 5-15 kWp với pin lưu trữ 5-20 kWh. Phù hợp mái tôn, mái ngói hoặc mái bằng.',
-    icon: 'Home',
+    icon: 'House',
   },
   'van-phong': {
     title: 'Điện mặt trời cho Văn phòng',
@@ -95,7 +95,7 @@ const applicationData: Record<ApplicationType, ApplicationData> = {
     ],
     description: 'Hệ thống điện mặt trời cho văn phòng giúp doanh nghiệp tiết kiệm chi phí điện năng, đồng thời thể hiện cam kết phát triển bền vững.',
     systemInfo: 'Công suất: 20-100 kWp tùy diện tích mái. Thường sử dụng hệ On-Grid hoặc Hybrid tùy nhu cầu dự phòng.',
-    icon: 'Building2',
+    icon: 'Building',
   },
   'nha-xuong': {
     title: 'Điện mặt trời cho Nhà xưởng',
@@ -118,14 +118,14 @@ const applicationData: Record<ApplicationType, ApplicationData> = {
     capacity: '50 - 200 kWp',
     benefits: [
       'Giảm 30-50% chi phí điện năng',
-      'Đạt chứng nhận Green Hotel / Eco-friendly',
+      'Đạt chứng nhận Green Buildings / Eco-friendly',
       'Thu hút khách du lịch ý thức môi trường',
       'ROI hấp dẫn trong 5-7 năm',
       'Giảm phụ thuộc vào lưới điện',
     ],
     description: 'Khách sạn là ngành tiêu thụ điện lớn. Hệ thống điện mặt trời giúp giảm chi phí vận hành và nâng cao hình ảnh thương hiệu xanh.',
     systemInfo: 'Công suất: 50-200 kWp. Phù hợp mái bằng (sân thượng) hoặc mái tôn phụ trợ. Hybrid cho dự phòng.',
-    icon: 'Hotel',
+    icon: 'Buildings',
   },
   'nha-hang': {
     title: 'Điện mặt trời cho Nhà hàng',
@@ -140,7 +140,7 @@ const applicationData: Record<ApplicationType, ApplicationData> = {
     ],
     description: 'Nhà hàng sử dụng nhiều điện cho hệ thống điều hòa, bếp và chiếu sáng. Điện mặt trời giúp cắt giảm chi phí đáng kể.',
     systemInfo: 'Công suất: 10-50 kWp. Phù hợp mái tôn hoặc mái bằng. Khuyến nghị Hybrid để dự phòng mất điện.',
-    icon: 'UtensilsCrossed',
+    icon: 'ForkKnife',
   },
   'dien-cong-nghiep': {
     title: 'Giải Pháp Điện Mặt Trời Cho Doanh Nghiệp',
@@ -231,7 +231,7 @@ const applicationData: Record<ApplicationType, ApplicationData> = {
     ],
     description: 'Hệ thống điện mặt trời dân dụng giúp gia đình tiết kiệm chi phí điện, đảm bảo nguồn điện ổn định và thân thiện với môi trường.',
     systemInfo: 'Công suất: 3-15 kWp. Phù hợp mái tôn, mái ngói, mái bằng. Khuyến nghị Hybrid có lưu trữ.',
-    icon: 'Home',
+    icon: 'House',
   },
   'dien-nong-nghiep': {
     title: 'Điện sản xuất nông nghiệp',
@@ -246,7 +246,7 @@ const applicationData: Record<ApplicationType, ApplicationData> = {
     ],
     description: 'Điện mặt trời ứng dụng trong nông nghiệp giúp giảm chi phí sản xuất, cung cấp điện cho hệ thống tưới tiêu, nhà kính và các thiết bị nông nghiệp.',
     systemInfo: 'Công suất: 10-500 kWp. Phù hợp trang trại, nhà kính, vùng nông thôn. Kết hợp điện lưới hoặc độc lập.',
-    icon: 'Wheat',
+    icon: 'Grains',
   },
 };
 
@@ -254,7 +254,7 @@ export default function ApplicationPage({ applicationType }: ApplicationPageProp
   const data = applicationData[applicationType];
   if (!data) return null;
 
-  const IconComponent = ICON_MAP[data.icon] || Home;
+  const IconComponent = ICON_MAP[data.icon] || House;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -279,7 +279,7 @@ export default function ApplicationPage({ applicationType }: ApplicationPageProp
               </p>
             </div>
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3">
-              <Zap className="h-5 w-5 text-amber-400" />
+              <Lightning className="h-5 w-5 text-amber-400" />
               <span className="text-white font-semibold text-lg">{data.capacity}</span>
             </div>
           </div>
@@ -350,7 +350,7 @@ export default function ApplicationPage({ applicationType }: ApplicationPageProp
         <div className="bg-gray-100 rounded-2xl border border-gray-200 p-8 sm:p-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gray-300">
-              <Zap className="h-5 w-5 text-gray-700" />
+              <Lightning className="h-5 w-5 text-gray-700" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               Thông số hệ thống

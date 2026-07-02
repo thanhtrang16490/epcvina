@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Search, X, FileText, Sun, Package, ArrowRight } from 'lucide-react';
+import { MagnifyingGlass, X, FileText, Sun, Package, ArrowRight } from '@phosphor-icons/react';
 import Fuse from 'fuse.js';
 
 interface SearchItem {
@@ -23,7 +23,7 @@ interface SearchModalProps {
  * 
  * Features:
  * - Full-text search with Fuse.js
- * - Search across products, projects, combos, pages
+ * - MagnifyingGlass across products, projects, combos, pages
  * - Keyboard shortcuts (Cmd+K, Ctrl+K)
  * - Real-time results
  * - Category filtering
@@ -58,7 +58,7 @@ export default function SearchModal({ products, projects, combos, pages }: Searc
     minMatchCharLength: 2,
   });
 
-  // Search results
+  // MagnifyingGlass results
   const results = query.length >= 2
     ? fuse.search(query)
         .map(result => result.item)
@@ -120,13 +120,13 @@ export default function SearchModal({ products, projects, combos, pages }: Searc
 
   return (
     <>
-      {/* Search Trigger Button */}
+      {/* MagnifyingGlass Trigger Button */}
       <button
         onClick={() => setIsOpen(true)}
         className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-white"
         aria-label="Tìm kiếm"
       >
-        <Search className="w-5 h-5" />
+        <MagnifyingGlass className="w-5 h-5" />
         <span className="hidden lg:inline text-sm">Tìm kiếm...</span>
         <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-0.5 text-xs bg-white/20 rounded">
           ⌘K
@@ -150,9 +150,9 @@ export default function SearchModal({ products, projects, combos, pages }: Searc
             ref={modalRef}
             className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200"
           >
-            {/* Search Input */}
+            {/* MagnifyingGlass Input */}
             <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-200">
-              <Search className="w-5 h-5 text-gray-400 flex-shrink-0" />
+              <MagnifyingGlass className="w-5 h-5 text-gray-400 flex-shrink-0" />
               <input
                 ref={inputRef}
                 type="text"
@@ -193,7 +193,7 @@ export default function SearchModal({ products, projects, combos, pages }: Searc
             <div className="max-h-96 overflow-y-auto">
               {query.length < 2 ? (
                 <div className="px-6 py-12 text-center text-gray-500">
-                  <Search className="w-12 h-12 mx-auto mb-3 opacity-30" />
+                  <MagnifyingGlass className="w-12 h-12 mx-auto mb-3 opacity-30" />
                   <p>Nhập ít nhất 2 ký tự để tìm kiếm</p>
                 </div>
               ) : results.length === 0 ? (

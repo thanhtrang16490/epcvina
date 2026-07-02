@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, Eye, Layers, Cable, Search, ChevronRight, List, Grid3x3, Grid2x2, ArrowDownAZ, ArrowUpAZ, ArrowUp, ArrowDown, ShoppingCart } from 'lucide-react';
+import { Lightning, TrendUp, BatteryHigh, Shield, Plug, Wrench, X, Eye, Stack, CableCar, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown, ShoppingCart } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
@@ -23,7 +23,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
 }> = {
   panel: {
     label: 'Tấm mô-đun quang điện',
-    icon: <Zap className="h-5 w-5"/>,
+    icon: <Lightning className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
@@ -31,7 +31,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'on-grid-inverter': {
     label: 'Biến tần On-Grid',
-    icon: <TrendingUp className="h-5 w-5"/>,
+    icon: <TrendUp className="h-5 w-5"/>,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
@@ -39,7 +39,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'hybrid-inverter': {
     label: 'Biến tần Hybrid',
-    icon: <TrendingUp className="h-5 w-5"/>,
+    icon: <TrendUp className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
@@ -47,7 +47,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'lv-battery': {
     label: 'Pin lưu trữ áp thấp',
-    icon: <Battery className="h-5 w-5"/>,
+    icon: <BatteryHigh className="h-5 w-5"/>,
     color: 'text-green-600',
     bg: 'bg-green-50',
     accent: 'bg-green-500',
@@ -55,7 +55,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'hv-battery': {
     label: 'Pin lưu trữ áp cao',
-    icon: <Battery className="h-5 w-5"/>,
+    icon: <BatteryHigh className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
@@ -63,7 +63,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   mounting: {
     label: 'Hệ khung nhôm',
-    icon: <Layers className="h-5 w-5"/>,
+    icon: <Stack className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
@@ -71,7 +71,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   wiring: {
     label: 'Hệ dây điện',
-    icon: <Cable className="h-5 w-5"/>,
+    icon: <CableCar className="h-5 w-5"/>,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
     accent: 'bg-gray-500',
@@ -261,21 +261,21 @@ export default function EquipmentPageDesktop({
       {showContent && (
         <div className="flex-1 w-full">
         <div className="w-full">
-        {/* Horizontal Search & Filter Bar with Breadcrumbs */}
+        {/* Horizontal MagnifyingGlass & Filter Bar with Breadcrumbs */}
         <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6">
           <div className="flex items-center gap-3">
             {/* Breadcrumbs - Left Side */}
             <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
               <a href="/" className="hover:text-[#F97316] transition-colors">Trang chủ</a>
-              <ChevronRight className="h-3 w-3" />
+              <CaretRight className="h-3 w-3" />
               <a href="/thiet-bi/danh-sach/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
-              <ChevronRight className="h-3 w-3" />
+              <CaretRight className="h-3 w-3" />
               <span className="text-gray-900 font-medium">{meta?.label || 'Danh mục'}</span>
             </div>
 
             {/* Filter Options - Right Side */}
             <div className="flex items-center gap-3">
-              {/* Collapsible Search */}
+              {/* Collapsible MagnifyingGlass */}
               <div ref={searchRef}>
                 {showSearch ? (
                   <div className="relative w-64">
@@ -311,7 +311,7 @@ export default function EquipmentPageDesktop({
                     className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-[#F97316] transition-colors"
                     title="Tìm kiếm"
                   >
-                    <Search className="h-4 w-4 text-gray-600" />
+                    <MagnifyingGlass className="h-4 w-4 text-gray-600" />
                   </button>
                 )}
               </div>
@@ -338,7 +338,7 @@ export default function EquipmentPageDesktop({
                   }`}
                   title="Lưới 3 cột"
                 >
-                  <Grid3x3 className="h-4 w-4" />
+                  <GridNine className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => onGridColumnsChange?.(4)}
@@ -349,7 +349,7 @@ export default function EquipmentPageDesktop({
                   }`}
                   title="Lưới 4 cột"
                 >
-                  <Grid2x2 className="h-4 w-4" />
+                  <GridFour className="h-4 w-4" />
                 </button>
               </div>
               
@@ -382,7 +382,7 @@ export default function EquipmentPageDesktop({
                   }`}
                   title="Sắp xếp A-Z"
                 >
-                  <ArrowDownAZ className="h-4 w-4" />
+                  <SortAscending className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => onSortChange('za')}
@@ -393,7 +393,7 @@ export default function EquipmentPageDesktop({
                   }`}
                   title="Sắp xếp Z-A"
                 >
-                  <ArrowUpAZ className="h-4 w-4" />
+                  <SortDescending className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => onSortChange('price-asc')}

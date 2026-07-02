@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Car, Zap, Leaf, Clock, Shield, TrendingDown } from 'lucide-react';
+import { CheckCircle, Phone, Car, Lightning, Leaf, Clock, Shield, TrendDown } from '@phosphor-icons/react';
 
 export default function KetHopSacXeLandingPage() {
   return (
@@ -51,7 +51,7 @@ export default function KetHopSacXeLandingPage() {
           <p className="text-center text-slate-600 mb-12">Xe điện + Điện mặt trời = Giải pháp di chuyển xanh &amp; tiết kiệm nhất</p>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { icon: TrendingDown, title: 'Giảm 70% Chi Phí Sạc', desc: 'Tự sản xuất điện từ mặt trời, sạc xe miễn phí. Giá sạc chỉ 300-500đ/km thay vì 1.500-2.500đ/km.' },
+              { icon: TrendDown, title: 'Giảm 70% Chi Phí Sạc', desc: 'Tự sản xuất điện từ mặt trời, sạc xe miễn phí. Giá sạc chỉ 300-500đ/km thay vì 1.500-2.500đ/km.' },
               { icon: Leaf, title: 'Không Phát Thải', desc: 'Xe chạy hoàn toàn bằng năng lượng sạch. Không CO₂, không khói bụi. Góp phần bảo vệ môi trường.' },
               { icon: Clock, title: 'Sạc Tiện Lợi', desc: 'Sạc qua đêm tại nhà, sáng đầy pin. Không cần ra trạm sạc công cộng. Kết hợp solar tự động.' },
               { icon: Shield, title: 'Hoàn Vốn Nhanh', desc: 'Hệ solar + trạm sạc hoàn vốn 3-5 năm. Sau đó tiết kiệm 20+ năm. Tăng giá trị bất động sản.' },

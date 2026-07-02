@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import {
   Phone,
-  Mail,
+  Envelope,
   MapPin,
   Clock,
-  Send,
+  PaperPlaneRight,
   CheckCircle,
-  ChevronDown,
-  MessageCircle,
+  CaretDown,
+  ChatCircle,
   Headphones,
   ArrowRight,
   Sun,
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 /* ─── Contact Info Cards ─── */
@@ -28,7 +28,7 @@ const contactCards = [
     gradient: 'from-emerald-600 to-emerald-500',
   },
   {
-    icon: <Mail className="h-6 w-6" aria-hidden="true" />,
+    icon: <Envelope className="h-6 w-6" aria-hidden="true" />,
     title: 'Email',
     details: [
       { label: 'Email', value: 'epcvinasolar@gmail.com', href: 'mailto:epcvinasolar@gmail.com', note: '' },
@@ -127,7 +127,7 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl border border-white/20 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
             >
-              <MessageCircle className="h-4 w-4" aria-hidden="true" />
+              <ChatCircle className="h-4 w-4" aria-hidden="true" />
               Chat Zalo
             </a>
           </div>
@@ -207,7 +207,7 @@ export default function ContactPage() {
             <div className="lg:col-span-3">
               <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm">
                 <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
-                  <Send className="h-4 w-4" aria-hidden="true" />
+                  <PaperPlaneRight className="h-4 w-4" aria-hidden="true" />
                   Gửi yêu cầu tư vấn
                 </div>
                 <h2 id="consultation-heading" className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
@@ -309,7 +309,7 @@ export default function ContactPage() {
                           <option value="tramsac">Trạm sạc xe điện EPCVINA</option>
                           <option value="khac">Khác</option>
                         </select>
-                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" aria-hidden="true" />
+                        <CaretDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" aria-hidden="true" />
                       </div>
                     </div>
 
@@ -334,7 +334,7 @@ export default function ContactPage() {
                       type="submit"
                       className="cursor-pointer w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-semibold rounded-xl transition-all duration-200 ease-in-out shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                     >
-                      <Send className="h-4 w-4" aria-hidden="true" />
+                      <PaperPlaneRight className="h-4 w-4" aria-hidden="true" />
                       Gửi yêu cầu tư vấn
                     </button>
                   </form>
@@ -357,7 +357,7 @@ export default function ContactPage() {
                     { icon: <Headphones className="h-5 w-5" aria-hidden="true" />, text: 'Tư vấn miễn phí — Khảo sát tận nơi' },
                     { icon: <Clock className="h-5 w-5" aria-hidden="true" />, text: 'Báo giá chi tiết trong 24 giờ' },
                     { icon: <MapPin className="h-5 w-5" aria-hidden="true" />, text: 'Đội kỹ sư riêng cho từng dự án' },
-                    { icon: <MessageCircle className="h-5 w-5" aria-hidden="true" />, text: 'Hỗ trợ bảo hành trọn đời 30 năm' },
+                    { icon: <ChatCircle className="h-5 w-5" aria-hidden="true" />, text: 'Hỗ trợ bảo hành trọn đời 30 năm' },
                   ].map((item) => (
                     <li key={item.text} className="flex items-start gap-3">
                       <span className="text-emerald-400 flex-shrink-0 mt-0.5">{item.icon}</span>
@@ -390,7 +390,7 @@ export default function ContactPage() {
                     className="cursor-pointer flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-emerald-200 hover:shadow-md transition-shadow duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                   >
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <MessageCircle className="h-5 w-5 text-blue-600" aria-hidden="true" />
+                      <ChatCircle className="h-5 w-5 text-blue-600" aria-hidden="true" />
                     </div>
                     <div>
                       <div className="text-xs text-gray-500">Zalo</div>
@@ -402,7 +402,7 @@ export default function ContactPage() {
                     className="cursor-pointer flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-emerald-200 hover:shadow-md transition-shadow duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                   >
                     <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-5 w-5 text-amber-600" aria-hidden="true" />
+                      <Envelope className="h-5 w-5 text-amber-600" aria-hidden="true" />
                     </div>
                     <div>
                       <div className="text-xs text-gray-500">Email</div>
@@ -479,7 +479,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base border border-white/20 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                 >
-                  <MessageCircle className="h-5 w-5" aria-hidden="true" />
+                  <ChatCircle className="h-5 w-5" aria-hidden="true" />
                   Chat Zalo
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </a>

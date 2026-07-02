@@ -1,36 +1,36 @@
 import {
   Monitor,
-  Droplets,
+  Drop,
   Wrench,
-  ShieldAlert,
-  BarChart3,
-  AlertTriangle,
-  TrendingUp,
+  ShieldWarning,
+  ChartBar,
+  Warning,
+  TrendUp,
   Clock,
   Phone,
-  CheckCircle2,
+  CheckCircle,
   ArrowRight,
-  Activity,
-  Zap,
+  Pulse,
+  Lightning,
   Sun,
   Gauge,
   Headphones,
   Shield,
-  Award,
+  Medal,
   Eye,
   ThumbsUp,
-  FileCheck,
-  ClipboardCheck,
-  Cog,
+  File,
+  ClipboardText,
+  Gear,
   Radio,
-  Sparkles,
-} from 'lucide-react';
+  Sparkle,
+} from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 /* ─── Stats ─── */
 const stats = [
-  { icon: <TrendingUp className="h-6 w-6" aria-hidden="true" />, value: '15–20%', label: 'Tăng sản lượng với O&M', gradient: 'from-emerald-600 to-emerald-500' },
-  { icon: <Activity className="h-6 w-6" aria-hidden="true" />, value: '80%', label: 'Giảm thời gian dừng hệ thống', gradient: 'from-green-600 to-green-500' },
+  { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, value: '15–20%', label: 'Tăng sản lượng với O&M', gradient: 'from-emerald-600 to-emerald-500' },
+  { icon: <Pulse className="h-6 w-6" aria-hidden="true" />, value: '80%', label: 'Giảm thời gian dừng hệ thống', gradient: 'from-green-600 to-green-500' },
   { icon: <Gauge className="h-6 w-6" aria-hidden="true" />, value: '60%', label: 'Giảm chi phí sửa chữa', gradient: 'from-teal-600 to-teal-500' },
   { icon: <Headphones className="h-6 w-6" aria-hidden="true" />, value: '24/7', label: 'Giám sát & hỗ trợ', gradient: 'from-cyan-600 to-cyan-500' },
 ];
@@ -38,7 +38,7 @@ const stats = [
 /* ─── Why O&M ─── */
 const whyOMItems = [
   {
-    icon: <AlertTriangle className="h-6 w-6" aria-hidden="true" />,
+    icon: <Warning className="h-6 w-6" aria-hidden="true" />,
     value: '36%',
     label: 'Sản lượng giảm nếu không vệ sinh tấm pin',
     color: 'text-red-500',
@@ -56,7 +56,7 @@ const whyOMItems = [
     alt: 'Kiểm tra bảo dưỡng inverter điện mặt trời',
   },
   {
-    icon: <Zap className="h-6 w-6" aria-hidden="true" />,
+    icon: <Lightning className="h-6 w-6" aria-hidden="true" />,
     value: '500K–2 triệu/năm',
     label: 'O&M định kỳ vs 10–50 triệu/lần sửa chữa khẩn cấp',
     color: 'text-emerald-500',
@@ -65,7 +65,7 @@ const whyOMItems = [
     alt: 'Kỹ thuật viên bảo trì hệ thống điện mặt trời',
   },
   {
-    icon: <TrendingUp className="h-6 w-6" aria-hidden="true" />,
+    icon: <TrendUp className="h-6 w-6" aria-hidden="true" />,
     value: '15–20%',
     label: 'Trung bình tăng sản lượng khi có O&M chuyên nghiệp',
     color: 'text-teal-500',
@@ -93,7 +93,7 @@ const services = [
     tagColor: 'bg-emerald-100 text-emerald-700',
   },
   {
-    icon: <Droplets className="h-6 w-6" aria-hidden="true" />,
+    icon: <Drop className="h-6 w-6" aria-hidden="true" />,
     title: 'Vệ Sinh Tấm Pin',
     subtitle: 'Panel Cleaning',
     items: [
@@ -124,7 +124,7 @@ const services = [
     tagColor: 'bg-amber-100 text-amber-700',
   },
   {
-    icon: <ShieldAlert className="h-6 w-6" aria-hidden="true" />,
+    icon: <ShieldWarning className="h-6 w-6" aria-hidden="true" />,
     title: 'Sửa Chữa & Phòng Ngừa',
     subtitle: 'Corrective Maintenance',
     items: [
@@ -138,7 +138,7 @@ const services = [
     tagColor: 'bg-red-100 text-red-700',
   },
   {
-    icon: <BarChart3 className="h-6 w-6" aria-hidden="true" />,
+    icon: <ChartBar className="h-6 w-6" aria-hidden="true" />,
     title: 'Phân Tích & Tối Ưu',
     subtitle: 'Performance Analytics',
     items: [
@@ -213,10 +213,10 @@ const packages = [
 /* ─── Commitments ─── */
 const commitments = [
   { icon: <Gauge className="h-6 w-6" aria-hidden="true" />, label: 'PR ≥ 80%', desc: 'Performance Ratio đạt chuẩn quốc tế', gradient: 'from-emerald-600 to-emerald-500' },
-  { icon: <TrendingUp className="h-6 w-6" aria-hidden="true" />, label: 'Giảm ≤ 0.5%/năm', desc: 'Sản lượng giảm không quá 0.5% mỗi năm', gradient: 'from-green-600 to-green-500' },
+  { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, label: 'Giảm ≤ 0.5%/năm', desc: 'Sản lượng giảm không quá 0.5% mỗi năm', gradient: 'from-green-600 to-green-500' },
   { icon: <Clock className="h-6 w-6" aria-hidden="true" />, label: '< 24 giờ', desc: 'Sửa chữa khẩn cấp trong vòng 24 giờ', gradient: 'from-teal-600 to-teal-500' },
   { icon: <Shield className="h-6 w-6" aria-hidden="true" />, label: '30 năm', desc: 'Bảo hành tấm pin', gradient: 'from-cyan-600 to-cyan-500' },
-  { icon: <Award className="h-6 w-6" aria-hidden="true" />, label: '5–10 năm', desc: 'Bảo hành inverter', gradient: 'from-amber-600 to-amber-500' },
+  { icon: <Medal className="h-6 w-6" aria-hidden="true" />, label: '5–10 năm', desc: 'Bảo hành inverter', gradient: 'from-amber-600 to-amber-500' },
 ];
 
 /* ─── Process Steps ─── */
@@ -224,10 +224,10 @@ const processSteps = [
   { step: 1, title: 'Phát Hiện Sự Cố', desc: 'Hệ thống cảnh báo tự động hoặc khách hàng phát hiện', icon: <Radio className="h-6 w-6" aria-hidden="true" /> },
   { step: 2, title: 'Liên Hệ EPCVINA', desc: 'Hotline, Email hoặc Chat — tiếp nhận ngay lập tức', icon: <Phone className="h-6 w-6" aria-hidden="true" /> },
   { step: 3, title: 'Kiểm Tra Từ Xa', desc: 'Đội kỹ sư phân tích dữ liệu monitoring', icon: <Eye className="h-6 w-6" aria-hidden="true" /> },
-  { step: 4, title: 'Phân Loại & Đánh Giá', desc: 'Xác định mức độ nghiêm trọng, phương án xử lý', icon: <ClipboardCheck className="h-6 w-6" aria-hidden="true" /> },
+  { step: 4, title: 'Phân Loại & Đánh Giá', desc: 'Xác định mức độ nghiêm trọng, phương án xử lý', icon: <ClipboardText className="h-6 w-6" aria-hidden="true" /> },
   { step: 5, title: 'Xử Lý Sự Cố', desc: 'Hướng dẫn remote hoặc cử kỹ thuật viên on-site', icon: <Wrench className="h-6 w-6" aria-hidden="true" /> },
-  { step: 6, title: 'Báo Cáo Hoàn Thành', desc: 'Xác nhận khắc phục, báo cáo chi tiết', icon: <FileCheck className="h-6 w-6" aria-hidden="true" /> },
-  { step: 7, title: 'Theo Dõi Liên Tục', desc: 'Giám sát hiệu suất, phòng ngừa tái phát', icon: <Cog className="h-6 w-6" aria-hidden="true" /> },
+  { step: 6, title: 'Báo Cáo Hoàn Thành', desc: 'Xác nhận khắc phục, báo cáo chi tiết', icon: <File className="h-6 w-6" aria-hidden="true" /> },
+  { step: 7, title: 'Theo Dõi Liên Tục', desc: 'Giám sát hiệu suất, phòng ngừa tái phát', icon: <Gear className="h-6 w-6" aria-hidden="true" /> },
 ];
 
 export default function BaoTriPage() {
@@ -311,7 +311,7 @@ export default function BaoTriPage() {
             </div>
             <div className="mt-8 text-center">
               <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-full px-5 py-2.5 text-base text-emerald-300 font-medium">
-                <Sparkles className="h-4 w-4" aria-hidden="true" />
+                <Sparkle className="h-4 w-4" aria-hidden="true" />
                 Đảm bảo hiệu suất — tối đa hóa lợi nhuận đầu tư
               </div>
             </div>
@@ -323,7 +323,7 @@ export default function BaoTriPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
-                <AlertTriangle className="h-4 w-4" aria-hidden="true" />
+                <Warning className="h-4 w-4" aria-hidden="true" />
                 Tại sao cần O&M
               </div>
               <h2 id="why-om-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -367,7 +367,7 @@ export default function BaoTriPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
-                <Cog className="h-4 w-4" aria-hidden="true" />
+                <Gear className="h-4 w-4" aria-hidden="true" />
                 Dịch vụ toàn diện
               </div>
               <h2 id="services-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
@@ -410,7 +410,7 @@ export default function BaoTriPage() {
                     <ul className="space-y-2.5">
                       {svc.items.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-sm text-gray-600">
-                          <CheckCircle2 className="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
+                          <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" aria-hidden="true" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -582,7 +582,7 @@ export default function BaoTriPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
-                <Cog className="h-4 w-4" aria-hidden="true" />
+                <Gear className="h-4 w-4" aria-hidden="true" />
                 Quy trình xử lý
               </div>
               <h2 id="process-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">

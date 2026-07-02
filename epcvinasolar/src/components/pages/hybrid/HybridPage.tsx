@@ -1,7 +1,7 @@
 
 
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Zap, TrendingUp, X, Battery, Layers, Plug, Cable, Shield, Wrench, ChevronRight, Sun, SlidersHorizontal, Settings, Plus, Minus, Check, Sparkles, ArrowLeft } from 'lucide-react';
+import { Lightning, TrendUp, X, BatteryHigh, Stack, Plug, CableCar, Shield, Wrench, CaretRight, Sun, SlidersHorizontal, Gear, Plus, Minus, Check, Sparkle, ArrowLeft } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
@@ -29,7 +29,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
 }> = {
   panel: {
     label: 'Tấm quang năng',
-    icon: <Zap className="h-5 w-5" />,
+    icon: <Lightning className="h-5 w-5" />,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
@@ -37,7 +37,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   inverter: {
     label: 'Biến tần (Inverter)',
-    icon: <TrendingUp className="h-5 w-5" />,
+    icon: <TrendUp className="h-5 w-5" />,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
@@ -45,7 +45,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   battery: {
     label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5" />,
+    icon: <BatteryHigh className="h-5 w-5" />,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
@@ -53,7 +53,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   mounting: {
     label: 'Hệ khung nhôm',
-    icon: <Layers className="h-5 w-5" />,
+    icon: <Stack className="h-5 w-5" />,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
@@ -61,7 +61,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   wiring: {
     label: 'Hệ dây điện',
-    icon: <Cable className="h-5 w-5" />,
+    icon: <CableCar className="h-5 w-5" />,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
     accent: 'bg-gray-500',
@@ -770,7 +770,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                     : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                <Sparkles className="h-4 w-4" />
+                <Sparkle className="h-4 w-4" />
                 Tự thiết kế
               </button>
             </div>
@@ -796,7 +796,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
           </div>
         </div>
 
-        {/* Search and Filter Row */}
+        {/* MagnifyingGlass and Filter Row */}
         <div className="bg-white border-b border-gray-200 px-4 py-3">
           <div className="flex gap-3">
             <div className="flex-1 relative">
@@ -879,7 +879,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center text-orange-600">
-                                <Battery className="h-6 w-6" />
+                                <BatteryHigh className="h-6 w-6" />
                               </div>
                             )}
                           </div>
@@ -905,7 +905,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                           </div>
 
                           {/* Chevron */}
-                          <ChevronRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
+                          <CaretRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
                         </button>
                       );
                     })}
@@ -919,7 +919,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
           {hybridCombos.length === 0 && (
             <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
               <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-green-50 flex items-center justify-center">
-                <Battery className="h-8 w-8 text-green-600" />
+                <BatteryHigh className="h-8 w-8 text-green-600" />
               </div>
               <p className="text-gray-500">Không tìm thấy combo hybrid phù hợp</p>
             </div>
@@ -971,7 +971,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                             <p className="text-sm text-gray-500">{template.description}</p>
                           </div>
                           <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white">
-                            <Sparkles className="h-6 w-6" />
+                            <Sparkle className="h-6 w-6" />
                           </div>
                         </div>
                         
@@ -1023,7 +1023,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
           {!loadingTemplates && hybridTemplates.length === 0 && (
             <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
               <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-green-50 flex items-center justify-center">
-                <Settings className="h-8 w-8 text-green-600" />
+                <Gear className="h-8 w-8 text-green-600" />
               </div>
               <p className="text-gray-500">Không có mẫu hybrid nào</p>
             </div>
@@ -1040,7 +1040,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
           />
           <div className="fixed inset-x-6 top-1/2 -translate-y-1/2 z-50 bg-white rounded-3xl shadow-2xl p-6 flex flex-col items-center gap-4 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2 lg:w-[360px]">
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#F97316] to-[#C2410C] flex items-center justify-center">
-              <Sparkles className="h-7 w-7 text-white" />
+              <Sparkle className="h-7 w-7 text-white" />
             </div>
             <div className="text-center">
               <h3 className="text-lg font-bold text-gray-900 mb-1">Yêu cầu đăng nhập</h3>
@@ -1074,7 +1074,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
             <div className="flex-shrink-0 flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-xl ${selectedCombo.systemType === 'hybrid' ? 'bg-orange-50 text-orange-600' : 'bg-orange-50 text-orange-600'} flex items-center justify-center`}>
-                  {selectedCombo.systemType === 'hybrid' ? <Battery className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
+                  {selectedCombo.systemType === 'hybrid' ? <BatteryHigh className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">{selectedCombo.name}</p>
@@ -1236,7 +1236,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                   <p className="text-sm font-semibold text-gray-900">{device.brand}</p>
                                   <p className="text-xs text-gray-500 truncate">{device.model}</p>
                                 </div>
-                                <ChevronRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                                <CaretRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
                               </button>
 
                               {/* Right: Quantity display (fixed) */}
@@ -1313,7 +1313,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                         <p className="text-xs text-[#F97316]">Chi tiết</p>
                                       )}
                                     </div>
-                                    <ChevronRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                                    <CaretRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
                                   </div>
                                 </button>
                               ))}
@@ -1608,7 +1608,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
       {mode === 'combos' && hybridCombos.length === 0 && (
         <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
           <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-green-50 flex items-center justify-center">
-            <Battery className="h-8 w-8 text-green-600" />
+            <BatteryHigh className="h-8 w-8 text-green-600" />
           </div>
           <p className="text-gray-500">Không tìm thấy combo hybrid phù hợp</p>
         </div>
@@ -1668,7 +1668,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                     {selectableItems.length > 0 && (
                       <div className="p-4 border-b border-gray-100">
                         <h3 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide flex items-center gap-2">
-                          <Settings className="h-4 w-4" />
+                          <Gear className="h-4 w-4" />
                           Thiết bị chính
                         </h3>
                         <div className="space-y-3">
@@ -1682,7 +1682,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                               <div key={item.id} className="bg-gray-50 rounded-xl p-4">
                                 <div className="flex items-center gap-3 mb-3">
                                   <div className={`w-10 h-10 rounded-xl ${meta?.bg || 'bg-gray-100'} flex items-center justify-center ${meta?.color || 'text-gray-600'}`}>
-                                    {meta?.icon || <Settings className="h-5 w-5" />}
+                                    {meta?.icon || <Gear className="h-5 w-5" />}
                                   </div>
                                   <div className="flex-1">
                                     <p className="text-sm font-semibold text-gray-900">
@@ -1713,7 +1713,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                         className="w-full h-full object-cover"
                                       />
                                     ) : (
-                                      meta?.icon || <Settings className="h-6 w-6" />
+                                      meta?.icon || <Gear className="h-6 w-6" />
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0">
@@ -1729,7 +1729,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                       </p>
                                     )}
                                   </div>
-                                  <ChevronRight className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                                  <CaretRight className="h-5 w-5 text-gray-400 flex-shrink-0" />
                                 </button>
                                 
                                 {/* Quantity Adjuster */}
@@ -1852,7 +1852,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                 className="w-full h-full object-cover rounded-xl"
                               />
                             ) : (
-                              meta?.icon || <Settings className="h-5 w-5" />
+                              meta?.icon || <Gear className="h-5 w-5" />
                             )}
                           </div>
                           {/* Info */}
@@ -2041,7 +2041,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                             />
                           ) : (
                             <div className={`w-full h-full flex items-center justify-center ${meta?.color || 'text-gray-600'}`}>
-                              {meta?.icon || <Settings className="h-6 w-6" />}
+                              {meta?.icon || <Gear className="h-6 w-6" />}
                             </div>
                           )}
                         </div>
@@ -2214,7 +2214,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                               />
                             ) : (
                               <div className={`w-full h-full flex items-center justify-center ${meta?.color || 'text-gray-600'}`}>
-                                {meta?.icon || <Settings className="h-6 w-6" />}
+                                {meta?.icon || <Gear className="h-6 w-6" />}
                               </div>
                             )}
                           </div>
@@ -2288,7 +2288,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                 <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">Loại hệ thống</h3>
                 <div className="p-4 bg-green-50 rounded-xl border border-green-100">
                   <div className="flex items-start gap-3">
-                    <Battery className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <BatteryHigh className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className="text-sm font-medium text-green-900">Combo Hybrid</p>
                       <p className="text-xs text-green-700 mt-1">Hệ thống lưu trữ với pin dự phòng, cung cấp điện liên tục cả khi mất lưới</p>

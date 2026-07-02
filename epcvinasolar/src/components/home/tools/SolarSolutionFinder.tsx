@@ -429,7 +429,7 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
         />
       )}
 
-      {/* Step 3: Battery voltage — only for Hybrid 3-phase */}
+      {/* Step 3: BatteryHigh voltage — only for Hybrid 3-phase */}
       {kind === 'hybrid' && phase === '3' && (
         <ToggleRow
           label="Áp pin lưu trữ"

@@ -1,5 +1,5 @@
 import {
-  Building2,
+  Building,
   Calendar,
   User,
   FileText,
@@ -7,16 +7,16 @@ import {
   Wrench,
   Wind,
   Flame,
-  Droplets,
-  Zap,
+  Drop,
+  Lightning,
   Sun,
-  ClipboardCheck,
+  ClipboardText,
   Cpu,
   ShieldCheck,
-  Award,
-  BadgeCheck,
+  Medal,
+  SealCheck,
   HardHat,
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 const stats = [
@@ -30,23 +30,23 @@ const mepServices = [
   { icon: <Wind className="h-6 w-6" />, label: 'Hệ thống HVAC', desc: 'Điều hòa thông gió công nghiệp' },
   { icon: <Wrench className="h-6 w-6" />, label: 'Utility Piping', desc: 'Hệ thống ống kỹ thuật' },
   { icon: <Flame className="h-6 w-6" />, label: 'PCCC', desc: 'Phòng cháy chữa cháy' },
-  { icon: <Droplets className="h-6 w-6" />, label: 'Cấp thoát nước', desc: 'Hệ thống nước sinh hoạt & công nghiệp' },
-  { icon: <Zap className="h-6 w-6" />, label: 'Hệ thống điện', desc: 'Trung thế & hạ thế, tủ điện MSB' },
+  { icon: <Drop className="h-6 w-6" />, label: 'Cấp thoát nước', desc: 'Hệ thống nước sinh hoạt & công nghiệp' },
+  { icon: <Lightning className="h-6 w-6" />, label: 'Hệ thống điện', desc: 'Trung thế & hạ thế, tủ điện MSB' },
 ];
 
 const solarServices = [
-  { icon: <ClipboardCheck className="h-6 w-6" />, label: 'Khảo sát & đánh giá', desc: 'Đánh giá hiện trạng công trình' },
-  { icon: <Building2 className="h-6 w-6" />, label: 'Thiết kế & thi công', desc: 'Bản vẽ thi công & lắp đặt' },
+  { icon: <ClipboardText className="h-6 w-6" />, label: 'Khảo sát & đánh giá', desc: 'Đánh giá hiện trạng công trình' },
+  { icon: <Building className="h-6 w-6" />, label: 'Thiết kế & thi công', desc: 'Bản vẽ thi công & lắp đặt' },
   { icon: <Sun className="h-6 w-6" />, label: 'Lắp tấm pin', desc: 'Panel quang năng chính hãng' },
   { icon: <Cpu className="h-6 w-6" />, label: 'Inverter & MSB', desc: 'Tích hợp biến tần & tủ điện' },
   { icon: <ShieldCheck className="h-6 w-6" />, label: 'Hệ thống giám sát', desc: 'Theo dõi hiệu suất real-time' },
 ];
 
 const certifications = [
-  { icon: <Award className="h-8 w-8" />, title: 'ISO 9001:2015', desc: 'Hệ thống quản lý chất lượng' },
+  { icon: <Medal className="h-8 w-8" />, title: 'ISO 9001:2015', desc: 'Hệ thống quản lý chất lượng' },
   { icon: <HardHat className="h-8 w-8" />, title: 'Năng lực xây dựng Hạng II', desc: 'Chứng nhận năng lực hoạt động xây dựng' },
   { icon: <Flame className="h-8 w-8" />, title: 'Dịch vụ PCCC', desc: 'Chứng nhận đủ điều kiện PCCC' },
-  { icon: <BadgeCheck className="h-8 w-8" />, title: 'An toàn lao động', desc: 'Quản lý an toàn vệ sinh lao động' },
+  { icon: <SealCheck className="h-8 w-8" />, title: 'An toàn lao động', desc: 'Quản lý an toàn vệ sinh lao động' },
 ];
 
 const suppliers = [
@@ -185,7 +185,7 @@ export default function AboutPage() {
               <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-500 rounded-xl flex items-center justify-center text-white">
-                    <Building2 className="h-6 w-6" />
+                    <Building className="h-6 w-6" />
                   </div>
                   <div>
                     <h3 className="text-lg font-bold text-gray-900">Hệ thống MEP</h3>

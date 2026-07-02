@@ -1,5 +1,5 @@
 import { useCart } from '../../../hooks/useCart';
-import { X, Minus, Plus, ShoppingBag, Trash2, Phone, MessageCircle } from 'lucide-react';
+import { X, Minus, Plus, ShoppingBag, Trash, Phone, ChatCircle } from '@phosphor-icons/react';
 
 // Format currency helper
 function formatCurrency(value: number): string {
@@ -104,7 +104,7 @@ export default function CartSidebar() {
                         className="ml-auto p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
                         aria-label="Xóa sản phẩm"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export default function CartSidebar() {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full py-3 bg-blue-500 text-white rounded-xl font-semibold hover:bg-blue-600 transition-colors text-sm"
               >
-                <MessageCircle className="w-4 h-4" />
+                <ChatCircle className="w-4 h-4" />
                 Đặt hàng qua Zalo
               </a>
               <a

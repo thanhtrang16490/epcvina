@@ -1,4 +1,4 @@
-import { Eye } from 'lucide-react';
+import { Eye } from '@phosphor-icons/react';
 import Image from '../ui/Image';
 
 const DEFAULT_COMBO_IMAGE = '/sample-combo.jpg';

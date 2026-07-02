@@ -1,4 +1,4 @@
-import { Sun, Zap, Home, BarChart3, Calendar, Phone, Battery } from 'lucide-react';
+import { Sun, Lightning, House, ChartBar, Calendar, Phone, BatteryHigh } from '@phosphor-icons/react';
 
 /* ─── On-Grid Combo Components ──────────────────────────── */
 
@@ -36,10 +36,10 @@ export function OnGridComboCard({ combo }: { combo: OnGridCombo }) {
 
   const specs = [
     { icon: <Sun className="w-3.5 h-3.5 text-amber-500" />, label: `Tấm ${combo.panel_brand}`, value: `${panelCount} tấm · ${combo.power} kWp` },
-    { icon: <Zap className="w-3.5 h-3.5 text-orange-500" />, label: `Biến tần ${combo.inverter_brand}`, value: `${combo.power} kW` },
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-emerald-600" />, label: 'Sản lượng/tháng', value: `${combo.productionMin}–${combo.productionMax} kWh` },
+    { icon: <Lightning className="w-3.5 h-3.5 text-orange-500" />, label: `Biến tần ${combo.inverter_brand}`, value: `${combo.power} kW` },
+    { icon: <ChartBar className="w-3.5 h-3.5 text-emerald-600" />, label: 'Sản lượng/tháng', value: `${combo.productionMin}–${combo.productionMax} kWh` },
     { icon: <Calendar className="w-3.5 h-3.5 text-emerald-600" />, label: 'Hoàn vốn', value: combo.paybackStr },
-    { icon: <Home className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${Math.ceil(combo.power * 4.32)} m²` },
+    { icon: <House className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${Math.ceil(combo.power * 4.32)} m²` },
   ];
 
   return (
@@ -131,7 +131,7 @@ export function OnGridComboGrid() {
       {phase3.length > 0 && (
         <div>
           <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5 text-orange-500" aria-hidden="true" />
+            <Lightning className="h-5 w-5 text-orange-500" aria-hidden="true" />
             On-Grid 3 Pha — Doanh nghiệp & Nhà xưởng
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">

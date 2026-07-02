@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { PaperPlaneRight, CheckCircle } from '@phosphor-icons/react';
 
 const NEEDS = [
-  { value: 'solar', label: 'Solar Home' },
+  { value: 'solar', label: 'Solar House' },
   { value: 'hybrid', label: 'Hybrid' },
   { value: 'bess', label: 'BESS (Lưu trữ)' },
   { value: 'ev', label: 'EV Charger' },

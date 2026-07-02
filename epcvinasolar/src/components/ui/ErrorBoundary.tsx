@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
-import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
+import { Warning, ArrowsClockwise, House } from '@phosphor-icons/react';
 
 interface Props {
   children: ReactNode;
@@ -49,7 +49,7 @@ export default class ErrorBoundary extends Component<Props, State> {
     // Log error to analytics/service
     console.error(`[ErrorBoundary: ${this.props.name || 'unknown'}]`, error, errorInfo);
     
-    // Optional: Send to error tracking service
+    // Optional: PaperPlaneRight to error tracking service
     // if (typeof window !== 'undefined' && window.gtag) {
     //   window.gtag('event', 'exception', {
     //     description: `${this.props.name}: ${error.message}`,
@@ -79,7 +79,7 @@ export default class ErrorBoundary extends Component<Props, State> {
         <div className="min-h-[200px] flex items-center justify-center p-6 bg-red-50 rounded-xl border border-red-200">
           <div className="max-w-md text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
-              <AlertTriangle className="w-8 h-8 text-red-600" />
+              <Warning className="w-8 h-8 text-red-600" />
             </div>
             
             <h3 className="text-lg font-bold text-gray-900 mb-2">
@@ -110,7 +110,7 @@ export default class ErrorBoundary extends Component<Props, State> {
                 onClick={this.handleReset}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium"
               >
-                <RefreshCw className="w-4 h-4" />
+                <ArrowsClockwise className="w-4 h-4" />
                 Thử lại
               </button>
               
@@ -118,7 +118,7 @@ export default class ErrorBoundary extends Component<Props, State> {
                 onClick={this.handleGoHome}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium"
               >
-                <Home className="w-4 h-4" />
+                <House className="w-4 h-4" />
                 Trang chủ
               </button>
             </div>

@@ -1,4 +1,4 @@
-import { ChevronLeft, Menu } from 'lucide-react';
+import { CaretLeft, List } from '@phosphor-icons/react';
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -31,14 +31,14 @@ export default function Header({ onMenuClick, isHidden }: HeaderProps) {
               onClick={() => navigateTo('/')}
               className={`p-2 -ml-2 ${iconColor}`}
             >
-              <ChevronLeft className="h-6 w-6" />
+              <CaretLeft className="h-6 w-6" />
             </button>
           ) : (
             <button 
               onClick={onMenuClick}
               className={`p-2 -ml-2 ${iconColor}`}
             >
-              <Menu className="h-6 w-6" />
+              <List className="h-6 w-6" />
             </button>
           )}
 

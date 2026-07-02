@@ -1,4 +1,4 @@
-import { Home, Check, ArrowRight, Zap, Shield, Phone, TrendingUp, Clock, DollarSign, Leaf, Sun, Battery, Wifi } from 'lucide-react';
+import { House, Check, ArrowRight, Lightning, Shield, Phone, TrendUp, Clock, CurrencyDollar, Leaf, Sun, BatteryHigh, WifiHigh } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 export default function ResidentialApplicationPage() {
@@ -142,7 +142,7 @@ export default function ResidentialApplicationPage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-white rounded-xl p-6 text-center">
-              <TrendingUp className="h-8 w-8 text-teal-500 mx-auto mb-3" />
+              <TrendUp className="h-8 w-8 text-teal-500 mx-auto mb-3" />
               <div className="text-xl sm:text-2xl font-bold text-teal-600 mb-1">
                 ~15 Triệu
               </div>
@@ -158,7 +158,7 @@ export default function ResidentialApplicationPage() {
               <div className="text-xs text-gray-500 mt-1">Dự kiến tùy vào nhu cầu</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center">
-              <DollarSign className="h-8 w-8 text-green-500 mx-auto mb-3" />
+              <CurrencyDollar className="h-8 w-8 text-green-500 mx-auto mb-3" />
               <div className="text-lg sm:text-xl font-bold text-green-600 mb-1">
                 Gần như = 0
               </div>
@@ -232,7 +232,7 @@ export default function ResidentialApplicationPage() {
             </div>
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-500">
-                <Battery className="h-6 w-6 text-white" />
+                <BatteryHigh className="h-6 w-6 text-white" />
               </div>
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-3">
@@ -263,7 +263,7 @@ export default function ResidentialApplicationPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500">
-                <Wifi className="h-6 w-6 text-white" />
+                <WifiHigh className="h-6 w-6 text-white" />
               </div>
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-3">

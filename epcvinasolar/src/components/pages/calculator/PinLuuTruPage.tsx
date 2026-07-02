@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Battery, ArrowLeft } from 'lucide-react';
+import { BatteryHigh, ArrowLeft } from '@phosphor-icons/react';
 
 export default function PinLuuTruPage() {
   const [monthlyBill, setMonthlyBill] = useState(3);
@@ -12,7 +12,7 @@ export default function PinLuuTruPage() {
     <div className="min-h-screen pt-20 md:pt-20 bg-slate-50">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <a href="/calculator" className="inline-flex items-center gap-2 text-orange-600 mb-6"><ArrowLeft className="w-4 h-4" /> Quay lại</a>
-        <h1 className="text-3xl font-bold mb-8 flex items-center gap-3"><Battery className="text-orange-500" /> Tính Pin Lưu Trữ</h1>
+        <h1 className="text-3xl font-bold mb-8 flex items-center gap-3"><BatteryHigh className="text-orange-500" /> Tính Pin Lưu Trữ</h1>
         <div className="bg-white rounded-xl p-8 shadow-sm mb-8">
           <div className="space-y-6">
             <div>

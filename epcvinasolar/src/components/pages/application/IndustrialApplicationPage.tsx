@@ -1,4 +1,4 @@
-import { Warehouse, Check, ArrowRight, Zap, Shield, Phone, TrendingUp, Clock, DollarSign, BarChart3, Leaf } from 'lucide-react';
+import { Warehouse, Check, ArrowRight, Lightning, Shield, Phone, TrendUp, Clock, CurrencyDollar, ChartBar, Leaf } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 export default function IndustrialApplicationPage() {
@@ -122,14 +122,14 @@ export default function IndustrialApplicationPage() {
               <div className="text-sm text-gray-600">Tuổi thọ hệ thống</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-              <DollarSign className="h-8 w-8 text-amber-500 mx-auto mb-3" />
+              <CurrencyDollar className="h-8 w-8 text-amber-500 mx-auto mb-3" />
               <div className="text-2xl sm:text-3xl font-bold text-amber-600 mb-1">
                 15% - 25%
               </div>
               <div className="text-sm text-gray-600">Tỷ suất sinh lời (IRR)</div>
             </div>
             <div className="bg-white rounded-xl p-6 text-center shadow-sm">
-              <BarChart3 className="h-8 w-8 text-purple-500 mx-auto mb-3" />
+              <ChartBar className="h-8 w-8 text-purple-500 mx-auto mb-3" />
               <div className="text-lg sm:text-xl font-bold text-purple-600 mb-1">
                 Dòng tiền ổn định
               </div>

@@ -1,4 +1,4 @@
-import { Home, ChevronRight } from 'lucide-react';
+import { House, CaretRight } from '@phosphor-icons/react';
 
 interface BreadcrumbItem {
   name: string;
@@ -17,7 +17,7 @@ interface BreadcrumbsProps {
  * - SEO-friendly with Schema.org markup
  * - Accessible navigation
  * - Responsive design
- * - Home icon support
+ * - House icon support
  * - Clickable links for all items except current
  * 
  * Usage:
@@ -54,7 +54,7 @@ export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps)
                 itemType="https://schema.org/ListItem"
               >
                 {index > 0 && (
-                  <ChevronRight className="w-4 h-4 text-gray-400 mx-2 flex-shrink-0" aria-hidden="true" />
+                  <CaretRight className="w-4 h-4 text-gray-400 mx-2 flex-shrink-0" aria-hidden="true" />
                 )}
                 
                 {isLast ? (
@@ -66,7 +66,7 @@ export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps)
                   >
                     {index === 0 ? (
                       <span className="flex items-center gap-1">
-                        <Home className="w-4 h-4" />
+                        <House className="w-4 h-4" />
                         {item.name}
                       </span>
                     ) : (
@@ -83,7 +83,7 @@ export default function Breadcrumbs({ items, className = '' }: BreadcrumbsProps)
                     <span itemProp="name">
                       {index === 0 ? (
                         <span className="flex items-center gap-1">
-                          <Home className="w-4 h-4" />
+                          <House className="w-4 h-4" />
                           {item.name}
                         </span>
                       ) : (

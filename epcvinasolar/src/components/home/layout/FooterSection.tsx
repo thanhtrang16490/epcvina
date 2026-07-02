@@ -99,7 +99,7 @@ export default function FooterSection() {
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Dịch vụ</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar Home</a></li>
+              <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar House</a></li>
               <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Hybrid & BESS</a></li>
               <li><a href="/ung-dung/nha-xuong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar C&I</a></li>
               <li><a href="/ung-dung/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Văn phòng</a></li>

@@ -1,4 +1,4 @@
-import { ArrowLeft, Check, Package, Shield, Zap, TrendingUp, Award, MapPin, Star, Quote, ShoppingCart } from 'lucide-react';
+import { ArrowLeft, Check, Package, Shield, Lightning, TrendUp, Medal, MapPin, Star, Quotes, ShoppingCart } from '@phosphor-icons/react';
 import { useState, useEffect, useMemo } from 'react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import { localBrands } from '../../../data/brands';
@@ -159,7 +159,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-12 rounded-xl bg-orange-500/20 flex items-center justify-center">
-                <Zap className="w-6 h-6 text-orange-400" />
+                <Lightning className="w-6 h-6 text-orange-400" />
               </div>
               <div>
                 <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
@@ -646,7 +646,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                         key={project.id}
                         className="bg-white rounded-2xl border border-gray-200 p-6 relative"
                       >
-                        <Quote className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
+                        <Quotes className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
                         {/* Stars */}
                         <div className="flex items-center gap-1 mb-3">
                           {Array.from({ length: 5 }).map((_, i) => (
@@ -660,7 +660,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                             />
                           ))}
                         </div>
-                        {/* Quote */}
+                        {/* Quotes */}
                         <p className="text-gray-700 text-sm leading-relaxed mb-4 italic">
                           "{project.data.testimonial?.quote}"
                         </p>
@@ -690,7 +690,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                 /* Default reviews when no project testimonials */
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-white rounded-2xl border border-gray-200 p-6 relative">
-                    <Quote className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
+                    <Quotes className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
                     <div className="flex items-center gap-1 mb-3">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
@@ -710,7 +710,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                     </div>
                   </div>
                   <div className="bg-white rounded-2xl border border-gray-200 p-6 relative">
-                    <Quote className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
+                    <Quotes className="absolute top-4 right-4 w-8 h-8 text-gray-100" />
                     <div className="flex items-center gap-1 mb-3">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />

@@ -1,4 +1,4 @@
-import { Home, Building2, Factory, Check, ArrowRight, Zap, AlertTriangle, Wrench, Phone } from 'lucide-react';
+import { House, Building, Factory, Check, ArrowRight, Lightning, Warning, Wrench, Phone } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 type RoofType = 'mai-ton' | 'mai-ngoi' | 'mai-bang';
@@ -8,8 +8,8 @@ interface SolutionPageProps {
 }
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
-  Home,
-  Building2,
+  House,
+  Building,
   Factory,
 };
 
@@ -41,7 +41,7 @@ const solutionData: Record<RoofType, {
   'mai-ngoi': {
     title: 'Lắp điện mặt trời trên Mái ngói',
     subtitle: 'Giải pháp thẩm mỹ cho nhà phố và biệt thự',
-    icon: 'Home',
+    icon: 'House',
     method: 'Sử dụng móc ngói (tile hooks) chuyên dụng luồn dưới viên ngói, kết nối với ray nhôm. Tấm pin gắn lên ray, giữ nguyên lớp ngói bên dưới.',
     advantages: [
       'Giữ nguyên thẩm mỹ mái nhà',
@@ -57,7 +57,7 @@ const solutionData: Record<RoofType, {
   'mai-bang': {
     title: 'Lắp điện mặt trời trên Mái bằng',
     subtitle: 'Tối ưu góc nghiêng, hiệu suất cao nhất',
-    icon: 'Building2',
+    icon: 'Building',
     method: 'Sử dụng khung giá đỡ tam giác (tilt brackets) đặt trên sàn mái, tạo góc nghiêng tối ưu 10-15 độ hướng Nam. Khung được cố định bằng tải trọng bê tông hoặc bắt vít vào sàn.',
     advantages: [
       'Tự do chọn góc nghiêng tối ưu cho hiệu suất cao nhất',
@@ -76,7 +76,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
   const data = solutionData[roofType];
   if (!data) return null;
 
-  const IconComponent = ICON_MAP[data.icon] || Home;
+  const IconComponent = ICON_MAP[data.icon] || House;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -133,7 +133,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-10">
           <div className="flex items-center gap-3 mb-8">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500">
-              <Zap className="h-5 w-5 text-white" />
+              <Lightning className="h-5 w-5 text-white" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               Ưu điểm
@@ -164,7 +164,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
         <div className="bg-gray-100 rounded-2xl border border-gray-200 p-8 sm:p-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gray-300">
-              <Zap className="h-5 w-5 text-gray-700" />
+              <Lightning className="h-5 w-5 text-gray-700" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
               Hệ thống phù hợp
@@ -181,7 +181,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
         <div className="bg-amber-50 rounded-2xl border border-amber-200 p-8 sm:p-10">
           <div className="flex items-center gap-3 mb-6">
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-amber-400">
-              <AlertTriangle className="h-5 w-5 text-amber-900" />
+              <Warning className="h-5 w-5 text-amber-900" />
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-amber-900">
               Lưu ý quan trọng

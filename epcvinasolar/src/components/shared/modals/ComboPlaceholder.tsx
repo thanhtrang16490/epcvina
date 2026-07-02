@@ -1,6 +1,6 @@
 
 
-import { Sun, Battery, Zap } from 'lucide-react';
+import { Sun, BatteryHigh, Lightning } from '@phosphor-icons/react';
 
 interface ComboPlaceholderProps {
   systemName: string;
@@ -101,7 +101,7 @@ export default function ComboPlaceholder({
             </div>
           </div>
           
-          {/* Battery (if hybrid) */}
+          {/* BatteryHigh (if hybrid) */}
           {hasBattery && (
             <div 
               className="absolute bottom-4 right-4 w-16 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
@@ -110,7 +110,7 @@ export default function ComboPlaceholder({
                 zIndex: 25,
               }}
             >
-              <Battery className="absolute inset-0 m-auto h-8 w-8 text-white" />
+              <BatteryHigh className="absolute inset-0 m-auto h-8 w-8 text-white" />
             </div>
           )}
         </div>
@@ -149,7 +149,7 @@ export default function ComboPlaceholder({
               </div>
             </div>
             
-            {/* Battery Info (if hybrid) */}
+            {/* BatteryHigh Info (if hybrid) */}
             {hasBattery && (
               <div className="flex items-center gap-1.5 pt-3 border-t border-gray-200">
                 <span className="text-3xl font-extrabold text-green-600 leading-none w-12 text-right">

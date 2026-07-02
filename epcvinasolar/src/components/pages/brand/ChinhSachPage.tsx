@@ -1,4 +1,4 @@
-import { FileText, Shield, CheckCircle, Phone, Users, Heart, Scale, Clock } from 'lucide-react';
+import { FileText, Shield, CheckCircle, Phone, Users, Heart, Scales, Clock } from '@phosphor-icons/react';
 
 const policies = [
   {
@@ -15,7 +15,7 @@ const policies = [
   },
   {
     title: 'Chính Sách Thanh Toán',
-    icon: Scale,
+    icon: Scales,
     color: 'bg-emerald-100 text-emerald-700',
     href: '/chinh-sach-thanh-toan',
     content: [
@@ -140,7 +140,7 @@ export default function ChinhSachPage() {
               <p className="font-semibold text-slate-900">Chính Sách Bảo Hành</p>
             </a>
             <a href="/chinh-sach-thanh-toan" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
-              <Scale className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+              <Scales className="w-8 h-8 text-blue-500 mx-auto mb-2" />
               <p className="font-semibold text-slate-900">Chính Sách Thanh Toán</p>
             </a>
             <a href="/chinh-sach-doi-tra" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
@@ -156,7 +156,7 @@ export default function ChinhSachPage() {
               <p className="font-semibold text-slate-900">Quy Trình Thi Công</p>
             </a>
             <a href="/chung-nhan" className="bg-slate-50 rounded-xl p-4 border border-slate-200 hover:shadow-md transition-shadow text-center">
-              <Scale className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+              <Scales className="w-8 h-8 text-purple-500 mx-auto mb-2" />
               <p className="font-semibold text-slate-900">Chứng Nhận</p>
             </a>
           </div>

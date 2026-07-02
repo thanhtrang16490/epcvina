@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Gem } from 'lucide-react';
+import { CheckCircle, Phone, Diamond } from '@phosphor-icons/react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
 
 export default function BietThuLandingPage() {
@@ -9,7 +9,7 @@ export default function BietThuLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <Gem className="w-8 h-8 text-yellow-400" />
+              <Diamond className="w-8 h-8 text-yellow-400" />
               <span className="text-yellow-400 font-semibold">Giải Pháp Cao Cấp Cho Biệt Thự</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -45,7 +45,7 @@ export default function BietThuLandingPage() {
             ].map((item, i) => (
               <div key={i} className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-slate-50">
                 <div className="w-14 h-14 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
-                  <Gem className="w-7 h-7 text-purple-600" />
+                  <Diamond className="w-7 h-7 text-purple-600" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-slate-600">{item.desc}</p>

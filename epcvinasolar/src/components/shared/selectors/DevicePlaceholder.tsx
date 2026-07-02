@@ -1,7 +1,7 @@
 
 
 import Image from '../../ui/Image';
-import { Sun, Zap, Battery, Gauge, Shield, TrendingUp } from 'lucide-react';
+import { Sun, Lightning, BatteryHigh, Gauge, Shield, TrendUp } from '@phosphor-icons/react';
 import type { Device } from '../../lib/types';
 
 interface DevicePlaceholderProps {
@@ -15,9 +15,9 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
       case 'panel':
         return { icon: Sun, bg: 'bg-amber-100', color: 'text-amber-600' };
       case 'inverter':
-        return { icon: Zap, bg: 'bg-blue-100', color: 'text-blue-600' };
+        return { icon: Lightning, bg: 'bg-blue-100', color: 'text-blue-600' };
       case 'battery':
-        return { icon: Battery, bg: 'bg-green-100', color: 'text-green-600' };
+        return { icon: BatteryHigh, bg: 'bg-green-100', color: 'text-green-600' };
       case 'mounting':
         return { icon: Shield, bg: 'bg-red-100', color: 'text-red-600' };
       case 'wiring':
@@ -25,7 +25,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
       case 'cabinet':
         return { icon: Shield, bg: 'bg-purple-100', color: 'text-purple-600' };
       case 'grounding':
-        return { icon: Zap, bg: 'bg-teal-100', color: 'text-teal-600' };
+        return { icon: Lightning, bg: 'bg-teal-100', color: 'text-teal-600' };
       default:
         return { icon: Sun, bg: 'bg-gray-100', color: 'text-gray-600' };
     }
@@ -95,7 +95,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
         });
       }
     } else if (device.category === 'battery') {
-      // Battery specs
+      // BatteryHigh specs
       if (device.specs['Dung lượng']) {
         specs.push({
           label: 'Dung lượng',
@@ -162,7 +162,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
               
               {/* Decorative elements */}
               <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center">
-                <TrendingUp className={`h-4 w-4 ${color}`} />
+                <TrendUp className={`h-4 w-4 ${color}`} />
               </div>
               
               {/* Bottom accent */}

@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Battery, Zap, Shield, Clock, Sun, Home } from 'lucide-react';
+import { CheckCircle, Phone, BatteryHigh, Lightning, Shield, Clock, Sun, House } from '@phosphor-icons/react';
 
 export default function CoLuuTruLandingPage() {
   return (
@@ -8,7 +8,7 @@ export default function CoLuuTruLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <Battery className="w-8 h-8 text-yellow-400" />
+              <BatteryHigh className="w-8 h-8 text-yellow-400" />
               <span className="text-yellow-400 font-semibold">Hybrid Solar + Pin Lưu Trữ</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">Điện Mặt Trời Có Lưu Trữ - Không Lo Mất Điện</h1>
@@ -51,7 +51,7 @@ export default function CoLuuTruLandingPage() {
           <p className="text-center text-slate-600 mb-12">So sánh hệ on-grid thông thường và hệ hybrid có pin lưu trữ</p>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: Zap, title: 'Có Điện Khi Mất Điện', desc: 'Pin lưu trữ tự động cấp điện khi mất lưới. Chuyển mạch 0 giây - không gián đoạn sinh hoạt. Hệ on-grid thường ngừng hoạt động khi mất lưới.' },
+              { icon: Lightning, title: 'Có Điện Khi Mất Điện', desc: 'Pin lưu trữ tự động cấp điện khi mất lưới. Chuyển mạch 0 giây - không gián đoạn sinh hoạt. Hệ on-grid thường ngừng hoạt động khi mất lưới.' },
               { icon: Sun, title: 'Dùng Điện Ban Đêm', desc: 'Lưu trữ điện dư ban ngày, sử dụng ban đêm. Không phụ thuộc điện lưới. Tối ưu tự dùng lên 80-90%.' },
               { icon: Shield, title: 'Tự Chủ Năng Lượng', desc: 'Giảm 80-90% phụ thuộc điện lưới. Bảo vệ khi giá điện tăng. An tâm trong mọi tình huống.' },
             ].map((item, i) => (

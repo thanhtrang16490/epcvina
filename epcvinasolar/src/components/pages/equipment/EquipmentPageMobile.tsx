@@ -1,7 +1,7 @@
 
 
 import { useMemo, useState, useRef, useEffect } from 'react';
-import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight, Layers, Cable, ShoppingCart, Check } from 'lucide-react';
+import { Lightning, TrendUp, BatteryHigh, Shield, Plug, Wrench, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, Stack, CableCar, ShoppingCart, Check } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
@@ -27,7 +27,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
 }> = {
   panel: {
     label: 'Tấm mô-đun quang điện',
-    icon: <Zap className="h-5 w-5"/>,
+    icon: <Lightning className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
@@ -35,7 +35,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'on-grid-inverter': {
     label: 'Biến tần On-Grid',
-    icon: <TrendingUp className="h-5 w-5"/>,
+    icon: <TrendUp className="h-5 w-5"/>,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
@@ -43,7 +43,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'hybrid-inverter': {
     label: 'Biến tần Hybrid',
-    icon: <TrendingUp className="h-5 w-5"/>,
+    icon: <TrendUp className="h-5 w-5"/>,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
@@ -51,7 +51,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'lv-battery': {
     label: 'Pin lưu trữ áp thấp',
-    icon: <Battery className="h-5 w-5"/>,
+    icon: <BatteryHigh className="h-5 w-5"/>,
     color: 'text-green-600',
     bg: 'bg-green-50',
     accent: 'bg-green-500',
@@ -59,7 +59,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   'hv-battery': {
     label: 'Pin lưu trữ áp cao',
-    icon: <Battery className="h-5 w-5"/>,
+    icon: <BatteryHigh className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
@@ -67,7 +67,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   mounting: {
     label: 'Hệ khung nhôm',
-    icon: <Layers className="h-5 w-5"/>,
+    icon: <Stack className="h-5 w-5"/>,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
@@ -75,7 +75,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   wiring: {
     label: 'Hệ dây điện',
-    icon: <Cable className="h-5 w-5"/>,
+    icon: <CableCar className="h-5 w-5"/>,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
     accent: 'bg-gray-500',
@@ -462,10 +462,10 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
           </div>
         </div>
 
-        {/* Search and Filter Row */}
+        {/* MagnifyingGlass and Filter Row */}
         <div className="bg-white border-b border-gray-200 px-4 py-3">
           <div className="flex gap-3">
-            {/* Search Input */}
+            {/* MagnifyingGlass Input */}
             <div className="flex-1 relative">
               <input
                 type="text"
@@ -509,7 +509,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              {/* Search */}
+              {/* MagnifyingGlass */}
               <div className="relative">
                 <input
                   type="text"
@@ -618,7 +618,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
                       )}
 
                       {/* Chevron */}
-                      <ChevronRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
+                      <CaretRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
                     </button>
                   );
                 })}

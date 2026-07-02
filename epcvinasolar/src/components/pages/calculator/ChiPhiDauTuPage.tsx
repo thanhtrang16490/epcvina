@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DollarSign, ArrowLeft } from 'lucide-react';
+import { CurrencyDollar, ArrowLeft } from '@phosphor-icons/react';
 
 export default function ChiPhiDauTuPage() {
   const [systemSize, setSystemSize] = useState(5);
@@ -13,7 +13,7 @@ export default function ChiPhiDauTuPage() {
     <div className="min-h-screen pt-20 md:pt-20 bg-slate-50">
       <div className="max-w-4xl mx-auto px-4 py-12">
         <a href="/calculator" className="inline-flex items-center gap-2 text-orange-600 mb-6"><ArrowLeft className="w-4 h-4" /> Quay lại</a>
-        <h1 className="text-3xl font-bold mb-8 flex items-center gap-3"><DollarSign className="text-orange-500" /> Tính Chi Phí Đầu Tư</h1>
+        <h1 className="text-3xl font-bold mb-8 flex items-center gap-3"><CurrencyDollar className="text-orange-500" /> Tính Chi Phí Đầu Tư</h1>
         <div className="bg-white rounded-xl p-8 shadow-sm mb-8">
           <div className="space-y-6">
             <div>

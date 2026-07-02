@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Calculator, DollarSign, Clock, Sun, Battery, Car } from 'lucide-react';
+import { Calculator, CurrencyDollar, Clock, Sun, BatteryHigh, Car } from '@phosphor-icons/react';
 
 const tools = [
-  { id: 'chi-phi-dau-tu', name: 'Chi Phí Đầu Tư', icon: DollarSign, desc: 'Tính chi phí lắp đặt hệ thống', href: '/calculator/chi-phi-dau-tu' },
+  { id: 'chi-phi-dau-tu', name: 'Chi Phí Đầu Tư', icon: CurrencyDollar, desc: 'Tính chi phí lắp đặt hệ thống', href: '/calculator/chi-phi-dau-tu' },
   { id: 'thoi-gian-hoan-von', name: 'Thời Gian Hoàn Vốn', icon: Clock, desc: 'Tính thời gian thu hồi vốn', href: '/calculator/thoi-gian-hoan-von' },
   { id: 'san-luong-dien', name: 'Sản Lượng Điện', icon: Sun, desc: 'Ước tính sản lượng điện', href: '/calculator/san-luong-dien' },
-  { id: 'pin-luu-tru', name: 'Pin Lưu Trữ', icon: Battery, desc: 'Tính dung lượng pin phù hợp', href: '/calculator/pin-luu-tru' },
+  { id: 'pin-luu-tru', name: 'Pin Lưu Trữ', icon: BatteryHigh, desc: 'Tính dung lượng pin phù hợp', href: '/calculator/pin-luu-tru' },
   { id: 'sac-xe-dien', name: 'Sạc Xe Điện', icon: Car, desc: 'Tính chi phí sạc xe', href: '/calculator/sac-xe-dien' },
 ];
 

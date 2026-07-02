@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sun, Zap, TrendingUp, Shield } from 'lucide-react';
+import { Sun, Lightning, TrendUp, Shield } from '@phosphor-icons/react';
 import HeaderBar from '../home/layout/HeaderBar';
 import ComboListingCard from './ComboListingCard';
 import type { ComboCardData } from './ComboListingCard';
@@ -103,7 +103,7 @@ export default function OnGridListingPage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm border border-white/20 mb-6">
-              <Zap className="h-4 w-4 text-orange-400" />
+              <Lightning className="h-4 w-4 text-orange-400" />
               <span>Giải Pháp Tiết Kiệm Điện 70-90%</span>
             </div>
 
@@ -122,7 +122,7 @@ export default function OnGridListingPage() {
             {/* Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
               <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                <TrendingUp className="h-8 w-8 text-orange-400 flex-shrink-0" />
+                <TrendUp className="h-8 w-8 text-orange-400 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-semibold text-white">Tiết kiệm 70-90%</p>
                   <p className="text-xs text-gray-400">Hóa đơn điện hàng tháng</p>
@@ -136,7 +136,7 @@ export default function OnGridListingPage() {
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                <Zap className="h-8 w-8 text-amber-400 flex-shrink-0" />
+                <Lightning className="h-8 w-8 text-amber-400 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-semibold text-white">Hoàn vốn 3-5 năm</p>
                   <p className="text-xs text-gray-400">Hiệu suất cao</p>

@@ -4,16 +4,16 @@ import {
   Sun,
   Lightbulb,
   Wrench,
-  MessageSquare,
+  Chat,
   BookOpen,
   Newspaper,
-  LogIn,
-  LogOut,
+  SignIn,
+  SignOut,
   User,
-  ChevronDown,
-  ChevronRight,
+  CaretDown,
+  CaretRight,
   X,
-} from 'lucide-react';
+} from '@phosphor-icons/react';
 // Supabase is loaded dynamically to avoid adding it to every page's client bundle.
 
 interface SidebarProps {
@@ -96,7 +96,7 @@ const menuItems: MenuItem[] = [
   },
   { name: 'Blog', href: '/tin-tuc', icon: Newspaper },
   { name: 'Về chúng tôi', href: '/ve-chung-toi', icon: User },
-  { name: 'Hỏi đáp', href: '/hoi-dap', icon: MessageSquare },
+  { name: 'Hỏi đáp', href: '/hoi-dap', icon: Chat },
   {
     name: 'Hướng dẫn',
     icon: BookOpen,
@@ -161,9 +161,9 @@ function MenuGroup({
           {item.name}
         </div>
         {isExpanded ? (
-          <ChevronDown className="h-4 w-4 text-gray-400" />
+          <CaretDown className="h-4 w-4 text-gray-400" />
         ) : (
-          <ChevronRight className="h-4 w-4 text-gray-400" />
+          <CaretRight className="h-4 w-4 text-gray-400" />
         )}
       </button>
       {isExpanded && item.children && (
@@ -350,14 +350,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </div>
                 <button onClick={handleLogout} title="Đăng xuất"
                   className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
-                  <LogOut className="h-4 w-4" />
+                  <SignOut className="h-4 w-4" />
                 </button>
               </div>
             ) : (
               <a href="/dang-nhap" onClick={onClose}
                 className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
               >
-                <LogIn className="h-4 w-4" />
+                <SignIn className="h-4 w-4" />
                 <span>Đăng nhập</span>
               </a>
             )}
@@ -452,9 +452,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       <span className={hasActiveChild ? 'text-gray-900' : ''}>{item.name}</span>
                       <span className="ml-auto">
                         {expandedGroups.has(item.name) ? (
-                          <ChevronDown className="h-4 w-4 text-gray-400" />
+                          <CaretDown className="h-4 w-4 text-gray-400" />
                         ) : (
-                          <ChevronRight className="h-4 w-4 text-gray-400" />
+                          <CaretRight className="h-4 w-4 text-gray-400" />
                         )}
                       </span>
                     </>
@@ -570,13 +570,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   </div>
                   <button onClick={handleLogout} title="Đăng xuất"
                     className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
-                    <LogOut className="h-4 w-4" />
+                    <SignOut className="h-4 w-4" />
                   </button>
                 </div>
               ) : (
                 <button onClick={handleLogout} title="Đăng xuất"
                   className="w-full flex justify-center py-2 text-gray-400 hover:text-red-600 transition-colors">
-                  <LogOut className="h-5 w-5" />
+                  <SignOut className="h-5 w-5" />
                 </button>
               )
             ) : (
@@ -584,13 +584,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 <a href="/dang-nhap"
                   className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl py-2.5 px-4 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
                 >
-                  <LogIn className="h-4 w-4 flex-shrink-0" />
+                  <SignIn className="h-4 w-4 flex-shrink-0" />
                   <span>Đăng nhập</span>
                 </a>
               ) : (
                 <a href="/login" title="Đăng nhập"
                   className="w-full flex justify-center py-2 text-gray-500 hover:text-[#DC2626] transition-colors">
-                  <LogIn className="h-5 w-5" />
+                  <SignIn className="h-5 w-5" />
                 </a>
               )
             )}

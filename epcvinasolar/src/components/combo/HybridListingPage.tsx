@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Battery, Zap, Shield, Clock } from 'lucide-react';
+import { BatteryHigh, Lightning, Shield, Clock } from '@phosphor-icons/react';
 import HeaderBar from '../home/layout/HeaderBar';
 import ComboListingCard from './ComboListingCard';
 import type { ComboCardData } from './ComboListingCard';
@@ -103,7 +103,7 @@ export default function HybridListingPage() {
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm border border-white/20 mb-6">
-              <Battery className="h-4 w-4 text-blue-400" />
+              <BatteryHigh className="h-4 w-4 text-blue-400" />
               <span>Giải Pháp Điện Độc Lập 24/7</span>
             </div>
 
@@ -129,7 +129,7 @@ export default function HybridListingPage() {
                 </div>
               </div>
               <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/10">
-                <Zap className="h-8 w-8 text-emerald-400 flex-shrink-0" />
+                <Lightning className="h-8 w-8 text-emerald-400 flex-shrink-0" />
                 <div>
                   <p className="text-sm font-semibold text-white">Tối ưu tự dùng</p>
                   <p className="text-xs text-gray-400">Giảm 90% tiền điện</p>
@@ -153,7 +153,7 @@ export default function HybridListingPage() {
         <div className="md:hidden mb-8">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-              <Battery className="h-5 w-5 text-blue-600" />
+              <BatteryHigh className="h-5 w-5 text-blue-600" />
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo Hybrid</h1>
           </div>

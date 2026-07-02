@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Factory, CheckCircle, AlertTriangle, Wrench, Phone, Shield, Clock, ArrowRight, ChevronDown, ChevronUp, Ruler, Droplets, Sun, Wind, Zap, Award, Thermometer } from 'lucide-react';
+import { Factory, CheckCircle, Warning, Wrench, Phone, Shield, Clock, ArrowRight, CaretDown, CaretUp, Ruler, Drop, Sun, Wind, Lightning, Medal, Thermometer } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 const benefits = [
   {
-    icon: Zap,
+    icon: Lightning,
     title: 'Tận dụng không gian, tiết kiệm điện',
     desc: 'Biến diện tích mái trống thành nhà máy phát điện. Cắt giảm 70-90% chi phí điện hàng tháng, tự cung cấp điện khi cúp lưới.',
   },
@@ -19,7 +19,7 @@ const benefits = [
     desc: 'Hệ khung đỡ kẹp chặt mái tôn, tăng độ bền, ngăn mái bị xô lệch khi gió bão. Trọng lượng pin phân bố đều giúp gia cố kết cấu.',
   },
   {
-    icon: Award,
+    icon: Medal,
     title: 'Thẩm mỹ hiện đại, tăng giá trị',
     desc: 'Hệ thống pin mặt trời tạo vẻ hiện đại cho công trình. Nâng cao giá trị bất động sản và hình ảnh doanh nghiệp xanh.',
   },
@@ -32,7 +32,7 @@ const technicalRequirements = [
     desc: 'Lắp được trên mọi loại tôn: tôn sóng vuông, tôn standing seam, tôn sóng tròn. Độ dày tối thiểu 0.4mm. Mái cũ cần kiểm tra khả năng chịu lực.',
   },
   {
-    icon: Droplets,
+    icon: Drop,
     title: 'Chống thấm tại điểm bắt vít',
     desc: 'Sử dụng chân L mái tôn kèm ron cao su và vít chuyên dụng. Bơm keo silicon chống thấm tại mọi vị trí bắt vít. Lắp tấm flashing ngăn nước rỉ.',
   },
@@ -316,9 +316,9 @@ export default function MaiTonPage() {
                 >
                   <span className="font-semibold text-slate-900 pr-4">{faq.q}</span>
                   {openFaq === i ? (
-                    <ChevronUp className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <CaretUp className="w-5 h-5 text-slate-400 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <CaretDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
                   )}
                 </button>
                 {openFaq === i && (

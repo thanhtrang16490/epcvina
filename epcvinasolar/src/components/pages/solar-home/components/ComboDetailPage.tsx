@@ -1,4 +1,4 @@
-import { Sun, Battery, Zap, Calendar, ArrowLeft, Phone, Shield, TrendingUp, Home as HomeIcon, CheckCircle2, Lightbulb, Building2, DollarSign } from 'lucide-react';
+import { Sun, BatteryHigh, Lightning, Calendar, ArrowLeft, Phone, Shield, TrendUp, House as HomeIcon, CheckCircle, Lightbulb, Building, CurrencyDollar } from '@phosphor-icons/react';
 
 interface ComboData {
   data: {
@@ -52,7 +52,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                   <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold flex-shrink-0 ${
                     isHybrid ? 'bg-blue-100 text-blue-700' : 'bg-amber-100 text-amber-700'
                   }`}>
-                    {isHybrid ? <Battery className="h-3 w-3" /> : <Sun className="h-3 w-3" />}
+                    {isHybrid ? <BatteryHigh className="h-3 w-3" /> : <Sun className="h-3 w-3" />}
                     {systemLabel}
                   </span>
                 </div>
@@ -88,11 +88,11 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold ${
                   isHybrid ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
                 }`}>
-                  {isHybrid ? <Battery className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+                  {isHybrid ? <BatteryHigh className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
                   {systemLabel}
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold bg-gray-50 text-gray-700 border border-gray-200">
-                  <Zap className="h-4 w-4" />
+                  <Lightning className="h-4 w-4" />
                   {data.power_kw} kWp
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold bg-gray-50 text-gray-700 border border-gray-200">
@@ -101,7 +101,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 </span>
                 {data.battery_kwh && (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-                    <Battery className="h-4 w-4" />
+                    <BatteryHigh className="h-4 w-4" />
                     {data.battery_kwh} kWh
                   </span>
                 )}
@@ -124,21 +124,21 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-4 border border-emerald-100">
                   <div className="flex items-center gap-2 mb-2">
-                    <Zap className="h-4 w-4 text-emerald-600" />
+                    <Lightning className="h-4 w-4 text-emerald-600" />
                     <span className="text-xs font-medium text-emerald-700 uppercase">Công suất</span>
                   </div>
                   <p className="text-2xl font-bold text-gray-900">{data.power_kw} <span className="text-sm font-normal text-gray-500">kWp</span></p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-4 border border-blue-100">
                   <div className="flex items-center gap-2 mb-2">
-                    <TrendingUp className="h-4 w-4 text-blue-600" />
+                    <TrendUp className="h-4 w-4 text-blue-600" />
                     <span className="text-xs font-medium text-blue-700 uppercase">Sản lượng/tháng</span>
                   </div>
                   <p className="text-2xl font-bold text-gray-900">{avgProduction} <span className="text-sm font-normal text-gray-500">kWh</span></p>
                 </div>
                 <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-xl p-4 border border-amber-100">
                   <div className="flex items-center gap-2 mb-2">
-                    <Building2 className="h-4 w-4 text-amber-600" />
+                    <Building className="h-4 w-4 text-amber-600" />
                     <span className="text-xs font-medium text-amber-700 uppercase">Diện tích mái</span>
                   </div>
                   <p className="text-2xl font-bold text-gray-900">~{area} <span className="text-sm font-normal text-gray-500">m²</span></p>
@@ -163,19 +163,19 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 {isHybrid ? (
                   <>
                     <BenefitCard
-                      icon={<Battery className="h-5 w-5 text-blue-600" />}
+                      icon={<BatteryHigh className="h-5 w-5 text-blue-600" />}
                       title="Lưu trữ & Dự phòng"
                       description={`Pin lưu trữ ${data.battery_kwh} kWh, hoạt động ngay cả khi mất điện lưới. Tự chủ năng lượng 24/7.`}
                       color="blue"
                     />
                     <BenefitCard
-                      icon={<TrendingUp className="h-5 w-5 text-emerald-600" />}
+                      icon={<TrendUp className="h-5 w-5 text-emerald-600" />}
                       title="Hiệu suất cao"
                       description={`Sản lượng ${data.production_min_kwh}–${data.production_max_kwh} kWh/tháng, đáp ứng nhu cầu điện gia đình.`}
                       color="emerald"
                     />
                     <BenefitCard
-                      icon={<DollarSign className="h-5 w-5 text-amber-600" />}
+                      icon={<CurrencyDollar className="h-5 w-5 text-amber-600" />}
                       title="Tiết kiệm chi phí"
                       description={`Đầu tư ${data.investment_million_vnd} triệu VNĐ, hoàn vốn ${data.payback_label}, tiết kiệm ~${monthlySaving.toLocaleString('vi-VN')} VNĐ/tháng.`}
                       color="amber"
@@ -190,7 +190,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 ) : (
                   <>
                     <BenefitCard
-                      icon={<DollarSign className="h-5 w-5 text-emerald-600" />}
+                      icon={<CurrencyDollar className="h-5 w-5 text-emerald-600" />}
                       title="Tối ưu chi phí"
                       description={`Không cần pin lưu trữ, giảm chi phí đầu tư ban đầu. Đầu tư chỉ ${data.investment_million_vnd} triệu VNĐ.`}
                       color="emerald"
@@ -202,7 +202,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                       color="blue"
                     />
                     <BenefitCard
-                      icon={<TrendingUp className="h-5 w-5 text-amber-600" />}
+                      icon={<TrendUp className="h-5 w-5 text-amber-600" />}
                       title="Hiệu suất cao"
                       description={`Sản lượng ${data.production_min_kwh}–${data.production_max_kwh} kWh/tháng, phù hợp hộ gia đình và doanh nghiệp.`}
                       color="amber"
@@ -243,7 +243,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
             {/* Technical Specs Table */}
             <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8">
               <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <Zap className="h-6 w-6 text-gray-600" />
+                <Lightning className="h-6 w-6 text-gray-600" />
                 Thông số kỹ thuật
               </h2>
               <div className="overflow-hidden rounded-xl border border-gray-200">
@@ -269,7 +269,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
             {/* Financial Summary Card */}
             <div className="bg-white rounded-2xl shadow-sm p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <DollarSign className="h-5 w-5 text-emerald-600" />
+                <CurrencyDollar className="h-5 w-5 text-emerald-600" />
                 Hiệu quả tài chính
               </h3>
               <div className="space-y-4">
@@ -312,7 +312,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 </div>
                 <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                   <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Zap className="h-5 w-5 text-emerald-600" />
+                    <Lightning className="h-5 w-5 text-emerald-600" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-gray-500">Biến tần (Inverter)</p>
@@ -322,10 +322,10 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 {data.battery_kwh && (
                   <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Battery className="h-5 w-5 text-blue-600" />
+                      <BatteryHigh className="h-5 w-5 text-blue-600" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs text-gray-500">Pin lưu trữ (Battery)</p>
+                      <p className="text-xs text-gray-500">Pin lưu trữ (BatteryHigh)</p>
                       <p className="font-semibold text-blue-700 text-sm">{data.battery_kwh} kWh – LiFePO4</p>
                     </div>
                   </div>
@@ -342,7 +342,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                   <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
                     isOnGrid ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'
                   }`}>
-                    {isOnGrid ? <Sun className="h-3 w-3" /> : <Battery className="h-3 w-3" />}
+                    {isOnGrid ? <Sun className="h-3 w-3" /> : <BatteryHigh className="h-3 w-3" />}
                     {systemLabel}
                   </span>
                 </div>
@@ -425,7 +425,7 @@ function ApplicationCard({ title, items }: { title: string; items: string[] }) {
       <ul className="space-y-2">
         {items.map((item, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-            <CheckCircle2 className="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" />
+            <CheckCircle className="h-4 w-4 text-emerald-500 mt-0.5 flex-shrink-0" />
             <span>{item}</span>
           </li>
         ))}

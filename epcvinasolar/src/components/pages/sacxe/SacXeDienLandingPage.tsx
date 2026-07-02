@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Car } from 'lucide-react';
+import { CheckCircle, Phone, Car } from '@phosphor-icons/react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
 
 export default function SacXeDienLandingPage() {
@@ -33,7 +33,7 @@ export default function SacXeDienLandingPage() {
 
       <SocialProofSection />
 
-      {/* Why Home Charging */}
+      {/* Why House Charging */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12">Tại Sao Lắp Trạm Sạc Tại Nhà?</h2>

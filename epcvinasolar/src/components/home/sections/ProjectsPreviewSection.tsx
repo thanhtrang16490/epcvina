@@ -17,7 +17,7 @@ const projects = [
     slug: 'anh-thanh-hai-duong-15kwp',
     title: 'Hệ Hybrid 15 kWp 3 Pha — Anh Thắng Hải Dương',
     location: 'TP. Hải Dương - Hải Dương',
-    capacity: '15 kWp + Battery',
+    capacity: '15 kWp + BatteryHigh',
     completion: 'T6.2024',
     system_type: 'Hybrid có lưu trữ',
     image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80',

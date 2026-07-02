@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { Zap, TrendingUp, X, Battery, Layers, Plug, Cable, Shield, Wrench, ChevronRight, Sun, SlidersHorizontal, Settings, LayoutTemplate, Plus, Minus, Check, Sparkles, Eye, ArrowRight } from 'lucide-react';
+import { Lightning, TrendUp, X, BatteryHigh, Stack, Plug, CableCar, Shield, Wrench, CaretRight, Sun, SlidersHorizontal, Gear, Layout, Plus, Minus, Check, Sparkle, Eye, ArrowRight } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
@@ -27,7 +27,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
 }> = {
   panel: {
     label: 'Tấm quang năng',
-    icon: <Zap className="h-5 w-5" />,
+    icon: <Lightning className="h-5 w-5" />,
     color: 'text-blue-600',
     bg: 'bg-blue-50',
     accent: 'bg-blue-500',
@@ -35,7 +35,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   inverter: {
     label: 'Biến tần (Inverter)',
-    icon: <TrendingUp className="h-5 w-5" />,
+    icon: <TrendUp className="h-5 w-5" />,
     color: 'text-orange-600',
     bg: 'bg-orange-50',
     accent: 'bg-orange-500',
@@ -43,7 +43,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   battery: {
     label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5" />,
+    icon: <BatteryHigh className="h-5 w-5" />,
     color: 'text-green-600',
     bg: 'bg-green-50',
     accent: 'bg-green-500',
@@ -51,7 +51,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   mounting: {
     label: 'Hệ khung nhôm',
-    icon: <Layers className="h-5 w-5" />,
+    icon: <Stack className="h-5 w-5" />,
     color: 'text-purple-600',
     bg: 'bg-purple-50',
     accent: 'bg-purple-500',
@@ -59,7 +59,7 @@ const CATEGORY_META: Record<EquipmentCategory, {
   },
   wiring: {
     label: 'Hệ dây điện',
-    icon: <Cable className="h-5 w-5" />,
+    icon: <CableCar className="h-5 w-5" />,
     color: 'text-gray-600',
     bg: 'bg-gray-100',
     accent: 'bg-gray-500',
@@ -671,7 +671,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
           </div>
         </div>
 
-        {/* Search and Filter Row */}
+        {/* MagnifyingGlass and Filter Row */}
         <div className="bg-white border-b border-gray-200 px-4 py-3">
           <div className="flex gap-3">
             <div className="flex-1 relative">
@@ -732,7 +732,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
-            <LayoutTemplate className="h-4 w-4" />
+            <Layout className="h-4 w-4" />
             Tự thiết kế
           </button>
         </div>
@@ -780,7 +780,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-orange-600">
-                              <Zap className="h-6 w-6" />
+                              <Lightning className="h-6 w-6" />
                             </div>
                           )}
                         </div>
@@ -853,7 +853,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
           ) : Object.entries(templatesByPhase).length === 0 ? (
             <div className="text-center py-12 bg-white rounded-xl border border-gray-100 mx-4">
               <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-purple-50 flex items-center justify-center">
-                <LayoutTemplate className="h-8 w-8 text-purple-600" />
+                <Layout className="h-8 w-8 text-purple-600" />
               </div>
               <p className="text-gray-500">Chưa có mẫu thiết kế nào</p>
             </div>
@@ -884,7 +884,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                     >
                       {/* Thumbnail */}
                       <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-                        <LayoutTemplate className="h-6 w-6 text-purple-600" />
+                        <Layout className="h-6 w-6 text-purple-600" />
                       </div>
 
                       {/* Info */}
@@ -892,7 +892,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                         <div className="flex items-center gap-2 mb-0.5">
                           <h3 className="font-semibold text-gray-900 truncate">{template.name}</h3>
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full bg-purple-50 text-purple-700">
-                            <Sparkles className="h-3 w-3" />
+                            <Sparkle className="h-3 w-3" />
                             Tự thiết kế
                           </span>
                         </div>
@@ -911,7 +911,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                       </div>
 
                       {/* Chevron */}
-                      <ChevronRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
+                      <CaretRight className="h-5 w-5 text-gray-300 flex-shrink-0" />
                     </button>
                   ))}
                 </div>
@@ -933,7 +933,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
             <div className="flex-shrink-0 flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-xl ${selectedCombo.systemType === 'hybrid' ? 'bg-green-50 text-green-600' : 'bg-orange-50 text-orange-600'} flex items-center justify-center`}>
-                  {selectedCombo.systemType === 'hybrid' ? <Battery className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
+                  {selectedCombo.systemType === 'hybrid' ? <BatteryHigh className="h-6 w-6" /> : <Sun className="h-6 w-6" />}
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">{selectedCombo.name}</p>
@@ -1095,7 +1095,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                                   <p className="text-sm font-semibold text-gray-900">{device.brand}</p>
                                   <p className="text-xs text-gray-500 truncate">{device.model}</p>
                                 </div>
-                                <ChevronRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                                <CaretRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
                               </button>
 
                               {/* Right: Quantity display (fixed) */}
@@ -1172,7 +1172,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                                         <p className="text-xs text-[#F97316]">Chi tiết</p>
                                       )}
                                     </div>
-                                    <ChevronRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
+                                    <CaretRight className="h-4 w-4 text-gray-400 flex-shrink-0" />
                                   </div>
                                 </button>
                               ))}
@@ -1233,7 +1233,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
             <div className="flex-shrink-0 flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center text-purple-600">
-                  <LayoutTemplate className="h-6 w-6" />
+                  <Layout className="h-6 w-6" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">{selectedTemplate.name}</p>
@@ -1253,7 +1253,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
               {/* Unified Equipment List by Category */}
               <div className="bg-white rounded-2xl border-b border-gray-100 p-4">
                 <h3 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide flex items-center gap-2">
-                  <Settings className="h-4 w-4 text-gray-400" />
+                  <Gear className="h-4 w-4 text-gray-400" />
                   Thiết bị theo danh mục
                 </h3>
                 
@@ -1475,7 +1475,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
               {/* Summary */}
               <div className="bg-white p-4">
                 <h3 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wide flex items-center gap-2">
-                  <TrendingUp className="h-4 w-4 text-gray-400" />
+                  <TrendUp className="h-4 w-4 text-gray-400" />
                   Tổng kết
                 </h3>
                 <div className="space-y-3">
@@ -1532,7 +1532,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
                 }}
                 className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                <Sparkles className="h-4 w-4" />
+                <Sparkle className="h-4 w-4" />
                 Xác nhận thiết kế
               </button>
               <p className="text-xs text-gray-400 text-center mt-2">
@@ -1586,7 +1586,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
               ) : (itemProducts[selectedItemForPicker.id]?.length || 0) === 0 ? (
                 <div className="text-center py-12">
                   <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gray-100 flex items-center justify-center">
-                    <Zap className="h-6 w-6 text-gray-400" />
+                    <Lightning className="h-6 w-6 text-gray-400" />
                   </div>
                   <p className="text-sm text-gray-500">Không có sản phẩm nào</p>
                 </div>
@@ -1810,7 +1810,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
           <div className="fixed inset-x-4 top-1/2 -translate-y-1/2 z-[70] bg-white rounded-2xl shadow-2xl p-6 max-w-sm mx-auto">
             <div className="text-center">
               <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-purple-50 flex items-center justify-center">
-                <LayoutTemplate className="h-7 w-7 text-purple-600" />
+                <Layout className="h-7 w-7 text-purple-600" />
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Yêu cầu đăng nhập</h3>
               <p className="text-sm text-gray-500 mb-6">
@@ -1977,7 +1977,7 @@ export default function OnGridPage({ comboSlug }: OnGridPageProps) {
       {onGridCombos.length === 0 && (
         <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
           <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-orange-50 flex items-center justify-center">
-            <Zap className="h-8 w-8 text-orange-600" />
+            <Lightning className="h-8 w-8 text-orange-600" />
           </div>
           <p className="text-gray-500">Không tìm thấy combo on-grid phù hợp</p>
         </div>

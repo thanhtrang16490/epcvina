@@ -1,4 +1,4 @@
-import { CheckCircle, Battery, Zap, Shield, Phone } from 'lucide-react';
+import { CheckCircle, BatteryHigh, Lightning, Shield, Phone } from '@phosphor-icons/react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
 import FAQSection from '../ad-landing/FAQSection';
 
@@ -10,7 +10,7 @@ export default function BESSLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <Battery className="w-8 h-8 text-yellow-400" />
+              <BatteryHigh className="w-8 h-8 text-yellow-400" />
               <span className="text-yellow-400 font-semibold">Hệ Thống Pin Lưu Trữ BESS</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -40,8 +40,8 @@ export default function BESSLandingPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Tại Sao Cần Pin Lưu Trữ BESS?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: Zap, title: 'Có Điện Khi Mất Điện', desc: 'Không bị gián đoạn khi lưới điện gặp sự cố. Pin BESS tự động cấp điện cho tải ưu tiên.' },
-              { icon: Battery, title: 'Dùng Điện Ban Đêm', desc: 'Lưu trữ điện dư ban ngày, sử dụng vào buổi tối. Giảm mua điện từ lưới.' },
+              { icon: Lightning, title: 'Có Điện Khi Mất Điện', desc: 'Không bị gián đoạn khi lưới điện gặp sự cố. Pin BESS tự động cấp điện cho tải ưu tiên.' },
+              { icon: BatteryHigh, title: 'Dùng Điện Ban Đêm', desc: 'Lưu trữ điện dư ban ngày, sử dụng vào buổi tối. Giảm mua điện từ lưới.' },
               { icon: Shield, title: 'Tự Chủ Năng Lượng', desc: 'Giảm phụ thuộc vào điện lưới. Tăng khả năng tự chủ lên 80-90%.' },
             ].map((item, i) => (
               <div key={i} className="text-center p-6 rounded-xl bg-slate-50">

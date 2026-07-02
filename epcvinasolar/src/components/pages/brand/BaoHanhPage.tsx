@@ -1,4 +1,4 @@
-import { Shield, CheckCircle, Clock, Award, Phone, AlertCircle, Wrench } from 'lucide-react';
+import { Shield, CheckCircle, Clock, Medal, Phone, WarningCircle, Wrench } from '@phosphor-icons/react';
 
 const warrantyItems = [
   {
@@ -136,7 +136,7 @@ export default function BaoHanhPage() {
               { step: 1, title: 'Liên hệ yêu cầu', desc: 'Gọi hotline 0988 446 113 hoặc gửi yêu cầu qua Zalo/Email', icon: Phone },
               { step: 2, title: 'Tiếp nhận & xác minh', desc: 'EPCVINA xác minh thông tin trong 48h, kiểm tra điều kiện bảo hành', icon: Clock },
               { step: 3, title: 'Khảo sát & xử lý', desc: 'Kỹ thuật viên đến tận nơi kiểm tra, xử lý hoặc thay thế thiết bị', icon: Wrench },
-              { step: 4, title: 'Hoàn tất & báo cáo', desc: 'Lắp đặt lại, test hệ thống, bàn giao và cập nhật hồ sơ bảo hành', icon: Award },
+              { step: 4, title: 'Hoàn tất & báo cáo', desc: 'Lắp đặt lại, test hệ thống, bàn giao và cập nhật hồ sơ bảo hành', icon: Medal },
             ].map((s) => (
               <div key={s.step} className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center flex-shrink-0 font-bold">
@@ -156,7 +156,7 @@ export default function BaoHanhPage() {
       <section className="py-16 bg-amber-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-            <AlertCircle className="w-6 h-6 text-amber-600" />
+            <WarningCircle className="w-6 h-6 text-amber-600" />
             Lưu Ý Về Điều Kiện Bảo Hành
           </h2>
           <div className="space-y-3">

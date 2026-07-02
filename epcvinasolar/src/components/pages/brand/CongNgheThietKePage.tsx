@@ -1,4 +1,4 @@
-import { Cpu, Monitor, Sun, Wind, Droplets, Zap, CheckCircle, Phone, ArrowRight } from 'lucide-react';
+import { Cpu, Monitor, Sun, Wind, Drop, Lightning, CheckCircle, Phone, ArrowRight } from '@phosphor-icons/react';
 
 const technologies = [
   {
@@ -116,7 +116,7 @@ export default function CongNgheThietKePage() {
           <div className="space-y-3">
             {standards.map((std, i) => (
               <div key={i} className="bg-white rounded-lg p-4 border border-slate-200 flex items-start gap-3">
-                <Zap className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
+                <Lightning className="w-5 h-5 text-purple-500 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="font-semibold text-slate-900">{std.name}</p>
                   <p className="text-sm text-slate-600">{std.desc}</p>

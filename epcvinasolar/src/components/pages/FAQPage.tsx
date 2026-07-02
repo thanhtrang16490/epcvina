@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, MessageCircle, Phone, Zap, DollarSign, Wrench, FileText, Shield, Sun } from 'lucide-react';
+import { CaretDown, CaretUp, ChatCircle, Phone, Lightning, CurrencyDollar, Wrench, FileText, Shield, Sun } from '@phosphor-icons/react';
 
 interface FAQ {
   question: string;
@@ -137,12 +137,12 @@ const faqs: FAQ[] = [
 ];
 
 const categories = [
-  { name: 'Tất cả', icon: <MessageCircle className="w-5 h-5" /> },
-  { name: '💰 Chi phí & Thanh toán', icon: <DollarSign className="w-5 h-5" /> },
+  { name: 'Tất cả', icon: <ChatCircle className="w-5 h-5" /> },
+  { name: '💰 Chi phí & Thanh toán', icon: <CurrencyDollar className="w-5 h-5" /> },
   { name: '🔧 Kỹ thuật & Lắp đặt', icon: <Wrench className="w-5 h-5" /> },
   { name: '🛡️ Bảo hành & Bảo trì', icon: <Shield className="w-5 h-5" /> },
   { name: '📋 Thủ tục & Pháp lý', icon: <FileText className="w-5 h-5" /> },
-  { name: '⚡ Hiệu suất & Tiết kiệm', icon: <Zap className="w-5 h-5" /> },
+  { name: '⚡ Hiệu suất & Tiết kiệm', icon: <Lightning className="w-5 h-5" /> },
   { name: '🌟 Dịch vụ EPCVINA', icon: <Sun className="w-5 h-5" /> },
 ];
 
@@ -217,9 +217,9 @@ export default function FAQPage() {
                 </h3>
                 <div className="flex-shrink-0 text-emerald-600">
                   {openIndex === index ? (
-                    <ChevronUp className="w-6 h-6" />
+                    <CaretUp className="w-6 h-6" />
                   ) : (
-                    <ChevronDown className="w-6 h-6" />
+                    <CaretDown className="w-6 h-6" />
                   )}
                 </div>
               </button>
@@ -273,7 +273,7 @@ export default function FAQPage() {
               href="/lien-he"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-700 text-white font-bold rounded-xl hover:bg-emerald-800 transition-colors border-2 border-white"
             >
-              <MessageCircle className="w-6 h-6" />
+              <ChatCircle className="w-6 h-6" />
               <span>Gửi câu hỏi</span>
             </a>
           </div>

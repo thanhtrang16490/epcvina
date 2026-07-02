@@ -1,46 +1,46 @@
 import {
-  Battery,
+  BatteryHigh,
   Sun,
   Moon,
-  ZapOff,
-  TrendingDown,
-  Zap,
+  LightningSlash,
+  TrendDown,
+  Lightning,
   Receipt,
-  TrendingUp,
-  Activity,
-  Home,
-  Building2,
+  TrendUp,
+  Pulse,
+  House,
+  Building,
   Factory,
-  Server,
+  HardDrives,
   Radio,
   Warehouse,
-  Hotel,
-  UtensilsCrossed,
+  Buildings,
+  ForkKnife,
   Stethoscope,
   ShieldCheck,
   Wrench,
   Headphones,
   Users,
   Monitor,
-  BarChart3,
+  ChartBar,
   Calendar,
-  Expand,
+  ArrowsOut,
   Clock,
   CheckCircle,
   ArrowRight,
   Phone,
-} from 'lucide-react';
-import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
+} from '@phosphor-icons/react';
+import { motion } from 'motion/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 
 /* ─── Data ──────────────────────────────────────────────── */
 
 const heroStats = [
-  { value: 'Dự phòng khi mất điện', label: 'Backup liên tục', icon: Zap },
-  { value: 'Tối ưu chi phí giờ cao điểm', label: 'Tiết kiệm tối đa', icon: TrendingDown },
+  { value: 'Dự phòng khi mất điện', label: 'Backup liên tục', icon: Lightning },
+  { value: 'Tối ưu chi phí giờ cao điểm', label: 'Tiết kiệm tối đa', icon: TrendDown },
   { value: 'Quản lý năng lượng thông minh', label: 'EMS tự động', icon: Monitor },
-  { value: 'Tuổi thọ pin đến 15 năm', label: 'Bền bỉ dài hạn', icon: Battery },
+  { value: 'Tuổi thọ pin đến 15 năm', label: 'Bền bỉ dài hạn', icon: BatteryHigh },
 ];
 
 const systemTypes = [
@@ -57,8 +57,8 @@ const systemTypes = [
   {
     title: 'BESS',
     description:
-      'Battery Pack + BMS + PCS/Inverter + EMS + Hệ thống bảo vệ và giám sát. Được thiết kế cho các công trình có yêu cầu cao về tính liên tục và hiệu quả sử dụng năng lượng.',
-    icon: Battery,
+      'BatteryHigh Pack + BMS + PCS/Inverter + EMS + Hệ thống bảo vệ và giám sát. Được thiết kế cho các công trình có yêu cầu cao về tính liên tục và hiệu quả sử dụng năng lượng.',
+    icon: BatteryHigh,
     accent: 'from-amber-500 to-amber-600',
     bgIcon: 'bg-amber-100',
     textIcon: 'text-amber-600',
@@ -68,7 +68,7 @@ const systemTypes = [
 
 const painPoints = [
   {
-    icon: Zap,
+    icon: Lightning,
     title: 'Mất Điện Đột Xuất',
     description: 'Duy trì nguồn điện cho tải quan trọng khi điện lưới gặp sự cố.',
   },
@@ -78,12 +78,12 @@ const painPoints = [
     description: 'Lưu trữ điện để sử dụng vào thời điểm giá điện hoặc phụ tải cao.',
   },
   {
-    icon: TrendingUp,
+    icon: TrendUp,
     title: 'Công Suất Đỉnh Lớn',
     description: 'Giảm Peak Demand và tránh phát sinh chi phí công suất không cần thiết.',
   },
   {
-    icon: Activity,
+    icon: Pulse,
     title: 'Nguồn Điện Không Ổn Định',
     description: 'Ổn định vận hành cho văn phòng, nhà máy, cửa hàng và hệ thống CNTT.',
   },
@@ -100,7 +100,7 @@ const scaleTiers = [
     border: 'border-indigo-200',
     bg: 'bg-indigo-50',
     text: 'text-indigo-700',
-    icon: Home,
+    icon: House,
   },
   {
     title: 'Commercial Hybrid',
@@ -112,7 +112,7 @@ const scaleTiers = [
     border: 'border-amber-200',
     bg: 'bg-amber-50',
     text: 'text-amber-700',
-    icon: Building2,
+    icon: Building,
   },
   {
     title: 'Commercial BESS',
@@ -127,7 +127,7 @@ const scaleTiers = [
     icon: Factory,
   },
   {
-    title: 'Utility Scale BESS',
+    title: 'Utility Scales BESS',
     subtitle: 'Dự án quy mô lớn',
     storage: 'Từ 1 MWh trở lên',
     features: ['Grid-level storage', 'Microgrid', 'Frequency regulation'],
@@ -136,7 +136,7 @@ const scaleTiers = [
     border: 'border-slate-200',
     bg: 'bg-slate-50',
     text: 'text-slate-700',
-    icon: Server,
+    icon: HardDrives,
   },
 ];
 
@@ -160,7 +160,7 @@ const scenarios = [
   {
     title: 'Khi Mất Điện',
     description: 'Hệ thống tự động chuyển sang chế độ Backup',
-    icon: ZapOff,
+    icon: LightningSlash,
     color: 'text-red-500',
     bg: 'bg-red-50',
     border: 'border-red-200',
@@ -168,7 +168,7 @@ const scenarios = [
   {
     title: 'Khi Giá Điện Cao',
     description: 'Pin lưu trữ xả điện để giảm chi phí sử dụng điện lưới',
-    icon: TrendingDown,
+    icon: TrendDown,
     color: 'text-emerald-500',
     bg: 'bg-emerald-50',
     border: 'border-emerald-200',
@@ -187,7 +187,7 @@ const features = [
     description: 'Theo dõi trạng thái hệ thống từ điện thoại hoặc máy tính.',
   },
   {
-    icon: TrendingDown,
+    icon: TrendDown,
     title: 'Peak Shaving',
     description: 'Giảm công suất đỉnh.',
   },
@@ -202,7 +202,7 @@ const features = [
     description: 'Đảm bảo nguồn điện liên tục.',
   },
   {
-    icon: Expand,
+    icon: ArrowsOut,
     title: 'Expandable Capacity',
     description: 'Dễ dàng mở rộng khi nhu cầu tăng.',
   },
@@ -240,7 +240,7 @@ const calculatorInputs = [
     examples: ['5 triệu', '20 triệu', '100 triệu+'],
   },
   {
-    icon: Zap,
+    icon: Lightning,
     title: 'Mục tiêu đầu tư',
     examples: ['Giảm tiền điện', 'Backup khi mất điện', 'Cả hai'],
   },
@@ -250,7 +250,7 @@ const calculatorInputs = [
     examples: ['1 giờ', '2 giờ', '4 giờ', '8 giờ'],
   },
   {
-    icon: TrendingUp,
+    icon: TrendUp,
     title: 'Công suất tải quan trọng',
     examples: ['5 kW', '20 kW', '100 kW'],
   },
@@ -280,14 +280,14 @@ const valueProps = [
 ];
 
 const industries = [
-  { icon: Home, label: 'Nhà dân & Biệt thự' },
-  { icon: Building2, label: 'Văn phòng' },
-  { icon: Hotel, label: 'Khách sạn & Resort' },
-  { icon: UtensilsCrossed, label: 'Nhà hàng' },
+  { icon: House, label: 'Nhà dân & Biệt thự' },
+  { icon: Building, label: 'Văn phòng' },
+  { icon: Buildings, label: 'Khách sạn & Resort' },
+  { icon: ForkKnife, label: 'Nhà hàng' },
   { icon: Stethoscope, label: 'Bệnh viện' },
   { icon: Factory, label: 'Nhà máy sản xuất' },
   { icon: Warehouse, label: 'Kho lạnh' },
-  { icon: Server, label: 'Data Center' },
+  { icon: HardDrives, label: 'Data Center' },
   { icon: Radio, label: 'Trạm viễn thông' },
   { icon: Warehouse, label: 'Khu công nghiệp' },
 ];
@@ -303,19 +303,16 @@ function AnimateIn({
   className?: string;
   delay?: number;
 }) {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.15 });
   return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none ${
-        isVisible
-          ? 'opacity-100 translate-y-0'
-          : 'opacity-0 translate-y-8'
-      } ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-15%' }}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: delay / 1000 }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -334,13 +331,13 @@ function HybridComboCard({ combo }: { combo: typeof FALLBACK_HYBRID_COMBOS[0] })
 
   const specs = [
     { icon: <Sun className="w-3.5 h-3.5 text-amber-500" />, label: `Tấm ${combo.panel_brand || 'Aiko'}`, value: `${panelCount} tấm · ${combo.power} kWp` },
-    { icon: <Zap className="w-3.5 h-3.5 text-blue-500" />, label: `Biến tần ${combo.inverter_brand || 'SAJ'}`, value: `${combo.power} kW` },
+    { icon: <Lightning className="w-3.5 h-3.5 text-blue-500" />, label: `Biến tần ${combo.inverter_brand || 'SAJ'}`, value: `${combo.power} kW` },
     ...(combo.battery > 0
-      ? [{ icon: <Battery className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${combo.battery_brand || 'Genxgreen'}`, value: `${combo.battery} kWh` }]
+      ? [{ icon: <BatteryHigh className="w-3.5 h-3.5 text-indigo-500" />, label: `Lưu trữ ${combo.battery_brand || 'Genxgreen'}`, value: `${combo.battery} kWh` }]
       : []),
-    { icon: <BarChart3 className="w-3.5 h-3.5 text-indigo-600" />, label: 'Sản lượng/tháng', value: `${prodMin}–${prodMax} kWh` },
+    { icon: <ChartBar className="w-3.5 h-3.5 text-indigo-600" />, label: 'Sản lượng/tháng', value: `${prodMin}–${prodMax} kWh` },
     { icon: <Calendar className="w-3.5 h-3.5 text-indigo-600" />, label: 'Hoàn vốn', value: paybackStr },
-    { icon: <Home className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${Math.ceil(combo.power * 4.32)} m²` },
+    { icon: <House className="w-3.5 h-3.5 text-gray-400" />, label: 'Diện tích lắp đặt', value: `${Math.ceil(combo.power * 4.32)} m²` },
   ];
 
   return (
@@ -348,7 +345,7 @@ function HybridComboCard({ combo }: { combo: typeof FALLBACK_HYBRID_COMBOS[0] })
       {/* Gradient header */}
       <div className="px-4 pt-4 pb-3" style={{ background: 'linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%)' }}>
         <span className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-1 rounded-full mb-2" style={{ background: 'rgba(29,78,216,0.1)', color: '#1d4ed8' }}>
-          <Zap className="w-3 h-3" />
+          <Lightning className="w-3 h-3" />
           Hệ Hybrid
         </span>
         {combo.voltage && (
@@ -430,7 +427,7 @@ function HybridComboGrid() {
       {phase1.length > 0 && (
         <div>
           <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5 text-indigo-500" aria-hidden="true" />
+            <Lightning className="h-5 w-5 text-indigo-500" aria-hidden="true" />
             Hybrid 1 Pha — Gia đình & Biệt thự
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -445,7 +442,7 @@ function HybridComboGrid() {
           {phase3lv.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                <Zap className="h-5 w-5 text-amber-500" aria-hidden="true" />
+                <Lightning className="h-5 w-5 text-amber-500" aria-hidden="true" />
                 Hybrid 3 Pha Áp Thấp — Pin 48V
                 <span className="text-xs font-normal text-gray-500 ml-1">(Low Voltage)</span>
               </h3>
@@ -459,7 +456,7 @@ function HybridComboGrid() {
           {phase3hv.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                <Zap className="h-5 w-5 text-purple-500" aria-hidden="true" />
+                <Lightning className="h-5 w-5 text-purple-500" aria-hidden="true" />
                 Hybrid 3 Pha Áp Cao — Pin 100V+
                 <span className="text-xs font-normal text-gray-500 ml-1">(High Voltage)</span>
               </h3>
@@ -474,7 +471,7 @@ function HybridComboGrid() {
       ) : phase3other.length > 0 ? (
         <div>
           <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-            <Zap className="h-5 w-5 text-amber-500" aria-hidden="true" />
+            <Lightning className="h-5 w-5 text-amber-500" aria-hidden="true" />
             Hybrid 3 Pha — Doanh nghiệp & Công nghiệp
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -525,7 +522,7 @@ export default function HybridBESSPage() {
             <div className="max-w-3xl">
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm border border-white/20 mb-6">
-                <Battery className="h-4 w-4 text-amber-400" />
+                <BatteryHigh className="h-4 w-4 text-amber-400" />
                 <span>Hybrid & BESS</span>
               </div>
 
@@ -563,7 +560,7 @@ export default function HybridBESSPage() {
                   className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/25 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 min-h-[44px]"
                 >
                   Tính toán dung lượng lưu trữ
-                  <Zap className="h-5 w-5" />
+                  <Lightning className="h-5 w-5" />
                 </a>
               </div>
 
@@ -919,7 +916,7 @@ export default function HybridBESSPage() {
           <AnimateIn>
             <div className="text-center mb-10 sm:mb-14">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold mb-4">
-                <Battery className="h-4 w-4" aria-hidden="true" />
+                <BatteryHigh className="h-4 w-4" aria-hidden="true" />
                 Combo Hybrid & BESS
               </span>
               <h2

@@ -65,7 +65,7 @@ export default function ComparisonSection() {
               <ul className="space-y-2 flex-1">
                 <li className="flex items-start gap-2">
                   <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                  <span className="text-xs sm:text-sm">Có lưu trữ (Battery)</span>
+                  <span className="text-xs sm:text-sm">Có lưu trữ (BatteryHigh)</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />

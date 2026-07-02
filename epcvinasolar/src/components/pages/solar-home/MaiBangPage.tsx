@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { Building2, CheckCircle, AlertTriangle, Wrench, Phone, Shield, ArrowRight, ChevronDown, ChevronUp, Ruler, Droplets, Sun, Wind, Zap, Award, Mountain, Layers } from 'lucide-react';
+import { Building, CheckCircle, Warning, Wrench, Phone, Shield, ArrowRight, CaretDown, CaretUp, Ruler, Drop, Sun, Wind, Lightning, Medal, Mountains, Stack } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 const benefits = [
   {
-    icon: Mountain,
+    icon: Mountains,
     title: 'Góc nghiêng tùy chỉnh tối ưu',
     desc: 'Không bị phụ thuộc vào độ dốc có sẵn. Chủ động thiết kế giàn giá đỡ nghiêng 5-15° theo hướng Nam, Đông Nam — đạt hiệu suất phát điện cao nhất.',
   },
   {
-    icon: Layers,
+    icon: Stack,
     title: 'Nền tảng vững chắc nhất',
     desc: 'Sàn bê tông cung cấp nền tảng cơ học vững chắc nhất. Hệ thống chịu được gió bão cấp 12, tuổi thọ kéo dài hàng chục năm.',
   },
@@ -19,7 +19,7 @@ const benefits = [
     desc: 'Khoan bắt trực tiếp (ổn định tối đa) hoặc hệ dằn tải (không khoan đục, bảo vệ chống thấm nguyên thủy). Phù hợp mọi yêu cầu công trình.',
   },
   {
-    icon: Award,
+    icon: Medal,
     title: 'Tận dụng không gian sân thượng',
     desc: 'Biến sân thượng/sân bê tông trống thành nhà máy phát điện. Không ảnh hưởng không gian sinh hoạt bên dưới, lý tưởng cho nhà phố, biệt thự.',
   },
@@ -32,7 +32,7 @@ const technicalRequirements = [
     desc: 'Lắp phẳng 0° gây tổn thất năng lượng, tích tụ bụi bẩn giảm 10-30% sản lượng. Khung giá đỡ nghiêng 5-15° đảm bảo tự làm sạch khi mưa và hấp thụ nắng tối đa.',
   },
   {
-    icon: Droplets,
+    icon: Drop,
     title: 'Chống thấm tuyệt đối',
     desc: 'Mọi điểm khoan neo đều được trám keo chống thấm chuyên dụng. Hệ dằn tải không cần khoan — bảo vệ 100% lớp chống thấm nguyên thủy của sàn.',
   },
@@ -146,7 +146,7 @@ export default function MaiBangPage() {
       <section className="bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 text-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-2 mb-4">
-            <Building2 className="w-5 h-5 text-emerald-400" />
+            <Building className="w-5 h-5 text-emerald-400" />
             <span className="text-emerald-200 text-sm font-medium">Giải pháp thi công mái bằng</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-bold mb-6 leading-tight">
@@ -267,7 +267,7 @@ export default function MaiBangPage() {
                     <p className="text-sm font-semibold text-amber-700 mb-2">Lưu ý:</p>
                     {method.cons.map((c, j) => (
                       <div key={j} className="flex items-center gap-2 text-sm text-slate-700 mb-1">
-                        <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                        <Warning className="w-4 h-4 text-amber-500 flex-shrink-0" />
                         <span>{c}</span>
                       </div>
                     ))}
@@ -381,9 +381,9 @@ export default function MaiBangPage() {
                 >
                   <span className="font-semibold text-slate-900 pr-4">{faq.q}</span>
                   {openFaq === i ? (
-                    <ChevronUp className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <CaretUp className="w-5 h-5 text-slate-400 flex-shrink-0" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <CaretDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
                   )}
                 </button>
                 {openFaq === i && (

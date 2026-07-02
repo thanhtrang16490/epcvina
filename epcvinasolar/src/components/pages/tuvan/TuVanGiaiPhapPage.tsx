@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Phone, CheckCircle, MapPin, Home } from 'lucide-react';
+import { Phone, CheckCircle, MapPin, House } from '@phosphor-icons/react';
 
 export default function TuVanGiaiPhapPage() {
   const [formData, setFormData] = useState({ name: '', phone: '', address: '', roofArea: '', monthlyBill: '', systemType: '', message: '' });

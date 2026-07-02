@@ -1,4 +1,4 @@
-import { Award, Shield, CheckCircle, Phone, FileText, Users, Building, Star } from 'lucide-react';
+import { Medal, Shield, CheckCircle, Phone, FileText, Users, Building, Star } from '@phosphor-icons/react';
 
 const certifications = [
   {
@@ -19,7 +19,7 @@ const certifications = [
     name: 'ISO 9001:2015',
     issuer: 'Tổ chức chứng nhận quốc tế',
     desc: 'Hệ thống quản lý chất lượng đạt chuẩn ISO 9001:2015, đảm bảo quy trình nhất quán.',
-    icon: Award,
+    icon: Medal,
     color: 'bg-emerald-100 text-emerald-700',
   },
   {
@@ -61,7 +61,7 @@ export default function ChungNhanPage() {
       <section className="bg-gradient-to-br from-amber-900 via-amber-800 to-orange-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6">
-            <Award className="w-5 h-5" />
+            <Medal className="w-5 h-5" />
             <span className="text-sm font-medium">Chứng Nhận & Năng Lực</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -147,7 +147,7 @@ export default function ChungNhanPage() {
               <p className="text-sm text-slate-600">Có chứng chỉ an toàn điện</p>
             </div>
             <div className="bg-white rounded-xl p-6 border border-slate-200">
-              <Award className="w-10 h-10 text-amber-500 mx-auto mb-3" />
+              <Medal className="w-10 h-10 text-amber-500 mx-auto mb-3" />
               <p className="text-2xl font-bold text-slate-900">5+</p>
               <p className="text-sm text-slate-600">Năm kinh nghiệm trung bình</p>
             </div>

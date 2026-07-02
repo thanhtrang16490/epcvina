@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sun, ArrowLeft } from 'lucide-react';
+import { Sun, ArrowLeft } from '@phosphor-icons/react';
 
 export default function SanLuongDienPage() {
   const [systemSize, setSystemSize] = useState(5);

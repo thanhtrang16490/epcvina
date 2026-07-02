@@ -1,4 +1,4 @@
-import { Wheat, Check, ArrowRight, Zap, Shield, Phone, TrendingUp, Clock, DollarSign, Leaf, Sun, Droplets, Factory, Warehouse, Sprout } from 'lucide-react';
+import { Grains, Check, ArrowRight, Lightning, Shield, Phone, TrendUp, Clock, CurrencyDollar, Leaf, Sun, Drop, Factory, Warehouse, Plant } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 export default function AgriculturalApplicationPage() {
@@ -56,17 +56,17 @@ export default function AgriculturalApplicationPage() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              icon: DollarSign,
+              icon: CurrencyDollar,
               title: 'Giảm chi phí vận hành dài hạn',
               description: 'Cắt giảm đáng kể chi phí điện cho hệ thống tưới tiêu, quạt thông gió, chiếu sáng và máy móc sản xuất.',
             },
             {
-              icon: Zap,
+              icon: Lightning,
               title: 'Chủ động nguồn điện',
               description: 'Hạn chế phụ thuộc vào điện lưới, đặc biệt tại các khu vực vùng sâu, vùng xa, ngoài khơi, biển đảo… hoặc điện không ổn định.',
             },
             {
-              icon: TrendingUp,
+              icon: TrendUp,
               title: 'Tối ưu diện tích sử dụng',
               description: 'Lắp đặt trên mái chuồng trại, nhà kính, mặt nước nuôi trồng thủy sản hoặc kết hợp mô hình nông nghiệp – điện mặt trời (agrivoltaics).',
             },
@@ -137,12 +137,12 @@ export default function AgriculturalApplicationPage() {
               <div className="text-xs text-gray-600">Tuổi thọ hệ thống đảm bảo lợi nhuận dài hạn.</div>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <TrendingUp className="h-10 w-10 text-purple-500 mb-4" />
+              <TrendUp className="h-10 w-10 text-purple-500 mb-4" />
               <div className="text-lg font-bold text-purple-600 mb-2">Giảm rủi ro tăng giá điện</div>
               <div className="text-xs text-gray-600">Chủ động chi phí, không bị ảnh hưởng bởi biến động giá điện theo bậc thang.</div>
             </div>
             <div className="bg-white rounded-xl p-6 shadow-sm">
-              <DollarSign className="h-10 w-10 text-amber-500 mb-4" />
+              <CurrencyDollar className="h-10 w-10 text-amber-500 mb-4" />
               <div className="text-lg font-bold text-amber-600 mb-2">Tăng lợi nhuận sản xuất</div>
               <div className="text-xs text-gray-600">Giảm chi phí đầu vào → tăng biên lợi nhuận cho sản phẩm nông nghiệp.</div>
             </div>
@@ -284,7 +284,7 @@ export default function AgriculturalApplicationPage() {
             <div className="p-6">
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-100">
-                  <Droplets className="h-5 w-5 text-emerald-600" />
+                  <Drop className="h-5 w-5 text-emerald-600" />
                 </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -311,7 +311,7 @@ export default function AgriculturalApplicationPage() {
             <div className="p-6">
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-100">
-                  <Sprout className="h-5 w-5 text-emerald-600" />
+                  <Plant className="h-5 w-5 text-emerald-600" />
                 </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">

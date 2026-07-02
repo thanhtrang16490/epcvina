@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Building2, TrendingDown, Clock, Shield, Star } from 'lucide-react';
+import { CheckCircle, Phone, Building, TrendDown, Clock, Shield, Star } from '@phosphor-icons/react';
 
 export default function HoKinhDoanhLandingPage() {
   return (
@@ -8,7 +8,7 @@ export default function HoKinhDoanhLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <Building2 className="w-8 h-8 text-yellow-400" />
+              <Building className="w-8 h-8 text-yellow-400" />
               <span className="text-yellow-400 font-semibold">Giải Pháp Hộ Kinh Doanh</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">Điện Mặt Trời Cho Hộ Kinh Doanh</h1>
@@ -72,7 +72,7 @@ export default function HoKinhDoanhLandingPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Tại Sao Hộ Kinh Doanh Nên Lắp Điện Mặt Trời?</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: TrendingDown, title: 'Giảm Chi Phí Vận Hành', desc: 'Điện chiếm 15-30% chi phí vận hành. Điện mặt trời giảm 70-90%, tăng lợi nhuận trực tiếp.' },
+              { icon: TrendDown, title: 'Giảm Chi Phí Vận Hành', desc: 'Điện chiếm 15-30% chi phí vận hành. Điện mặt trời giảm 70-90%, tăng lợi nhuận trực tiếp.' },
               { icon: Clock, title: 'Hoàn Vốn Nhanh', desc: 'Hộ kinh doanh dùng điện nhiều vào ban ngày → tối ưu tự dùng. Hoàn vốn chỉ 3-4 năm.' },
               { icon: Shield, title: 'Bảo Hành Dài Hạn', desc: 'Pin bảo hành 25 năm, inverter 10 năm. Không chi phí phát sinh. Bảo trì miễn phí năm đầu.' },
             ].map((item, i) => (

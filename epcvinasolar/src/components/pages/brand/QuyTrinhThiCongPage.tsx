@@ -1,4 +1,4 @@
-import { ClipboardCheck, Ruler, Wrench, Zap, CheckCircle, Phone, ArrowRight, Users, Clock, Shield } from 'lucide-react';
+import { ClipboardText, Ruler, Wrench, Lightning, CheckCircle, Phone, ArrowRight, Users, Clock, Shield } from '@phosphor-icons/react';
 
 const steps = [
   {
@@ -66,7 +66,7 @@ export default function QuyTrinhThiCongPage() {
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-2 mb-6">
-            <ClipboardCheck className="w-5 h-5" />
+            <ClipboardText className="w-5 h-5" />
             <span className="text-sm font-medium">Quy Trình Thi Công</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold mb-6">

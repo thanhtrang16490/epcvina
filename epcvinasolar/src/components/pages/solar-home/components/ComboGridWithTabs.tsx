@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sun, Zap, Battery, ChevronDown, ChevronUp, X, Sun as SunIcon, Zap as ZapIcon, Home, Calendar, Phone } from 'lucide-react';
+import { Sun, Lightning, BatteryHigh, CaretDown, CaretUp, X, Sun as SunIcon, Lightning as ZapIcon, House, Calendar, Phone } from '@phosphor-icons/react';
 
 /* ─── Tab Types ────────────────────────────────────────── */
 type PhaseType = '1-phase' | '3-phase' | '3-phase-low' | '3-phase-high';
@@ -12,9 +12,9 @@ interface TabConfig {
 
 const PHASE_TABS: TabConfig[] = [
   { key: '1-phase', label: '1 Pha', icon: Sun },
-  { key: '3-phase', label: '3 Pha', icon: Zap },
-  { key: '3-phase-low', label: '3 Pha Áp Thấp', icon: Battery },
-  { key: '3-phase-high', label: '3 Pha Áp Cao', icon: Battery },
+  { key: '3-phase', label: '3 Pha', icon: Lightning },
+  { key: '3-phase-low', label: '3 Pha Áp Thấp', icon: BatteryHigh },
+  { key: '3-phase-high', label: '3 Pha Áp Cao', icon: BatteryHigh },
 ];
 
 /* ─── Combo Data (from SolarSolutionFinder catalog) ────── */
@@ -176,7 +176,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
                     variant === 'hybrid' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
                     'bg-gradient-to-br from-emerald-500 to-teal-600'
                   } text-white flex items-center justify-center`}>
-                    {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <Battery className="h-6 w-6" />}
+                    {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <BatteryHigh className="h-6 w-6" />}
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{combo.name}</h3>
@@ -197,7 +197,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
                   variant === 'hybrid' ? 'bg-gradient-to-br from-blue-500 to-indigo-600' :
                   'bg-gradient-to-br from-emerald-500 to-teal-600'
                 } text-white flex items-center justify-center`}>
-                  {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <Battery className="h-6 w-6" />}
+                  {variant === 'ongrid' ? <SunIcon className="h-6 w-6" /> : <BatteryHigh className="h-6 w-6" />}
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">{combo.name}</h3>
@@ -239,7 +239,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
               {/* Equipment */}
               <div>
                 <h4 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <Home className="h-4 w-4 text-gray-600" />
+                  <House className="h-4 w-4 text-gray-600" />
                   Thiết bị chính
                 </h4>
                 <div className="space-y-2">
@@ -324,8 +324,8 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
       >
         <div className="px-4 pt-4 pb-3" style={{ background: headerColors[variant] }}>
           <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5" style={{ background: badgeColors[variant].bg, color: badgeColors[variant].color }}>
-            {variant === 'ongrid' ? <Sun className="w-2.5 h-2.5" /> : <Battery className="w-2.5 h-2.5" />}
-            {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + Battery'}
+            {variant === 'ongrid' ? <Sun className="w-2.5 h-2.5" /> : <BatteryHigh className="w-2.5 h-2.5" />}
+            {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + BatteryHigh'}
           </span>
           <h4 className="text-base font-bold text-gray-900">{combo.name}</h4>
         </div>
@@ -453,12 +453,12 @@ function SystemRow({
                 {showAll ? (
                   <>
                     Thu gọn
-                    <ChevronUp className="h-4 w-4" />
+                    <CaretUp className="h-4 w-4" />
                   </>
                 ) : (
                   <>
                     Xem thêm {filteredCombos.length - 4} combo
-                    <ChevronDown className="h-4 w-4" />
+                    <CaretDown className="h-4 w-4" />
                   </>
                 )}
               </button>
@@ -495,17 +495,17 @@ export default function ComboGridWithTabs() {
       <SystemRow
         title="Hybrid Solar"
         description="Có pin lưu trữ, sử dụng khi mất điện – 1 pha & 3 pha áp thấp"
-        icon={Zap}
+        icon={Lightning}
         iconColor="bg-gradient-to-br from-blue-500 to-indigo-600"
         combos={HYBRID_COMBOS}
         variant="hybrid"
       />
 
-      {/* Hybrid + Battery Row */}
+      {/* Hybrid + BatteryHigh Row */}
       <SystemRow
-        title="Hybrid + Battery"
+        title="Hybrid + BatteryHigh"
         description="Hybrid 3 pha áp cao – Dung lượng lớn, dự phòng dài hạn"
-        icon={Battery}
+        icon={BatteryHigh}
         iconColor="bg-gradient-to-br from-emerald-500 to-teal-600"
         combos={HYBRID_BATTERY_COMBOS}
         variant="hybrid-battery"

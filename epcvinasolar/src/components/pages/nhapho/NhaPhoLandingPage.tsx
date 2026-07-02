@@ -1,4 +1,4 @@
-import { CheckCircle, Home, Zap, Phone } from 'lucide-react';
+import { CheckCircle, House, Lightning, Phone } from '@phosphor-icons/react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
 import CalculatorSection from '../ad-landing/CalculatorSection';
 
@@ -10,7 +10,7 @@ export default function NhaPhoLandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-2 mb-4">
-              <Home className="w-8 h-8 text-yellow-400" />
+              <House className="w-8 h-8 text-yellow-400" />
               <span className="text-yellow-400 font-semibold">Giải Pháp Cho Nhà Phố</span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
@@ -46,7 +46,7 @@ export default function NhaPhoLandingPage() {
             ].map((item, i) => (
               <div key={i} className="text-center p-6 rounded-xl bg-slate-50">
                 <div className="w-14 h-14 mx-auto mb-4 bg-orange-100 rounded-full flex items-center justify-center">
-                  <Zap className="w-7 h-7 text-orange-500" />
+                  <Lightning className="w-7 h-7 text-orange-500" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                 <p className="text-slate-600">{item.desc}</p>
