@@ -24,11 +24,11 @@ export default function HeaderBar() {
 
   return (
     <header
-      className={`hidden lg:block fixed left-0 right-0 z-50 top-2 transition-transform duration-300 ${
+      className={`hidden md:block fixed left-0 right-0 z-50 top-2 transition-transform duration-300 ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 max-w-7xl mx-auto">
+      <div className="px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 max-w-7xl mx-auto">
         {/* Logo - left */}
         <a href="/" className="flex-shrink-0">
           <img
@@ -36,12 +36,12 @@ export default function HeaderBar() {
             alt="EPCVINA Solar"
             width={160}
             height={40}
-            className="h-10 w-auto drop-shadow-sm"
+            className="h-8 md:h-10 w-auto drop-shadow-sm"
           />
         </a>
 
-        {/* Nav pill - center (desktop only) */}
-        <nav className="hidden md:flex items-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-2 py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
+        {/* Nav pill - center (tablet+ desktop) */}
+        <nav className="hidden md:flex items-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-1.5 md:px-2 py-1.5 md:py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
           {/* Mirror reflection gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none rounded-full" />
           {navItems.map((item) => {
@@ -50,7 +50,7 @@ export default function HeaderBar() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                className={`relative px-2 md:px-3 py-1 md:py-1.5 rounded-full text-[11px] md:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
                   isActive
                     ? 'bg-gray-900 text-white shadow-md'
                     : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'

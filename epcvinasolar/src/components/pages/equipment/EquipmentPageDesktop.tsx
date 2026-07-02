@@ -223,7 +223,7 @@ export default function EquipmentPageDesktop({
   }
 
   return (
-    <div className="hidden lg:flex lg:flex-col">
+    <div className="hidden md:flex md:flex-col">
       {/* PC Hero Section - Full Width */}
       {showHero && (
         <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">

@@ -153,7 +153,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
         </button>
         <div className="flex flex-col lg:flex-row h-full max-h-[90vh]">
           {/* Left: Image Section (Desktop only) - 50% width */}
-          <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-gray-100 to-gray-200 relative">
+          <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-gray-100 to-gray-200 relative">
             <div className="absolute inset-0 flex items-center justify-center p-8">
               <div className="w-full h-full bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
                 <img 
@@ -168,7 +168,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
           {/* Right: Info Section (Scrollable) - 50% width */}
           <div className="lg:w-1/2 flex flex-col max-h-[90vh] lg:max-h-full">
             {/* Header - Mobile only close button */}
-            <div className="lg:hidden sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
+            <div className="md:hidden sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className={`w-12 h-12 rounded-xl ${
@@ -190,7 +190,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
             </div>
 
             {/* Desktop Header */}
-            <div className="hidden lg:block sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
+            <div className="hidden md:block sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
               <div className="flex items-center gap-3">
                 <div className={`w-12 h-12 rounded-xl ${
                   variant === 'ongrid' ? 'bg-gradient-to-br from-amber-500 to-orange-600' :

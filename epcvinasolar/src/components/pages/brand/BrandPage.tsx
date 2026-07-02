@@ -97,7 +97,7 @@ export default function BrandPage({ brand, brandName }: PageProps) {
       <EquipmentPageMobile category="brand" brand={brand} />
 
       {/* Desktop: Hero (section 1) + Sidebar + Content (section 2) */}
-      <div className="hidden lg:flex lg:flex-col lg:flex-1">
+      <div className="hidden md:flex md:flex-col md:flex-1">
         {/* Section 1: Hero full-width only */}
         <EquipmentPageDesktop 
           category="brand"

@@ -108,11 +108,13 @@ export default function EquipmentPage({ category }: PageProps) {
     <CartProvider>
       <div className="flex-1 flex flex-col">
         <HeaderBar />
-        {/* Mobile: Render full mobile component */}
-        <EquipmentPageMobile category={category} />
+        {/* Phone: Render full mobile component (< md) */}
+        <div className="md:hidden">
+          <EquipmentPageMobile category={category} />
+        </div>
 
-        {/* Desktop: Hero (section 1) + Sidebar + Content (section 2) */}
-        <div className="hidden lg:flex lg:flex-col lg:flex-1">
+        {/* Tablet + Desktop: Hero + Sidebar + Content (≥ md) */}
+        <div className="hidden md:flex md:flex-col md:flex-1">
           {/* Section 1: Hero full-width only */}
           <EquipmentPageDesktop 
             category={category} 

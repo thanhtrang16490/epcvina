@@ -725,7 +725,7 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
           </div>
 
           {/* Right Sidebar - Related Products */}
-          <div className="hidden lg:block w-80 flex-shrink-0">
+          <div className="hidden md:block w-80 flex-shrink-0">
             <div className="sticky top-24 space-y-4">
               <h3 className="text-xl font-bold text-gray-900 mb-6">Sản phẩm liên quan</h3>
               {relatedProducts.length > 0 ? (

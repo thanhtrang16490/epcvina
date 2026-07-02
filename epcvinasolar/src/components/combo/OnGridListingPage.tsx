@@ -78,7 +78,7 @@ export default function OnGridListingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section with Header - PC only */}
-      <div className="relative hidden lg:block">
+      <div className="relative hidden md:block">
         <HeaderBar />
         <section className="relative overflow-hidden bg-slate-900 text-white py-20">
           {/* Background image */}
@@ -150,7 +150,7 @@ export default function OnGridListingPage() {
       {/* Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
         {/* Mobile Page Header */}
-        <div className="lg:hidden mb-8">
+        <div className="md:hidden mb-8">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
               <Sun className="h-5 w-5 text-orange-600" />

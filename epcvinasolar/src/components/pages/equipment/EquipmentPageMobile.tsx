@@ -428,9 +428,9 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
   }
 
   return (
-    <div className="flex-1 flex flex-col min-h-screen lg:hidden">
+    <div className="flex-1 flex flex-col min-h-screen md:hidden">
       {/* ===== MOBILE: Sticky Header (giữ nguyên) ===== */}
-      <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 transition-all duration-200 lg:hidden ${
+      <header className={`sticky top-0 z-30 bg-white border-b border-gray-200 transition-all duration-200 md:hidden ${
         isFirstCardVisible ? 'shadow-sm' : ''
       }`}>
         {/* Title Row */}
@@ -497,7 +497,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
       </header>
 
       {/* ===== PC: Header + Filter Bar ===== */}
-      <header className="hidden lg:block sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
+      <header className="hidden md:block sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
@@ -544,7 +544,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
       </header>
 
       {/* ===== MOBILE: Device List (giữ nguyên) ===== */}
-      <div className="lg:hidden space-y-6 pb-4">
+      <div className="md:hidden space-y-6 pb-4">
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
@@ -629,7 +629,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
       </div>
 
       {/* ===== PC: Product Grid ===== */}
-      <div className="hidden lg:block max-w-7xl mx-auto px-6 py-8">
+      <div className="hidden md:block max-w-7xl mx-auto px-6 py-8">
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />

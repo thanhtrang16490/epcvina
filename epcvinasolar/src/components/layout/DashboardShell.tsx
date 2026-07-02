@@ -61,7 +61,7 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
           <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
           {/* Main content - full width, accounting for sidebar */}
-          <div className="flex-1 flex flex-col min-w-0 lg:ml-16">
+          <div className="flex-1 flex flex-col min-w-0 md:ml-16">
             {/* Header: mobile-only hamburger toggle */}
             <Header
               onMenuClick={() => setIsSidebarOpen(true)}

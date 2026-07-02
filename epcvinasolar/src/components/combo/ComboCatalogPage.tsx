@@ -144,7 +144,7 @@ export default function ComboCatalogPage() {
       <HeaderBar />
 
       {/* Hero Section */}
-      <section className="hidden lg:block relative bg-gradient-to-br from-slate-900 to-gray-800 text-white py-14">
+      <section className="hidden md:block relative bg-gradient-to-br from-slate-900 to-gray-800 text-white py-14">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/20 rounded-full -translate-y-1/2 translate-x-1/4" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />
@@ -177,7 +177,7 @@ export default function ComboCatalogPage() {
       </section>
 
       {/* Mobile */}
-      <div className="lg:hidden px-4 py-6">
+      <div className="md:hidden px-4 py-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Combo Hệ Thống Điện</h1>
         <div className="grid grid-cols-2 gap-3">
           {filteredCombos.map(combo => (
@@ -187,7 +187,7 @@ export default function ComboCatalogPage() {
       </div>
 
       {/* Desktop: Sidebar + Content */}
-      <div className="hidden lg:flex flex-1 px-4 sm:px-6 lg:px-8 py-4 gap-4">
+      <div className="hidden md:flex flex-1 px-4 sm:px-6 lg:px-8 py-4 gap-4">
         {/* Sidebar */}
         <aside className="w-64 flex-shrink-0">
           <div className="sticky top-24 space-y-4">

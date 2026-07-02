@@ -39,7 +39,7 @@ export default function MicroNavigation() {
             <a
               href="tel:0988446113"
               onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_hotline_click', { event_category: 'conversion' })}
-              className="hidden lg:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-all cursor-pointer min-h-[44px]"
+              className="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-all cursor-pointer min-h-[44px]"
               aria-label="Gọi hotline 0988 446 113"
             >
               <Phone className="w-4 h-4" />

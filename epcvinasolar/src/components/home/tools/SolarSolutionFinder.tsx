@@ -716,7 +716,7 @@ export default function SolarSolutionFinder() {
         </div>
 
         {/* ─── MOBILE: Detail panel only ─── */}
-        <div className="lg:hidden">
+        <div className="md:hidden">
           <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
             {displaySolutions[selectedIndex ?? -1] ? (
               <SolutionDetailPanel
@@ -829,8 +829,8 @@ export default function SolarSolutionFinder() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 text-sm">Giải Pháp Phù Hợp Với Bạn</p>
-                  <p className="text-[11px] text-gray-500 hidden lg:block">Chọn một để xem chi tiết ở cột bên phải</p>
-                              <p className="text-[11px] text-gray-500 lg:hidden">Chọn một để xem chi tiết bên dưới</p>
+                  <p className="text-[11px] text-gray-500 hidden md:block">Chọn một để xem chi tiết ở cột bên phải</p>
+                              <p className="text-[11px] text-gray-500 md:hidden">Chọn một để xem chi tiết bên dưới</p>
                 </div>
               </div>
             </div>

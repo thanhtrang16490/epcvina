@@ -266,15 +266,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   return (
     <>
-      {/* Mobile Overlay */}
+      {/* Mobile Overlay - only on < md (phones) */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-50 lg:hidden"
+          className="fixed inset-0 bg-black/50 z-50 md:hidden"
           onClick={onClose}
         />
       )}
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar - slide-out drawer for phones only */}
       <aside 
         className={`
           fixed top-0 left-0 z-50
@@ -283,7 +283,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           border-r border-white/40
           shadow-[4px_0_32px_rgba(0,0,0,0.10)]
           transform transition-transform duration-300 ease-in-out
-          lg:hidden
+          md:hidden
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
@@ -374,9 +374,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         </nav>
       </aside>
 
-      {/* Desktop Sidebar - Expandable on Hover */}
+      {/* Desktop/Tablet Sidebar - persistent, expand on hover (desktop) or tap (tablet) */}
       <aside 
-        className="hidden lg:block fixed top-0 left-0 h-screen z-[55] transition-all duration-300 ease-in-out overflow-hidden"
+        className="hidden md:block fixed top-0 left-0 h-screen z-[55] transition-all duration-300 ease-in-out overflow-hidden"
         style={{
           width: isExpanded ? '280px' : '64px',
           background: 'rgba(255,255,255,0.72)',
@@ -387,6 +387,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         }}
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
+        onClick={() => setIsExpanded(prev => !prev)}
       >
         {/* Mirror reflection gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none z-0" />
