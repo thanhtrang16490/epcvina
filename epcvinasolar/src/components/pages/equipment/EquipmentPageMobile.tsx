@@ -1,111 +1,13 @@
 
 
 import { useMemo, useState, useRef, useEffect } from 'react';
-import { Lightning, TrendUp, BatteryHigh, Shield, Plug, Wrench, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, Stack, CableCar, ShoppingCart, Check } from '@phosphor-icons/react';
+import { Shield, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, ShoppingCart, Check } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 import { useScrollContext } from '../../layout/DashboardShell';
 import { useCart } from '../../../hooks/useCart';
-
-// Format currency helper
-function formatCurrency(value: number): string {
-  if (value >= 1000000000) return (value / 1000000000).toFixed(1) + ' tỷ';
-  if (value >= 1000000) return (value / 1000000).toFixed(1) + ' triệu';
-  if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
-  return value.toString();
-}
-
-// ── Category metadata ──────────────────────────────────────────
-const CATEGORY_META: Record<EquipmentCategory, {
-  label: string;
-  icon: React.ReactNode;
-  color: string;
-  bg: string;
-  accent: string;
-  gradient: string;
-}> = {
-  panel: {
-    label: 'Tấm mô-đun quang điện',
-    icon: <Lightning className="h-5 w-5"/>,
-    color: 'text-blue-600',
-    bg: 'bg-blue-50',
-    accent: 'bg-blue-500',
-    gradient: 'from-blue-400 to-blue-600',
-  },
-  'on-grid-inverter': {
-    label: 'Biến tần On-Grid',
-    icon: <TrendUp className="h-5 w-5"/>,
-    color: 'text-orange-600',
-    bg: 'bg-orange-50',
-    accent: 'bg-orange-500',
-    gradient: 'from-orange-400 to-orange-600',
-  },
-  'hybrid-inverter': {
-    label: 'Biến tần Hybrid',
-    icon: <TrendUp className="h-5 w-5"/>,
-    color: 'text-blue-600',
-    bg: 'bg-blue-50',
-    accent: 'bg-blue-500',
-    gradient: 'from-blue-400 to-blue-600',
-  },
-  'lv-battery': {
-    label: 'Pin lưu trữ áp thấp',
-    icon: <BatteryHigh className="h-5 w-5"/>,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
-    accent: 'bg-green-500',
-    gradient: 'from-green-400 to-green-600',
-  },
-  'hv-battery': {
-    label: 'Pin lưu trữ áp cao',
-    icon: <BatteryHigh className="h-5 w-5"/>,
-    color: 'text-purple-600',
-    bg: 'bg-purple-50',
-    accent: 'bg-purple-500',
-    gradient: 'from-purple-400 to-purple-600',
-  },
-  mounting: {
-    label: 'Hệ khung nhôm',
-    icon: <Stack className="h-5 w-5"/>,
-    color: 'text-purple-600',
-    bg: 'bg-purple-50',
-    accent: 'bg-purple-500',
-    gradient: 'from-purple-400 to-purple-600',
-  },
-  wiring: {
-    label: 'Hệ dây điện',
-    icon: <CableCar className="h-5 w-5"/>,
-    color: 'text-gray-600',
-    bg: 'bg-gray-100',
-    accent: 'bg-gray-500',
-    gradient: 'from-gray-400 to-gray-600',
-  },
-  cabinet: {
-    label: 'Tủ điện',
-    icon: <Shield className="h-5 w-5"/>,
-    color: 'text-indigo-600',
-    bg: 'bg-indigo-50',
-    accent: 'bg-indigo-500',
-    gradient: 'from-indigo-400 to-indigo-600',
-  },
-  grounding: {
-    label: 'Hệ tiếp địa',
-    icon: <Plug className="h-5 w-5"/>,
-    color: 'text-yellow-600',
-    bg: 'bg-yellow-50',
-    accent: 'bg-yellow-500',
-    gradient: 'from-yellow-400 to-yellow-600',
-  },
-  accessories: {
-    label: 'Phụ kiện lắp đặt',
-    icon: <Wrench className="h-5 w-5"/>,
-    color: 'text-gray-600',
-    bg: 'bg-gray-100',
-    accent: 'bg-gray-500',
-    gradient: 'from-gray-400 to-gray-600',
-  },
-};
+import { formatCurrency, CATEGORY_META } from './shared-equipment';
 function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const startX = useRef<number | null>(null);
