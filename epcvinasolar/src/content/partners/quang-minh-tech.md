@@ -13,6 +13,7 @@ products:
   - mounting
 is_active: true
 display_order: 10
+hotline: "0961566633"
 ---
 
 ## Giới thiệu QUANG MINH TECH

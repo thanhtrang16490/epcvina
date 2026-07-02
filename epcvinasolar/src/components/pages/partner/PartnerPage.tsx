@@ -18,6 +18,7 @@ interface PartnerData {
     products?: string[];
     is_active: boolean;
     display_order: number;
+    hotline?: string;
   };
   body?: string;
 }
@@ -268,10 +269,10 @@ export default function PartnerPage({ partner }: PartnerPageProps) {
                   Liên hệ EPCVINA Solar để được tư vấn sản phẩm {partner.data.name} chính hãng.
                 </p>
                 <a
-                  href="tel:0988446113"
+                  href={`tel:${partner.data.hotline || '0988446113'}`}
                   className="block w-full bg-orange-500 text-white text-center px-4 py-2.5 rounded-lg font-semibold hover:bg-orange-600 transition-colors text-sm"
                 >
-                  Gọi ngay: 0988 446 113
+                  Gọi ngay: {partner.data.hotline ? partner.data.hotline.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3') : '0988 446 113'}
                 </a>
               </div>
 

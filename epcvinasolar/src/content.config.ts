@@ -112,6 +112,7 @@ const partnersCollection = defineCollection({
     products: z.array(z.string()).optional(),
     is_active: z.boolean().default(true),
     display_order: z.number().default(0),
+    hotline: z.string().optional(),
   }),
 });
 
