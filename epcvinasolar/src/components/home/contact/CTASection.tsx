@@ -29,10 +29,20 @@ export default function CTASection() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    // TODO: wire to real API / Supabase / Zalo OA
-    await new Promise((r) => setTimeout(r, 900));
+    // Build Zalo message from form data
+    const msg = [
+      'Xin chào EPCVINA, tôi cần tư vấn:',
+      `• Họ tên: ${form.name}`,
+      `• SĐT: ${form.phone}`,
+      `• Địa chỉ: ${form.address || 'N/A'}`,
+      `• Hóa đơn điện: ${form.bill || 'N/A'}`,
+      `• Nhu cầu: ${form.need || 'N/A'}`,
+    ].join('\n');
+    const zaloUrl = `https://zalo.me/0988446113?text=${encodeURIComponent(msg)}`;
+    await new Promise((r) => setTimeout(r, 400));
     setLoading(false);
     setSubmitted(true);
+    window.open(zaloUrl, '_blank', 'noopener,noreferrer');
   }
 
   return (

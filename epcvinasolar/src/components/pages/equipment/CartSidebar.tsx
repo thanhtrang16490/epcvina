@@ -1,5 +1,6 @@
 import { useCart } from '../../../hooks/useCart';
 import { X, Minus, Plus, ShoppingBag, Trash, Phone, ChatCircle } from '@phosphor-icons/react';
+import { motion } from 'motion/react';
 
 // Format currency helper
 function formatCurrency(value: number): string {
@@ -26,7 +27,13 @@ export default function CartSidebar() {
       />
 
       {/* Sidebar */}
-      <div className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white shadow-2xl flex flex-col animate-slide-in-right">
+      <motion.div
+        className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white shadow-2xl flex flex-col"
+        initial={{ x: '100%' }}
+        animate={{ x: 0 }}
+        exit={{ x: '100%' }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 bg-gray-50">
           <div className="flex items-center gap-2">
@@ -152,17 +159,7 @@ export default function CartSidebar() {
             </button>
           </div>
         )}
-      </div>
-
-      <style>{`
-        @keyframes slide-in-right {
-          from { transform: translateX(100%); }
-          to { transform: translateX(0); }
-        }
-        .animate-slide-in-right {
-          animation: slide-in-right 0.3s ease-out;
-        }
-      `}</style>
+      </motion.div>
     </>
   );
 }
