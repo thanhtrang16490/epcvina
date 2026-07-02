@@ -1,11 +1,12 @@
 
 
 import { useMemo, useState, useRef, useEffect } from 'react';
-import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight, Layers, Cable } from 'lucide-react';
+import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, ChevronRight, SlidersHorizontal, Eye, ArrowRight, Layers, Cable, ShoppingCart, Check } from 'lucide-react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 import { useScrollContext } from '../../layout/DashboardShell';
+import { useCart } from '../../../hooks/useCart';
 
 // Format currency helper
 function formatCurrency(value: number): string {
@@ -202,6 +203,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
   const [showFilterDrawer, setShowFilterDrawer] = useState(false);
   const { isHeaderVisible } = useScrollContext();
+  const { addItem } = useCart();
   const [isFirstCardVisible, setIsFirstCardVisible] = useState(true);
   const [allDevices, setAllDevices] = useState<Device[]>([]);
   const [loading, setLoading] = useState(true);
@@ -704,21 +706,46 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
                     </div>
 
                     {/* Price + CTA */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="pt-4 border-t border-gray-100 space-y-2">
                       {device.price ? (
-                        <div>
-                          <p className="text-xs text-gray-500">Đơn giá</p>
-                          <p className="text-lg font-bold text-[#F97316]">{formatCurrency(device.price)}</p>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-xs text-gray-500">Đơn giá</p>
+                            <p className="text-lg font-bold text-[#F97316]">{formatCurrency(device.price)}</p>
+                          </div>
                         </div>
                       ) : (
-                        <div>
+                        <div className="mb-2">
                           <p className="text-xs text-gray-500">Liên hệ</p>
                           <p className="text-sm font-medium text-gray-700">Giá tốt nhất</p>
                         </div>
                       )}
-                      <button className="px-4 py-2 bg-[#F97316] text-white rounded-lg text-sm font-medium group-hover:bg-[#C2410C] transition-colors">
-                        Xem chi tiết
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            addItem({
+                              id: device.id,
+                              name: device.name,
+                              brand: device.brand,
+                              price: device.price || 0,
+                              image: device.images?.[0] || device.image_url,
+                              category: device.category,
+                            });
+                          }}
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
+                        >
+                          <ShoppingCart className="w-3.5 h-3.5" />
+                          Thêm
+                        </button>
+                        <a
+                          href={`/thiet-bi/${device.id}`}
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-[#F97316] text-white rounded-lg text-sm font-medium hover:bg-[#C2410C] transition-colors"
+                        >
+                          Chi tiết
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>

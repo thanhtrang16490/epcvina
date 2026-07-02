@@ -1,8 +1,9 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, Eye, Layers, Cable, Search, ChevronRight, List, Grid3x3, Grid2x2, ArrowDownAZ, ArrowUpAZ, ArrowUp, ArrowDown } from 'lucide-react';
+import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, Eye, Layers, Cable, Search, ChevronRight, List, Grid3x3, Grid2x2, ArrowDownAZ, ArrowUpAZ, ArrowUp, ArrowDown, ShoppingCart } from 'lucide-react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
+import { useCart } from '../../../hooks/useCart';
 
 // Format currency helper
 function formatCurrency(value: number): string {
@@ -150,6 +151,7 @@ export default function EquipmentPageDesktop({
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const { addItem } = useCart();
 
   // Auto-collapse search when clicking outside
   useEffect(() => {
@@ -514,8 +516,8 @@ export default function EquipmentPageDesktop({
                       ))}
                   </div>
 
-                  {/* Price */}
-                  <div className="pt-4 border-t border-gray-100">
+                  {/* Price + Add to Cart */}
+                  <div className="pt-4 border-t border-gray-100 space-y-3">
                     {device.price ? (
                       <div>
                         <p className="text-xs text-gray-500 mb-0.5">Đơn giá</p>
@@ -527,6 +529,23 @@ export default function EquipmentPageDesktop({
                         <p className="text-sm font-semibold text-orange-600">Giá tốt nhất</p>
                       </div>
                     )}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addItem({
+                          id: device.id,
+                          name: device.name,
+                          brand: device.brand,
+                          price: device.price || 0,
+                          image: device.images?.[0] || device.image_url,
+                          category: device.category,
+                        });
+                      }}
+                      className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                      Thêm vào giỏ
+                    </button>
                   </div>
                 </div>
               </div>
