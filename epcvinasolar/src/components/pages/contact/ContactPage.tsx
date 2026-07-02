@@ -32,7 +32,7 @@ const contactCards = [
     icon: <Mail className="h-6 w-6" aria-hidden="true" />,
     title: 'Email',
     details: [
-      { label: 'Email', value: 'epcvina@hotmail.com', href: 'mailto:epcvina@hotmail.com', note: '' },
+      { label: 'Email', value: 'epcvinasolar@gmail.com', href: 'mailto:epcvinasolar@gmail.com', note: '' },
     ],
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80',
     alt: 'Văn phòng làm việc EPCVINA Solar',
@@ -399,7 +399,7 @@ export default function ContactPage() {
                     </div>
                   </a>
                   <a
-                    href="mailto:epcvina@hotmail.com"
+                    href="mailto:epcvinasolar@gmail.com"
                     className="cursor-pointer flex items-center gap-3 p-3 bg-white rounded-xl border border-gray-100 hover:border-emerald-200 hover:shadow-md transition-shadow duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                   >
                     <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -407,7 +407,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="text-xs text-gray-500">Email</div>
-                      <div className="font-semibold text-gray-900 text-sm">epcvina@hotmail.com</div>
+                      <div className="font-semibold text-gray-900 text-sm">epcvinasolar@gmail.com</div>
                     </div>
                   </a>
                 </div>

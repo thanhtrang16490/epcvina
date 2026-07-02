@@ -298,7 +298,7 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 **EPCVINA Solar** - Chuyên gia điện mặt trời hàng đầu Hà Nội
 
 📱 **Hotline:** [0988 446 113](tel:+84988446113)  
-📧 **Email:** epcvina@hotmail.com  
+📧 **Email:** epcvinasolar@gmail.com  
 🌐 **Website:** https://epcvina.com  
 📍 **Địa chỉ:** Phòng 315 - Khu TM chung cư Học viện Quốc Phòng, Đ. Võ Chí Công, Tây Hồ, Hà Nội
 

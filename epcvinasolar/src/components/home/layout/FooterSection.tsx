@@ -155,8 +155,8 @@ export default function FooterSection() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 flex-shrink-0" style={{ color: BRAND_RED }} />
-                <a href="mailto:epcvina@hotmail.com" className="hover:text-white transition-colors cursor-pointer py-1 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">
-                  epcvina@hotmail.com
+                <a href="mailto:epcvinasolar@gmail.com" className="hover:text-white transition-colors cursor-pointer py-1 inline-block motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2">
+                  epcvinasolar@gmail.com
                 </a>
               </li>
             </ul>
