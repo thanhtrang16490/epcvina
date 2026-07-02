@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "epcvina-app",
+  "private_key_id": "f5b9c52be64673d3172c5090e7111319ef6e1a41",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDiibYP4NigAagS\nuYJzSpDSRVx/P3DRikG38HiGlVN/in1ESmFULNMnUfeqTjm6grkexTNl3L6U8ZNM\nEcK3pVj3g3tQ9EIhF8BWuWer2ye+g/YAR9Pf14DLfTwdwTBW+40nl2TuTNiE8woC\n+48GwI0AMdqnt35QUR/KJy3g+LhWcjwilxOjPNbCw/Ylt45uzdHliq7BX7u0kgxC\nEmSc63dQSpnq0gMkKwtufckpP9fyr/e39BSTMN+ZSthHspyreJ/2H+r9Z+q85uwO\nI8uhq6VjFNeGW0J0HJZ9mjElXgL6wR8LIlrZkNge0BLFlnyWR+YhaksT8xYMkdBq\nbaGDsQz1AgMBAAECggEAA1+POJ55a9fdI2Nw4du2kqb9QZBI7NWVjnALkHiKM08b\nqx1GXAwAwrlQH3s0wEqE3VWEPMO3Vv15LC4OqF0s3WMRaRGj69juCzDR0IexFTLB\nAmV+WNS7MWyESyHdqX2nIloBr8vbgoYZWh2mvLAvjqYRh98L3R4B/5eq/mhKhkdi\nYl+g47ygoxahqzJWyvIM3cRwfMvVcl3cntWw/QNSvZD7ZR16g/FOxCyChUaw0auS\n2VRGlnm2RQyR5I7ArnI3/USnMNPx4Tu62yv7YVjxFHWXMT2USDEYq+JMYWftUapH\nm9TJMUppUq2QMJYVEEmpu3zGGIPnJ40KaUIEA7wIkQKBgQDyAwTOfzHtIHusm2nk\nwY57SeQqOeZAiNEjQYwm9H5zUMsW6PzNql+1MHe4ZvxJ+AzVT5YTxqXhMSBd12Dm\niTRJvognQqVt45gpH/Ifx52nohHFE/4diIgItIGiGISxz+8Re/vqXwg5jm7uVVQW\nUfHAKRSwUjzmxURN8btQ1Dxc8QKBgQDvobrjTDn/ksdDtq2f5WH61BfGnypwjQs3\nrvNsfsLRO1wFN88fp0RS6USVa8a5NSRwVvormyJBwH50mWD7UqB03nuG9BcvvmUQ\n+xln0qR9TjeJcoP9JWKd1hkG9V5jgqOVle/kH2aCTjK4ETVV7XAySUKunQD4AV0K\nYza1tiwARQKBgCWpkJruMn/bmUOQYBdog9rt8eMcZZfPcvSQo9YAIJmjjid/lLAQ\n/pn88/Svmj2Mq7qaixmCxZfZBFd2SC84VPnQ+/FYLtR+IdTsksqdTwyibS+FX/uK\nntjz9mSaejQNzv+ikt6zcV07rEnM36wljoDAI+cYtT+YnXufze3TSZ2RAoGBAOOA\n3HmniPjHVT9IVBaWJCuK6Pe9bQFmJtw60QiUYElc3cRmc9JNb2R36pEhvY1gkrPF\nH8X+hst+AZCZfaWdkJDkGMrLOqgtTq6MdlZHebstYzSu7/iKYdIPzbr5gR9gjAYc\nT6B4302fCDAQxl5KClbzjsdQb/cE9FxETVC/H48xAoGBALYUFvOIuuz1A8vG9N25\nWQ4OsI7CXa3IRBKDJ1fCCNjaeDkIMn2jyqiRJ8wl2t+zTFpXf0JGsAoMSBloXh1d\nfiAkSvBZk4dc6ogQqatLDKfoFKfcdchCKXyDzRuzv6vdpp7jvYITKTkMMjpWBM+8\nZjHyyteoN9EpSvIKYecleMSL\n-----END PRIVATE KEY-----\n",
+  "client_email": "play-console-api@epcvina-app.iam.gserviceaccount.com",
+  "client_id": "111238076380932077978",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/play-console-api%40epcvina-app.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

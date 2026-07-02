@@ -1,0 +1,87 @@
+{
+  "expo": {
+    "name": "EPCVINA",
+    "slug": "epcvina",
+    "version": "1.0.2",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "epcvina",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.epcvina.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Ứng dụng cần quyền truy cập thư viện ảnh để tải lên hình ảnh sản phẩm"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.epcvina.android",
+      "versionCode": 5,
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED"
+      ],
+      "blockedPermissions": [
+        "android.permission.CAMERA"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "@react-native-community/datetimepicker",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Ứng dụng cần quyền truy cập thư viện ảnh để tải lên hình ảnh sản phẩm",
+          "cameraPermission": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#175ead",
+          "defaultChannel": "default",
+          "sounds": []
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "fb7ac0b7-7211-43d3-8cc3-62120fb0919d"
+      },
+      "GOOGLE_CLIENT_ID": "",
+      "GOOGLE_IOS_CLIENT_ID": "",
+      "GOOGLE_ANDROID_CLIENT_ID": "",
+      "GOOGLE_REDIRECT_URI": "",
+      "FACEBOOK_APP_ID": "",
+      "FACEBOOK_REDIRECT_URI": "",
+      "ZALO_APP_ID": "",
+      "ZALO_APP_SECRET": "",
+      "ZALO_REDIRECT_URI": ""
+    },
+    "owner": "rmsurv024"
+  }
+}
