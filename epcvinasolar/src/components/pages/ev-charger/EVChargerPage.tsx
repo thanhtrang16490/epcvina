@@ -29,7 +29,7 @@ import {
 import HeaderBar from '../../home/layout/HeaderBar';
 
 /* ─── EPCVINA Charging Network Stats ─── */
-const vgreenStats = [
+const epcvinaStats = [
   { icon: <Plug className="h-6 w-6" aria-hidden="true" />, value: '150,000+', label: 'Cổng sạc trên toàn quốc', gradient: 'from-cyan-600 to-cyan-500' },
   { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '63', label: 'Tỉnh/Thành phủ sóng', gradient: 'from-blue-600 to-blue-500' },
   { icon: <Zap className="h-6 w-6" aria-hidden="true" />, value: '18 triệu+', label: 'Phiên sạc hoàn thành', gradient: 'from-cyan-500 to-cyan-400' },
@@ -233,7 +233,7 @@ export default function EVChargerPage() {
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {vgreenStats.map((s) => (
+              {epcvinaStats.map((s) => (
                 <div
                   key={s.label}
                   className="bg-gray-50 rounded-2xl p-6 text-center border border-gray-100 hover:border-cyan-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none"

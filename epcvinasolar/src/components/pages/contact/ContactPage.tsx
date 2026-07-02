@@ -306,7 +306,7 @@ export default function ContactPage() {
                           <option value="hybrid-1-pha">Hybrid 1 pha</option>
                           <option value="hybrid-3-pha">Hybrid 3 pha</option>
                           <option value="cong-nghiep">Hệ thống công nghiệp</option>
-                          <option value="tramsac">Trạm sạc xe điện V-GREEN</option>
+                          <option value="tramsac">Trạm sạc xe điện EPCVINA</option>
                           <option value="khac">Khác</option>
                         </select>
                         <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" aria-hidden="true" />
