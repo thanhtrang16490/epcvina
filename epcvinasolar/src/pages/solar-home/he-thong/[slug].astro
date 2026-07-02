@@ -16,7 +16,7 @@ const { slug } = Astro.params;
 const { combo } = Astro.props;
 ---
 
-<DashboardLayout title={`${combo.data.title} - EPC Solar`}>
+<DashboardLayout title={`${combo.data.title} - EPC Solar`} description={`${combo.data.title} - Hệ thống điện mặt trời trọn gói từ EPC Solar. Tiết kiệm 70-90% chi phí điện, hoàn vốn 3-5 năm. Bảo hành 25 năm tấm pin.`}>
   <DashboardShell client:load>
     <ComboDetailPage client:idle combo={JSON.parse(JSON.stringify(combo))} />
   </DashboardShell>

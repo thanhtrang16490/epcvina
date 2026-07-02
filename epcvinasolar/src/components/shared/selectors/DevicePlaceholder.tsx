@@ -37,17 +37,6 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
   const hasImage = device.image_url || (device.images && device.images.length > 0);
   const imageUrl = device.image_url || device.images?.[0];
 
-  // Debug log
-  if (typeof window !== 'undefined') {
-    console.log('=== DevicePlaceholder Debug ===');
-    console.log('Device:', device.model);
-    console.log('device.image_url:', device.image_url);
-    console.log('device.images:', device.images);
-    console.log('hasImage:', hasImage);
-    console.log('imageUrl:', imageUrl);
-    console.log('=============================');
-  }
-
   // Extract key specs based on category
   const getKeySpecs = () => {
     const specs: Array<{ label: string; value: string; highlight?: boolean }> = [];
@@ -146,12 +135,9 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
                 src={imageUrl}
                 alt={device.model}
                 className="w-full h-full object-contain"
+                loading="lazy"
                 onError={(e) => {
-                  console.error('❌ Image failed to load:', imageUrl);
                   e.currentTarget.style.display = 'none';
-                }}
-                onLoad={() => {
-                  console.log('✅ Image loaded successfully:', imageUrl);
                 }}
               />
             </div>

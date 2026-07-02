@@ -477,7 +477,7 @@ export default function EquipmentPageDesktop({
                   </div>
                   {device.warranty && (
                     <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full shadow-sm">
-                      <span className="text-xs font-semibold text-gray-700">🛡️ {device.warranty} năm</span>
+                      <span className="text-xs font-semibold text-gray-700 flex items-center gap-1"><Shield weight="fill" className="w-3.5 h-3.5 text-emerald-600" /> {device.warranty} năm</span>
                     </div>
                   )}
                   {/* Hover overlay with eye icon for quick view */}

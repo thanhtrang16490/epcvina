@@ -282,7 +282,7 @@ export default function AboutPage() {
                     src={supplier.logo}
                     alt={supplier.name}
                     className="h-10 sm:h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-200"
-                  />
+                  loading="lazy" />
                   <p className="text-[10px] sm:text-xs text-gray-400 mt-2 group-hover:text-gray-500 transition-colors text-center">
                     {supplier.category}
                   </p>

@@ -105,7 +105,7 @@ export default function PartnerPage({ partner }: PartnerPageProps) {
                     src={partner.data.logo}
                     alt={partner.data.name}
                     className="w-full h-full object-contain"
-                  />
+                  loading="lazy" />
                 </div>
               )}
               <div className="flex-1">

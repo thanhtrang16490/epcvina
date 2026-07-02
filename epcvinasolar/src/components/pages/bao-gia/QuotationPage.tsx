@@ -169,8 +169,8 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
         value={kind}
         onChange={handleKind}
         options={[
-          { value: 'hybrid',  label: '⚡ Hybrid',  sub: 'Lưu trữ + dự phòng' },
-          { value: 'on-grid', label: '☀️ On-Grid', sub: 'Nối lưới trực tiếp' },
+          { value: 'hybrid',  label: 'Hybrid',  sub: 'Lưu trữ + dự phòng' },
+          { value: 'on-grid', label: 'On-Grid', sub: 'Nối lưới trực tiếp' },
         ]}
         accentBlue={kind === 'hybrid'}
       />

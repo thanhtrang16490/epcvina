@@ -222,6 +222,7 @@ export default function AgriculturalApplicationPage() {
                 src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80"
                 alt="Nhà kính công nghệ cao"
                 className="w-full h-full object-cover"
+                loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
                 }}
@@ -249,6 +250,7 @@ export default function AgriculturalApplicationPage() {
                 src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&q=80"
                 alt="Trang trại chăn nuôi"
                 className="w-full h-full object-cover"
+                loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
                 }}
@@ -276,6 +278,7 @@ export default function AgriculturalApplicationPage() {
                 src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80"
                 alt="Nuôi trồng thủy sản"
                 className="w-full h-full object-cover"
+                loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
                 }}
@@ -303,6 +306,7 @@ export default function AgriculturalApplicationPage() {
                 src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80"
                 alt="Mô hình nông nghiệp kết hợp điện mặt trời"
                 className="w-full h-full object-cover"
+                loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
                 }}
@@ -340,6 +344,7 @@ export default function AgriculturalApplicationPage() {
                 src="https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80"
                 alt="Trang trại rau thủy canh"
                 className="w-full h-full object-cover"
+                loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
                 }}
@@ -362,6 +367,7 @@ export default function AgriculturalApplicationPage() {
                 src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
                 alt="Kho lạnh trái cây"
                 className="w-full h-full object-cover"
+                loading="lazy"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
                 }}

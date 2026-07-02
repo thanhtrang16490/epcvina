@@ -1,9 +1,9 @@
-import { Shield, CheckCircle, Clock, Medal, Phone, WarningCircle, Wrench } from '@phosphor-icons/react';
+import { Shield, CheckCircle, Clock, Medal, Phone, WarningCircle, Wrench, Sun, Lightning, BatteryHigh, Tools, ClipboardText } from '@phosphor-icons/react';
 
 const warrantyItems = [
   {
     category: 'Tấm Pin Mặt Trời',
-    icon: '☀️',
+    icon: <Sun weight="duotone" className="w-8 h-8 text-amber-500" />,
     items: [
       { name: 'Bảo hành hiệu suất (Performance)', duration: '25 năm', desc: 'Đảm bảo ≥80% công suất sau 25 năm' },
       { name: 'Bảo hành sản phẩm (Product)', duration: '12 năm', desc: 'Lỗi nhà sản xuất, nứt vỡ, hỏng hóc' },
@@ -11,7 +11,7 @@ const warrantyItems = [
   },
   {
     category: 'Inverter (Biến tần)',
-    icon: '⚡',
+    icon: <Lightning weight="duotone" className="w-8 h-8 text-yellow-500" />,
     items: [
       { name: 'Inverter Hybrid', duration: '10 năm', desc: 'Bảo hành chính hãng, đổi mới nếu lỗi' },
       { name: 'Inverter On-Grid', duration: '10 năm', desc: 'Hỗ trợ firmware update miễn phí' },
@@ -19,7 +19,7 @@ const warrantyItems = [
   },
   {
     category: 'Pin Lưu Trữ (BESS)',
-    icon: '🔋',
+    icon: <BatteryHigh weight="duotone" className="w-8 h-8 text-green-500" />,
     items: [
       { name: 'Pin Lithium LFP', duration: '10 năm', desc: '≥6000 chu kỳ, bảo hành dung lượng' },
       { name: 'Pin Lithium NMC', duration: '8 năm', desc: 'Bảo hành theo số chu kỳ sạc' },
@@ -27,7 +27,7 @@ const warrantyItems = [
   },
   {
     category: 'Thi Công & Lắp Đặt',
-    icon: '🔧',
+    icon: <Wrench weight="duotone" className="w-8 h-8 text-blue-500" />,
     items: [
       { name: 'Khung giàn & phụ kiện', duration: '10 năm', desc: 'Chống rỉ sét, chịu được gió bão' },
       { name: 'Công lắp đặt', duration: '5 năm', desc: 'Bảo hành thấm dột, kết cấu mái' },
@@ -36,7 +36,7 @@ const warrantyItems = [
   },
   {
     category: 'Dịch Vụ Sau Bán Hàng',
-    icon: '📋',
+    icon: <ClipboardText weight="duotone" className="w-8 h-8 text-indigo-500" />,
     items: [
       { name: 'Bảo trì miễn phí năm đầu', duration: '12 tháng', desc: 'Kiểm tra hệ thống, vệ sinh pin, báo cáo' },
       { name: 'Giám sát từ xa', duration: 'Trọn đời', desc: 'Monitoring 24/7 qua app, cảnh báo sự cố' },
@@ -105,7 +105,7 @@ export default function BaoHanhPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {warrantyItems.map((group, gi) => (
               <div key={gi} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-                <div className="text-3xl mb-3">{group.icon}</div>
+                <div className="mb-3">{group.icon}</div>
                 <h3 className="text-xl font-bold text-slate-900 mb-4">{group.category}</h3>
                 <div className="space-y-3">
                   {group.items.map((item, ii) => (

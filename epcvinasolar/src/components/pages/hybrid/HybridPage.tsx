@@ -699,7 +699,6 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
     } else {
       // Fallback: If we can't determine wattage, don't reset to 0
       // Keep the previous calculatedPower or use combo's default
-      console.warn('Could not determine panel wattage, keeping current value:', panelDevice);
     }
   }, [modifiedEquipment]);
 

@@ -66,7 +66,7 @@ export default function CartSidebar() {
                   {/* Image */}
                   <div className="w-20 h-20 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden">
                     {item.image ? (
-                      <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" />
+                      <img src={item.image} alt={item.name} className="w-full h-full object-contain p-1" loading="lazy" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-300">
                         <ShoppingBag className="w-8 h-8" />
@@ -127,8 +127,8 @@ export default function CartSidebar() {
             <div className="space-y-2">
               <a
                 href={`https://zalo.me/0988446113?text=${zaloText}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
+
                 className="flex items-center justify-center gap-2 w-full py-3 bg-blue-500 text-white rounded-xl font-semibold hover:bg-blue-600 transition-colors text-sm"
               >
                 <ChatCircle className="w-4 h-4" />

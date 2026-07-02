@@ -1,4 +1,4 @@
-import { CheckCircle, Phone, Building, TrendDown, Clock, Shield, Star } from '@phosphor-icons/react';
+import { CheckCircle, Phone, Building, TrendDown, Clock, Shield, Star, ShoppingBag, ForkKnife, Coffee, Buildings } from '@phosphor-icons/react';
 
 export default function HoKinhDoanhLandingPage() {
   return (
@@ -51,13 +51,13 @@ export default function HoKinhDoanhLandingPage() {
           <p className="text-center text-slate-600 mb-12">Bất kể mô hình kinh doanh nào, điện mặt trời đều mang lại lợi ích</p>
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { title: 'Cửa Hàng', desc: 'Giảm chi phí điện cho điều hòa, chiếu sáng, tủ lạnh. Tiết kiệm 1-3 triệu/tháng.', icon: '🏪' },
-              { title: 'Nhà Hàng', desc: 'Chi phí điện cao 3-10 triệu/tháng. Điện mặt trời giảm 70-90% hóa đơn.', icon: '🍽️' },
-              { title: 'Quán Cafe', desc: 'Điều hòa, máy pha cafe, chiếu sáng. Tiết kiệm 500K-2 triệu/tháng.', icon: '☕' },
-              { title: 'Khách Sạn', desc: 'Nước nóng, điều hòa, thang máy. Giảm 5-20 triệu tiền điện/tháng.', icon: '🏨' },
+              { title: 'Cửa Hàng', desc: 'Giảm chi phí điện cho điều hòa, chiếu sáng, tủ lạnh. Tiết kiệm 1-3 triệu/tháng.', icon: <ShoppingBag weight="duotone" className="w-10 h-10 text-amber-600" /> },
+              { title: 'Nhà Hàng', desc: 'Chi phí điện cao 3-10 triệu/tháng. Điện mặt trời giảm 70-90% hóa đơn.', icon: <ForkKnife weight="duotone" className="w-10 h-10 text-amber-600" /> },
+              { title: 'Quán Cafe', desc: 'Điều hòa, máy pha cafe, chiếu sáng. Tiết kiệm 500K-2 triệu/tháng.', icon: <Coffee weight="duotone" className="w-10 h-10 text-amber-600" /> },
+              { title: 'Khách Sạn', desc: 'Nước nóng, điều hòa, thang máy. Giảm 5-20 triệu tiền điện/tháng.', icon: <Buildings weight="duotone" className="w-10 h-10 text-amber-600" /> },
             ].map((item, i) => (
               <div key={i} className="text-center p-6 bg-amber-50 rounded-xl hover:shadow-lg transition-all">
-                <div className="text-4xl mb-4">{item.icon}</div>
+                <div className="mb-4">{item.icon}</div>
                 <h3 className="text-lg font-bold mb-2">{item.title}</h3>
                 <p className="text-sm text-slate-600">{item.desc}</p>
               </div>

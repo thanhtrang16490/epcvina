@@ -212,6 +212,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                   src={images[selectedImage]}
                   alt={product.name}
                   className="w-full h-full object-contain"
+                  loading="lazy"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = '/images/placeholder.png';
                   }}

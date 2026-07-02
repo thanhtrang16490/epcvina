@@ -82,7 +82,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                   src="/sample-combo.jpg"
                   alt={data.title}
                   className="w-full h-full object-cover"
-                />
+                loading="lazy" />
               </div>
               <div className="p-4 flex items-center gap-3 flex-wrap">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold ${

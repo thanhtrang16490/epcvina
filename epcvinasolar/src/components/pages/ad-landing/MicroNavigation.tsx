@@ -49,8 +49,8 @@ export default function MicroNavigation() {
             {/* Zalo Button */}
             <a
               href="https://zalo.me/0988446113"
-              target="_blank"
-              rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer"
+
               onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_zalo_click', { event_category: 'conversion' })}
               className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-all cursor-pointer min-h-[44px]"
               aria-label="Chat Zalo với EPCVINA"

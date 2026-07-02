@@ -16,7 +16,7 @@ export default function ProjectsSection() {
           {FEATURED_PROJECTS.slice(0, 4).map((project: Project, i: number) => (
             <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all">
               <div className="relative h-64">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                   {project.capacity}
                 </div>

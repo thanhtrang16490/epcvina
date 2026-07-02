@@ -85,7 +85,6 @@ function getComboSlug(combo: ComboItem): string {
   const mapped = COMBO_SLUG_MAP[combo.id];
   if (mapped) return mapped;
   // Fallback: generate slug from combo properties
-  console.warn('No slug mapping for combo ID:', combo.id);
   return combo.id || 'unknown';
 }
 
@@ -160,7 +159,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
                   src="/sample-combo.jpg"
                   alt={combo.name}
                   className="w-full h-full object-cover"
-                />
+                loading="lazy" />
               </div>
             </div>
           </div>

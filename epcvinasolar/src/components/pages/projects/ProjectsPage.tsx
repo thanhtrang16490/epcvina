@@ -503,7 +503,7 @@ export default function ProjectsPage() {
                       </p>
                       {project.note && (
                         <p className="text-xs text-emerald-600 font-medium line-clamp-1">
-                          ⚡ {project.note}
+                          {project.note}
                         </p>
                       )}
                     </div>

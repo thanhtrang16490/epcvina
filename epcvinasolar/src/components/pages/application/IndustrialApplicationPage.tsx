@@ -208,6 +208,7 @@ export default function IndustrialApplicationPage() {
                   src={solution.image}
                   alt={solution.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80';
                   }}
@@ -293,6 +294,7 @@ export default function IndustrialApplicationPage() {
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80';
                   }}

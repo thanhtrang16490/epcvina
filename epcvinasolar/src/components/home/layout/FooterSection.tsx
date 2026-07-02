@@ -25,8 +25,8 @@ export default function FooterSection() {
               {/* Zalo */}
               <a
                 href="https://zalo.me/0988446113"
-                target="_blank"
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
+
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#1a3a5c' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = '#1452a0')}
@@ -38,8 +38,8 @@ export default function FooterSection() {
               {/* Facebook */}
               <a
                 href="https://www.facebook.com/epcvinacom"
-                target="_blank"
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
+
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = BRAND_RED)}
@@ -53,8 +53,8 @@ export default function FooterSection() {
               {/* YouTube */}
               <a
                 href="https://www.youtube.com/@EPCVINA"
-                target="_blank"
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
+
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = BRAND_RED)}
@@ -68,8 +68,8 @@ export default function FooterSection() {
               {/* TikTok */}
               <a
                 href="https://www.tiktok.com/@epcvina"
-                target="_blank"
-                rel="noopener noreferrer"
+                target="_blank" rel="noopener noreferrer"
+
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                 style={{ backgroundColor: '#374151' }}
                 onMouseOver={e => (e.currentTarget.style.backgroundColor = '#111')}
@@ -142,8 +142,8 @@ export default function FooterSection() {
                 <ChatCircle className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
                 <a
                   href="https://zalo.me/0988446113"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target="_blank" rel="noopener noreferrer"
+
                   className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]"
                 >
                   Zalo: 0988 446 113
