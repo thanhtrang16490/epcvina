@@ -233,9 +233,9 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                 <a
-                  href="tel:0904038448"
+                  href="tel:0988446113"
                   className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all text-center text-sm cursor-pointer min-h-[44px] flex items-center justify-center"
-                  aria-label="Gọi tư vấn: 0904038448"
+                  aria-label="Gọi tư vấn: 0988446113"
                 >
                   Liên hệ tư vấn
                 </a>

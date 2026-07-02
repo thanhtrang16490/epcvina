@@ -269,7 +269,7 @@ export default function ContactPage() {
                           required
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="0912 345 678"
+                          placeholder="0988 446 113"
                           className="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow duration-200 motion-reduce:transition-none"
                         />
                       </div>

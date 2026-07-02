@@ -377,7 +377,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 Liên hệ ngay
               </a>
               <p className="text-xs text-emerald-200 text-center mt-3">
-                Hotline: <a href="tel:0904038448" className="underline hover:text-white">0904 038 448</a>
+                Hotline: <a href="tel:0988446113" className="underline hover:text-white">0988 446 113</a>
               </p>
             </div>
           </div>

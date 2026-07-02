@@ -268,10 +268,10 @@ export default function PartnerPage({ partner }: PartnerPageProps) {
                   Liên hệ EPCVINA Solar để được tư vấn sản phẩm {partner.data.name} chính hãng.
                 </p>
                 <a
-                  href="tel:0904038448"
+                  href="tel:0988446113"
                   className="block w-full bg-orange-500 text-white text-center px-4 py-2.5 rounded-lg font-semibold hover:bg-orange-600 transition-colors text-sm"
                 >
-                  Gọi ngay: 0904 038 448
+                  Gọi ngay: 0988 446 113
                 </a>
               </div>
 
