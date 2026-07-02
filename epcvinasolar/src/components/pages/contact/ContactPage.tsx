@@ -24,7 +24,7 @@ const contactCards = [
       { label: 'Hotline', value: '0988 446 113', href: 'tel:0988446113', note: '(Mrs. Giang)' },
       { label: 'Cố định', value: '024 7308 1868', href: 'tel:02473081868', note: '' },
     ],
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&q=80',
+    image: '/anh-van-phong-epcvina.png',
     alt: 'Đội ngũ tư vấn khách hàng EPCVINA Solar',
     gradient: 'from-emerald-600 to-emerald-500',
   },
@@ -34,7 +34,7 @@ const contactCards = [
     details: [
       { label: 'Email', value: 'epcvinasolar@gmail.com', href: 'mailto:epcvinasolar@gmail.com', note: '' },
     ],
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80',
+    image: '/anh-van-phong-epcvina.png',
     alt: 'Văn phòng làm việc EPCVINA Solar',
     gradient: 'from-green-600 to-green-500',
   },
@@ -44,8 +44,8 @@ const contactCards = [
     details: [
       { label: '', value: 'Phòng 315 - Khu TM chung cư Học viện Quốc Phòng, Đ. Võ Chí Công, Tây Hồ, Hà Nội', href: '', note: '' },
     ],
-    image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&q=80',
-    alt: 'Bản đồ vị trí văn phòng EPCVINA Solar',
+    image: '/anh-van-phong-epcvina.png',
+    alt: 'Vị trí văn phòng EPCVINA Solar',
     gradient: 'from-teal-600 to-teal-500',
   },
   {
