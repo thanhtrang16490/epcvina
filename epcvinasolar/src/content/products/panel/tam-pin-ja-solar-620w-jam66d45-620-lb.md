@@ -1,0 +1,41 @@
+---
+name: "Tấm pin mặt trời JA Solar 620W"
+brand: "JA Solar"
+category: "panel"
+model: "JAM66D45-620/LB"
+description: "Tấm pin JA Solar 620W thuộc dòng mô-đun hai mặt (bifacial) N-Type TOPCon double glass, hiệu suất 23.0%, công nghệ half-cut cell và multi-busbar. Phù hợp cho dự án thương mại, nhà máy, khu công nghiệp. Bảo hành sản phẩm 12 năm, hiệu suất 30 năm."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "panel"
+voltage: "high"
+warranty_years: 12
+specifications:
+  "Công suất tấm pin Pmax": "620W"
+  "Hiệu suất": "23.0%"
+  "Điện áp tại công suất tối đa Vmp": "40.21V"
+  "Dòng điện tại công suất tối đa Imp": "15.42A"
+  "Điện áp hở mạch Voc": "48.50V"
+  "Dòng ngắn mạch Isc": "16.13A"
+  "Điện áp tối đa hệ thống DC": "1500V"
+  "Dòng cầu chì chuỗi tối đa": "35A"
+  "Loại cell": "N-Type TOPCon"
+  "Số lượng cell": "132 (6×22)"
+  "Chiều dài": "2382mm"
+  "Chiều rộng": "1134mm"
+  "Chiều cao": "30mm"
+  "Trọng lượng": "33.1kg"
+  "Kính": "Double glass 2.0mm/2.0mm"
+  "Khung": "Khung nhôm hợp kim anodized"
+  "Hộp nối": "IP68, 3 diode"
+  "Đầu nối": "MC4-EVO2A / QC4.10-351"
+  "Nhiệt độ hoạt động": "-40°C đến +85°C"
+features:
+  - "Công nghệ N-Type TOPCon hiệu suất cao, suy hao thấp"
+  - "Cấu trúc double glass (kính–kính) chống ẩm, chống PID"
+  - "Công nghệ bifacial thu thêm ánh sáng mặt sau, tăng sản lượng"
+  - "Hiệu suất module 23.0% — nhóm cao nhất phân khúc 600W+"
+  - "Chịu tải trọng gió 2400Pa và tuyết 5400Pa"
+  - "Bảo hành sản phẩm 12 năm, hiệu suất 30 năm (87.4% năm thứ 30)"
+  - "Đạt tiêu chuẩn IEC 61215, IEC 61730, ISO 9001/14001/45001"
+---

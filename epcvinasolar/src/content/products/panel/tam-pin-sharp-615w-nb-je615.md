@@ -1,0 +1,41 @@
+---
+name: "Tấm pin mặt trời Sharp 615W NB-JE615"
+brand: "Sharp"
+category: "panel"
+model: "NB-JE615"
+description: "Tấm pin Sharp 615W NB-JE615 công nghệ Nhật Bản, N-Type TOPCon đơn tinh thể, hiệu suất 22.76%, thiết kế bifacial half-cut cell MBB. Thương hiệu Sharp từ 1959, bền bỉ, suy hao thấp. Bảo hành sản phẩm 12 năm, hiệu suất 25 năm."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "panel"
+voltage: "high"
+warranty_years: 12
+specifications:
+  "Công suất tấm pin Pmax": "615W"
+  "Hiệu suất": "22.76%"
+  "Điện áp tại công suất tối đa Vmp": "40.73V"
+  "Dòng điện tại công suất tối đa Imp": "15.10A"
+  "Điện áp hở mạch Voc": "48.75V"
+  "Dòng ngắn mạch Isc": "16.06A"
+  "Điện áp tối đa hệ thống DC": "1500V"
+  "Dòng cầu chì chuỗi tối đa": "30A"
+  "Loại cell": "N-Type TOPCon Mono"
+  "Số lượng cell": "Half-cut cell"
+  "Chiều dài": "2382mm"
+  "Chiều rộng": "1134mm"
+  "Chiều cao": "30mm"
+  "Trọng lượng": "34kg"
+  "Kính": "Kính bán cường lực chống phản xạ"
+  "Khung": "Khung nhôm anodized"
+  "Hộp nối": "IP68"
+  "Đầu nối": "MC4 / C1"
+  "Nhiệt độ hoạt động": "-40°C đến +85°C"
+features:
+  - "Công nghệ Nhật Bản — thương hiệu Sharp từ 1912"
+  - "N-Type TOPCon giảm suy hao LID/LeTID"
+  - "Thiết kế bifacial, hệ số bifaciality ~80%"
+  - "Hiệu suất module 22.76%"
+  - "Chống sương muối, amoniac, môi trường khắc nghiệt"
+  - "Bảo hành sản phẩm 12 năm, hiệu suất 25 năm tuyến tính"
+  - "Đạt tiêu chuẩn IEC/EN 61215, IEC/EN 61730, CE, UKCA"
+---
