@@ -42,7 +42,7 @@ const contactCards = [
     icon: <MapPin className="h-6 w-6" aria-hidden="true" />,
     title: 'Địa chỉ',
     details: [
-      { label: '', value: 'Phòng 315, Khu TM Chung cư HVQP, Nguyễn Văn Huyên, Q. Tây Hồ, Hà Nội', href: '', note: '' },
+      { label: '', value: 'Phòng 315 - Khu TM chung cư Học viện Quốc Phòng, Đ. Võ Chí Công, Tây Hồ, Hà Nội', href: '', note: '' },
     ],
     image: 'https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&q=80',
     alt: 'Bản đồ vị trí văn phòng EPCVINA Solar',
@@ -429,7 +429,7 @@ export default function ContactPage() {
               Hệ <span className="text-emerald-600">Số Bản Đồ</span>
             </h2>
             <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-              Khu TM Chung cư HVQP, Nguyễn Văn Huyên, Quận Tây Hồ, Hà Nội
+              Khu TM chung cư Học viện Quốc Phòng, Đ. Võ Chí Công, Quận Tây Hồ, Hà Nội
             </p>
           </div>
           <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">

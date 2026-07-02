@@ -149,7 +149,7 @@ export default function AboutPage() {
                     <div>
                       <p className="text-xs text-gray-500">Địa chỉ trụ sở</p>
                       <p className="font-semibold text-gray-900 text-sm leading-snug">
-                        Phòng 315, Khu nhà ở Học Viện Quốc Phòng, Đường Xuân Tảo, Tây Hồ, Hà Nội
+                        Phòng 315 - Khu TM chung cư Học viện Quốc Phòng, Đ. Võ Chí Công, Tây Hồ, Hà Nội
                       </p>
                     </div>
                   </div>

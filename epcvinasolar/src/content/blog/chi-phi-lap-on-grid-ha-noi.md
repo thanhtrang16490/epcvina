@@ -300,7 +300,7 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 📱 **Hotline:** [0988 446 113](tel:+84988446113)  
 📧 **Email:** epcvina@hotmail.com  
 🌐 **Website:** https://epcvina.com  
-📍 **Địa chỉ:** Phòng 315, Khu TM Chung cư HVQP, Nguyễn Văn Huyên Kéo Dài, Tây Hồ, Hà Nội
+📍 **Địa chỉ:** Phòng 315 - Khu TM chung cư Học viện Quốc Phòng, Đ. Võ Chí Công, Tây Hồ, Hà Nội
 
 **Dịch vụ:**
 - ✅ Khảo sát & tư vấn miễn phí

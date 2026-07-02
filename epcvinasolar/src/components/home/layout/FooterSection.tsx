@@ -132,8 +132,8 @@ export default function FooterSection() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" style={{ color: BRAND_RED }} />
                 <span className="text-gray-400 leading-relaxed">
-                  Phòng 315 - Khu TM Chung cư HVQP,<br className="sm:hidden" />
-                  Nguyễn Văn Huyên, Q. Tây Hồ, Hà Nội
+                  Phòng 315 - Khu TM chung cư Học viện Quốc Phòng,<br className="sm:hidden" />
+                  Đ. Võ Chí Công, Q. Tây Hồ, Hà Nội
                 </span>
               </li>
               <li className="flex items-center gap-3">
