@@ -96,22 +96,14 @@ const menuItems: MenuItem[] = [
   },
   { name: 'Blog', href: '/tin-tuc', icon: Newspaper },
   { name: 'Về chúng tôi', href: '/ve-chung-toi', icon: User },
-  {
-    name: 'Hỏi đáp',
-    icon: MessageSquare,
-    children: [
-      { name: 'Câu hỏi thường gặp', href: '/hoi-dap', soon: true },
-      { name: 'Chính sách bảo hành', href: '/warranty', soon: true },
-      { name: 'Đánh giá khách hàng', href: '/reviews', soon: true },
-    ],
-  },
+  { name: 'Hỏi đáp', href: '/hoi-dap', icon: MessageSquare },
   {
     name: 'Hướng dẫn',
     icon: BookOpen,
     children: [
-      { name: 'Hướng dẫn sử dụng', href: '/guides/user-manual', soon: true },
-      { name: 'Bảo trì & Xử lý sự cố', href: '/guides/maintenance', soon: true },
-      { name: 'Video hướng dẫn', href: '/guides/videos', soon: true },
+      { name: 'Hướng dẫn sử dụng', href: '/huong-dan-su-dung' },
+      { name: 'Bảo trì & Xử lý sự cố', href: '/bao-tri' },
+      { name: 'Quy trình thi công', href: '/quy-trinh-thi-cong' },
     ],
   },
 ];
