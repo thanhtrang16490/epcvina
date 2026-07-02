@@ -108,7 +108,7 @@ export interface TemplateItem {
   templateId: string;
   productId: string;
   product?: any; // nested product from Supabase join
-  productType: EquipmentCategory;
+  productType: string; // Internal grouping key (e.g., 'inverter', 'battery', 'panel')
   slotName: string | null;
   baseQuantity: number;
   scaleSource: 'panel_count' | 'inverter_count' | 'capacity_kw' | null;
