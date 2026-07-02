@@ -1,6 +1,6 @@
 ---
 name: "Kẹp Sóng Tôn Cliplook A"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-023"
 description: "Kẹp sóng tôn Cliplook A, chiều dài 55mm, bao gồm 2 bulong M8x25, ecu và đệm cao su"
@@ -10,7 +10,7 @@ specifications:
   "Chiều dài": "55mm"
   "Vật liệu": "A6005-T6"
   "Bao gồm": "02 Bulong inox 304 M8x25, 02 Long đen vênh inox 304 M8, 02 Ecu inox 304 M8, 01 Đệm cao su 40x40x2mm"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Dùng cho tôn sóng Cliplook"
   - "Bao gồm đầy đủ phụ kiện"

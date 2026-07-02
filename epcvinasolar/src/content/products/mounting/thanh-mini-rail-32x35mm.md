@@ -1,6 +1,6 @@
 ---
 name: "Thanh Mini Rail 32x35mm"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-017-32x35"
 description: "Thanh mini rail 32x35mm, kích thước 200mm, vật liệu A6005-T6"
@@ -11,7 +11,7 @@ specifications:
   "Chiều dài": "200mm"
   "Vật liệu": "A6005-T6"
   "Bề mặt": "Anode 10-12µm"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Kích thước 32x35mm nhỏ gọn"
   - "Tiết kiệm chi phí"

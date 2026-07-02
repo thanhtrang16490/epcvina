@@ -1,6 +1,6 @@
 ---
 name: "Kẹp Giữa 35/40 Chìm"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-016"
 description: "Kẹp giữa 35/40mm kiểu chìm, dày 4mm, chịu lực tốt, bao gồm con trượt và bulong inox 304"
@@ -12,7 +12,7 @@ specifications:
   "Bề mặt": "Anode 10-12µm"
   "Độ dày": "4mm, chịu lực tốt"
   "Bao gồm": "01 Trượt nhôm M8, 01 Bulong inox 304 M8x40, 01 Long đen vênh inox 304 M8"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Kiểu chìm thẩm mỹ"
   - "Độ dày 4mm chịu lực tốt"

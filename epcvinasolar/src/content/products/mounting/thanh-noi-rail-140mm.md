@@ -1,6 +1,6 @@
 ---
 name: "Thanh Nối Rail 140mm"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-008"
 description: "Thanh nối rail A6005-T6, chiều dài 140mm, bao gồm 2 bulong M8x20 và đệm vênh inox"
@@ -12,7 +12,7 @@ specifications:
   "Bề mặt": "Anode 10-12µm"
   "Bao gồm": "02 Bulong M8x20, 02 Đệm vênh inox"
   "Đặc điểm": "Cứng vững, chịu tải tốt"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Kết nối thanh ray chắc chắn"
   - "Bao gồm bulong và đệm inox"

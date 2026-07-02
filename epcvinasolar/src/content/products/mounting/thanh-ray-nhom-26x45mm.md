@@ -1,6 +1,6 @@
 ---
 name: "Thanh Ray Nhôm Rail 26x45mm"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-002"
 description: "Thanh ray nhôm A6005-T6 dài 4.2m, tỉ trọng 0.52kg/md, thông dụng"
@@ -13,7 +13,7 @@ specifications:
   "Vật liệu": "A6005-T6"
   "Bề mặt": "Anode 10-12µm"
   "Đặc điểm": "Cứng vững, rãnh cân, chịu tải tốt"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Model thông dụng nhất"
   - "Tỉ trọng 0.52kg/md"
@@ -24,6 +24,6 @@ main_image: "/images/products/rail-26x45.jpg"
 is_available: true
 ---
 
-Thanh ray nhôm Rail 26x45mm là model thông dụng nhất từ QM Solar, phù hợp cho mọi hệ thống năng lượng mặt trời.
+Thanh ray nhôm Rail 26x45mm là model thông dụng nhất từ QUANG MINH TECH, phù hợp cho mọi hệ thống năng lượng mặt trời.
 
 **Lưu ý:** Giá trên chưa bao gồm VAT 10%

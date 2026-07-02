@@ -1,6 +1,6 @@
 ---
 name: "Kẹp Biên 40mm"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-022"
 description: "Kẹp biên 40mm, dày 2.5-4mm, bao gồm con trượt và bulong inox 304 M8x25"
@@ -12,7 +12,7 @@ specifications:
   "Bề mặt": "Anode 10-12µm"
   "Độ dày": "2.5-4mm, chịu lực tốt"
   "Bao gồm": "01 Trượt nhôm M8, 01 Bulong inox 304 M8x25, 01 Long đen vênh inox 304 M8"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Kẹp biên 40mm tiêu chuẩn"
   - "Độ dày 2.5-4mm"

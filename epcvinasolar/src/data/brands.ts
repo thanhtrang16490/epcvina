@@ -56,9 +56,9 @@ export const localBrands: LocalBrand[] = [
     country: 'Vietnam',
   },
   {
-    id: 'qm-solar',
-    name: 'QM Solar',
-    slug: 'qm-solar',
+    id: 'quang-minh-tech',
+    name: 'QUANG MINH TECH',
+    slug: 'quang-minh-tech',
     description: 'Nhà sản xuất phụ kiện lắp đặt hệ thống điện mặt trời',
     logo_url: '/brands/qm-solar.png',
     country: 'Vietnam',

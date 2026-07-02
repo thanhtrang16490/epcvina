@@ -1,6 +1,6 @@
 ---
 name: "Thanh Mini Rail 40x45mm"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-017"
 description: "Thanh mini rail 40x45mm, kích thước 200mm, tỉ trọng 0.81kg/md"
@@ -12,7 +12,7 @@ specifications:
   "Tỉ trọng": "0.81kg/md (±5%)"
   "Vật liệu": "A6005-T6"
   "Bề mặt": "Anode 10-12µm"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Kích thước 40x45mm"
   - "Tỉ trọng 0.81kg/md"

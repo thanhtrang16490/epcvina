@@ -1,10 +1,10 @@
 ---
-name: QM Solar
-slug: qm-solar
+name: QUANG MINH TECH
+slug: quang-minh-tech
 short_description: Nhà sản xuất phụ kiện lắp đặt hệ thống điện mặt trời tại Việt Nam
 description: |
-  QM Solar là nhà sản xuất phụ kiện lắp đặt hệ thống điện mặt trời, chuyên cung cấp thanh ray nhôm, kẹp biên, kẹp giữa và các phụ kiện mounting khác.
-  Sản phẩm QM Solar được sản xuất tại Việt Nam với chất lượng nhôm AL6005-T5 tiêu chuẩn quốc tế.
+  QUANG MINH TECH là nhà sản xuất phụ kiện lắp đặt hệ thống điện mặt trời, chuyên cung cấp thanh ray nhôm, kẹp biên, kẹp giữa và các phụ kiện mounting khác.
+  Sản phẩm QUANG MINH TECH được sản xuất tại Việt Nam với chất lượng nhôm AL6005-T5 tiêu chuẩn quốc tế.
   Đáp ứng đầy đủ tiêu chuẩn JIS C 4401 và AS/NZS 1170.2.
 logo: /brands/qm-solar.png
 country: Vietnam
@@ -15,9 +15,9 @@ is_active: true
 display_order: 10
 ---
 
-## Giới thiệu QM Solar
+## Giới thiệu QUANG MINH TECH
 
-QM Solar là đơn vị sản xuất hệ khung nhôm và phụ kiện lắp đặt pin mặt trời hàng đầu tại Việt Nam.
+QUANG MINH TECH là đơn vị sản xuất hệ khung nhôm và phụ kiện lắp đặt pin mặt trời hàng đầu tại Việt Nam.
 
 ## Sản phẩm chính
 

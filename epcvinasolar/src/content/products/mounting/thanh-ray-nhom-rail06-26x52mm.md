@@ -1,6 +1,6 @@
 ---
 name: "Thanh Ray Nhôm Rail06 26x52mm"
-brand: "QM Solar"
+brand: "QUANG MINH TECH"
 category: "mounting"
 model: "QM-H003"
 description: "Thanh ray nhôm A6005-T6 model H003, dài 4.2m, tỉ trọng 0.63kg/md"
@@ -13,7 +13,7 @@ specifications:
   "Vật liệu": "A6005-T6"
   "Bề mặt": "Anode 10-12µm"
   "Đặc điểm": "Cứng vững, rãnh cân, chịu tải tốt"
-  "Xuất xứ": "QM Solar"
+  "Xuất xứ": "QUANG MINH TECH"
 features:
   - "Thanh ray nhôm cao cấp A6005-T6"
   - "Model H003 cải tiến"
@@ -24,6 +24,6 @@ main_image: "/images/products/thanh-ray-nhom-rail-26x52mm.png"
 is_available: true
 ---
 
-Thanh ray nhôm Rail06 26x52mm model H003 là sản phẩm chất lượng cao từ QM Solar, được sản xuất từ hợp kim nhôm A6005-T6 với bề mặt Anode chống ăn mòn.
+Thanh ray nhôm Rail06 26x52mm model H003 là sản phẩm chất lượng cao từ QUANG MINH TECH, được sản xuất từ hợp kim nhôm A6005-T6 với bề mặt Anode chống ăn mòn.
 
 **Lưu ý:** Giá trên chưa bao gồm VAT 10%
