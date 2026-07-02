@@ -1,7 +1,7 @@
 
 
 import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
-import { X, CaretRight, Sun, SlidersHorizontal, Gear, Plus, Minus, Check, Sparkle, ArrowLeft } from '@phosphor-icons/react';
+import { X, CaretRight, Sun, BatteryHigh, Wrench, SlidersHorizontal, Gear, Plus, Minus, Check, Sparkle, ArrowLeft } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
@@ -871,9 +871,9 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                     phase={selectedCombo.phase}
                     panelCount={selectedCombo.panelCount}
                     panelBrand={modifiedEquipment.find((d: Device) => d.category === 'panel')?.brand}
-                    inverterCount={modifiedEquipment.filter((d: Device) => d.category === 'inverter').length}
-                    inverterBrand={modifiedEquipment.find((d: Device) => d.category === 'inverter')?.brand}
-                    hasBattery={modifiedEquipment.some((d: Device) => d.category === 'battery')}
+                    inverterCount={modifiedEquipment.filter((d: Device) => d.category === 'on-grid-inverter' || d.category === 'hybrid-inverter').length}
+                    inverterBrand={modifiedEquipment.find((d: Device) => d.category === 'on-grid-inverter' || d.category === 'hybrid-inverter')?.brand}
+                    hasBattery={modifiedEquipment.some((d: Device) => d.category === 'lv-battery' || d.category === 'hv-battery')}
                   />
                 </div>
                 {/* Overlay info */}
@@ -982,7 +982,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                               {/* Left: Product info - Click to open device selector */}
                               <button
                                 onClick={() => {
-                                  setSelectedDeviceCategory(cat);
+                                  setSelectedDeviceCategory(cat as EquipmentCategory);
                                   setShowDeviceSelector(true);
                                 }}
                                 className="flex-1 flex items-center gap-3 text-left hover:bg-gray-50 active:bg-gray-100 rounded-lg -m-1 p-1 transition-colors"
@@ -1050,7 +1050,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
                                 <button
                                   key={device.id}
                                   onClick={() => {
-                                    setSelectedDeviceCategory(cat);
+                                    setSelectedDeviceCategory(cat as EquipmentCategory);
                                     setShowDeviceSelector(true);
                                   }}
                                   className="w-full flex items-center gap-3 p-3 border border-gray-100 rounded-xl hover:bg-gray-50 active:bg-gray-100 transition-colors text-left"
@@ -1423,7 +1423,7 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
             <div className="flex-1 overflow-y-auto">
               {/* Group items by category */}
               {(() => {
-                const CATEGORY_DISPLAY_ORDER: EquipmentCategory[] = ['panel', 'inverter', 'battery', 'meter', 'mounting', 'wiring', 'cabinet', 'grounding', 'installation'];
+                const CATEGORY_DISPLAY_ORDER: string[] = ['panel', 'inverter', 'battery', 'meter', 'mounting', 'wiring', 'cabinet', 'grounding', 'installation'];
                 const groupedItems = CATEGORY_DISPLAY_ORDER
                   .map(cat => ({
                     category: cat,
