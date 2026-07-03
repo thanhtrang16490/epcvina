@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield, Plug, X, SlidersHorizontal } from 'lucide-react';
-import type { Device, EquipmentCategory } from '../../../lib/types';
+import { ChevronDown, ChevronUp, Zap, TrendingUp, Battery, Shield } from 'lucide-react';
+import type { Device } from '../../../lib/types';
 
 const CATEGORY_META: Record<string, {
   label: string;
@@ -62,7 +62,6 @@ export default function EquipmentSidebar({
   onSearchChange,
   onSortChange,
 }: EquipmentSidebarProps) {
-  const [expandedBrands, setExpandedBrands] = useState<Record<string, boolean>>({});
   const [showBrands, setShowBrands] = useState(true);
 
   // Brands chỉ lấy từ category đang chọn
@@ -87,59 +86,9 @@ export default function EquipmentSidebar({
     return grouped;
   }, [categoryDevices, devices]);
 
-  const toggleBrand = (brand: string) => {
-    setExpandedBrands(prev => ({
-      ...prev,
-      [brand]: !prev[brand]
-    }));
-  };
-
-  useMemo(() => {
-    if (brands.length > 0 && Object.keys(expandedBrands).length === 0) {
-      const initial: Record<string, boolean> = {};
-      brands.forEach(b => initial[b] = true);
-      setExpandedBrands(initial);
-    }
-  }, [brands]);
-
   return (
     <aside className="w-64 flex-shrink-0">
-      <div className="sticky top-24 space-y-6">
-        {/* Search Box */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <SlidersHorizontal className="h-4 w-4 text-gray-500" />
-            <h3 className="font-bold text-gray-900 text-sm">Bộ lọc tìm kiếm</h3>
-          </div>
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Tìm thiết bị..."
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full px-3 py-2 pr-8 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => onSearchChange('')}
-                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                <X className="h-3.5 w-3.5" />
-              </button>
-            )}
-          </div>
-          <select
-            value={sortBy}
-            onChange={(e) => onSortChange(e.target.value as typeof sortBy)}
-            className="w-full mt-2 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] bg-white"
-          >
-            <option value="az">Tên A-Z</option>
-            <option value="za">Tên Z-A</option>
-            <option value="price-asc">Giá tăng dần</option>
-            <option value="price-desc">Giá giảm dần</option>
-          </select>
-        </div>
-
+      <div className="sticky top-24 space-y-4">
         {/* Category Navigation */}
         <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
           <div className="px-5 py-4 bg-gray-50 border-b border-gray-200">
@@ -191,55 +140,44 @@ export default function EquipmentSidebar({
           </div>
           {showBrands && (
             <div className="p-3 max-h-96 overflow-y-auto">
-              {brands.map((brand) => {
-                const brandDevices = devicesByBrand[brand] || [];
-                const isExpanded = expandedBrands[brand];
-                const isSelected = selectedBrand === brand;
+              {/* All brands - clear filter */}
+              <a
+                href={`/equipment/${category}`}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all mb-1 ${
+                  !selectedBrand ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex items-center gap-2 flex-1 min-w-0">
+                  <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                    !selectedBrand ? 'bg-[#F97316]' : 'bg-gray-300'
+                  }`} />
+                  <span className="text-sm font-medium truncate">Tất cả</span>
+                </div>
+                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                  {(categoryDevices || devices).length}
+                </span>
+              </a>
+              {brands.map((brandName) => {
+                const brandDevices = devicesByBrand[brandName] || [];
+                const isSelected = selectedBrand === brandName;
                 return (
-                  <div key={brand} className="mb-1">
-                    <button
-                      onClick={() => {
-                        toggleBrand(brand);
-                        onSelectBrand(brand);
-                      }}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all ${
-                        isSelected ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 flex-1 min-w-0">
-                        <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                          isSelected ? 'bg-[#F97316]' : 'bg-gray-300'
-                        }`} />
-                        <span className="text-sm font-medium truncate">{brand}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500">{brandDevices.length}</span>
-                        {isExpanded ? (
-                          <ChevronUp className="h-3 w-3 text-gray-400" />
-                        ) : (
-                          <ChevronDown className="h-3 w-3 text-gray-400" />
-                        )}
-                      </div>
-                    </button>
-                    {isExpanded && (
-                      <div className="ml-5 mt-1 space-y-1">
-                        {brandDevices.slice(0, 5).map((device) => (
-                          <button
-                            key={device.id}
-                            onClick={() => onShowDevice(device.id)}
-                            className="w-full text-left px-3 py-1.5 text-xs text-gray-600 hover:text-[#F97316] hover:bg-orange-50 rounded transition-colors truncate"
-                          >
-                            {device.model}
-                          </button>
-                        ))}
-                        {brandDevices.length > 5 && (
-                          <p className="px-3 py-1 text-xs text-gray-400">
-                            +{brandDevices.length - 5} sản phẩm khác
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
+                  <button
+                    key={brandName}
+                    onClick={() => onSelectBrand(brandName)}
+                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all mb-1 ${
+                      isSelected ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                        isSelected ? 'bg-[#F97316]' : 'bg-gray-300'
+                      }`} />
+                      <span className="text-sm font-medium truncate">{brandName}</span>
+                    </div>
+                    <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                      {brandDevices.length}
+                    </span>
+                  </button>
                 );
               })}
             </div>

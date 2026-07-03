@@ -1,53 +1,9 @@
-import { useMemo, useState, useEffect } from 'react';
-import { Zap, TrendingUp, Battery, Shield, Plug, Wrench, X, Eye, ArrowRight } from 'lucide-react';
+import { useMemo, useState, useEffect, useRef } from 'react';
+import { Shield, X, Eye, Search, ChevronRight, List, Grid2X2, Grid3X3, ArrowUp, ArrowDown, LayoutList } from 'lucide-react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
-
-// Format currency helper
-function formatCurrency(value: number): string {
-  if (value >= 1000000000) return (value / 1000000000).toFixed(1) + ' tỷ';
-  if (value >= 1000000) return (value / 1000000).toFixed(1) + ' triệu';
-  if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
-  return value.toString();
-}
-
-const CATEGORY_META: Record<EquipmentCategory, {
-  label: string;
-  icon: React.ReactNode;
-  color: string;
-  bg: string;
-  accent: string;
-}> = {
-  panel: {
-    label: 'Tấm mô-đun quang điện',
-    icon: <Zap className="h-5 w-5"/>,
-    color: 'text-blue-600',
-    bg: 'bg-blue-50',
-    accent: 'bg-blue-500',
-  },
-  inverter: {
-    label: 'Biến tần / Inverter',
-    icon: <TrendingUp className="h-5 w-5"/>,
-    color: 'text-orange-600',
-    bg: 'bg-orange-50',
-    accent: 'bg-orange-500',
-  },
-  battery: {
-    label: 'Pin lưu trữ',
-    icon: <Battery className="h-5 w-5"/>,
-    color: 'text-green-600',
-    bg: 'bg-green-50',
-    accent: 'bg-green-500',
-  },
-  accessories: {
-    label: 'Phụ kiện lắp đặt',
-    icon: <Wrench className="h-5 w-5"/>,
-    color: 'text-gray-600',
-    bg: 'bg-gray-100',
-    accent: 'bg-gray-500',
-  },
-};
+import { formatCurrency, CATEGORY_META } from './shared-equipment';
 
 interface PageProps {
   category: string;
@@ -55,8 +11,12 @@ interface PageProps {
   loading: boolean;
   searchQuery: string;
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
+  gridColumns?: number;
+  productLimit?: number;
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
+  onGridColumnsChange?: (columns: number) => void;
+  onProductLimitChange?: (limit: number) => void;
   showHero?: boolean;
   showContent?: boolean;
 }
@@ -67,14 +27,38 @@ export default function EquipmentPageDesktop({
   loading,
   searchQuery,
   sortBy,
+  gridColumns = 4,
+  productLimit = 24,
   onSearchChange,
   onSortChange,
+  onGridColumnsChange,
+  onProductLimitChange,
   showHero = true,
   showContent = true,
 }: PageProps) {
   const meta = CATEGORY_META[category as EquipmentCategory];
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Auto-collapse search when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSearch(false);
+        onSearchChange('');
+      }
+    };
+
+    if (showSearch) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showSearch, onSearchChange]);
 
   // Filter and sort
   const filteredDevices = useMemo(() => {
@@ -103,8 +87,13 @@ export default function EquipmentPageDesktop({
         break;
     }
     
+    // Apply product limit
+    if (productLimit > 0) {
+      filtered = filtered.slice(0, productLimit);
+    }
+    
     return filtered;
-  }, [devices, searchQuery, sortBy]);
+  }, [devices, searchQuery, sortBy, productLimit]);
 
   const brands = useMemo(() => {
     const brandSet = new Set<string>();
@@ -141,9 +130,7 @@ export default function EquipmentPageDesktop({
                 <h1 className="text-3xl font-bold">{meta.label}</h1>
               </div>
             </div>
-            <p className="text-gray-300 max-w-2xl">
-              Cung cấp thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
-            </p>
+            <p className="text-gray-300 max-w-2xl">{meta?.description}</p>
             <div className="flex items-center gap-6 mt-6">
               <div className="flex items-center gap-2">
                 <span className="text-2xl font-bold text-[#F97316]">{devices.length}</span>
@@ -161,8 +148,169 @@ export default function EquipmentPageDesktop({
 
       {/* PC Content */}
       {showContent && (
-        <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-4">
-        <div className="max-w-7xl mx-auto w-full">
+        <div className="flex-1 w-full">
+        <div className="w-full">
+        {/* Horizontal Search & Filter Bar with Breadcrumbs */}
+        <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6">
+          <div className="flex items-center gap-3">
+            {/* Breadcrumbs - Left Side */}
+            <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
+              <a href="/" className="hover:text-[#F97316] transition-colors">Trang chủ</a>
+              <ChevronRight className="h-3 w-3" />
+              <a href="/equipment" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
+              <ChevronRight className="h-3 w-3" />
+              <span className="text-gray-900 font-medium">{meta?.label || 'Danh mục'}</span>
+            </div>
+
+            {/* Filter Options - Right Side */}
+            <div className="flex items-center gap-3">
+              {/* Collapsible Search */}
+              <div ref={searchRef}>
+                {showSearch ? (
+                  <div className="relative w-64">
+                    <input
+                      type="text"
+                      placeholder="Tìm thiết bị..."
+                      value={searchQuery}
+                      onChange={(e) => onSearchChange(e.target.value)}
+                      className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
+                      autoFocus
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => onSearchChange('')}
+                        className="absolute right-10 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                    <button
+                      onClick={() => {
+                        setShowSearch(false);
+                        onSearchChange('');
+                      }}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-100 rounded"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setShowSearch(true)}
+                    className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-[#F97316] transition-colors"
+                    title="Tìm kiếm"
+                  >
+                    <Search className="h-4 w-4 text-gray-600" />
+                  </button>
+                )}
+              </div>
+              
+              {/* Layout View Icons */}
+              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+                <button
+                  onClick={() => onGridColumnsChange?.(1)}
+                  className={`p-2 rounded transition-colors ${
+                    gridColumns === 1
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Danh sách 1 cột"
+                >
+                  <List className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onGridColumnsChange?.(3)}
+                  className={`p-2 rounded transition-colors ${
+                    gridColumns === 3
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Lưới 3 cột"
+                >
+                  <Grid3X3 className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onGridColumnsChange?.(4)}
+                  className={`p-2 rounded transition-colors ${
+                    gridColumns === 4
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Lưới 4 cột"
+                >
+                  <Grid2X2 className="h-4 w-4" />
+                </button>
+              </div>
+              
+              {/* Product Limit */}
+              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+                {[16, 24, 32, 40].map((limit) => (
+                  <button
+                    key={limit}
+                    onClick={() => onProductLimitChange?.(limit)}
+                    className={`px-2.5 py-1.5 text-xs font-medium rounded transition-colors ${
+                      productLimit === limit
+                        ? 'bg-[#F97316] text-white'
+                        : 'text-gray-600 hover:bg-gray-100'
+                    }`}
+                    title={`${limit} sản phẩm`}
+                  >
+                    {limit}
+                  </button>
+                ))}
+              </div>
+              
+              {/* Sort Options */}
+              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+                <button
+                  onClick={() => onSortChange('az')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'az'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Sắp xếp A-Z"
+                >
+                  <LayoutList className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onSortChange('za')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'za'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Sắp xếp Z-A"
+                >
+                  <LayoutList className="h-4 w-4 rotate-180" />
+                </button>
+                <button
+                  onClick={() => onSortChange('price-asc')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'price-asc'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Giá tăng dần"
+                >
+                  <ArrowUp className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => onSortChange('price-desc')}
+                  className={`p-2 rounded transition-colors ${
+                    sortBy === 'price-desc'
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Giá giảm dần"
+                >
+                  <ArrowDown className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#F97316] mx-auto" />
@@ -176,22 +324,34 @@ export default function EquipmentPageDesktop({
             <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className={`${
+            gridColumns === 1 
+              ? 'flex flex-col gap-4' 
+              : `grid grid-cols-1 sm:grid-cols-2 ${
+                  gridColumns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'
+                } gap-6`
+          }`}>
             {filteredDevices.map((device) => (
               <div
                 key={device.id}
-                className="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-orange-300 cursor-pointer"
+                className={`group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-300 cursor-pointer ${
+                  gridColumns === 1
+                    ? 'flex flex-row hover:translate-x-2'
+                    : 'hover:-translate-y-2'
+                }`}
                 role="article"
                 aria-label={device.model}
               >
                 {/* Product Image */}
-                <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
+                <div className={`relative bg-gray-50 overflow-hidden ${
+                  gridColumns === 1 ? 'w-48 flex-shrink-0' : 'w-full aspect-square'
+                }`}>
                   {device.images?.[0] ? (
                     <Image
                       src={device.images[0]}
                       alt={device.model}
                       fill
-                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-500 ease-out"
+                      className="object-contain p-4 group-hover:scale-110 transition-transform duration-500 ease-out"
                     />
                   ) : (
                     <div className={`w-full h-full flex items-center justify-center ${meta.bg}`}>
@@ -206,16 +366,32 @@ export default function EquipmentPageDesktop({
                   </div>
                   {device.warranty && (
                     <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full shadow-sm">
-                      <span className="text-xs font-semibold text-gray-700">🛡️ {device.warranty} năm</span>
+                      <span className="text-xs font-semibold text-gray-700 flex items-center gap-1"><Shield className="w-3.5 h-3.5 text-emerald-600" /> {device.warranty} năm</span>
                     </div>
                   )}
+                  {/* Hover overlay with eye icon for quick view */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedDeviceId(device.id);
+                        setShowModal(true);
+                      }}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/80 backdrop-blur-sm rounded-full p-3 hover:bg-white hover:scale-110 transform transition-all duration-200 cursor-pointer shadow-lg"
+                      aria-label={`Xem nhanh ${device.model}`}
+                    >
+                      <Eye className="w-5 h-5 text-gray-700" />
+                    </button>
+                  </div>
                 </div>
 
                 {/* Product Info */}
-                <div className="p-5 space-y-4">
-                  <h3 className="font-bold text-gray-900 text-base leading-snug group-hover:text-orange-600 transition-colors duration-300">
-                    {device.name}
-                  </h3>
+                <div className={`p-5 space-y-4 ${gridColumns === 1 ? 'flex-1 min-w-0 flex flex-col justify-between' : ''}`}>
+                  <a href={`/equipment/${device.id}`} className="block">
+                    <h3 className="font-bold text-gray-900 text-base leading-snug hover:text-orange-600 transition-colors duration-300">
+                      {device.name}
+                    </h3>
+                  </a>
                   
                   {/* Specs */}
                   <div className="space-y-2.5">
@@ -244,28 +420,13 @@ export default function EquipmentPageDesktop({
                         </div>
                       )}
                     </div>
-                    <div className="flex gap-2">
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedDeviceId(device.id);
-                          setShowModal(true);
-                        }}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-200 transition-all duration-200 cursor-pointer min-h-[44px]"
-                        aria-label={`Xem nhanh ${device.model}`}
-                      >
-                        <Eye className="w-4 h-4" />
-                        <span className="hidden sm:inline">Xem nhanh</span>
-                      </button>
-                      <a 
-                        href={`/equipment/${device.id}`}
-                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer min-h-[44px]"
-                        aria-label={`Xem chi tiết ${device.model}`}
-                      >
-                        <span className="hidden sm:inline">Chi tiết</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </a>
-                    </div>
+                    <a 
+                      href={`/equipment/${device.id}`}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg text-sm font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer min-h-[44px]"
+                    >
+                      <span>Xem chi tiết</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </div>

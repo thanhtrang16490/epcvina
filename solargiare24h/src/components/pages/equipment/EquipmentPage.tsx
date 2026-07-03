@@ -2,7 +2,7 @@ import EquipmentPageMobile from './EquipmentPageMobile';
 import EquipmentPageDesktop from './EquipmentPageDesktop';
 import HeaderBar from '../../home/layout/HeaderBar';
 import EquipmentSidebar from './EquipmentSidebar';
-import { useMemo, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 
 interface PageProps {
@@ -36,10 +36,11 @@ export default function EquipmentPage({ category }: PageProps) {
   const [allDevices, setAllDevices] = useState<Device[]>([]);
   const [categoryDevices, setCategoryDevices] = useState<Device[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
+  const [gridColumns, setGridColumns] = useState<number>(4);
+  const [productLimit, setProductLimit] = useState<number>(24);
 
   // Fetch products from Content Collections API
   useEffect(() => {
@@ -83,10 +84,10 @@ export default function EquipmentPage({ category }: PageProps) {
   return (
     <div className="flex-1 flex flex-col">
       <HeaderBar />
-      {/* Mobile: Render full mobile component */}
+      {/* Mobile: Render full mobile component (< lg) */}
       <EquipmentPageMobile category={category} />
 
-      {/* Desktop: Hero (section 1) + Sidebar + Content (section 2) */}
+      {/* Desktop: Hero + Sidebar + Content (≥ lg) */}
       <div className="hidden lg:flex lg:flex-col lg:flex-1">
         {/* Section 1: Hero full-width only */}
         <EquipmentPageDesktop 
@@ -102,7 +103,7 @@ export default function EquipmentPage({ category }: PageProps) {
         />
 
         {/* Section 2: Sidebar + Content only */}
-        <div className="flex flex-1">
+        <div className="flex flex-1 px-4 sm:px-6 lg:px-8 py-4 gap-4">
           <EquipmentSidebar
             category={category}
             devices={allDevices}
@@ -111,10 +112,8 @@ export default function EquipmentPage({ category }: PageProps) {
             searchQuery={searchQuery}
             sortBy={sortBy}
             onSelectBrand={setSelectedBrand}
-            onSelectDevice={setSelectedDeviceId}
-            onShowDevice={(id) => {
-              setSelectedDeviceId(id);
-            }}
+            onSelectDevice={() => {}}
+            onShowDevice={() => {}}
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
           />
@@ -125,8 +124,12 @@ export default function EquipmentPage({ category }: PageProps) {
               loading={loading}
               searchQuery={searchQuery}
               sortBy={sortBy}
+              gridColumns={gridColumns}
+              productLimit={productLimit}
               onSearchChange={setSearchQuery}
               onSortChange={setSortBy}
+              onGridColumnsChange={setGridColumns}
+              onProductLimitChange={setProductLimit}
               showHero={false}
               showContent={true}
             />
