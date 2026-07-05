@@ -130,7 +130,7 @@ export default function CallBoxButton() {
 
           @media (max-width: 768px) {
             .call-container {
-              bottom: 130px;
+              bottom: 105px;
             }
           }
         `
