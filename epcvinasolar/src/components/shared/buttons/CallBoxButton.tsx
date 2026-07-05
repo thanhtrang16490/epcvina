@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Phone } from '@phosphor-icons/react';
 
 /**
- * ZaloChatButton - Floating Zalo contact button
+ * CallBoxButton - Floating phone call button
  * 
- * Pattern from g-3 ZaloBox:
+ * Pattern from g-3 CallBox:
  * - Fixed position, bottom-right
- * - Blue pulse animation ring
+ * - Red pulse animation ring
  * - Hidden on mobile until scroll (300px), always visible on desktop
- * - Opens Zalo chat on click
+ * - Opens phone dialer on click
  */
-export default function ZaloChatButton() {
+export default function CallBoxButton() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -17,76 +18,62 @@ export default function ZaloChatButton() {
     if (!isMobile) { setVisible(true); return; }
 
     const handleScroll = () => setVisible(window.scrollY > 300);
-    handleScroll(); // check initial position
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const zaloPhone = '0988446113';
-  const zaloUrl = `https://zalo.me/${zaloPhone}`;
+  const phoneNumber = '0988446113';
 
   return (
     <div
-      className="zalo-container right"
+      className="call-container right"
       style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none', transition: 'opacity 0.3s ease' }}
     >
-      <a id="zalo-btn" href={zaloUrl} target="_blank" rel="noopener nofollow">
-        <div className="animated_zalo infinite zoomIn_zalo cmoz-alo-circle"></div>
-        <div className="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill"></div>
-        <span>
-          <img 
-            src="/icons8-zalo.svg" 
-            alt="Contact Me on Zalo" 
-            width={40}
-            height={40}
-            className="zalo-icon"
-          />
+      <a id="call-btn" href={`tel:${phoneNumber}`} rel="noopener nofollow">
+        <div className="animated_call infinite zoomIn_call cmoz-alo-circle"></div>
+        <div className="animated_call infinite pulse_call cmoz-alo-circle-fill"></div>
+        <span className="flex items-center justify-center">
+          <Phone weight="fill" className="size-5 text-white" />
         </span>
       </a>
 
       <style dangerouslySetInnerHTML={{
         __html: `
-          .zalo-container img {
-            max-width: 100%;
-            height: auto;
-          }
-          .zalo-container {
+          .call-container {
             position: fixed;
             width: 40px;
             height: 40px;
-            bottom: 170px;
+            bottom: 240px;
             z-index: 9999999;
           }
-          .zalo-container.right {
+          .call-container.right {
             right: 35px;
           }
-          .zalo-container a {
+          .call-container a {
             display: block;
           }
-          .zalo-container span {
+          .call-container span {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #1182FC;
+            background: #e53e3e;
             position: relative;
           }
-          .zalo-icon {
-            object-fit: contain;
+          .zoomIn_call {
+            animation-name: zoomIn_call;
           }
-          .zoomIn_zalo {
-            animation-name: zoomIn_zalo;
-          }
-          .animated_zalo {
+          .animated_call {
             animation-duration: 1s;
             animation-fill-mode: both;
           }
-          .animated_zalo.infinite {
+          .animated_call.infinite {
             animation-iteration-count: infinite;
           }
-          .cmoz-alo-circle {
+          .call-container .cmoz-alo-circle {
             width: 50px;
             height: 50px;
             top: -5px;
@@ -94,11 +81,11 @@ export default function ZaloChatButton() {
             position: absolute;
             background-color: transparent;
             border-radius: 100%;
-            border: 2px solid rgba(17, 130, 252, .8);
-            border-color: #1182FC;
+            border: 2px solid rgba(229, 62, 62, .8);
+            border-color: #e53e3e;
             opacity: .5;
           }
-          .cmoz-alo-circle-fill {
+          .call-container .cmoz-alo-circle-fill {
             width: 60px;
             height: 60px;
             top: -10px;
@@ -107,11 +94,11 @@ export default function ZaloChatButton() {
             transition: all 0.5s;
             border-radius: 100%;
             border: 2px solid transparent;
-            background-color: rgba(17, 130, 252, .45);
+            background-color: rgba(229, 62, 62, .45);
             opacity: .75;
           }
-          .pulse_zalo {
-            animation-name: pulse_zalo;
+          .pulse_call {
+            animation-name: pulse_call;
           }
           .right {
             right: 0;
@@ -120,7 +107,7 @@ export default function ZaloChatButton() {
             text-decoration: none;
           }
 
-          @keyframes zoomIn_zalo {
+          @keyframes zoomIn_call {
             from {
               opacity: 0;
               transform: scale3d(.3, .3, .3);
@@ -129,7 +116,7 @@ export default function ZaloChatButton() {
               opacity: 1;
             }
           }
-          @keyframes pulse_zalo {
+          @keyframes pulse_call {
             from {
               transform: scale3d(1, 1, 1);
             }

@@ -48,12 +48,16 @@ export default function BackToTop() {
         }
       }}
       aria-label="Cuộn lên đầu trang"
-      className="fixed bottom-24 right-4 sm:bottom-8 sm:right-8 z-50 p-3 sm:p-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group motion-reduce:transition-none"
+      className="fixed z-50 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full transition-all duration-300 group motion-reduce:transition-none"
       style={{
+        width: 40,
+        height: 40,
+        bottom: 100,
+        right: 35,
         animation: 'fadeIn 0.3s ease-in-out',
       }}
     >
-      <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-y-0.5 transition-transform" />
+      <ArrowUp className="w-5 h-5 group-hover:-translate-y-0.5 transition-transform mx-auto" />
     </button>
   );
 }

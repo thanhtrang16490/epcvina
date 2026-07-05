@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, createContext, useContext } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import ZaloChatButton from '../shared/buttons/ZaloChatButton';
+import CallBoxButton from '../shared/buttons/CallBoxButton';
 import FooterSection from '../home/layout/FooterSection';
 import BackToTop from '../ui/BackToTop';
 
@@ -75,7 +76,8 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
           </div>
         </div>
         
-        {/* Zalo Chat Button */}
+        {/* Floating Contact Buttons */}
+        <CallBoxButton />
         <ZaloChatButton />
         
         {/* Footer - visible on equipment pages, hidden on homepage (SolarFullPage has its own footer) */}
