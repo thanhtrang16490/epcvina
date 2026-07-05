@@ -127,6 +127,12 @@ export default function CallBoxButton() {
               transform: scale3d(1, 1, 1);
             }
           }
+
+          @media (max-width: 768px) {
+            .call-container {
+              bottom: 130px;
+            }
+          }
         `
       }} />
     </div>

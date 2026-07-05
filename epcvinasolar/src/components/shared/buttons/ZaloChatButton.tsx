@@ -140,6 +140,12 @@ export default function ZaloChatButton() {
               transform: scale3d(1, 1, 1);
             }
           }
+
+          @media (max-width: 768px) {
+            .zalo-container {
+              bottom: 60px;
+            }
+          }
         `
       }} />
     </div>
