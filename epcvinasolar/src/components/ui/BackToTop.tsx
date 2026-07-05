@@ -4,24 +4,20 @@ import { ArrowUp } from '@phosphor-icons/react';
 /**
  * BackToTop Component
  * 
- * - Desktop: right: 35px, shows after scrolling 500px
- * - Mobile: left: 35px, shows only near page bottom (within 400px)
- * - Smooth scroll to top on click
- * - Accessible with keyboard navigation
+ * - Always right: 35px
+ * - Desktop: shows after scrolling 500px, bottom: 100px
+ * - Mobile: shows only near page bottom (swap with Call/Zalo), bottom: 35px
  */
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const mobile = window.matchMedia('(max-width: 768px)').matches;
-    setIsMobile(mobile);
 
     const handleScroll = () => {
       if (mobile) {
-        // Show only when near the bottom of the page
         const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
-        setVisible(scrollBottom < 400);
+        setVisible(scrollBottom < 200);
       } else {
         setVisible(window.scrollY > 500);
       }
@@ -53,7 +49,7 @@ export default function BackToTop() {
         width: 40,
         height: 40,
         bottom: 100,
-        ...(isMobile ? { left: 20 } : { right: 35 }),
+        right: 35,
         animation: 'fadeIn 0.3s ease-in-out',
       }}
     >

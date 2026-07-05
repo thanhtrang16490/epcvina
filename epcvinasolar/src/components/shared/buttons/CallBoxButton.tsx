@@ -17,7 +17,10 @@ export default function CallBoxButton() {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (!isMobile) { setVisible(true); return; }
 
-    const handleScroll = () => setVisible(window.scrollY > 300);
+    const handleScroll = () => {
+      const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+      setVisible(window.scrollY > 300 && scrollBottom >= 200);
+    };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
