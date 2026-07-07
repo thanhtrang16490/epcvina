@@ -1,0 +1,43 @@
+---
+name: "Biến tần Hòa lưới Sungrow 10kW SG10RT"
+brand: "Sungrow"
+model: "SG10RT"
+category: "on-grid-inverter"
+main_image: ""
+description: "Biến tần hòa lưới Sungrow 10kW SG10RT, inverter string 3 pha cho dự án thương mại và gia đình. 2 MPPT, hiệu suất 98.4%, IP66, chống ăn mòn C5, tích hợp AFCI, phục hồi PID. Bảo hành 5 năm."
+is_available: true
+show_on_homepage: false
+product_type: "on-grid-inverter"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "10kW"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.4%"
+  "Loại inverter": "On Grid"
+  "Điện áp PV tối đa": "1000V"
+  "Dải điện áp MPPT": "150–850V"
+  "Số MPPT": "2"
+  "Số string/MPPT": "2 (tổng 4 strings)"
+  "Dòng vào DC tối đa": "20A × 2"
+  "Dòng ngắn mạch DC tối đa": "30A × 2"
+  "Điện áp AC định mức": "3/N/PE, 380/400V"
+  "Cấp bảo vệ": "IP66"
+  "Chống ăn mòn": "C5"
+  "Phương thức làm mát": "Tản nhiệt tự nhiên"
+  "Giao tiếp": "RS485 / WLAN"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "AFCI": "Có"
+  "Phục hồi PID": "Có"
+  "Kích thước": "450 × 380 × 180 mm"
+  "Trọng lượng": "18 kg"
+  "Nhiệt độ hoạt động": "-30°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "2 MPPT độc lập, tối ưu mái nhiều hướng"
+  - "Hiệu suất 98.4%, giảm tổn hao năng lượng"
+  - "Tích hợp AFCI chống hồ quang DC"
+  - "Phục hồi PID giảm suy giảm hiệu suất dài hạn"
+  - "IP66, chống ăn mòn C5, lắp đặt ngoài trời"
+  - "Thiết kế nhỏ gọn 18kg, dễ lắp đặt"
+---
