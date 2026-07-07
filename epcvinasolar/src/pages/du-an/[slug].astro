@@ -2,7 +2,6 @@
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import DashboardShell from '../../components/layout/DashboardShell';
 import HeaderBar from '../../components/home/layout/HeaderBar';
-import FooterSection from '../../components/home/layout/FooterSection';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -783,8 +782,6 @@ const faq = project.data.faq || [];
         </div>
       </div>
     </section>
-      
-      <FooterSection />
     </div>
   </DashboardShell>
 </DashboardLayout>
