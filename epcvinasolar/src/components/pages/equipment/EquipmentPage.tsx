@@ -41,7 +41,7 @@ function CartButton() {
   return (
     <button
       onClick={toggleCart}
-      className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#F97316] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#C2410C] transition-all hover:scale-110 active:scale-95"
+      className="fixed bottom-6 left-6 md:right-6 z-40 w-14 h-14 bg-[#F97316] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#C2410C] transition-all hover:scale-110 active:scale-95"
       aria-label={`Giỏ hàng ${totalItems > 0 ? `(${totalItems})` : ''}`}
     >
       <ShoppingCart className="w-6 h-6" />
