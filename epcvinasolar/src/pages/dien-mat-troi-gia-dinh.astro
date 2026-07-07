@@ -180,6 +180,26 @@ const serviceSchema = {
     ]
   }
 };
+
+// VideoObject Schema for construction video
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Quy trình thi công điện mặt trời EPCVINA Solar",
+  "description": "Video thực tế quy trình lắp đặt hệ thống điện mặt trời 15kWp từ khảo sát đến nghiệm thu",
+  "thumbnailUrl": "https://epcvina.com/thumb-video.png",
+  "contentUrl": "https://epcvina.com/home_image.mp4",
+  "uploadDate": new Date().toISOString(),
+  "duration": "PT1M45S",
+  "publisher": {
+    "@type": "Organization",
+    "name": "EPCVINA Solar",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://epcvina.com/logo-epcvina-solar.png"
+    }
+  }
+};
 ---
 
 <DashboardLayout
@@ -200,6 +220,9 @@ const serviceSchema = {
   
   {/* Service Schema */}
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  
+  {/* VideoObject Schema */}
+  <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
   
   {/* Mobile Optimization: Use client:visible for below-fold React components */}
   <DashboardShell client:load>

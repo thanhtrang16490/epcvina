@@ -2,6 +2,52 @@
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import SolarFullPage from '../components/home/layout/SolarFullPage';
+
+// WebSite schema with SearchAction for Google
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "EPCVINA Solar - Điện Mặt Trời Trọn Gói",
+  "url": "https://epcvina.com",
+  "description": "Lắp đặt điện mặt trời trọn gói On-Grid & Hybrid tại Hà Nội. Tiết kiệm 70-90% tiền điện.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://epcvina.com/thiet-bi?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EPCVINA Solar",
+    "url": "https://epcvina.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://epcvina.com/logo-epcvina-solar.png"
+    }
+  }
+};
+
+// VideoObject schema for construction video
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Quy trình thi công điện mặt trời EPCVINA Solar",
+  "description": "Video thực tế quy trình lắp đặt hệ thống điện mặt trời 15kWp từ khảo sát đến nghiệm thu",
+  "thumbnailUrl": "https://epcvina.com/thumb-video.png",
+  "contentUrl": "https://epcvina.com/home_image.mp4",
+  "uploadDate": new Date().toISOString(),
+  "duration": "PT1M45S",
+  "publisher": {
+    "@type": "Organization",
+    "name": "EPCVINA Solar",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://epcvina.com/logo-epcvina-solar.png"
+    }
+  }
+};
 ---
 
 <DashboardLayout
@@ -9,6 +55,8 @@ import SolarFullPage from '../components/home/layout/SolarFullPage';
   description="EPC Solar - Chuyên lắp đặt hệ thống điện mặt trời on-grid, hybrid & BESS trọn gói tại Hà Nội. Tiết kiệm 70-90% tiền điện. Bảo hành 25 năm. Tư vấn miễn phí!"
   keywords="lắp đặt điện mặt trời Hà Nội, combo điện mặt trời, EPC Solar, hệ thống solar, on-grid, hybrid, tiết kiệm điện, tấm pin mặt trời"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",

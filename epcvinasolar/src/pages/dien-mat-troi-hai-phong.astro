@@ -38,6 +38,21 @@ const faqSchema = {
     "acceptedAnswer": { "@type": "Answer", "text": f.a }
   }))
 };
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `EPCVINA Solar - Điện Mặt Trời ${province.name}`,
+  "description": `Lắp đặt điện mặt trời tại ${province.name}. ${province.description}`,
+  "url": `https://epcvina.com/dien-mat-troi-${province.slug}`,
+  "telephone": "0988446113",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": province.name,
+    "addressCountry": "VN"
+  },
+  "areaServed": province.name
+};
 ---
 
 <DashboardLayout
@@ -51,6 +66,7 @@ const faqSchema = {
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   <DashboardShell client:load>
       <ProvinceLandingPage client:visible province={province} />
     </DashboardShell>
