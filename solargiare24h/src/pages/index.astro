@@ -1,7 +1,41 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
-import SolarFullPage from '../components/home/layout/SolarFullPage';
+import GigaDigitalHomepage from '../components/home/ecommerce/GigaDigitalHomepage';
+import { getCollection } from 'astro:content';
+
+// Fetch all products from content collection
+const allProducts = await getCollection('products');
+
+// Group products by category
+const productsByCategory: Record<string, any[]> = {};
+for (const product of allProducts) {
+  const cat = product.data.category;
+  if (!productsByCategory[cat]) productsByCategory[cat] = [];
+  productsByCategory[cat].push({
+    id: product.id.replace('.md', ''),
+    name: product.data.name,
+    brand: product.data.brand,
+    category: cat,
+    model: product.data.model,
+    description: product.data.description,
+    price: product.data.price || 0,
+    specifications: product.data.specifications || {},
+    features: product.data.features || [],
+    warranty: product.data.warranty || '',
+    warranty_years: product.data.warranty_years || 0,
+    main_image: product.data.main_image || '',
+    is_available: product.data.is_available,
+    product_type: product.data.product_type || cat,
+  });
+}
+
+// Get unique brands
+const brands = [...new Set(allProducts.map(p => p.data.brand))].sort();
+
+// Stats
+const totalProducts = allProducts.length;
+const totalBrands = brands.length;
 ---
 
 <DashboardLayout
@@ -9,6 +43,18 @@ import SolarFullPage from '../components/home/layout/SolarFullPage';
   description="Solar Giá Rẻ 24h - Chuyên cung cấp thiết bị điện mặt trời chính hãng: tấm pin, biến tần, pin lưu trữ, phụ kiện. Giá tốt nhất thị trường."
   keywords="thiết bị điện mặt trời, tấm pin năng lượng, biến tần solar, inverter, pin lưu trữ, phụ kiện solar, giá thiết bị điện mặt trời"
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Solar Giá Rẻ 24h",
+    "url": "https://solargiare24h.com",
+    "description": "Thiết bị điện mặt trời chính hãng giá tốt",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://solargiare24h.com/equipment?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  })} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -64,6 +110,12 @@ import SolarFullPage from '../components/home/layout/SolarFullPage';
     ]
   })} />
   <DashboardShell client:load showFooter={false}>
-    <SolarFullPage client:load />
+    <GigaDigitalHomepage 
+      client:visible
+      productsByCategory={productsByCategory}
+      brands={brands}
+      totalProducts={totalProducts}
+      totalBrands={totalBrands}
+    />
   </DashboardShell>
 </DashboardLayout>
