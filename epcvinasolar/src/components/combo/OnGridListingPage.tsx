@@ -6,14 +6,14 @@ import type { ComboCardData } from './ComboListingCard';
 
 // Fallback data when API returns empty
 const FALLBACK_COMBOS: ComboCardData[] = [
-  { id: 'og1p-5', slug: 'og1p-5-5kw', name: 'Hệ On-Grid 5 kWp 1 pha', power: 5, battery: 0, price: 54500000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og1p-8', slug: 'og1p-8-8kw', name: 'Hệ On-Grid 8.8 kWp 1 pha', power: 8.8, battery: 0, price: 86400000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og1p-10', slug: 'og1p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 1 pha', power: 10.7, battery: 0, price: 100600000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-10', slug: 'og3p-10-7kw', name: 'Hệ On-Grid 10.7 kWp 3 pha', power: 10.7, battery: 0, price: 98500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-15', slug: 'og3p-15-7kw', name: 'Hệ On-Grid 15.7 kWp 3 pha', power: 15.7, battery: 0, price: 132500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol', is_popular: true },
-  { id: 'og3p-18', slug: 'og3p-18-8kw', name: 'Hệ On-Grid 18.8 kWp 3 pha', power: 18.8, battery: 0, price: 152000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-29', slug: 'og3p-29-4kw', name: 'Hệ On-Grid 29.4 kWp 3 pha', power: 29.4, battery: 0, price: 252700000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-48', slug: 'og3p-48-8kw', name: 'Hệ On-Grid 48.8 kWp 3 pha', power: 48.8, battery: 0, price: 400500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
+  { id: 'on-grid-5kw-1pha', slug: 'on-grid-5kw-1pha', name: 'Hệ On-Grid 5 kWp 1 pha', power: 5, battery: 0, price: 60000000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'on-grid-8.8kw-1pha', slug: 'on-grid-8.8kw-1pha', name: 'Hệ On-Grid 8.8 kWp 1 pha', power: 8.8, battery: 0, price: 95000000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'on-grid-10.7kw-1pha', slug: 'on-grid-10.7kw-1pha', name: 'Hệ On-Grid 10.7 kWp 1 pha', power: 10.7, battery: 0, price: 115000000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'on-grid-10.7kw-3pha', slug: 'on-grid-10.7kw-3pha', name: 'Hệ On-Grid 10.7 kWp 3 pha', power: 10.7, battery: 0, price: 110000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'on-grid-15.7kw-3pha', slug: 'on-grid-15.7kw-3pha', name: 'Hệ On-Grid 15.7 kWp 3 pha', power: 15.7, battery: 0, price: 150000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
+  { id: 'on-grid-18.8kw-3pha', slug: 'on-grid-18.8kw-3pha', name: 'Hệ On-Grid 18.8 kWp 3 pha', power: 18.8, battery: 0, price: 180000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'on-grid-29.4kw-3pha', slug: 'on-grid-29.4kw-3pha', name: 'Hệ On-Grid 29.4 kWp 3 pha', power: 29.4, battery: 0, price: 280000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
+  { id: 'on-grid-48.8kw-3pha', slug: 'on-grid-48.8kw-3pha', name: 'Hệ On-Grid 48.8 kWp 3 pha', power: 48.8, battery: 0, price: 450000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
 ];
 
 export default function OnGridListingPage() {
@@ -23,24 +23,25 @@ export default function OnGridListingPage() {
   useEffect(() => {
     async function fetchCombos() {
       try {
-        const res = await fetch('/api/combos?system_type=on-grid');
+        const res = await fetch('/api/combos?systemType=on-grid');
         if (res.ok) {
-          const data = await res.json();
-          if (data && data.length > 0) {
+          const json = await res.json();
+          const data = json.data || json;
+          if (Array.isArray(data) && data.length > 0) {
             const mapped: ComboCardData[] = data.map((c: any) => ({
-              id: c.id,
+              id: c.slug || c.id,
               slug: c.slug || c.id,
               name: c.name,
-              power: c.power || 0,
-              battery: c.battery || 0,
-              price: c.price || 0,
+              power: c.power || c.power_kw || 0,
+              battery: c.battery || c.battery_kwh || 0,
+              price: c.price || c.investment_million_vnd * 1000000 || 0,
               system_type: 'on-grid' as const,
               phase: c.phase || '1-phase',
-              panel_brand: c.panel_brand,
-              inverter_brand: c.inverter_brand,
+              panel_brand: c.panel_brand || c.panelBrand,
+              inverter_brand: c.inverter_brand || c.inverterBrand,
               monthly_production: c.monthly_production,
-              payback_period: c.payback_period,
-              installation_area: c.installation_area,
+              payback_period: c.payback_period || c.payback_years,
+              installation_area: c.installation_area || c.roof_area_m2,
               is_popular: c.is_popular,
             }));
             setCombos(mapped);

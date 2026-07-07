@@ -23,24 +23,25 @@ export default function HybridListingPage() {
   useEffect(() => {
     async function fetchCombos() {
       try {
-        const res = await fetch('/api/combos?system_type=hybrid');
+        const res = await fetch('/api/combos?systemType=hybrid');
         if (res.ok) {
-          const data = await res.json();
-          if (data && data.length > 0) {
+          const json = await res.json();
+          const data = json.data || json;
+          if (Array.isArray(data) && data.length > 0) {
             const mapped: ComboCardData[] = data.map((c: any) => ({
-              id: c.id,
+              id: c.slug || c.id,
               slug: c.slug || c.id,
               name: c.name,
-              power: c.power || 0,
-              battery: c.battery || 0,
-              price: c.price || 0,
+              power: c.power || c.power_kw || 0,
+              battery: c.battery || c.battery_kwh || 0,
+              price: c.price || c.investment_million_vnd * 1000000 || 0,
               system_type: 'hybrid' as const,
               phase: c.phase || '1-phase',
-              panel_brand: c.panel_brand,
-              inverter_brand: c.inverter_brand,
+              panel_brand: c.panel_brand || c.panelBrand,
+              inverter_brand: c.inverter_brand || c.inverterBrand,
               monthly_production: c.monthly_production,
-              payback_period: c.payback_period,
-              installation_area: c.installation_area,
+              payback_period: c.payback_period || c.payback_years,
+              installation_area: c.installation_area || c.roof_area_m2,
               is_popular: c.is_popular,
             }));
             setCombos(mapped);
