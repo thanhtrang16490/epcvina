@@ -1,0 +1,42 @@
+---
+name: "Biến tần Hybrid Growatt WIT 100K-H 100kW"
+brand: "Growatt"
+category: "hybrid-inverter"
+model: "WIT 100K-H"
+description: "Biến tần Hybrid Growatt WIT 100K-H 100kW 3 pha, inverter hybrid công nghiệp cho khu công nghiệp và nhà xưởng. 10 MPPT, hiệu suất 98.0%, PV tối đa 156kW, làm mát thông minh, chống sét Type II DC/AC. Bảo hành 5 năm."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "inverter"
+voltage: "high"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "100kW"
+  "Công suất PV tối đa": "156kWp"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.0%"
+  "Loại inverter": "Hybrid"
+  "Điện áp DC cực đại": "800V"
+  "Dải điện áp MPPT": "180–800V"
+  "Số MPPT": "10"
+  "Số string/MPPT": "2"
+  "Điện áp AC": "3/N/PE, 380/400V"
+  "Tần số": "50/60Hz"
+  "Cấp bảo vệ": "IP65"
+  "Phương thức làm mát": "Làm mát thông minh (không quạt)"
+  "Giao tiếp": "RS485, CAN, WiFi, 4G (tùy chọn)"
+  "WiFi tích hợp": "Có"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Kích thước": "820 × 1350 × 510 mm"
+  "Trọng lượng": "140 kg"
+  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "Hybrid: hòa lưới + lưu trữ + backup"
+  - "10 MPPT độc lập, tối ưu trang trại điện mặt trời"
+  - "Hiệu suất 98.0%, giảm tổn hao năng lượng"
+  - "PV tối đa 156kWp, phù hợp dự án lớn"
+  - "Làm mát thông minh không dùng quạt"
+  - "Hỗ trợ giám sát WiFi/4G từ xa"
+---
