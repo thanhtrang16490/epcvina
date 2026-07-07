@@ -1,0 +1,43 @@
+---
+name: "Biến tần Hòa lưới Sungrow 20kW SG20RT"
+brand: "Sungrow"
+model: "SG20RT"
+category: "on-grid-inverter"
+main_image: ""
+description: "Biến tần hòa lưới Sungrow 20kW SG20RT, inverter string cho dự án thương mại và gia đình. 3 MPPT, hiệu suất 98.4%, IP66, chống ăn mòn C5, tích hợp AFCI, phục hồi PID. Bảo hành 5 năm."
+is_available: true
+show_on_homepage: false
+product_type: "on-grid-inverter"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "20kW"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.4%"
+  "Loại inverter": "On Grid"
+  "Điện áp PV tối đa": "1000V"
+  "Dải điện áp MPPT": "150–850V"
+  "Số MPPT": "3"
+  "Số string/MPPT": "2 (tổng 6 strings)"
+  "Dòng vào DC tối đa": "20A × 3"
+  "Dòng ngắn mạch DC tối đa": "30A × 3"
+  "Điện áp AC định mức": "3/N/PE, 380/400V"
+  "Cấp bảo vệ": "IP66"
+  "Chống ăn mòn": "C5"
+  "Phương thức làm mát": "Tản nhiệt tự nhiên"
+  "Giao tiếp": "RS485 / WLAN"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "AFCI": "Có"
+  "Phục hồi PID": "Có"
+  "Kích thước": "500 × 400 × 200 mm"
+  "Trọng lượng": "21 kg"
+  "Nhiệt độ hoạt động": "-30°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "3 MPPT độc lập, tối ưu mái nhiều hướng"
+  - "Hiệu suất 98.4%, giảm tổn hao năng lượng"
+  - "Tích hợp AFCI chống hồ quang DC"
+  - "Phục hồi PID giảm suy giảm hiệu suất dài hạn"
+  - "IP66, chống ăn mòn C5, lắp đặt ngoài trời"
+  - "Thiết kế nhỏ gọn 21kg, dễ lắp đặt"
+---
