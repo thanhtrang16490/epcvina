@@ -1,4 +1,4 @@
-import { ArrowLeft, Check, Package, Shield, Lightning, TrendUp, Medal, MapPin, Star, Quotes, ShoppingCart } from '@phosphor-icons/react';
+import { ArrowLeft, Check, Package, Shield, Lightning, TrendUp, Medal, MapPin, Star, Quotes, ShoppingCart, CaretDown, CaretUp } from '@phosphor-icons/react';
 import { useState, useEffect, useMemo } from 'react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import { localBrands } from '../../../data/brands';
@@ -68,6 +68,68 @@ const CATEGORY_NAMES: Record<string, string> = {
   'battery': 'Pin lưu trữ',
   'accessories': 'Phụ kiện lắp đặt',
 };
+
+// FAQ data per product category
+const PRODUCT_FAQ: Record<string, Array<{ q: string; a: string }>> = {
+  'panel': [
+    { q: 'Tấm pin Mono và Poly khác nhau thế nào?', a: 'Tấm pin Mono (Monocrystalline) có hiệu suất cao hơn (20-23%), hoạt động tốt hơn trong điều kiện ánh sáng yếu và tuổi thọ dài hơn. Tấm pin Poly (Polycrystalline) có giá thành rẻ hơn nhưng hiệu suất thấp hơn (15-18%). Hiện nay, Mono là lựa chọn phổ biến cho hệ thống điện mặt trời gia đình và doanh nghiệp.' },
+    { q: 'Hiệu suất tấm pin bao nhiêu là tốt?', a: 'Tấm pin tốt thường có hiệu suất từ 20% trở lên. Các thương hiệu Tier 1 như LONGi, JA Solar, Canadian Solar, JinkoSolar hiện cung cấp tấm pin với hiệu suất 20-23%. Hiệu suất cao giúp tạo ra nhiều điện hơn trên cùng diện tích lắp đặt.' },
+    { q: 'Tuổi thọ tấm pin mặt trời bao lâu?', a: 'Tấm pin mặt trời chất lượng có tuổi thọ 25-30 năm, với suy giảm hiệu suất chỉ 0.5%/năm. Sau 25 năm, tấm pin vẫn đạt khoảng 85-87% công suất ban đầu. Bảo hành hiệu suất thường 25 năm, bảo hành vật lý 10-12 năm.' },
+    { q: 'Tấm pin có hoạt động khi trời nhiều mây không?', a: 'Có, tấm pin vẫn hoạt động khi trời nhiều mây nhưng sản lượng giảm 10-25% so với trời nắng. Công nghệ PERC, Half-cut Cell, Bifacial giúp tăng hiệu suất trong điều kiện ánh sáng yếu. Hệ thống vẫn tạo ra điện đáng kể ngay cả những ngày âm u.' },
+    { q: 'Bảo hành tấm pin như thế nào?', a: 'Tấm pin thường có 2 loại bảo hành: Bảo hành vật lý (10-12 năm) cho lỗi sản xuất, hư hỏng vật liệu; Bảo hành hiệu suất (25 năm) đảm bảo công suất đầu ra tối thiểu 80-85%. EPCVINA hỗ trợ bảo hành chính hãng, đổi mới trong thời gian bảo hành.' },
+  ],
+  'hybrid-inverter': [
+    { q: 'Biến tần Hybrid khác On-Grid thế nào?', a: 'Biến tần Hybrid kết hợp cả hòa lưới và lưu trữ pin, có thể hoạt động độc lập khi mất điện (chế độ backup). Biến tần On-Grid chỉ hòa lưới, không lưu trữ và ngừng hoạt động khi mất điện. Hybrid phù hợp khi cần dự phòng điện và tối ưu tự dùng.' },
+    { q: 'Biến tần Hybrid có cần pin lưu trữ không?', a: 'Không bắt buộc. Biến tần Hybrid có thể hoạt động không cần pin (như hòa lưới thông thường) và lắp pin sau khi cần. Tuy nhiên, để tận dụng khả năng backup khi mất điện và tối ưu tự dùng, nên kết hợp với pin lưu trữ.' },
+    { q: 'Chọn công suất biến tần Hybrid thế nào?', a: 'Công suất biến tần cần ≥ tổng công suất tải đồng thời lớn nhất. Ví dụ: tải tối đa 5kW thì chọn biến tần 5-6kW. Đồng thời, công suất PV lắp đặt không nên vượt quá 120% công suất biến tần. EPCVINA tư vấn miễn phí dựa trên nhu cầu thực tế.' },
+    { q: 'Biến tần Hybrid có backup khi mất điện không?', a: 'Có, đây là ưu điểm chính của Hybrid. Khi mất điện, biến tần tự động chuyển sang chế độ backup, cấp điện từ pin lưu trữ cho tải ưu tiên. Thời gian chuyển mạch <10ms, hầu hết thiết bị không bị gián đoạn.' },
+    { q: 'Hiệu suất biến tần bao nhiêu là tốt?', a: 'Biến tần tốt có hiệu suất ≥ 97%. Các thương hiệu hàng đầu như Growatt, Sungrow, Deye đạt 97-98.5%. Hiệu suất cao giảm tổn hao năng lượng, tăng sản lượng điện. Cần phân biệt hiệu suất EU (97-98%) và hiệu suất China (cao hơn 0.5-1%).' },
+  ],
+  'on-grid-inverter': [
+    { q: 'Biến tần On-Grid có hoạt động khi mất điện không?', a: 'Không. Biến tần On-Grid được thiết kế an toàn, tự động ngắt khi mất điện lưới (anti-islanding). Đây là yêu cầu bắt buộc theo tiêu chuẩn điện lực. Nếu cần backup khi mất điện, nên dùng hệ thống Hybrid kết hợp pin lưu trữ.' },
+    { q: 'Biến tần 1 pha và 3 pha khác nhau thế nào?', a: 'Biến tần 1 pha (220V) dùng cho hộ gia đình, công suất 1-10kW. Biến tần 3 pha (380V) dùng cho thương mại, công nghiệp, công suất >10kW. Chọn theo nguồn điện sẵn có: nhà ở thường có điện 1 pha, nhà xưởng có điện 3 pha.' },
+    { q: 'MPPT là gì, quan trọng thế nào?', a: 'MPPT (Maximum Power Point Tracking) là thuật toán tối ưu hóa điểm công suất cực đại của tấm pin. Biến tần có nhiều MPPT cho phép kết nối các dãy pin ở các hướng khác nhau mà không ảnh hưởng hiệu suất. Số MPPT càng nhiều, tối ưu càng tốt cho mái phức tạp.' },
+    { q: 'Chọn công suất biến tần On-Grid thế nào?', a: 'Công suất biến tần nên bằng hoặc gần bằng tổng công suất PV lắp đặt. Ví dụ: hệ 10kWp PV chọn biến tần 10kW. Có thể oversize PV lên 120% công suất biến tần để tối ưu sản lượng. EPCVINA tư vấn tỷ lệ DC/AC phù hợp theo vị trí lắp đặt.' },
+    { q: 'Biến tần On-Grid có giám sát từ xa được không?', a: 'Có. Hầu hết biến tần hiện đại tích hợp WiFi/4G, cho phép giám sát sản lượng real-time qua app điện thoại. Các thương hiệu như Growatt có app ShinePhone, Sungrow có iSolarCloud. EPCVINA hỗ trợ cài đặt và giám sát miễn phí.' },
+  ],
+  'lv-battery': [
+    { q: 'Pin áp thấp khác pin áp cao thế nào?', a: 'Pin áp thấp (48V) hoạt động ở điện áp thấp, an toàn hơn, dễ lắp đặt, phù hợp hệ gia đình 3-15kW. Pin áp cao (96-480V) hiệu suất cao hơn, dòng điện nhỏ hơn, phù hợp hệ thương mại >10kW. Pin áp thấp thường rẻ hơn và tương thích nhiều inverter hơn.' },
+    { q: 'Dung lượng pin bao nhiêu là đủ?', a: 'Tùy nhu cầu tự dùng và backup. Gia đình 4-6 người thường cần 5-10kWh cho backup cơ bản (đèn, quạt, tủ lạnh, WiFi). Nếu muốn backup toàn tải hoặc tối ưu tự dùng, cần 15-30kWh. EPCVINA phân tích hóa đơn điện để tư vấn dung lượng tối ưu.' },
+    { q: 'Chu kỳ sạc xả pin bao nhiêu là tốt?', a: 'Pin LiFePO4 chất lượng cao có 6000-8000 chu kỳ (DoD 90-95%), tương đương 15-20 năm sử dụng. Chu kỳ càng cao, tuổi thọ càng dài. Pin 6000 chu kỳ với 1 chu kỳ/ngày ≈ 16 năm. Đây là yếu tố quan trọng khi tính toán chi phí đầu tư.' },
+    { q: 'Pin LiFePO4 có an toàn không?', a: 'Rất an toàn. LiFePO4 (Lithium Sắt Phosphate) là loại pin an toàn nhất trong các dòng lithium, không cháy nổ kể cả khi đoản mạch. Có BMS bảo vệ 3 lớp: quá áp, quá dòng, quá nhiệt. Đạt chứng chỉ TUV, CE, UN38.3. Tuổi thọ >15 năm.' },
+    { q: 'Pin lưu trữ có tương thích với mọi inverter không?', a: 'Hầu hết pin lưu trữ phổ biến (Pylontech, Growatt, Deye) tương thích với nhiều thương hiệu inverter qua giao thức CAN/RS485. Tuy nhiên, cần kiểm tra danh sách tương thích trước khi mua. EPCVINA tư vấn combo inverter + pin tương thích tối ưu.' },
+  ],
+  'hv-battery': [
+    { q: 'Pin áp cao có lợi gì hơn pin áp thấp?', a: 'Pin áp cao (96-480V) có hiệu suất cao hơn 2-5% do giảm tổn hao dòng điện, dòng sạc/xả nhỏ hơn giúp giảm tiết diện dây, phù hợp hệ thống công suất lớn >10kW. Tuy nhiên, giá thành cao hơn và yêu cầu inverter tương thích chuyên biệt.' },
+    { q: 'Pin áp cao cần inverter nào tương thích?', a: 'Pin áp cao cần biến tần Hybrid hỗ trợ điện áp cao. Các dòng tương thích phổ biến: Sungrow SH series, Growatt WIT-H series, Deye SUN-SG04LP3. Cần kiểm tra danh sách tương thích chính xác. EPCVINA tư vấn combo inverter + pin tối ưu.' },
+    { q: 'Có thể mở rộng dung lượng pin áp cao không?', a: 'Có. Hầu hết pin áp cao thiết kế module xếp chồng, cho phép mở rộng linh hoạt. Ví dụ: Pylontech Force H2 mở rộng 7.1-85.2kWh, CFE-XH 241 mở rộng 64-921kWh. Có thể bắt đầu nhỏ và tăng dần theo nhu cầu.' },
+    { q: 'BMS 3 cấp là gì?', a: 'BMS (Battery Management System) 3 cấp quản lý từ cell → module → hệ thống. Cấp 1: cân bằng cell, bảo vệ từng cell pin. Cấp 2: quản lý module, kiểm soát nhiệt độ, dòng điện. Cấp 3: quản lý toàn hệ thống, giao tiếp với inverter. Đảm bảo an toàn và tuổi thọ tối đa.' },
+    { q: 'Pin áp cao lắp trong nhà hay ngoài trời?', a: 'Hầu hết pin áp cao thiết kế lắp trong nhà hoặc nơi có mái che (IP20). Một số model có thể lắp ngoài trời khi có tủ bảo vệ. Cần đảm bảo thông gió tốt, nhiệt độ 0-45°C, tránh ánh nắng trực tiếp. EPCVINA khảo sát miễn phí vị trí lắp đặt.' },
+  ],
+  'cabinet': [
+    { q: 'Tủ điện hybrid khác tủ điện thường thế nào?', a: 'Tủ điện hybrid thiết kế chuyên biệt cho hệ thống điện mặt trời Hybrid, có sẵn thanh cái, CB, chống sét DC/AC, cầu đấu nối cho inverter và pin lưu trữ. Tủ thường chỉ có CB cơ bản. Tủ hybrid giúp thi công nhanh, gọn gàng và an toàn hơn.' },
+    { q: 'Chọn tủ điện theo công suất thế nào?', a: 'Chọn tủ theo công suất hệ thống: 1 pha 6-8kW dùng tủ 2 string, 1 pha 8-10kW dùng tủ 2 string công suất lớn. 3 pha 12-15kW dùng tủ 2 string, 15-20kW dùng tủ 3 string. Tủ cần chịu được dòng điện tối đa của inverter.' },
+    { q: 'Tủ điện có chống nước không?', a: 'Tủ điện trong nhà thường có cấp bảo vệ IP20-IP30, chống bụi và vật rơi. Tủ ngoài trời cần IP65 trở lên, chống nước và bụi hoàn toàn. EPCVINA cung cấp cả tủ trong nhà và ngoài trời phù hợp mọi vị trí lắp đặt.' },
+  ],
+  'mounting': [
+    { q: 'Khung nhôm mounting có bền không?', a: 'Khung nhôm alloy 6005-T5 có độ bền cao, chống ăn mòn, chịu được gió bão cấp 12-15. Bề mặt anodized chống oxy hóa, tuổi thọ 25-30 năm tương đương tấm pin. EPCVINA sử dụng khung nhôm chính hãng, đầy đủ chứng chỉ chất lượng.' },
+    { q: 'Lắp khung trên mái tôn khác mái bằng thế nào?', a: 'Mái tôn dùng kẹp tôn (clamp) không cần khoan, chống thấm tuyệt đối. Mái bằng dùng chân đế bê tông hoặc bulong hóa chất, cần chống thấm kỹ. Mái ngói dùng móc ngói Inox 304. Mỗi loại mái có giải pháp mounting riêng, EPCVINA khảo sát miễn phí.' },
+    { q: 'Khung mounting chịu được gió bão không?', a: 'Khung nhôm Alloy 6005-T5 thiết kế chịu gió cấp 12-15 (tốc độ gió 120-170 km/h), theo tiêu chuẩn AS/NZS 1170 và TCVN. Hệ kẹp và bulong Inox 304 chống ăn mòn. EPCVINA tính toán kết cấu theo vị trí địa lý và loại mái.' },
+  ],
+  'wiring': [
+    { q: 'Dây DC và dây AC khác nhau thế nào?', a: 'Dây DC (dây một chiều) dùng từ tấm pin đến inverter, chịu được điện áp DC cao (1000-1500V), chống tia UV. Dây AC (dây xoay chiều) từ inverter đến lưới điện, dùng điện áp AC 220/380V. Không được dùng chung, mỗi loại có tiêu chuẩn riêng.' },
+    { q: 'Chọn tiết diện dây thế nào?', a: 'Tiết diện dây phụ thuộc dòng điện và khoảng cách. Dây DC tấm pin thường 4mm² hoặc 6mm². Dây AC từ inverter: 1-5kW dùng 4mm², 5-10kW dùng 6-10mm², >10kW dùng 10-25mm². Khoảng cách xa cần tăng tiết diện để giảm sụt áp.' },
+    { q: 'Connector MC4 có gì đặc biệt?', a: 'MC4 là connector tiêu chuẩn cho điện mặt trời, chống nước IP67, chịu được điện áp DC 1000-1500V, dòng 30-55A. Chất liệu PPO chống tia UV, nhiệt độ hoạt động -40°C đến +90°C. Kết nối plug-and-play, an toàn và nhanh chóng.' },
+  ],
+};
+
+// Fallback FAQ for categories without specific data
+const DEFAULT_FAQ = [
+  { q: 'Sản phẩm có chính hãng không?', a: '100% sản phẩm EPCVINA cung cấp là hàng chính hãng từ các thương hiệu Tier 1 (LONGi, JA Solar, Growatt, Sungrow, Canadian Solar...). Có đầy đủ chứng nhận CO, CQ, bảo hành chính hãng. Hỗ trợ đổi mới nếu lỗi trong thời gian bảo hành.' },
+  { q: 'Thời gian bảo hành bao lâu?', a: 'Tùy sản phẩm: tấm pin 10-25 năm, biến tần 5-10 năm, pin lưu trữ 5-10 năm, phụ kiện 1-5 năm. EPCVINA hỗ trợ bảo hành nhanh, kỹ thuật đến tận nơi trong 24-48h. Hotline 24/7: 0988 446 113.' },
+  { q: 'EPCVINA có hỗ trợ lắp đặt không?', a: 'Có. EPCVINA cung cấp dịch vụ EPC trọn gói: Khảo sát → Thiết kế → Lắp đặt → Đấu nối → Nghiệm thu. Đội ngũ kỹ thuật chuyên nghiệp, đã hoàn thành hàng trăm dự án từ 3kW đến hàng MW. Bảo hành thi công 2 năm.' },
+  { q: 'Làm thế nào để nhận báo giá?', a: 'Liên hệ hotline 0988 446 113 hoặc Zalo để được tư vấn miễn phí. EPCVINA khảo sát thực tế miễn phí, lên thiết kế và báo giá chi tiết trong 24h. Báo giá bao gồm thiết bị, thi công, đấu nối và bảo hành trọn gói.' },
+];
 
 export default function ProductDetail({ product, relatedProjects = [] }: ProductDetailProps) {
   return (
@@ -768,6 +830,24 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
               </div>
             </div>
 
+            {/* FAQ Section */}
+            <div className="mt-12 pt-12 border-t border-gray-200">
+              <div className="mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span>Câu hỏi thường gặp</span>
+                </h2>
+                <p className="text-gray-600 text-base">
+                  Giải đáp thắc mắc về {CATEGORY_NAMES[product.category] || product.category} – {product.brand} {product.model}
+                </p>
+              </div>
+              <ProductFAQ category={product.category} />
+            </div>
+
             {/* Back to Products */}
             <div className="text-center pt-8 border-t border-gray-200">
               <a
@@ -833,6 +913,52 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
           </div>
         </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// FAQ accordion component for product categories
+function ProductFAQ({ category }: { category: string }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const faqs = PRODUCT_FAQ[category] || DEFAULT_FAQ;
+
+  return (
+    <div className="space-y-3">
+      {faqs.map((faq, i) => (
+        <div key={i} className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-blue-200 transition-all">
+          <button
+            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+            className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
+            aria-expanded={openIndex === i}
+          >
+            <span className="font-semibold text-gray-900 pr-4 text-sm sm:text-base">{faq.q}</span>
+            {openIndex === i ? (
+              <CaretUp className="w-5 h-5 text-blue-500 flex-shrink-0" weight="bold" />
+            ) : (
+              <CaretDown className="w-5 h-5 text-gray-400 flex-shrink-0" weight="bold" />
+            )}
+          </button>
+          {openIndex === i && (
+            <div className="px-5 pb-5">
+              <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+            </div>
+          )}
+        </div>
+      ))}
+
+      {/* CTA after FAQ */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-5 text-center">
+        <p className="text-sm text-gray-600 mb-3">Vẫn còn thắc mắc? Đội ngũ EPCVINA sẵn sàng tư vấn miễn phí.</p>
+        <a
+          href="tel:0988446113"
+          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-all text-sm"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          Gọi tư vấn: 0988 446 113
+        </a>
       </div>
     </div>
   );
