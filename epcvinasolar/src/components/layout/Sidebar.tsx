@@ -10,6 +10,7 @@ import {
   SignIn,
   SignOut,
   User,
+  Users,
   CaretDown,
   CaretRight,
   X,
@@ -34,7 +35,7 @@ const menuItems: MenuItem[] = [
   // { name: 'Báo Giá', href: '/bao-gia', icon: Calculator },
 
   {
-    name: 'Gói combo',
+    name: 'Combo',
     icon: Package,
     children: [
       { name: 'Tất cả Combo', href: '/solar-home/he-thong' },
@@ -96,6 +97,7 @@ const menuItems: MenuItem[] = [
   },
   { name: 'Blog', href: '/tin-tuc', icon: Newspaper },
   { name: 'Về chúng tôi', href: '/ve-chung-toi', icon: User },
+  { name: 'Tuyển dụng', href: '/tuyen-dung', icon: Users },
   { name: 'Hỏi đáp', href: '/hoi-dap', icon: Chat },
   {
     name: 'Hướng dẫn',

@@ -1,6 +1,45 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Có cần tắt hệ thống điện mặt trời vào ban đêm không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Không cần. Inverter tự động chuyển sang chế độ chờ khi không có ánh nắng. Việc tắt/bật thủ công không cần thiết và có thể làm giảm sản lượng ngày hôm sau."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pin lưu trữ có cần thay thế không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pin LFP có tuổi thọ 6000+ chu kỳ (~10-15 năm). Sau thời gian này dung lượng giảm còn ~70%. EPCVINA hỗ trợ kiểm tra và tư vấn thay thế khi cần."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mưa bão có nên tắt hệ thống không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hệ thống có chống sét cơ bản. Với bão cấp 12 trở lên, nên tắt aptomat DC để bảo vệ an toàn. Sau bão, kiểm tra tấm pin trước khi bật lại."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Có thể mở rộng hệ thống sau này không?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Có thể. Cần khảo sát lại inverter, khung giàn và giấy phép đấu nối. Liên hệ EPCVINA để được tư vấn miễn phí."
+      }
+    }
+  ]
+};
 ---
 
 <DashboardLayout
@@ -9,6 +48,7 @@ import DashboardShell from '../components/layout/DashboardShell';
   keywords="hướng dẫn sử dụng điện mặt trời, cách dùng solar, app giám sát, vận hành hệ thống solar, EPCVINA"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Hướng Dẫn Sử Dụng", url: "https://epcvina.com/huong-dan-su-dung"}]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <DashboardShell client:load>
     <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       <div class="mb-8">
@@ -252,6 +292,22 @@ import DashboardShell from '../components/layout/DashboardShell';
             <p>Zalo: <a href="https://zalo.me/0988446113" class="text-[#DC2626] hover:underline">0988 446 113</a></p>
             <p>Giờ hỗ trợ: Thứ 2 – Chủ nhật, 7:00 – 20:00</p>
             <p class="mt-2 text-gray-500">Sự cố khẩn cấp (khói, cháy, nổ): Gọi ngay <a href="tel:114" class="text-[#DC2626] hover:underline font-bold">114</a> (Cứu hỏa) rồi gọi EPCVINA.</p>
+          </div>
+        </section>
+
+        <!-- CTA Bảo trì -->
+        <section>
+          <div class="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-6 sm:p-8 text-white">
+            <h2 class="text-xl sm:text-2xl font-bold mb-3">Cần hỗ trợ bảo trì hệ thống?</h2>
+            <p class="text-orange-100 mb-6">EPCVINA cung cấp gói bảo trì O&M chuyên nghiệp: vệ sinh tấm pin, kiểm tra hệ thống, tối ưu hiệu suất.</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a href="/bao-tri" class="inline-flex items-center justify-center gap-2 bg-white text-orange-700 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors shadow-lg text-sm">
+                Xem gói bảo trì →
+              </a>
+              <a href="tel:0988446113" class="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 text-white font-semibold px-6 py-3 rounded-xl border border-white/30 transition-colors text-sm">
+                📞 Gọi kỹ thuật
+              </a>
+            </div>
           </div>
         </section>
 

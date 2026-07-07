@@ -1,0 +1,526 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "EPCVINA Solar tuyển dụng những vị trí nào?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EPCVINA Solar thường xuyên tuyển dụng: Kỹ sư điện – năng lượng mặt trời, Kỹ thuật viên lắp đặt, Nhân viên kinh doanh, Thiết kế hệ thống điện, và Thực tập sinh các ngành kỹ thuật."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quyền lợi khi làm việc tại EPCVINA Solar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lương cạnh tranh, thưởng theo dự án, bảo hiểm sức khỏe PVI, đào tạo chuyên sâu về điện mặt trời, cơ hội thăng tiến, môi trường làm việc năng động và nhiều chế độ phúc lợi khác."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Nộp hồ sơ ứng tuyển qua kênh nào?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bạn có thể nộp hồ sơ qua email: epcvinasolar@gmail.com, liên hệ Zalo: 0988 446 113, hoặc điền form trực tiếp trên trang này."
+      }
+    }
+  ]
+};
+---
+
+<DashboardLayout
+  title="Tuyển Dụng EPCVINA Solar - Gia Nhập Đội Ngũ Điện Mặt Trời Hàng Đầu"
+  description="EPCVINA Solar tuyển dụng kỹ sư điện, kỹ thuật viên lắp đặt, nhân viên kinh doanh. Môi trường năng động, lương cạnh tranh, đào tạo chuyên sâu về điện mặt trời."
+  keywords="tuyển dụng EPCVINA, việc làm điện mặt trời, tuyển kỹ sư điện Hà Nội, tuyển dụng solar, việc làm năng lượng mặt trời"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Tuyển Dụng", url: "https://epcvina.com/tuyen-dung"}]}
+>
+  <DashboardShell client:load>
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-orange-600 via-red-600 to-red-700 text-white">
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div class="max-w-3xl">
+          <p class="text-orange-200 text-sm font-semibold uppercase tracking-wider mb-3">EPCVINA Solar – Tuyển Dụng</p>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
+            Gia Nhập Đội Ngũ<br/>
+            <span class="text-orange-200">Điện Mặt Trời Hàng Đầu</span>
+          </h1>
+          <p class="text-lg text-white/90 mb-8 max-w-2xl">
+            Hơn 500 dự án thành công trên toàn quốc. Chúng tôi tìm kiếm những nhân tài 
+            đam mê năng lượng tái tạo, muốn xây dựng sự nghiệp bền vững cùng EPCVINA Solar.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#vi-tri" class="inline-flex items-center gap-2 bg-white text-orange-700 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors">
+              Xem vị trí tuyển dụng
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <a href="/lien-he" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-colors border border-white/20">
+              Liên hệ ứng tuyển
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-14">
+
+      <!-- WHY JOIN US -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">
+          Vì Sao Nên Gia Nhập EPCVINA Solar?
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Benefit 1 -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Lương & Thưởng Hấp Dẫn</h3>
+            <p class="text-gray-600 text-sm">Lương cạnh tranh theo năng lực, thưởng theo dự án, thưởng cuối năm lên đến 3 tháng lương.</p>
+          </div>
+          <!-- Benefit 2 -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Bảo Hiểm PVI Toàn Diện</h3>
+            <p class="text-gray-600 text-sm">Bảo hiểm sức khỏe PVI cho bản thân và gia đình, BHXH đầy đủ theo quy định.</p>
+          </div>
+          <!-- Benefit 3 -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Cơ Hội Thăng Tiến</h3>
+            <p class="text-gray-600 text-sm">Lộ trình thăng tiến rõ ràng, từ kỹ thuật viên đến quản lý dự án, trưởng phòng.</p>
+          </div>
+          <!-- Benefit 4 -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Đào Tạo Chuyên Sâu</h3>
+            <p class="text-gray-600 text-sm">Được đào tạo về thiết kế hệ thống, công nghệ solar mới nhất từ các đối tác AIKO, Huawei, Sungrow.</p>
+          </div>
+          <!-- Benefit 5 -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Môi Trường Năng Động</h3>
+            <p class="text-gray-600 text-sm">Đội ngũ trẻ, nhiệt huyết, teambuilding định kỳ, du lịch công ty hàng năm.</p>
+          </div>
+          <!-- Benefit 6 -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-bold text-gray-900 text-lg mb-2">Dự Án Toàn Quốc</h3>
+            <p class="text-gray-600 text-sm">Tham gia các dự án quy mô lớn trên khắp cả nước, từ dân dụng đến công nghiệp.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- OPEN POSITIONS -->
+      <section id="vi-tri">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3">
+          Vị Trí Đang Tuyển
+        </h2>
+        <p class="text-gray-500 text-center mb-10">Cập nhật liên tục – Gửi hồ sơ ngay để nhận phản hồi nhanh</p>
+
+        <div class="space-y-4">
+          <!-- Position 1: Sales tư vấn điện mặt trời -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 hover:shadow-lg transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="font-bold text-gray-900 text-lg">Sales Tư Vấn Điện Mặt Trời</h3>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Hà Nội
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 px-2.5 py-1 rounded-full">10 – 30 triệu (LCB + HH)</span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full">Full-time</span>
+                </div>
+                <div class="mt-3 space-y-2">
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Mô tả:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Tư vấn giải pháp điện mặt trời cho hộ gia đình, doanh nghiệp, nhà xưởng</li>
+                    <li>Khảo sát thực địa, đo đạc mái, đánh giá tiềm năng lắp đặt</li>
+                    <li>Lập báo giá, phương án kỹ thuật sơ bộ và chốt hợp đồng</li>
+                    <li>Chăm sóc khách hàng cũ, phát triển mạng lưới đại lý (nếu có)</li>
+                  </ul>
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Yêu cầu:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Tốt nghiệp Trung cấp trở lên, ưu tiên ngành Kỹ thuật / Kinh tế / Marketing</li>
+                    <li>Kỹ năng giao tiếp, thuyết phục tốt; không ngại di chuyển</li>
+                    <li>Có phương tiện đi lại (xe máy). Ưu tiên ứng viên có kinh nghiệm bán hàng / tư vấn</li>
+                    <li>Chưa có kinh nghiệm sẽ được đào tạo bài bản về sản phẩm & quy trình</li>
+                  </ul>
+                </div>
+              </div>
+              <a href="#ung-tuyen" class="flex-shrink-0 inline-flex items-center gap-1.5 text-orange-600 font-semibold text-sm hover:text-orange-700 border border-orange-200 rounded-xl px-4 py-2 hover:bg-orange-50 transition-colors">
+                Ứng tuyển
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Position 2: Kỹ sư giải pháp / khảo sát -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 hover:shadow-lg transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="font-bold text-gray-900 text-lg">Kỹ Sư Giải Pháp / Khảo Sát</h3>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Hà Nội
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 px-2.5 py-1 rounded-full">12 – 25 triệu</span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full">Full-time</span>
+                </div>
+                <div class="mt-3 space-y-2">
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Mô tả:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Khảo sát hiện trường: mái nhà, kết cấu, hướng nắng, shading, hệ thống điện hiện hữu</li>
+                    <li>Thiết kế phương án kỹ thuật: chọn panel, inverter, cấu hình On-Grid / Hybrid / lưu trữ</li>
+                    <li>Tính toán sản lượng (PVsyst / Helioscope), bóc tách khối lượng, lập bản vẽ kỹ thuật</li>
+                    <li>Hỗ trợ bộ phận kinh doanh trả lời câu hỏi kỹ thuật của khách hàng</li>
+                  </ul>
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Yêu cầu:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Tốt nghiệp Cao đẳng / Đại học ngành Điện, Năng lượng tái tạo, Cơ điện hoặc liên quan</li>
+                    <li>Thành thạo AutoCAD, ưu tiên biết PVsyst / Helioscope / SketchUp</li>
+                    <li>Tối thiểu 1 năm kinh nghiệm thiết kế hoặc khảo sát hệ thống điện mặt trời</li>
+                    <li>Đọc hiểu bản vẽ điện, nắm vững tiêu chuẩn TCVN / IEC về điện mặt trời</li>
+                  </ul>
+                </div>
+              </div>
+              <a href="#ung-tuyen" class="flex-shrink-0 inline-flex items-center gap-1.5 text-orange-600 font-semibold text-sm hover:text-orange-700 border border-orange-200 rounded-xl px-4 py-2 hover:bg-orange-50 transition-colors">
+                Ứng tuyển
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Position 3: Marketing Performance & Content -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 hover:shadow-lg transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="font-bold text-gray-900 text-lg">Marketing Performance & Content</h3>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Hà Nội
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 px-2.5 py-1 rounded-full">12 – 20 triệu</span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full">Full-time</span>
+                </div>
+                <div class="mt-3 space-y-2">
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Mô tả:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Lập kế hoạch & chạy quảng cáo Google Ads, Facebook Ads, Zalo Ads cho dịch vụ điện mặt trời</li>
+                    <li>Sản xuất nội dung: bài viết website, video TikTok/YouTube, bài đăng mạng xã hội</li>
+                    <li>Quản lý SEO website, tối ưu tỷ lệ chuyển đổi (CRO), theo dõi ROI từng chiến dịch</li>
+                    <li>Phân tích data khách hàng, đề xuất chiến lược marketing phù hợp theo từng phân khúc</li>
+                  </ul>
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Yêu cầu:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Tốt nghiệp Cao đẳng / Đại học ngành Marketing, Truyền thông hoặc liên quan</li>
+                    <li>Tối thiểu 1 năm kinh nghiệm Performance Marketing hoặc Digital Marketing tổng hợp</li>
+                    <li>Biết viết content, cơ bản chỉnh sửa ảnh/video (Canva, CapCut...). Biết SEO là lợi thế</li>
+                    <li>Tư duy data-driven, quen thuộc Google Analytics, Search Console, Ads Manager</li>
+                  </ul>
+                </div>
+              </div>
+              <a href="#ung-tuyen" class="flex-shrink-0 inline-flex items-center gap-1.5 text-orange-600 font-semibold text-sm hover:text-orange-700 border border-orange-200 rounded-xl px-4 py-2 hover:bg-orange-50 transition-colors">
+                Ứng tuyển
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Position 4: Điều phối dự án / giám sát thi công -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 hover:shadow-lg transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="font-bold text-gray-900 text-lg">Điều Phối Dự Án / Giám Sát Thi Công</h3>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Hà Nội & các tỉnh
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 px-2.5 py-1 rounded-full">14 – 25 triệu</span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full">Full-time</span>
+                </div>
+                <div class="mt-3 space-y-2">
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Mô tả:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Lập kế hoạch thi công, điều phối nhân sự & vật tư cho các dự án điện mặt trời</li>
+                    <li>Giám sát tiến độ, chất lượng lắp đặt panel, inverter, khung giá đỡ, tủ điện, tiếp địa</li>
+                    <li>Nghiệm thu kỹ thuật tại hiện trường, lập biên bản và xử lý phát sinh thi công</li>
+                    <li>Phối hợp với chủ đầu tư, nhà thầu phụ và đội lắp đặt để đảm bảo bàn giao đúng hạn</li>
+                  </ul>
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Yêu cầu:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Tốt nghiệp Cao đẳng / Đại học ngành Điện, Xây dựng, Cơ điện hoặc liên quan</li>
+                    <li>Tối thiểu 2 năm kinh nghiệm giám sát thi công điện hoặc xây dựng công trình</li>
+                    <li>Đọc hiểu bản vẽ kỹ thuật, nắm vững quy trình nghiệm thu, an toàn lao động</li>
+                    <li>Sẵn sàng đi công tác tỉnh, chịu được áp lực tiến độ dự án</li>
+                  </ul>
+                </div>
+              </div>
+              <a href="#ung-tuyen" class="flex-shrink-0 inline-flex items-center gap-1.5 text-orange-600 font-semibold text-sm hover:text-orange-700 border border-orange-200 rounded-xl px-4 py-2 hover:bg-orange-50 transition-colors">
+                Ứng tuyển
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Position 5: CSKH bảo hành / O&M -->
+          <div class="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 hover:shadow-lg transition-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div class="flex-1">
+                <h3 class="font-bold text-gray-900 text-lg">CSKH Bảo Hành / O&M</h3>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Hà Nội
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-50 px-2.5 py-1 rounded-full">10 – 18 triệu</span>
+                  <span class="inline-flex items-center gap-1 text-xs font-medium text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full">Full-time</span>
+                </div>
+                <div class="mt-3 space-y-2">
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Mô tả:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Tiếp nhận & xử lý yêu cầu bảo hành, bảo trì từ khách hàng qua hotline / Zalo</li>
+                    <li>Lập lịch kiểm tra định kỳ, vệ sinh panel, kiểm tra inverter & hệ thống giám sát</li>
+                    <li>Chẩn đoán sự cố cơ bản: lỗi inverter, giảm sản lượng, cảnh báo monitoring</li>
+                    <li>Theo dõi hiệu suất hệ thống sau bàn giao, lập báo cáo O&M định kỳ cho khách hàng</li>
+                  </ul>
+                  <p class="text-gray-600 text-sm"><strong class="text-gray-800">Yêu cầu:</strong></p>
+                  <ul class="text-gray-600 text-sm space-y-1 ml-4 list-disc">
+                    <li>Tốt nghiệp Trung cấp / Cao đẳng ngành Điện, Điện tử, Cơ điện hoặc liên quan</li>
+                    <li>Tối thiểu 1 năm kinh nghiệm vận hành / bảo trì hệ thống điện hoặc điện mặt trời</li>
+                    <li>Biết sử dụng đồng hồ đo điện, thiết bị kiểm tra cơ bản. Đọc được monitoring (FusionSolar, Solarman...)</li>
+                    <li>Kỹ năng giao tiếp tốt, kiên nhẫn, xử lý tình huống khách hàng không hài lòng</li>
+                  </ul>
+                </div>
+              </div>
+              <a href="#ung-tuyen" class="flex-shrink-0 inline-flex items-center gap-1.5 text-orange-600 font-semibold text-sm hover:text-orange-700 border border-orange-200 rounded-xl px-4 py-2 hover:bg-orange-50 transition-colors">
+                Ứng tuyển
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- APPLICATION FORM -->
+      <section id="ung-tuyen" class="bg-gradient-to-br from-gray-50 to-orange-50/50 rounded-2xl p-6 sm:p-10">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3">
+            Ứng Tuyển Ngay
+          </h2>
+          <p class="text-gray-500 text-center mb-8">
+            Điền thông tin bên dưới, chúng tôi sẽ liên hệ qua Zalo hoặc SĐT trong 24h
+          </p>
+
+          <form id="apply-form" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Họ và tên <span class="text-red-500">*</span></label>
+                <input type="text" name="name" required placeholder="Nguyễn Văn A"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Số điện thoại <span class="text-red-500">*</span></label>
+                <input type="tel" name="phone" required placeholder="0912 345 678"
+                  class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+              <input type="email" name="email" placeholder="email@example.com"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Vị trí ứng tuyển <span class="text-red-500">*</span></label>
+              <select name="position" required
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all">
+                <option value="">-- Chọn vị trí --</option>
+                <option value="Sales tư vấn điện mặt trời">Sales tư vấn điện mặt trời</option>
+                <option value="Kỹ sư giải pháp / khảo sát">Kỹ sư giải pháp / khảo sát</option>
+                <option value="Marketing Performance & Content">Marketing Performance & Content</option>
+                <option value="Điều phối dự án / giám sát thi công">Điều phối dự án / giám sát thi công</option>
+                <option value="CSKH bảo hành / O&M">CSKH bảo hành / O&M</option>
+                <option value="Vị trí khác">Vị trí khác</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Kinh nghiệm & Kỹ năng</label>
+              <textarea name="experience" rows="3" placeholder="Mô tả ngắn gọn kinh nghiệm làm việc, kỹ năng nổi bật..."
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all resize-none"></textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1.5">Link CV (nếu có)</label>
+              <input type="url" name="cv" placeholder="https://drive.google.com/... hoặc link CV online"
+                class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none transition-all" />
+            </div>
+            <button type="submit"
+              class="w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-bold py-3 rounded-xl hover:from-orange-700 hover:to-red-700 transition-all shadow-lg shadow-orange-500/25">
+              Gửi Hồ Sơ Ứng Tuyển
+            </button>
+            <p class="text-xs text-gray-400 text-center">
+              Thông tin sẽ được gửi qua Zalo đến bộ phận tuyển dụng EPCVINA Solar
+            </p>
+          </form>
+
+          <div id="apply-success" class="hidden text-center py-8">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Đã gửi hồ sơ thành công!</h3>
+            <p class="text-gray-600">Bộ phận tuyển dụng sẽ liên hệ bạn trong 24-48h tới.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-10">
+          Câu Hỏi Thường Gặp
+        </h2>
+        <div class="max-w-3xl mx-auto space-y-3">
+          <details class="group bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+              EPCVINA Solar tuyển dụng những vị trí nào?
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-gray-600 text-sm">
+              EPCVINA Solar thường xuyên tuyển dụng 5 vị trí: Sales tư vấn điện mặt trời, Kỹ sư giải pháp / khảo sát, Marketing Performance & Content, Điều phối dự án / giám sát thi công, và CSKH bảo hành / O&M.
+            </div>
+          </details>
+          <details class="group bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+              Quyền lợi khi làm việc tại EPCVINA Solar?
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-gray-600 text-sm">
+              Lương cạnh tranh theo năng lực, thưởng theo dự án, bảo hiểm sức khỏe PVI cho bản thân và gia đình, đào tạo chuyên sâu về điện mặt trời từ các đối tác AIKO, Huawei, Sungrow, cơ hội thăng tiến rõ ràng, môi trường làm việc năng động, teambuilding và du lịch công ty hàng năm.
+            </div>
+          </details>
+          <details class="group bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+              Nộp hồ sơ ứng tuyển qua kênh nào?
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-gray-600 text-sm">
+              Bạn có thể nộp hồ sơ qua 3 cách: (1) Điền form trực tiếp trên trang này, (2) Gửi email về epcvinasolar@gmail.com, (3) Liên hệ Zalo: 0988 446 113.
+            </div>
+          </details>
+          <details class="group bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer font-semibold text-gray-900 hover:bg-gray-50">
+              Không có kinh nghiệm có được ứng tuyển không?
+              <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-gray-600 text-sm">
+              Có! Vị trí Thực tập sinh và một số vị trí kỹ thuật viên không yêu cầu kinh nghiệm. EPCVINA Solar có chương trình đào tạo từ đầu, bạn sẽ được hướng dẫn trực tiếp bởi các kỹ sư giàu kinh nghiệm.
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl p-6 sm:p-10 text-center text-white">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-3">Bạn Chưa Tìm Thấy Vị Trí Phù Hợp?</h2>
+        <p class="text-orange-100 text-lg mb-6 max-w-2xl mx-auto">
+          Gửi hồ sơ mở cho chúng tôi. EPCVINA Solar luôn chào đón những nhân tài đam mê năng lượng tái tạo.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="mailto:epcvinasolar@gmail.com" class="inline-flex items-center gap-2 bg-white text-orange-700 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            epcvinasolar@gmail.com
+          </a>
+          <a href="tel:0988446113" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-colors border border-white/20">
+            📞 0988 446 113
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+  </DashboardShell>
+</DashboardLayout>
+
+<script>
+  const structuredDataEl = document.createElement('script');
+  structuredDataEl.type = 'application/ld+json';
+  structuredDataEl.text = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "EPCVINA Solar tuyển dụng những vị trí nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EPCVINA Solar thường xuyên tuyển dụng: Kỹ sư điện – năng lượng mặt trời, Kỹ thuật viên lắp đặt, Nhân viên kinh doanh, Thiết kế hệ thống điện, và Thực tập sinh các ngành kỹ thuật."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quyền lợi khi làm việc tại EPCVINA Solar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lương cạnh tranh, thưởng theo dự án, bảo hiểm sức khỏe PVI, đào tạo chuyên sâu về điện mặt trời, cơ hội thăng tiến, môi trường làm việc năng động và nhiều chế độ phúc lợi khác."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Nộp hồ sơ ứng tuyển qua kênh nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bạn có thể nộp hồ sơ qua email: epcvinasolar@gmail.com, liên hệ Zalo: 0988 446 113, hoặc điền form trực tiếp trên trang này."
+        }
+      }
+    ]
+  });
+  document.head.appendChild(structuredDataEl);
+
+  // Form handler
+  document.getElementById('apply-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.querySelector('[name="name"]').value;
+    const phone = form.querySelector('[name="phone"]').value;
+    const email = form.querySelector('[name="email"]').value;
+    const position = form.querySelector('[name="position"]').value;
+    const experience = form.querySelector('[name="experience"]').value;
+    const cv = form.querySelector('[name="cv"]').value;
+
+    const lines = [
+      'Ứng tuyển từ website EPCVINA Solar:',
+      `Họ tên: ${name}`,
+      `SĐT: ${phone}`,
+      email ? `Email: ${email}` : '',
+      `Vị trí: ${position}`,
+      experience ? `Kinh nghiệm: ${experience}` : '',
+      cv ? `CV: ${cv}` : '',
+    ].filter(Boolean);
+
+    const msg = encodeURIComponent(lines.join('\n'));
+    window.open(`https://zalo.me/0988446113?msg=${msg}`, '_blank');
+
+    form.classList.add('hidden');
+    document.getElementById('apply-success').classList.remove('hidden');
+  });
+</script>

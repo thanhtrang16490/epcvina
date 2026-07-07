@@ -52,10 +52,10 @@ const contactCards = [
     title: 'Giờ làm việc',
     details: [
       { label: 'Thứ 2 – Thứ 7', value: '8:00 – 17:30', href: '', note: '' },
-      { label: 'Chủ nhật', value: 'Nghỉ', href: '', note: '' },
+      { label: 'Chủ nhật', value: '7:00 – 12:00', href: '', note: 'Hỗ trợ khẩn cấp' },
     ],
-    image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&q=80',
-    alt: 'Phòng họp tư vấn EPCVINA Solar',
+    image: '/du-an/nha-may-thep-ha-noi.jpg',
+    alt: 'Văn phòng làm việc EPCVINA Solar',
     gradient: 'from-cyan-600 to-cyan-500',
   },
 ];
@@ -72,6 +72,17 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Build Zalo message with form data
+    const lines = [
+      'Yêu cầu tư vấn từ website:',
+      `Họ tên: ${formData.name}`,
+      `SĐT: ${formData.phone}`,
+      formData.email ? `Email: ${formData.email}` : '',
+      formData.systemType ? `Loại HT: ${formData.systemType}` : '',
+      formData.message ? `Nội dung: ${formData.message}` : '',
+    ].filter(Boolean);
+    const zaloMsg = encodeURIComponent(lines.join('\n'));
+    window.open(`https://zalo.me/0988446113?msg=${zaloMsg}`, '_blank');
     setSubmitted(true);
   };
 
@@ -86,7 +97,7 @@ export default function ContactPage() {
       <section className="relative overflow-hidden bg-slate-900 text-white min-h-[50vh] sm:min-h-[60vh]">
         {/* Background image */}
         <img
-          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80"
+          src="/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI-PHONG.jpg"
           alt="Đội ngũ tư vấn EPCVINA Solar sẵn sàng hỗ trợ khách hàng"
           loading="eager"
           width={1200}

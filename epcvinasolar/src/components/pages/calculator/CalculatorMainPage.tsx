@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Calculator, CurrencyDollar, Clock, Sun, BatteryHigh, Car } from '@phosphor-icons/react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 const tools = [
   { id: 'chi-phi-dau-tu', name: 'Chi Phí Đầu Tư', icon: CurrencyDollar, desc: 'Tính chi phí lắp đặt hệ thống', href: '/calculator/chi-phi-dau-tu' },
@@ -12,6 +13,7 @@ const tools = [
 export default function CalculatorMainPage() {
   return (
     <div className="min-h-screen pt-20 md:pt-20">
+      <HeaderBar />
       <section className="bg-gradient-to-br from-slate-900 to-indigo-900 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <Calculator className="w-16 h-16 mx-auto mb-4 text-yellow-400" />

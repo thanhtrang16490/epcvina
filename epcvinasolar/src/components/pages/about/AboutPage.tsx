@@ -16,6 +16,9 @@ import {
   Medal,
   SealCheck,
   HardHat,
+  Phone,
+  ArrowRight,
+  ChatCircle,
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
@@ -310,6 +313,34 @@ export default function AboutPage() {
                   {client}
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section 7 - CTA Banner */}
+        <section className="py-12 sm:py-16 bg-gradient-to-r from-orange-600 to-red-600">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              Bạn cần tư vấn giải pháp điện mặt trời?
+            </h2>
+            <p className="text-orange-100 text-lg mb-8 max-w-2xl mx-auto">
+              Đội ngũ kỹ sư EPCVINA sẵn sàng khảo sát tận nơi, đề xuất giải pháp tối ưu và báo giá chi tiết trong 24 giờ.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="/bao-gia"
+                className="inline-flex items-center gap-2 bg-white text-orange-700 font-bold px-8 py-3.5 rounded-xl hover:bg-orange-50 transition-colors shadow-lg"
+              >
+                <FileText className="h-5 w-5" />
+                Nhận báo giá miễn phí
+              </a>
+              <a
+                href="tel:0988446113"
+                className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white font-semibold px-8 py-3.5 rounded-xl border border-white/30 transition-colors"
+              >
+                <Phone className="h-5 w-5" />
+                Gọi: 0988 446 113
+              </a>
             </div>
           </div>
         </section>

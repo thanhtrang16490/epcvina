@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BatteryHigh, ArrowLeft } from '@phosphor-icons/react';
+import HeaderBar from '../../home/layout/HeaderBar';
 
 export default function PinLuuTruPage() {
   const [monthlyBill, setMonthlyBill] = useState(3);
@@ -10,6 +11,7 @@ export default function PinLuuTruPage() {
 
   return (
     <div className="min-h-screen pt-20 md:pt-20 bg-slate-50">
+      <HeaderBar />
       <div className="max-w-4xl mx-auto px-4 py-12">
         <a href="/calculator" className="inline-flex items-center gap-2 text-orange-600 mb-6"><ArrowLeft className="w-4 h-4" /> Quay lại</a>
         <h1 className="text-3xl font-bold mb-8 flex items-center gap-3"><BatteryHigh className="text-orange-500" /> Tính Pin Lưu Trữ</h1>
