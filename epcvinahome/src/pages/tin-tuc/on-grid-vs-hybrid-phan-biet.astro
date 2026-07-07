@@ -1,0 +1,241 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+---
+
+<PageLayout 
+  title="On-Grid vs Hybrid: So Sánh Chi Tiết – Nên Chọn Hệ Nào? | EPCVINA"
+  description="So sánh chi tiết hệ thống điện mặt trời On-Grid và Hybrid: ưu nhược điểm, chi phí, hiệu quả, phù hợp từng nhu cầu. Tư vấn từ chuyên gia EPCVINA Solar.">
+
+  <!-- Hero -->
+  <section class="pt-24 lg:pt-32 bg-gradient-to-br from-yellow-50 via-white to-orange-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div class="max-w-4xl">
+        <div class="inline-block px-4 py-2 bg-yellow-100 text-yellow-700 text-sm font-semibold rounded-full mb-4">
+          ⚡ So sánh hệ thống
+        </div>
+        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+          On-Grid vs Hybrid: <span class="text-orange-600">Nên Chọn Hệ Nào?</span>
+        </h1>
+        <p class="text-xl text-gray-600 leading-relaxed">
+          Phân vân giữa hệ On-Grid và Hybrid là câu hỏi phổ biến nhất khi lắp điện mặt trời. 
+          Bài viết này so sánh chi tiết từng khía cạnh – giúp bạn chọn đúng hệ thống cho gia đình mình. 
+          Thông tin từ <a href="https://epcvina.com" target="_blank" rel="noopener" class="text-orange-600 hover:underline font-semibold">EPCVINA Solar</a> 
+          – đơn vị đã triển khai 500+ dự án.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Comparison Table -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-8 text-center">So Sánh Nhanh</h2>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white rounded-xl overflow-hidden shadow-md border border-gray-200">
+          <thead class="bg-gray-800 text-white">
+            <tr>
+              <th class="px-4 py-4 text-left text-sm">Tiêu chí</th>
+              <th class="px-4 py-4 text-center text-sm">
+                <span class="inline-block px-3 py-1 bg-blue-600 rounded-full text-xs">On-Grid</span>
+              </th>
+              <th class="px-4 py-4 text-center text-sm">
+                <span class="inline-block px-3 py-1 bg-orange-600 rounded-full text-xs">Hybrid</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="px-4 py-3 font-medium text-gray-700">Pin lưu trữ</td><td class="px-4 py-3 text-center text-gray-600">❌ Không có</td><td class="px-4 py-3 text-center text-gray-600">✅ Có (LiFePO4)</td></tr>
+            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium text-gray-700">Backup khi mất điện</td><td class="px-4 py-3 text-center text-gray-600">❌ Không</td><td class="px-4 py-3 text-center text-gray-600">✅ Có</td></tr>
+            <tr><td class="px-4 py-3 font-medium text-gray-700">Dùng điện ban đêm</td><td class="px-4 py-3 text-center text-gray-600">❌ Từ lưới EVN</td><td class="px-4 py-3 text-center text-gray-600">✅ Từ pin</td></tr>
+            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium text-gray-700">Chi phí 5kWp</td><td class="px-4 py-3 text-center text-blue-600 font-semibold">~90 triệu</td><td class="px-4 py-3 text-center text-orange-600 font-semibold">~200 triệu</td></tr>
+            <tr><td class="px-4 py-3 font-medium text-gray-700">Hoàn vốn</td><td class="px-4 py-3 text-center text-green-600 font-semibold">3-5 năm</td><td class="px-4 py-3 text-center text-green-600 font-semibold">4-6 năm</td></tr>
+            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium text-gray-700">Tiết kiệm điện</td><td class="px-4 py-3 text-center text-gray-600">50-90%</td><td class="px-4 py-3 text-center text-gray-600">70-95%</td></tr>
+            <tr><td class="px-4 py-3 font-medium text-gray-700">Phù hợp</td><td class="px-4 py-3 text-center text-sm text-gray-600">Dùng điện nhiều ban ngày</td><td class="px-4 py-3 text-center text-sm text-gray-600">Cần ổn định 24/7</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- On-Grid Deep Dive -->
+  <section class="py-16 bg-blue-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
+        🔵 Hệ On-Grid – Chi Tiết
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="bg-white rounded-xl p-6 border border-blue-200">
+          <h3 class="font-bold text-lg text-gray-900 mb-3">Nguyên lý hoạt động</h3>
+          <p class="text-gray-600">
+            Tấm pin → Inverter hòa lưới → Sử dụng trực tiếp / Phát lên lưới EVN. 
+            Không có pin lưu trữ, hệ thống dừng khi mất lưới (anti-islanding).
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-xl p-6 border border-green-200">
+            <h4 class="font-semibold text-green-700 mb-3">✅ Ưu điểm</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li>• Chi phí đầu tư thấp nhất</li>
+              <li>• Hoàn vốn nhanh 3-5 năm</li>
+              <li>• Lắp đặt đơn giản, nhanh chóng</li>
+              <li>• Bảo trì tối thiểu</li>
+              <li>• Tuổi thọ 25-30 năm</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-xl p-6 border border-red-200">
+            <h4 class="font-semibold text-red-700 mb-3">❌ Nhược điểm</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li>• Không backup khi mất điện</li>
+              <li>• Không dùng được ban đêm (không lưu trữ)</li>
+              <li>• Phụ thuộc hoàn toàn vào lưới EVN</li>
+              <li>• Không có điện khi cúp lưới</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="text-gray-600">
+          👉 Xem chi tiết: 
+          <a href="https://epcvina.com/solar-home/on-grid" target="_blank" rel="noopener" class="text-blue-600 hover:underline font-semibold">Hệ On-Grid tại EPCVINA Solar</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hybrid Deep Dive -->
+  <section class="py-16 bg-orange-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
+        🟠 Hệ Hybrid – Chi Tiết
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="bg-white rounded-xl p-6 border border-orange-200">
+          <h3 class="font-bold text-lg text-gray-900 mb-3">Nguyên lý hoạt động</h3>
+          <p class="text-gray-600">
+            Tấm pin → Inverter Hybrid → Sạc pin lưu trữ → Sử dụng. 
+            Khi pin đầy, phát lên lưới. Khi mất điện, tự chuyển sang chế độ backup.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="bg-white rounded-xl p-6 border border-green-200">
+            <h4 class="font-semibold text-green-700 mb-3">✅ Ưu điểm</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li>• Backup toàn bộ khi mất điện</li>
+              <li>• Dùng điện ban đêm từ pin</li>
+              <li>• Tiết kiệm điện tối đa 70-95%</li>
+              <li>• Ổn định nguồn 24/7</li>
+              <li>• Phù hợp biệt thự, villa</li>
+            </ul>
+          </div>
+          <div class="bg-white rounded-xl p-6 border border-red-200">
+            <h4 class="font-semibold text-red-700 mb-3">❌ Nhược điểm</h4>
+            <ul class="space-y-2 text-sm text-gray-600">
+              <li>• Chi phí cao hơn 2-3 lần On-Grid</li>
+              <li>• Hoàn vốn lâu hơn (4-6 năm)</li>
+              <li>• Cần không gian đặt pin</li>
+              <li>• Pin cần thay sau 10-15 năm</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="text-gray-600">
+          👉 Xem chi tiết: 
+          <a href="https://epcvina.com/solar-home/hybrid" target="_blank" rel="noopener" class="text-orange-600 hover:underline font-semibold">Hệ Hybrid tại EPCVINA Solar</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Decision Guide -->
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-8">🎯 Nên Chọn Hệ Nào?</h2>
+      
+      <div class="space-y-6">
+        <div class="p-6 bg-blue-50 rounded-xl border-l-4 border-blue-600">
+          <h3 class="font-bold text-blue-800 text-lg mb-2">Chọn On-Grid khi:</h3>
+          <ul class="space-y-1 text-gray-700">
+            <li>✓ Hóa đơn điện chủ yếu vào ban ngày (điều hòa, sản xuất)</li>
+            <li>✓ Muốn hoàn vốn nhanh, ROI cao nhất</li>
+            <li>✓ Ngân sách đầu tư ban đầu hạn chế</li>
+            <li>✓ Khu vực ít mất điện</li>
+            <li>✓ Mái nhà hướng Nam/Tây, diện tích ≥ 15m²</li>
+          </ul>
+        </div>
+
+        <div class="p-6 bg-orange-50 rounded-xl border-l-4 border-orange-600">
+          <h3 class="font-bold text-orange-800 text-lg mb-2">Chọn Hybrid khi:</h3>
+          <ul class="space-y-1 text-gray-700">
+            <li>✓ Thường xuyên mất điện, cần backup</li>
+            <li>✓ Dùng nhiều điện ban đêm (gia đình đông người)</li>
+            <li>✓ Biệt thự, villa cần ổn định 24/7</li>
+            <li>✓ Muốn tối đa hóa tự chủ năng lượng</li>
+            <li>✓ Ngân sách đầu tư cao hơn, chấp nhận ROI dài hơn</li>
+          </ul>
+        </div>
+
+        <div class="p-6 bg-gray-50 rounded-xl border border-gray-200">
+          <h3 class="font-bold text-gray-800 text-lg mb-2">💡 Mẹo chọn tối ưu:</h3>
+          <p class="text-gray-600">
+            Nhiều gia đình chọn giải pháp kết hợp: lắp On-Grid công suất lớn + pin lưu trữ nhỏ cho tải quan trọng 
+            (tủ lạnh, wifi, camera). Cách này tiết kiệm chi phí mà vẫn có backup khi cần. 
+            <a href="https://epcvina.com/bao-gia" target="_blank" rel="noopener" class="text-orange-600 hover:underline font-semibold">Liên hệ EPCVINA Solar</a> 
+            để được tư vấn giải pháp tối ưu nhất.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost Comparison -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-8">💰 So Sánh Chi Phí (Hệ 5kWp)</h2>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200">
+          <thead class="bg-gray-800 text-white">
+            <tr>
+              <th class="px-4 py-3 text-left text-sm">Hạng mục</th>
+              <th class="px-4 py-3 text-center text-sm">On-Grid 5kWp</th>
+              <th class="px-4 py-3 text-center text-sm">Hybrid 5kWp + 10kWh pin</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="px-4 py-3 font-medium">Tấm pin</td><td class="px-4 py-3 text-center">~35 triệu</td><td class="px-4 py-3 text-center">~35 triệu</td></tr>
+            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Inverter</td><td class="px-4 py-3 text-center">~20 triệu</td><td class="px-4 py-3 text-center">~45 triệu</td></tr>
+            <tr><td class="px-4 py-3 font-medium">Pin lưu trữ</td><td class="px-4 py-3 text-center text-gray-400">–</td><td class="px-4 py-3 text-center">~80 triệu</td></tr>
+            <tr class="bg-gray-50"><td class="px-4 py-3 font-medium">Phụ kiện + lắp đặt</td><td class="px-4 py-3 text-center">~35 triệu</td><td class="px-4 py-3 text-center">~40 triệu</td></tr>
+            <tr class="bg-orange-50 font-bold"><td class="px-4 py-3">Tổng cộng</td><td class="px-4 py-3 text-center text-blue-600">~90 triệu</td><td class="px-4 py-3 text-center text-orange-600">~200 triệu</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-sm text-gray-500 mt-4 text-center">
+        * Chi phí tham khảo từ <a href="https://epcvina.com/bao-gia" target="_blank" rel="noopener" class="text-orange-600 hover:underline">EPCVINA Solar</a>. Giá thực tế phụ thuộc vào khảo sát thực tế.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold mb-4">Cần Tư Vấn Chọn Hệ Thống?</h2>
+      <p class="text-lg text-orange-100 mb-8">
+        Chuyên gia EPCVINA Solar sẽ khảo sát miễn phí và tư vấn giải pháp tối ưu cho gia đình bạn
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://epcvina.com/bao-gia" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-orange-600 font-semibold rounded-full hover:bg-gray-100 transition-all hover:shadow-lg">
+          ☀️ Nhận Tư Vấn Miễn Phí
+        </a>
+        <a href="https://epcvina.com/calculator" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-white font-semibold rounded-full border-2 border-white hover:bg-white/10 transition-all">
+          🧮 Tính Chi Phí Online
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>
