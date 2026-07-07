@@ -1,0 +1,41 @@
+---
+name: "Biến tần Hòa lưới Sungrow 125kW SG125CX-P2"
+brand: "Sungrow"
+model: "SG125CX-P2"
+category: "on-grid-inverter"
+main_image: ""
+description: "Biến tần hòa lưới Sungrow 125kW SG125CX-P2, inverter string đa MPPT cho dự án thương mại và công nghiệp. 12 MPPT độc lập, hiệu suất 98.5%, IP66, chống ăn mòn C5, tích hợp AFCI và phục hồi PID. Bảo hành 5 năm."
+is_available: true
+show_on_homepage: false
+product_type: "on-grid-inverter"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "125kW"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.5%"
+  "Loại inverter": "On Grid"
+  "Điện áp PV tối đa": "1100V"
+  "Dải điện áp MPPT": "180–1000V"
+  "Số MPPT": "12"
+  "Số string/MPPT": "2 (tổng 24 strings)"
+  "Dòng vào DC tối đa": "360A (30A × 12)"
+  "Dòng ngắn mạch DC tối đa": "480A (40A × 12)"
+  "Điện áp AC định mức": "3/N/PE, 380/400V"
+  "Cấp bảo vệ": "IP66"
+  "Chống ăn mòn": "C5"
+  "Phương thức làm mát": "Quạt cưỡng bức thông minh"
+  "Giao tiếp": "RS485 / WLAN"
+  "AFCI": "Có"
+  "Phục hồi PID": "Có"
+  "Kích thước": "1020 × 795 × 360 mm"
+  "Trọng lượng": "≤ 95 kg"
+  "Nhiệt độ hoạt động": "-30°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "12 MPPT độc lập, tối ưu mái nhiều hướng, giảm tổn thất mismatch"
+  - "Giám sát I-V curve chẩn đoán lỗi từng string"
+  - "Tích hợp AFCI chống hồ quang DC"
+  - "Phục hồi PID giảm suy giảm hiệu suất dài hạn"
+  - "IP66, chống ăn mòn C5, phù hợp môi trường khắc nghiệt"
+  - "Làm mát cưỡng bức thông minh, vận hành ổn định"
+---

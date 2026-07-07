@@ -1,0 +1,42 @@
+---
+name: "Biến tần Hòa lưới Growatt MAX 80KTL3-X LV 80kW"
+brand: "Growatt"
+model: "MAX 80KTL3-X LV"
+category: "on-grid-inverter"
+main_image: ""
+description: "Biến tần hòa lưới Growatt MAX 80KTL3-X LV 80kW 3 pha, đa MPPT, hiệu suất 98.5%, DC 1100V, IP66. Phù hợp hệ thống thương mại và công nghiệp. Bảo hành 5 năm."
+is_available: true
+show_on_homepage: false
+product_type: "on-grid-inverter"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "80kW"
+  "Công suất biểu kiến AC tối đa": "88kVA"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.5%"
+  "Loại inverter": "On Grid"
+  "Công suất đầu vào PV tối đa": "110kWp"
+  "Điện áp DC cực đại": "1100V"
+  "Dải điện áp DC": "195–1100V"
+  "Dải MPPT": "180–1000V"
+  "Số MPPT": "6"
+  "Số string/MPPT": "2"
+  "Dòng DC tối đa mỗi MPPT": "45A"
+  "Dòng AC cực đại": "105.3A"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Kết nối giám sát": "RF / WiFi / RJ45"
+  "WiFi tích hợp": "Có"
+  "Cấp bảo vệ": "IP66"
+  "Phương thức làm mát": "Tản nhiệt tự nhiên"
+  "Kích thước": "850 × 580 × 310 mm"
+  "Trọng lượng": "55 kg"
+  "Bảo hành": "5 năm"
+features:
+  - "6 MPPT độc lập, tối ưu theo từng chuỗi pin"
+  - "Hiệu suất 98.5%, giảm tổn hao năng lượng"
+  - "Dải điện áp DC rộng 195–1100V, linh hoạt cấu hình"
+  - "Chống sét Type II DC/AC toàn diện"
+  - "WiFi tích hợp, giám sát từ xa RF/WiFi/RJ45"
+  - "Tản nhiệt tự nhiên, vận hành ổn định"
+---

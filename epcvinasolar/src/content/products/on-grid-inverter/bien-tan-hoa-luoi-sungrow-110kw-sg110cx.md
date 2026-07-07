@@ -1,0 +1,40 @@
+---
+name: "Biến tần Hòa lưới Sungrow 110kW SG110CX"
+brand: "Sungrow"
+model: "SG110CX"
+category: "on-grid-inverter"
+main_image: ""
+description: "Biến tần hòa lưới Sungrow 110kW SG110CX, inverter string đa MPPT cho dự án thương mại và công nghiệp. 9 MPPT độc lập, hiệu suất 98.7%, IP66, tích hợp chẩn đoán I-V và phục hồi PID. Bảo hành 5 năm."
+is_available: true
+show_on_homepage: false
+product_type: "on-grid-inverter"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "110kW"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.7%"
+  "Loại inverter": "On Grid"
+  "Điện áp PV tối đa": "1100V"
+  "Dải điện áp MPPT": "200–1000V"
+  "Số MPPT": "9"
+  "Số string/MPPT": "2 (tổng 18 strings)"
+  "Dòng vào DC tối đa": "234A (26A × 9)"
+  "Dòng ngắn mạch DC tối đa": "360A (40A × 9)"
+  "Điện áp AC định mức": "3/N/PE, 400V"
+  "Dòng AC tối đa": "158.8A"
+  "Cấp bảo vệ": "IP66"
+  "Phương thức làm mát": "Quạt cưỡng bức thông minh"
+  "Giao tiếp": "RS485 / WLAN"
+  "Phục hồi PID": "Có"
+  "Kích thước": "1051 × 660 × 362.5 mm"
+  "Trọng lượng": "89 kg"
+  "Nhiệt độ hoạt động": "-30°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "9 MPPT độc lập, tối ưu mái nhiều hướng, giảm tổn thất che bóng"
+  - "Chẩn đoán I-V curve phát hiện bất thường từng nhánh"
+  - "Phục hồi PID giảm suy giảm hiệu suất dài hạn"
+  - "IP66, phù hợp lắp đặt ngoài trời"
+  - "Làm mát cưỡng bức thông minh"
+  - "Hỗ trợ commissioning nhanh, cập nhật firmware từ xa"
+---
