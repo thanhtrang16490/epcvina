@@ -119,7 +119,7 @@ export const FEATURED_PROJECTS: Project[] = [
       rating: 5,
       aspect: 'Tiết kiệm chi phí & Dịch vụ tốt',
     },
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80',
+    image: '/du-an/nha-may-thep-ha-noi.jpg',
     is_featured: true,
   },
   {
@@ -134,7 +134,7 @@ export const FEATURED_PROJECTS: Project[] = [
       rating: 5,
       aspect: 'Thi công phức tạp & Chuyên nghiệp',
     },
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80',
+    image: '/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI-PHONG.jpg',
     is_featured: true,
   },
   {
@@ -144,7 +144,7 @@ export const FEATURED_PROJECTS: Project[] = [
     system_type: 'Hybrid',
     location: 'Dương Nội - Hà Nội',
     completion_date: 'T9.2024',
-    image: 'https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=800&q=80',
+    image: '/du-an/DU-AN-VINHOMES-GOLDEN-RIVER-BA-SON-1.jpg',
     is_featured: false,
   },
   {
@@ -154,7 +154,7 @@ export const FEATURED_PROJECTS: Project[] = [
     system_type: 'Hybrid',
     location: 'Tây Tựu - Hà Nội',
     completion_date: 'T12.2024',
-    image: 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80',
+    image: '/du-an/DU-AN-KEANG-NAM-LAND-MARK-TOWER.jpg',
     is_featured: false,
   },
 ];
@@ -174,5 +174,5 @@ export const FAQ_DATA = [
   { q: 'Có được hỗ trợ vay ngân hàng không?', a: 'Hiện tại chúng tôi không hỗ trợ trả góp. Khách hàng thanh toán theo tiến độ hợp đồng.' },
   { q: 'Hệ thống có tự động ngắt khi sự cố?', a: 'Có. Hệ thống có nhiều lớp bảo vệ: chống quá tải, chống đoản mạch, chống sét, tiếp địa an toàn.' },
   { q: 'Có thể mở rộng hệ thống sau này không?', a: 'Có. Hệ Hybrid cho phép thêm pin lưu trữ hoặc mở rộng tấm pin sau này.' },
-  { q: 'Quy trình thanh toán như thế nào?', a: '30% đặt cọc, 40% khi giao thiết bị, 30% sau nghiệm thu. Minh bạch từng hạng mục.' },
+  { q: 'Quy trình thanh toán như thế nào?', a: '30% đặt cọc khi ký hợp đồng, 60% khi giao thiết bị, 10% sau nghiệm thu. Minh bạch từng hạng mục.' },
 ];

@@ -5,6 +5,8 @@ export default function MicroNavigation() {
     { label: 'Dự án thực tế', href: '#du-an' },
     { label: 'Bảng giá tham khảo', href: '#bang-gia' },
     { label: 'Chính sách bảo hành', href: '#bao-hanh' },
+    { label: 'Tính chi phí', href: '/calculator' },
+    { label: 'Kiến thức', href: '/kien-thuc' },
   ];
 
   return (

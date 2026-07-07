@@ -17,7 +17,7 @@ export default function BeforeAfterBillsSection() {
       },
       savings: 2600000,
       savingsPercent: 87,
-      image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
+      image: '/du-an/nha-may-thep-ha-noi.jpg',
     },
     {
       customer: 'Chú Thanh - Hải Dương',
@@ -34,7 +34,7 @@ export default function BeforeAfterBillsSection() {
       },
       savings: 4500000,
       savingsPercent: 90,
-      image: 'https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=400&q=80',
+      image: '/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI-PHONG.jpg',
     },
     {
       customer: 'Anh Linh - Dương Nội',
@@ -51,7 +51,7 @@ export default function BeforeAfterBillsSection() {
       },
       savings: 1750000,
       savingsPercent: 88,
-      image: 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=400&q=80',
+      image: '/du-an/DU-AN-VINHOMES-GOLDEN-RIVER-BA-SON-1.jpg',
     },
   ];
 

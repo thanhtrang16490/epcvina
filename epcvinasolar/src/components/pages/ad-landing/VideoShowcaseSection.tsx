@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Play, HardHat, Lightning, Broom, Camera } from '@phosphor-icons/react';
+import { HardHat, Lightning, Broom, Camera } from '@phosphor-icons/react';
 
 const processSteps = [
   { step: '01', title: 'Khảo sát miễn phí', desc: 'Đo mái nhà, đánh giá hướng nắng, phân tích hóa đơn điện', time: '30 phút' },
@@ -44,23 +44,18 @@ export default function VideoShowcaseSection() {
             transition={{ duration: 0.5 }}
           >
             <div className="relative aspect-video bg-slate-900">
-              <img
-                src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
-                alt="Thi công điện mặt trời"
+              <video
+                src="/home_image.mp4"
+                poster="/thumb-video.png"
+                controls
+                preload="metadata"
+                playsInline
                 className="w-full h-full object-cover"
-              loading="lazy" />
-              {/* Play overlay */}
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center group cursor-pointer">
-                <div className="bg-white rounded-full p-5 group-hover:scale-105 active:scale-95 transition-transform">
-                  <Play className="w-10 h-10 text-orange-600 ml-0.5" weight="fill" />
-                </div>
-              </div>
-              {/* Duration */}
-              <div className="absolute bottom-3 right-3 bg-black/70 px-2.5 py-1 rounded-md text-xs font-semibold">
-                1:45
-              </div>
+              >
+                <track kind="captions" />
+              </video>
               {/* Project badge */}
-              <div className="absolute top-3 left-3 bg-orange-600 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide">
+              <div className="absolute top-3 left-3 bg-orange-600 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wide pointer-events-none">
                 Dự án 15 kWp
               </div>
             </div>

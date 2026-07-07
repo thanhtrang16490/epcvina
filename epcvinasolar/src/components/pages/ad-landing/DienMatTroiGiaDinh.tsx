@@ -21,10 +21,15 @@ const whyEpcvina = [
 ];
 
 const brands = [
-  { name: 'LONGi Solar', desc: 'TOP 1 toàn cầu', bg: 'bg-red-50', border: 'border-red-100' },
-  { name: 'AIKO Solar', desc: 'Công nghệ ABC', bg: 'bg-blue-50', border: 'border-blue-100' },
-  { name: 'DEYE', desc: 'Biến tần & Hybrid', bg: 'bg-emerald-50', border: 'border-emerald-100' },
-  { name: 'SAJ', desc: 'Biến tần hàng đầu', bg: 'bg-violet-50', border: 'border-violet-100' },
+  { name: 'LONGi Solar', desc: 'TOP 1 tấm pin toàn cầu', bg: 'bg-red-50', border: 'border-red-100' },
+  { name: 'AIKO Solar', desc: 'Công nghệ ABC hiệu suất cao', bg: 'bg-blue-50', border: 'border-blue-100' },
+  { name: 'Canadian Solar', desc: 'TOP 5 thế giới', bg: 'bg-sky-50', border: 'border-sky-100' },
+  { name: 'Sharp Solar', desc: 'Thương hiệu Nhật Bản', bg: 'bg-cyan-50', border: 'border-cyan-100' },
+  { name: 'Sungrow', desc: 'Inverter số 1 thế giới', bg: 'bg-amber-50', border: 'border-amber-100' },
+  { name: 'DEYE', desc: 'Biến tần Hybrid hàng đầu', bg: 'bg-emerald-50', border: 'border-emerald-100' },
+  { name: 'SAJ', desc: 'Biến tần On-Grid', bg: 'bg-violet-50', border: 'border-violet-100' },
+  { name: 'Growatt', desc: 'Inverter dân dụng', bg: 'bg-orange-50', border: 'border-orange-100' },
+  { name: 'CFE', desc: 'Pin lưu trữ năng lượng', bg: 'bg-lime-50', border: 'border-lime-100' },
 ];
 
 export default function DienMatTroiGiaDinh() {
@@ -34,6 +39,7 @@ export default function DienMatTroiGiaDinh() {
     address: '',
     message: '',
   });
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +49,9 @@ export default function DienMatTroiGiaDinh() {
         event_label: formData.phone,
       });
     }
-    alert('Đã nhận thông tin! Chúng tôi sẽ gọi lại trong 24h.');
+    setFormData({ name: '', phone: '', address: '', message: '' });
+    setFormSubmitted(true);
+    setTimeout(() => setFormSubmitted(false), 5000);
   };
 
   return (
@@ -104,7 +112,7 @@ export default function DienMatTroiGiaDinh() {
             <p className="text-lg text-slate-600">Chỉ sử dụng thương hiệu top đầu thế giới</p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-4">
             {brands.map((brand, i) => (
               <motion.div
                 key={i}
@@ -163,6 +171,12 @@ export default function DienMatTroiGiaDinh() {
               transition={{ duration: 0.45 }}
             >
               <h3 className="text-xl font-bold mb-4">Gửi Thông Tin Tư Vấn</h3>
+              {formSubmitted && (
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-4">
+                  <p className="text-emerald-800 font-semibold text-sm">✓ Đã nhận thông tin!</p>
+                  <p className="text-emerald-700 text-xs mt-1">Chúng tôi sẽ gọi lại tư vấn trong 24h.</p>
+                </div>
+              )}
               {[
                 { label: 'Họ tên', name: 'name', type: 'text', required: true },
                 { label: 'Số điện thoại', name: 'phone', type: 'tel', required: true },

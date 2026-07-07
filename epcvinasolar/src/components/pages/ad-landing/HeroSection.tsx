@@ -7,7 +7,7 @@ export default function HeroSection() {
       {/* Background image with subtle overlay */}
       <div className="absolute inset-0 opacity-15">
         <img
-          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80"
+          src="/du-an/DU-AN-DAI-SU-QUAN-HAN-QUOC.jpg"
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover"

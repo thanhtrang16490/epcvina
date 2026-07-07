@@ -10,107 +10,26 @@ const seoTitle = 'Điện Mặt Trời Gia Đình 2026 - Giảm 90% Tiền Đi�
 const seoDescription = 'Lắp điện mặt trời gia đình từ 60 triệu. Giảm 50-90% hóa đơn điện, có điện khi mất điện. Bảo hành 10 năm, 500+ gia đình tin dùng. Tư vấn miễn phí: 0988 446 113';
 const seoKeywords = 'điện mặt trời gia đình, điện mặt trời hybrid, điện mặt trời on-grid, lắp điện mặt trời hà nội, giá điện mặt trời 2026, pin lưu trữ điện, EPCVINA Solar, giảm tiền điện';
 
-// FAQ Schema for rich snippets
+// FAQ Schema for rich snippets - must match FAQ_DATA in data.ts exactly
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Điện mặt trời có hiệu quả không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Có. Trung bình giảm 70-85% hóa đơn điện. Hệ thống hoạt động 25-30 năm, hoàn vốn trong 3-5 năm."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Bao lâu hoàn vốn điện mặt trời?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Trung bình 3-5 năm cho On-Grid, 5-7 năm cho Hybrid. Sau đó sử dụng điện miễn phí 20+ năm."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Mất điện có dùng được điện mặt trời không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hệ On-Grid sẽ ngắt khi mất điện (an toàn). Hệ Hybrid có pin lưu trữ nên vẫn dùng được bình thường."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "15 kWp phù hợp với đối tượng nào?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Phù hợp gia đình sử dụng điện 3-5 triệu/tháng, diện tích mái 80-100m2, muốn tiết kiệm 70-90% hóa đơn điện."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Bảo hành điện mặt trời bao lâu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tấm pin bảo hành 10 năm, biến tần 5-10 năm, pin lưu trữ 5 năm. EPCVINA hỗ trợ kỹ thuật trọn đời."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Nhà tôi có phù hợp lắp điện mặt trời không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hầu hết các mái nhà đều lắp được. EPCVINA khảo sát miễn phí để đánh giá chính xác hướng nắng, diện tích và kết cấu mái."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Mưa nhiều có đủ điện không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Tấm pin vẫn sản xuất điện khi mưa (giảm 10-20%). Hệ thống được thiết kế dựa trên dữ liệu thời tiết địa phương để đảm bảo hiệu quả."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Có phải bảo trì thường xuyên không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Không. Chỉ cần vệ sinh tấm pin 2-4 lần/năm. EPCVINA bảo hành 10 năm và hỗ trợ kỹ thuật trọn đời."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Pin lưu trữ có cần thiết không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Pin lưu trữ giúp dự phòng khi mất điện và sử dụng điện vào buổi tối. Đặc biệt hữu ích cho khu vực hay mất điện."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Thi công có ảnh hưởng sinh hoạt không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Không. Thi công nhanh 1-2 ngày, không ảnh hưởng đến sinh hoạt hàng ngày của gia đình."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quy trình thanh toán như thế nào?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "30% đặt cọc khi ký hợp đồng, 60% khi giao thiết bị, 10% sau nghiệm thu. Minh bạch từng hạng mục."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "EPCVINA phục vụ khu vực nào?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "EPCVINA phục vụ Hà Nội và 15 tỉnh miền Bắc: Hải Dương, Hưng Yên, Bắc Ninh, Nam Định, Thái Bình, Vĩnh Phúc, Phú Thọ, Hòa Bình, Hà Nam, Ninh Bình, Quảng Ninh, Hải Phòng, Bắc Giang, Lạng Sơn, Lào Cai."
-      }
-    }
+    { "@type": "Question", "name": "Điện mặt trời có hiệu quả không?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Trung bình giảm 70-85% hóa đơn điện. Hệ thống hoạt động 25-30 năm, hoàn vốn trong 3-5 năm." } },
+    { "@type": "Question", "name": "Nhà tôi có phù hợp không?", "acceptedAnswer": { "@type": "Answer", "text": "Hầu hết các mái nhà đều lắp được. Chúng tôi khảo sát miễn phí để đánh giá chính xác." } },
+    { "@type": "Question", "name": "Bao lâu hoàn vốn?", "acceptedAnswer": { "@type": "Answer", "text": "Trung bình 3-5 năm cho On-Grid, 5-7 năm cho Hybrid. Sau đó sử dụng điện miễn phí 20+ năm." } },
+    { "@type": "Question", "name": "Mất điện có dùng được không?", "acceptedAnswer": { "@type": "Answer", "text": "Hệ On-Grid sẽ ngắt khi mất điện (an toàn). Hệ Hybrid có pin lưu trữ nên vẫn dùng được." } },
+    { "@type": "Question", "name": "Có thể sạc xe điện không?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Chúng tôi tích hợp EV Charger vào hệ Hybrid, sạc miễn phí từ năng lượng mặt trời." } },
+    { "@type": "Question", "name": "Mưa nhiều có đủ điện không?", "acceptedAnswer": { "@type": "Answer", "text": "Tấm pin vẫn sản xuất điện khi mưa (giảm 10-20%). Hệ thống được thiết kế dựa trên dữ liệu thời tiết địa phương." } },
+    { "@type": "Question", "name": "Có phải bảo trì thường xuyên không?", "acceptedAnswer": { "@type": "Answer", "text": "Không. Chỉ cần vệ sinh tấm pin 2-4 lần/năm. Chúng tôi bảo hành 10 năm toàn bộ hệ thống." } },
+    { "@type": "Question", "name": "15 kWp phù hợp với đối tượng nào?", "acceptedAnswer": { "@type": "Answer", "text": "Phù hợp gia đình sử dụng điện 3-5 triệu/tháng, diện tích mái 80-100m2, muốn tiết kiệm 70-90% hóa đơn điện." } },
+    { "@type": "Question", "name": "Pin lưu trữ có cần thiết không?", "acceptedAnswer": { "@type": "Answer", "text": "Pin lưu trữ giúp dự phòng khi mất điện và sử dụng điện vào buổi tối. Đặc biệt hữu ích cho khu vực hay mất điện." } },
+    { "@type": "Question", "name": "Bảo hành các thiết bị bao lâu?", "acceptedAnswer": { "@type": "Answer", "text": "Tấm pin bảo hành 10 năm, biến tần 5-10 năm, pin lưu trữ 5 năm. EPCVINA hỗ trợ kỹ thuật trọn đời." } },
+    { "@type": "Question", "name": "Thi công có ảnh hưởng sinh hoạt không?", "acceptedAnswer": { "@type": "Answer", "text": "Không. Thi công nhanh 1-2 ngày, không ảnh hưởng đến sinh hoạt hàng ngày." } },
+    { "@type": "Question", "name": "Có được hỗ trợ vay ngân hàng không?", "acceptedAnswer": { "@type": "Answer", "text": "Hiện tại chúng tôi không hỗ trợ trả góp. Khách hàng thanh toán theo tiến độ hợp đồng." } },
+    { "@type": "Question", "name": "Hệ thống có tự động ngắt khi sự cố?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Hệ thống có nhiều lớp bảo vệ: chống quá tải, chống đoản mạch, chống sét, tiếp địa an toàn." } },
+    { "@type": "Question", "name": "Có thể mở rộng hệ thống sau này không?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Hệ Hybrid cho phép thêm pin lưu trữ hoặc mở rộng tấm pin sau này." } },
+    { "@type": "Question", "name": "Quy trình thanh toán như thế nào?", "acceptedAnswer": { "@type": "Answer", "text": "30% đặt cọc khi ký hợp đồng, 60% khi giao thiết bị, 10% sau nghiệm thu. Minh bạch từng hạng mục." } }
   ]
 };
 
