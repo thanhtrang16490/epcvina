@@ -12,7 +12,7 @@ testimonial:
   quote: "Diện tích mái nhỏ nhưng vẫn lắp được 6.5 kWp. Pin lưu trữ 10kWh dùng thoải mái buổi tối. Anh em thi công nhiệt tình, cẩn thận."
   rating: 5
   aspect: "Tối ưu diện tích & Pin lưu trữ"
-image: "https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=800&q=80"
+image: "/du-an/nha-may-thep-ha-noi.jpg"
 is_featured: false
 ---
 

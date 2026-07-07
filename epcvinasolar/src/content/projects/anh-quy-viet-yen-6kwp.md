@@ -7,7 +7,7 @@ location: "Việt Yên - Bắc Giang"
 completion_date: "T10.2024"
 equipment: "Tấm pin: Longi 580 Wp\nBiến tần: Solis 6Kwp 3 phase\nBattery: Lvtopsun 10Kwp"
 description: "Hệ thống Hybrid 6 kWp 3 pha tại Việt Yên, Bắc Giang."
-image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80"
+image: "/du-an/du-an-ky-tuc-xa-samsung-giai-doan-2-sdcv3-bac-ninh.jpeg"
 is_featured: false
 ---
 

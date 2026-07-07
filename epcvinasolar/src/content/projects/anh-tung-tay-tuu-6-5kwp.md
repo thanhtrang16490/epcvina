@@ -8,7 +8,7 @@ completion_date: "T12.2024"
 equipment: "Tấm pin: longi 580 WP\nBiến tần: SolaX 6Kwp 1phase\nBattery: SMB 5Kwp"
 special_notes: "Làm trên tầng cao 6 tầng"
 description: "Hệ thống Hybrid 6.5 kWp cho gia đình anh Tùng tại Tây Tựu. Thi công trên tầng cao 6 tầng đảm bảo an toàn tuyệt đối."
-image: "https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80"
+image: "/du-an/DU-AN-STARCITY-CENTRER-TRAN-DUY-HUNG.jpg"
 is_featured: false
 ---
 

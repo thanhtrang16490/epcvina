@@ -15,7 +15,7 @@ testimonial:
   quote: "Công trình phức tạp nhưng đội ngũ thi công rất chuyên nghiệp. Lắp trên cao 6m mà vẫn an toàn, nhanh chóng. Giờ không lo mất điện với 20kWh pin lưu trữ!"
   rating: 5
   aspect: "Thi công phức tạp & Chuyên nghiệp"
-image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
+image: "/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI-PHONG.jpg"
 is_featured: true
 ---
 

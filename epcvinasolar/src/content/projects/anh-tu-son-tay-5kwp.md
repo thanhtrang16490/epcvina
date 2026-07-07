@@ -8,7 +8,7 @@ completion_date: "T2.2024"
 equipment: "Tấm pin: longi 580 Wp\nBiến tần: Growatt 5kwp 1 phase"
 special_notes: "Áp mái tôn"
 description: "Hệ thống hòa lưới 5 kWp lắp đặt áp mái tôn tại Sơn Tây."
-image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80"
+image: "/du-an/DU-AN-METROPOLIS-LIEU-GAI.jpg"
 is_featured: false
 ---
 

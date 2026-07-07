@@ -8,7 +8,7 @@ completion_date: "T3.2024"
 equipment: "Tấm pin: Canadian 545 Wp\nBiến tần: Growatt 5Kw 1phase"
 special_notes: "Sơn tĩnh điện toàn giàn khung, Mái hiên 2 mặt kính, Tầng cao 6 tầng"
 description: "Hệ thống hòa lưới bám tải 5.4 kWp cho gia đình chị Hà tại Long Biên. Lắp đặt trên tầng 6 với mái hiên 2 mặt kính."
-image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&q=80"
+image: "/du-an/DU-AN-VINHOMES-GOLDEN-RIVER-BA-SON-1.jpg"
 is_featured: false
 ---
 

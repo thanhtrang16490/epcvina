@@ -8,7 +8,7 @@ completion_date: "T4.2024"
 equipment: "Tấm pin: Canadian 545 Wp\nBiến tần: Deye 5kw 1phase\nBattery: PowerX 5kwh"
 special_notes: "Dựng khung trên mái ngói, giảm độ dốc-tăng hiệu suất"
 description: "Hệ thống Hybrid 5 kWp trên mái ngói tại Hải Dương."
-image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&q=80"
+image: "/du-an/DU-AN-SIEU-THI-LOtTE-DEPARTMENT-STORE.jpg"
 is_featured: false
 ---
 
