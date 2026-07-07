@@ -27,8 +27,12 @@ const productsCollection = defineCollection({
     specifications: z.record(z.string(), z.string()).optional(),
     features: z.array(z.string()).optional(),
     warranty: z.string().optional(),
-    main_image: z.string(),
+    main_image: z.string().optional(),
     is_available: z.boolean().default(true),
+    show_on_homepage: z.boolean().optional(),
+    product_type: z.string().optional(),
+    voltage: z.string().optional(),
+    warranty_years: z.number().optional(),
   }),
 });
 

@@ -1,0 +1,43 @@
+---
+name: "Biến tần Hybrid Growatt SPE 6kW TL HVM-G2 6kW"
+brand: "Growatt"
+category: "inverter"
+model: "SPE 6kW TL HVM-G2"
+description: "Biến tần Hybrid Growatt SPE 6kW TL HVM-G2 1 pha, inverter hybrid dân dụng. 2 MPPT, hiệu suất 96.5%, PV tối đa 8kW, tản nhiệt cưỡng bức, chống sét Type II DC/AC. Bảo hành 5 năm."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "inverter"
+voltage: "low"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "6kW"
+  "Công suất AC cực đại": "6kVA"
+  "Công suất PV tối đa": "8kW"
+  "Loại phase": "1 pha"
+  "Hiệu suất tối đa": "96.5%"
+  "Loại inverter": "Hybrid"
+  "Điện áp DC cực đại": "450V"
+  "Dải điện áp MPPT": "60–450V"
+  "Số MPPT": "2"
+  "Số string/MPPT": "1"
+  "Điện áp AC": "220/230V"
+  "Tần số": "50/60Hz"
+  "Cấp bảo vệ": "IP65"
+  "Phương thức làm mát": "Quạt tản nhiệt DC"
+  "Giao tiếp": "RF, WiFi, RJ45"
+  "WiFi tích hợp": "Có"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Kích thước": "422 × 460 × 125 mm"
+  "Trọng lượng": "13.5 kg"
+  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "Hybrid: hòa lưới + lưu trữ + backup"
+  - "2 MPPT độc lập, tối ưu mái nhiều hướng"
+  - "Hiệu suất 96.5%, tối ưu cho dân dụng"
+  - "PV tối đa 8kW, phù hợp hộ gia đình"
+  - "Tích hợp WiFi giám sát từ xa"
+  - "Thiết kế nhỏ gọn, dễ lắp đặt"
+---

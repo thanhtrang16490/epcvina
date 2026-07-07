@@ -36,20 +36,9 @@ const menuItems: MenuItem[] = [
     icon: Sun,
     children: [
       { name: 'Tấm quang năng', href: '/equipment/panel' },
-      { name: 'Biến tần On-Grid', href: '/equipment/on-grid-inverter' },
-      { name: 'Biến tần Hybrid', href: '/equipment/hybrid-inverter' },
-      { name: 'Pin lưu trữ áp cao', href: '/equipment/hv-battery' },
-      { name: 'Pin lưu trữ áp thấp', href: '/equipment/lv-battery' },
-    ],
-  },
-  {
-    name: 'Phụ kiện',
-    icon: Wrench,
-    children: [
-      { name: 'Hệ khung nhôm', href: '/equipment/mounting' },
-      { name: 'Hệ dây điện', href: '/equipment/wiring' },
-      { name: 'Tủ điện', href: '/equipment/cabinet' },
-      { name: 'Hệ tiếp địa', href: '/equipment/grounding' },
+      { name: 'Biến tần Solar', href: '/equipment/inverter' },
+      { name: 'Pin lưu trữ', href: '/equipment/battery' },
+      { name: 'Phụ kiện lắp đặt', href: '/equipment/accessories' },
     ],
   },
   {

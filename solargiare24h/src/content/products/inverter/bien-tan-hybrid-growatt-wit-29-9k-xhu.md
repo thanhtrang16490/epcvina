@@ -1,0 +1,42 @@
+---
+name: "Biến tần Hybrid Growatt WIT 29.9K-XHU 29.9kW"
+brand: "Growatt"
+category: "inverter"
+model: "WIT 29.9K-XHU"
+description: "Biến tần Hybrid Growatt WIT 29.9K-XHU 29.9kW 3 pha, inverter hybrid thế hệ mới cho doanh nghiệp. 2 MPPT, hiệu suất 98.1%, PV tối đa 59.8kW, làm mát thụ động, chống sét Type II DC/AC. Bảo hành 5 năm."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "inverter"
+voltage: "high"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "29.9kW"
+  "Công suất PV tối đa": "59.8kW"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.1%"
+  "Loại inverter": "Hybrid"
+  "Điện áp DC cực đại": "850V"
+  "Dải điện áp MPPT": "375–850V"
+  "Số MPPT": "2"
+  "Số string/MPPT": "2"
+  "Điện áp AC": "3/N/PE, 380/400V"
+  "Tần số": "50/60Hz"
+  "Cấp bảo vệ": "IP65"
+  "Phương thức làm mát": "Làm mát thụ động (không quạt)"
+  "Giao tiếp": "RS485, CAN, WiFi, 4G (tùy chọn)"
+  "WiFi tích hợp": "Có"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Kích thước": "920 × 585 × 320 mm"
+  "Trọng lượng": "80 kg"
+  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "Hybrid: hòa lưới + lưu trữ + backup"
+  - "2 MPPT độc lập, tối ưu mái nhiều hướng"
+  - "Hiệu suất 98.1%, giảm tổn hao năng lượng"
+  - "PV tối đa 59.8kW, phù hợp dự án doanh nghiệp"
+  - "Làm mát thụ động, không dùng quạt"
+  - "Hỗ trợ giám sát WiFi/4G từ xa"
+---

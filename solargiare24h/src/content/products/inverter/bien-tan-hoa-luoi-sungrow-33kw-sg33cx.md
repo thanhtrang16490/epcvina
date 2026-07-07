@@ -1,0 +1,42 @@
+---
+name: "Biến tần Hòa lưới Sungrow 33kW SG33CX"
+brand: "Sungrow"
+model: "SG33CX"
+category: "inverter"
+main_image: ""
+description: "Biến tần hòa lưới Sungrow 33kW SG33CX, inverter string đa MPPT cho dự án C&I. 5 MPPT độc lập, hiệu suất 98.7%, IP66, chống ăn mòn C5, phục hồi PID. Bảo hành 5 năm."
+is_available: true
+show_on_homepage: false
+product_type: "on-grid-inverter"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "33kW"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.7%"
+  "Loại inverter": "On Grid"
+  "Điện áp PV tối đa": "1100V"
+  "Dải điện áp MPPT": "200–1000V"
+  "Số MPPT": "5"
+  "Số string/MPPT": "2 (tổng 10 strings)"
+  "Dòng vào DC tối đa": "26A × 5"
+  "Dòng ngắn mạch DC tối đa": "40A × 5"
+  "Điện áp AC định mức": "3/N/PE, 380/400V"
+  "Cấp bảo vệ": "IP66"
+  "Chống ăn mòn": "C5"
+  "Phương thức làm mát": "Quạt cưỡng bức thông minh"
+  "Giao tiếp": "RS485 / WLAN"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Phục hồi PID": "Có"
+  "Kích thước": "700 × 550 × 300 mm"
+  "Trọng lượng": "40 kg"
+  "Nhiệt độ hoạt động": "-30°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "5 MPPT độc lập, tối ưu mái nhiều hướng"
+  - "Hiệu suất 98.7%, giảm tổn hao năng lượng"
+  - "Tương thích mô-đun hai mặt (bifacial)"
+  - "Phục hồi PID giảm suy giảm hiệu suất dài hạn"
+  - "IP66, chống ăn mòn C5"
+  - "Chẩn đoán I-V curve, giám sát từ xa"
+---

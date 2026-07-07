@@ -1,0 +1,42 @@
+---
+name: "Biến tần Hybrid Growatt SPH 10000TL3 BH-UP 10kW"
+brand: "Growatt"
+category: "inverter"
+model: "SPH 10000TL3 BH-UP"
+description: "Biến tần Hybrid Growatt SPH 10000TL3 BH-UP 10kW 3 pha, kết hợp hòa lưới và lưu trữ pin. 2 MPPT, hiệu suất 98.2%, dải DC 160–1000V, tích hợp WiFi, chống sét Type II DC/AC. Phù hợp hộ gia đình lớn và doanh nghiệp."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "inverter"
+voltage: "low"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "10kW"
+  "Công suất biểu kiến AC tối đa": "10kVA"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "98.2%"
+  "Loại inverter": "Hybrid"
+  "Điện áp DC cực đại": "1000V"
+  "Dải điện áp làm việc DC": "160–1000V"
+  "Số MPPT": "2"
+  "Số string/MPPT": "1"
+  "Điện áp AC": "3/N/PE, 380/400V"
+  "Tần số": "50/60Hz"
+  "Cấp bảo vệ": "IP65"
+  "Phương thức làm mát": "Tản nhiệt tự nhiên"
+  "Giao tiếp": "RF, WiFi, RJ45"
+  "WiFi tích hợp": "Có"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Kích thước": "505 × 453 × 198 mm"
+  "Trọng lượng": "30 kg"
+  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "Hybrid: hòa lưới + lưu trữ + backup"
+  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
+  - "Tích hợp WiFi theo dõi từ xa"
+  - "Chống sét Type II DC/AC"
+  - "Màn hình OLED cảm ứng"
+  - "Tản nhiệt tự nhiên, không quạt"
+---

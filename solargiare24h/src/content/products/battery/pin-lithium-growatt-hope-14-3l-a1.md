@@ -1,0 +1,40 @@
+---
+name: "Pin Lithium Growatt HOPE 14.3L-A1 14.3kWh"
+brand: "Growatt"
+category: "battery"
+model: "HOPE 14.3L-A1"
+description: "Pin Lithium Growatt HOPE 14.3L-A1 14.3kWh, điện áp 51.2V, công nghệ LiFePO4. Mở rộng tối đa 48 module (686.4kWh), DoD 93%, sạc/xả 140A. Tương thích inverter Growatt, Deye. Bảo hành 5–10 năm."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "battery"
+voltage: "low"
+warranty_years: 5
+specifications:
+  "Dung lượng": "14.3kWh"
+  "Công suất sử dụng": "13.3kWh"
+  "Điện áp danh định": "51.2V"
+  "Điện áp hoạt động": "40–58.4V"
+  "Loại pin": "LiFePO4"
+  "Dòng sạc/xả": "140A"
+  "Dòng sạc/xả tối đa": "225A/245A (3s)"
+  "Độ sâu xả (DoD)": "93%"
+  "Mở rộng": "Tối đa 48 module (686.4kWh)"
+  "Chu kỳ vòng đời": ">6000 chu kỳ"
+  "Giao tiếp": "CAN, RS485"
+  "Phương thức lắp đặt": "Treo tường"
+  "Cấp bảo vệ": "IP20"
+  "Kích thước": "478 × 812 × 265 mm"
+  "Trọng lượng": "<120 kg"
+  "Nhiệt độ sạc": "0°C đến +55°C"
+  "Nhiệt độ xả": "-20°C đến +55°C"
+  "Độ cao hoạt động": "<2000m"
+  "Bảo hành": "5 năm (có thể mở rộng 10 năm)"
+features:
+  - "LiFePO4 an toàn, >6000 chu kỳ"
+  - "Mở rộng tối đa 48 module, 686.4kWh"
+  - "DoD 93%, tối ưu dung lượng sử dụng"
+  - "Tương thích inverter Growatt, Deye"
+  - "Thiết kế treo tường, khung nhôm sơn tĩnh điện"
+  - "Quản lý nhiệt thông minh"
+---

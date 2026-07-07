@@ -209,22 +209,28 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
                 </div>
               )}
 
-              {/* CTA Buttons */}
+              {/* CTA Buttons - Link to EPCVINA for purchase */}
               <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                 <a
-                  href="tel:0904038448"
+                  href={`https://epcvina.com/thiet-bi/${product.slug || product.id || ''}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-orange-700 transition-all text-center text-sm cursor-pointer min-h-[44px] flex items-center justify-center"
-                  aria-label="Gọi tư vấn: 0904038448"
+                  aria-label="Xem chi tiết và đặt mua tại EPCVINA"
                 >
-                  Liên hệ tư vấn
+                  Xem tại EPCVINA.com →
                 </a>
                 <a
-                  href="/bao-gia"
+                  href="tel:0904038448"
                   className="flex-1 bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold border-2 border-orange-600 hover:bg-orange-50 transition-all text-center text-sm cursor-pointer min-h-[44px] flex items-center justify-center"
+                  aria-label="Gọi tư vấn: 0904038448"
                 >
-                  Báo giá chi tiết
+                  Gọi tư vấn
                 </a>
               </div>
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                Sản phẩm được phân phối chính hãng bởi <a href="https://epcvina.com" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline font-medium">EPCVINA</a>
+              </p>
             </div>
           </div>
 
@@ -495,6 +501,34 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
                 </div>
               </div>
             )}
+
+            {/* EPCVINA Backlink Section */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200 p-6 mt-8">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-lg font-bold text-blue-900 mb-2">Mua hàng chính hãng tại EPCVINA</h4>
+                  <p className="text-sm text-blue-800 mb-3">
+                    {product.name} được EPCVINA phân phối chính hãng với đầy đủ chứng nhận CO, CQ, bảo hành nhà sản xuất và hỗ trợ kỹ thuật trọn đời.
+                  </p>
+                  <a
+                    href={`https://epcvina.com/thiet-bi/${product.slug || product.id || ''}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition-colors text-sm"
+                  >
+                    Xem chi tiết & Báo giá tại EPCVINA.com
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
 
             {/* Back to Products */}
             <div className="text-center pt-8 border-t border-gray-200">

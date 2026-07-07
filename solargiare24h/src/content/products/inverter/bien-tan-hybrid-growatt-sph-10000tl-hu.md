@@ -1,0 +1,42 @@
+---
+name: "Biến tần Hybrid Growatt SPH 10000TL-HU 10kW"
+brand: "Growatt"
+category: "inverter"
+model: "SPH 10000TL-HU"
+description: "Biến tần Hybrid Growatt SPH 10000TL-HU 10kW 1 pha, kết hợp hòa lưới và lưu trữ pin. 2 MPPT, hiệu suất 97.5%, dải DC 150–525V, tích hợp WiFi, chống sét Type II DC/AC. Phù hợp hộ gia đình công suất lớn."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "inverter"
+voltage: "low"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "10kW"
+  "Công suất PV tối đa": "15kWp"
+  "Loại phase": "1 pha"
+  "Hiệu suất tối đa": "97.5%"
+  "Loại inverter": "Hybrid"
+  "Điện áp DC cực đại": "525V"
+  "Dải điện áp làm việc DC": "150–525V"
+  "Số MPPT": "2"
+  "Số string/MPPT": "2"
+  "Điện áp AC": "220/230/240V"
+  "Tần số": "50/60Hz"
+  "Cấp bảo vệ": "IP65"
+  "Phương thức làm mát": "Tản nhiệt tự nhiên"
+  "Giao tiếp": "RF, WiFi, RJ45"
+  "WiFi tích hợp": "Có"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Kích thước": "440 × 883 × 254 mm"
+  "Trọng lượng": "48.84 kg"
+  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "Hybrid: hòa lưới + lưu trữ + backup"
+  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
+  - "Tích hợp WiFi theo dõi từ xa"
+  - "Chống sét Type II DC/AC"
+  - "Màn hình OLED cảm ứng"
+  - "Phù hợp hệ thống gia đình công suất lớn"
+---
