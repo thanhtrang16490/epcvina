@@ -67,10 +67,11 @@ export default function HeaderBar() {
           {/* Phone CTA - hidden on mobile */}
           <a
             href="/bao-gia"
-            className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-5 py-2.5 text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
+            className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
           >
-            <FileText className="h-4 w-4" weight="bold" />
-            <span>Nhận Báo Giá</span>
+            <FileText className="h-3.5 w-3.5 sm:h-4 sm:w-4" weight="bold" />
+            <span className="hidden sm:inline">Nhận Báo Giá</span>
+            <span className="sm:hidden">Báo Giá</span>
           </a>
 
           {/* Hamburger - mobile only */}

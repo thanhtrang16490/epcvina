@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Star } from '@phosphor-icons/react';
+import { Star, ArrowRight } from '@phosphor-icons/react';
 
 const reviews = [
   {
@@ -67,6 +67,13 @@ export default function ReviewsSection() {
           <p className="text-gray-500 mt-2">
             Hơn 200+ công trình đã tin tưởng lắp đặt
           </p>
+          <a
+            href="#tu-van"
+            className="inline-flex items-center gap-2 mt-4 text-[#DC2626] hover:text-[#B01A22] font-semibold text-sm active:scale-[0.98] transition-colors"
+          >
+            Trở thành khách hàng tiếp theo
+            <ArrowRight className="h-4 w-4" weight="bold" />
+          </a>
         </motion.div>
 
         {/* Horizontal scroll carousel */}

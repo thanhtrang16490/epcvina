@@ -173,18 +173,18 @@ export default function ComparisonSection() {
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             <a
-              href="/solar-home/hybrid"
+              href="/calculator"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
               <Lightning className="h-4 w-4" weight="bold" />
-              Xem combo Hybrid
+              Tính chi phí hệ Hybrid
             </a>
             <a
-              href="/solar-home/on-grid"
+              href="/calculator"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
               <Sun className="h-4 w-4" weight="bold" />
-              Xem combo On-Grid
+              Tính chi phí hệ On-Grid
             </a>
           </motion.div>
         </div>

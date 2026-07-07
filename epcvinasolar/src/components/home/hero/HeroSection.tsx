@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Sun, Lightning, Shield, Factory, ClipboardText, FileText } from '@phosphor-icons/react';
+import { Sun, Lightning, Shield, Factory, ClipboardText } from '@phosphor-icons/react';
 import { useCountUp } from '../../../hooks/useScrollAnimation';
 
 const RED = '#DC2626';
@@ -137,11 +137,11 @@ export default function HeroSection() {
               Đăng ký khảo sát miễn phí
             </a>
             <a
-              href="#tu-van"
+              href="/calculator"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-white/60 text-white font-semibold text-sm hover:bg-white/10 hover:border-white active:scale-[0.98] transition-all duration-200"
             >
-              <FileText className="w-4 h-4" weight="bold" />
-              Xem chi tiết sơ bộ
+              <Lightning className="w-4 h-4" weight="bold" />
+              Tính chi phí & sản lượng
             </a>
           </motion.div>
 

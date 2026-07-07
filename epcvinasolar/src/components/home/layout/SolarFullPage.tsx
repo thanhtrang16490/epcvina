@@ -3,12 +3,14 @@ import HeroSection from '../hero/HeroSection';
 import ComparisonSection from '../combos/ComparisonSection';
 import SolarSolutionFinder from '../tools/SolarSolutionFinder';
 import BenefitsSection from '../sections/BenefitsSection';
+import MidPageCTA from '../sections/MidPageCTA';
 import ProcessSection from '../sections/ProcessSection';
 import ProjectsPreviewSection from '../sections/ProjectsPreviewSection';
 import ReviewsSection from '../sections/ReviewsSection';
 import FAQSection from '../sections/FAQSection';
 import CTASection from '../contact/CTASection';
 import FooterSection from './FooterSection';
+import MobileCTABar from './MobileCTABar';
 
 export default function SolarFullPage() {
   return (
@@ -29,6 +31,9 @@ export default function SolarFullPage() {
       {/* 4. Lợi thế EPCVINA — 6 điểm cơ điện */}
       <BenefitsSection />
 
+      {/* 4.5 Mid-page CTA — after Benefits */}
+      <MidPageCTA variant="benefits" />
+
       {/* 5. Quy trình triển khai — 6 bước theo PDF */}
       <ProcessSection />
 
@@ -38,6 +43,9 @@ export default function SolarFullPage() {
       {/* 7. Đánh giá khách hàng */}
       <ReviewsSection />
 
+      {/* 7.5 Pricing teaser CTA — after Reviews */}
+      <MidPageCTA variant="reviews" />
+
       {/* 8. FAQ */}
       <FAQSection />
 
@@ -45,6 +53,9 @@ export default function SolarFullPage() {
       <CTASection />
 
       <FooterSection />
+
+      {/* Mobile sticky bottom CTA bar */}
+      <MobileCTABar />
       </div>
     </div>
   );
