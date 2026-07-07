@@ -149,6 +149,23 @@ export const localBrands: LocalBrand[] = [
     website: 'https://www.sharp.com',
     country: 'Japan',
   },
+  {
+    id: 'sungrow',
+    name: 'Sungrow',
+    slug: 'sungrow',
+    description: 'Nhà sản xuất biến tần năng lượng mặt trời và hệ thống lưu trữ hàng đầu thế giới',
+    logo_url: '/brands/sungrow.png',
+    website: 'https://www.sungrowpower.com',
+    country: 'China',
+  },
+  {
+    id: 'cfe',
+    name: 'CFE',
+    slug: 'cfe',
+    description: 'Nhà sản xuất pin lưu trữ năng lượng cao áp cho hệ thống điện mặt trời',
+    logo_url: '/brands/cfe.png',
+    country: 'China',
+  },
 ];
 
 export function getBrands(): LocalBrand[] {
