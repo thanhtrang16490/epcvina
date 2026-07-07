@@ -14,9 +14,82 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const { combo } = Astro.props;
+
+// Product structured data for combo
+const comboSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": combo.data.title,
+  "description": `Hệ thống điện mặt trời ${combo.data.system_type === 'on-grid' ? 'On-Grid' : 'Hybrid'} ${combo.data.power_kw}kW - ${combo.data.title}. Sản lượng ${combo.data.production_min_kwh}-${combo.data.production_max_kwh} kWh/tháng. Hoàn vốn ${combo.data.payback_label}.`,
+  "sku": combo.data.slug,
+  "model": `${combo.data.system_type}-${combo.data.power_kw}kw-${combo.data.phase}`,
+  "brand": {
+    "@type": "Brand",
+    "name": "EPCVINA Solar"
+  },
+  "image": "https://epcvina.com/hero-bg-1920.webp",
+  "category": `He thong dien mat troi ${combo.data.system_type}`,
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "EPCVINA Solar"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": `https://epcvina.com/solar-home/he-thong/${combo.data.slug}`,
+    "priceCurrency": "VND",
+    "price": combo.data.investment_million_vnd * 1000000,
+    "priceValidUntil": new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0],
+    "availability": combo.data.is_active ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "EPCVINA Solar"
+    },
+    "warranty": "25 năm tấm pin, 5-10 năm inverter"
+  },
+  "additionalProperty": [
+    {
+      "@type": "PropertyValue",
+      "name": "Công suất",
+      "value": `${combo.data.power_kw} kWp`
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Sản lượng",
+      "value": `${combo.data.production_min_kwh}-${combo.data.production_max_kwh} kWh/tháng`
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Hoàn vốn",
+      "value": combo.data.payback_label
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Loại hệ thống",
+      "value": combo.data.system_type === 'on-grid' ? 'On-Grid' : 'Hybrid'
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Pha",
+      "value": combo.data.phase === '1-phase' ? '1 Pha' : '3 Pha'
+    }
+  ]
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang Chủ", "item": "https://epcvina.com" },
+    { "@type": "ListItem", "position": 2, "name": "Hệ Thống", "item": "https://epcvina.com/solar-home/he-thong" },
+    { "@type": "ListItem", "position": 3, "name": combo.data.title, "item": `https://epcvina.com/solar-home/he-thong/${combo.data.slug}` }
+  ]
+};
 ---
 
 <DashboardLayout title={`${combo.data.title} - EPC Solar`} description={`${combo.data.title} - Hệ thống điện mặt trời trọn gói từ EPC Solar. Tiết kiệm 70-90% chi phí điện, hoàn vốn 3-5 năm. Bảo hành 25 năm tấm pin.`}>
+  <script type="application/ld+json" set:html={JSON.stringify(comboSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <DashboardShell client:load>
     <ComboDetailPage client:idle combo={JSON.parse(JSON.stringify(combo))} />
   </DashboardShell>

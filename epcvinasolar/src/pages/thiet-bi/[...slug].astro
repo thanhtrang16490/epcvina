@@ -35,12 +35,59 @@ const relatedProjects = allProjects
     });
   })
   .slice(0, 3); // Limit to 3 projects
+
+// Product structured data schema
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.data.name,
+  "description": product.data.description || `Sản phẩm ${product.data.name} chính hãng - EPCVINA Solar`,
+  "sku": productId,
+  "model": product.data.model || '',
+  "brand": {
+    "@type": "Brand",
+    "name": product.data.brand
+  },
+  "image": product.data.main_image ? `https://epcvina.com${product.data.main_image}` : 'https://epcvina.com/images/placeholder.png',
+  "category": product.data.category,
+  "material": product.data.specifications?.['Loại cell'] || product.data.specifications?.['Công nghệ'] || '',
+  "manufacturer": {
+    "@type": "Organization",
+    "name": product.data.brand
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": `https://epcvina.com/thiet-bi/${productId}`,
+    "priceCurrency": "VND",
+    "price": product.data.price || 0,
+    "priceValidUntil": new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0],
+    "availability": product.data.is_available ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "EPCVINA Solar"
+    },
+    "warranty": product.data.warranty || '',
+  },
+};
+
+// Breadcrumb schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang Chủ", "item": "https://epcvina.com" },
+    { "@type": "ListItem", "position": 2, "name": "Thiết Bị", "item": "https://epcvina.com/thiet-bi" },
+    { "@type": "ListItem", "position": 3, "name": product.data.name, "item": `https://epcvina.com/thiet-bi/${productId}` }
+  ]
+};
 ---
 
 <DashboardLayout
   title={product.data.name}
   description={product.data.description || `Chi tiết sản phẩm ${product.data.name} - EPCVINA Solar`}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
   <DashboardShell client:load>
     <ProductDetail 
       client:visible 
