@@ -127,7 +127,7 @@ const faqs: FAQ[] = [
   {
     category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
     question: 'Có thể xem dự án đã làm không?',
-    answer: 'Có! Bạn có thể:\n• Xem tại /du-an trên website\n• Tham quan dự án thực tế (đặt lịch trước)\n• Đọc testimonial từ khách hàng cũ\n• Liên hệ 0988 446 113 để được tư vấn\nSolar Giá Rẻ 24h minh bạch 100% về năng lực.',
+    answer: 'Có! Bạn có thể:\n• Xem tại /du-an trên website\n• Tham quan dự án thực tế (đặt lịch trước)\n• Đọc testimonial từ khách hàng cũ\n• Liên hệ 0947 776 662 để được tư vấn\nSolar Giá Rẻ 24h minh bạch 100% về năng lực.',
   },
 ];
 
@@ -258,11 +258,11 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:0988446113"
+              href="tel:0947776662"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-emerald-600 font-bold rounded-xl hover:bg-emerald-50 transition-colors shadow-lg"
             >
               <Phone className="w-6 h-6" />
-              <span>0988 446 113</span>
+              <span>0947 776 662</span>
             </a>
             <a
               href="/lien-he"

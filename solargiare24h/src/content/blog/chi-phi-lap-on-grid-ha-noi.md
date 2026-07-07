@@ -100,7 +100,7 @@ Chi phí nhân công tại Hà Nội (2026) thường bao gồm:
 
 EPC Solar hỗ trợ toàn bộ hồ sơ thủ tục đấu nối EVN miễn phí trong gói dịch vụ trọn gói.
 
-📞 **Hotline tư vấn:** [0988 446 113](tel:+84988446113)
+📞 **Hotline tư vấn:** [0947 776 662](tel:+84947776662)
 
 ### 2.6 Tổng Chi Phí Hệ 5kW On-Grid Tại Hà Nội
 
@@ -245,7 +245,7 @@ Theo Nghị định 135/2024/NĐ-CP, hệ thống dưới 1MWp chỉ cần **th�
 ### Hệ thống có hoạt động khi mất điện?
 **Không.** Hệ On-Grid tự động ngắt khi mất điện để đảm bảo an toàn. Nếu khu vực hay mất điện, nên chọn [hệ Hybrid](/hybrid-bess) có pin lưu trữ.
 
-📞 **Vẫn còn thắc mắc?** [Liên hệ tư vấn miễn phí](/contact) hoặc gọi [0988 446 113](tel:+84988446113)
+📞 **Vẫn còn thắc mắc?** [Liên hệ tư vấn miễn phí](/contact) hoặc gọi [0947 776 662](tel:+84947776662)
 
 ---
 
@@ -374,7 +374,7 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 
 **Solar Giá Rẻ 24h Solar** - Chuyên gia điện mặt trời hàng đầu Hà Nội
 
-📱 **Hotline:** [0988 446 113](tel:+84988446113)  
+📱 **Hotline:** [0947 776 662](tel:+84947776662)  
 📧 **Email:** solargiare24h@hotmail.com  
 🌐 **Website:** https://solargiare24h.com  
 📍 **Địa chỉ:** Phòng 315, Khu TM Chung cư HVQP, Nguyễn Văn Huyên Kéo Dài, Tây Hồ, Hà Nội
@@ -406,7 +406,7 @@ Bài viết này được hợp tác với **EPCVINA Solar** - Tổng thầu EPC
 
 👉 **Liên hệ EPCVINA Solar:**
 - 🌐 Website: [epcvina.com](https://epcvina.com)
-- 📞 Hotline: 0988 446 113
+- 📞 Hotline: 0947 776 662
 - 📧 Email: epcvina@hotmail.com
 - 📋 [Xem dự án thực tế](https://epcvina.com/du-an)
 - 💰 [Nhận báo giá chi tiết](https://epcvina.com/bao-gia)

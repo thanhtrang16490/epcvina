@@ -94,7 +94,7 @@ export default function CTASection() {
                     value={form.phone}
                     onChange={handleChange}
                     required
-                    placeholder="0988 446 113"
+                    placeholder="0947 776 662"
                     className="w-full px-4 py-2.5 rounded-lg border border-gray-200 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#DC2626] focus:border-transparent transition"
                   />
                 </div>
@@ -174,8 +174,8 @@ export default function CTASection() {
         {/* Or call directly */}
         <p className="text-center text-orange-200 text-sm mt-6">
           Hoặc gọi thẳng:{' '}
-          <a href="tel:0988446113" className="text-white font-bold hover:text-amber-300 transition-colors">
-            0988 446 113
+          <a href="tel:0947776662" className="text-white font-bold hover:text-amber-300 transition-colors">
+            0947 776 662
           </a>
           {' '}(Mrs. Giang)
         </p>

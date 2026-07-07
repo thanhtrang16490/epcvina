@@ -200,7 +200,7 @@ export default function SearchModal({ products, projects, combos, pages }: Searc
                 <div className="px-6 py-12 text-center text-gray-500">
                   <div className="text-4xl mb-3">🔍</div>
                   <p className="font-medium mb-1">Không tìm thấy kết quả</p>
-                  <p className="text-sm">Thử từ khóa khác hoặc liên hệ 0988 446 113</p>
+                  <p className="text-sm">Thử từ khóa khác hoặc liên hệ 0947 776 662</p>
                 </div>
               ) : (
                 <div className="py-2">

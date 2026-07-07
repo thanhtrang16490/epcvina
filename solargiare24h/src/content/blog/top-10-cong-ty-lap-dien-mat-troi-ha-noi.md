@@ -31,7 +31,7 @@ Dưới đây là top 10 công ty được đánh giá cao nhất năm 2024.
 
 - **Tên đầy đủ**: Công ty Cổ phần Xây lắp EPC Việt Nam
 - **Website**: [epcvina.com](https://epcvina.com)
-- **Hotline**: 0988 446 113
+- **Hotline**: 0947 776 662
 - **Văn phòng**: Tây Hồ, Hà Nội
 
 ### Năng Lực
@@ -103,7 +103,7 @@ EPCVINA đã triển khai hơn 100 công trình:
 ### Liên Hệ EPCVINA Solar
 
 🌐 **Website**: [epcvina.com](https://epcvina.com)  
-📞 **Hotline**: 0988 446 113  
+📞 **Hotline**: 0947 776 662  
 📧 **Email**: epcvina@hotmail.com  
 📋 **Báo giá**: [epcvina.com/bao-gia](https://epcvina.com/bao-gia)  
 📝 **Tư vấn**: [epcvina.com/lien-he](https://epcvina.com/lien-he)  
@@ -171,7 +171,7 @@ EPCVINA đã triển khai hơn 100 công trình:
 4. Hỗ trợ trọn đời, không bỏ rơi khách hàng
 5. Giá cả minh bạch, không phí ẩn
 
-👉 **Liên hệ ngay**: [epcvina.com](https://epcvina.com) | 0988 446 113
+👉 **Liên hệ ngay**: [epcvina.com](https://epcvina.com) | 0947 776 662
 
 ### 💡 Lựa Chọn Thay Thế
 

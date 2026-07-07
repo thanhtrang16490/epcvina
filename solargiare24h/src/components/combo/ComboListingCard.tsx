@@ -147,7 +147,7 @@ export default function ComboListingCard({ combo, basePath }: ComboListingCardPr
           Xem chi tiết
         </a>
         <a
-          href="tel:0988446113"
+          href="tel:0947776662"
           className="flex-1 text-center py-2.5 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
         >
           Liên hệ

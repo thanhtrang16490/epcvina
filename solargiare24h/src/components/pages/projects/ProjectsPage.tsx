@@ -675,11 +675,11 @@ export default function ProjectsPage() {
                     <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   </a>
                   <a
-                    href="tel:0988446113"
+                    href="tel:0947776662"
                     className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base border border-white/20 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                   >
                     <Phone className="h-5 w-5" aria-hidden="true" />
-                    0988 446 113
+                    0947 776 662
                   </a>
                 </div>
               </div>

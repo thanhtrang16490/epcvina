@@ -221,9 +221,9 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
                   Xem tại EPCVINA.com →
                 </a>
                 <a
-                  href="tel:0904038448"
+                  href="tel:0947776662"
                   className="flex-1 bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold border-2 border-orange-600 hover:bg-orange-50 transition-all text-center text-sm cursor-pointer min-h-[44px] flex items-center justify-center"
-                  aria-label="Gọi tư vấn: 0904038448"
+                  aria-label="Gọi tư vấn: 0947 776 662"
                 >
                   Gọi tư vấn
                 </a>

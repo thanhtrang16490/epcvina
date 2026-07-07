@@ -8,7 +8,7 @@
  * - Fixed position, doesn't block content
  */
 export default function ZaloChatButton() {
-  const zaloPhone = '0988446113';
+  const zaloPhone = '0947776662';
   const zaloUrl = `https://zalo.me/${zaloPhone}`;
 
   return (

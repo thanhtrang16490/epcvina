@@ -248,7 +248,7 @@ EPCVINA đã lắp đặt thành công cho:
 **EPCVINA Solar** - Tổng thầu EPC hàng đầu Việt Nam
 
 🌐 **Website**: [epcvina.com](https://epcvina.com)  
-📞 **Hotline**: 0988 446 113  
+📞 **Hotline**: 0947 776 662  
 📧 **Email**: epcvina@hotmail.com  
 📍 **Văn phòng**: Tây Hồ, Hà Nội  
 
