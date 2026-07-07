@@ -35,7 +35,7 @@ const solarProjects = [
     year: 'T7.2024',
     details: 'Tấm Pin: Longi 550 Wp, Biến tần: Deye 10kW, Pin lưu trữ: Deye 10kWh',
     note: 'Mái hiên 2 mặt kính',
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
+    image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png',
     alt: 'Dự án điện mặt trời 15 kWp tại Hà Đông, Hà Nội',
     tagColor: 'bg-emerald-100 text-emerald-700',
   },
@@ -47,7 +47,7 @@ const solarProjects = [
     year: 'T6.2024',
     details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 12KW 3phase, BatteryHigh: Bettenergy',
     note: 'Sơn tĩnh điện toàn giàn khung, Đổ betong chân cột',
-    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
+    image: '/du-an/DU-AN-LOTTE-MART-DONG-DA.jpg',
     alt: 'Dự án điện mặt trời Hybrid 15 kWp tại Hải Dương',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -59,7 +59,7 @@ const solarProjects = [
     year: 'T9.2024',
     details: 'Tấm Pin: Longi 550 Wp, Biến tần: Deye 8kW 3phase, Pin lưu trữ: SMB 10kWh',
     note: 'Sơn tĩnh điện toàn giàn khung, Mái hiên 2 mặt kính, Tầng cao 7 tầng',
-    image: 'https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=400&q=80',
+    image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png',
     alt: 'Dự án điện mặt trời Hybrid 7.5 kWp tại Dương Nội, Hà Nội',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -71,7 +71,7 @@ const solarProjects = [
     year: 'T3.2024',
     details: 'Tấm pin: Canadian 545 Wp, Biến tần: Growatt 5Kw 1phase',
     note: 'Sơn tĩnh điện toàn giàn khung, Mái hiên 2 mặt kính, Tầng cao 6 tầng',
-    image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=400&q=80',
+    image: '/du-an/DU-AN-VINHOMES-GOLDEN-RIVER-BA-SON-1.jpg',
     alt: 'Dự án điện mặt trời 5.4 kWp tại Long Biên, Hà Nội',
     tagColor: 'bg-sky-100 text-sky-700',
   },
@@ -83,7 +83,7 @@ const solarProjects = [
     year: 'T10.2023',
     details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, BatteryHigh: PowerX 5kwh',
     note: 'Áp mái tôn',
-    image: 'https://images.unsplash.com/photo-1548337138-e87d889cc369?w=400&q=80',
+    image: '/du-an/solar-nha-dan/du-an-anh-tho-uong-bi.png',
     alt: 'Dự án điện mặt trời Hybrid 5.4 kWp tại Uông Bí, Quảng Ninh',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -95,7 +95,7 @@ const solarProjects = [
     year: 'T12.2024',
     details: 'Tấm pin: Longi 580 WP, Biến tần: SolaX 6Kwp 1phase, BatteryHigh: SMB 5Kwp',
     note: 'Làm trên tầng cao 6 tầng',
-    image: 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=400&q=80',
+    image: '/du-an/DU-AN-STARCITY-CENTRER-TRAN-DUY-HUNG.jpg',
     alt: 'Dự án điện mặt trời Hybrid 6.5 kWp tại Tây Tựu, Hà Nội',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -107,7 +107,7 @@ const solarProjects = [
     year: 'T10.2024',
     details: 'Tấm pin: Longi 545 Wp, Biến tần SolaX 6Kwp 1 phase, BatteryHigh: Triple power 10Kwp',
     note: 'Làm trên tầng cao 3 tầng',
-    image: 'https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=400&q=80',
+    image: '/du-an/nha-may-thep-ha-noi.jpg',
     alt: 'Dự án điện mặt trời Hybrid 6.5 kWp tại Chùa Thầy, Hà Nội',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -119,7 +119,7 @@ const solarProjects = [
     year: 'T2.2024',
     details: 'Tấm pin: Longi 580 Wp, Biến tần: Growatt 5kwp 1 phase',
     note: 'Áp mái tôn',
-    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
+    image: '/du-an/DU-AN-METROPOLIS-LIEU-GIAI.jpg',
     alt: 'Dự án điện mặt trời 5 kWp tại Sơn Tây, Hà Nội',
     tagColor: 'bg-sky-100 text-sky-700',
   },
@@ -131,7 +131,7 @@ const solarProjects = [
     year: 'T3.2024',
     details: 'Tấm pin: Longi 580 Wp 2 mặt kính, Biến tần: Deye 12kwp 3phase, BatteryHigh: Bettenergy 10kwp',
     note: 'Mái hiên 2 mặt kính, Tầng cao 6 tầng',
-    image: 'https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=400&q=80',
+    image: '/du-an/solar-nha-dan/du-an-anh-tung-nam-tu-liem.png',
     alt: 'Dự án điện mặt trời Hybrid 15 kWp tại Bắc Từ Liêm, Hà Nội',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -143,7 +143,7 @@ const solarProjects = [
     year: 'T4.2024',
     details: 'Tấm pin: Canadian 545 Wp, Biến tần: Deye 5kw 1phase, BatteryHigh: PowerX 5kwh',
     note: 'Dựng khung trên mái ngói, giảm độ dốc tăng hiệu suất',
-    image: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=400&q=80',
+    image: '/du-an/DU-AN-SIEU-THI-LOtTE-DEPARTMENT-STORE.jpg',
     alt: 'Dự án điện mặt trời Hybrid 5 kWp tại Hải Dương',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -155,7 +155,7 @@ const solarProjects = [
     year: 'T4.2024',
     details: 'Tấm pin: Longi 580 Wp, Biến tần: Deye 15kwp 3phase',
     note: 'Làm khung trên tầng cao 7 tầng',
-    image: 'https://images.unsplash.com/photo-1548337138-e87d889cc369?w=400&q=80',
+    image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png',
     alt: 'Dự án điện mặt trời 15 kWp tại Thanh Miện, Hải Dương',
     tagColor: 'bg-sky-100 text-sky-700',
   },
@@ -167,7 +167,7 @@ const solarProjects = [
     year: 'T6.2024',
     details: 'Tấm pin: Longi 580 Wp, Biến tần: Deye 10Kwp 1 phase, BatteryHigh: SMB 20Kwp',
     note: 'Sơn tĩnh điện toàn giàn khung, Độ cao >6m, Đấu nối 2 biến tần Parallel',
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
+    image: '/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI-PHONG.jpg',
     alt: 'Dự án điện mặt trời Hybrid 22 kWp tại Hải Dương',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -179,7 +179,7 @@ const solarProjects = [
     year: 'T10.2024',
     details: 'Tấm pin: Longi 580 Wp, Biến tần: Solis 6Kwp 3 phase, BatteryHigh: Lvtopsun 10Kwp',
     note: '',
-    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=400&q=80',
+    image: '/du-an/du-an-ky-tuc-xa-samsung-giai-doan-2-sdcv3-bac-ninh.jpeg',
     alt: 'Dự án điện mặt trời Hybrid 6 kWp tại Việt Yên, Bắc Giang',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -436,7 +436,7 @@ export default function ProjectsPage() {
                 Từ trang trại MWp đến rooftop C&I — mỗi dự án đều cam kết hiệu suất tối ưu
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {solarProjects.map((project) => {
                 // Map project names to actual slug file names
                 const slugMap: Record<string, string> = {
@@ -463,13 +463,13 @@ export default function ProjectsPage() {
                     href={`/du-an/${slug}`}
                     className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none cursor-pointer block"
                   >
-                    <div className="aspect-video overflow-hidden relative">
+                    <div className="aspect-square overflow-hidden relative">
                       <img
                         src={project.image}
                         alt={project.alt}
                         loading="lazy"
                         width={400}
-                        height={225}
+                        height={400}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" aria-hidden="true" />
