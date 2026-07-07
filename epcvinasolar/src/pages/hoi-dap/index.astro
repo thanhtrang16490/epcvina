@@ -1,0 +1,142 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/layout/HeaderBar';
+import FAQPage from '../../components/pages/faq/FAQPage';
+
+// General FAQ data (same as FAQSection on homepage)
+const generalFAQ = [
+  {
+    question: 'Lắp điện mặt trời có cần xin phép không?',
+    answer: 'Có. Theo Nghị định 135/2024/NĐ-CP, hệ thống điện mặt trời mái nhà dưới 1 MWp cần thông báo với điện lực địa phương. EPCVINA hỗ trợ toàn bộ thủ tục xin phép, đấu nối lưới và đăng ký bán điện dư với EVN miễn phí cho khách hàng.',
+  },
+  {
+    question: 'Lắp điện mặt trời có thực sự tiết kiệm tiền điện không?',
+    answer: 'Có. Hệ thống điện mặt trời giúp giảm 70–90% hóa đơn điện hàng tháng. Với giá điện ngày càng tăng, mức tiết kiệm sẽ càng lớn theo thời gian. Trung bình một hệ 5 kWp tiết kiệm được 1.5–2.5 triệu đồng/tháng.',
+  },
+  {
+    question: 'Thời gian hoàn vốn là bao lâu?',
+    answer: 'Thời gian hoàn vốn trung bình từ 3–5 năm cho hệ On-Grid và 5–7 năm cho hệ Hybrid. Sau khi hoàn vốn, bạn sẽ sử dụng điện miễn phí trong suốt tuổi thọ còn lại của hệ thống (20–25 năm).',
+  },
+  {
+    question: 'Tấm pin mặt trời bền được bao lâu? Bảo hành như thế nào?',
+    answer: 'Tấm pin chất lượng cao có tuổi thọ trên 25 năm với hiệu suất giảm dần khoảng 0.5%/năm. EPCVINA bảo hành tấm pin 25 năm, inverter 5–10 năm, thi công 2 năm. Hỗ trợ kỹ thuật và bảo trì định kỳ trong suốt vòng đời hệ thống.',
+  },
+  {
+    question: 'Hệ thống có hoạt động trong ngày mưa hoặc trời âm u không?',
+    answer: 'Có, hệ thống vẫn phát điện trong điều kiện ít nắng, tuy nhiên sản lượng sẽ giảm 50–80% so với ngày nắng. Hệ thống được thiết kế dựa trên sản lượng trung bình cả năm nên đã tính đến các ngày mưa.',
+  },
+  {
+    question: 'Chi phí phát sinh sau khi lắp đặt là bao nhiêu?',
+    answer: 'Chi phí bảo trì rất thấp: chủ yếu là vệ sinh tấm pin 2–4 lần/năm (có thể tự làm bằng nước sạch). Không có chi phí nhiên liệu hay phụ tùng thay thế định kỳ. Bảo trì chuyên nghiệp khoảng 500.000–1.000.000đ/năm. EPCVINA có gói bảo trì O&M dài hạn.',
+  },
+];
+
+// Product-specific FAQ data grouped by category
+const productFAQ: Record<string, Array<{ question: string; answer: string }>> = {
+  'Tấm pin năng lượng mặt trời': [
+    { question: 'Tấm pin Mono và Poly khác nhau thế nào?', answer: 'Tấm pin Mono (Monocrystalline) có hiệu suất cao hơn (20-23%), hoạt động tốt hơn trong điều kiện ánh sáng yếu và tuổi thọ dài hơn. Tấm pin Poly (Polycrystalline) có giá thành rẻ hơn nhưng hiệu suất thấp hơn (15-18%). Hiện nay, Mono là lựa chọn phổ biến cho hệ thống điện mặt trời gia đình và doanh nghiệp.' },
+    { question: 'Hiệu suất tấm pin bao nhiêu là tốt?', answer: 'Tấm pin tốt thường có hiệu suất từ 20% trở lên. Các thương hiệu Tier 1 như LONGi, JA Solar, Canadian Solar, JinkoSolar hiện cung cấp tấm pin với hiệu suất 20-23%. Hiệu suất cao giúp tạo ra nhiều điện hơn trên cùng diện tích lắp đặt.' },
+    { question: 'Tuổi thọ tấm pin mặt trời bao lâu?', answer: 'Tấm pin mặt trời chất lượng có tuổi thọ 25-30 năm, với suy giảm hiệu suất chỉ 0.5%/năm. Sau 25 năm, tấm pin vẫn đạt khoảng 85-87% công suất ban đầu. Bảo hành hiệu suất thường 25 năm, bảo hành vật lý 10-12 năm.' },
+    { question: 'Tấm pin có hoạt động khi trời nhiều mây không?', answer: 'Có, tấm pin vẫn hoạt động khi trời nhiều mây nhưng sản lượng giảm 10-25% so với trời nắng. Công nghệ PERC, Half-cut Cell, Bifacial giúp tăng hiệu suất trong điều kiện ánh sáng yếu. Hệ thống vẫn tạo ra điện đáng kể ngay cả những ngày âm u.' },
+    { question: 'Bảo hành tấm pin như thế nào?', answer: 'Tấm pin thường có 2 loại bảo hành: Bảo hành vật lý (10-12 năm) cho lỗi sản xuất, hư hỏng vật liệu; Bảo hành hiệu suất (25 năm) đảm bảo công suất đầu ra tối thiểu 80-85%. EPCVINA hỗ trợ bảo hành chính hãng, đổi mới trong thời gian bảo hành.' },
+  ],
+  'Biến tần Hybrid': [
+    { question: 'Biến tần Hybrid khác On-Grid thế nào?', answer: 'Biến tần Hybrid kết hợp cả hòa lưới và lưu trữ pin, có thể hoạt động độc lập khi mất điện (chế độ backup). Biến tần On-Grid chỉ hòa lưới, không lưu trữ và ngừng hoạt động khi mất điện. Hybrid phù hợp khi cần dự phòng điện và tối ưu tự dùng.' },
+    { question: 'Biến tần Hybrid có cần pin lưu trữ không?', answer: 'Không bắt buộc. Biến tần Hybrid có thể hoạt động không cần pin (như hòa lưới thông thường) và lắp pin sau khi cần. Tuy nhiên, để tận dụng khả năng backup khi mất điện và tối ưu tự dùng, nên kết hợp với pin lưu trữ.' },
+    { question: 'Chọn công suất biến tần Hybrid thế nào?', answer: 'Công suất biến tần cần ≥ tổng công suất tải đồng thời lớn nhất. Ví dụ: tải tối đa 5kW thì chọn biến tần 5-6kW. Đồng thời, công suất PV lắp đặt không nên vượt quá 120% công suất biến tần. EPCVINA tư vấn miễn phí dựa trên nhu cầu thực tế.' },
+    { question: 'Biến tần Hybrid có backup khi mất điện không?', answer: 'Có, đây là ưu điểm chính của Hybrid. Khi mất điện, biến tần tự động chuyển sang chế độ backup, cấp điện từ pin lưu trữ cho tải ưu tiên. Thời gian chuyển mạch <10ms, hầu hết thiết bị không bị gián đoạn.' },
+    { question: 'Hiệu suất biến tần bao nhiêu là tốt?', answer: 'Biến tần tốt có hiệu suất ≥ 97%. Các thương hiệu hàng đầu như Growatt, Sungrow, Deye đạt 97-98.5%. Hiệu suất cao giảm tổn hao năng lượng, tăng sản lượng điện. Cần phân biệt hiệu suất EU (97-98%) và hiệu suất China (cao hơn 0.5-1%).' },
+  ],
+  'Biến tần On-Grid': [
+    { question: 'Biến tần On-Grid có hoạt động khi mất điện không?', answer: 'Không. Biến tần On-Grid được thiết kế an toàn, tự động ngắt khi mất điện lưới (anti-islanding). Đây là yêu cầu bắt buộc theo tiêu chuẩn điện lực. Nếu cần backup khi mất điện, nên dùng hệ thống Hybrid kết hợp pin lưu trữ.' },
+    { question: 'Biến tần 1 pha và 3 pha khác nhau thế nào?', answer: 'Biến tần 1 pha (220V) dùng cho hộ gia đình, công suất 1-10kW. Biến tần 3 pha (380V) dùng cho thương mại, công nghiệp, công suất >10kW. Chọn theo nguồn điện sẵn có: nhà ở thường có điện 1 pha, nhà xưởng có điện 3 pha.' },
+    { question: 'MPPT là gì, quan trọng thế nào?', answer: 'MPPT (Maximum Power Point Tracking) là thuật toán tối ưu hóa điểm công suất cực đại của tấm pin. Biến tần có nhiều MPPT cho phép kết nối các dãy pin ở các hướng khác nhau mà không ảnh hưởng hiệu suất. Số MPPT càng nhiều, tối ưu càng tốt cho mái phức tạp.' },
+    { question: 'Chọn công suất biến tần On-Grid thế nào?', answer: 'Công suất biến tần nên bằng hoặc gần bằng tổng công suất PV lắp đặt. Ví dụ: hệ 10kWp PV chọn biến tần 10kW. Có thể oversize PV lên 120% công suất biến tần để tối ưu sản lượng. EPCVINA tư vấn tỷ lệ DC/AC phù hợp theo vị trí lắp đặt.' },
+    { question: 'Biến tần On-Grid có giám sát từ xa được không?', answer: 'Có. Hầu hết biến tần hiện đại tích hợp WiFi/4G, cho phép giám sát sản lượng real-time qua app điện thoại. Các thương hiệu như Growatt có app ShinePhone, Sungrow có iSolarCloud. EPCVINA hỗ trợ cài đặt và giám sát miễn phí.' },
+  ],
+  'Pin lưu trữ năng lượng': [
+    { question: 'Pin áp thấp khác pin áp cao thế nào?', answer: 'Pin áp thấp (48V) hoạt động ở điện áp thấp, an toàn hơn, dễ lắp đặt, phù hợp hệ gia đình 3-15kW. Pin áp cao (96-480V) hiệu suất cao hơn, dòng điện nhỏ hơn, phù hợp hệ thương mại >10kW. Pin áp thấp thường rẻ hơn và tương thích nhiều inverter hơn.' },
+    { question: 'Dung lượng pin bao nhiêu là đủ?', answer: 'Tùy nhu cầu tự dùng và backup. Gia đình 4-6 người thường cần 5-10kWh cho backup cơ bản (đèn, quạt, tủ lạnh, WiFi). Nếu muốn backup toàn tải hoặc tối ưu tự dùng, cần 15-30kWh. EPCVINA phân tích hóa đơn điện để tư vấn dung lượng tối ưu.' },
+    { question: 'Pin LiFePO4 có an toàn không?', answer: 'Rất an toàn. LiFePO4 (Lithium Sắt Phosphate) là loại pin an toàn nhất trong các dòng lithium, không cháy nổ kể cả khi đoản mạch. Có BMS bảo vệ 3 lớp: quá áp, quá dòng, quá nhiệt. Đạt chứng chỉ TUV, CE, UN38.3. Tuổi thọ >15 năm.' },
+    { question: 'Pin lưu trữ có tương thích với mọi inverter không?', answer: 'Hầu hết pin lưu trữ phổ biến (Pylontech, Growatt, Deye) tương thích với nhiều thương hiệu inverter qua giao thức CAN/RS485. Tuy nhiên, cần kiểm tra danh sách tương thích trước khi mua. EPCVINA tư vấn combo inverter + pin tương thích tối ưu.' },
+  ],
+};
+
+// Build FAQPage JSON-LD schema (all FAQs combined)
+const allFAQEntries = [
+  ...generalFAQ.map(f => ({ question: f.question, answer: f.answer })),
+  ...Object.values(productFAQ).flat(),
+];
+
+const faqPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "name": "Câu hỏi thường gặp về điện mặt trời - EPCVINA Solar",
+  "description": "Giải đáp chi tiết các thắc mắc về lắp đặt điện mặt trời: chi phí, thủ tục, lựa chọn thiết bị, bảo hành và vận hành hệ thống.",
+  "mainEntity": allFAQEntries.map(entry => ({
+    "@type": "Question",
+    "name": entry.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": entry.answer,
+    },
+  })),
+};
+---
+
+<DashboardLayout
+  title="Hỏi Đáp Điện Mặt Trời - Giải Đáp Từ Chuyên Gia | EPCVINA Solar"
+  description="Giải đáp chi tiết các câu hỏi thường gặp về điện mặt trời: chi phí lắp đặt, thủ tục xin phép, lựa chọn thiết bị, bảo hành, vận hành hệ thống On-Grid và Hybrid. Tư vấn miễn phí từ EPCVINA Solar."
+  keywords="hỏi đáp điện mặt trời, câu hỏi điện mặt trời, FAQ solar, lắp đặt điện mặt trời, chi phí điện mặt trời, bảo hành pin mặt trời, biến tần hybrid, EPCVINA Solar"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Hỏi Đáp', url: 'https://epcvina.com/hoi-dap' }
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqPageSchema)} />
+
+  <DashboardShell client:load>
+  <HeaderBar client:idle />
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 md:pt-16">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-indigo-900 via-blue-900 to-indigo-800 text-white py-14">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full -translate-y-1/2 translate-x-1/4" />
+      </div>
+      <div class="relative w-full px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center">
+          <div class="flex items-center justify-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+              <svg class="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold mb-3">Hỏi Đáp Điện Mặt Trời</h1>
+          <p class="text-blue-200 max-w-2xl mx-auto text-base">
+            Giải đáp chi tiết các thắc mắc về lắp đặt điện mặt trời từ đội ngũ kỹ sư EPCVINA Solar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b border-gray-200">
+      <div class="w-full px-4 sm:px-6 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto">
+          <nav class="flex items-center space-x-2 text-sm text-gray-600">
+            <a href="/" class="hover:text-orange-600 transition-colors">Trang chủ</a>
+            <span>/</span>
+            <span class="text-gray-900 font-medium">Hỏi Đáp</span>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Content -->
+    <FAQPage client:idle generalFAQ={generalFAQ} productFAQ={productFAQ} />
+  </main>
+  </DashboardShell>
+</DashboardLayout>
