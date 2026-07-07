@@ -19,21 +19,7 @@ if (!product) {
   return Astro.redirect('/equipment');
 }
 
-// Fetch related projects that use this product
-const allProjects = await getCollection('projects');
 const productId = product.id.replace('.md', '');
-const productCategory = product.data.category;
-const relatedProjects = allProjects
-  .filter(project => {
-    const equipmentItems = project.data.equipment_items || [];
-    return equipmentItems.some(item => {
-      const productSlug = item.product_slug || '';
-      return productSlug.includes(productId) || 
-             productId.includes(productSlug.split('/').pop() || '') ||
-             productSlug.includes(productCategory);
-    });
-  })
-  .slice(0, 3);
 
 // Product structured data with epcvina.com backlink
 const productJsonLd = {
@@ -84,7 +70,6 @@ const breadcrumbJsonLd = {
     <ProductDetail 
       client:visible 
       product={{...product.data, id: productId}}
-      relatedProjects={relatedProjects}
     />
   </DashboardShell>
 </DashboardLayout>

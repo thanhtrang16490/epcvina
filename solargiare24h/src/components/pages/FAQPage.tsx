@@ -112,7 +112,7 @@ const faqs: FAQ[] = [
   {
     category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
     question: 'Solar Giá Rẻ 24h có gì khác biệt?',
-    answer: 'Solar Giá Rẻ 24h là công ty CP Xây lắp EPC Việt Nam với:\n• Kinh nghiệm 200+ dự án\n• Đội ngũ kỹ sư cơ điện chuyên nghiệp\n• Thiết bị Tier 1 chính hãng\n• Bảo hành nhanh 24-48h\n• Hỗ trợ trọn đời\n• Tư vấn trung thực, không over-sell',
+    answer: 'Solar Giá Rẻ 24h là công ty CP Xây lắp EPC Việt Nam với:\n• Đội ngũ kỹ sư cơ điện chuyên nghiệp\n• Thiết bị Tier 1 chính hãng\n• Bảo hành nhanh 24-48h\n• Hỗ trợ trọn đời\n• Tư vấn trung thực, không over-sell',
   },
   {
     category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
@@ -123,11 +123,6 @@ const faqs: FAQ[] = [
     category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
     question: 'Solar Giá Rẻ 24h bảo hành như thế nào?',
     answer: 'Chế độ bảo hành:\n• Hotline hỗ trợ 24/7\n• Kỹ thuật đến tận nơi trong 24-48h\n• Remote support qua Zalo/phone\n• Bảo trì định kỳ 6 tháng/lần\n• Vệ sinh tấm pin theo yêu cầu\n• Thay thế thiết bị lỗi miễn phí trong BH',
-  },
-  {
-    category: '🌟 Dịch vụ Solar Giá Rẻ 24h',
-    question: 'Có thể xem dự án đã làm không?',
-    answer: 'Có! Bạn có thể:\n• Xem tại /du-an trên website\n• Tham quan dự án thực tế (đặt lịch trước)\n• Đọc testimonial từ khách hàng cũ\n• Liên hệ 0947 776 662 để được tư vấn\nSolar Giá Rẻ 24h minh bạch 100% về năng lực.',
   },
 ];
 

@@ -20,28 +20,8 @@ interface Product {
   product_type?: string;
 }
 
-interface Project {
-  id: string;
-  data: {
-    title: string;
-    customer: string;
-    capacity: string;
-    system_type: string;
-    location: string;
-    completion_date: string;
-    description: string;
-    image: string;
-    equipment_items?: Array<{
-      label: string;
-      value: string;
-      product_slug?: string;
-    }>;
-  };
-}
-
 interface ProductDetailProps {
   product: Product;
-  relatedProjects?: Project[];
 }
 
 const CATEGORY_NAMES: Record<string, string> = {
@@ -61,7 +41,7 @@ const CATEGORY_NAMES: Record<string, string> = {
   'accessories': 'Phụ kiện lắp đặt',
 };
 
-export default function ProductDetail({ product, relatedProjects = [] }: ProductDetailProps) {
+export default function ProductDetail({ product }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
   const images = product.main_image ? [product.main_image] : [];
@@ -404,103 +384,6 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
               </div>
             </div>
           )}
-
-            {/* Related Projects Section */}
-            {relatedProjects.length > 0 && (
-              <div className="mt-12 pt-12 border-t border-gray-200">
-                <div className="mb-8">
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                    </div>
-                    <span>Dự án sử dụng thiết bị này</span>
-                  </h2>
-                  <p className="text-gray-600 text-base">Các dự án thực tế đã lắp đặt {product.name}</p>
-                </div>
-                
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {relatedProjects.map((project) => {
-                    const projectSlug = project.id.replace('.md', '');
-                    const tagColors: Record<string, string> = {
-                      'Hybrid có lưu trữ': 'bg-blue-100 text-blue-700',
-                      'Hòa Lưới bám tải': 'bg-sky-100 text-sky-700',
-                      'On Grid / Hybrid': 'bg-emerald-100 text-emerald-700',
-                    };
-                    const tagColor = tagColors[project.data.system_type] || 'bg-gray-100 text-gray-700';
-                    
-                    return (
-                      <a
-                        key={project.id}
-                        href={`/du-an/${projectSlug}`}
-                        className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-xl transition-all duration-200 group block"
-                      >
-                        {/* Project Image */}
-                        <div className="aspect-video overflow-hidden relative">
-                          <img
-                            src={project.data.image}
-                            alt={project.data.title}
-                            loading="lazy"
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                          
-                          {/* Badges */}
-                          <div className="absolute bottom-3 left-4 right-4">
-                            <div className="flex items-center gap-2">
-                              <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/90 backdrop-blur-sm text-white">
-                                {project.data.capacity}
-                              </span>
-                              <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${tagColor}`}>
-                                {project.data.system_type}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Project Info */}
-                        <div className="p-5">
-                          <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors">
-                            {project.data.title}
-                          </h3>
-                          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
-                            {project.data.description}
-                          </p>
-                          <div className="flex items-center justify-between text-sm text-gray-500">
-                            <span className="flex items-center gap-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                              </svg>
-                              {project.data.location.split(' - ').pop()}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
-                              {project.data.completion_date}
-                            </span>
-                          </div>
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-                
-                <div className="mt-6 text-center">
-                  <a
-                    href="/du-an"
-                    className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold transition-colors"
-                  >
-                    Xem tất cả dự án
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            )}
 
             {/* EPCVINA Backlink Section */}
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-200 p-6 mt-8">

@@ -67,7 +67,6 @@ const menuItems: MenuItem[] = [
     children: [
       { name: 'Câu hỏi thường gặp', href: '/faq', soon: true },
       { name: 'Chính sách bảo hành', href: '/warranty', soon: true },
-      { name: 'Đánh giá khách hàng', href: '/reviews', soon: true },
     ],
   },
   {
