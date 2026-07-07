@@ -1,0 +1,41 @@
+---
+name: "Pin lưu trữ C&I CFE 250H-PV-STS 522kWh"
+brand: "CFE"
+category: "hv-battery"
+model: "CFE 250H-PV-STS"
+description: "Hệ thống pin lưu trữ C&I CFE 250H-PV-STS công suất 250kW, dung lượng 522.48kWh, điện áp 728–949V. Tích hợp 4 MPPT, làm mát chất lỏng, chuyển đổi STS <20ms, IP54. Giải pháp all-in-one cho nhà máy, khu công nghiệp. Bảo hành 5 năm."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "battery"
+voltage: "high"
+warranty_years: 5
+specifications:
+  "Công suất định mức": "250kW"
+  "Dung lượng hệ thống": "522.48kWh"
+  "Điện áp hoạt động": "728–949V"
+  "Điện áp AC": "400V (3 pha 4 dây)"
+  "Dòng xả tối đa": "360A"
+  "Loại pin": "LFP (LiFePO4) – 3.2V, 314Ah"
+  "Chu kỳ vòng đời": ">8000 chu kỳ"
+  "MPPT": "4 bộ × 63kW (tổng 252kW), hiệu suất 99%"
+  "Hiệu suất hệ thống": ">88%"
+  "Quá tải": "110% liên tục; 120% ≤1 phút"
+  "Chuyển đổi STS": "<20ms"
+  "Phương thức làm mát": "Làm mát bằng chất lỏng"
+  "Hệ thống chữa cháy": "Aerosol"
+  "Cấp bảo vệ": "IP54, chống ăn mòn C4"
+  "Giao tiếp": "CAN, RS485, WiFi, SCADA"
+  "BMS": "Tích hợp 2 lớp, giám sát cloud"
+  "Kích thước": "2365 × 1975 × 1373 mm"
+  "Trọng lượng": "5000 kg"
+  "Nhiệt độ hoạt động": "-20°C đến +55°C"
+  "Bảo hành": "5 năm"
+features:
+  - "All-in-one: pin lưu trữ + MPPT + STS + chữa cháy"
+  - "Công suất 250kW, dung lượng 522kWh cho công nghiệp"
+  - "4 MPPT tích hợp, hiệu suất 99%"
+  - "Chuyển đổi STS <20ms, nguồn điện liên tục"
+  - "Làm mát chất lỏng, an toàn tuyệt đối"
+  - "Giám sát cloud, kết nối SCADA"
+---
