@@ -43,7 +43,6 @@ export default function BrandPage({ brand, brandName }: PageProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
   const [gridColumns, setGridColumns] = useState<number>(4);
-  const [productLimit, setProductLimit] = useState<number>(24);
 
   // Resolve actual brand name from slug for API filtering
   const actualBrandName = useMemo(() => {
@@ -141,11 +140,9 @@ export default function BrandPage({ brand, brandName }: PageProps) {
               searchQuery={searchQuery}
               sortBy={sortBy}
               gridColumns={gridColumns}
-              productLimit={productLimit}
               onSearchChange={setSearchQuery}
               onSortChange={setSortBy}
               onGridColumnsChange={setGridColumns}
-              onProductLimitChange={setProductLimit}
               showHero={false}
               showContent={true}
             />

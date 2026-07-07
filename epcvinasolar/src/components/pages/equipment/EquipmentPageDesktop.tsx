@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Shield, X, Eye, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown, ShoppingCart } from '@phosphor-icons/react';
+import { Shield, X, Eye, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown, ShoppingCart, CaretLeft } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
@@ -15,11 +15,10 @@ interface PageProps {
   searchQuery: string;
   sortBy: 'az' | 'za' | 'price-asc' | 'price-desc';
   gridColumns?: number;
-  productLimit?: number;
+  itemsPerPage?: number;
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
   onGridColumnsChange?: (columns: number) => void;
-  onProductLimitChange?: (limit: number) => void;
   showHero?: boolean;
   showContent?: boolean;
 }
@@ -33,11 +32,10 @@ export default function EquipmentPageDesktop({
   searchQuery,
   sortBy,
   gridColumns = 4,
-  productLimit = 24,
+  itemsPerPage = 16,
   onSearchChange,
   onSortChange,
   onGridColumnsChange,
-  onProductLimitChange,
   showHero = true,
   showContent = true,
 }: PageProps) {
@@ -53,6 +51,7 @@ export default function EquipmentPageDesktop({
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const searchRef = useRef<HTMLDivElement>(null);
   const { addItem } = useCart();
 
@@ -101,13 +100,37 @@ export default function EquipmentPageDesktop({
         break;
     }
     
-    // Apply product limit
-    if (productLimit > 0) {
-      filtered = filtered.slice(0, productLimit);
-    }
-    
     return filtered;
-  }, [devices, searchQuery, sortBy, productLimit]);
+  }, [devices, searchQuery, sortBy]);
+
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(filteredDevices.length / itemsPerPage));
+  const paginatedDevices = useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredDevices.slice(start, start + itemsPerPage);
+  }, [filteredDevices, currentPage, itemsPerPage]);
+
+  // Reset page when search/sort changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, sortBy]);
+
+  // Generate page numbers
+  const pageNumbers = useMemo(() => {
+    const pages: (number | '...')[] = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      if (currentPage > 3) pages.push('...');
+      for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+        pages.push(i);
+      }
+      if (currentPage < totalPages - 2) pages.push('...');
+      pages.push(totalPages);
+    }
+    return pages;
+  }, [totalPages, currentPage]);
 
   const brands = useMemo(() => {
     const brandSet = new Set<string>();
@@ -256,18 +279,18 @@ export default function EquipmentPageDesktop({
                 </button>
               </div>
               
-              {/* Product Limit */}
+              {/* Items per page */}
               <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
-                {[16, 24, 32, 40].map((limit) => (
+                {[12, 16, 24, 32].map((limit) => (
                   <button
                     key={limit}
-                    onClick={() => onProductLimitChange?.(limit)}
+                    onClick={() => { setCurrentPage(1); }}
                     className={`px-2.5 py-1.5 text-xs font-medium rounded transition-colors ${
-                      productLimit === limit
+                      itemsPerPage === limit
                         ? 'bg-[#F97316] text-white'
                         : 'text-gray-600 hover:bg-gray-100'
                     }`}
-                    title={`${limit} sản phẩm`}
+                    title={`${limit}/trang`}
                   >
                     {limit}
                   </button>
@@ -338,6 +361,7 @@ export default function EquipmentPageDesktop({
             <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
           </div>
         ) : (
+          <div>
           <div className={`${
             gridColumns === 1 
               ? 'flex flex-col gap-4' 
@@ -345,7 +369,7 @@ export default function EquipmentPageDesktop({
                   gridColumns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'
                 } gap-6`
           }`}>
-            {filteredDevices.map((device) => (
+            {paginatedDevices.map((device) => (
               <div
                 key={device.id}
                 className={`group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-300 cursor-pointer ${
@@ -453,6 +477,59 @@ export default function EquipmentPageDesktop({
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
+              <p className="text-sm text-gray-500">
+                Hiển thị <span className="font-semibold text-gray-900">{(currentPage - 1) * itemsPerPage + 1}</span>–<span className="font-semibold text-gray-900">{Math.min(currentPage * itemsPerPage, filteredDevices.length)}</span> / <span className="font-semibold text-gray-900">{filteredDevices.length}</span> sản phẩm
+              </p>
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                  className={`p-2 rounded-lg border transition-colors ${
+                    currentPage === 1
+                      ? 'border-gray-200 text-gray-300 cursor-not-allowed'
+                      : 'border-gray-300 text-gray-600 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600'
+                  }`}
+                  aria-label="Trang trước"
+                >
+                  <CaretLeft className="w-4 h-4" />
+                </button>
+                {pageNumbers.map((page, idx) => (
+                  page === '...' ? (
+                    <span key={`dots-${idx}`} className="px-2 text-gray-400">…</span>
+                  ) : (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page as number)}
+                      className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
+                        currentPage === page
+                          ? 'bg-[#F97316] text-white shadow-sm'
+                          : 'text-gray-600 hover:bg-orange-50 hover:text-orange-600'
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  )
+                ))}
+                <button
+                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                  className={`p-2 rounded-lg border transition-colors ${
+                    currentPage === totalPages
+                      ? 'border-gray-200 text-gray-300 cursor-not-allowed'
+                      : 'border-gray-300 text-gray-600 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600'
+                  }`}
+                  aria-label="Trang sau"
+                >
+                  <CaretRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
           </div>
         )}
         </div>

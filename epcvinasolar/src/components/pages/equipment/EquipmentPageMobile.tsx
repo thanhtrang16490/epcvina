@@ -1,7 +1,7 @@
 
 
-import { useMemo, useState, useRef, useEffect } from 'react';
-import { Shield, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, ShoppingCart, Check } from '@phosphor-icons/react';
+import { useMemo, useState, useRef, useEffect, useCallback } from 'react';
+import { Shield, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, ShoppingCart, Check, CaretLeft } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
@@ -104,6 +104,9 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
   const [showFilterDrawer, setShowFilterDrawer] = useState(false);
+  const [mobilePage, setMobilePage] = useState(1);
+  const [pcPage, setPcPage] = useState(1);
+  const ITEMS_PER_PAGE = 12;
   const { isHeaderVisible } = useScrollContext();
   const { addItem } = useCart();
   const [isFirstCardVisible, setIsFirstCardVisible] = useState(true);
@@ -191,6 +194,19 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
     
     return devices;
   }, [allDevices, searchQuery, sortBy]);
+
+  // Reset pages when search/sort changes
+  useEffect(() => {
+    setMobilePage(1);
+    setPcPage(1);
+  }, [searchQuery, sortBy]);
+
+  // Paginated devices for PC grid
+  const pcTotalPages = Math.max(1, Math.ceil(filteredDevices.length / ITEMS_PER_PAGE));
+  const pcPaginatedDevices = useMemo(() => {
+    const start = (pcPage - 1) * ITEMS_PER_PAGE;
+    return filteredDevices.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredDevices, pcPage]);
 
   // Extract unique brands
   const brands = useMemo(() => {
@@ -545,8 +561,9 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
             <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
           </div>
         ) : (
+          <div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {filteredDevices.map((device) => {
+            {pcPaginatedDevices.map((device) => {
               const isSelected = selectedDeviceId === device.id;
               return (
                 <div
@@ -653,6 +670,44 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
                 </div>
               );
             })}
+          </div>
+
+          {/* PC Pagination */}
+          {pcTotalPages > 1 && (
+            <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
+              <p className="text-xs text-gray-500">
+                {(pcPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(pcPage * ITEMS_PER_PAGE, filteredDevices.length)} / {filteredDevices.length}
+              </p>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setPcPage(p => Math.max(1, p - 1))}
+                  disabled={pcPage === 1}
+                  className={`p-1.5 rounded-lg border transition-colors ${pcPage === 1 ? 'border-gray-200 text-gray-300' : 'border-gray-300 text-gray-600 hover:bg-orange-50'}`}
+                >
+                  <CaretLeft className="w-4 h-4" />
+                </button>
+                {Array.from({ length: pcTotalPages }, (_, i) => i + 1).slice(
+                  Math.max(0, pcPage - 3),
+                  Math.min(pcTotalPages, pcPage + 2)
+                ).map(page => (
+                  <button
+                    key={page}
+                    onClick={() => setPcPage(page)}
+                    className={`w-8 h-8 rounded-lg text-xs font-medium transition-colors ${pcPage === page ? 'bg-[#F97316] text-white' : 'text-gray-600 hover:bg-orange-50'}`}
+                  >
+                    {page}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setPcPage(p => Math.min(pcTotalPages, p + 1))}
+                  disabled={pcPage === pcTotalPages}
+                  className={`p-1.5 rounded-lg border transition-colors ${pcPage === pcTotalPages ? 'border-gray-200 text-gray-300' : 'border-gray-300 text-gray-600 hover:bg-orange-50'}`}
+                >
+                  <CaretRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
           </div>
         )}
       </div>
