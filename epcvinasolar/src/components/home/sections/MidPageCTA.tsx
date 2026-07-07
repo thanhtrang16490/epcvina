@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Phone, Calculator, ArrowRight } from '@phosphor-icons/react';
+import { Phone, ArrowRight } from '@phosphor-icons/react';
 
 interface MidPageCTAProps {
   variant: 'benefits' | 'reviews';
@@ -26,13 +26,6 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
               </p>
             </div>
             <div className="flex items-center gap-3 flex-shrink-0">
-              <a
-                href="/calculator"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold rounded-full text-sm transition-colors active:scale-[0.98]"
-              >
-                <Calculator className="h-4 w-4" weight="bold" />
-                Tính nhanh
-              </a>
               <a
                 href="#tu-van"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#DC2626] hover:bg-[#B01A22] text-white font-bold rounded-full text-sm transition-colors active:scale-[0.98] shadow-lg"
