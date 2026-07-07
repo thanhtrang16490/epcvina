@@ -12,7 +12,7 @@ testimonial:
   quote: "Lắp trên tầng 7 mà thi công nhanh và an toàn. Giờ tiết kiệm được gần 3 triệu tiền điện mỗi tháng. Cảm ơn đội ngũ EPCVINA!"
   rating: 5
   aspect: "Thi công an toàn & Tiết kiệm điện"
-image: "https://images.unsplash.com/photo-1548337138-e87d889cc369?w=800&q=80"
+image: "/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png"
 is_featured: false
 ---
 

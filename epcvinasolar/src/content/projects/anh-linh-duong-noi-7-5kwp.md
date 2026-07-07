@@ -11,7 +11,7 @@ description: "Hệ thống Hybrid 7.5 kWp cho gia đình anh Linh tại Dương 
 challenges: "Thi công trên tầng cao 7 tầng đòi hỏi thiết bị và kỹ thuật đặc biệt. Mái hiên 2 mặt kính cần giải pháp lắp đặt tinh tế."
 solution: "Sử dụng thiết bị nâng chuyên dụng, đội ngũ kỹ thuật có kinh nghiệm thi công nhà cao tầng. Kết hợp sơn tĩnh điện khung và thiết kế riêng cho mái kính."
 results: "Hoàn thành an toàn, hệ thống hoạt động hiệu quả. Pin lưu trữ SMB 10kWh đáp ứng nhu cầu điện buổi tối."
-image: "https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=800&q=80"
+image: "/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png"
 is_featured: false
 ---
 

@@ -8,7 +8,7 @@ completion_date: "T10.2023"
 equipment: "Tấm pin: Canadian 545 Wp\nBiến tần: Deye 5kw 1phase\nBattery: PowerX 5kwh"
 special_notes: "Áp mái tôn"
 description: "Hệ thống Hybrid 5.4 kWp cho gia đình anh Thọ tại Uông Bí, Quảng Ninh. Lắp đặt áp mái tôn tiết kiệm diện tích."
-image: "https://images.unsplash.com/photo-1548337138-e87d889cc369?w=800&q=80"
+image: "/du-an/solar-nha-dan/du-an-anh-tho-uong-bi.png"
 is_featured: false
 ---
 

@@ -8,7 +8,7 @@ completion_date: "T3.2024"
 equipment: "Tấm pin: longi 580 Wp 2 mặt kính\nBiến tần: Deye 12kwp 3phase\nBattery: Bettenergy 10kwp"
 special_notes: "Mái hiên 2 mặt kính, Làm trên tầng cao 6 tầng"
 description: "Hệ thống Hybrid 15 kWp với tấm pin 2 mặt kính tại Bắc Từ Liêm."
-image: "https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=800&q=80"
+image: "/du-an/solar-nha-dan/du-an-anh-tung-nam-tu-liem.png"
 is_featured: false
 ---
 

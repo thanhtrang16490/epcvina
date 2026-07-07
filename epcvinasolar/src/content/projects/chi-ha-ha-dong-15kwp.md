@@ -40,7 +40,7 @@ testimonial:
   quote: "Từ khi lắp điện mặt trời, hóa đơn điện giảm hẳn. Buổi tối có pin lưu trữ nên không lo mất điện. Đội ngũ thi công chuyên nghiệp, nhiệt tình."
   rating: 5
   aspect: "Tiết kiệm chi phí & Dịch vụ tốt"
-image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
+image: "/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png"
 gallery:
   - "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
   - "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80"
