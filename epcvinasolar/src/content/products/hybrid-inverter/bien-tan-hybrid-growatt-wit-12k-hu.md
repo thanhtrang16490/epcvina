@@ -1,0 +1,42 @@
+---
+name: "Biến tần Hybrid Growatt WIT 12K-HU 12kW"
+brand: "Growatt"
+category: "hybrid-inverter"
+model: "WIT 12K-HU"
+description: "Biến tần Hybrid Growatt WIT 12K-HU 12kW 3 pha, kết hợp hòa lưới và lưu trữ pin. 2 MPPT, hiệu suất 97.6%, dải DC 180–1000V, tích hợp WiFi, chống sét Type II DC/AC. Phù hợp doanh nghiệp và dự án lớn."
+main_image: ""
+is_available: true
+show_on_homepage: false
+product_type: "inverter"
+voltage: "low"
+warranty_years: 5
+specifications:
+  "Công suất AC định mức": "12kW"
+  "Công suất biểu kiến AC tối đa": "13.2kVA"
+  "Loại phase": "3 pha"
+  "Hiệu suất tối đa": "97.6%"
+  "Loại inverter": "Hybrid"
+  "Điện áp DC cực đại": "1000V"
+  "Dải điện áp làm việc DC": "180–1000V"
+  "Số MPPT": "2"
+  "Số string/MPPT": "1/2"
+  "Điện áp AC": "3/N/PE, 380/400V"
+  "Tần số": "50/60Hz"
+  "Cấp bảo vệ": "IP65"
+  "Phương thức làm mát": "Tản nhiệt tự nhiên + quạt"
+  "Giao tiếp": "RF, WiFi, RJ45"
+  "WiFi tích hợp": "Có"
+  "Chống sét DC": "Type II"
+  "Chống sét AC": "Type II"
+  "Kích thước": "475 × 698 × 240 mm"
+  "Trọng lượng": "38 kg"
+  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Bảo hành": "5 năm"
+features:
+  - "Hybrid: hòa lưới + lưu trữ + backup"
+  - "2 MPPT độc lập, tối ưu mái nhiều hướng"
+  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
+  - "Tích hợp WiFi theo dõi từ xa"
+  - "Chống sét Type II DC/AC"
+  - "Màn hình OLED cảm ứng"
+---
