@@ -128,7 +128,20 @@ const structuredData = {
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logo-favicon.svg?v=2" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
-    <link rel="apple-touch-icon" href="/logo-epcvina-solar.png?v=2" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="mask-icon" href="/favicon.svg" color="#f97316" />
+
+    <!-- PWA: Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- PWA: iOS / Apple Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="EPCVINA Solar" />
+
+    <!-- PWA: Android / General -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="EPCVINA Solar" />
 
     <!-- Fonts - Optimized for Mobile -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -179,23 +192,40 @@ const structuredData = {
       }
     </script>
 
-    <!-- Service Worker Registration - Mobile Caching -->
+    <!-- Service Worker Registration - PWA Caching -->
     <script is:inline>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
             .then((registration) => {
               console.log('[SW] Registered:', registration.scope);
+              // Check for updates periodically
+              setInterval(() => registration.update(), 60 * 60 * 1000);
             })
             .catch((error) => {
               console.log('[SW] Registration failed:', error);
             });
         });
+
+        // Notify user when new content is available
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('updatefound', () => {
+          const newWorker = navigator.serviceWorker.controller;
+          if (newWorker) {
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'activated' && !refreshing) {
+                refreshing = true;
+                window.location.reload();
+              }
+            });
+          }
+        });
       }
     </script>
 
     <!-- Theme color -->
-    <meta name="theme-color" content="#f97316" />
+    <meta name="theme-color" content="#f97316" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
     <meta name="author" content="EPC Solar - Công ty CP Xây lắp EPC Việt Nam" />
   </head>
   <body class="min-h-full">

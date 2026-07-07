@@ -1,0 +1,52 @@
+{
+  "name": "EPCVINA Solar - Điện Mặt Trời Trọn Gói",
+  "short_name": "EPCVINA Solar",
+  "description": "Lắp đặt điện mặt trời trọn gói On-Grid & Hybrid. Tiết kiệm 70-90% tiền điện. Bảo hành 10 năm.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#f97316",
+  "lang": "vi-VN",
+  "categories": ["business", "energy", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Báo giá điện mặt trời",
+      "short_name": "Báo giá",
+      "description": "Xem báo giá lắp đặt điện mặt trời",
+      "url": "/bao-gia-dien-mat-troi",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Tính chi phí",
+      "short_name": "Calculator",
+      "description": "Tính chi phí và sản lượng điện mặt trời",
+      "url": "/calculator",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Liên hệ",
+      "short_name": "Liên hệ",
+      "description": "Liên hệ tư vấn miễn phí",
+      "url": "/lien-he",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
