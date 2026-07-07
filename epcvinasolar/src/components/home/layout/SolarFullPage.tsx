@@ -10,7 +10,6 @@ import ReviewsSection from '../sections/ReviewsSection';
 import FAQSection from '../sections/FAQSection';
 import CTASection from '../contact/CTASection';
 import FooterSection from './FooterSection';
-import MobileCTABar from './MobileCTABar';
 
 export default function SolarFullPage() {
   return (
@@ -53,9 +52,6 @@ export default function SolarFullPage() {
       <CTASection />
 
       <FooterSection />
-
-      {/* Mobile sticky bottom CTA bar */}
-      <MobileCTABar />
       </div>
     </div>
   );
