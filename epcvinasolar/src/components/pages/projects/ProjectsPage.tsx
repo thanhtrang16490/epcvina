@@ -462,12 +462,15 @@ export default function ProjectsPage() {
                 const slug = slugMap[project.name] || project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                 
                 return (
-                  <a
+                  <div
                     key={project.name}
-                    href={`/du-an/${slug}`}
-                    className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none cursor-pointer block"
+                    className="bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none"
                   >
-                    <div className="aspect-square overflow-hidden relative group/img">
+                    {/* Image area - click to view large */}
+                    <div 
+                      className="aspect-square overflow-hidden relative group/img cursor-pointer"
+                      onClick={() => setLightboxImage(project.image)}
+                    >
                       <img
                         src={project.image}
                         alt={project.alt}
@@ -476,7 +479,13 @@ export default function ProjectsPage() {
                         height={400}
                         className="w-full h-full object-cover transition-transform duration-300 group-hover/img:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-200" aria-hidden="true" />
+                      <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/40 transition-colors duration-200" aria-hidden="true" />
+                      {/* Eye icon - centered */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
+                        <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg">
+                          <Eye className="w-6 h-6 text-gray-800" weight="bold" />
+                        </div>
+                      </div>
                       {/* Badges - show on hover */}
                       <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200">
                         <div className="flex items-center gap-2">
@@ -488,34 +497,23 @@ export default function ProjectsPage() {
                           </span>
                         </div>
                       </div>
-                      {/* Eye icon - click to view large */}
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setLightboxImage(project.image);
-                        }}
-                        className="absolute top-3 right-3 w-9 h-9 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 cursor-pointer"
-                        aria-label="Xem ảnh lớn"
-                      >
-                        <Eye className="w-5 h-5 text-gray-800" weight="bold" />
-                      </button>
                     </div>
-                    <div className="p-5">
-                      <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2 leading-snug">
+                    {/* Text area - click to go to detail */}
+                    <a href={`/du-an/${slug}`} className="block p-4">
+                      <h3 className="text-sm font-bold text-gray-900 mb-1.5 line-clamp-2 leading-snug">
                         {project.name}
                       </h3>
-                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                      <div className="flex items-center gap-3 text-xs text-gray-500 mb-2">
                         <span className="flex items-center gap-1">
-                          <MapPin className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                          <MapPin className="h-3.5 w-3.5 text-emerald-500" aria-hidden="true" />
                           {project.location}
                         </span>
                         <span className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                          <Calendar className="h-3.5 w-3.5 text-gray-400" aria-hidden="true" />
                           {project.year}
                         </span>
                       </div>
-                      <p className="text-xs text-gray-600 leading-relaxed mb-2 line-clamp-2">
+                      <p className="text-xs text-gray-600 leading-relaxed mb-1.5 line-clamp-2">
                         {project.details}
                       </p>
                       {project.note && (
@@ -523,8 +521,8 @@ export default function ProjectsPage() {
                           {project.note}
                         </p>
                       )}
-                    </div>
-                  </a>
+                    </a>
+                  </div>
                 );
               })}
             </div>
