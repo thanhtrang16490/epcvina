@@ -1,35 +1,40 @@
 ---
-name: "Pin lưu trữ Pylontech US5000 4.8kWh"
+name: "PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH US5000"
 brand: "Pylontech"
 category: "lv-battery"
 model: "US5000"
-description: "Pin lưu trữ Pylontech US5000 4.8kWh, 48V, dòng sạc/xả 80A. DoD 95%, 6000 chu kỳ. Thiết kế module rack 19 inch, tương thích hộ gia đình và thương mại nhỏ. Chứng chỉ TUV, CE, UN38.3. Bảo hành 5 năm."
-main_image: ""
+description: "MODEL: US5000 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 4,8kWh DÒNG SẠC & XẢ: 80A"
+main_image: "/images/products/pin-luu-tru-pylontech-us5000/pin-luu-tru-pylontech-us5000.png"
 is_available: true
 show_on_homepage: false
-product_type: "battery"
-voltage: "low"
-warranty_years: 5
-specifications:
-  "Dung lượng": "4.8kWh"
-  "Điện áp danh định": "48V"
-  "Loại pin": "Lithium-ion"
-  "Dòng sạc/xả": "80A"
-  "Độ sâu xả (DoD)": "95%"
-  "Chu kỳ vòng đời": "6000 chu kỳ"
-  "Giao tiếp": "CAN, RS485"
-  "Thiết kế": "Module rack 19 inch"
-  "Mở rộng": "Kết nối song song nhiều module"
-  "Chứng chỉ an toàn": "TUV, CE, UN38.3"
-  "Kích thước": "440 × 370 × 165 mm"
-  "Trọng lượng": "38 kg"
-  "Nhiệt độ hoạt động": "-20°C đến +55°C"
-  "Bảo hành": "5 năm"
+product_type: "lv-battery"
+source_url: "https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-us5000/"
 features:
-  - "DoD 95%, tối ưu dung lượng sử dụng"
-  - "6000 chu kỳ, tuổi thọ dài"
-  - "Dòng xả 80A, phù hợp thương mại nhỏ"
-  - "Thiết kế module rack 19 inch tiêu chuẩn"
-  - "Tương thích hầu hết inverter trên thị trường"
-  - "Chứng chỉ TUV, CE, UN38.3"
+  - "Thiết kế nhỏ gọn tiết kiệm không gian lắp đặt"
+  - "Thiết kế dạng mô-đun giúp khách hàng dễ dàng mở rộng công suất"
+  - "Tương thích với hầu hết các inverter có sẵn trên thị trường"
+  - "Khóa cố định các mô-đun đơn giản giúp giảm thiểu thời gian và chi phí lắp đặt"
+  - "Chứng chỉ an toàn: TUV, CE, UN38.3…"
+  - "Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội"
+  - "VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội"
+  - "Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình"
 ---
+
+# PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH US5000
+
+## Mô tả
+
+MODEL: US5000 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 4,8kWh DÒNG SẠC & XẢ: 80A
+
+## Tính năng nổi bật
+
+- Thiết kế nhỏ gọn tiết kiệm không gian lắp đặt
+- Thiết kế dạng mô-đun giúp khách hàng dễ dàng mở rộng công suất
+- Tương thích với hầu hết các inverter có sẵn trên thị trường
+- Khóa cố định các mô-đun đơn giản giúp giảm thiểu thời gian và chi phí lắp đặt
+- Chứng chỉ an toàn: TUV, CE, UN38.3…
+- Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội
+- VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội
+- Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-us5000/

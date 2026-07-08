@@ -1,38 +1,30 @@
 ---
-name: "Biến tần Hòa lưới Growatt MIN 8000TL-X 8kW"
+name: "Inverter Growatt MIN8000TL-X"
 brand: "Growatt"
-model: "MIN 8000TL-X"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Growatt MIN 8000TL-X 8kW 1 pha, hiệu suất 98.1%, DC 600V, 1 MPPT, WiFi tích hợp. Phù hợp hệ thống áp mái gia đình. Bảo hành 5 năm."
+model: "MIN8000TL-X"
+description: "⭐Mã sản phẩm: Inverter Growatt MIN8000TL-X ⭐Công suất: 8000kW - 1 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.5% ⭐Số string/MPPT: 1/1/1 ⭐Trọng lượng: 18.2 kg ⭐Kích thước: 425 x 387 x 180 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-min-8000tl-x/bien-tan-hoa-luoi-growatt-min-8000tl-x.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
-warranty_years: 5
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-min8000tl-x-dmt/"
 specifications:
-  "Công suất AC định mức": "8kW"
-  "Công suất biểu kiến AC tối đa": "8kVA"
-  "Loại phase": "1 pha"
   "Hiệu suất tối đa": "98.1%"
-  "Loại inverter": "On Grid"
-  "Điện áp DC cực đại": "600V"
-  "Dải điện áp DC": "100–600V"
-  "Số MPPT": "1"
-  "Số string/MPPT": "1"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kết nối giám sát": "RF / WiFi / RJ45"
-  "WiFi tích hợp": "Có"
-  "Màn hình": "OLED cảm ứng"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên"
-  "Kích thước": "425 × 387 × 180 mm"
+  "Kích thước": "425 x 387 x 180 mm"
   "Trọng lượng": "18.2 kg"
-  "Bảo hành": "5 năm"
-features:
-  - "Hiệu suất MPPT 99.5%, tối ưu sản lượng"
-  - "Thiết kế nhỏ gọn, nhẹ hơn 30% so với model trước"
-  - "Màn hình OLED cảm ứng trực quan"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Phù hợp áp mái gia đình"
 ---
+
+# Inverter Growatt MIN8000TL-X
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt MIN8000TL-X ⭐Công suất: 8000kW - 1 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.5% ⭐Số string/MPPT: 1/1/1 ⭐Trọng lượng: 18.2 kg ⭐Kích thước: 425 x 387 x 180 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 98.1%
+- **Kích thước:** 425 x 387 x 180 mm
+- **Trọng lượng:** 18.2 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-min8000tl-x-dmt/

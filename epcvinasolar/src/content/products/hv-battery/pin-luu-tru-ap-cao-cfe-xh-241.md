@@ -1,38 +1,72 @@
 ---
-name: "Pin lưu trữ áp cao CFE-XH 241 241kWh"
+name: "[CFE-XH 314 Series] Pin lưu trữ áp cao CFE-XH 241"
 brand: "CFE"
 category: "hv-battery"
-model: "CFE-XH 241"
-description: "Pin lưu trữ áp cao CFE-XH 241 thuộc CFE-XH 314 Series, dung lượng 241kWh/rack, điện áp 696–864V. Công nghệ LiFePO4, >8000 chu kỳ, BMS 3 cấp, giao tiếp CAN/RS485/WiFi. Tương thích 47+ thương hiệu inverter. Bảo hành 5 năm."
-main_image: ""
+model: "áp cao CFE-XH 241"
+description: "⭐ Model: CFE-XH 241 ⭐ Điện áp danh định hệ thống: 768V ⭐ Dải điện áp hoạt động: 696 – 864V ⭐ Dung lượng mỗi pack: 16.07kWh (314Ah, 51.2V) ⭐ Dung lượng tối đa một rack: 241kWh (tối đa 15 pack) ⭐ Dòng xả tối đa: 200A ⭐ Dòng sạc tối đa: 150A ⭐ Kích thước rack: 880 × 837 × 1850 mm ⭐ Chu kỳ vòng đời: ≥8000 chu kỳ (@25 ± 2 ℃, 0.5C/0.5C, 80% DoD) ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản (JGP) là nhà phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay 098 5533 498 để được tư vấn & hỗ trợ bảo hành miễn phí!"
+main_image: "/images/products/pin-luu-tru-ap-cao-cfe-xh-241/pin-luu-tru-ap-cao-cfe-xh-241.png"
 is_available: true
 show_on_homepage: false
-product_type: "battery"
-voltage: "high"
-warranty_years: 5
+product_type: "hv-battery"
+source_url: "https://japangreenpower.com.vn/san-pham/series-pin-luu-tru-ap-cao-cfe-xh-241/"
 specifications:
-  "Dung lượng tối đa/rack": "241kWh (15 pack)"
-  "Dung lượng mỗi pack": "16.07kWh (314Ah, 51.2V)"
-  "Điện áp danh định hệ thống": "768V"
-  "Dải điện áp hoạt động": "696–864V"
+  "Tên hệ thống": "Stackable Energy Storage System"
   "Loại pin": "LiFePO4"
-  "Chu kỳ vòng đời": ">8000 chu kỳ"
-  "Dòng sạc tối đa": "150A"
-  "Dòng xả tối đa": "200A"
-  "Giao tiếp": "CAN, RS485, WiFi"
-  "BMS": "3 cấp độ (cell → rack → hệ thống)"
-  "Cấu hình": "64–921kWh (stack module)"
-  "Phương pháp lắp đặt": "Dạng stack (xếp chồng)"
+  "Model pack": "CFE-PA51-314-B"
+  "Dung lượng mỗi pack": "16.07 kWh"
+  "Điện áp danh định mỗi pack": "51.2 V"
+  "Dung lượng (Ah)": "314 Ah"
+  "Số pack tối đa / rack": "15 pack"
+  "Dung lượng tối đa / rack": "241 kWh"
+  "Điện áp danh định hệ thống": "768 V"
+  "Dải điện áp hoạt động": "696 – 864 V"
+  "Dòng sạc tối đa": "150 A"
+  "Dòng xả tối đa": "200 A"
+  "Phương thức giao tiếp": "CAN / RS485 / Wi-Fi"
   "Kích thước rack": "880 × 837 × 1850 mm"
-  "Nhiệt độ sạc": "-10°C đến +70°C"
-  "Nhiệt độ xả": "-20°C đến +70°C"
-  "Độ cao lắp đặt": "≤2000m"
-  "Bảo hành": "5 năm"
+  "Độ ẩm cho phép": "0 – 95% RH (không ngưng tụ)"
+  "Nhiệt độ sạc": "-10 đến 70 ℃"
+  "Nhiệt độ xả": "-20 đến 70 ℃"
+  "Độ cao lắp đặt": "≤2000 m"
+  "Phương pháp lắp đặt": "Dạng stack (xếp chồng)"
+  "Chu kỳ vòng đời": "≥8000 chu kỳ (@25 ± 2 ℃, 0.5C/0.5C, 80% DoD)"
 features:
-  - "LiFePO4 an toàn, >8000 chu kỳ"
-  - "Dung lượng 241kWh/rack, mở rộng 64–921kWh"
-  - "BMS 3 cấp, bảo vệ đa lớp"
-  - "Tương thích 47+ thương hiệu inverter"
-  - "Giao tiếp CAN/RS485/WiFi"
-  - "Thiết kế stack module, linh hoạt"
+  - "Sản phẩm chính hãng, chất lượng cao"
+  - "Dịch vụ hậu mãi tận tâm"
 ---
+
+# [CFE-XH 314 Series] Pin lưu trữ áp cao CFE-XH 241
+
+## Mô tả
+
+⭐ Model: CFE-XH 241 ⭐ Điện áp danh định hệ thống: 768V ⭐ Dải điện áp hoạt động: 696 – 864V ⭐ Dung lượng mỗi pack: 16.07kWh (314Ah, 51.2V) ⭐ Dung lượng tối đa một rack: 241kWh (tối đa 15 pack) ⭐ Dòng xả tối đa: 200A ⭐ Dòng sạc tối đa: 150A ⭐ Kích thước rack: 880 × 837 × 1850 mm ⭐ Chu kỳ vòng đời: ≥8000 chu kỳ (@25 ± 2 ℃, 0.5C/0.5C, 80% DoD) ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản (JGP) là nhà phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay 098 5533 498 để được tư vấn & hỗ trợ bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Tên hệ thống:** Stackable Energy Storage System
+- **Loại pin:** LiFePO4
+- **Model pack:** CFE-PA51-314-B
+- **Dung lượng mỗi pack:** 16.07 kWh
+- **Điện áp danh định mỗi pack:** 51.2 V
+- **Dung lượng (Ah):** 314 Ah
+- **Số pack tối đa / rack:** 15 pack
+- **Dung lượng tối đa / rack:** 241 kWh
+- **Điện áp danh định hệ thống:** 768 V
+- **Dải điện áp hoạt động:** 696 – 864 V
+- **Dòng sạc tối đa:** 150 A
+- **Dòng xả tối đa:** 200 A
+- **Phương thức giao tiếp:** CAN / RS485 / Wi-Fi
+- **Kích thước rack:** 880 × 837 × 1850 mm
+- **Độ ẩm cho phép:** 0 – 95% RH (không ngưng tụ)
+- **Nhiệt độ sạc:** -10 đến 70 ℃
+- **Nhiệt độ xả:** -20 đến 70 ℃
+- **Độ cao lắp đặt:** ≤2000 m
+- **Phương pháp lắp đặt:** Dạng stack (xếp chồng)
+- **Chu kỳ vòng đời:** ≥8000 chu kỳ (@25 ± 2 ℃, 0.5C/0.5C, 80% DoD)
+
+## Tính năng nổi bật
+
+- Sản phẩm chính hãng, chất lượng cao
+- Dịch vụ hậu mãi tận tâm
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/series-pin-luu-tru-ap-cao-cfe-xh-241/

@@ -1,37 +1,34 @@
 ---
-name: "Pin lưu trữ Pylontech UF5000 5.12kWh"
+name: "PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH UF5000"
 brand: "Pylontech"
 category: "lv-battery"
 model: "UF5000"
-description: "Pin lưu trữ Pylontech UF5000 5.12kWh, 48V, dòng sạc/xả 100A. DoD 95%, 6000 chu kỳ, tuổi thọ 15 năm. Mở rộng tối đa 20 bộ/dãy. Thiết kế module rack, tương thích hầu hết Hybrid Inverter. Bảo hành đến 10 năm."
-main_image: ""
+description: "MODEL: UF5000 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 5.12kWh DÒNG SẠC & XẢ: 100A"
+main_image: "/images/products/pin-luu-tru-pylontech-uf5000/pin-luu-tru-pylontech-uf5000.png"
 is_available: true
 show_on_homepage: false
-product_type: "battery"
-voltage: "low"
-warranty_years: 10
-specifications:
-  "Dung lượng": "5.12kWh"
-  "Điện áp danh định": "48V"
-  "Loại pin": "Lithium-ion"
-  "Dòng sạc/xả": "100A"
-  "Độ sâu xả (DoD)": "95%"
-  "Chu kỳ vòng đời": "6000 chu kỳ"
-  "Tuổi thọ": "Đến 15 năm"
-  "Mở rộng": "Tối đa 20 bộ/dãy"
-  "Giao tiếp": "CAN, RS485"
-  "Thiết kế": "Module rack"
-  "Cấp bảo vệ": "IP20"
-  "Chứng chỉ an toàn": "TUV, CE, UN38.3"
-  "Kích thước": "440 × 370 × 165 mm"
-  "Trọng lượng": "38 kg"
-  "Nhiệt độ hoạt động": "-20°C đến +55°C"
-  "Bảo hành": "Đến 10 năm"
+product_type: "lv-battery"
+source_url: "https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-uf5000/"
 features:
-  - "DoD 95%, tối ưu dung lượng sử dụng"
-  - "6000 chu kỳ, tuổi thọ đến 15 năm"
-  - "Mở rộng tối đa 20 bộ/dãy"
-  - "Thiết kế module rack, dễ lắp đặt"
-  - "Tương thích hầu hết Hybrid Inverter"
-  - "Bảo hành đến 10 năm"
+  - "Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội"
+  - "VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội"
+  - "Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình"
+  - "Kho số 2: Lô X11 Đường 10B ND, KCN Hoà Khánh mở rộng, Quận Liên Chiểu, TP. Đà Nẵng"
+  - "Web: https://japangreenpower.com.vn/"
 ---
+
+# PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH UF5000
+
+## Mô tả
+
+MODEL: UF5000 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 5.12kWh DÒNG SẠC & XẢ: 100A
+
+## Tính năng nổi bật
+
+- Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội
+- VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội
+- Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình
+- Kho số 2: Lô X11 Đường 10B ND, KCN Hoà Khánh mở rộng, Quận Liên Chiểu, TP. Đà Nẵng
+- Web: https://japangreenpower.com.vn/
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-uf5000/

@@ -1,42 +1,36 @@
 ---
-name: "Biến tần Hòa lưới Growatt MAX 150KTL3-X2 LV 150kW"
+name: "Inverter Growatt MAX 150 KTL3-X2 LV"
 brand: "Growatt"
-model: "MAX 150KTL3-X2 LV"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Growatt MAX 150KTL3-X2 LV 150kW 3 pha, 8 MPPT độc lập, hiệu suất 98.5%, DC 1100V, IP66. Phù hợp nhà máy điện mặt trời, mái nhà xưởng quy mô lớn. Bảo hành 5 năm."
+model: "MAX 150 KTL3-X2 LV"
+description: "⭐Mã sản phẩm: Inverter Growatt MAX 150 KTL3-X2 LV ⭐Công suất: 150kW - 3 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99% ⭐Số string/MPPT: 8/2 ⭐Trọng lượng: 84 kg ⭐Kích thước: 970 x 640 x 345 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-max-150ktl3-x2-lv/bien-tan-hoa-luoi-growatt-max-150ktl3-x2-lv.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-max-150-ktl3-x2-lv/"
 warranty_years: 5
+warranty: "5 năm"
 specifications:
-  "Công suất AC định mức": "150kW"
-  "Công suất biểu kiến AC tối đa": "165kVA"
-  "Loại phase": "3 pha"
-  "Hiệu suất tối đa": "98.5%"
-  "Loại inverter": "On Grid"
-  "Công suất đầu vào PV tối đa": "204kWp"
-  "Điện áp DC cực đại": "1100V"
-  "Dải điện áp DC": "195–1100V"
-  "Dải MPPT": "180–1000V"
-  "Số MPPT": "8"
-  "Số string/MPPT": "2"
-  "Dòng DC tối đa mỗi MPPT": "45A"
-  "Dòng AC cực đại": "198.5A"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kết nối giám sát": "RF / WiFi / RJ45"
-  "WiFi tích hợp": "Có"
-  "Cấp bảo vệ": "IP66"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên"
+  "Công suất định mức": "204.000 W"
+  "Hiệu suất tối đa": "99%"
   "Kích thước": "970 × 640 × 345 mm"
-  "Trọng lượng": "84 kg"
+  "Trọng lượng": "84 kg✅ Kích thước: 970 × 640 × 345 mm✅ Bảo hành: 5 năm"
   "Bảo hành": "5 năm"
-features:
-  - "8 MPPT độc lập, tối ưu theo từng chuỗi pin"
-  - "Hiệu suất 98.5%, giảm tổn hao năng lượng"
-  - "Dải điện áp DC rộng 195–1100V, linh hoạt cấu hình"
-  - "Chống sét Type II DC/AC toàn diện"
-  - "WiFi tích hợp, giám sát từ xa RF/WiFi/RJ45"
-  - "Tản nhiệt tự nhiên, vận hành ổn định"
 ---
+
+# Inverter Growatt MAX 150 KTL3-X2 LV
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt MAX 150 KTL3-X2 LV ⭐Công suất: 150kW - 3 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99% ⭐Số string/MPPT: 8/2 ⭐Trọng lượng: 84 kg ⭐Kích thước: 970 x 640 x 345 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm
+
+## Thông số kỹ thuật
+
+- **Công suất định mức:** 204.000 W
+- **Hiệu suất tối đa:** 99%
+- **Kích thước:** 970 × 640 × 345 mm
+- **Trọng lượng:** 84 kg✅ Kích thước: 970 × 640 × 345 mm✅ Bảo hành: 5 năm
+- **Bảo hành:** 5 năm
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-max-150-ktl3-x2-lv/

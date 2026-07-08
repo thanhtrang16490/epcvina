@@ -1,42 +1,32 @@
 ---
-name: "Biến tần Hybrid Growatt SPM 10000TL-HU 10kW"
+name: "Inverter Growatt SPM 10000TL-HU"
 brand: "Growatt"
 category: "hybrid-inverter"
 model: "SPM 10000TL-HU"
-description: "Biến tần Hybrid Growatt SPM 10000TL-HU 10kW 1 pha, kết hợp hòa lưới và lưu trữ pin. 3 MPPT, hiệu suất 97.5%, dải DC 120–600V, tích hợp WiFi, chống sét Type II DC/AC. Phù hợp hộ gia đình và doanh nghiệp nhỏ."
+description: "⭐Mã sản phẩm: Inverter Growatt SPM 10000TL-HU ⭐Công suất: 10kW - 1 pha ⭐Số string/MPPT: 3/2 ⭐Trọng lượng: 48.84 kg ⭐Kích thước: 330 x 580 x 232 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
 main_image: ""
 is_available: true
 show_on_homepage: false
 product_type: "inverter"
-voltage: "low"
-warranty_years: 5
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-spm-10000tl-hu/"
 specifications:
-  "Công suất AC định mức": "10kW"
-  "Công suất AC tối đa": "9999W"
-  "Loại phase": "1 pha"
-  "Hiệu suất tối đa": "97.5%"
-  "Loại inverter": "Hybrid"
-  "Điện áp DC cực đại": "600V"
-  "Dải điện áp làm việc DC": "120–600V"
-  "Số MPPT": "3"
-  "Số string/MPPT": "2"
-  "Điện áp AC": "220/230/240V"
-  "Tần số": "50/60Hz"
-  "Cấp bảo vệ": "IP65"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên + quạt"
-  "Giao tiếp": "RF, WiFi, RJ45"
-  "WiFi tích hợp": "Có"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kích thước": "330 × 580 × 232 mm"
+  "Công suất định mức": "9999W"
+  "Hiệu suất tối đa": "97.50%"
+  "Kích thước": "330 x 580 x 232 mm"
   "Trọng lượng": "48.84 kg"
-  "Nhiệt độ hoạt động": "-25°C đến +60°C"
-  "Bảo hành": "5 năm"
-features:
-  - "Hybrid: hòa lưới + lưu trữ + backup"
-  - "3 MPPT độc lập, tối ưu mái phức tạp"
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Màn hình OLED cảm ứng"
 ---
+
+# Inverter Growatt SPM 10000TL-HU
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt SPM 10000TL-HU ⭐Công suất: 10kW - 1 pha ⭐Số string/MPPT: 3/2 ⭐Trọng lượng: 48.84 kg ⭐Kích thước: 330 x 580 x 232 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Công suất định mức:** 9999W
+- **Hiệu suất tối đa:** 97.50%
+- **Kích thước:** 330 x 580 x 232 mm
+- **Trọng lượng:** 48.84 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-spm-10000tl-hu/

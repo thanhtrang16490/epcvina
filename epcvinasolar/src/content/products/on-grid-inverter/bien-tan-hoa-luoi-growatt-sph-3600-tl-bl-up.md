@@ -1,37 +1,30 @@
 ---
-name: "Biến tần Hòa lưới Growatt SPH 3600TL BL-UP 3.6kW"
+name: "Inverter Growatt SPH 3600 TL BL-UP"
 brand: "Growatt"
-model: "SPH 3600TL BL-UP"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Growatt SPH 3600TL BL-UP 3.6kW 1 pha, hiệu suất cao, thiết kế nhỏ gọn, tích hợp WiFi, màn hình OLED. Phù hợp hệ thống điện mặt trời áp mái gia đình. Bảo hành 5 năm."
+model: "SPH 3600 TL BL-UP"
+description: "⭐Mã sản phẩm: Inverter Growatt SPH 3600 TL BL-UP ⭐Công suất: 3.6kW - 1 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 27 kg ⭐Kích thước: 565 x 456 x 188 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-sph-3600-tl-bl-up/bien-tan-hoa-luoi-growatt-sph-3600-tl-bl-up.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
-warranty_years: 5
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-sph-3600-tl-bl-up/"
 specifications:
-  "Công suất AC định mức": "3.6kW"
-  "Công suất biểu kiến AC tối đa": "3600VA"
-  "Loại phase": "1 pha"
-  "Hiệu suất tối đa": "97.3%"
-  "Loại inverter": "On Grid"
-  "Điện áp làm việc DC": "120–550V"
-  "Số MPPT": "1"
-  "Số string/MPPT": "2"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kết nối giám sát": "RF / WiFi / RJ45"
-  "WiFi tích hợp": "Có"
-  "Màn hình": "OLED cảm ứng"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên"
-  "Kích thước": "565 × 456 × 188 mm"
-  "Trọng lượng": "26 kg"
-  "Bảo hành": "5 năm"
-features:
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Thiết kế nhỏ gọn, nhẹ hơn 30% so với model trước"
-  - "Màn hình OLED cảm ứng trực quan"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Tản nhiệt tự nhiên, vận hành êm ái"
-  - "Phù hợp hệ thống áp mái gia đình"
+  "Hiệu suất tối đa": "97.20%"
+  "Kích thước": "565 x 456 x 188 mm"
+  "Trọng lượng": "27 kg"
 ---
+
+# Inverter Growatt SPH 3600 TL BL-UP
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt SPH 3600 TL BL-UP ⭐Công suất: 3.6kW - 1 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 27 kg ⭐Kích thước: 565 x 456 x 188 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 97.20%
+- **Kích thước:** 565 x 456 x 188 mm
+- **Trọng lượng:** 27 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-sph-3600-tl-bl-up/

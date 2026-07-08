@@ -1,42 +1,36 @@
 ---
-name: "Biến tần Hybrid Growatt WIT 75K-H 75kW"
+name: "Inverter Hybrid Growatt WIT 75K-H"
 brand: "Growatt"
 category: "hybrid-inverter"
 model: "WIT 75K-H"
-description: "Biến tần Hybrid Growatt WIT 75K-H 75kW 3 pha, inverter hybrid công nghiệp cho khu công nghiệp và nhà xưởng. 10 MPPT, hiệu suất 98.0%, PV tối đa 156kW, làm mát thông minh, chống sét Type II DC/AC. Bảo hành 5 năm."
+description: "⭐ Mã sản phẩm: Inverter Hybrid Growatt WIT 75K-H⭐ Công suất: 75kW – 3 pha⭐ Hiệu suất chuyển đổi cực đại: 98.0%⭐ Số string/MPPT: 2/10⭐ Trọng lượng: 140 kg⭐ Kích thước: 820 x 1350 x 510 mm⭐ Làm mát: Làm mát thông minh⭐ Chứng từ: CO, CQ, VAT⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
 main_image: ""
 is_available: true
 show_on_homepage: false
 product_type: "inverter"
-voltage: "high"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-hybrid-growatt-wit-75k-h/"
 warranty_years: 5
+warranty: "5 năm"
 specifications:
-  "Công suất AC định mức": "75kW"
-  "Công suất PV tối đa": "156kWp"
-  "Loại phase": "3 pha"
+  "Công suất định mức": "156000W"
   "Hiệu suất tối đa": "98.0%"
-  "Loại inverter": "Hybrid"
-  "Điện áp DC cực đại": "800V"
-  "Dải điện áp MPPT": "180–800V"
-  "Số MPPT": "10"
-  "Số string/MPPT": "2"
-  "Điện áp AC": "3/N/PE, 380/400V"
-  "Tần số": "50/60Hz"
-  "Cấp bảo vệ": "IP65"
-  "Phương thức làm mát": "Làm mát thông minh (không quạt)"
-  "Giao tiếp": "RS485, CAN, WiFi, 4G (tùy chọn)"
-  "WiFi tích hợp": "Có"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kích thước": "820 × 1350 × 510 mm"
-  "Trọng lượng": "140 kg"
-  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Kích thước": "820 x 1350 x 510 mm"
+  "Trọng lượng": "140 kg✅ Kích thước: 820 x 1350 x 510 mm✅ Bảo hành: 5 năm"
   "Bảo hành": "5 năm"
-features:
-  - "Hybrid: hòa lưới + lưu trữ + backup"
-  - "10 MPPT độc lập, tối ưu trang trại điện mặt trời"
-  - "Hiệu suất 98.0%, giảm tổn hao năng lượng"
-  - "PV tối đa 156kWp, phù hợp dự án lớn"
-  - "Làm mát thông minh không dùng quạt"
-  - "Hỗ trợ giám sát WiFi/4G từ xa"
 ---
+
+# Inverter Hybrid Growatt WIT 75K-H
+
+## Mô tả
+
+⭐ Mã sản phẩm: Inverter Hybrid Growatt WIT 75K-H⭐ Công suất: 75kW – 3 pha⭐ Hiệu suất chuyển đổi cực đại: 98.0%⭐ Số string/MPPT: 2/10⭐ Trọng lượng: 140 kg⭐ Kích thước: 820 x 1350 x 510 mm⭐ Làm mát: Làm mát thông minh⭐ Chứng từ: CO, CQ, VAT⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Công suất định mức:** 156000W
+- **Hiệu suất tối đa:** 98.0%
+- **Kích thước:** 820 x 1350 x 510 mm
+- **Trọng lượng:** 140 kg✅ Kích thước: 820 x 1350 x 510 mm✅ Bảo hành: 5 năm
+- **Bảo hành:** 5 năm
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-hybrid-growatt-wit-75k-h/

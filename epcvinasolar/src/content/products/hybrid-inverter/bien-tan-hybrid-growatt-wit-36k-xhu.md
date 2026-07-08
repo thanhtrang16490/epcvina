@@ -1,42 +1,36 @@
 ---
-name: "Biến tần Hybrid Growatt WIT 36K-XHU 36kW"
+name: "Inverter Hybrid Growatt WIT 36K-XHU"
 brand: "Growatt"
 category: "hybrid-inverter"
 model: "WIT 36K-XHU"
-description: "Biến tần Hybrid Growatt WIT 36K-XHU 36kW 3 pha, inverter hybrid thế hệ mới cho doanh nghiệp. 2 MPPT, hiệu suất 98.1%, PV tối đa 72kW, làm mát thụ động, chống sét Type II DC/AC. Bảo hành 5 năm."
+description: "⭐ Mã sản phẩm: Inverter Hybrid Growatt WIT 36K-XHU⭐ Công suất: 36kW – 3 pha⭐ Hiệu suất chuyển đổi cực đại: 98.1%⭐ Số string/MPPT: 2⭐ Trọng lượng: 81.8 kg⭐ Kích thước: 920 x 585 x 320 mm⭐ Làm mát: Làm mát thụ động, không dùng quạt⭐ Chứng từ: CO, CQ, VAT⭐ Bảo hành: 5 năm/10 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
 main_image: ""
 is_available: true
 show_on_homepage: false
 product_type: "inverter"
-voltage: "high"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-hybrid-growatt-wit-36k-xhu/"
 warranty_years: 5
+warranty: "5 năm"
 specifications:
-  "Công suất AC định mức": "36kW"
-  "Công suất PV tối đa": "72kW"
-  "Loại phase": "3 pha"
+  "Công suất định mức": "72kW"
   "Hiệu suất tối đa": "98.1%"
-  "Loại inverter": "Hybrid"
-  "Điện áp DC cực đại": "1000V"
-  "Dải điện áp MPPT": "180–1000V"
-  "Số MPPT": "2"
-  "Số string/MPPT": "2"
-  "Điện áp AC": "3/N/PE, 380/400V"
-  "Tần số": "50/60Hz"
-  "Cấp bảo vệ": "IP65"
-  "Phương thức làm mát": "Làm mát thụ động (không quạt)"
-  "Giao tiếp": "RS485, CAN, WiFi, 4G (tùy chọn)"
-  "WiFi tích hợp": "Có"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kích thước": "920 × 585 × 320 mm"
-  "Trọng lượng": "81.8 kg"
-  "Nhiệt độ hoạt động": "-25°C đến +60°C"
+  "Kích thước": "920 x 585 x 320 mm"
+  "Trọng lượng": "80 kg"
   "Bảo hành": "5 năm"
-features:
-  - "Hybrid: hòa lưới + lưu trữ + backup"
-  - "2 MPPT độc lập, tối ưu mái nhiều hướng"
-  - "Hiệu suất 98.1%, giảm tổn hao năng lượng"
-  - "PV tối đa 72kW, phù hợp dự án doanh nghiệp"
-  - "Làm mát thụ động, không dùng quạt"
-  - "Hỗ trợ giám sát WiFi/4G từ xa"
 ---
+
+# Inverter Hybrid Growatt WIT 36K-XHU
+
+## Mô tả
+
+⭐ Mã sản phẩm: Inverter Hybrid Growatt WIT 36K-XHU⭐ Công suất: 36kW – 3 pha⭐ Hiệu suất chuyển đổi cực đại: 98.1%⭐ Số string/MPPT: 2⭐ Trọng lượng: 81.8 kg⭐ Kích thước: 920 x 585 x 320 mm⭐ Làm mát: Làm mát thụ động, không dùng quạt⭐ Chứng từ: CO, CQ, VAT⭐ Bảo hành: 5 năm/10 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Công suất định mức:** 72kW
+- **Hiệu suất tối đa:** 98.1%
+- **Kích thước:** 920 x 585 x 320 mm
+- **Trọng lượng:** 80 kg
+- **Bảo hành:** 5 năm
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-hybrid-growatt-wit-36k-xhu/

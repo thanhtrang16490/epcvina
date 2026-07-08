@@ -1,44 +1,32 @@
 ---
-name: "Biến tần Hybrid Growatt SPE 12kW ES 12kW"
+name: "Inverter Hybrid Growatt SPE 12kW ES"
 brand: "Growatt"
 category: "hybrid-inverter"
 model: "SPE 12kW ES"
-description: "Biến tần Hybrid Growatt SPE 12kW ES 1 pha, inverter hybrid dân dụng công suất lớn. 1 MPPT, hiệu suất 96.5%, PV tối đa 12.5kW, tản nhiệt tự nhiên, chống sét Type II DC/AC. Bảo hành 5 năm."
+description: "⭐Mã sản phẩm: Inverter Hybrid Growatt SPE 12kW ES ⭐Công suất: 12kW – 1 pha ⭐Hiệu suất chuyển đổi cực đại: 96.5% ⭐Số string/MPPT: 1 ⭐Trọng lượng: 21.5 kg ⭐Kích thước: 550 x 465 x 150 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
 main_image: ""
 is_available: true
 show_on_homepage: false
 product_type: "inverter"
-voltage: "low"
-warranty_years: 5
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-hybrid-growatt-spe-12kw-es/"
 specifications:
-  "Công suất AC định mức": "12kW"
-  "Công suất AC cực đại": "12kVA"
-  "Công suất PV tối đa": "12.5kW"
-  "Loại phase": "1 pha"
-  "Hiệu suất tối đa": "96.5%"
-  "Loại inverter": "Hybrid"
-  "Điện áp DC cực đại": "550V"
-  "Điện áp làm việc DC": "120–550V"
-  "Dải điện áp MPPT": "60–480V"
-  "Số MPPT": "1"
-  "Số string/MPPT": "1"
-  "Điện áp AC": "220/230V"
-  "Tần số": "50/60Hz"
-  "Cấp bảo vệ": "IP65"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên + quạt"
-  "Giao tiếp": "RF, WiFi, RJ45"
-  "WiFi tích hợp": "Có"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kích thước": "550 × 465 × 150 mm"
+  "Công suất định mức": "12500W"
+  "Hiệu suất tối đa": "96,5%"
+  "Kích thước": "550 x 465 x 150 mm"
   "Trọng lượng": "21.5 kg"
-  "Nhiệt độ hoạt động": "-25°C đến +60°C"
-  "Bảo hành": "5 năm"
-features:
-  - "Hybrid: hòa lưới + lưu trữ + backup"
-  - "1 MPPT, tối ưu cho hệ dân dụng"
-  - "Hiệu suất 96.5%, giảm tổn hao năng lượng"
-  - "PV tối đa 12.5kW, phù hợp hộ gia đình lớn"
-  - "Tích hợp WiFi giám sát từ xa"
-  - "Thiết kế nhỏ gọn, dễ lắp đặt"
 ---
+
+# Inverter Hybrid Growatt SPE 12kW ES
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Hybrid Growatt SPE 12kW ES ⭐Công suất: 12kW – 1 pha ⭐Hiệu suất chuyển đổi cực đại: 96.5% ⭐Số string/MPPT: 1 ⭐Trọng lượng: 21.5 kg ⭐Kích thước: 550 x 465 x 150 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Công suất định mức:** 12500W
+- **Hiệu suất tối đa:** 96,5%
+- **Kích thước:** 550 x 465 x 150 mm
+- **Trọng lượng:** 21.5 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-hybrid-growatt-spe-12kw-es/

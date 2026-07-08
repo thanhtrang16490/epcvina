@@ -1,38 +1,38 @@
 ---
-name: "Tấm pin mặt trời Canadian Solar 550W CS6W-550"
+name: "TẤM PIN CANADIAN CS6W-550"
 brand: "Canadian Solar"
 category: "panel"
-model: "CS6W-550"
-description: "Tấm pin Canadian Solar 550W CS6W-550 công nghệ Mono PERC half-cut, phù hợp cho hệ thống điện mặt trời dân dụng và thương mại. Bảo hành sản phẩm 12 năm, hiệu suất 25 năm. Có bảo hiểm PICC toàn cầu."
-main_image: ""
+model: "CANADIAN CS6W-550"
+description: "Tấm pin mono HiKu6 Canadian Solar 550W là dòng pin đơn tinh thể được sản xuất theo công nghệ làm mát Ku Modules, dựa trên nền tảng công nghệ Low Internal Current (LIC) Modules. Hiệu suất tấm pin đạt 21.5 %, giảm chi phí sản xuất điện LCOE đến 4.5%, giảm giá thành hệ thống lên đến 5.6%. Công nghệ giảm thiểu LID / LeTID toàn diện, mức độ suy giảm thấp hơn tới 50%. Tấm pin được trang bị nhiều công nghệ tối tân như: Half-cut cells, PERC, Multi Busbars…. giúp hệ thống điện mặt trời đạt hiệu suất và sản lượng cao, giảm mức độ ảnh hưởng của đổ bóng."
+main_image: "/images/products/tam-pin-canadian-cs6w-550/tam-pin-canadian-cs6w-550.png"
 is_available: true
 show_on_homepage: false
 product_type: "panel"
-voltage: "high"
-warranty_years: 12
+source_url: "https://japangreenpower.com.vn/san-pham/tam-pin-canadian-cs6w-550/"
 specifications:
-  "Công suất tấm pin Pmax": "550W"
-  "Hiệu suất": "20.3%"
-  "Điện áp tại công suất tối đa Vmp": "41.30V"
-  "Dòng điện tại công suất tối đa Imp": "13.32A"
-  "Điện áp hở mạch Voc": "49.50V"
-  "Dòng ngắn mạch Isc": "14.20A"
-  "Điện áp tối đa hệ thống DC": "1500V"
-  "Loại cell": "Mono PERC Half-cut"
-  "Số lượng cell": "144 (6×24)"
-  "Chiều dài": "2278mm"
-  "Chiều rộng": "1134mm"
-  "Chiều cao": "35mm"
-  "Trọng lượng": "31.0kg"
-  "Kính": "Kính cường lực 3.2mm"
-  "Khung": "Khung nhôm hợp kim anodized"
-  "Hộp nối": "IP68"
-  "Nhiệt độ hoạt động": "-40°C đến +85°C"
-features:
-  - "Công nghệ Mono PERC Half-cut hiệu suất cao"
-  - "Bảo hành sản phẩm 12 năm"
-  - "Bảo hành hiệu suất 25 năm tuyến tính"
-  - "Có bảo hiểm PICC toàn cầu"
-  - "Chống PID, chịu tải trọng gió 2400Pa và tuyết 5400Pa"
-  - "Phù hợp khí hậu nóng ẩm Việt Nam"
+  "Loại": "Mono (đơn tinh thể)"
+  "Số lượng Cell": "144 cells"
+  "Thương hiệu": "Canada"
+  "Cân nặng": "27.8 kg"
+  "Hiệu suất quang năng": "21.5%"
+  "Kích thước": "2261 ˣ 1134 ˣ 35 mm"
+  "Hiệu suất": "21.5%"
 ---
+
+# TẤM PIN CANADIAN CS6W-550
+
+## Mô tả
+
+Tấm pin mono HiKu6 Canadian Solar 550W là dòng pin đơn tinh thể được sản xuất theo công nghệ làm mát Ku Modules, dựa trên nền tảng công nghệ Low Internal Current (LIC) Modules. Hiệu suất tấm pin đạt 21.5 %, giảm chi phí sản xuất điện LCOE đến 4.5%, giảm giá thành hệ thống lên đến 5.6%. Công nghệ giảm thiểu LID / LeTID toàn diện, mức độ suy giảm thấp hơn tới 50%. Tấm pin được trang bị nhiều công nghệ tối tân như: Half-cut cells, PERC, Multi Busbars…. giúp hệ thống điện mặt trời đạt hiệu suất và sản lượng cao, giảm mức độ ảnh hưởng của đổ bóng.
+
+## Thông số kỹ thuật
+
+- **Loại:** Mono (đơn tinh thể)
+- **Số lượng Cell:** 144 cells
+- **Thương hiệu:** Canada
+- **Cân nặng:** 27.8 kg
+- **Hiệu suất quang năng:** 21.5%
+- **Kích thước:** 2261 ˣ 1134 ˣ 35 mm
+- **Hiệu suất:** 21.5%
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/tam-pin-canadian-cs6w-550/

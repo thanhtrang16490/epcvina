@@ -1,42 +1,30 @@
 ---
-name: "Biến tần Hybrid Growatt WIT 5K-HU 5kW"
+name: "Inverter Growatt WIT 5K-HU"
 brand: "Growatt"
 category: "hybrid-inverter"
 model: "WIT 5K-HU"
-description: "Biến tần Hybrid Growatt WIT 5K-HU 5kW 3 pha, kết hợp hòa lưới và lưu trữ pin. 2 MPPT, hiệu suất 97.6%, dải DC 180–1000V, tích hợp WiFi, chống sét Type II DC/AC. Phù hợp hộ gia đình và doanh nghiệp nhỏ."
+description: "⭐Mã sản phẩm: Inverter Growatt WIT 5K-HU ⭐Công suất: 5kW - 3 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 38 kg ⭐Kích thước: 475 x 698 x 240 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
 main_image: ""
 is_available: true
 show_on_homepage: false
 product_type: "inverter"
-voltage: "low"
-warranty_years: 5
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-wit-5k-hu/"
 specifications:
-  "Công suất AC định mức": "5kW"
-  "Công suất biểu kiến AC tối đa": "5.5kVA"
-  "Loại phase": "3 pha"
-  "Hiệu suất tối đa": "97.6%"
-  "Loại inverter": "Hybrid"
-  "Điện áp DC cực đại": "1000V"
-  "Dải điện áp làm việc DC": "180–1000V"
-  "Số MPPT": "2"
-  "Số string/MPPT": "1"
-  "Điện áp AC": "3/N/PE, 380/400V"
-  "Tần số": "50/60Hz"
-  "Cấp bảo vệ": "IP65"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên + quạt"
-  "Giao tiếp": "RF, WiFi, RJ45"
-  "WiFi tích hợp": "Có"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kích thước": "475 × 698 × 240 mm"
+  "Hiệu suất tối đa": "97.60%"
+  "Kích thước": "475 x 698 x 240 mm"
   "Trọng lượng": "38 kg"
-  "Nhiệt độ hoạt động": "-25°C đến +60°C"
-  "Bảo hành": "5 năm"
-features:
-  - "Hybrid: hòa lưới + lưu trữ + backup"
-  - "2 MPPT độc lập, tối ưu mái nhiều hướng"
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Màn hình OLED cảm ứng"
 ---
+
+# Inverter Growatt WIT 5K-HU
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt WIT 5K-HU ⭐Công suất: 5kW - 3 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 38 kg ⭐Kích thước: 475 x 698 x 240 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 97.60%
+- **Kích thước:** 475 x 698 x 240 mm
+- **Trọng lượng:** 38 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-wit-5k-hu/

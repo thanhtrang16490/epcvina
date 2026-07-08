@@ -1,113 +1,108 @@
 ---
-name: "Tấm pin mặt trời Aiko 650W Mặt Kính Stellar 2N 66-202"
+name: "Tấm pin AIKO 650W"
 brand: "AIKO"
 category: "panel"
-model: "Stellar 2N 66-202"
-description: "Tấm pin AIKO Solar 650W là dòng Pin năng lượng mặt trời ứng dụng công nghệ mới nhất N-type ABC độc quyền do AIKO phát triển với hiệu suất vượt trội 24.1%. Tấm pin được AIKO định hướng đến các đối tượng là nhà xưởng, văn phòng, khách sạn… tối ưu về hiệu suất, sản lượng điện lớn và tính ổn định cao. Vị trí các thanh busbar được bố trí ở mặt sau, 100% diện tích hấp thụ ánh sáng, nội điện trở thấp, tạo ra sản lượng điện cao hơn, hiệu suất cao vượt trội hơn 2 – 3% so với các dòng PERC hay TOPCon trên thị trường. Một ưu điểm nổi bật khác của tấm pin AIKO 650W đó là tính thẩm mỹ cao, phù hợp cho các ứng dụng thương mại như khách sạn, trung tâm thương mại, toà nhà văn phòng…"
-main_image: "/images/products/260508(1).png"
+model: "AIKO 650W"
+description: "Tấm pin AIKO 650W thuộc dòng mô‑đun Mono‑Glass ứng dụng công nghệ cell N‑Type ABC (All Back Contact) hiệu suất cao, mang lại hiệu suất mô‑đun 24,1% cùng khả năng suy hao thấp trong suốt vòng đời vận hành. Với cấu trúc kính cường lực 3,2 mm bền bỉ, thiết kế cell toàn tiếp điểm mặt sau và công nghệ chống PID/LID gần như tuyệt đối, tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời."
+main_image: "/images/products/tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202/tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202.png"
 is_available: true
-show_on_homepage: true
+show_on_homepage: false
 product_type: "panel"
-voltage: "high"
+source_url: "https://japangreenpower.com.vn/san-pham/tam-pin-aiko-650w-1-mat-kinh-dep/"
 warranty_years: 15
+warranty: "15 năm (có thể mở rộng 25 năm)"
 specifications:
-  "Công suất tấm pin Pmax": "650W"
-  "Hiệu suất": "24.1%"
-  "Điện áp tại công suất tối đa Vmp": "40.68V"
-  "Dòng điện tại công suất tối đa Imp": "15.98A"
-  "Điện áp hở mạch Voc": "49.70V"
-  "Dòng ngắn mạch Isc": "16.64A"
-  "Điện áp tối đa hệ thống DC": "1500V"
-  "Dòng cầu chì chuỗi tối đa": "30A"
-  "Loại cell": "N-Type ABC"
-  "Số lượng cell": "132 (6×22)"
-  "Hệ số Bifacia": "80±5%"
-  "Chiều dài": "2382mm"
-  "Chiều rộng": "1134mm"
-  "Chiều cao": "30mm"
-  "Trọng lượng": "32.5kg ±3%"
-  "Kính": "Kính kép, độ dày 2.0 + 2.0mm, kính bán cường lực phủ lớp bảo vệ"
-  "Khung": "Khung nhôm Anodized"
-  "Hộp nối": "IP68, 3 bypass diodes"
-  "Đầu nối": "Tương thích với MC4/MC4 chính hãng MC4-EVO2A"
-  "Cáp": "4mm² (IEC) 12AWG (UL) +400mm, -200mm hoặc chiều dài tùy chọn"
-  "Hệ số nhiệt độ Isc": "+0.05%/°C"
-  "Hệ số nhiệt độ Voc": "-0.22%/°C"
-  "Hệ số nhiệt độ Pmax": "-0.26%/°C"
-  "Nhiệt độ vận hành": "-40℃ ~ +70℃"
-  "Bảo hành sản phẩm": "15 năm"
-  "Bảo hành hiệu suất": "30 năm (≥87.4% sau 30 năm)"
-  "Cấp bảo vệ": "Class II"
-  "Tải cơ học": "Mặt trước 5400Pa, Mặt sau 2400Pa"
-  "Thử nghiệm mưa đá": "Hạt đường kính 25mm với tốc độ 23m/s"
-  "Xếp hạng chống cháy": "IEC Class"
-  "Chi tiết đóng gói": "36 tấm/pallet, 144 tấm/20'GP, 720 tấm/40'HC"
+  "Loại Cell": "N-Type ABC (All Back Contact)"
+  "Công suất cực đại (Pmax)": "650 W"
+  "Hiệu suất Module": "24,1%"
+  "Điện áp hở mạch (Voc)": "54,40 V (STC) / 51,37 V (NOCT)"
+  "Dòng ngắn mạch (Isc)": "15,12 A (STC) / 12,23 A (NOCT)"
+  "Suy giảm hiệu suất năm đầu": "≤ 1%"
+  "Suy giảm hiệu suất từ năm 2–30": "≤ 0,35%/năm"
+  "Bảo hành hiệu suất": "30 năm (tuyến tính)"
+  "Bảo hành sản phẩm": "15 năm (có thể mở rộng 25 năm)"
+  "Kích thước": "2382 × 1134 × 30 mm"
+  "Trọng lượng": "27,1 kg ±3%"
+  "Số lượng cell": "144 (6 × 24)"
+  "Kính": "Kính cường lực 3,2 mm"
+  "Khung": "Nhôm anodized"
+  "Hộp nối (Junction Box)": "IP68, 3 diode bypass"
+  "Cáp": "4 mm² (IEC) / 12 AWG (UL), chiều dài +400 mm, -200 mm hoặc ±1400 mm (tùy chỉnh)"
+  "Đầu nối": "MC4 Compatible / Original MC4"
+  "Đóng gói": "36 tấm/pallet – 144 tấm/20’GP – 720 tấm/40’HC"
+  "Hệ số nhiệt Isc": "+0,05%/°C"
+  "Hệ số nhiệt Voc": "-0,22%/°C"
+  "Nhiệt độ vận hành": "-40°C đến +85°C"
+  "Điện áp hệ thống tối đa": "DC 1500 V"
+  "Dòng cầu chì tối đa": "25 A"
+  "Lớp bảo vệ": "Class II"
+  "Tải tĩnh tối đa": "Mặt trước: 5400 Pa / Mặt sau: 2400 Pa"
+  "Thử nghiệm mưa đá": "Viên đá đường kính 25 mm, tốc độ 23 m/s"
+  "Xếp hạng cháy": "IEC Class C"
+  "Điện áp hở mạch Voc": "54,40 V"
+  "Điện áp tại công suất tối đa Vmp": "45,10 V"
+  "Dòng ngắn mạch Isc": "15,12 A"
+  "Dòng điện tại công suất tối đa Imp": "14,42 A"
 features:
-  - "Công nghệ cell N-Type ABC đột phá: Tăng diện tích tiếp xúc với ánh sáng, tạo ra nhiều điện hơn và truyền tải dòng điện tốt hơn. Giảm suy giảm công suất theo thời gian. Tính thẩm mỹ cao (mặt trước sau đồng đều, không thấy busbar)"
-  - "Hiệu suất dẫn đầu trên 24%: Hiệu suất cao hàng đầu trên thị trường lên tới 24.1%, giúp tạo ra nhiều điện hơn trên cùng một diện tích, giảm số lượng tấm pin và tối ưu không gian"
-  - "Thiết kế 2 mặt kính tăng sản lượng điện: Với thiết kế 2 mặt kính bifacial, Aiko 650 có khả năng hấp thụ ánh sáng hai phía tốt. Ngoài ra cấu trúc kính kép giúp tăng độ bền, giảm nguy cơ vỡ nứt và tăng hiệu suất vận hành"
-  - "Tối ưu chi phí hệ thống: Tối ưu cho diện tích, giảm số tấm pin, phụ kiện, nhân công và giảm chi phí ban đầu"
-  - "Độ bền cơ học vượt trội: Mặt kính cường lực 2.0+2.0mm và khung nhôm hợp kim anodized chịu lực, chống ăn mòn, bảo vệ cell pin và hoạt động bền bỉ dưới mọi điều kiện thời tiết"
-  - "Sự suy giảm công suất rất thấp: Độ suy giảm hiệu suất thấp < 1% năm đầu tiên và < 0.35% cho các năm tiếp theo"
-  - "Khả năng hoạt động tốt khi bị che bóng: Giảm tổn thất công suất khi một phần tấm pin bị che. Phù hợp cho mái nhà có nhiều vật cản, hệ thống rooftop dân dụng hoặc thương mại"
+  - "Hơn 16 năm đổi mới công nghệ liên tục"
+  - "Hiện diện tại châu Âu, châu Á – Thái Bình Dương, Nhật Bản, Hàn Quốc, Trung Đông và châu Phi"
+  - "Sản phẩm ABC (All Back Contact) module được công nhận rộng rãi bởi khách hàng cao cấp toàn cầu"
+  - "Cell N‑Type ABC (All Back Contact) – không busbar mặt trước, hấp thụ ánh sáng tối đa, hiệu suất cao, suy hao thấp"
+  - "Cấu trúc Mono‑Glass – tăng độ bền, chống nứt vi mô, chống PID"
+  - "Hiệu suất module 24,1% – thuộc nhóm cao nhất trong phân khúc 600W+"
+  - "Không busbar mặt trước → bề mặt cell sạch, ánh sáng thu vào tối đa, tăng sản lượng thực tế."
+  - "Dòng điện di chuyển ngắn hơn → giảm tổn hao, hiệu suất cao ngay cả khi trời nóng."
 ---
 
-# Tấm pin mặt trời Aiko 650W Mặt Kính Stellar 2N 66-202
+# Tấm pin AIKO 650W
 
 ## Mô tả
-Tấm pin mặt trời Aiko 650W sử dụng công nghệ ABC (All Back Contact) tiên tiến với hiệu suất chuyển đổi lên đến 24.1%. Sản phẩm có thiết kế kính kép cao cấp, phù hợp cho cả hệ thống residential và commercial.
+
+Tấm pin AIKO 650W thuộc dòng mô‑đun Mono‑Glass ứng dụng công nghệ cell N‑Type ABC (All Back Contact) hiệu suất cao, mang lại hiệu suất mô‑đun 24,1% cùng khả năng suy hao thấp trong suốt vòng đời vận hành. Với cấu trúc kính cường lực 3,2 mm bền bỉ, thiết kế cell toàn tiếp điểm mặt sau và công nghệ chống PID/LID gần như tuyệt đối, tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời.
 
 ## Thông số kỹ thuật
 
-### Hiệu suất phát điện
-- **Công suất tấm pin Pmax:** 650W
-- **Hiệu suất:** 24.1%
-- **Điện áp tại công suất tối đa Vmp:** 40.68V
-- **Dòng điện tại công suất tối đa Imp:** 15.98A
-- **Điện áp hở mạch Voc:** 49.70V
-- **Dòng ngắn mạch Isc:** 16.64A
-- **Điện áp tối đa hệ thống DC:** 1500V
-- **Dòng cầu chì chuỗi tối đa:** 30A
-
-### Thông tin cell
-- **Loại cell:** N-Type ABC
-- **Số lượng cell:** 132 (6×22)
-- **Hệ số Bifacia:** 80±5%
-
-### Kích thước & Trọng lượng
-- **Chiều dài:** 2382mm
-- **Chiều rộng:** 1134mm
-- **Chiều cao:** 30mm
-- **Trọng lượng:** 32.5kg ±3%
-
-### Vật liệu & Cấu trúc
-- **Kính:** Kính kép, độ dày 2.0 + 2.0mm, kính bán cường lực phủ lớp bảo vệ
-- **Khung:** Khung nhôm Anodized
-- **Hộp nối:** IP68, 3 bypass diodes
-- **Đầu nối:** Tương thích với MC4/MC4 chính hãng MC4-EVO2A
-- **Cáp:** 4mm² (IEC) 12AWG (UL) +400mm, -200mm hoặc chiều dài tùy chọn
-
-### Hệ số nhiệt độ
-- **Hệ số nhiệt độ Isc:** +0.05%/°C
-- **Hệ số nhiệt độ Voc:** -0.22%/°C
-- **Hệ số nhiệt độ Pmax:** -0.26%/°C
-- **Nhiệt độ vận hành:** -40℃ ~ +70℃
-
-### Chứng nhận & Bảo hành
-- **Bảo hành sản phẩm:** 15 năm
-- **Bảo hành hiệu suất:** 30 năm (≥87.4% sau 30 năm)
-- **Cấp bảo vệ:** Class II
-- **Tải cơ học:** Mặt trước 5400Pa, Mặt sau 2400Pa
-- **Thử nghiệm mưa đá:** Hạt đường kính 25mm với tốc độ 23m/s
-- **Xếp hạng chống cháy:** IEC Class
-
-### Đóng gói
-- **Chi tiết đóng gói:** 36 tấm/pallet, 144 tấm/20'GP, 720 tấm/40'HC
+- **Loại Cell:** N-Type ABC (All Back Contact)
+- **Công suất cực đại (Pmax):** 650 W
+- **Hiệu suất Module:** 24,1%
+- **Điện áp hở mạch (Voc):** 54,40 V (STC) / 51,37 V (NOCT)
+- **Dòng ngắn mạch (Isc):** 15,12 A (STC) / 12,23 A (NOCT)
+- **Suy giảm hiệu suất năm đầu:** ≤ 1%
+- **Suy giảm hiệu suất từ năm 2–30:** ≤ 0,35%/năm
+- **Bảo hành hiệu suất:** 30 năm (tuyến tính)
+- **Bảo hành sản phẩm:** 15 năm (có thể mở rộng 25 năm)
+- **Kích thước:** 2382 × 1134 × 30 mm
+- **Trọng lượng:** 27,1 kg ±3%
+- **Số lượng cell:** 144 (6 × 24)
+- **Kính:** Kính cường lực 3,2 mm
+- **Khung:** Nhôm anodized
+- **Hộp nối (Junction Box):** IP68, 3 diode bypass
+- **Cáp:** 4 mm² (IEC) / 12 AWG (UL), chiều dài +400 mm, -200 mm hoặc ±1400 mm (tùy chỉnh)
+- **Đầu nối:** MC4 Compatible / Original MC4
+- **Đóng gói:** 36 tấm/pallet – 144 tấm/20’GP – 720 tấm/40’HC
+- **Hệ số nhiệt Isc:** +0,05%/°C
+- **Hệ số nhiệt Voc:** -0,22%/°C
+- **Nhiệt độ vận hành:** -40°C đến +85°C
+- **Điện áp hệ thống tối đa:** DC 1500 V
+- **Dòng cầu chì tối đa:** 25 A
+- **Lớp bảo vệ:** Class II
+- **Tải tĩnh tối đa:** Mặt trước: 5400 Pa / Mặt sau: 2400 Pa
+- **Thử nghiệm mưa đá:** Viên đá đường kính 25 mm, tốc độ 23 m/s
+- **Xếp hạng cháy:** IEC Class C
+- **Điện áp hở mạch Voc:** 54,40 V
+- **Điện áp tại công suất tối đa Vmp:** 45,10 V
+- **Dòng ngắn mạch Isc:** 15,12 A
+- **Dòng điện tại công suất tối đa Imp:** 14,42 A
 
 ## Tính năng nổi bật
-- Công nghệ ABC tiên tiến không có busbar mặt trước
-- Hiệu suất chuyển đổi cao 24.1%
-- Phù hợp cho cả hệ thống residential và commercial
-- Khả năng bifacial 80% thu năng lượng từ mặt sau
-- Bảo hành hiệu suất lên đến 30 năm
-- Kích thước tối ưu, dễ vận chuyển và lắp đặt
+
+- Hơn 16 năm đổi mới công nghệ liên tục
+- Hiện diện tại châu Âu, châu Á – Thái Bình Dương, Nhật Bản, Hàn Quốc, Trung Đông và châu Phi
+- Sản phẩm ABC (All Back Contact) module được công nhận rộng rãi bởi khách hàng cao cấp toàn cầu
+- Cell N‑Type ABC (All Back Contact) – không busbar mặt trước, hấp thụ ánh sáng tối đa, hiệu suất cao, suy hao thấp
+- Cấu trúc Mono‑Glass – tăng độ bền, chống nứt vi mô, chống PID
+- Hiệu suất module 24,1% – thuộc nhóm cao nhất trong phân khúc 600W+
+- Không busbar mặt trước → bề mặt cell sạch, ánh sáng thu vào tối đa, tăng sản lượng thực tế.
+- Dòng điện di chuyển ngắn hơn → giảm tổn hao, hiệu suất cao ngay cả khi trời nóng.
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/tam-pin-aiko-650w-1-mat-kinh-dep/

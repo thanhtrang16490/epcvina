@@ -4,7 +4,7 @@ brand: "AIKO"
 category: "panel"
 model: "Stellar 2N 78-232"
 description: "Tấm pin AIKO Solar 800W là dòng Pin năng lượng mặt trời ứng dụng công nghệ mới nhất N-type ABC độc quyền do AIKO phát triển với hiệu suất vượt trội 24.9%. Tấm pin được AIKO định hướng đến các đối tượng là nhà xưởng, văn phòng, khách sạn… tối ưu về hiệu suất, sản lượng điện lớn và tính ổn định cao. Vị trí các thanh busbar được bố trí ở mặt sau, 100% diện tích hấp thụ ánh sáng, nội điện trở thấp, tạo ra sản lượng điện cao hơn, hiệu suất cao vượt trội hơn 2 – 3% so với các dòng PERC hay TOPCon trên thị trường. Một ưu điểm nổi bật khác của tấm pin AIKO 800W đó là tính thẩm mỹ cao, phù hợp cho các ứng dụng thương mại như khách sạn, trung tâm thương mại, toà nhà văn phòng…"
-main_image: "/images/products/260424(1).png"
+main_image: "/images/products/tam-pin-mat-troi-aiko-800w-mat-kinh-stellar-2n-78-232/tam-pin-mat-troi-aiko-800w-mat-kinh-stellar-2n-78-232.png"
 is_available: true
 show_on_homepage: true
 product_type: "panel"

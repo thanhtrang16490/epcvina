@@ -1,42 +1,30 @@
 ---
-name: "Biến tần Hybrid Growatt SPH 5000TL3 BH-UP 5kW"
+name: "Inverter Growatt SPH 5000 TL3 BH-UP"
 brand: "Growatt"
 category: "hybrid-inverter"
-model: "SPH 5000TL3 BH-UP"
-description: "Biến tần Hybrid Growatt SPH 5000TL3 BH-UP 5kW 3 pha, kết hợp hòa lưới và lưu trữ pin. 2 MPPT, hiệu suất 97.8%, dải DC 160–1000V, tích hợp WiFi, chống sét Type II DC/AC. Phù hợp hộ gia đình và doanh nghiệp nhỏ."
-main_image: ""
+model: "SPH 5000 TL3 BH-UP"
+description: "⭐Mã sản phẩm: Inverter Growatt SPH 5000 TL3 BH-UP ⭐Công suất: 5kW – 3 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 30 kg ⭐Kích thước: 505 x 453 x 198 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/bien-tan-hybrid-growatt-sph-5000tl3-bh-up/bien-tan-hybrid-growatt-sph-5000tl3-bh-up.png"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"
-voltage: "low"
-warranty_years: 5
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-sph-5000-tl3-bh-up/"
 specifications:
-  "Công suất AC định mức": "5kW"
-  "Công suất biểu kiến AC tối đa": "5kVA"
-  "Loại phase": "3 pha"
   "Hiệu suất tối đa": "97.8%"
-  "Loại inverter": "Hybrid"
-  "Điện áp DC cực đại": "1000V"
-  "Dải điện áp làm việc DC": "160–1000V"
-  "Số MPPT": "2"
-  "Số string/MPPT": "1"
-  "Điện áp AC": "3/N/PE, 380/400V"
-  "Tần số": "50/60Hz"
-  "Cấp bảo vệ": "IP65"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên"
-  "Giao tiếp": "RF, WiFi, RJ45"
-  "WiFi tích hợp": "Có"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kích thước": "505 × 453 × 198 mm"
+  "Kích thước": "505 x 453 x 198 mm"
   "Trọng lượng": "30 kg"
-  "Nhiệt độ hoạt động": "-25°C đến +60°C"
-  "Bảo hành": "5 năm"
-features:
-  - "Hybrid: hòa lưới + lưu trữ + backup"
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Màn hình OLED cảm ứng"
-  - "Tản nhiệt tự nhiên, không quạt"
 ---
+
+# Inverter Growatt SPH 5000 TL3 BH-UP
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt SPH 5000 TL3 BH-UP ⭐Công suất: 5kW – 3 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 30 kg ⭐Kích thước: 505 x 453 x 198 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 97.8%
+- **Kích thước:** 505 x 453 x 198 mm
+- **Trọng lượng:** 30 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-sph-5000-tl3-bh-up/

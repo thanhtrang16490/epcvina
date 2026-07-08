@@ -1,42 +1,32 @@
 ---
-name: "Biến tần Hòa lưới Growatt MAX 110KTL3-X2 LV 110kW"
+name: "Inverter Growatt MAX 110 KTL3-X2 LV"
 brand: "Growatt"
-model: "MAX 110KTL3-X2 LV"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Growatt MAX 110KTL3-X2 LV 110kW 3 pha, 8 MPPT độc lập, hiệu suất 98.5%, DC 1100V, IP66. Phù hợp nhà máy điện mặt trời, mái nhà xưởng. Bảo hành 5 năm."
+model: "MAX 110 KTL3-X2 LV"
+description: "⭐Mã sản phẩm: Inverter Growatt MAX 110 KTL3-X2 LV ⭐Công suất: 110kW - 3 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.9% ⭐Số string/MPPT: 8/2 ⭐Trọng lượng: 84 kg ⭐Kích thước: 970 x 640 x 345 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-max-110ktl3-x2-lv/bien-tan-hoa-luoi-growatt-max-110ktl3-x2-lv.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
-warranty_years: 5
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/growatt-max-110-ktl3-x2-lv/"
 specifications:
-  "Công suất AC định mức": "110kW"
-  "Công suất biểu kiến AC tối đa": "121kVA"
-  "Loại phase": "3 pha"
-  "Hiệu suất tối đa": "98.5%"
-  "Loại inverter": "On Grid"
-  "Công suất đầu vào PV tối đa": "150kWp"
-  "Điện áp DC cực đại": "1100V"
-  "Dải điện áp DC": "195–1100V"
-  "Dải MPPT": "180–1000V"
-  "Số MPPT": "8"
-  "Số string/MPPT": "2"
-  "Dòng DC tối đa mỗi MPPT": "45A"
-  "Dòng AC cực đại": "145.3A"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kết nối giám sát": "RF / WiFi / RJ45"
-  "WiFi tích hợp": "Có"
-  "Cấp bảo vệ": "IP66"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên"
-  "Kích thước": "970 × 640 × 345 mm"
-  "Trọng lượng": "80 kg"
-  "Bảo hành": "5 năm"
-features:
-  - "8 MPPT độc lập, tối ưu theo từng chuỗi pin"
-  - "Hiệu suất 98.5%, giảm tổn hao năng lượng"
-  - "Dải điện áp DC rộng 195–1100V, linh hoạt cấu hình"
-  - "Chống sét Type II DC/AC toàn diện"
-  - "WiFi tích hợp, giám sát từ xa RF/WiFi/RJ45"
-  - "Tản nhiệt tự nhiên, vận hành ổn định"
+  "Công suất định mức": "110000 W"
+  "Hiệu suất tối đa": "98,8%"
+  "Kích thước": "970 x 640 x 345 mm"
+  "Trọng lượng": "84 kg"
 ---
+
+# Inverter Growatt MAX 110 KTL3-X2 LV
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt MAX 110 KTL3-X2 LV ⭐Công suất: 110kW - 3 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.9% ⭐Số string/MPPT: 8/2 ⭐Trọng lượng: 84 kg ⭐Kích thước: 970 x 640 x 345 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Công suất định mức:** 110000 W
+- **Hiệu suất tối đa:** 98,8%
+- **Kích thước:** 970 x 640 x 345 mm
+- **Trọng lượng:** 84 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/growatt-max-110-ktl3-x2-lv/

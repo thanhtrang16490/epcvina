@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { getOptimizedProductImage } from '../../../lib/optimized-product-images';
 
 export const prerender = false;
 
@@ -54,7 +55,7 @@ export const GET: APIRoute = async ({ url }) => {
     filtered.sort((a, b) => a.data.name.localeCompare(b.data.name));
 
     // Transform to match expected response format
-    const products = filtered.map(p => ({
+    const products = await Promise.all(filtered.map(async p => ({
       id: p.id,
       name: p.data.name,
       brand: p.data.brand,
@@ -65,9 +66,12 @@ export const GET: APIRoute = async ({ url }) => {
       features: p.data.features,
       warranty: p.data.warranty,
       price: p.data.price,
-      main_image: p.data.main_image,
+      main_image: await getOptimizedProductImage(p.data.main_image, {
+        width: 480,
+        quality: 76,
+      }),
       is_available: p.data.is_available,
-    }));
+    })));
 
     return new Response(JSON.stringify({
       success: true,

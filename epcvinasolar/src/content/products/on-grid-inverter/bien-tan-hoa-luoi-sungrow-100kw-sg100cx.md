@@ -1,42 +1,46 @@
 ---
-name: "Biến tần Hòa lưới Sungrow 100kW SG100CX"
+name: "INVERTER SUNGROW SG100CX"
 brand: "Sungrow"
-model: "SG100CX"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Sungrow 100kW SG100CX, inverter string đa MPPT cho dự án C&I. 9 MPPT độc lập, hiệu suất 98.7%, IP66, chống ăn mòn C5, phục hồi PID. Bảo hành 5 năm."
+model: "SG100CX"
+description: "Thương hiệu: SUNGROW Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm"
+main_image: "/images/products/bien-tan-hoa-luoi-sungrow-100kw-sg100cx/bien-tan-hoa-luoi-sungrow-100kw-sg100cx.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
-warranty_years: 5
-specifications:
-  "Công suất AC định mức": "100kW"
-  "Loại phase": "3 pha"
-  "Hiệu suất tối đa": "98.7%"
-  "Loại inverter": "On Grid"
-  "Điện áp PV tối đa": "1100V"
-  "Dải điện áp MPPT": "200–1000V"
-  "Số MPPT": "9"
-  "Số string/MPPT": "2 (tổng 18 strings)"
-  "Dòng vào DC tối đa": "26A × 9"
-  "Dòng ngắn mạch DC tối đa": "40A × 9"
-  "Điện áp AC định mức": "3/N/PE, 380/400V"
-  "Cấp bảo vệ": "IP66"
-  "Chống ăn mòn": "C5"
-  "Phương thức làm mát": "Quạt cưỡng bức thông minh"
-  "Giao tiếp": "RS485 / WLAN"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Phục hồi PID": "Có"
-  "Kích thước": "1051 × 660 × 362 mm"
-  "Trọng lượng": "85 kg"
-  "Nhiệt độ hoạt động": "-30°C đến +60°C"
-  "Bảo hành": "5 năm"
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-sungrow-sg100cx-2/"
 features:
-  - "9 MPPT độc lập, tối ưu mái nhiều hướng"
-  - "Hiệu suất 98.7%, giảm tổn hao năng lượng"
-  - "Tương thích mô-đun hai mặt (bifacial)"
-  - "Phục hồi PID giảm suy giảm hiệu suất dài hạn"
-  - "IP66, chống ăn mòn C5"
-  - "Chẩn đoán I-V curve, giám sát từ xa"
+  - "NĂNG SUẤT CAO\n\n9 MPPTs với hiệu suất tối ưu đạt 98,7%"
+  - "Tương thích với mô-đun hai mặt"
+  - "Tích hợp sẵn chức năng phục hồi hiệu suất PID"
+  - "CHI PHÍ THẤP\n\nTương thích với các cáp điện AC lõi đồng (Cu) và lõi nhôm (Al)"
+  - "Cho phép kết nối DC 2 trong 1"
+  - "Có chức năng phát công suất phản kháng Q vào ban đêm"
+  - "VẬN HÀNH & BẢO DƯỠNG THÔNG MINH\n\nNâng cấp chương trình cơ sở từ xa và đưa vào vận hành cảm ứng không cần chạm “touch-free”"
+  - "Chẩn đoán và quét đường đặc tính I-V trực tuyến"
 ---
+
+# INVERTER SUNGROW SG100CX
+
+## Mô tả
+
+Thương hiệu: SUNGROW Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm
+
+## Tính năng nổi bật
+
+- NĂNG SUẤT CAO
+
+9 MPPTs với hiệu suất tối ưu đạt 98,7%
+- Tương thích với mô-đun hai mặt
+- Tích hợp sẵn chức năng phục hồi hiệu suất PID
+- CHI PHÍ THẤP
+
+Tương thích với các cáp điện AC lõi đồng (Cu) và lõi nhôm (Al)
+- Cho phép kết nối DC 2 trong 1
+- Có chức năng phát công suất phản kháng Q vào ban đêm
+- VẬN HÀNH & BẢO DƯỠNG THÔNG MINH
+
+Nâng cấp chương trình cơ sở từ xa và đưa vào vận hành cảm ứng không cần chạm “touch-free”
+- Chẩn đoán và quét đường đặc tính I-V trực tuyến
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-sungrow-sg100cx-2/

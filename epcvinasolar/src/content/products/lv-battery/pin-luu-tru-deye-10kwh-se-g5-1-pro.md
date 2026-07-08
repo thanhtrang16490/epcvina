@@ -4,7 +4,7 @@ brand: "Deye"
 category: "lv-battery"
 model: "SE-G5.1 Pro 10kWh"
 description: "Pin lưu trữ Deye 10kWh SE-G5.1 Pro là giải pháp lưu trữ năng lượng lithium铁 phosphate (LFP) an toàn và bền bỉ. Thiết kế module hóa cho phép mở rộng dung lượng dễ dàng, tương thích hoàn hảo với biến tần Hybrid Deye. Công nghệ LFP đảm bảo tuổi thọ chu kỳ >6000 lần, an toàn tuyệt đối với hệ thống BMS thông minh."
-main_image: "/images/products/260522.jpeg"
+main_image: "/images/products/pin-luu-tru-deye-10kwh-se-g5-1-pro/pin-luu-tru-deye-10kwh-se-g5-1-pro.jpeg"
 is_available: true
 show_on_homepage: true
 product_type: "battery"

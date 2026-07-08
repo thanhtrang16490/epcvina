@@ -1,41 +1,54 @@
 ---
-name: "Tấm pin mặt trời JA Solar 630W"
+name: "JA Solar 630W (JAM66D45‑630/LB)"
 brand: "JA Solar"
 category: "panel"
-model: "JAM66D45-630/LB"
-description: "Tấm pin JA Solar 630W thuộc dòng mô-đun hai mặt (bifacial) N-Type TOPCon double glass, hiệu suất 23.3%, công nghệ half-cut cell và multi-busbar. Phù hợp cho dự án thương mại, nhà máy, khu công nghiệp. Bảo hành sản phẩm 12 năm, hiệu suất 30 năm."
-main_image: ""
+model: "JA Solar 630W (JAM66D45‑630/LB)"
+description: "Tấm pin JA Solar 630W thuộc dòng mô-đun hai mặt (bifacial) ứng dụng công nghệ cell N-Type TOPCon hiệu suất cao, mang lại hiệu suất mô-đun 23,3% cùng khả năng suy hao thấp trong suốt vòng đời vận hành. Với cấu trúc double glass bền bỉ, thiết kế half‑cut cell và công nghệ multi‑busbar (MBB), tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời."
+main_image: "/images/products/tam-pin-ja-solar-630w-jam66d45-630-lb/tam-pin-ja-solar-630w-jam66d45-630-lb.png"
 is_available: true
 show_on_homepage: false
 product_type: "panel"
-voltage: "high"
-warranty_years: 12
+source_url: "https://japangreenpower.com.vn/san-pham/ja-solar-630w-jam66d45%e2%80%91630-lb/"
 specifications:
-  "Công suất tấm pin Pmax": "630W"
-  "Hiệu suất": "23.3%"
-  "Điện áp tại công suất tối đa Vmp": "40.70V"
-  "Dòng điện tại công suất tối đa Imp": "15.48A"
-  "Điện áp hở mạch Voc": "48.90V"
-  "Dòng ngắn mạch Isc": "16.18A"
-  "Điện áp tối đa hệ thống DC": "1500V"
-  "Dòng cầu chì chuỗi tối đa": "35A"
-  "Loại cell": "N-Type TOPCon"
-  "Số lượng cell": "132 (6×22)"
-  "Chiều dài": "2382mm"
-  "Chiều rộng": "1134mm"
-  "Chiều cao": "30mm"
-  "Trọng lượng": "33.1kg"
-  "Kính": "Double glass 2.0mm/2.0mm"
-  "Khung": "Khung nhôm hợp kim anodized"
-  "Hộp nối": "IP68, 3 diode"
-  "Đầu nối": "MC4-EVO2A / QC4.10-351"
-  "Nhiệt độ hoạt động": "-40°C đến +85°C"
+  "Công suất tấm pin Pmax": "630 W"
+  "Điện áp hở mạch Voc": "48.90 V"
+  "Điện áp tại công suất tối đa Vmp": "40.70 V"
+  "Dòng ngắn mạch Isc": "16.18 A"
+  "Dòng điện tại công suất tối đa Imp": "15.48 A"
 features:
-  - "Công nghệ N-Type TOPCon hiệu suất cao, suy hao thấp"
-  - "Cấu trúc double glass (kính–kính) chống ẩm, chống PID"
-  - "Công nghệ bifacial thu thêm ánh sáng mặt sau, tăng sản lượng"
-  - "Hiệu suất module 23.3% — nhóm cao nhất phân khúc 600W+"
-  - "Chịu tải trọng gió 2400Pa và tuyết 5400Pa"
-  - "Bảo hành sản phẩm 12 năm, hiệu suất 30 năm (87.4% năm thứ 30)"
-  - "Đạt tiêu chuẩn IEC 61215, IEC 61730, ISO 9001/14001/45001"
+  - "Hơn 280 GW module đã được cung cấp ra thị trường"
+  - "Hiện diện tại 178+ quốc gia"
+  - "15 nhà máy sản xuất, 13 chi nhánh quốc tế"
+  - "Nhiều năm liền nằm trong nhóm doanh nghiệp năng lượng mới hàng đầu toàn cầu"
+  - "Cell N-Type TOPCon – hiệu suất cao, suy hao thấp"
+  - "Cấu trúc double glass (kính – kính) – tăng độ bền, chống ẩm, chống PID"
+  - "Công nghệ bifacial – thu thêm ánh sáng từ mặt sau, tăng sản lượng thực tế"
+  - "Hiệu suất module 23.3% – thuộc nhóm cao nhất trong phân khúc 600W+"
 ---
+
+# JA Solar 630W (JAM66D45‑630/LB)
+
+## Mô tả
+
+Tấm pin JA Solar 630W thuộc dòng mô-đun hai mặt (bifacial) ứng dụng công nghệ cell N-Type TOPCon hiệu suất cao, mang lại hiệu suất mô-đun 23,3% cùng khả năng suy hao thấp trong suốt vòng đời vận hành. Với cấu trúc double glass bền bỉ, thiết kế half‑cut cell và công nghệ multi‑busbar (MBB), tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời.
+
+## Thông số kỹ thuật
+
+- **Công suất tấm pin Pmax:** 630 W
+- **Điện áp hở mạch Voc:** 48.90 V
+- **Điện áp tại công suất tối đa Vmp:** 40.70 V
+- **Dòng ngắn mạch Isc:** 16.18 A
+- **Dòng điện tại công suất tối đa Imp:** 15.48 A
+
+## Tính năng nổi bật
+
+- Hơn 280 GW module đã được cung cấp ra thị trường
+- Hiện diện tại 178+ quốc gia
+- 15 nhà máy sản xuất, 13 chi nhánh quốc tế
+- Nhiều năm liền nằm trong nhóm doanh nghiệp năng lượng mới hàng đầu toàn cầu
+- Cell N-Type TOPCon – hiệu suất cao, suy hao thấp
+- Cấu trúc double glass (kính – kính) – tăng độ bền, chống ẩm, chống PID
+- Công nghệ bifacial – thu thêm ánh sáng từ mặt sau, tăng sản lượng thực tế
+- Hiệu suất module 23.3% – thuộc nhóm cao nhất trong phân khúc 600W+
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/ja-solar-630w-jam66d45%e2%80%91630-lb/

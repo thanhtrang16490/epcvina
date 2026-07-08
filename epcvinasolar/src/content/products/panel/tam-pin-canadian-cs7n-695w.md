@@ -1,39 +1,78 @@
 ---
-name: "Tấm pin mặt trời Canadian Solar 695W CS7N-695"
+name: "Tấm pin Canadian CS7N 695W"
 brand: "Canadian Solar"
 category: "panel"
-model: "CS7N-695"
-description: "Tấm pin Canadian Solar 695W CS7N-695 công suất siêu cao, công nghệ N-Type TOPCon, phù hợp cho hệ thống điện mặt trời quy mô lớn và thương mại. Bảo hành sản phẩm 12 năm, hiệu suất 30 năm. Có bảo hiểm PICC toàn cầu."
-main_image: ""
+model: "Canadian CS7N 695W"
+description: "Tấm pin Canadian CS7N 695W là dòng pin đơn tinh thể được sản xuất theo công nghệ làm mát Ku Modules, dựa trên nền tảng công nghệ Low Internal Current (LIC) Modules. Hiệu suất tấm pin đạt 22.4%, giảm chi phí sản xuất điện LCOE đến 4.5%, giảm giá thành hệ thống lên đến 5.6%. Công nghệ giảm thiểu LID / LeTID toàn diện, mức độ suy giảm thấp hơn tới 50%. Tấm pin được trang bị nhiều công nghệ tối tân như: Half-cut cells, PERC, Multi Busbars…. giúp hệ thống điện mặt trời đạt hiệu suất và sản lượng cao, giảm mức độ ảnh hưởng của đổ bóng."
+main_image: "/images/products/tam-pin-canadian-cs7n-695w/tam-pin-canadian-cs7n-695w.png"
 is_available: true
 show_on_homepage: false
 product_type: "panel"
-voltage: "high"
-warranty_years: 12
+source_url: "https://japangreenpower.com.vn/san-pham/tam-pin-canadian-cs7n-695w/"
 specifications:
-  "Công suất tấm pin Pmax": "695W"
-  "Hiệu suất": "21.6%"
-  "Điện áp tại công suất tối đa Vmp": "48.20V"
-  "Dòng điện tại công suất tối đa Imp": "14.42A"
-  "Điện áp hở mạch Voc": "58.10V"
-  "Dòng ngắn mạch Isc": "15.25A"
-  "Điện áp tối đa hệ thống DC": "1500V"
-  "Loại cell": "N-Type TOPCon"
-  "Số lượng cell": "144 (6×24)"
-  "Chiều dài": "2384mm"
-  "Chiều rộng": "1303mm"
-  "Chiều cao": "35mm"
-  "Trọng lượng": "37.5kg"
-  "Kính": "Kính cường lực 3.2mm"
-  "Khung": "Khung nhôm hợp kim anodized"
-  "Hộp nối": "IP68"
-  "Nhiệt độ hoạt động": "-40°C đến +85°C"
+  "Loại": "Mono (đơn tinh thể)"
+  "Số lượng Cell": "132 cells"
+  "Thương hiệu": "Canadian Solar"
+  "Cân nặng": "37.8 kg"
+  "Hiệu suất quang năng": "22.4%"
+  "Kích thước": "2384 ˣ 1303 ˣ 33 mm"
+  "Công suất cực đại (Pmax)": "695 W"
+  "Điện áp tại điểm công suất đỉnh (Vmp)": "37.6 V"
+  "Dòng điện tại công suất đỉnh (Imp)": "13.97 A"
+  "Điện áp hở mạch (Voc)": "45.2 V"
+  "Dòng điện ngắn mạch (Isc)": "14.87 A"
+  "Hiệu suất quang năng mô-dun": "22.4 %"
+  "Ngưỡng nhiệt độ vận hành": "-40°C~+85°C"
+  "Ngưỡng điện áp cực đại": "1500V (IEC/UL) hoặc 1000V (IEC/UL)"
+  "Tiêu chuẩn chống cháy": "Loại 29 (UL 61730) hoặc lớp C (IEC61730)"
+  "Dòng cực đại cầu chì": "35 A"
+  "Lớp bảo vệ": "loại II"
+  "Dung sai công suất": "0 ~ +10 W"
+  "Hệ số nhiệt độ (Voc)": "-0.25 % / °C"
+  "Hệ số nhiệt độ (Isc)": "0.05 % / °C"
+  "Nhiệt độ hoạt động Mô đun danh nghĩa": "41 +/- 3 °C"
+  "Hiệu suất": "22.4%"
 features:
-  - "Công nghệ N-Type TOPCon thế hệ mới, hiệu suất cao hơn Mono PERC"
-  - "Công suất 695W - lý tưởng cho hệ thống quy mô lớn"
-  - "Bảo hành sản phẩm 12 năm"
-  - "Bảo hành hiệu suất 30 năm tuyến tính"
-  - "Có bảo hiểm PICC toàn cầu"
-  - "Chống PID, chịu tải trọng gió 2400Pa và tuyết 5400Pa"
-  - "Phù hợp khí hậu nóng ẩm Việt Nam"
+  - "Tăng hiệu quả tổng thể và giảm chi phí: Các hệ thống điện mặt trời sử dụng pin N-type tối ưu hóa việc sử dụng năng lượng mặt trời, giảm thiểu chi phí năng lượng cho người dùng."
+  - "Tiết kiệm chi phí bảo trì: Với độ bền và tuổi thọ cao, các tấm pin N-type giúp giảm thiểu chi phí bảo trì và sửa chữa."
+  - "Khả năng tạo ra năng lượng vượt trội: Công nghệ N-type cho phép sản xuất năng lượng hiệu quả ngay cả trong điều kiện môi trường không lý tưởng, nâng cao tính khả thi của các dự án năng lượng mặt trời quy mô lớn."
 ---
+
+# Tấm pin Canadian CS7N 695W
+
+## Mô tả
+
+Tấm pin Canadian CS7N 695W là dòng pin đơn tinh thể được sản xuất theo công nghệ làm mát Ku Modules, dựa trên nền tảng công nghệ Low Internal Current (LIC) Modules. Hiệu suất tấm pin đạt 22.4%, giảm chi phí sản xuất điện LCOE đến 4.5%, giảm giá thành hệ thống lên đến 5.6%. Công nghệ giảm thiểu LID / LeTID toàn diện, mức độ suy giảm thấp hơn tới 50%. Tấm pin được trang bị nhiều công nghệ tối tân như: Half-cut cells, PERC, Multi Busbars…. giúp hệ thống điện mặt trời đạt hiệu suất và sản lượng cao, giảm mức độ ảnh hưởng của đổ bóng.
+
+## Thông số kỹ thuật
+
+- **Loại:** Mono (đơn tinh thể)
+- **Số lượng Cell:** 132 cells
+- **Thương hiệu:** Canadian Solar
+- **Cân nặng:** 37.8 kg
+- **Hiệu suất quang năng:** 22.4%
+- **Kích thước:** 2384 ˣ 1303 ˣ 33 mm
+- **Công suất cực đại (Pmax):** 695 W
+- **Điện áp tại điểm công suất đỉnh (Vmp):** 37.6 V
+- **Dòng điện tại công suất đỉnh (Imp):** 13.97 A
+- **Điện áp hở mạch (Voc):** 45.2 V
+- **Dòng điện ngắn mạch (Isc):** 14.87 A
+- **Hiệu suất quang năng mô-dun:** 22.4 %
+- **Ngưỡng nhiệt độ vận hành:** -40°C~+85°C
+- **Ngưỡng điện áp cực đại:** 1500V (IEC/UL) hoặc 1000V (IEC/UL)
+- **Tiêu chuẩn chống cháy:** Loại 29 (UL 61730) hoặc lớp C (IEC61730)
+- **Dòng cực đại cầu chì:** 35 A
+- **Lớp bảo vệ:** loại II
+- **Dung sai công suất:** 0 ~ +10 W
+- **Hệ số nhiệt độ (Voc):** -0.25 % / °C
+- **Hệ số nhiệt độ (Isc):** 0.05 % / °C
+- **Nhiệt độ hoạt động Mô đun danh nghĩa:** 41 +/- 3 °C
+- **Hiệu suất:** 22.4%
+
+## Tính năng nổi bật
+
+- Tăng hiệu quả tổng thể và giảm chi phí: Các hệ thống điện mặt trời sử dụng pin N-type tối ưu hóa việc sử dụng năng lượng mặt trời, giảm thiểu chi phí năng lượng cho người dùng.
+- Tiết kiệm chi phí bảo trì: Với độ bền và tuổi thọ cao, các tấm pin N-type giúp giảm thiểu chi phí bảo trì và sửa chữa.
+- Khả năng tạo ra năng lượng vượt trội: Công nghệ N-type cho phép sản xuất năng lượng hiệu quả ngay cả trong điều kiện môi trường không lý tưởng, nâng cao tính khả thi của các dự án năng lượng mặt trời quy mô lớn.
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/tam-pin-canadian-cs7n-695w/

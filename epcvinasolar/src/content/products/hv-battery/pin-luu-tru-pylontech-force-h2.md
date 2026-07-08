@@ -1,34 +1,34 @@
 ---
-name: "Pin lưu trữ áp cao Pylontech Force H2 7.1–85.2kWh"
+name: "PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH FORCE H2"
 brand: "Pylontech"
 category: "hv-battery"
-model: "Force H2"
-description: "Pin lưu trữ áp cao Pylontech Force H2, dung lượng 7.1–85.2kWh, điện áp 96–384V, dòng sạc/xả 40A. Thiết kế module xếp chồng, LiFePO4 an toàn, tuổi thọ cao. Phù hợp hệ thống lưu trữ năng lượng hộ gia đình và thương mại."
-main_image: ""
+model: "FORCE H2"
+description: "MODEL: FORCE H2 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 85,2kWh DÒNG SẠC & XẢ: 40A"
+main_image: "/images/products/pin-luu-tru-pylontech-force-h2/pin-luu-tru-pylontech-force-h2.png"
 is_available: true
 show_on_homepage: false
-product_type: "battery"
-voltage: "high"
-warranty_years: 10
-specifications:
-  "Dung lượng": "7.1–85.2kWh"
-  "Điện áp hệ thống": "96–384V"
-  "Dòng sạc/xả": "40A"
-  "Loại pin": "LiFePO4"
-  "Số module xếp chồng": "Linh hoạt (tùy cấu hình)"
-  "Giao tiếp": "CAN, RS485"
-  "BMS": "Tích hợp, tương thích đa inverter"
-  "Thiết kế": "Module xếp chồng"
-  "Lắp đặt": "Trong nhà / Ngoài trời"
-  "Cấp bảo vệ": "IP20"
-  "Chứng chỉ an toàn": "TUV, CE, UN38.3"
-  "Nhiệt độ hoạt động": "-20°C đến +55°C"
-  "Bảo hành": "Đến 10 năm"
+product_type: "hv-battery"
+source_url: "https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-force-h2/"
 features:
-  - "Điện áp cao 96–384V, hiệu suất cao"
-  - "Dung lượng lên đến 85.2kWh, phù hợp thương mại"
-  - "LiFePO4 an toàn, tuổi thọ cao"
-  - "Module xếp chồng, linh hoạt cấu hình"
-  - "Đấu nối nhanh, tiết kiệm thời gian lắp đặt"
-  - "BMS tương thích hầu hết Hybrid Inverter cao áp"
+  - "Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội"
+  - "VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội"
+  - "Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình"
+  - "Kho số 2: Lô X11 Đường 10B ND, KCN Hoà Khánh mở rộng, Quận Liên Chiểu, TP. Đà Nẵng"
+  - "Web: https://japangreenpower.com.vn/"
 ---
+
+# PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH FORCE H2
+
+## Mô tả
+
+MODEL: FORCE H2 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 85,2kWh DÒNG SẠC & XẢ: 40A
+
+## Tính năng nổi bật
+
+- Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội
+- VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội
+- Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình
+- Kho số 2: Lô X11 Đường 10B ND, KCN Hoà Khánh mở rộng, Quận Liên Chiểu, TP. Đà Nẵng
+- Web: https://japangreenpower.com.vn/
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-force-h2/

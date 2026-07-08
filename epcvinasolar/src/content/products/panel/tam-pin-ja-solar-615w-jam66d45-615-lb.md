@@ -1,41 +1,102 @@
 ---
-name: "Tấm pin mặt trời JA Solar 615W"
+name: "JA Solar 615W (JAM66D45‑615/LB)"
 brand: "JA Solar"
 category: "panel"
-model: "JAM66D45-615/LB"
-description: "Tấm pin JA Solar 615W thuộc dòng mô-đun hai mặt (bifacial) N-Type TOPCon double glass, hiệu suất 22.8%, công nghệ half-cut cell và multi-busbar. Phù hợp cho dự án thương mại, nhà máy, khu công nghiệp. Bảo hành sản phẩm 12 năm, hiệu suất 30 năm."
-main_image: ""
+model: "JA Solar 615W (JAM66D45‑615/LB)"
+description: "Tấm pin JA Solar 615W thuộc dòng mô-đun hai mặt (bifacial) ứng dụng công nghệ cell N-Type TOPCon hiệu suất cao, mang lại hiệu suất mô-đun 22,8% và khả năng suy hao thấp trong suốt vòng đời vận hành. Với thiết kế double glass bền bỉ, cấu trúc half‑cut cell và công nghệ multi‑busbar (MBB), tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời."
+main_image: "/images/products/tam-pin-ja-solar-615w-jam66d45-615-lb/tam-pin-ja-solar-615w-jam66d45-615-lb.png"
 is_available: true
 show_on_homepage: false
 product_type: "panel"
-voltage: "high"
-warranty_years: 12
+source_url: "https://japangreenpower.com.vn/san-pham/ja-solar-615w-jam66d45%e2%80%91615-lb/"
 specifications:
-  "Công suất tấm pin Pmax": "615W"
-  "Hiệu suất": "22.8%"
-  "Điện áp tại công suất tối đa Vmp": "39.96V"
-  "Dòng điện tại công suất tối đa Imp": "15.39A"
-  "Điện áp hở mạch Voc": "48.30V"
-  "Dòng ngắn mạch Isc": "16.10A"
-  "Điện áp tối đa hệ thống DC": "1500V"
-  "Dòng cầu chì chuỗi tối đa": "35A"
-  "Loại cell": "N-Type TOPCon"
-  "Số lượng cell": "132 (6×22)"
-  "Chiều dài": "2382mm"
-  "Chiều rộng": "1134mm"
-  "Chiều cao": "30mm"
-  "Trọng lượng": "33.1kg"
-  "Kính": "Double glass 2.0mm/2.0mm"
-  "Khung": "Khung nhôm hợp kim anodized"
+  "Công suất cực đại (Pmax)": "615 W"
+  "Điện áp hở mạch (Voc)": "48.30 V"
+  "Dòng ngắn mạch (Isc)": "17.39 A"
+  "Hiệu suất mô-đun": "22.8 %"
+  "Dung sai công suất": "0 ~ +3%"
+  "Hệ số nhiệt Isc": "+0.045 %/°C"
+  "Hệ số nhiệt Voc": "-0.250 %/°C"
+  "Tỷ lệ tăng công suất mặt sau": "~10%"
+  "Công nghệ cell": "Mono N-Type"
+  "Số cell": "132 cells (66 x 2)"
+  "Kích thước (D × R × C)": "2382 × 1134 × 30 mm"
+  "Khối lượng": "33.1 kg"
+  "Kính trước / sau": "2.0 mm / 2.0 mm"
+  "Khung": "Nhôm anod hóa"
   "Hộp nối": "IP68, 3 diode"
-  "Đầu nối": "MC4-EVO2A / QC4.10-351"
-  "Nhiệt độ hoạt động": "-40°C đến +85°C"
+  "Dây cáp": "4mm², chiều dài ~400mm"
+  "Đầu nối": "MC4 / MC4-EVO2"
+  "Điện áp hệ thống tối đa": "1500 V DC"
+  "Nhiệt độ làm việc": "-40°C đến +85°C"
+  "Tải cơ học mặt trước": "5400 Pa"
+  "Tải cơ học mặt sau": "2400 Pa"
+  "Nhiệt độ NOCT": "45 ±2°C"
+  "Hệ số bifacial": "80% ±5%"
+  "Cấp an toàn": "Class II"
+  "Chuẩn chống cháy": "UL Type 29 / Class C"
+  "Điện áp hở mạch Voc": "48.30 V"
+  "Điện áp tại công suất tối đa Vmp": "39.96 V"
+  "Dòng ngắn mạch Isc": "16.10 A"
+  "Dòng điện tại công suất tối đa Imp": "15.39 A"
 features:
-  - "Công nghệ N-Type TOPCon hiệu suất cao, suy hao thấp"
-  - "Cấu trúc double glass (kính–kính) chống ẩm, chống PID"
-  - "Công nghệ bifacial thu thêm ánh sáng mặt sau, tăng sản lượng"
-  - "Hiệu suất module 22.8% — nhóm cao nhất phân khúc 600W+"
-  - "Chịu tải trọng gió 2400Pa và tuyết 5400Pa"
-  - "Bảo hành sản phẩm 12 năm, hiệu suất 30 năm (87.4% năm thứ 30)"
-  - "Đạt tiêu chuẩn IEC 61215, IEC 61730, ISO 9001/14001/45001"
+  - "Hơn 280 GW module đã được cung cấp ra thị trường"
+  - "Hiện diện tại 178+ quốc gia"
+  - "Nhiều năm liền nằm trong nhóm doanh nghiệp năng lượng mới hàng đầu thế giới"
+  - "Cell N-Type TOPCon: hiệu suất cao, suy hao thấp"
+  - "Cấu trúc double glass (kính – kính): tăng độ bền, chống ẩm, chống PID"
+  - "Công nghệ bifacial: thu thêm ánh sáng từ mặt sau, tăng sản lượng thực tế"
+  - "Hiệu suất module 22.8%: thuộc nhóm hiệu suất cao trong phân khúc 600W+"
+  - "ISO 9001, ISO 14001, ISO 45001"
 ---
+
+# JA Solar 615W (JAM66D45‑615/LB)
+
+## Mô tả
+
+Tấm pin JA Solar 615W thuộc dòng mô-đun hai mặt (bifacial) ứng dụng công nghệ cell N-Type TOPCon hiệu suất cao, mang lại hiệu suất mô-đun 22,8% và khả năng suy hao thấp trong suốt vòng đời vận hành. Với thiết kế double glass bền bỉ, cấu trúc half‑cut cell và công nghệ multi‑busbar (MBB), tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời.
+
+## Thông số kỹ thuật
+
+- **Công suất cực đại (Pmax):** 615 W
+- **Điện áp hở mạch (Voc):** 48.30 V
+- **Dòng ngắn mạch (Isc):** 17.39 A
+- **Hiệu suất mô-đun:** 22.8 %
+- **Dung sai công suất:** 0 ~ +3%
+- **Hệ số nhiệt Isc:** +0.045 %/°C
+- **Hệ số nhiệt Voc:** -0.250 %/°C
+- **Tỷ lệ tăng công suất mặt sau:** ~10%
+- **Công nghệ cell:** Mono N-Type
+- **Số cell:** 132 cells (66 x 2)
+- **Kích thước (D × R × C):** 2382 × 1134 × 30 mm
+- **Khối lượng:** 33.1 kg
+- **Kính trước / sau:** 2.0 mm / 2.0 mm
+- **Khung:** Nhôm anod hóa
+- **Hộp nối:** IP68, 3 diode
+- **Dây cáp:** 4mm², chiều dài ~400mm
+- **Đầu nối:** MC4 / MC4-EVO2
+- **Điện áp hệ thống tối đa:** 1500 V DC
+- **Nhiệt độ làm việc:** -40°C đến +85°C
+- **Tải cơ học mặt trước:** 5400 Pa
+- **Tải cơ học mặt sau:** 2400 Pa
+- **Nhiệt độ NOCT:** 45 ±2°C
+- **Hệ số bifacial:** 80% ±5%
+- **Cấp an toàn:** Class II
+- **Chuẩn chống cháy:** UL Type 29 / Class C
+- **Điện áp hở mạch Voc:** 48.30 V
+- **Điện áp tại công suất tối đa Vmp:** 39.96 V
+- **Dòng ngắn mạch Isc:** 16.10 A
+- **Dòng điện tại công suất tối đa Imp:** 15.39 A
+
+## Tính năng nổi bật
+
+- Hơn 280 GW module đã được cung cấp ra thị trường
+- Hiện diện tại 178+ quốc gia
+- Nhiều năm liền nằm trong nhóm doanh nghiệp năng lượng mới hàng đầu thế giới
+- Cell N-Type TOPCon: hiệu suất cao, suy hao thấp
+- Cấu trúc double glass (kính – kính): tăng độ bền, chống ẩm, chống PID
+- Công nghệ bifacial: thu thêm ánh sáng từ mặt sau, tăng sản lượng thực tế
+- Hiệu suất module 22.8%: thuộc nhóm hiệu suất cao trong phân khúc 600W+
+- ISO 9001, ISO 14001, ISO 45001
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/ja-solar-615w-jam66d45%e2%80%91615-lb/

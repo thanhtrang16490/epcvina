@@ -1,35 +1,40 @@
 ---
-name: "Pin lưu trữ Pylontech US3000C 3.55kWh"
+name: "PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH US3000C"
 brand: "Pylontech"
 category: "lv-battery"
 model: "US3000C"
-description: "Pin lưu trữ Pylontech US3000C 3.55kWh, 48V, công nghệ Lithium-ion. DoD 95%, 6000 chu kỳ, dòng sạc/xả 37A. Thiết kế module rack 19 inch, tương thích hầu hết inverter. Chứng chỉ TUV, CE, UN38.3. Bảo hành 5 năm."
-main_image: ""
+description: "MODEL: US3000C THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 3,55kWh DÒNG SẠC & XẢ: 37A"
+main_image: "/images/products/pin-luu-tru-pylontech-us3000c/pin-luu-tru-pylontech-us3000c.png"
 is_available: true
 show_on_homepage: false
-product_type: "battery"
-voltage: "low"
-warranty_years: 5
-specifications:
-  "Dung lượng": "3.55kWh"
-  "Điện áp danh định": "48V"
-  "Loại pin": "Lithium-ion"
-  "Dòng sạc/xả": "37A"
-  "Độ sâu xả (DoD)": "95%"
-  "Chu kỳ vòng đời": "6000 chu kỳ"
-  "Giao tiếp": "CAN, RS485"
-  "Thiết kế": "Module rack 19 inch"
-  "Mở rộng": "Kết nối song song nhiều module"
-  "Chứng chỉ an toàn": "TUV, CE, UN38.3"
-  "Kích thước": "440 × 370 × 165 mm"
-  "Trọng lượng": "33 kg"
-  "Nhiệt độ hoạt động": "-20°C đến +55°C"
-  "Bảo hành": "5 năm"
+product_type: "lv-battery"
+source_url: "https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-us3000c/"
 features:
-  - "DoD 95%, tối ưu dung lượng sử dụng"
-  - "6000 chu kỳ, tuổi thọ dài"
-  - "Thiết kế module rack 19 inch tiêu chuẩn"
-  - "Tương thích hầu hết inverter trên thị trường"
-  - "Chứng chỉ TUV, CE, UN38.3"
-  - "Khóa cố định module, giảm thời gian lắp đặt"
+  - "Thiết kế nhỏ gọn tiết kiệm không gian lắp đặt"
+  - "Thiết kế dạng mô-đun giúp khách hàng dễ dàng mở rộng công suất"
+  - "Tương thích với hầu hết các inverter có sẵn trên thị trường"
+  - "Khóa cố định các mô-đun đơn giản giúp giảm thiểu thời gian và chi phí lắp đặt"
+  - "Chứng chỉ an toàn: TUV, CE, UN38.3…"
+  - "Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội"
+  - "VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội"
+  - "Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình"
 ---
+
+# PIN LƯU TRỮ ĐIỆN LITHIUM PYLONTECH US3000C
+
+## Mô tả
+
+MODEL: US3000C THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 3,55kWh DÒNG SẠC & XẢ: 37A
+
+## Tính năng nổi bật
+
+- Thiết kế nhỏ gọn tiết kiệm không gian lắp đặt
+- Thiết kế dạng mô-đun giúp khách hàng dễ dàng mở rộng công suất
+- Tương thích với hầu hết các inverter có sẵn trên thị trường
+- Khóa cố định các mô-đun đơn giản giúp giảm thiểu thời gian và chi phí lắp đặt
+- Chứng chỉ an toàn: TUV, CE, UN38.3…
+- Địa chỉ: Lô A32-NV13, Ô 3, KĐT Geleximco A, An Khánh, Hoài Đức, Hà Nội
+- VPGD: LK01-02, DV01, Yên Nghĩa, Hà Đông, Hà Nội
+- Kho số 1 :Số 2, Đường Lý Bôn, TP. Thái Bình, Tỉnh Thái Bình
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/pin-luu-tru-dien-lithium-pylontech-us3000c/

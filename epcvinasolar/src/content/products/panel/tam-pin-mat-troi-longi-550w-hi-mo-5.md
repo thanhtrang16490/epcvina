@@ -4,7 +4,7 @@ brand: "Longi"
 category: "panel"
 model: "Hi-MO 5 LR5-54HPH-550M"
 description: "Tấm pin năng lượng mặt trời Longi 550W Hi-MO 5 là dòng sản phẩm cao cấp sử dụng công nghệ tế bào đơn tinh thể N-type TOPCon hiệu suất cao. Longi là nhà sản xuất tấm pin năng lượng mặt trời lớn nhất thế giới, với sản phẩm được tin dùng tại hơn 150 quốc gia. Tấm pin 550W phù hợp cho cả hệ thống dân dụng và thương mại, mang lại hiệu suất vượt trội và độ bền lâu dài."
-main_image: "/images/products/260508(1).png"
+main_image: "/images/products/tam-pin-mat-troi-longi-550w-hi-mo-5/tam-pin-mat-troi-longi-550w-hi-mo-5.png"
 is_available: true
 show_on_homepage: true
 product_type: "panel"

@@ -1,33 +1,20 @@
 ---
-name: "Pin lưu trữ Growatt ACE 30.0H-CE1 EU 30kWh"
+name: "Pin lưu trữ Growatt ACE 30.0H-CE1 EU"
 brand: "Growatt"
 category: "hv-battery"
 model: "ACE 30.0H-CE1 EU"
-description: "Pin lưu trữ Growatt ACE 30.0H-CE1 EU 30kWh áp cao, công nghệ LFP an toàn. Thiết kế module 30–60kWh, hỗ trợ sạc/xả liên tục 1C, tương thích tủ 19 inch. BMS thông minh, giám sát WiFi. >6000 chu kỳ. Bảo hành 5 năm."
-main_image: ""
+description: "⭐Sử dụng pin LFP có độ an toàn cao ⭐Thiết kế mô-đun pin, hỗ trợ ⭐Mở rộng linh hoạt 30~60kWh ⭐Hỗ trợ sạc và xả liên tục 1C ⭐Bộ pin tương thích với lắp đặt tủ 19 inch ⭐Dễ dàng lắp đặt và bảo trì ⭐Hỗ trợ vận hành song song nhiều tủ Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/pin-luu-tru-growatt-ace-30h-ce1-eu/pin-luu-tru-growatt-ace-30h-ce1-eu.png"
 is_available: true
 show_on_homepage: false
-product_type: "battery"
-voltage: "high"
-warranty_years: 5
-specifications:
-  "Dung lượng": "30kWh"
-  "Mở rộng": "30–60kWh (module)"
-  "Loại pin": "Lithium Iron Phosphate (LFP)"
-  "Chu kỳ vòng đời": ">6000 chu kỳ"
-  "Sạc/xả liên tục": "1C"
-  "Giao tiếp": "CAN, RS485, WiFi"
-  "BMS": "Tích hợp thông minh"
-  "Thiết kế": "Tương thích tủ 19 inch"
-  "Phương thức lắp đặt": "Dạng tủ rack"
-  "Giám sát từ xa": "WiFi / GPRS"
-  "Nhiệt độ hoạt động": "-10°C đến +55°C"
-  "Bảo hành": "5 năm"
-features:
-  - "Công nghệ LFP an toàn, >6000 chu kỳ"
-  - "Thiết kế module 30–60kWh linh hoạt"
-  - "Sạc/xả liên tục 1C"
-  - "Tương thích tủ 19 inch tiêu chuẩn"
-  - "BMS thông minh, giám sát WiFi/GPRS"
-  - "Dễ dàng lắp đặt và bảo trì"
+product_type: "hv-battery"
+source_url: "https://japangreenpower.com.vn/san-pham/pin-luu-tru-growatt-ace-30-0h-ce1-eu/"
 ---
+
+# Pin lưu trữ Growatt ACE 30.0H-CE1 EU
+
+## Mô tả
+
+⭐Sử dụng pin LFP có độ an toàn cao ⭐Thiết kế mô-đun pin, hỗ trợ ⭐Mở rộng linh hoạt 30~60kWh ⭐Hỗ trợ sạc và xả liên tục 1C ⭐Bộ pin tương thích với lắp đặt tủ 19 inch ⭐Dễ dàng lắp đặt và bảo trì ⭐Hỗ trợ vận hành song song nhiều tủ Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/pin-luu-tru-growatt-ace-30-0h-ce1-eu/

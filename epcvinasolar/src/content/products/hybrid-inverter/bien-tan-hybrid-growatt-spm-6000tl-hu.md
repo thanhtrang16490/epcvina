@@ -1,42 +1,30 @@
 ---
-name: "Biến tần Hybrid Growatt SPM 6000TL-HU 6kW"
+name: "Inverter Growatt SPM 6000TL-HU"
 brand: "Growatt"
 category: "hybrid-inverter"
 model: "SPM 6000TL-HU"
-description: "Biến tần Hybrid Growatt SPM 6000TL-HU 6kW 1 pha, kết hợp hòa lưới và lưu trữ pin. 2 MPPT, hiệu suất 97.5%, dải DC 150–600V, tích hợp WiFi, chống sét Type II DC/AC. Phù hợp hộ gia đình."
+description: "⭐Mã sản phẩm: Inverter Growatt SPM 6000TL-HU ⭐Công suất: 6kW - 1 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 25 kg ⭐Kích thước: 330 x 580 x 232 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
 main_image: ""
 is_available: true
 show_on_homepage: false
 product_type: "inverter"
-voltage: "low"
-warranty_years: 5
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-spm-6000tl-hu/"
 specifications:
-  "Công suất AC định mức": "6kW"
-  "Công suất biểu kiến AC tối đa": "6kVA"
-  "Loại phase": "1 pha"
-  "Hiệu suất tối đa": "97.5%"
-  "Loại inverter": "Hybrid"
-  "Điện áp DC cực đại": "600V"
-  "Dải điện áp làm việc DC": "150–600V"
-  "Số MPPT": "2"
-  "Số string/MPPT": "1"
-  "Điện áp AC": "220/230/240V"
-  "Tần số": "50/60Hz"
-  "Cấp bảo vệ": "IP65"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên + quạt"
-  "Giao tiếp": "RF, WiFi, RJ45"
-  "WiFi tích hợp": "Có"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kích thước": "330 × 580 × 232 mm"
+  "Hiệu suất tối đa": "97.50%"
+  "Kích thước": "330 x 580 x 232 mm"
   "Trọng lượng": "25 kg"
-  "Nhiệt độ hoạt động": "-25°C đến +60°C"
-  "Bảo hành": "5 năm"
-features:
-  - "Hybrid: hòa lưới + lưu trữ + backup"
-  - "2 MPPT độc lập, tối ưu mái nhiều hướng"
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Màn hình OLED cảm ứng"
 ---
+
+# Inverter Growatt SPM 6000TL-HU
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt SPM 6000TL-HU ⭐Công suất: 6kW - 1 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 25 kg ⭐Kích thước: 330 x 580 x 232 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 97.50%
+- **Kích thước:** 330 x 580 x 232 mm
+- **Trọng lượng:** 25 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-spm-6000tl-hu/

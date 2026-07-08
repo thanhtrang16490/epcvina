@@ -1,37 +1,30 @@
 ---
-name: "Biến tần Hòa lưới Growatt MIN 3000TL-X 3kW"
+name: "Inverter Growatt MIN3000TL-X"
 brand: "Growatt"
-model: "MIN 3000TL-X"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Growatt MIN 3000TL-X 3kW 1 pha, hiệu suất 98.2%, DC 500V, 1 MPPT, WiFi tích hợp. Phù hợp hệ thống áp mái gia đình. Bảo hành 5 năm."
+model: "MIN3000TL-X"
+description: "⭐Mã sản phẩm: Inverter Growatt MIN3000TL-X ⭐Công suất: 3000kW - 1 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.9% ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 10.8 kg ⭐Kích thước: 375 x 350 x 160 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-min-3000tl-x/bien-tan-hoa-luoi-growatt-min-3000tl-x.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
-warranty_years: 5
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-min3000tl-x/"
 specifications:
-  "Công suất AC định mức": "3kW"
-  "Công suất biểu kiến AC tối đa": "3kVA"
-  "Loại phase": "1 pha"
   "Hiệu suất tối đa": "98.2%"
-  "Loại inverter": "On Grid"
-  "Điện áp DC cực đại": "500V"
-  "Dải điện áp DC": "100–500V"
-  "Số MPPT": "1"
-  "Số string/MPPT": "2"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kết nối giám sát": "RF / WiFi / RJ45"
-  "WiFi tích hợp": "Có"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên"
-  "Kích thước": "378 × 350 × 160 mm"
+  "Kích thước": "378 x 350 x 160 mm"
   "Trọng lượng": "10.8 kg"
-  "Bảo hành": "5 năm"
-features:
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Thiết kế nhỏ gọn, nhẹ hơn 30% so với model trước"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Tản nhiệt tự nhiên, vận hành êm ái"
-  - "Phù hợp áp mái gia đình"
 ---
+
+# Inverter Growatt MIN3000TL-X
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt MIN3000TL-X ⭐Công suất: 3000kW - 1 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.9% ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 10.8 kg ⭐Kích thước: 375 x 350 x 160 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 98.2%
+- **Kích thước:** 378 x 350 x 160 mm
+- **Trọng lượng:** 10.8 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-min3000tl-x/

@@ -1,37 +1,30 @@
 ---
-name: "Biến tần Hòa lưới Growatt MOD 10KTL3-X 10kW"
+name: "Inverter Growatt MOD 10KTL3-X"
 brand: "Growatt"
-model: "MOD 10KTL3-X"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Growatt MOD 10KTL3-X 10kW 3 pha, hiệu suất 98.6%, DC 1100V, 1 MPPT, màn hình OLED, WiFi tích hợp. Phù hợp áp mái doanh nghiệp và gia đình. Bảo hành 5 năm."
+model: "MOD 10KTL3-X"
+description: "⭐Mã sản phẩm: Inverter Growatt MOD 10KTL3-X ⭐Công suất: 10kW - 3 pha ⭐Số string/MPPT: 1 ⭐Trọng lượng: 14 kg ⭐Kích thước: 425 x 387 x 178 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-mod-10ktl3-x/bien-tan-hoa-luoi-growatt-mod-10ktl3-x.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
-warranty_years: 5
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-mod-10ktl3-x/"
 specifications:
-  "Công suất AC định mức": "10kW"
-  "Công suất biểu kiến AC tối đa": "11kVA"
-  "Loại phase": "3 pha"
   "Hiệu suất tối đa": "98.6%"
-  "Loại inverter": "On Grid"
-  "Điện áp DC cực đại": "1100V"
-  "Dải điện áp DC": "250–1100V"
-  "Số MPPT": "1"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kết nối giám sát": "RF / WiFi / RJ45"
-  "WiFi tích hợp": "Có"
-  "Màn hình": "OLED cảm ứng"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên"
-  "Kích thước": "425 × 387 × 178 mm"
+  "Kích thước": "425 x 387 x 178 mm"
   "Trọng lượng": "14 kg"
-  "Bảo hành": "5 năm"
-features:
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Thiết kế nhỏ gọn, nhẹ hơn 30% so với model trước"
-  - "Màn hình OLED cảm ứng trực quan"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Phù hợp áp mái doanh nghiệp và gia đình"
 ---
+
+# Inverter Growatt MOD 10KTL3-X
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt MOD 10KTL3-X ⭐Công suất: 10kW - 3 pha ⭐Số string/MPPT: 1 ⭐Trọng lượng: 14 kg ⭐Kích thước: 425 x 387 x 178 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 98.6%
+- **Kích thước:** 425 x 387 x 178 mm
+- **Trọng lượng:** 14 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-mod-10ktl3-x/

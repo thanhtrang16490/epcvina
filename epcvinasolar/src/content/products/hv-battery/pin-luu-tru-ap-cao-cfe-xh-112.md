@@ -1,38 +1,74 @@
 ---
-name: "Pin lưu trữ áp cao CFE-XH 112 112kWh"
+name: "[CFE-XH 314 Series] Pin lưu trữ áp cao CFE-XH 112"
 brand: "CFE"
 category: "hv-battery"
-model: "CFE-XH 112"
-description: "Pin lưu trữ áp cao CFE-XH 112 thuộc CFE-XH 314 Series, dung lượng 112kWh/rack, điện áp 324.8–403.2V. Công nghệ LiFePO4, >8000 chu kỳ, BMS 3 cấp, giao tiếp CAN/RS485/WiFi. Tương thích 47+ thương hiệu inverter. Bảo hành 5 năm."
-main_image: ""
+model: "áp cao CFE-XH 112"
+description: "⭐ Model: CFE-XH 112 ⭐ Điện áp danh định hệ thống: 358.4V ⭐ Dung lượng mỗi pack: 16.07kWh (314Ah, 51.2V) ⭐ Dung lượng tối đa một rack: 241kWh (tối đa 15 pack) ⭐ Dòng điện định mức tối đa: 200A ⭐ Kích thước rack: 440 × 837 × 1850 mm ⭐ Chu kỳ vòng đời: ≥8000 chu kỳ (@25 ± 2 ℃, 0.5C / 0.5C, 80% DoD) ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản (JGP) là nhà phân phối và trung tâm bảo hành chính thức của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay số 098 5533 498 để được tư vấn và bảo hành miễn phí!"
+main_image: "/images/products/pin-luu-tru-ap-cao-cfe-xh-112/pin-luu-tru-ap-cao-cfe-xh-112.png"
 is_available: true
 show_on_homepage: false
-product_type: "battery"
-voltage: "high"
-warranty_years: 5
+product_type: "hv-battery"
+source_url: "https://japangreenpower.com.vn/san-pham/pin-luu-tru-ap-cao-cfe-xh-112-c-i/"
 specifications:
-  "Dung lượng tối đa/rack": "241kWh (15 pack)"
-  "Dung lượng mỗi pack": "16.07kWh (314Ah, 51.2V)"
-  "Điện áp danh định hệ thống": "358.4V"
-  "Dải điện áp hoạt động": "324.8–403.2V"
-  "Loại pin": "LiFePO4"
-  "Chu kỳ vòng đời": ">8000 chu kỳ"
-  "Dòng điện định mức tối đa": "200A"
-  "Giao tiếp": "CAN, RS485, WiFi"
-  "BMS": "3 cấp độ (cell → rack → hệ thống)"
-  "Cấu hình": "64–921kWh (stack module)"
+  "Thuộc tính": "Giá trị"
+  "Tên sản phẩm": "Stacked PACK"
+  "Mẫu PDU": "CFE - PDU 1000 - 200 - B"
   "Phương pháp lắp đặt": "Dạng xếp chồng (Stack)"
+  "Độ ẩm cho phép": "0 - 95 % RH (không ngưng tụ)"
+  "Điện áp danh định": "51.2 V"
+  "Dòng điện định mức tối đa": "200 A"
+  "Kích thước": "440 × 837 × 225 mm"
+  "Loại pin": "LiFePO4"
+  "Mẫu pin": "CFE - PA51 - 314 - B"
+  "Tổng dung lượng": "16.07 kWh"
+  "Dung lượng": "314 Ah"
+  "Tên hệ thống": "Hệ thống lưu trữ năng lượng dạng xếp chồng"
+  "Điện áp danh định hệ thống": "358.4 V"
+  "Dải điện áp": "324.8 - 403.2 V"
   "Kích thước hệ thống": "440 × 837 × 1850 mm"
-  "Kích thước pack/PDU": "440 × 837 × 225 mm"
-  "Nhiệt độ sạc": "-10°C đến +70°C"
-  "Nhiệt độ xả": "-20°C đến +70°C"
-  "Độ cao lắp đặt": "≤2000m"
-  "Bảo hành": "5 năm"
+  "Phương thức giao tiếp": "CAN / RS485 / Wi-Fi"
+  "Nhiệt độ hoạt động khi sạc": "-10 đến 70 ℃"
+  "Nhiệt độ hoạt động khi xả": "-20 đến 70 ℃"
+  "Độ cao cho phép": "≤2000m"
+  "Chu kỳ vòng đời": "≥8000 chu kỳ (@25 ± 2 ℃, 0.5C / 0.5C, 80% DoD)"
 features:
-  - "LiFePO4 an toàn, >8000 chu kỳ"
-  - "Điện áp 358V, phù hợp hệ C&I"
-  - "BMS 3 cấp, bảo vệ đa lớp"
-  - "Tương thích 47+ thương hiệu inverter"
-  - "Giao tiếp CAN/RS485/WiFi"
-  - "Thiết kế compact 440mm, dễ lắp đặt"
+  - "Sản phẩm chính hãng, chất lượng cao"
+  - "Dịch vụ hậu mãi tận tâm"
 ---
+
+# [CFE-XH 314 Series] Pin lưu trữ áp cao CFE-XH 112
+
+## Mô tả
+
+⭐ Model: CFE-XH 112 ⭐ Điện áp danh định hệ thống: 358.4V ⭐ Dung lượng mỗi pack: 16.07kWh (314Ah, 51.2V) ⭐ Dung lượng tối đa một rack: 241kWh (tối đa 15 pack) ⭐ Dòng điện định mức tối đa: 200A ⭐ Kích thước rack: 440 × 837 × 1850 mm ⭐ Chu kỳ vòng đời: ≥8000 chu kỳ (@25 ± 2 ℃, 0.5C / 0.5C, 80% DoD) ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản (JGP) là nhà phân phối và trung tâm bảo hành chính thức của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay số 098 5533 498 để được tư vấn và bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Thuộc tính:** Giá trị
+- **Tên sản phẩm:** Stacked PACK
+- **Mẫu PDU:** CFE - PDU 1000 - 200 - B
+- **Phương pháp lắp đặt:** Dạng xếp chồng (Stack)
+- **Độ ẩm cho phép:** 0 - 95 % RH (không ngưng tụ)
+- **Điện áp danh định:** 51.2 V
+- **Dòng điện định mức tối đa:** 200 A
+- **Kích thước:** 440 × 837 × 225 mm
+- **Loại pin:** LiFePO4
+- **Mẫu pin:** CFE - PA51 - 314 - B
+- **Tổng dung lượng:** 16.07 kWh
+- **Dung lượng:** 314 Ah
+- **Tên hệ thống:** Hệ thống lưu trữ năng lượng dạng xếp chồng
+- **Điện áp danh định hệ thống:** 358.4 V
+- **Dải điện áp:** 324.8 - 403.2 V
+- **Kích thước hệ thống:** 440 × 837 × 1850 mm
+- **Phương thức giao tiếp:** CAN / RS485 / Wi-Fi
+- **Nhiệt độ hoạt động khi sạc:** -10 đến 70 ℃
+- **Nhiệt độ hoạt động khi xả:** -20 đến 70 ℃
+- **Độ cao cho phép:** ≤2000m
+- **Chu kỳ vòng đời:** ≥8000 chu kỳ (@25 ± 2 ℃, 0.5C / 0.5C, 80% DoD)
+
+## Tính năng nổi bật
+
+- Sản phẩm chính hãng, chất lượng cao
+- Dịch vụ hậu mãi tận tâm
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/pin-luu-tru-ap-cao-cfe-xh-112-c-i/

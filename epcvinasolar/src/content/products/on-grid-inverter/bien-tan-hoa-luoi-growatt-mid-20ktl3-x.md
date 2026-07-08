@@ -1,38 +1,30 @@
 ---
-name: "Biến tần Hòa lưới Growatt MID 20KTL3-X 20kW"
+name: "Inverter Growatt MID 20KTL3-X"
 brand: "Growatt"
-model: "MID 20KTL3-X"
 category: "on-grid-inverter"
-main_image: ""
-description: "Biến tần hòa lưới Growatt MID 20KTL3-X 20kW 3 pha, hiệu suất 98.6%, DC 1100V, 2 MPPT, màn hình OLED, WiFi tích hợp. Phù hợp áp mái doanh nghiệp và gia đình. Bảo hành 5 năm."
+model: "MID 20KTL3-X"
+description: "⭐Mã sản phẩm: Inverter Growatt MID 20KTL3-X ⭐Công suất: 20kW - 3 pha ⭐Số string/MPPT: 2/2 ⭐Trọng lượng: 23 kg ⭐Kích thước: 525 x 395 x 222 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-mid-20ktl3-x/bien-tan-hoa-luoi-growatt-mid-20ktl3-x.png"
 is_available: true
 show_on_homepage: false
-product_type: "on-grid-inverter"
-warranty_years: 5
+product_type: "inverter"
+source_url: "https://japangreenpower.com.vn/san-pham/inverter-growatt-mid-20ktl3-x/"
 specifications:
-  "Công suất AC định mức": "20kW"
-  "Công suất biểu kiến AC tối đa": "22kVA"
-  "Loại phase": "3 pha"
   "Hiệu suất tối đa": "98.6%"
-  "Loại inverter": "On Grid"
-  "Điện áp DC cực đại": "1100V"
-  "Dải điện áp DC": "250–1100V"
-  "Số MPPT": "2"
-  "Số string/MPPT": "2"
-  "Chống sét DC": "Type II"
-  "Chống sét AC": "Type II"
-  "Kết nối giám sát": "RF / WiFi / RJ45"
-  "WiFi tích hợp": "Có"
-  "Màn hình": "OLED cảm ứng"
-  "Phương thức làm mát": "Tản nhiệt tự nhiên + quạt"
-  "Kích thước": "525 × 395 × 222 mm"
+  "Kích thước": "525 x 395 x 222 mm"
   "Trọng lượng": "23 kg"
-  "Bảo hành": "5 năm"
-features:
-  - "Hiệu suất MPPT 99.9%, tối ưu sản lượng"
-  - "Thiết kế nhỏ gọn, nhẹ hơn 30% so với model trước"
-  - "Màn hình OLED cảm ứng trực quan"
-  - "Tích hợp WiFi theo dõi từ xa"
-  - "Chống sét Type II DC/AC"
-  - "Phù hợp áp mái doanh nghiệp và gia đình"
 ---
+
+# Inverter Growatt MID 20KTL3-X
+
+## Mô tả
+
+⭐Mã sản phẩm: Inverter Growatt MID 20KTL3-X ⭐Công suất: 20kW - 3 pha ⭐Số string/MPPT: 2/2 ⭐Trọng lượng: 23 kg ⭐Kích thước: 525 x 395 x 222 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+
+## Thông số kỹ thuật
+
+- **Hiệu suất tối đa:** 98.6%
+- **Kích thước:** 525 x 395 x 222 mm
+- **Trọng lượng:** 23 kg
+
+Nguồn tham khảo: https://japangreenpower.com.vn/san-pham/inverter-growatt-mid-20ktl3-x/
