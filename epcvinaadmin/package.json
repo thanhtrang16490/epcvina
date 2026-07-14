@@ -4,14 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "rm -rf .next && next dev",
+    "prebuild": "rm -rf .next",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:number-format": "node scripts/test-number-format.mjs",
     "sync:product-images": "node scripts/sync-product-images-from-epcvinasolar.mjs",
     "sync:projects": "node scripts/sync-projects-from-epcvinasolar.mjs",
     "sync:customers": "node scripts/sync-customers-from-projects.mjs",
     "sync:brand-category-images": "node scripts/sync-brand-category-images.mjs",
-    "sync:combo-images": "node scripts/sync-combo-images-from-epcvinasolar.mjs"
+    "sync:combo-images": "node scripts/sync-combo-images-from-epcvinasolar.mjs",
+    "sync:products": "node scripts/sync-products-from-epcvinasolar.mjs"
   },
   "dependencies": {
     "@refinedev/core": "^4.58.0",
@@ -21,10 +25,12 @@
     "@supabase/supabase-js": "^2.60.0",
     "@tailwindcss/postcss": "^4.1.11",
     "clsx": "^2.1.1",
+    "exceljs": "^4.4.0",
     "next": "^15.4.6",
     "pdfkit": "^0.19.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^24.1.0",

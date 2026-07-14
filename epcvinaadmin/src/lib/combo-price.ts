@@ -6,9 +6,9 @@ export type ComboPriceSource = {
 export function getDisplayedComboPrice(combo: ComboPriceSource) {
   const customPrice = Number(combo.target_min_price ?? 0);
   const referencePrice = Number(combo.reference_price ?? 0);
-  if (customPrice > 0) {
+  if (customPrice > 0 && (referencePrice <= 0 || customPrice <= referencePrice)) {
     return {
-      label: "Giá tuỳ biến",
+      label: "Giá ưu đãi",
       value: customPrice,
     };
   }

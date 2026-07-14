@@ -1,4 +1,5 @@
 import { AdminShell } from "@/components/AdminShell";
+import { FormattedNumberInput } from "@/components/FormattedNumberInput";
 import { ModalShell } from "@/components/ModalShell";
 import { ImageField } from "@/components/ImageField";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -93,7 +94,7 @@ export default async function ProductCategoriesPage() {
               <SlugField name="name" label="Tên danh mục" placeholder="Tên danh mục" />
               <input name="parent_id" placeholder="Parent ID (optional)" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               <ImageField name="image_url" label="Ảnh danh mục" placeholder="Dán URL ảnh hoặc chọn file" />
-              <input name="sort_order" type="number" defaultValue={0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+              <FormattedNumberInput name="sort_order" defaultValue={0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               <textarea name="description" rows={4} placeholder="Mô tả" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">Tạo danh mục</button>
             </form>
@@ -125,7 +126,7 @@ export default async function ProductCategoriesPage() {
                     <form action={updateCategory} className="grid gap-3">
                       <input type="hidden" name="id" value={category.id} />
                       <SlugField name="name" label="Tên danh mục" defaultValue={category.name} defaultSlug={category.slug} />
-                      <input name="sort_order" type="number" defaultValue={category.sort_order} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <FormattedNumberInput name="sort_order" defaultValue={category.sort_order} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <textarea name="description" defaultValue={category.description ?? ""} rows={4} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <input name="parent_id" defaultValue={category.parent_id ?? ""} placeholder="Parent ID (optional)" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <ImageField name="image_url" label="Ảnh danh mục" defaultValue={category.image_url ?? ""} placeholder="Dán URL ảnh hoặc chọn file" />

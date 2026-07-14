@@ -2,7 +2,6 @@ import PDFDocument from "pdfkit";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { normalizeCombo } from "@/lib/supabase/normalize";
 import { companySettings } from "@/lib/company-settings";
 import { MEDIA_BUCKET, buildOrderPdfPath } from "@/lib/storage-media";
 
@@ -65,9 +64,23 @@ function registerPdfFonts(doc: PDFKit.PDFDocument) {
 }
 
 function drawSection(doc: PDFKit.PDFDocument, title: string, y: number) {
-  doc.font("body-bold").fontSize(13).fillColor("#0f172a").text(title, 50, y);
-  doc.moveTo(50, y + 18).lineTo(545, y + 18).strokeColor("#cbd5e1").lineWidth(1).stroke();
-  return y + 28;
+  doc.roundedRect(50, y - 2, 495, 22, 6).fillAndStroke("#f8fafc", "#e2e8f0");
+  doc.font("body-bold").fontSize(12).fillColor("#0f172a").text(title, 58, y + 4);
+  return y + 30;
+}
+
+function drawMetricCard(doc: PDFKit.PDFDocument, x: number, y: number, width: number, label: string, value: string, accent = "#f58220") {
+  doc.roundedRect(x, y, width, 52, 10).fillAndStroke("#ffffff", "#dbe3ea");
+  doc.roundedRect(x, y, 5, 52, 10).fill(accent);
+  doc.font("body").fontSize(8).fillColor("#64748b").text(label.toUpperCase(), x + 14, y + 9, { width: width - 22 });
+  doc.font("body-bold").fontSize(12).fillColor("#0f172a").text(value, x + 14, y + 24, { width: width - 22 });
+}
+
+function drawBadge(doc: PDFKit.PDFDocument, x: number, y: number, text: string, fill = "#fff7ed", stroke = "#fdba74", color = "#9a3412") {
+  const width = Math.max(54, doc.widthOfString(text, { font: "body", size: 9 }) + 18);
+  doc.roundedRect(x, y, width, 18, 9).fillAndStroke(fill, stroke);
+  doc.font("body").fontSize(9).fillColor(color).text(text, x + 9, y + 4);
+  return width;
 }
 
 export async function generateOrderPdf(orderId: string, options?: { persist?: boolean }) {
@@ -75,11 +88,9 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
   const supabase = createSupabaseAdminClient();
   if (!supabase) throw new Error("Supabase admin client not available");
 
-  const [orderRes, itemsRes, combosRes, comboItemsRes] = await Promise.all([
+  const [orderRes, itemsRes] = await Promise.all([
     supabase.from("orders").select("*").eq("id", orderId).single(),
     supabase.from("order_items").select("*").eq("order_id", orderId).order("sort_order", { ascending: true }),
-    supabase.from("combos").select("*").order("sort_order", { ascending: true }),
-    supabase.from("combo_items").select("*").order("sort_order", { ascending: true }),
   ]);
 
   const order = orderRes.data;
@@ -93,8 +104,6 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
   const customer = customerRes.data ?? null;
   const project = projectRes.data ?? null;
   const items = itemsRes.data ?? [];
-  const combos = (combosRes.data ?? []).map(normalizeCombo);
-  const comboBoms = comboItemsRes.data ?? [];
 
   await ensurePdfkitStandardFonts();
   const doc = new PDFDocument({ size: "A4", margin: 40, compress: true });
@@ -106,48 +115,72 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
     doc.on("error", reject);
   });
 
+  // Header band
+  doc.rect(0, 0, 595, 118).fill("#0f172a");
   await tryEmbedLogo(doc);
-  doc.font("body-bold").fontSize(20).fillColor("#0f172a").text("ORDER DETAIL", 160, 45);
-  doc.moveDown(0.4);
-  doc.font("body-bold").fontSize(12).fillColor("#0f172a").text(companySettings.name, 160, 72);
-  doc.font("body").fontSize(11).fillColor("#475569").text(`Mã đơn: ${safeText(order.order_no || order.slug)}`, 160, 90);
-  doc.text(`Ngày: ${safeText(order.order_date || new Date().toISOString().slice(0, 10))}`, 160, 106);
-  doc.moveDown(1);
+  doc.font("body-bold").fontSize(20).fillColor("#ffffff").text(companySettings.name, 160, 34);
+  doc.font("body").fontSize(9).fillColor("#cbd5e1").text("Báo giá / Hợp đồng / Hồ sơ đơn hàng", 160, 58);
+  doc.font("body-bold").fontSize(18).fillColor("#ffffff").text(safeText(order.order_no || order.slug), 160, 76);
+  const issuedDate = safeText(order.order_date || new Date().toISOString().slice(0, 10));
+  doc.font("body").fontSize(9).fillColor("#cbd5e1").text(`Ngày lập: ${issuedDate}`, 160, 100);
+  drawBadge(doc, 430, 36, safeText(order.status || "draft"), "#fff7ed", "#fdba74", "#9a3412");
+  drawBadge(doc, 430, 60, safeText(order.order_type || "combo"), "#ecfeff", "#67e8f9", "#155e75");
+  drawBadge(doc, 430, 84, safeText(order.payment_policy_code || "3:6:1"), "#f0fdf4", "#86efac", "#166534");
 
-  let y = 130;
-  y = drawSection(doc, "Thông tin đơn hàng", y);
-  doc.font("body").fontSize(10).fillColor("#0f172a");
-  doc.text(`Trạng thái: ${safeText(order.status)}`, 50, y);
-  doc.text(`Loại đơn: ${safeText(order.order_type)}`, 290, y);
-  y += 18;
-  doc.text(`Subtotal: ${money(Number(order.subtotal ?? 0))}`, 50, y);
-  doc.text(`Discount: ${money(Number(order.discount ?? 0))}`, 290, y);
-  y += 18;
-  doc.text(`Total: ${money(Number(order.total ?? 0))}`, 50, y);
-  y += 28;
+  let y = 138;
+  doc.font("body-bold").fontSize(13).fillColor("#0f172a").text("Tổng quan đơn hàng", 50, y);
+  y += 10;
+  drawMetricCard(doc, 50, y, 113, "Tạm tính", money(Number(order.subtotal ?? 0)));
+  drawMetricCard(doc, 170, y, 113, "Chiết khấu", money(Number(order.discount ?? 0)));
+  drawMetricCard(doc, 290, y, 113, "Tổng tiền", money(Number(order.total ?? 0)), "#0ea5e9");
+  drawMetricCard(doc, 410, y, 135, "Chính sách", safeText(order.payment_policy_name || order.payment_policy_code || "3 : 6 : 1"), "#22c55e");
+  y += 68;
 
-  y = drawSection(doc, "Khách hàng & dự án", y);
+  y = drawSection(doc, "Thông tin khách hàng và dự án", y);
   doc.font("body").fontSize(10).fillColor("#0f172a");
   doc.text(`Khách hàng: ${safeText(customer?.name)}`, 50, y);
-  doc.text(`Điện thoại: ${safeText(customer?.phone)}`, 290, y);
+  doc.text(`Số điện thoại: ${safeText(customer?.phone)}`, 290, y);
   y += 18;
   doc.text(`Dự án: ${safeText(project?.name)}`, 50, y);
-  doc.text(`Hệ thống: ${safeText(project?.system_type)}`, 290, y);
-  y += 28;
+  doc.text(`Địa chỉ lắp đặt: ${safeText(project?.address)}`, 290, y, { width: 250 });
+  y += 24;
 
-  y = drawSection(doc, "Danh sách item", y);
-  doc.font("body").fontSize(9).fillColor("#0f172a");
+  y = drawSection(doc, "Thông tin thanh toán", y);
+  const totalValue = Number(order.total ?? 0);
+  const deposit = Number(order.deposit_amount ?? Math.round(totalValue * 0.3));
+  const delivery = Number(order.delivery_amount ?? Math.round(totalValue * 0.6));
+  const acceptance = Number(order.acceptance_amount ?? Math.max(totalValue - deposit - delivery, 0));
+  doc.font("body").fontSize(10).fillColor("#0f172a");
+  doc.text(`Chính sách: ${safeText(order.payment_policy_name || order.payment_policy_code || "3 : 6 : 1")}`, 50, y);
+  doc.text(`Phương thức thanh toán: ${safeText(order.payment_method || "bank_transfer")}`, 290, y);
+  y += 18;
+  doc.text(`Đặt cọc: ${money(deposit)}`, 50, y);
+  doc.text(`Tập kết vật tư: ${money(delivery)}`, 290, y);
+  y += 18;
+  doc.text(`Nghiệm thu: ${money(acceptance)}`, 50, y);
+  doc.text(`Còn lại: ${money(Math.max(totalValue - deposit - delivery - acceptance, 0))}`, 290, y);
+  y += 26;
+
+  y = drawSection(doc, "Danh sách vật tư / sản phẩm", y);
+  doc.font("body").fontSize(8).fillColor("#64748b");
+  doc.roundedRect(50, y, 495, 18, 6).fillAndStroke("#f8fafc", "#e2e8f0");
+  doc.text("Tên vật tư", 56, y + 5, { width: 240 });
+  doc.text("SL", 300, y + 5, { width: 26, align: "right" });
+  doc.text("Đơn giá", 345, y + 5, { width: 90, align: "right" });
+  doc.text("Thành tiền", 438, y + 5, { width: 95, align: "right" });
+  y += 22;
   for (const item of items as any[]) {
     if (y > 720) {
       doc.addPage();
       y = 50;
     }
-    doc.rect(50, y, 495, 34).strokeColor("#e2e8f0").lineWidth(0.8).stroke();
-    doc.text(`${safeText(item.item_name)}`, 56, y + 5, { width: 260 });
-    doc.text(`SL: ${Number(item.quantity ?? 0)}`, 320, y + 5);
-    doc.text(`Đơn giá: ${money(Number(item.unit_price ?? 0))}`, 380, y + 5);
-    doc.text(`Thành tiền: ${money(Number(item.total_price ?? 0))}`, 450, y + 5, { align: "right", width: 88 });
-    y += 42;
+    const isCombo = String(item.item_type ?? "") === "combo";
+    doc.roundedRect(50, y, 495, 28, 6).fillAndStroke(isCombo ? "#fff7ed" : "#ffffff", "#e2e8f0");
+    doc.font("body-bold").fontSize(9).fillColor("#0f172a").text(`${safeText(item.item_name)}`, 56, y + 6, { width: 236 });
+    doc.font("body").fontSize(9).fillColor("#0f172a").text(`${Number(item.quantity ?? 0)}`, 300, y + 6, { width: 26, align: "right" });
+    doc.text(`${money(Number(item.unit_price ?? 0))}`, 345, y + 6, { width: 90, align: "right" });
+    doc.font("body-bold").text(`${money(Number(item.total_price ?? 0))}`, 438, y + 6, { width: 95, align: "right" });
+    y += 34;
   }
 
   const comboItems = items.filter((item: any) => item.item_type === "combo");
@@ -155,9 +188,9 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
     y += 4;
     y = drawSection(doc, "BOM combo", y);
     for (const comboItem of comboItems as any[]) {
-      const comboId = String(comboItem.combo_id ?? "");
-      const combo = combos.find((candidate) => candidate.id === comboId);
-      const bomRows = comboBoms.filter((row: any) => String(row.combo_id ?? "") === comboId);
+      const snapshot = comboItem.snapshot_data ?? {};
+      const combo = snapshot.combo_snapshot ?? snapshot.combo ?? null;
+      const bomRows = Array.isArray(snapshot.bom_rows) ? snapshot.bom_rows : [];
       if (y > 700) {
         doc.addPage();
         y = 50;
@@ -169,12 +202,23 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
           doc.addPage();
           y = 50;
         }
-        doc.font("body").fontSize(9).fillColor("#334155").text(`- ${safeText(row.item_name)} x${Number(row.quantity ?? 0)} | ${money(Number(row.total_price_vat ?? 0))}`, 60, y, { width: 485 });
+        doc.font("body").fontSize(9).fillColor("#334155").text(`- ${safeText(row.item_name)} x${Number(row.quantity ?? 0)} | ${money(Number(row.total_price_vat ?? row.unit_price_vat ?? 0))}`, 60, y, { width: 485 });
         y += 13;
       }
       y += 6;
     }
   }
+
+  y += 8;
+  if (y > 700) {
+    doc.addPage();
+    y = 50;
+  }
+  y = drawSection(doc, "Điều khoản thanh toán", y);
+  doc.font("body").fontSize(9).fillColor("#334155").text("Đây là hồ sơ bán hàng EPCVINA Solar. Giá trị thanh toán được lưu theo chính sách và lịch sử ghi nhận riêng.", 50, y, { width: 495 });
+  y += 18;
+  doc.font("body").fontSize(9).fillColor("#334155").text(`Chiết khấu áp dụng: ${safeText(order.discount_name || "Không áp dụng")}`, 50, y);
+  doc.text(`Số lần thanh toán đã ghi nhận: ${items.length ? safeText(order.total ?? 0) : "0"}`, 290, y);
 
   doc.end();
   const pdf = await finished;

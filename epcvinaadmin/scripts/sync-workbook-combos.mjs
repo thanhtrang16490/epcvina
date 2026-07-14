@@ -55,8 +55,27 @@ function isServiceItem(category, specification) {
   return text.includes("nhan cong lap dat") || normalize(category).includes("nhan cong lap dat");
 }
 
+function sheetGroupForItem(category, specification) {
+  const text = normalize(`${category} ${specification}`);
+  if (text.includes("nhan cong") || text.includes("thi cong")) return "labor";
+  if (text.includes("pin luu tru") || text.includes("battery") || text.includes("lithium")) return "battery";
+  if (text.includes("tam pin") || text.includes("panel") || text.includes("pv")) return "panel";
+  if (text.includes("inverter") || text.includes("bien tan")) return "inverter";
+  if (text.includes("khung") || text.includes("rail") || text.includes("mount")) return "mounting";
+  if (text.includes("day") || text.includes("cap") || text.includes("mc4")) return "wiring";
+  if (text.includes("tu dien") || text.includes("cabinet")) return "cabinet";
+  if (text.includes("tiep dia") || text.includes("ground")) return "grounding";
+  return "wiring";
+}
+
 function serviceItemRow(sheet) {
   return sheet.rows.find((row) => isServiceItem(row.category, row.specification)) ?? null;
+}
+
+function laborRatePerKwp(combo) {
+  const code = String(combo.code ?? "").toUpperCase();
+  const comboType = String(combo.combo_type ?? "").toLowerCase();
+  return code.startsWith("HY") || comboType === "custom" ? 900000 : 500000;
 }
 
 async function main() {
@@ -72,18 +91,6 @@ async function main() {
 
   const { data: products, error: productsError } = await supabase.from("products").select("id,name,category,brand,slug");
   if (productsError) throw productsError;
-  const { data: oldStandardCombos, error: oldCombosError } = await supabase.from("combos").select("id").eq("combo_type", "standard");
-  if (oldCombosError) throw oldCombosError;
-
-  const oldIds = (oldStandardCombos ?? []).map((row) => row.id).filter(Boolean);
-  if (oldIds.length) {
-    const { error: deleteItemsError } = await supabase.from("combo_items").delete().in("combo_id", oldIds);
-    if (deleteItemsError) throw deleteItemsError;
-  }
-
-  const { error: deleteCombosError } = await supabase.from("combos").delete().eq("combo_type", "standard");
-  if (deleteCombosError) throw deleteCombosError;
-
   const insertedCombos = [];
   for (const rec of raw) {
     const insertPayload = {
@@ -121,9 +128,15 @@ async function main() {
       cover_image_url: null,
       image_urls: [],
     };
-    const { data, error } = await supabase.from("combos").insert(insertPayload).select("*").single();
+    const { data, error } = await supabase.from("combos").upsert(insertPayload, { onConflict: "code" }).select("*").single();
     if (error) throw error;
     insertedCombos.push({ row: data, source: rec });
+  }
+
+  const comboIds = insertedCombos.map(({ row }) => row.id).filter(Boolean);
+  if (comboIds.length) {
+    const { error: deleteItemsError } = await supabase.from("combo_items").delete().in("combo_id", comboIds);
+    if (deleteItemsError) throw deleteItemsError;
   }
 
   const comboItems = [];
@@ -142,16 +155,41 @@ async function main() {
         source_sheet: source.sheet,
         item_name: isService ? (serviceRow?.specification || item.specification || "Nhân công lắp đặt") : item.specification || item.category || "Item",
         category: item.category,
-        brand: isService ? "SLM" : item.brand,
+        brand: isService ? "EPCVINA" : item.brand,
         unit: isService ? "Bộ" : item.unit,
         quantity: Number(item.quantity ?? 0),
         unit_price_vat: isService ? Number(serviceRow?.unit_price_vat ?? item.unit_price_vat ?? 0) : unitPrice,
         total_price_vat: isService ? Number(serviceRow?.total_price_vat ?? item.total_price_vat ?? 0) : totalPrice,
         cost_price: isService ? Number(serviceRow?.cost_price ?? item.cost_price ?? 0) : costPrice,
         total_cost_price: isService ? Number(serviceRow?.total_cost_price ?? item.total_cost_price ?? 0) : totalCost,
-        warranty: "",
-        notes: "",
+        warranty: isService ? String(serviceRow?.warranty ?? item.warranty ?? "") : String(item.warranty ?? ""),
+        notes: String(item.notes ?? ""),
+        gross_margin: Number(item.gross_margin ?? 0),
+        sheet_group: sheetGroupForItem(item.category, item.specification),
         sort_order: isService ? 9999 : index + 1,
+      });
+    }
+
+    const laborCost = Math.round(Number(source.solar_kw ?? 0) * laborRatePerKwp(source));
+    if (laborCost > 0) {
+      comboItems.push({
+        combo_id: row.id,
+        product_id: null,
+        source_sheet: source.sheet,
+        item_name: "Phí nhân công lắp đặt",
+        category: "PHÍ NHÂN CÔNG LẮP ĐẶT",
+        brand: "EPCVINA",
+        unit: "Gói",
+        quantity: 1,
+        unit_price_vat: laborCost,
+        total_price_vat: laborCost,
+        cost_price: laborCost,
+        total_cost_price: laborCost,
+        warranty: "",
+        notes: "Backfill labor rule",
+        gross_margin: 0,
+        sheet_group: "labor",
+        sort_order: 9999,
       });
     }
   }

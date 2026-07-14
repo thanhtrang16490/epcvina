@@ -1,0 +1,364 @@
+import Link from "next/link";
+import { AdminShell } from "@/components/AdminShell";
+import { CustomerTypePhaseField } from "@/components/CustomerTypePhaseField";
+import { SectionTitle } from "@/components/SectionTitle";
+import { ThemeCard } from "@/components/ui/ThemeCard";
+import { FormattedNumberInput } from "@/components/FormattedNumberInput";
+import { RegionPshField } from "@/components/RegionPshField";
+import { SystemAdvisorShareButton } from "@/components/SystemAdvisorShareButton";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { normalizeCombo } from "@/lib/supabase/normalize";
+import { buildAdvisorSummary, getAdvisorPhaseSuggestion, normalizeAdvisorInputs, regionPresets, sortAdvisorCombos, type AdvisorInputs } from "@/lib/system-advisor";
+import { getPricingSettings, formatVnd, formatPct, getDefaultElectricityPrice, getSalesElectricityPriceLabel } from "@/lib/pricing-settings";
+import { parseLocaleNumber } from "@/lib/number-format";
+
+export const dynamic = "force-dynamic";
+
+const currency = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 });
+const decimal1 = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 1 });
+
+function money(value: number) {
+  return `${currency.format(Math.round(value || 0))} đ`;
+}
+
+function pct(value: number) {
+  return `${number1(value)}%`;
+}
+
+function number1(value: number) {
+  return decimal1.format(Number(value ?? 0));
+}
+
+function phaseBadgeLabel(inputs: AdvisorInputs) {
+  if (inputs.batteryWanted) return "Ưu tiên hybrid";
+  return inputs.phase === 3 ? "Ưu tiên 3 pha" : "Ưu tiên 1 pha";
+}
+
+function readNumber(value: string | string[] | undefined, fallback = 0) {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return parseLocaleNumber(raw, fallback);
+}
+
+export default async function SystemAdvisorPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = (await searchParams) ?? {};
+  const queryString = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((item) => queryString.append(key, item));
+      return;
+    }
+    if (value !== undefined && value !== "") {
+      queryString.set(key, value);
+    }
+  });
+  const shareUrl = `/system-advisor${queryString.toString() ? `?${queryString.toString()}` : ""}`;
+  const supabase = await createSupabaseServerClient();
+  const pricingSettings = await getPricingSettings(supabase);
+  const combos = supabase
+    ? ((await supabase.from("combos").select("*").or("status.eq.active,is_active.eq.true").order("sort_order", { ascending: true })).data ?? []).map(normalizeCombo)
+    : [];
+
+  const inputs: AdvisorInputs = normalizeAdvisorInputs(params, pricingSettings);
+  const summary = buildAdvisorSummary(inputs, pricingSettings);
+  const phaseSuggestion = getAdvisorPhaseSuggestion(inputs, summary);
+  const suggestions = sortAdvisorCombos(
+    combos.map((combo) => ({
+      ...combo,
+      items: [],
+    })),
+    summary,
+    inputs,
+    pricingSettings,
+  );
+
+  const monthlyConsumption = inputs.monthlyConsumptionKwh > 0 ? inputs.monthlyConsumptionKwh : inputs.monthlyBillVnd / inputs.avgElectricityPriceVnd;
+  const hasCalculatedLoad = Number.isFinite(monthlyConsumption) && monthlyConsumption > 0;
+  const regionPreset = regionPresets[inputs.region];
+
+  return (
+    <AdminShell>
+      <main className="mx-auto max-w-7xl px-4 py-4 md:px-0">
+        <ThemeCard tone="hero" className="overflow-hidden p-6 md:p-8">
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+            <div className="max-w-3xl">
+              <div className="inline-flex rounded-full border border-orange-400/30 bg-orange-400/10 px-3 py-1 text-xs uppercase tracking-[0.28em] text-orange-200">
+                Tư vấn hệ thống
+              </div>
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+                Đề xuất hệ phù hợp cho khách chỉ từ vài thông số
+              </h1>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
+                Nhập tiền điện, khu vực, diện tích mái và nhu cầu lưu trữ. Hệ thống sẽ tính nhanh công suất đề xuất, phần tiết kiệm điện, hoàn vốn, ROI và gợi ý combo public phù hợp nhất.
+              </p>
+            </div>
+            <div className="grid min-w-0 gap-3 sm:grid-cols-2">
+              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Giờ nắng hiệu dụng (PSH)</div>
+                <div className="mt-2 text-2xl font-semibold text-white">{number1(inputs.psh)}h</div>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Khu vực</div>
+                <div className="mt-2 text-2xl font-semibold text-white">{regionPreset.label}</div>
+                <div className="mt-2 text-xs leading-5 text-slate-400">{regionPreset.note}</div>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Combo gợi ý</div>
+                <div className="mt-2 text-2xl font-semibold text-white">{suggestions.length}</div>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Khuyến nghị</div>
+                <div className="mt-2 text-2xl font-semibold text-white">
+                  {inputs.batteryWanted ? "Hybrid" : inputs.phase === 3 ? "3 pha cho cả nhà" : "1 pha riêng"}
+                </div>
+                <div className="mt-2 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-100">
+                  {phaseBadgeLabel(inputs)}
+                </div>
+                <div className="mt-2 text-xs leading-5 text-slate-400">
+                  {phaseSuggestion}
+                </div>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Giá điện</div>
+                <div className="mt-2 text-2xl font-semibold text-white">{formatVnd(inputs.avgElectricityPriceVnd)}</div>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Ngân sách</div>
+                <div className="mt-2 text-2xl font-semibold text-white">
+                  {inputs.budgetVnd !== null && inputs.budgetVnd > 0 ? formatVnd(inputs.budgetVnd) : "Không giới hạn"}
+                </div>
+              </div>
+            </div>
+          </div>
+        </ThemeCard>
+
+        <section className="mt-6 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
+          <ThemeCard className="p-6">
+            <SectionTitle eyebrow="Input" title="Nhập thông tin khách" description="Sales chỉ cần nhập phần có thật từ hóa đơn, mái và nhu cầu lưu trữ." />
+            <form className="mt-5 grid gap-4" method="get">
+              <div className="grid gap-2">
+                <label className="text-sm text-[color:var(--muted)]">Tiền điện hàng tháng</label>
+                <FormattedNumberInput name="bill" min={0} step={1} defaultValue={inputs.monthlyBillVnd || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                <p className="text-xs text-[color:var(--muted)]">Dùng khi khách chỉ nhớ hóa đơn điện. Mặc định theo {getSalesElectricityPriceLabel(inputs.customerType).toLowerCase()}.</p>
+              </div>
+
+              <div className="grid gap-2">
+                <label className="text-sm text-[color:var(--muted)]">Hoặc sản lượng tiêu thụ/tháng</label>
+                <FormattedNumberInput name="consumption" min={0} step={1} defaultValue={inputs.monthlyConsumptionKwh || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                <p className="text-xs text-[color:var(--muted)]">Chỉ cần nhập 1 trong 2 ô này. Nếu có số kWh thực tế thì ưu tiên dùng số đó.</p>
+              </div>
+
+              <div className="grid gap-2 md:grid-cols-2">
+                <div className="grid gap-2">
+                  <label className="text-sm text-[color:var(--muted)]">Giá điện trung bình</label>
+                  <FormattedNumberInput
+                    name="price"
+                    min={1}
+                    step={1}
+                    required
+                    defaultValue={inputs.avgElectricityPriceVnd || getDefaultElectricityPrice(inputs.customerType, pricingSettings)}
+                    className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-2">
+                <label className="text-sm text-[color:var(--muted)]">Ngân sách dự kiến</label>
+                <FormattedNumberInput
+                  name="budget"
+                  min={0}
+                  step={1000000}
+                  defaultValue={inputs.budgetVnd ?? ""}
+                  className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none"
+                />
+                <p className="text-xs text-[color:var(--muted)]">Để trống nếu khách không giới hạn ngân sách. Khi có nhập, combo vượt mức sẽ bị hạ ưu tiên.</p>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-2">
+                <div className="grid gap-4">
+                  <CustomerTypePhaseField defaultCustomerType={inputs.customerType} defaultPhase={inputs.phase} />
+                  <RegionPshField defaultRegion={inputs.region} defaultPsh={inputs.psh} />
+                </div>
+                <div className="grid gap-4">
+                  <div className="grid gap-2">
+                    <label className="text-sm text-[color:var(--muted)]">Hiệu suất hệ thống (PR)</label>
+                    <FormattedNumberInput name="pr" min={0.01} max={1} step={0.01} required defaultValue={inputs.pr} integer={false} inputMode="decimal" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                    <p className="text-xs text-[color:var(--muted)]">Hệ số suy hao hệ thống, thường dùng khoảng 0.75 - 0.85.</p>
+                  </div>
+                  <div className="grid gap-2">
+                    <label className="text-sm text-[color:var(--muted)]">Diện tích mái hữu dụng (m²)</label>
+                    <FormattedNumberInput name="roof" min={0} step={0.1} required defaultValue={inputs.roofAreaM2 || ""} integer={false} inputMode="decimal" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                  </div>
+                  <div className="grid gap-2">
+                    <label className="text-sm text-[color:var(--muted)]">Tỷ lệ dùng điện ban ngày</label>
+                    <FormattedNumberInput name="daytime" min={0} max={1} step={0.01} required defaultValue={inputs.daytimeUseRatio} integer={false} inputMode="decimal" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                  </div>
+                </div>
+              </div>
+
+              <label className="flex items-center gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--muted)]">
+                <input type="checkbox" name="battery" defaultChecked={inputs.batteryWanted} className="h-4 w-4 accent-orange-500" />
+                Khách muốn phương án có pin lưu trữ
+              </label>
+
+              <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950 transition active:scale-[0.99]">
+                Tính và đề xuất combo
+              </button>
+            </form>
+          </ThemeCard>
+
+          <div className="space-y-6">
+            <ThemeCard className="p-6">
+            <SectionTitle eyebrow="Kết quả" title="Tóm tắt tư vấn" description="Bản nhẩm nhanh cho sales để nói chuyện với khách bằng số liệu rõ ràng." />
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Chia sẻ kết quả tư vấn</div>
+              <SystemAdvisorShareButton url={shareUrl} label="Copy share link" />
+            </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Công suất đề xuất</div>
+                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.recommendedKwP)} kWp</div>
+              </div>
+              <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Sản lượng tháng</div>
+                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedMonthlyProductionKwh)} kWh</div>
+              </div>
+              <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Sản lượng năm</div>
+                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedAnnualProductionKwh)} kWh</div>
+              </div>
+              <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Mái cần</div>
+                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedRoofAreaM2)} m²</div>
+              </div>
+              <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Đầu tư ước tính</div>
+                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{money(summary.estimatedInvestmentVnd)}</div>
+              </div>
+              <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Hoàn vốn</div>
+                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedPaybackYears)} năm</div>
+              </div>
+            </div>
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--muted)]">
+                  Tiết kiệm điện: <span className="text-[color:var(--text)]">{money(summary.estimatedMonthlySavingsVnd)}</span> / tháng
+                </div>
+                <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--muted)]">
+                  ROI: <span className="text-[color:var(--text)]">{pct(summary.estimatedRoiPct)}</span> / năm
+                </div>
+                <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--muted)]">
+                  Ngân sách:{" "}
+                  <span className="text-[color:var(--text)]">
+                    {inputs.budgetVnd !== null && inputs.budgetVnd > 0 ? money(inputs.budgetVnd) : "Không giới hạn"}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--muted)]">
+                {hasCalculatedLoad
+                  ? `Từ hóa đơn/sản lượng hiện tại, hệ thống đang nhẩm ra nhu cầu khoảng ${summary.recommendedKwP.toFixed(1)} kWp.`
+                  : "Nhập tiền điện hoặc sản lượng để nhận ngay công suất đề xuất và danh sách combo phù hợp."}
+              </div>
+              <div className="mt-4 rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4 text-sm text-[color:var(--muted)]">
+                Tip nhanh: {phaseSuggestion}
+              </div>
+            </ThemeCard>
+
+            <ThemeCard className="p-6">
+              <SectionTitle eyebrow="Combo" title="Đề xuất combo public" description="Các combo dưới đây được chấm theo độ khớp công suất, lưu trữ, mái và hoàn vốn." />
+              <div className="mt-5 space-y-4">
+                {suggestions.length > 0 ? (
+                  suggestions.map((combo) => (
+                    <div key={combo.id} className="rounded-[1.4rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                      <div className="flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                          <div className="text-sm font-semibold text-[color:var(--text)]">{combo.name}</div>
+                          <div className="mt-1 text-xs text-[color:var(--muted)]">
+                            {combo.code} · {combo.phase} pha · {number1(combo.solar_kw)} kWp{combo.battery_kwh ? ` · ${number1(combo.battery_kwh)} kWh` : ""}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Đề xuất</div>
+                          <div className="text-lg font-semibold text-[color:var(--text)]">{number1(combo.estimatedPaybackYears)} năm</div>
+                        </div>
+                      </div>
+                      <div className="mt-2 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-700 dark:text-cyan-100">
+                        {combo.fitLabel}
+                      </div>
+                      {inputs.budgetVnd !== null && inputs.budgetVnd > 0 && (
+                        <div className="mt-2 text-xs text-[color:var(--muted)]">
+                          {combo.displayedPriceVnd <= inputs.budgetVnd
+                            ? "Trong ngân sách"
+                            : `Vượt ngân sách ${money(combo.displayedPriceVnd - inputs.budgetVnd)}`}
+                        </div>
+                      )}
+                      <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-3 text-sm text-[color:var(--muted)]">
+                          {combo.displayedPriceLabel}: <span className="text-[color:var(--text)]">{money(combo.displayedPriceVnd)}</span>
+                        </div>
+                        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-3 text-sm text-[color:var(--muted)]">
+                          Mái ước tính: <span className="text-[color:var(--text)]">{combo.estimatedRoofAreaM2 ? `${number1(combo.estimatedRoofAreaM2)} m²` : "đang thiếu"}</span>
+                        </div>
+                        <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-3 text-sm text-[color:var(--muted)]">
+                          Điểm khớp: <span className="text-[color:var(--text)]">{number1(combo.score)}</span>
+                        </div>
+                      </div>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {combo.reasons.map((reason) => (
+                          <span key={reason} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1 text-xs text-[color:var(--muted)]">
+                            {reason}
+                          </span>
+                        ))}
+                      </div>
+              <div className="mt-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-3 text-xs leading-6 text-[color:var(--muted)]">
+                Ưu tiên này hiện dựa trên công suất, loại hệ, pin lưu trữ, diện tích mái và hoàn vốn. Nếu muốn, có thể đổi thành logic theo ngân sách hoặc theo rooftop trước.
+              </div>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <Link href={`/combos/public/${combo.id}`} className="rounded-full bg-cyan-400 px-4 py-2 text-sm font-medium text-slate-950">
+                          Xem public
+                        </Link>
+                        <Link href={`/combos/${combo.id}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm font-medium text-[color:var(--text)]">
+                          Mở admin
+                        </Link>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="rounded-2xl border border-dashed border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-6 text-sm text-[color:var(--muted)]">
+                    Chưa có combo active để đề xuất.
+                  </div>
+                )}
+              </div>
+            </ThemeCard>
+          </div>
+        </section>
+
+        <ThemeCard className="mt-6 p-6">
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Nhẩm nhanh</div>
+              <div className="mt-2 text-lg font-semibold text-[color:var(--text)]">1 triệu tiền điện ≈ 3 kWp</div>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">Giúp sales ước lượng ngay khi chưa có hóa đơn đầy đủ.</p>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Mái & tấm pin</div>
+              <div className="mt-2 text-lg font-semibold text-[color:var(--text)]">1 kWp ≈ 4.5 - 5 m²</div>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">Dùng để chốt khả năng lắp trên mái trước khi đi khảo sát chi tiết.</p>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Hành động</div>
+              <div className="mt-2 text-lg font-semibold text-[color:var(--text)]">Chốt bằng combo public</div>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">Khi đã ra kết quả, mở ngay combo public để gửi khách hoặc báo giá.</p>
+            </div>
+            <div>
+              <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Cách chấm điểm</div>
+              <div className="mt-2 text-lg font-semibold text-[color:var(--text)]">Đúng hệ, đúng mái, đúng hoàn vốn</div>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">Một combo tốt không chỉ gần kWp mà còn phải khớp nhu cầu dùng điện và diện tích thực tế.</p>
+            </div>
+          </div>
+        </ThemeCard>
+      </main>
+    </AdminShell>
+  );
+}

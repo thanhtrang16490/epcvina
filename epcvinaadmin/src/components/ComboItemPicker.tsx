@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { comboItemGroups, getProductGroup } from "@/lib/combo-builder";
+import { FormattedNumberInput } from "@/components/FormattedNumberInput";
+import { comboItemGroups } from "@/lib/combo-builder";
 
 type ProductOption = {
   id: string;
@@ -44,7 +45,7 @@ function formatVND(value: number) {
 export function ComboItemPicker({ products, initialRows, title, description }: Props) {
   const productsByGroup = useMemo(() => {
     return comboItemGroups.reduce<Record<string, ProductOption[]>>((acc, group) => {
-      acc[group.id] = products.filter((product) => getProductGroup(product as never) === group.id);
+      acc[group.id] = products;
       return acc;
     }, {});
   }, [products]);
@@ -77,7 +78,6 @@ export function ComboItemPicker({ products, initialRows, title, description }: P
   };
 
   const addRow = (groupId: string) => {
-    if (!draftProductId) return;
     setRowsByGroup((current) => ({
       ...current,
       [groupId]: [...current[groupId], { product_id: draftProductId, quantity: Math.max(1, draftQuantity) }],
@@ -111,13 +111,13 @@ export function ComboItemPicker({ products, initialRows, title, description }: P
             <div className="mb-3 flex items-center justify-between gap-3">
               <div>
                 <div className="text-sm text-[color:var(--text)]">{group.label}</div>
-                <div className="text-xs text-[color:var(--muted)]">{productsByGroup[group.id]?.length ?? 0} sản phẩm khả dụng</div>
+                <div className="text-xs text-[color:var(--muted)]">{productsByGroup[group.id]?.length ?? 0} sản phẩm khả dụng để tham chiếu</div>
               </div>
               <button
                 type="button"
                 onClick={() => {
                   setActiveGroupId(group.id);
-                  setDraftProductId(productsByGroup[group.id]?.[0]?.id ?? "");
+                  setDraftProductId("");
                   setDraftQuantity(1);
                 }}
                 className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-700 dark:text-cyan-200"
@@ -137,7 +137,7 @@ export function ComboItemPicker({ products, initialRows, title, description }: P
                       onChange={(event) => updateRow(group.id, index, { product_id: event.target.value })}
                       className="min-w-0 w-full bg-transparent text-sm text-[color:var(--text)] outline-none"
                     >
-                      <option value="">Chọn sản phẩm</option>
+                      <option value="">Chọn sản phẩm tham chiếu</option>
                       {productsByGroup[group.id]?.map((product) => (
                         <option key={product.id} value={product.id}>
                           {product.brand} - {product.name}
@@ -146,24 +146,24 @@ export function ComboItemPicker({ products, initialRows, title, description }: P
                     </select>
                     {row.product_id && selectedProductById.get(row.product_id) ? (
                       <div className="mt-1 text-[11px] text-[color:var(--muted)]">
-                        GV: {formatVND(Number(selectedProductById.get(row.product_id)?.cost_price ?? 0))} · GB:{" "}
+                        Tham chiếu GV: {formatVND(Number(selectedProductById.get(row.product_id)?.cost_price ?? 0))} · GB:{" "}
                         {formatVND(Number(selectedProductById.get(row.product_id)?.sale_price_vat ?? 0))}
                       </div>
                     ) : null}
                   </div>
                   <div className="rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2">
-                    <input
-                      type="number"
+                    <FormattedNumberInput
+                      name={`${group.id}_quantity_${index}`}
                       min={1}
                       step={1}
                       value={row.quantity}
-                      onChange={(event) => updateRow(group.id, index, { quantity: Number(event.target.value) || 1 })}
+                      onValueChange={(value) => updateRow(group.id, index, { quantity: Number(value) || 1 })}
                       className="w-full bg-transparent text-sm text-[color:var(--text)] outline-none"
                       placeholder="Số lượng"
                     />
                     {row.product_id && selectedProductById.get(row.product_id) ? (
                       <div className="mt-1 text-[11px] text-[color:var(--muted)]">
-                        Thành tiền GV: {formatVND(Number(selectedProductById.get(row.product_id)?.cost_price ?? 0) * Number(row.quantity || 1))}
+                        Thành tiền tham chiếu GV: {formatVND(Number(selectedProductById.get(row.product_id)?.cost_price ?? 0) * Number(row.quantity || 1))}
                       </div>
                     ) : null}
                   </div>
@@ -203,19 +203,19 @@ export function ComboItemPicker({ products, initialRows, title, description }: P
                 onChange={(event) => setDraftProductId(event.target.value)}
                 className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)] outline-none"
               >
-                <option value="">Chọn sản phẩm</option>
+                <option value="">Chọn sản phẩm tham chiếu</option>
                 {productsByGroup[activeGroup.id]?.map((product) => (
                   <option key={product.id} value={product.id}>
                     {product.brand} - {product.name} | GV {formatVND(Number(product.cost_price ?? 0))} | GB {formatVND(Number(product.sale_price_vat ?? 0))}
                   </option>
                 ))}
               </select>
-              <input
-                type="number"
+              <FormattedNumberInput
+                name={`${activeGroup.id}_draft_quantity`}
                 min={1}
                 step={1}
                 value={draftQuantity}
-                onChange={(event) => setDraftQuantity(Number(event.target.value) || 1)}
+                onValueChange={(value) => setDraftQuantity(Number(value) || 1)}
                 className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)] outline-none"
                 placeholder="Số lượng"
               />

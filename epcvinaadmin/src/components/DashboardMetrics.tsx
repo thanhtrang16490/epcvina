@@ -31,7 +31,9 @@ export function DashboardMetrics() {
   const panels = products.filter((product) => `${product.category ?? ""} ${product.name ?? ""}`.toLowerCase().includes("panel")).length;
   const batteries = products.filter((product) => `${product.category ?? ""} ${product.name ?? ""}`.toLowerCase().includes("battery") || `${product.category ?? ""} ${product.name ?? ""}`.toLowerCase().includes("pin")).length;
   const avgMargin = combos.length ? combos.reduce((sum, combo) => sum + Number(combo.margin ?? 0), 0) / combos.length : 0;
-  const maxDiscountRoom = combos.length ? Math.max(...combos.map((combo) => Number(combo.reference_price ?? 0) - Number(combo.target_min_price ?? 0))) : 0;
+  const maxDiscountRoom = combos.length
+    ? Math.max(...combos.map((combo) => Math.max(0, Number(combo.reference_price ?? 0) - Number(combo.target_min_price ?? 0))))
+    : 0;
 
   return (
     <>

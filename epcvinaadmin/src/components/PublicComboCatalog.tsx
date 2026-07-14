@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { getComboGroupLabel } from "@/lib/combo-groups";
+import { comboGroups, getComboGroupId, getComboGroupLabel } from "@/lib/combo-groups";
 import { getDisplayedComboPrice } from "@/lib/combo-price";
 import { buildComboFinance } from "@/lib/combo-finance";
+import { formatMoneyVnd } from "@/lib/money-format";
 import type { PricingSettings } from "@/lib/pricing-settings";
 import { ThemeButton } from "@/components/ui/ThemeButton";
 import { ThemeCard } from "@/components/ui/ThemeCard";
@@ -31,12 +32,6 @@ type Props = {
   pricingSettings: PricingSettings;
 };
 
-const currency = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 });
-
-function formatVND(amount: number): string {
-  return `${currency.format(amount)} đ`;
-}
-
 function getSystemType(combo: AnyCombo) {
   if (combo.systemType) return combo.systemType;
   return combo.code.startsWith("HY") || combo.battery_kwh ? "hybrid" : "on-grid";
@@ -55,14 +50,6 @@ function getBrandLine(combo: AnyCombo) {
   const inverterBrand = combo.systemType === "hybrid" || combo.code.startsWith("HY") ? "SAJ" : "Auxsol";
   const batteryBrand = combo.code.startsWith("HY") || combo.battery_kwh ? "Genxgreen" : null;
   return [panelBrand, inverterBrand, batteryBrand].filter(Boolean).join(" - ");
-}
-
-function getVoltageFilter(combo: AnyCombo) {
-  const batteryType = String(combo.battery_type ?? "").toUpperCase();
-  if (batteryType === "HV") return "hv";
-  if (batteryType === "LV") return "lv";
-  if (combo.battery_kwh) return "lv";
-  return "none";
 }
 
 function getMonthlyProduction(combo: AnyCombo) {
@@ -84,44 +71,25 @@ function getArea(combo: AnyCombo): number | null {
 }
 
 export function PublicComboCatalog({ combos, pricingSettings }: Props) {
-  const [filter, setFilter] = useState<"all" | "on-grid" | "hybrid" | "1-pha" | "3-pha" | "lv" | "hv">("all");
+  const [filter, setFilter] = useState<"all" | "on-grid-1phase" | "on-grid-3phase" | "hybrid-1phase" | "hybrid-3phase-lv" | "hybrid-3phase-hv">("all");
   const visibleCombos = useMemo(() => combos.filter((combo) => combo.is_active !== false && combo.status !== "inactive"), [combos]);
 
   const filtered = useMemo(() => {
     return visibleCombos.filter((combo) => {
-      const systemType = getSystemType(combo);
-      const phaseLabel = combo.phase === 1 ? "1-pha" : "3-pha";
-      const voltage = getVoltageFilter(combo);
       if (filter === "all") return true;
-      if (filter === "on-grid") return systemType === "on-grid";
-      if (filter === "hybrid") return systemType === "hybrid";
-      if (filter === "lv") return systemType === "hybrid" && voltage === "lv";
-      if (filter === "hv") return systemType === "hybrid" && voltage === "hv";
-      return phaseLabel === filter;
+      return getComboGroupId(combo) === filter;
     });
   }, [visibleCombos, filter]);
 
-  const count = (kind: "all" | "on-grid" | "hybrid" | "1-pha" | "3-pha" | "lv" | "hv") =>
+  const count = (kind: "all" | "on-grid-1phase" | "on-grid-3phase" | "hybrid-1phase" | "hybrid-3phase-lv" | "hybrid-3phase-hv") =>
     visibleCombos.filter((combo) => {
-      const systemType = getSystemType(combo);
-      const phaseLabel = combo.phase === 1 ? "1-pha" : "3-pha";
-      const voltage = getVoltageFilter(combo);
       if (kind === "all") return true;
-      if (kind === "on-grid") return systemType === "on-grid";
-      if (kind === "hybrid") return systemType === "hybrid";
-      if (kind === "lv") return systemType === "hybrid" && voltage === "lv";
-      if (kind === "hv") return systemType === "hybrid" && voltage === "hv";
-      return phaseLabel === kind;
+      return getComboGroupId(combo) === kind;
     }).length;
 
-  const tabs = [
-    { id: "all" as const, label: "Tất cả" },
-    { id: "on-grid" as const, label: "On-Grid" },
-    { id: "hybrid" as const, label: "Hybrid" },
-    { id: "lv" as const, label: "Áp thấp" },
-    { id: "hv" as const, label: "Áp cao" },
-    { id: "1-pha" as const, label: "1 pha" },
-    { id: "3-pha" as const, label: "3 pha" },
+  const tabs: Array<{ id: "all" | "on-grid-1phase" | "on-grid-3phase" | "hybrid-1phase" | "hybrid-3phase-lv" | "hybrid-3phase-hv"; label: string }> = [
+    { id: "all", label: "Tất cả" },
+    ...comboGroups.map((group) => ({ id: group.id, label: group.label })),
   ];
 
   const categorySummary = useMemo(() => {
@@ -162,6 +130,7 @@ export function PublicComboCatalog({ combos, pricingSettings }: Props) {
       <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {filtered.map((combo) => {
           const systemType = getSystemType(combo);
+          const groupLabel = getComboGroupLabel(combo);
           const monthlyProduction = getMonthlyProduction(combo);
           const area = getArea(combo);
           const batteryVoltageLabel = getBatteryVoltageLabel(combo);
@@ -169,8 +138,8 @@ export function PublicComboCatalog({ combos, pricingSettings }: Props) {
           const displayedPrice = getDisplayedComboPrice(combo);
           const finance = buildComboFinance({
             solarKw: Number(combo.solar_kw),
-            costPrice: Number(combo.reference_price) * 1_000_000,
-            referencePrice: Number(combo.reference_price) * 1_000_000,
+            costPrice: Number(combo.reference_price),
+            referencePrice: Number(displayedPrice.value ?? combo.reference_price),
             pricingSettings,
           });
           const paybackLabel = `${finance.paybackYears.toFixed(1)} năm`;
@@ -185,7 +154,7 @@ export function PublicComboCatalog({ combos, pricingSettings }: Props) {
                       systemType === "hybrid" ? "bg-blue-500/90 text-white" : "bg-orange-500/90 text-white"
                     }`}
                   >
-                    {systemType === "hybrid" ? "Hybrid" : "On-Grid"}
+                    {groupLabel}
                   </span>
                   {batteryVoltageLabel && (
                     <span className="rounded-full bg-slate-900/70 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-cyan-100 backdrop-blur-sm">
@@ -269,8 +238,15 @@ export function PublicComboCatalog({ combos, pricingSettings }: Props) {
                 </div>
 
                 <div className="mt-4 border-t border-[color:var(--border)] pt-3">
-                  <p className="text-[10px] font-medium uppercase tracking-wider text-[color:var(--muted)]">{displayedPrice.label}</p>
-                  <p className="text-lg font-bold text-[color:var(--accent)]">{formatVND(displayedPrice.value)}</p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="text-[10px] font-medium uppercase tracking-wider text-[color:var(--muted)]">{displayedPrice.label}</p>
+                    {displayedPrice.label === "Giá ưu đãi" && (
+                      <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber-100">
+                        Ưu đãi
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-lg font-bold text-[color:var(--accent)]">{formatMoneyVnd(displayedPrice.value)}</p>
                 </div>
 
                 <div className="mt-4 flex gap-2">

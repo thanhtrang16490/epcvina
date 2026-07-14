@@ -1,4 +1,6 @@
 import { AdminShell } from "@/components/AdminShell";
+import { CrudFilterBar } from "@/components/CrudFilterBar";
+import { FormattedNumberInput } from "@/components/FormattedNumberInput";
 import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ImageField } from "@/components/ImageField";
@@ -83,6 +85,20 @@ export default async function BrandsPage() {
           <SectionTitle eyebrow="Danh mục" title="Quản lý Brand" description="Brand dùng chung cho sản phẩm và BOM combo." />
           <Link href="/products" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Sản phẩm</Link>
         </div>
+        <CrudFilterBar
+          subtitle="Danh mục"
+          title={`Brand (${brands.length})`}
+          searchLabel="Tìm theo brand, mô tả"
+          searchSuggestions={brands.slice(0, 8).map((brand: any) => ({
+            label: brand.name,
+            href: "/brands",
+            meta: brand.slug,
+          }))}
+          secondaryLinks={[
+            { href: "/", label: "Dashboard" },
+            { href: "/products", label: "Sản phẩm" },
+          ]}
+        />
         <div className="mb-4 flex justify-end">
           <ModalShell
             trigger={<span className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">Thêm brand</span>}
@@ -92,7 +108,7 @@ export default async function BrandsPage() {
             <form action={createBrand} className="grid gap-3">
               <SlugField name="name" label="Tên brand" placeholder="Tên brand" />
               <ImageField name="image_url" label="Ảnh brand" placeholder="Dán URL ảnh hoặc chọn file" />
-              <input name="sort_order" type="number" defaultValue={0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+              <FormattedNumberInput name="sort_order" defaultValue={0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               <textarea name="description" rows={4} placeholder="Mô tả" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">Tạo brand</button>
             </form>
@@ -124,7 +140,7 @@ export default async function BrandsPage() {
                     <form action={updateBrand} className="grid gap-3">
                       <input type="hidden" name="id" value={brand.id} />
                       <SlugField name="name" label="Tên brand" defaultValue={brand.name} defaultSlug={brand.slug} />
-                      <input name="sort_order" type="number" defaultValue={brand.sort_order} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <FormattedNumberInput name="sort_order" defaultValue={brand.sort_order} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <textarea name="description" defaultValue={brand.description ?? ""} rows={4} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <ImageField name="image_url" label="Ảnh brand" defaultValue={brand.image_url ?? brand.logo_url ?? ""} placeholder="Dán URL ảnh hoặc chọn file" />
                       <div className="flex gap-2">

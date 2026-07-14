@@ -16,11 +16,11 @@ export function DataTable<T>({ rows, columns }: Props<T>) {
   return (
     <ThemeCard className="overflow-hidden rounded-3xl">
       <div className="overflow-x-auto">
-        <table className="min-w-full text-left text-sm">
+        <table className="min-w-[720px] text-left text-sm md:min-w-full">
           <thead className="bg-[color:var(--bg-elevated)] text-[color:var(--muted)]">
             <tr>
               {columns.map((column) => (
-                <th key={column.header} className="px-4 py-3 font-medium">
+                <th key={column.header} className="px-3 py-3 font-medium md:px-4">
                   {column.header}
                 </th>
               ))}
@@ -30,7 +30,7 @@ export function DataTable<T>({ rows, columns }: Props<T>) {
             {rows.map((row, index) => (
               <tr key={index} className="border-t border-[color:var(--border)]/60 text-[color:var(--text)]">
                 {columns.map((column) => (
-                  <td key={column.header} className={`px-4 py-4 align-top ${column.className ?? ""}`}>
+                  <td key={column.header} className={`px-3 py-4 align-top md:px-4 ${column.className ?? ""}`}>
                     {column.render(row)}
                   </td>
                 ))}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AdminShell } from "@/components/AdminShell";
+import { FormattedNumberInput } from "@/components/FormattedNumberInput";
 import { CrudFilterBar } from "@/components/CrudFilterBar";
 import { ModalShell } from "@/components/ModalShell";
 import { normalizeTechnicalSpecs } from "@/components/TechnicalSpecs";
@@ -198,6 +199,11 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
           title={`Quản lý sản phẩm (${products.length})`}
           searchLabel="Tìm theo tên, brand, danh mục"
           searchValue={query}
+          searchSuggestions={products.slice(0, 8).map((product) => ({
+            label: product.name,
+            href: `/products/${product.id}`,
+            meta: [product.brand, product.category].filter(Boolean).join(" · "),
+          }))}
           secondaryLinks={[
             { href: "/", label: "Dashboard" },
             { href: "/combos", label: "Combo" },
@@ -228,7 +234,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
         />
         <div className="mt-4 flex justify-end">
           <ModalShell
-            trigger={<span className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">Thêm sản phẩm</span>}
+            trigger={<span className="inline-flex w-full justify-center rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950 sm:w-auto">Thêm sản phẩm</span>}
             title="Thêm sản phẩm"
             description="Lưu trực tiếp vào Supabase để dùng cho BOM combo."
           >
@@ -252,13 +258,13 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
               </select>
               <input name="category" placeholder="Hoặc nhập danh mục mới" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               <input name="brand" placeholder="Hoặc nhập brand mới" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <input name="unit" placeholder="Unit" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                <input name="quantity" type="number" defaultValue={1} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                <FormattedNumberInput name="quantity" defaultValue={1} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                <input name="sale_price_vat" type="number" placeholder="Giá bán VAT" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                <input name="cost_price" type="number" placeholder="Giá vốn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+              <div className="grid gap-3 sm:grid-cols-2">
+                <FormattedNumberInput name="sale_price_vat" placeholder="Giá bán VAT" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                <FormattedNumberInput name="cost_price" placeholder="Giá vốn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               </div>
               <input name="cover_image_url" placeholder="Cover image URL (Supabase public URL)" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
               <textarea name="image_urls" rows={3} placeholder="Các URL ảnh khác, ngăn cách bằng xuống dòng hoặc dấu phẩy" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
@@ -279,21 +285,21 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
           <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
             <SectionTitle eyebrow="Danh sách" title="Bảng sản phẩm" description="Dạng bảng dày dữ liệu để thao tác nhanh như hệ quản trị e-commerce." />
             <form action={bulkUpdateProductStatus} className="mt-4 space-y-3">
-              <div className="flex flex-wrap items-end gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-3">
+              <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-3 sm:flex-row sm:flex-wrap sm:items-end">
                 <label className="block">
                   <span className="mb-2 block text-xs uppercase tracking-[0.24em] text-slate-400">Bulk status</span>
-                  <select name="bulk_status" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+                  <select name="bulk_status" className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white sm:w-auto">
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                   </select>
                 </label>
-                <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">
+                <button type="submit" className="w-full rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950 sm:w-auto">
                   Cập nhật hàng loạt
                 </button>
                 <div className="text-sm text-slate-400">Chọn các dòng cần đổi trạng thái rồi bấm cập nhật.</div>
               </div>
-              <div className="overflow-hidden rounded-[1.5rem] border border-white/10">
-                <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+              <div className="overflow-x-auto rounded-[1.5rem] border border-white/10">
+                <table className="min-w-[980px] divide-y divide-white/10 text-left text-sm">
                   <thead className="bg-slate-950/80 text-slate-400">
                     <tr>
                       <th className="px-4 py-3">Chọn</th>
@@ -376,13 +382,13 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                               </select>
                               <input name="category" defaultValue={product.category} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                               <input name="brand" defaultValue={product.brand} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                              <div className="grid grid-cols-2 gap-3">
+                              <div className="grid gap-3 sm:grid-cols-2">
                                 <input name="unit" defaultValue={product.unit} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                                <input name="quantity" type="number" defaultValue={product.quantity} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                                <FormattedNumberInput name="quantity" defaultValue={product.quantity} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                               </div>
-                              <div className="grid grid-cols-2 gap-3">
-                                <input name="sale_price_vat" type="number" defaultValue={product.sale_price_vat} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                                <input name="cost_price" type="number" defaultValue={product.cost_price} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                              <div className="grid gap-3 sm:grid-cols-2">
+                                <FormattedNumberInput name="sale_price_vat" defaultValue={product.sale_price_vat} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                                <FormattedNumberInput name="cost_price" defaultValue={product.cost_price} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                               </div>
                               <input name="cover_image_url" defaultValue={(product as typeof product & { cover_image_url?: string }).cover_image_url ?? ""} placeholder="Cover image URL" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                               <textarea name="image_urls" rows={3} defaultValue={((product as typeof product & { image_urls?: string[] }).image_urls ?? []).join("\n")} placeholder="Các URL ảnh khác" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />

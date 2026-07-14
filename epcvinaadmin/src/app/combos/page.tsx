@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AdminShell } from "@/components/AdminShell";
 import { CrudFilterBar } from "@/components/CrudFilterBar";
 import { SectionTitle } from "@/components/SectionTitle";
-import { comboGroups, getComboCategoryLabel, getComboGroupLabel } from "@/lib/combo-groups";
+import { comboGroups, getComboGroupId, getComboGroupLabel } from "@/lib/combo-groups";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { normalizeCombo, normalizeProduct } from "@/lib/supabase/normalize";
 import { revalidatePath } from "next/cache";
@@ -50,6 +50,13 @@ type ComboRow = {
   combo_category_id?: string | null;
 };
 
+function isHiddenComboCategory(category?: { name?: string; slug?: string } | null) {
+  if (!category) return false;
+  const name = String(category.name ?? "").toLowerCase();
+  const slug = String(category.slug ?? "").toLowerCase();
+  return slug === "hybrid-inverter" || name.includes("hybrid inverter");
+}
+
 function getProfit(combo: ComboRow) {
   const cost = Number(combo.cost_price ?? 0);
   const target = Number(combo.target_min_price ?? 0);
@@ -79,6 +86,10 @@ function comboTypeChip(combo: ComboRow) {
     : "border-cyan-400/30 bg-cyan-400/15 text-cyan-100";
 }
 
+function getSystemType(combo: Pick<ComboRow, "code" | "battery_kwh">) {
+  return combo.code.startsWith("HY") || Number(combo.battery_kwh ?? 0) > 0 ? "hybrid" : "on-grid";
+}
+
 function comboTypeFilterLabel(value?: string) {
   switch (value) {
     case "custom":
@@ -88,6 +99,10 @@ function comboTypeFilterLabel(value?: string) {
     default:
       return "Tất cả";
   }
+}
+
+function groupFilterLabel(value?: string) {
+  return comboGroups.find((group) => group.id === value)?.label ?? "Tất cả nhóm";
 }
 
 function thumbnailUrl(row: { cover_image_url?: string; image_urls?: string[] }) {
@@ -128,39 +143,44 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
   const phaseFilter = normalizeQuery(params.phase);
   const typeFilter = normalizeQuery(params.type);
   const comboTypeFilter = normalizeQuery(params.combo_type);
+  const groupFilter = normalizeQuery(params.group);
 
   const supabase = createSupabaseAdminClient();
   const source = supabase ? "Supabase" : "Supabase only";
   const rawCombos = supabase ? ((await supabase.from("combos").select("*").order("sort_order", { ascending: true })).data ?? []) : [];
   const comboCategories = supabase ? ((await supabase.from("combo_categories").select("*").order("sort_order", { ascending: true })).data ?? []) : [];
-  const comboCategoryNameById = new Map(comboCategories.map((category: { id: string; name: string }) => [category.id, category.name]));
+  const visibleComboCategories = comboCategories.filter((category: { name?: string; slug?: string }) => !isHiddenComboCategory(category));
+  const comboCategoryNameById = new Map(visibleComboCategories.map((category: { id: string; name: string }) => [category.id, category.name]));
   const statusFilter = normalizeQuery(params.status);
   const rows = rawCombos.map(normalizeCombo).filter((combo) => {
     const matchesQuery = !query || [combo.code, combo.name, combo.description].join(" ").toLowerCase().includes(query);
     const matchesPhase = !phaseFilter || String(combo.phase) === phaseFilter;
     const matchesType =
       !typeFilter ||
-      (typeFilter === "battery" ? Number(combo.battery_kwh ?? 0) > 0 : typeFilter === "solar" ? Number(combo.battery_kwh ?? 0) === 0 : true);
+      getSystemType(combo) === typeFilter;
     const matchesComboType = !comboTypeFilter || String(combo.combo_type ?? "standard") === comboTypeFilter;
     const matchesStatus = !statusFilter || String((combo as ComboRow).status ?? "") === statusFilter;
-    return matchesQuery && matchesPhase && matchesType && matchesComboType && matchesStatus;
+    const matchesGroup = !groupFilter || getComboGroupId({
+      code: combo.code,
+      phase: combo.phase,
+      battery_kwh: combo.battery_kwh == null ? null : Number(combo.battery_kwh),
+      battery_type: combo.battery_type,
+    }) === groupFilter;
+    return matchesQuery && matchesPhase && matchesType && matchesComboType && matchesStatus && matchesGroup;
   }) as ComboRow[];
   const avgMargin = rows.length ? rows.reduce((sum, combo) => sum + Number(combo.margin ?? 0), 0) / rows.length : 0;
 
-  const onGrid = rows.filter((combo) => combo.code.startsWith("OG"));
-  const hybrid = rows.filter((combo) => combo.code.startsWith("HY"));
-  const grouped = comboGroups.map((group) => ({
+  const groupCounts = comboGroups.map((group) => ({
     ...group,
-    items: rows.filter((combo) =>
-      getComboGroupLabel({
+    count: rows.filter((combo) =>
+      getComboGroupId({
         code: combo.code,
         phase: combo.phase,
         battery_kwh: combo.battery_kwh == null ? null : Number(combo.battery_kwh),
         battery_type: combo.battery_type,
-      }) === group.label,
-    ),
+      }) === group.id,
+    ).length,
   }));
-
   return (
     <AdminShell>
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
@@ -169,11 +189,22 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
           title={`Quản lý combo (${rows.length})`}
           searchLabel="Tìm theo mã, tên, mô tả"
           searchValue={query}
+          searchSuggestions={rows.slice(0, 8).map((combo) => ({
+            label: combo.name,
+            href: `/combos/${combo.id}`,
+            meta: [combo.code, combo.combo_type === "custom" ? "Tuỳ biến" : "Chuẩn"].filter(Boolean).join(" · "),
+          }))}
           secondaryLinks={[
             { href: "/", label: "Dashboard" },
             { href: "/products", label: "Sản phẩm" },
           ]}
           filters={[
+            {
+              name: "group",
+              label: "Nhóm combo",
+              value: groupFilter,
+              options: comboGroups.map((group) => ({ label: group.label, value: group.id })),
+            },
             {
               name: "phase",
               label: "Pha",
@@ -188,8 +219,8 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
               label: "Loại",
               value: typeFilter,
               options: [
-                { label: "Solar", value: "solar" },
-                { label: "Hybrid", value: "battery" },
+                { label: "On-Grid", value: "on-grid" },
+                { label: "Hybrid", value: "hybrid" },
               ],
             },
             {
@@ -213,7 +244,7 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
           ]}
         />
         <div className="mt-4 flex justify-end">
-          <Link href="/combos/new" className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">
+          <Link href="/combos/new" className="w-full rounded-2xl bg-cyan-400 px-4 py-3 text-center text-sm font-medium text-slate-950 sm:w-auto">
             Thêm combo
           </Link>
         </div>
@@ -221,41 +252,32 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
         <section className="mt-6">
           <div className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
             <SectionTitle eyebrow="Danh sách" title="Bảng combo" description="Đậm đặc thông tin như dashboard Magento, ưu tiên giá vốn, giá bán và lợi nhuận." />
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
-                <div className="text-sm text-slate-400">On-grid</div>
-                <div className="mt-2 text-3xl font-semibold text-white">{onGrid.length}</div>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
-                <div className="text-sm text-slate-400">Hybrid</div>
-                <div className="mt-2 text-3xl font-semibold text-white">{hybrid.length}</div>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
-              <div className="text-sm text-slate-400">Biên gộp TB</div>
-                <div className="mt-2 text-3xl font-semibold text-white">{avgMargin.toFixed(1)}%</div>
-              </div>
-            </div>
             <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-slate-400">
-              <span className="uppercase tracking-[0.24em]">Tag đang xem:</span>
-              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200">{comboTypeFilterLabel(comboTypeFilter || undefined)}</span>
+              <span className="uppercase tracking-[0.24em]">Tóm tắt:</span>
+              {groupCounts.map((group) => (
+                <span key={group.id} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200">
+                  {group.label} {group.count}
+                </span>
+              ))}
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200">Biên gộp TB {avgMargin.toFixed(1)}%</span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200">Nhóm {groupFilterLabel(groupFilter || undefined)}</span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-200">Loại {comboTypeFilterLabel(comboTypeFilter || undefined)}</span>
             </div>
 
-            <form action={bulkUpdateComboStatus} className="mt-4 space-y-3">
-              <div className="flex flex-wrap items-end gap-3 rounded-2xl border border-white/10 bg-slate-950/40 p-3">
-                <label className="block">
-                  <span className="mb-2 block text-xs uppercase tracking-[0.24em] text-slate-400">Bulk status</span>
-                  <select name="bulk_status" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+            <form action={bulkUpdateComboStatus} className="mt-4 flex flex-wrap items-end gap-2">
+              <label className="block">
+                <span className="mb-1 block text-[10px] uppercase tracking-[0.24em] text-slate-400">Bulk status</span>
+                <select name="bulk_status" className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-white sm:w-auto">
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                   </select>
-                </label>
-                <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">
-                  Cập nhật hàng loạt
-                </button>
-                <div className="text-sm text-slate-400">Chọn các combo cần đổi trạng thái rồi bấm cập nhật.</div>
-              </div>
-              <div className="overflow-hidden rounded-[1.5rem] border border-white/10">
-                <table className="min-w-full divide-y divide-white/10 text-left text-sm">
+              </label>
+              <button type="submit" className="rounded-xl bg-cyan-400 px-4 py-2 text-sm font-medium text-slate-950">
+                Cập nhật hàng loạt
+              </button>
+              <div className="text-sm text-slate-400">Chọn combo rồi đổi trạng thái.</div>
+              <div className="overflow-x-auto rounded-[1.5rem] border border-white/10">
+                <table className="min-w-[980px] divide-y divide-white/10 text-left text-sm">
                   <thead className="bg-slate-950/80 text-slate-400">
                     <tr>
                       <th className="px-4 py-3">Chọn</th>
@@ -274,6 +296,12 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
                   <tbody className="divide-y divide-white/10">
                     {rows.map((combo) => {
                       const profit = getProfit(combo);
+                      const comboGroup = getComboGroupLabel({
+                        code: combo.code,
+                        phase: combo.phase,
+                        battery_kwh: combo.battery_kwh == null ? null : Number(combo.battery_kwh),
+                        battery_type: combo.battery_type,
+                      });
                       const batteryLabel = Number(combo.battery_kwh ?? 0) > 0
                         ? `${Number(combo.battery_kwh).toFixed(1)} kWh${combo.battery_type ? ` · ${combo.battery_type}` : ""}`
                         : "-";
@@ -318,14 +346,16 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
                             <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${comboTypeChip(combo)}`}>{comboTypeLabel(combo)}</span>
                           </td>
                           <td className="px-4 py-3 text-slate-200">
-                            <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-200">
-                              {combo.combo_category_id ? comboCategoryNameById.get(combo.combo_category_id) ?? "Chưa gán" : getComboCategoryLabel({
-                                code: combo.code,
-                                phase: combo.phase,
-                                battery_kwh: combo.battery_kwh == null ? null : Number(combo.battery_kwh),
-                                battery_type: combo.battery_type,
-                              })}
-                            </span>
+                            <div className="flex flex-col gap-1">
+                              <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-200">
+                                {comboGroup}
+                              </span>
+                              {combo.combo_category_id ? (
+                                  <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-medium text-slate-400">
+                                  {comboCategoryNameById.get(combo.combo_category_id) ?? "Chưa gán"}
+                                  </span>
+                              ) : null}
+                            </div>
                           </td>
                           <td className="px-4 py-3 text-slate-200">{combo.phase === 1 ? "1 pha" : "3 pha"}</td>
                           <td className="px-4 py-3 text-slate-200">{batteryLabel}</td>

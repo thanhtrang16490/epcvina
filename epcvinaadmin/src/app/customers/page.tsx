@@ -1,22 +1,23 @@
 import { AdminShell } from "@/components/AdminShell";
+import { CrudFilterBar } from "@/components/CrudFilterBar";
+import { CustomerCreateForm } from "@/components/CustomerCreateForm";
 import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SlugField } from "@/components/SlugField";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { slugify } from "@/lib/slug";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-async function createCustomer(formData: FormData) {
+async function createCustomer(_: { ok: boolean; error: string | null }, formData: FormData) {
   "use server";
   const supabase = createSupabaseAdminClient();
-  if (!supabase) return;
+  if (!supabase) return { ok: false, error: "Thiếu Supabase admin env" };
   const name = String(formData.get("name") ?? "").trim();
-  await supabase.from("customers").insert({
-    slug: String(formData.get("slug") ?? slugify(name)).trim(),
+  const { error } = await supabase.from("customers").upsert({
+    slug: String(formData.get("slug") ?? "").trim(),
     name,
     phone: String(formData.get("phone") ?? "").trim() || null,
     email: String(formData.get("email") ?? "").trim() || null,
@@ -24,11 +25,11 @@ async function createCustomer(formData: FormData) {
     address: String(formData.get("address") ?? "").trim() || null,
     note: String(formData.get("note") ?? "").trim() || null,
     sort_order: Number(formData.get("sort_order") ?? 0),
-    status: String(formData.get("status") ?? "active"),
-    is_active: String(formData.get("status") ?? "active") === "active",
-  });
+    is_active: true,
+  }, { onConflict: "slug" });
+  if (error) return { ok: false, error: error.message };
   revalidatePath("/customers");
-  redirect("/customers");
+  return { ok: true, error: null };
 }
 
 async function updateCustomer(formData: FormData) {
@@ -36,8 +37,8 @@ async function updateCustomer(formData: FormData) {
   const supabase = createSupabaseAdminClient();
   if (!supabase) return;
   const name = String(formData.get("name") ?? "").trim();
-  await supabase.from("customers").update({
-    slug: String(formData.get("slug") ?? slugify(name)).trim(),
+  const { error } = await supabase.from("customers").update({
+    slug: String(formData.get("slug") ?? "").trim(),
     name,
     phone: String(formData.get("phone") ?? "").trim() || null,
     email: String(formData.get("email") ?? "").trim() || null,
@@ -45,9 +46,9 @@ async function updateCustomer(formData: FormData) {
     address: String(formData.get("address") ?? "").trim() || null,
     note: String(formData.get("note") ?? "").trim() || null,
     sort_order: Number(formData.get("sort_order") ?? 0),
-    status: String(formData.get("status") ?? "active"),
     is_active: String(formData.get("status") ?? "active") === "active",
   }).eq("id", String(formData.get("id") ?? ""));
+  if (error) throw error;
   revalidatePath("/customers");
   redirect("/customers");
 }
@@ -75,6 +76,20 @@ export default async function CustomersPage() {
             <Link href="/orders" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Đơn hàng</Link>
           </div>
         </div>
+        <CrudFilterBar
+          subtitle="CRM"
+          title={`Khách hàng (${rows.length})`}
+          searchLabel="Tìm theo tên, điện thoại, email"
+          searchSuggestions={rows.slice(0, 8).map((row: any) => ({
+            label: row.name,
+            href: `/customers/${row.id}`,
+            meta: [row.phone, row.email].filter(Boolean).join(" · "),
+          }))}
+          secondaryLinks={[
+            { href: "/", label: "Dashboard" },
+            { href: "/orders", label: "Đơn hàng" },
+          ]}
+        />
         <div className="mb-4 grid gap-3 md:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
             <div className="text-sm text-slate-400">Khách hàng</div>
@@ -99,19 +114,7 @@ export default async function CustomersPage() {
         ) : null}
         <div className="mb-4 flex justify-end">
           <ModalShell trigger={<span className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">Thêm khách hàng</span>} title="Thêm khách hàng" description="Tạo khách hàng mới.">
-            <form action={createCustomer} className="grid gap-3">
-              <SlugField name="name" label="Tên khách hàng" placeholder="Tên khách hàng" />
-              <input name="phone" placeholder="Số điện thoại" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <input name="email" placeholder="Email" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <input name="tax_code" placeholder="Mã số thuế" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <input name="address" placeholder="Địa chỉ" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <select name="status" defaultValue="active" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-              </select>
-              <textarea name="note" rows={4} placeholder="Ghi chú" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">Tạo khách hàng</button>
-            </form>
+            <CustomerCreateForm action={createCustomer} />
           </ModalShell>
         </div>
         <section className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">

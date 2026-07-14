@@ -6,6 +6,8 @@ create table if not exists public.pricing_settings (
   default_psh_hours numeric not null default 4,
   default_pr numeric not null default 0.8,
   self_use_ratio numeric not null default 0.8,
+  residential_electricity_price_vnd_per_kwh numeric not null default 2204,
+  commercial_electricity_price_vnd_per_kwh numeric not null default 2500,
   electricity_price_vnd_per_kwh numeric not null default 3200,
   feed_in_tariff_vnd_per_kwh numeric not null default 1700,
   updated_at timestamptz not null default now()

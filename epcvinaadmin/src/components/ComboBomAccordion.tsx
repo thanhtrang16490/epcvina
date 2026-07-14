@@ -63,70 +63,81 @@ export function ComboBomAccordion({ groups }: Props) {
   );
 
   return (
-    <div className="mt-5 space-y-5">
+    <div className="mt-5 space-y-4">
       {groups.map(([label, items]) => {
         const open = openGroups[label] ?? true;
         const total = items.reduce((sum, item) => sum + Number(item.total_price_vat ?? item.unit_price_vat * item.quantity), 0);
         const laborGroup = isLaborGroup(label);
         return (
-          <div key={label} className="rounded-[1.5rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-4">
+          <div key={label} className="overflow-hidden rounded-[1.25rem] border border-slate-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
             <button
               type="button"
               onClick={() => setOpenGroups((current) => ({ ...current, [label]: !open }))}
-              className="flex w-full items-center justify-between gap-3 text-left"
+              className="flex w-full items-center justify-between gap-4 border-b border-slate-200 bg-slate-50/80 px-4 py-3 text-left hover:bg-slate-100/70"
             >
-              <div>
-                <div className="text-sm font-semibold text-[color:var(--text)]">{label}</div>
-                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-[color:var(--muted)]">
-                  <span>{laborGroup ? "1 khoản chi phí" : `${items.length} vật tư`}</span>
-                  <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-0.5 font-medium text-[color:var(--text)]">
-                    Tổng nhóm: {formatMillions(total)}
-                  </span>
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[color:var(--accent)]/10 text-[color:var(--accent)]">
+                  {laborGroup ? "LC" : "B"}
+                </div>
+                <div>
+                  <div className="text-sm font-semibold text-slate-900">{label}</div>
+                  <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                    <span>{laborGroup ? "1 khoản chi phí" : `${items.length} vật tư`}</span>
+                    <span className="rounded-full border border-slate-200 bg-white px-2 py-0.5 font-medium text-slate-700">
+                      Tổng nhóm: {formatMillions(total)}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="text-xs text-[color:var(--muted)]">
+              <div className="text-xs font-medium text-slate-500">
                 {open ? "Thu gọn" : "Mở rộng"}
               </div>
             </button>
             {open && (
-              <div className="mt-4 overflow-hidden rounded-2xl border border-[color:var(--border)]">
-                <table className="min-w-full divide-y divide-[color:var(--border)] text-sm">
-                  <thead className="bg-[color:var(--panel-strong)]">
-                    <tr className="text-left text-[color:var(--muted)]">
+              <div className="overflow-hidden">
+                <table className="min-w-full divide-y divide-slate-200 text-sm">
+                  <thead className="bg-white text-slate-500">
+                    <tr className="text-left">
                       <th className="px-4 py-3 font-medium">Ảnh</th>
-                      <th className="px-4 py-3 font-medium">Sản phẩm</th>
-                      <th className="px-4 py-3 font-medium">Sản phẩm tham chiếu</th>
-                      <th className="px-4 py-3 font-medium">SL</th>
-                      <th className="px-4 py-3 font-medium">Giá tuỳ biến</th>
+                      <th className="px-4 py-3 font-medium">Vật tư</th>
+                      <th className="px-4 py-3 font-medium">Tham chiếu</th>
+                      <th className="px-4 py-3 font-medium">Số lượng</th>
                       <th className="px-4 py-3 font-medium">Giá vốn</th>
-                      <th className="px-4 py-3 font-medium">Thành tiền</th>
+                      <th className="px-4 py-3 font-medium">Giá bán</th>
+                      <th className="px-4 py-3 font-medium">Biên lợi nhuận</th>
+                      <th className="px-4 py-3 font-medium">Tồn kho</th>
+                      <th className="px-4 py-3 font-medium">Kho</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[color:var(--border)]">
+                  <tbody className="divide-y divide-slate-200 bg-white">
                     {items.map((item) => (
-                      <tr key={item.id} className="bg-[color:var(--panel)]/60">
+                      <tr key={item.id} className="group hover:bg-slate-50/80">
                         <td className="px-4 py-3">
-                          <div className="h-12 w-12 overflow-hidden rounded-xl border border-[color:var(--border)] bg-[color:var(--panel-strong)]">
+                          <div className="h-11 w-11 overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
                             {getItemImage(item) ? <img src={getItemImage(item)} alt={getItemTitle(item)} className="h-full w-full object-cover" /> : null}
                           </div>
                         </td>
                         <td className="px-4 py-3">
-                          <div className="font-medium text-[color:var(--text)]">{getItemTitle(item)}</div>
-                          <div className="text-xs text-[color:var(--muted)]">{item.unit || (laborGroup ? "Công" : "")}</div>
-                          <div className="mt-1 text-[11px] text-[color:var(--muted)]">
-                            Giá tuỳ biến: <span className="font-medium text-[color:var(--text)]">{formatMillions(getCustomPrice(item))}</span>
+                          <div className="font-medium text-slate-900">{getItemTitle(item)}</div>
+                          <div className="mt-1 text-xs text-slate-500">{item.unit || (laborGroup ? "Công" : "-")}</div>
+                          <div className="mt-1 inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-500">
+                            {laborGroup ? "Nhân công lắp đặt" : item.category || "BOM line"}
                           </div>
                         </td>
-                        <td className="px-4 py-3 text-[color:var(--muted)]">
-                          <div className="text-sm font-medium text-[color:var(--text)]">{getReferenceLabel(item)}</div>
-                          <div className="mt-1 text-[11px]">
-                            Giá tham chiếu: <span className="font-medium text-[color:var(--text)]">{formatMillions(getReferencePrice(item))}</span>
-                          </div>
+                        <td className="px-4 py-3 text-slate-500">
+                          <div className="text-sm font-medium text-slate-900">{getReferenceLabel(item)}</div>
+                          <div className="mt-1 text-xs">Nhập tay từ sheet nếu chưa có tham chiếu</div>
                         </td>
-                        <td className="px-4 py-3 text-[color:var(--text)]">{laborGroup ? "1" : Number(item.quantity).toFixed(0)}</td>
-                        <td className="px-4 py-3 text-[color:var(--text)]">{formatMillions(getCustomPrice(item))}</td>
-                        <td className="px-4 py-3 text-[color:var(--text)]">{formatMillions(getReferencePrice(item))}</td>
-                        <td className="px-4 py-3 text-[color:var(--text)]">{formatMillions(getCustomPrice(item))}</td>
+                        <td className="px-4 py-3 text-slate-900">{laborGroup ? "1" : Number(item.quantity).toFixed(0)}</td>
+                        <td className="px-4 py-3 text-slate-900">{formatMillions(getReferencePrice(item))}</td>
+                        <td className="px-4 py-3 text-slate-900">{formatMillions(getCustomPrice(item))}</td>
+                        <td className="px-4 py-3 text-slate-900">
+                          {getCustomPrice(item) > 0 && getReferencePrice(item) > 0
+                            ? `${Math.round(((getCustomPrice(item) - getReferencePrice(item)) / getCustomPrice(item)) * 100)}%`
+                            : "-"}
+                        </td>
+                        <td className="px-4 py-3 text-slate-900">{Number(item.inventory ?? 0).toFixed(0)}</td>
+                        <td className="px-4 py-3 text-slate-900">{item.warehouse || "Main"}</td>
                       </tr>
                     ))}
                   </tbody>

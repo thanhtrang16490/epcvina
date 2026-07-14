@@ -4,6 +4,7 @@ import { ThemeCard } from "@/components/ui/ThemeCard";
 import { getComboAreaM2 } from "@/lib/combo-area";
 import { getDisplayedComboPrice } from "@/lib/combo-price";
 import { buildComboFinance, round2 } from "@/lib/combo-finance";
+import { formatMoneyVnd } from "@/lib/money-format";
 import { getPricingSettings } from "@/lib/pricing-settings";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeCombo, normalizeComboItem } from "@/lib/supabase/normalize";
@@ -28,12 +29,6 @@ type ComboItemRow = ReturnType<typeof normalizeComboItem> & {
   } | null;
 };
 
-const currency = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 });
-
-function formatVND(value: number) {
-  return `${currency.format(value)} đ`;
-}
-
 function getGroupLabel(item: ComboItemRow) {
   const text = `${item.category ?? ""} ${item.item_name ?? ""}`.toLowerCase();
   if (
@@ -44,7 +39,7 @@ function getGroupLabel(item: ComboItemRow) {
     text.includes("lao dong") ||
     text.includes("lao động")
   ) {
-    return "Chi phí nhân công";
+    return "Nhân công lắp đặt";
   }
   if (text.includes("pin lưu trữ") || text.includes("battery") || text.includes("lithium")) return "Pin lưu trữ";
   if (text.includes("tấm pin") || text.includes("panel") || text.includes("pv")) return "Tấm pin mặt trời";
@@ -73,6 +68,12 @@ function getCustomPrice(item: ComboItemRow) {
 
 function getReferencePrice(item: ComboItemRow) {
   return Number(item.total_cost_price || item.cost_price * item.quantity || 0);
+}
+
+function getDisplayedMaterialPrice(item: ComboItemRow) {
+  const customPrice = getCustomPrice(item);
+  const referencePrice = getReferencePrice(item);
+  return customPrice > 0 ? { label: "Giá tuỳ biến", value: customPrice } : { label: "Giá tham chiếu", value: referencePrice };
 }
 
 function getImage(item: ComboItemRow) {
@@ -125,15 +126,21 @@ export default async function PublicComboDetailPage({ params }: Props) {
   const combo = data as ComboData;
   const finance = buildComboFinance({
     solarKw: Number(combo.solar_kw ?? 0),
-    costPrice: Number(combo.cost_price ?? 0) * 1_000_000,
-    referencePrice: Number(combo.reference_price ?? 0) * 1_000_000,
+    costPrice: Number(combo.cost_price ?? 0),
+    referencePrice: Number(combo.reference_price ?? 0),
     pricingSettings,
   });
   const displayedPrice = getDisplayedComboPrice(combo);
+  const financeReferencePrice = Number(displayedPrice.value ?? combo.reference_price ?? 0);
   const systemLabel = getSystemLabel(combo);
   const voltageLabel = getVoltageLabel(combo);
   const monthlyProduction = Math.round(finance.monthlyProductionKwh);
-  const paybackYears = finance.paybackYears;
+  const paybackYears = buildComboFinance({
+    solarKw: Number(combo.solar_kw ?? 0),
+    costPrice: Number(combo.cost_price ?? 0),
+    referencePrice: financeReferencePrice,
+    pricingSettings,
+  }).paybackYears;
 
   const comboItems = supabase
     ? ((await supabase.from("combo_items").select("*, product:products(*)").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(
@@ -162,7 +169,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
 
   const mainDevices = displayGroups.filter((group) => group.primary);
   const accessoryGroups = displayGroups.filter((group) => !group.primary);
-  const laborGroup = displayGroups.find((group) => group.label === "Chi phí nhân công");
+  const laborGroup = displayGroups.find((group) => group.label === "Nhân công lắp đặt");
 
   return (
     <PublicShell>
@@ -205,8 +212,15 @@ export default async function PublicComboDetailPage({ params }: Props) {
               </div>
 
               <div className="rounded-[1.4rem] border border-white/10 bg-white/5 p-4">
-                <div className="text-sm uppercase tracking-[0.24em] text-slate-400">{displayedPrice.label}</div>
-                <div className="mt-2 text-3xl font-bold text-cyan-200 md:text-4xl">{formatVND(displayedPrice.value)}</div>
+                <div className="flex flex-wrap items-center gap-2 text-sm uppercase tracking-[0.24em] text-slate-400">
+                  <span>{displayedPrice.label}</span>
+                  {displayedPrice.label === "Giá ưu đãi" && (
+                    <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber-100">
+                      Ưu đãi
+                    </span>
+                  )}
+                </div>
+                <div className="mt-2 text-3xl font-bold text-cyan-200 md:text-4xl">{formatMoneyVnd(displayedPrice.value)}</div>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -257,8 +271,8 @@ export default async function PublicComboDetailPage({ params }: Props) {
               {combo.battery_kwh ? ` Kèm lưu trữ ${combo.battery_kwh} kWh.` : " Không bao gồm pin lưu trữ."}
             </div>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <FeatureRow label={displayedPrice.label} value={formatVND(displayedPrice.value)} />
-              <FeatureRow label="Lợi ích tháng" value={formatVND(finance.monthlyBenefitVnd)} />
+              <FeatureRow label={displayedPrice.label} value={formatMoneyVnd(displayedPrice.value)} />
+              <FeatureRow label="Lợi ích tháng" value={formatMoneyVnd(finance.monthlyBenefitVnd)} />
               <FeatureRow label="Sản lượng tháng" value={`${monthlyProduction} kWh`} />
               <FeatureRow
                 label="Giả định"
@@ -269,8 +283,8 @@ export default async function PublicComboDetailPage({ params }: Props) {
         </section>
 
         <ThemeCard className="p-6">
-          <SectionTitle eyebrow="Thiết bị chính" title="Danh sách vật tư trọng tâm" description="Giống bố cục SLM: chỉ nhấn vào các nhóm chính như tấm pin, inverter, pin lưu trữ." />
-          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <SectionTitle eyebrow="Thiết bị chính" title="Danh sách vật tư trọng tâm" description="Giống bố cục EPCVINA: chỉ nhấn vào các nhóm chính như tấm pin, inverter, pin lưu trữ." />
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {mainDevices.length > 0 ? (
               mainDevices.map((group) => (
                 <div key={group.label} className="rounded-[1.4rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
@@ -279,7 +293,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                       <div className="text-sm font-semibold text-[color:var(--text)]">{group.label}</div>
                       <div className="mt-1 text-xs text-[color:var(--muted)]">{group.items.length} vật tư</div>
                     </div>
-                    <div className="text-sm font-semibold text-[color:var(--text)]">{formatVND(group.total)}</div>
+                    <div className="text-sm font-semibold text-[color:var(--text)]">{formatMoneyVnd(group.total)}</div>
                   </div>
                   <div className="mt-4 space-y-3">
                     {group.items.map((item) => (
@@ -293,10 +307,9 @@ export default async function PublicComboDetailPage({ params }: Props) {
                             <div className="mt-1 text-xs text-[color:var(--muted)]">{item.category || "Vật tư"}</div>
                           </div>
                         </div>
-                        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                        <div className="mt-3 grid gap-2 sm:grid-cols-2">
                           <FeatureRow label="Số lượng" value={`x${item.quantity}`} />
-                          <FeatureRow label="Giá tuỳ biến" value={formatVND(getCustomPrice(item))} />
-                          <FeatureRow label="Giá tham chiếu" value={formatVND(getReferencePrice(item))} />
+                          <FeatureRow label={getDisplayedMaterialPrice(item).label} value={formatMoneyVnd(getDisplayedMaterialPrice(item).value)} />
                         </div>
                       </div>
                     ))}
@@ -312,13 +325,13 @@ export default async function PublicComboDetailPage({ params }: Props) {
         </ThemeCard>
 
         <ThemeCard id="bom" className="p-6">
-          <SectionTitle eyebrow="BOM" title="Bản kê chi tiết vật tư" description="Các nhóm phụ được gộp gọn; nhóm chính vẫn hiển thị theo từng món như SLM." />
+          <SectionTitle eyebrow="BOM" title="Bản kê chi tiết vật tư" description="Các nhóm phụ được gộp gọn; nhóm chính vẫn hiển thị theo từng món như EPCVINA." />
           {laborGroup ? (
             <div className="mt-5 rounded-[1.2rem] border border-orange-400/30 bg-orange-400/10 p-4">
               <div className="text-xs uppercase tracking-[0.24em] text-orange-200">Chi phí nhân công theo sheet</div>
               <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
                 <div className="text-sm text-white/90">Khoản nhân công lắp đặt được tách riêng khỏi BOM phụ.</div>
-                <div className="text-xl font-semibold text-white">{formatVND(laborGroup.total)}</div>
+                <div className="text-xl font-semibold text-white">{formatMoneyVnd(laborGroup.total)}</div>
               </div>
             </div>
           ) : null}
@@ -332,7 +345,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                       <div>
                         <div className="text-sm font-semibold text-[color:var(--text)]">{group.label}</div>
                         <div className="mt-1 text-xs text-[color:var(--muted)]">
-                          {group.label === "Chi phí nhân công"
+                      {group.label === "Nhân công lắp đặt"
                             ? "1 khoản chi phí theo sheet"
                             : group.primary
                               ? `${group.items.length} vật tư`
@@ -340,7 +353,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm font-semibold text-[color:var(--text)]">{formatVND(group.total)}</div>
+                        <div className="text-sm font-semibold text-[color:var(--text)]">{formatMoneyVnd(group.total)}</div>
                         <div className="text-xs text-[color:var(--muted)]">Nhấn để xem</div>
                       </div>
                     </summary>
@@ -360,7 +373,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                                 <div className="mt-1 text-xs text-[color:var(--muted)]">{getReferenceLabel(item)}</div>
                               </div>
                               <div className="text-right text-sm text-[color:var(--text)]">x{item.quantity}</div>
-                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatVND(getCustomPrice(item))}</div>
+                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
                             </div>
                           ))
                         ) : group.label === "Chi phí nhân công" ? (
@@ -371,7 +384,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                                 <div className="mt-1 text-xs text-[color:var(--muted)]">{getReferenceLabel(item)}</div>
                               </div>
                               <div className="text-right text-sm text-[color:var(--text)]">1</div>
-                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatVND(getCustomPrice(item))}</div>
+                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
                             </div>
                           ))
                         ) : (
@@ -381,7 +394,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                               <div className="mt-1 text-xs text-[color:var(--muted)]">Gộp nhiều vật tư phụ trong cùng nhóm</div>
                             </div>
                             <div className="text-right text-sm text-[color:var(--text)]">x1</div>
-                            <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatVND(group.total)}</div>
+                            <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(group.total)}</div>
                           </div>
                         )}
                       </div>

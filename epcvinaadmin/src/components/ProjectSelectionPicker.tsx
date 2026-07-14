@@ -1,5 +1,6 @@
 "use client";
 
+import { FormattedNumberInput } from "@/components/FormattedNumberInput";
 import { useState } from "react";
 
 type Option = { id: string; name: string; code?: string; brand?: string };
@@ -104,7 +105,7 @@ export function ProjectSelectionPicker({ combos, products, initialComboRows = []
                   </option>
                 ))}
               </select>
-              <input type="number" min={1} step={1} value={draftQty} onChange={(event) => setDraftQty(Number(event.target.value) || 1)} className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-white" />
+              <FormattedNumberInput name={`${open ?? "item"}_draft_qty`} min={1} step={1} value={draftQty} onValueChange={(value) => setDraftQty(Number(value) || 1)} className="rounded-2xl border border-white/10 bg-slate-900/80 px-4 py-3 text-white" />
               <button type="button" onClick={addRow} className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">
                 Thêm
               </button>

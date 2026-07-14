@@ -1,8 +1,10 @@
 import { revalidatePath } from "next/cache";
 import { AdminShell } from "@/components/AdminShell";
+import { FormattedNumberInput } from "@/components/FormattedNumberInput";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { companySettings } from "@/lib/company-settings";
+import { parseLocaleNumber } from "@/lib/number-format";
 import {
   defaultPricingSettings,
   formatPct,
@@ -25,10 +27,12 @@ async function savePricingSettings(formData: FormData) {
     labor_hybrid_per_kwp: parseNumberField(formData.get("labor_hybrid_per_kwp")) || defaultPricingSettings.labor_hybrid_per_kwp,
     target_gross_margin_pct: parseNumberField(formData.get("target_gross_margin_pct")) || defaultPricingSettings.target_gross_margin_pct,
     default_psh_hours: parseNumberField(formData.get("default_psh_hours")) || defaultPricingSettings.default_psh_hours,
-    default_pr: Number(String(formData.get("default_pr") ?? "").replace(/,/g, "")) || defaultPricingSettings.default_pr,
-    self_use_ratio: Number(String(formData.get("self_use_ratio") ?? "").replace(/,/g, "")) || defaultPricingSettings.self_use_ratio,
+    default_pr: parseLocaleNumber(formData.get("default_pr"), defaultPricingSettings.default_pr),
+    self_use_ratio: parseLocaleNumber(formData.get("self_use_ratio"), defaultPricingSettings.self_use_ratio),
+    residential_electricity_price_vnd_per_kwh: parseNumberField(formData.get("residential_electricity_price_vnd_per_kwh")) || defaultPricingSettings.residential_electricity_price_vnd_per_kwh,
+    commercial_electricity_price_vnd_per_kwh: parseNumberField(formData.get("commercial_electricity_price_vnd_per_kwh")) || defaultPricingSettings.commercial_electricity_price_vnd_per_kwh,
     electricity_price_vnd_per_kwh: parseNumberField(formData.get("electricity_price_vnd_per_kwh")) || defaultPricingSettings.electricity_price_vnd_per_kwh,
-    feed_in_tariff_vnd_per_kwh: parseNumberField(formData.get("feed_in_tariff_vnd_per_kwh")) || defaultPricingSettings.feed_in_tariff_vnd_per_kwh,
+    feed_in_tariff_vnd_per_kwh: defaultPricingSettings.feed_in_tariff_vnd_per_kwh,
   };
 
   await supabase.from("pricing_settings").upsert({ id: 1, ...payload, updated_at: new Date().toISOString() });
@@ -56,6 +60,7 @@ async function loadPricingSettings() {
 
   const { data } = await supabase.from("pricing_settings").select("*").eq("id", 1).maybeSingle();
   return {
+    ...defaultPricingSettings,
     ...normalizePricingSettings(data ?? defaultPricingSettings),
     updated_at: data?.updated_at ?? null,
   };
@@ -133,26 +138,22 @@ export default async function SettingsPage() {
                 <div className="mt-3 grid gap-4">
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                     On-grid
-                    <input
+                    <FormattedNumberInput
                       name="labor_ongrid_per_kwp"
-                      type="number"
                       min={0}
                       step={1}
                       defaultValue={pricingSettings.labor_ongrid_per_kwp}
                       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
-                      inputMode="numeric"
                     />
                   </label>
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                     Hybrid
-                    <input
+                    <FormattedNumberInput
                       name="labor_hybrid_per_kwp"
-                      type="number"
                       min={0}
                       step={1}
                       defaultValue={pricingSettings.labor_hybrid_per_kwp}
                       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
-                      inputMode="numeric"
                     />
                   </label>
                 </div>
@@ -163,15 +164,15 @@ export default async function SettingsPage() {
                 <div className="mt-3 grid gap-4">
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                     Margin gộp mục tiêu
-                    <input
+                    <FormattedNumberInput
                       name="target_gross_margin_pct"
-                      type="number"
                       min={0}
                       max={100}
                       step={0.1}
                       defaultValue={pricingSettings.target_gross_margin_pct}
                       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
-                      inputMode="numeric"
+                      integer={false}
+                      inputMode="decimal"
                     />
                   </label>
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
@@ -189,66 +190,75 @@ export default async function SettingsPage() {
                 <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Rule hoàn vốn</div>
                 <div className="mt-3 grid gap-4 md:grid-cols-2">
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                    Giá điện sinh hoạt
+                    <FormattedNumberInput
+                      name="residential_electricity_price_vnd_per_kwh"
+                      min={0}
+                      step={1}
+                      defaultValue={pricingSettings.residential_electricity_price_vnd_per_kwh}
+                      className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
+                    />
+                  </label>
+                  <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                    Giá điện kinh doanh
+                    <FormattedNumberInput
+                      name="commercial_electricity_price_vnd_per_kwh"
+                      min={0}
+                      step={1}
+                      defaultValue={pricingSettings.commercial_electricity_price_vnd_per_kwh}
+                      className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
+                    />
+                  </label>
+                  <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                     PSH mặc định
-                    <input
+                    <FormattedNumberInput
                       name="default_psh_hours"
-                      type="number"
                       min={0}
                       step={0.1}
                       defaultValue={pricingSettings.default_psh_hours}
                       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
-                      inputMode="numeric"
+                      integer={false}
+                      inputMode="decimal"
                     />
                   </label>
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                     PR mặc định
-                    <input
+                    <FormattedNumberInput
                       name="default_pr"
-                      type="number"
                       min={0}
                       step={0.01}
                       defaultValue={pricingSettings.default_pr}
                       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
+                      integer={false}
                       inputMode="decimal"
                     />
                   </label>
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                     Tự dùng
-                    <input
+                    <FormattedNumberInput
                       name="self_use_ratio"
-                      type="number"
                       min={0}
                       max={1}
                       step={0.01}
                       defaultValue={pricingSettings.self_use_ratio}
                       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
+                      integer={false}
                       inputMode="decimal"
                     />
                   </label>
                   <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                     Giá điện
-                    <input
+                    <FormattedNumberInput
                       name="electricity_price_vnd_per_kwh"
-                      type="number"
                       min={0}
                       step={1}
                       defaultValue={pricingSettings.electricity_price_vnd_per_kwh}
                       className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
-                      inputMode="numeric"
                     />
                   </label>
-                  <label className="grid gap-2 text-sm text-[color:var(--muted)]">
-                    Giá mua điện dư
-                    <input
-                      name="feed_in_tariff_vnd_per_kwh"
-                      type="number"
-                      min={0}
-                      step={1}
-                      defaultValue={pricingSettings.feed_in_tariff_vnd_per_kwh}
-                      className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
-                      inputMode="numeric"
-                    />
-                  </label>
+                  <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-sm text-[color:var(--muted)] md:col-span-2">
+                    Giá mua điện dư đã được vô hiệu hóa trong tư vấn công khai. Hệ thống chỉ dùng phần tiết kiệm điện để tính toán.
+                  </div>
                 </div>
               </div>
 

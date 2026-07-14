@@ -3,7 +3,6 @@ import { AdminShell } from "@/components/AdminShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
-import { normalizeCombo, normalizeProduct } from "@/lib/supabase/normalize";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -25,9 +24,6 @@ export default async function ProjectDetailPage({ params }: Props) {
   const customer = (customerRes.data ?? []).find((item: any) => item.id === project.customer_id) ?? null;
   const order = orderRes.data ?? null;
   const orderItems = order ? (orderItemsRes.data ?? []) : [];
-
-  const combos = ((await supabase.from("combos").select("*").order("sort_order", { ascending: true })).data ?? []).map(normalizeCombo);
-  const products = ((await supabase.from("products").select("*").order("sort_order", { ascending: true })).data ?? []).map(normalizeProduct);
 
   return (
     <AdminShell>
@@ -62,57 +58,24 @@ export default async function ProjectDetailPage({ params }: Props) {
           </ThemeCard>
         </section>
 
-        <section className="mt-6 grid gap-6 lg:grid-cols-2">
-          <ThemeCard className="p-6">
-            <SectionTitle eyebrow="Order items" title="Combo liên quan" description="Các combo gắn vào đơn hàng từ dự án." />
-            <div className="mt-4 space-y-3">
-              {orderItems.filter((item: any) => item.item_type === "combo").map((item: any) => (
-                <div key={item.id} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                  <div className="font-medium text-white">{item.item_name}</div>
-                  <div className="text-xs text-slate-400">SL {item.quantity} · {Number(item.total_price ?? 0).toLocaleString("vi-VN")} đ</div>
-                </div>
-              ))}
-              {!orderItems.filter((item: any) => item.item_type === "combo").length && <div className="text-sm text-slate-400">Chưa có combo.</div>}
-            </div>
-          </ThemeCard>
-
-          <ThemeCard className="p-6">
-            <SectionTitle eyebrow="Order items" title="Thiết bị liên quan" description="Các thiết bị gắn vào đơn hàng từ dự án." />
-            <div className="mt-4 space-y-3">
-              {orderItems.filter((item: any) => item.item_type === "product").map((item: any) => (
-                <div key={item.id} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                  <div className="font-medium text-white">{item.item_name}</div>
-                  <div className="text-xs text-slate-400">SL {item.quantity} · {Number(item.total_price ?? 0).toLocaleString("vi-VN")} đ</div>
-                </div>
-              ))}
-              {!orderItems.filter((item: any) => item.item_type === "product").length && <div className="text-sm text-slate-400">Chưa có thiết bị.</div>}
-            </div>
-          </ThemeCard>
-        </section>
-
         <ThemeCard className="mt-6 p-6">
-          <SectionTitle eyebrow="Catalog" title="Combo và thiết bị khả dụng" description="Danh sách tham chiếu nhanh để đối chiếu khi chỉnh dự án." />
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
-            <div>
-              <div className="mb-2 text-sm font-medium text-white">Combo</div>
-              <div className="space-y-2">
-                {combos.map((combo) => (
-                  <div key={combo.id} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-white">
-                    {combo.name}
+          <SectionTitle eyebrow="Order items" title="Đơn hàng của dự án" description="Combo hoặc thiết bị chỉ hiển thị theo đơn hàng đã tạo, không lấy trực tiếp từ dự án." />
+          <div className="mt-4 space-y-3">
+            {orderItems.map((item: any) => (
+              <div key={item.id} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="min-w-0">
+                    <div className="font-medium text-white">{item.item_name}</div>
+                    <div className="text-xs uppercase tracking-[0.22em] text-slate-400">{item.item_type === "combo" ? "Combo" : "Thiết bị"}</div>
                   </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <div className="mb-2 text-sm font-medium text-white">Thiết bị</div>
-              <div className="space-y-2">
-                {products.map((product) => (
-                  <div key={product.id} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-white">
-                    {product.name}
+                  <div className="shrink-0 text-right text-xs text-slate-400">
+                    <div>SL {item.quantity}</div>
+                    <div>{Number(item.total_price ?? 0).toLocaleString("vi-VN")} đ</div>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            ))}
+            {!orderItems.length && <div className="text-sm text-slate-400">Chưa có đơn hàng hoặc item nào được gắn với dự án này.</div>}
           </div>
         </ThemeCard>
       </main>

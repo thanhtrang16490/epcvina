@@ -18,7 +18,7 @@ const DEFAULT_PSH = 4;
 const DEFAULT_PR = 0.8;
 const DEFAULT_SELF_USE_RATIO = 0.8;
 const DEFAULT_SELF_USE_PRICE = 3200;
-const DEFAULT_EXPORT_PRICE = 1700;
+const DEFAULT_EXPORT_PRICE = 0;
 
 export function round2(value: number) {
   return Math.round(value * 100) / 100;
@@ -75,7 +75,7 @@ export function buildComboFinance(input: ComboFinanceInput) {
     monthlyProductionKwh,
     input.selfUseRatio ?? pricingSettings.self_use_ratio,
     input.selfUsePrice ?? pricingSettings.electricity_price_vnd_per_kwh,
-    input.exportPrice ?? pricingSettings.feed_in_tariff_vnd_per_kwh,
+    input.exportPrice ?? 0,
   );
   const paybackYears = getPaybackYears(suggestedSellingPrice, monthlyBenefitVnd);
 
