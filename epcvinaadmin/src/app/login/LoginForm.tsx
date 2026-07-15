@@ -70,27 +70,27 @@ export function LoginForm() {
   };
 
   return (
-    <div className="grid w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/70 shadow-[0_30px_120px_rgba(2,6,23,0.55)] backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
-      <aside className="relative hidden overflow-hidden border-r border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.22),_transparent_38%),linear-gradient(160deg,_rgba(15,23,42,0.95),_rgba(8,15,28,0.98))] p-10 lg:flex lg:flex-col lg:justify-between">
+    <div className="login-panel grid w-full max-w-6xl overflow-hidden rounded-[2rem] backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
+      <aside className="login-panel__aside relative hidden overflow-hidden p-10 lg:flex lg:flex-col lg:justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.28em] text-cyan-200">
+          <div className="login-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.28em]">
             EPCVINA Admin
           </div>
-          <h1 className="mt-8 max-w-xl text-5xl font-semibold leading-tight text-white">
+          <h1 className="mt-8 max-w-xl text-5xl font-semibold leading-tight text-[color:var(--text)]">
             Quản lý combo, sản phẩm và API từ một nơi duy nhất.
           </h1>
-          <p className="mt-5 max-w-lg text-base leading-7 text-slate-300">
+          <p className="mt-5 max-w-lg text-base leading-7 text-[color:var(--muted)]">
             Trang đăng nhập này kết nối thẳng Supabase Auth để đăng nhập thật, rồi chuyển vào dashboard admin.
           </p>
         </div>
 
-        <div className="grid gap-4 text-sm text-slate-300">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-            <div className="text-cyan-200">Sẵn cho Supabase</div>
+        <div className="grid gap-4 text-sm text-[color:var(--muted)]">
+          <div className="login-info-card rounded-2xl p-4">
+            <div className="text-[color:var(--accent-2)]">Sẵn cho Supabase</div>
             <div className="mt-1">Session được tạo bằng `signInWithPassword` trên browser.</div>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-            <div className="text-cyan-200">Sẵn cho Admin</div>
+          <div className="login-info-card rounded-2xl p-4">
+            <div className="text-[color:var(--accent-2)]">Sẵn cho Admin</div>
             <div className="mt-1">Đăng nhập xong sẽ đi vào dashboard và dùng Supabase trực tiếp.</div>
           </div>
         </div>
@@ -99,19 +99,19 @@ export function LoginForm() {
       <section className="p-6 sm:p-8 lg:p-10">
         <div className="mx-auto flex w-full max-w-md flex-col">
           <div className="mb-8 lg:hidden">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.28em] text-cyan-200">
+            <div className="login-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.28em]">
               EPCVINA Admin
             </div>
-            <h1 className="mt-4 text-3xl font-semibold text-white">Đăng nhập quản trị</h1>
-            <p className="mt-2 text-sm leading-6 text-slate-400">Dùng Supabase Auth để vào hệ thống.</p>
+            <h1 className="mt-4 text-3xl font-semibold text-[color:var(--text)]">Đăng nhập quản trị</h1>
+            <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">Dùng Supabase Auth để vào hệ thống.</p>
           </div>
 
-          <div className="flex rounded-2xl border border-white/10 bg-white/5 p-1">
+          <div className="login-tabs flex rounded-2xl p-1">
             <button
               type="button"
               onClick={() => setMode("login")}
               className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition ${
-                mode === "login" ? "bg-white text-slate-950" : "text-slate-300 hover:text-white"
+                mode === "login" ? "login-tab-active" : "login-tab-inactive"
               }`}
             >
               Đăng nhập
@@ -120,7 +120,7 @@ export function LoginForm() {
               type="button"
               onClick={() => setMode("register")}
               className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition ${
-                mode === "register" ? "bg-white text-slate-950" : "text-slate-300 hover:text-white"
+                mode === "register" ? "login-tab-active" : "login-tab-inactive"
               }`}
             >
               Tạo tài khoản
@@ -143,7 +143,7 @@ export function LoginForm() {
                 autoCorrect="off"
                 spellCheck={false}
                 placeholder="Nhập email"
-                className="h-12 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 text-white outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:bg-slate-900 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.12)]"
+                className="login-input h-12 w-full rounded-2xl px-4 outline-none ring-0 transition placeholder:text-[color:var(--muted)] focus:shadow-[0_0_0_4px_rgba(34,211,238,0.12)]"
               />
             </div>
 
@@ -161,26 +161,26 @@ export function LoginForm() {
                 type="password"
                 autoComplete="new-password"
                 placeholder="Nhập mật khẩu"
-                className="h-12 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 text-white outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:bg-slate-900 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.12)]"
+                className="login-input h-12 w-full rounded-2xl px-4 outline-none ring-0 transition placeholder:text-[color:var(--muted)] focus:shadow-[0_0_0_4px_rgba(34,211,238,0.12)]"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading || !isReady}
-              className="mt-2 inline-flex h-12 items-center justify-center rounded-2xl bg-gradient-to-r from-cyan-300 to-teal-200 px-4 font-semibold text-slate-950 transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+              className="login-submit mt-2 inline-flex h-12 items-center justify-center rounded-2xl px-4 font-semibold transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? "Đang xử lý..." : mode === "login" ? "Đăng nhập" : "Tạo tài khoản"}
             </button>
 
             {message ? (
-              <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
+              <div className="login-message-success rounded-2xl px-4 py-3 text-sm">
                 {message}
               </div>
             ) : null}
 
             {error ? (
-              <div className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-200">
+              <div className="login-message-error rounded-2xl px-4 py-3 text-sm">
                 {error}
               </div>
             ) : null}
