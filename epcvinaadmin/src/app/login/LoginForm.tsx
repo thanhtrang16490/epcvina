@@ -10,8 +10,8 @@ type Mode = "login" | "register";
 export function LoginForm() {
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("login");
-  const [email, setEmail] = useState("admin2@epcvina.com");
-  const [password, setPassword] = useState("Temp@123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -127,18 +127,22 @@ export function LoginForm() {
             </button>
           </div>
 
-          <form onSubmit={submit} className="mt-6 grid gap-4">
+          <form onSubmit={submit} autoComplete="off" className="mt-6 grid gap-4">
             <div>
               <label className="mb-2 block text-sm font-medium text-slate-200" htmlFor="email">
                 Email
               </label>
               <input
                 id="email"
+                name="epcvina-login-email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                autoComplete="email"
-                placeholder="admin2@epcvina.com"
+                autoComplete="off"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
+                placeholder="Nhập email"
                 className="h-12 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 text-white outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:bg-slate-900 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.12)]"
               />
             </div>
@@ -148,20 +152,14 @@ export function LoginForm() {
                 <label className="block text-sm font-medium text-slate-200" htmlFor="password">
                   Mật khẩu
                 </label>
-                <button
-                  type="button"
-                  onClick={() => setPassword("Temp@123456")}
-                  className="text-xs font-medium text-cyan-200 underline underline-offset-4"
-                >
-                  Điền nhanh
-                </button>
               </div>
               <input
                 id="password"
+                name="epcvina-login-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
-                autoComplete={mode === "login" ? "current-password" : "new-password"}
+                autoComplete="new-password"
                 placeholder="Nhập mật khẩu"
                 className="h-12 w-full rounded-2xl border border-white/10 bg-slate-900/80 px-4 text-white outline-none ring-0 transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:bg-slate-900 focus:shadow-[0_0_0_4px_rgba(34,211,238,0.12)]"
               />
@@ -187,11 +185,6 @@ export function LoginForm() {
               </div>
             ) : null}
 
-            <div className="rounded-2xl border border-white/10 bg-slate-900/60 px-4 py-3 text-sm leading-6 text-slate-400">
-              Tài khoản mẫu: <span className="text-slate-200">admin2@epcvina.com</span>
-              <br />
-              Mật khẩu: <span className="text-slate-200">Temp@123456</span>
-            </div>
           </form>
         </div>
       </section>
