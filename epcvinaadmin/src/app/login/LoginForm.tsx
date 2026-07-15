@@ -49,7 +49,7 @@ export function LoginForm() {
   };
 
   return (
-    <div className="login-panel grid w-full max-w-6xl overflow-hidden rounded-[2rem] backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
+    <div className="login-panel grid w-full overflow-hidden rounded-[2rem] backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
       <aside className="login-panel__aside relative hidden overflow-hidden p-10 lg:flex lg:flex-col lg:justify-between">
         <div>
           <div className="login-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.28em]">
@@ -75,7 +75,7 @@ export function LoginForm() {
         </div>
       </aside>
 
-      <section className="p-6 sm:p-8 lg:p-10">
+      <section className="flex items-center p-6 sm:p-8 lg:p-10">
         <div className="mx-auto flex w-full max-w-md flex-col">
           <div className="mb-8 lg:hidden">
             <div className="login-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.28em]">
