@@ -30,8 +30,17 @@ export default async function PublicProductDetailPage({ params }: Props) {
   const { id } = await params;
   const supabase = await createSupabaseServerClient();
   const productRecord = supabase
-    ? ((await supabase.from("products").select("*").eq("id", id).or("status.eq.active,is_active.eq.true").maybeSingle()).data ??
-        (await supabase.from("products").select("*").eq("id", id).maybeSingle()).data ??
+    ? ((await supabase
+        .from("products")
+        .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, warranty, description, technical_specs, cover_image_url, image_urls, status, is_active, sort_order")
+        .eq("id", id)
+        .or("status.eq.active,is_active.eq.true")
+        .maybeSingle()).data ??
+        (await supabase
+          .from("products")
+          .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, warranty, description, technical_specs, cover_image_url, image_urls, status, is_active, sort_order")
+          .eq("id", id)
+          .maybeSingle()).data ??
         null)
     : null;
   const productData = productRecord ? normalizeProduct(productRecord) : null;

@@ -77,6 +77,17 @@ async function loadSnapshotRows(supabase: NonNullable<ReturnType<typeof createSu
   return { discountRow, paymentPolicyRow };
 }
 
+async function loadCustomerSnapshot(supabase: NonNullable<ReturnType<typeof createSupabaseAdminClient>>, customerId: string | null) {
+  if (!customerId) return null;
+  return (
+    (await supabase
+      .from("customers")
+      .select("id, name, customer_type, phone, email, address, tax_code, province, district, ward, address_detail, billing_name, billing_phone, billing_email, parent_company_id")
+      .eq("id", customerId)
+      .maybeSingle()).data ?? null
+  );
+}
+
 function buildOrderSnapshotUpdate(
   discountId: string | null,
   discountRow: { name?: unknown; discount_type?: unknown; value?: unknown } | null,
@@ -91,6 +102,36 @@ function buildOrderSnapshotUpdate(
       }
     | null,
   paymentPolicyAmounts: { depositAmount: number; deliveryAmount: number; acceptanceAmount: number },
+  invoiceCustomerRow:
+    | {
+        name?: unknown;
+        tax_code?: unknown;
+        phone?: unknown;
+        email?: unknown;
+        address_detail?: unknown;
+        address?: unknown;
+        province?: unknown;
+        district?: unknown;
+        ward?: unknown;
+        billing_name?: unknown;
+        billing_phone?: unknown;
+        billing_email?: unknown;
+      }
+    | null,
+  invoiceContactRow:
+    | {
+        name?: unknown;
+        phone?: unknown;
+        email?: unknown;
+      }
+    | null,
+  customerRow:
+    | {
+        name?: unknown;
+        phone?: unknown;
+        email?: unknown;
+      }
+    | null,
 ) {
   return {
     discount_id: discountId,
@@ -106,6 +147,16 @@ function buildOrderSnapshotUpdate(
     deposit_amount: paymentPolicyAmounts.depositAmount,
     delivery_amount: paymentPolicyAmounts.deliveryAmount,
     acceptance_amount: paymentPolicyAmounts.acceptanceAmount,
+    invoice_name_snapshot: invoiceCustomerRow ? String(invoiceCustomerRow.billing_name ?? invoiceCustomerRow.name ?? "") : customerRow ? String(customerRow.name ?? "") : null,
+    invoice_tax_code_snapshot: invoiceCustomerRow ? String(invoiceCustomerRow.tax_code ?? "") : null,
+    invoice_phone_snapshot: invoiceCustomerRow ? String(invoiceCustomerRow.billing_phone ?? invoiceCustomerRow.phone ?? "") : customerRow ? String(customerRow.phone ?? "") : null,
+    invoice_email_snapshot: invoiceCustomerRow ? String(invoiceCustomerRow.billing_email ?? invoiceCustomerRow.email ?? "") : customerRow ? String(customerRow.email ?? "") : null,
+    invoice_address_snapshot: invoiceCustomerRow
+      ? [invoiceCustomerRow.address_detail ?? invoiceCustomerRow.address, invoiceCustomerRow.ward, invoiceCustomerRow.district, invoiceCustomerRow.province].filter(Boolean).join(", ") || null
+      : null,
+    contact_name_snapshot: invoiceContactRow ? String(invoiceContactRow.name ?? "") : customerRow ? String(customerRow.name ?? "") : null,
+    contact_phone_snapshot: invoiceContactRow ? String(invoiceContactRow.phone ?? "") : customerRow ? String(customerRow.phone ?? "") : null,
+    contact_email_snapshot: invoiceContactRow ? String(invoiceContactRow.email ?? "") : customerRow ? String(customerRow.email ?? "") : null,
   };
 }
 
@@ -116,6 +167,9 @@ export async function createOrderAction(_: OrderActionState, formData: FormData)
 
   const name = String(formData.get("order_no") ?? "").trim() || String(formData.get("slug") ?? "").trim();
   const customerId = String(formData.get("customer_id") ?? "").trim() || null;
+  const customerType = String(formData.get("customer_type") ?? "contact") === "company" ? "company" : "contact";
+  const invoiceCustomerId = String(formData.get("invoice_customer_id") ?? "").trim() || customerId;
+  const invoiceContactId = String(formData.get("invoice_contact_id") ?? "").trim() || null;
   const projectId = String(formData.get("project_id") ?? "").trim() || null;
   const discountId = String(formData.get("discount_id") ?? "").trim() || null;
   const paymentPolicyId = String(formData.get("payment_policy_id") ?? "").trim() || null;
@@ -140,10 +194,16 @@ export async function createOrderAction(_: OrderActionState, formData: FormData)
     delivery_percent: Number(paymentPolicyRow.delivery_percent ?? 60),
     acceptance_percent: Number(paymentPolicyRow.acceptance_percent ?? 10),
   } : null);
+  const invoiceCustomerRow = await loadCustomerSnapshot(supabase, invoiceCustomerId);
+  const invoiceContactRow = await loadCustomerSnapshot(supabase, invoiceContactId);
+  const customerRow = await loadCustomerSnapshot(supabase, customerId);
 
   const coreOrderInsert = {
       slug: String(formData.get("slug") ?? slugify(name)).trim(),
       customer_id: customerId,
+      customer_type: customerType,
+      invoice_customer_id: invoiceCustomerId,
+      invoice_contact_id: invoiceContactId,
       project_id: projectId,
       order_no: orderNo,
       order_type: orderType,
@@ -167,7 +227,7 @@ export async function createOrderAction(_: OrderActionState, formData: FormData)
 
   const orderId = orderInsertRes.data?.id;
   if (orderId) {
-    const snapshotUpdate = buildOrderSnapshotUpdate(discountId, discountRow, paymentPolicyId, paymentPolicyRow, paymentPolicyAmounts);
+    const snapshotUpdate = buildOrderSnapshotUpdate(discountId, discountRow, paymentPolicyId, paymentPolicyRow, paymentPolicyAmounts, invoiceCustomerRow, invoiceContactRow, customerRow);
     const snapshotUpdateRes = await supabase.from("orders").update(snapshotUpdate).eq("id", orderId);
     if (snapshotUpdateRes.error) {
       return { ok: false, message: formatSupabaseError("orders.update(snapshot)", snapshotUpdateRes.error) };
@@ -219,6 +279,9 @@ export async function updateOrderAction(_: OrderActionState, formData: FormData)
 
   const name = String(formData.get("order_no") ?? "").trim() || String(formData.get("slug") ?? "").trim();
   const customerId = String(formData.get("customer_id") ?? "").trim() || null;
+  const customerType = String(formData.get("customer_type") ?? "contact") === "company" ? "company" : "contact";
+  const invoiceCustomerId = String(formData.get("invoice_customer_id") ?? "").trim() || customerId;
+  const invoiceContactId = String(formData.get("invoice_contact_id") ?? "").trim() || null;
   const projectId = String(formData.get("project_id") ?? "").trim() || null;
   const discountId = String(formData.get("discount_id") ?? "").trim() || null;
   const paymentPolicyId = String(formData.get("payment_policy_id") ?? "").trim() || null;
@@ -243,10 +306,16 @@ export async function updateOrderAction(_: OrderActionState, formData: FormData)
     delivery_percent: Number(paymentPolicyRow.delivery_percent ?? 60),
     acceptance_percent: Number(paymentPolicyRow.acceptance_percent ?? 10),
   } : null);
+  const invoiceCustomerRow = await loadCustomerSnapshot(supabase, invoiceCustomerId);
+  const invoiceContactRow = await loadCustomerSnapshot(supabase, invoiceContactId);
+  const customerRow = await loadCustomerSnapshot(supabase, customerId);
 
   const coreOrderUpdate = {
       slug: String(formData.get("slug") ?? slugify(name)).trim(),
       customer_id: customerId,
+      customer_type: customerType,
+      invoice_customer_id: invoiceCustomerId,
+      invoice_contact_id: invoiceContactId,
       project_id: projectId,
       order_no: orderNo,
       order_type: orderType,
@@ -270,7 +339,7 @@ export async function updateOrderAction(_: OrderActionState, formData: FormData)
 
   const orderId = String(formData.get("id") ?? "");
   if (orderId) {
-    const snapshotUpdate = buildOrderSnapshotUpdate(discountId, discountRow, paymentPolicyId, paymentPolicyRow, paymentPolicyAmounts);
+    const snapshotUpdate = buildOrderSnapshotUpdate(discountId, discountRow, paymentPolicyId, paymentPolicyRow, paymentPolicyAmounts, invoiceCustomerRow, invoiceContactRow, customerRow);
     const snapshotUpdateRes = await supabase.from("orders").update(snapshotUpdate).eq("id", orderId);
     if (snapshotUpdateRes.error) {
       return { ok: false, message: formatSupabaseError("orders.update(snapshot)", snapshotUpdateRes.error) };

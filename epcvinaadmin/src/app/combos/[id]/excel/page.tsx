@@ -85,7 +85,7 @@ async function saveComboExcelSheet(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const rows = parseSheetRows(formData);
   const products = supabase
-    ? ((await supabase.from("products").select("*").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
+    ? ((await supabase.from("products").select("id, slug, name, category, brand, unit, cost_price, sale_price_vat, warranty, cover_image_url, image_urls, status, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
         id: String(product.id),
         name: String(product.name ?? ""),
         category: String(product.category ?? ""),
@@ -230,23 +230,13 @@ export default async function ComboExcelPage({ params }: Props) {
   const { id } = await params;
   const supabase = await createSupabaseServerClient();
   const combo = supabase
-    ? (normalizeCombo((await supabase.from("combos").select("*").eq("id", id).single()).data ?? {}) as ReturnType<typeof normalizeCombo>)
+    ? (normalizeCombo((await supabase.from("combos").select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls").eq("id", id).single()).data ?? {}) as ReturnType<typeof normalizeCombo>)
     : null;
   if (!combo) notFound();
 
   const comboItems = supabase
-    ? ((await supabase.from("combo_items").select("*").eq("combo_id", combo.id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem)
+    ? ((await supabase.from("combo_items").select("id, combo_id, product_id, reference_product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, gross_margin, notes, sheet_group, sort_order").eq("combo_id", combo.id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem)
     : [];
-  const products = supabase
-    ? ((await supabase.from("products").select("*").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
-        id: String(product.id),
-        brand: String(product.brand ?? ""),
-        name: String(product.name ?? ""),
-        cost_price: Number(product.cost_price ?? 0),
-        sale_price_vat: Number(product.sale_price_vat ?? 0),
-      }))
-    : [];
-  const productsById = new Map(products.map((product) => [product.id, product]));
 
   const hasLabor = comboItems.some((item) => String(item.sheet_group ?? "") === "labor");
   const laborRow: ComboExcelSheetRow[] = hasLabor
@@ -308,13 +298,13 @@ export default async function ComboExcelPage({ params }: Props) {
         <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <SectionTitle eyebrow="Excel BOM" title={combo.name} description="Trang bảng rộng để chỉnh BOM theo đúng cấu trúc file sheet." />
           <div className="flex flex-wrap gap-2">
-            <a href={`/api/combos/${combo.id}/excel`} className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-2 text-xs text-cyan-100">
+            <a href={`/api/combos/${combo.id}/excel`} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
               Tải Excel
             </a>
-            <a href={`/combos/${combo.id}/edit`} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200">
+            <a href={`/combos/${combo.id}/edit`} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
               Quay lại combo
             </a>
-            <a href="/combos" className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs text-slate-200">
+            <a href="/combos" className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
               Danh sách combo
             </a>
           </div>
@@ -325,7 +315,6 @@ export default async function ComboExcelPage({ params }: Props) {
           title="Edit Excel"
           description="Bảng này mô phỏng dữ liệu sheet: rộng, nhiều cột, chia nhóm rõ ràng và lưu trực tiếp về combo_items."
           initialRows={initialRows}
-          products={products}
           onSaveAction={saveComboExcelSheet}
         />
       </main>

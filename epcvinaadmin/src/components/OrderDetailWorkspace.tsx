@@ -28,6 +28,8 @@ type Props = {
   paidTotal?: number;
   remainingTotal?: number;
   paymentAction?: (state: PaymentActionState, formData: FormData) => Promise<PaymentActionState>;
+  invoiceCustomer?: AnyRow | null;
+  invoiceContact?: AnyRow | null;
 };
 
 const tabs = [
@@ -81,6 +83,8 @@ export function OrderDetailWorkspace({
   paidTotal = 0,
   remainingTotal = total,
   paymentAction,
+  invoiceCustomer,
+  invoiceContact,
 }: Props) {
   const [activeTab, setActiveTab] = useState<(typeof tabs)[number]>("Tổng quan");
   const [productRows] = useState(() =>
@@ -167,6 +171,26 @@ export function OrderDetailWorkspace({
                   <div className="rounded-[12px] border border-slate-200 bg-slate-50 p-3">
                     <div className="text-xs uppercase tracking-[0.22em] text-slate-500">Loại đơn</div>
                     <div className="mt-1 font-medium text-slate-900">{String(order.order_type ?? "combo")}</div>
+                  </div>
+                </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-[12px] border border-slate-200 bg-white p-4">
+                    <div className="text-xs uppercase tracking-[0.22em] text-slate-500">Xuất hoá đơn cho</div>
+                    <div className="mt-1 font-medium text-slate-900">{invoiceCustomer?.billing_name || invoiceCustomer?.name || customer?.name || "-"}</div>
+                    <div className="mt-2 text-xs text-slate-500">
+                      <div>{invoiceCustomer?.tax_code || order.invoice_tax_code_snapshot || "-"}</div>
+                      <div>{invoiceCustomer?.billing_phone || invoiceCustomer?.phone || order.invoice_phone_snapshot || "-"}</div>
+                      <div>{invoiceCustomer?.billing_email || invoiceCustomer?.email || order.invoice_email_snapshot || "-"}</div>
+                      <div>{order.invoice_address_snapshot || invoiceCustomer?.address_detail || invoiceCustomer?.address || "-"}</div>
+                    </div>
+                  </div>
+                  <div className="rounded-[12px] border border-slate-200 bg-white p-4">
+                    <div className="text-xs uppercase tracking-[0.22em] text-slate-500">Người phụ trách</div>
+                    <div className="mt-1 font-medium text-slate-900">{invoiceContact?.name || order.contact_name_snapshot || customer?.name || "-"}</div>
+                    <div className="mt-2 text-xs text-slate-500">
+                      <div>{invoiceContact?.phone || order.contact_phone_snapshot || "-"}</div>
+                      <div>{invoiceContact?.email || order.contact_email_snapshot || "-"}</div>
+                    </div>
                   </div>
                 </div>
               </div>

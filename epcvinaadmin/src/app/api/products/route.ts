@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
+export const runtime = "nodejs";
+
 export async function GET() {
   const supabase = await createSupabaseServerClient();
 
@@ -11,7 +13,10 @@ export async function GET() {
     });
   }
 
-  const { data, error } = await supabase.from("products").select("*").order("sort_order", { ascending: true });
+  const { data, error } = await supabase
+    .from("products")
+    .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, description, cover_image_url, image_urls, status, is_active, sort_order")
+    .order("sort_order", { ascending: true });
 
   if (error) {
     return NextResponse.json(

@@ -11,11 +11,18 @@ export const dynamic = "force-dynamic";
 async function loadPublicProducts(supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>) {
   if (!supabase) return [];
 
-  const query = supabase.from("products").select("*").or("status.eq.active,is_active.eq.true").order("sort_order", { ascending: true });
+  const query = supabase
+    .from("products")
+    .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, description, cover_image_url, image_urls, status, is_active, sort_order")
+    .or("status.eq.active,is_active.eq.true")
+    .order("sort_order", { ascending: true });
   const primary = (await query).data ?? [];
   if (primary.length > 0) return primary.map(normalizeProduct);
 
-  const fallback = (await supabase.from("products").select("*").order("sort_order", { ascending: true })).data ?? [];
+  const fallback = (await supabase
+    .from("products")
+    .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, description, cover_image_url, image_urls, status, is_active, sort_order")
+    .order("sort_order", { ascending: true })).data ?? [];
   return fallback.map(normalizeProduct);
 }
 

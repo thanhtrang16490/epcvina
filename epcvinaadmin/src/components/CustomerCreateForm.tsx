@@ -21,6 +21,7 @@ export function CustomerCreateForm({ action }: Props) {
   const [state, formAction, pending] = useActionState(action, initialState);
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
+  const [customerType, setCustomerType] = useState<"contact" | "company">("contact");
   const [slugError, setSlugError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -73,6 +74,18 @@ export function CustomerCreateForm({ action }: Props) {
         />
       </label>
       <input type="hidden" name="slug" value={slugValue} readOnly />
+      <label className="grid gap-2">
+        <span className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Loại khách</span>
+        <select
+          name="customer_type"
+          value={customerType}
+          onChange={(event) => setCustomerType(event.target.value === "company" ? "company" : "contact")}
+          className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none"
+        >
+          <option value="contact">Liên hệ / Cá nhân</option>
+          <option value="company">Doanh nghiệp</option>
+        </select>
+      </label>
       <div className="text-[11px] text-[color:var(--muted)]">
         Slug: <span className="font-medium text-[color:var(--text)]">{slugValue || "-"}</span>
       </div>
@@ -81,7 +94,14 @@ export function CustomerCreateForm({ action }: Props) {
       <input name="phone" placeholder="Số điện thoại" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
       <input name="email" placeholder="Email" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
       <input name="tax_code" placeholder="Mã số thuế" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
-      <input name="address" placeholder="Địa chỉ" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="province" placeholder="Tỉnh / Thành" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="district" placeholder="Quận / Huyện" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="ward" placeholder="Xã / Phường" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="address_detail" placeholder="Số nhà, đường, thôn/xóm" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="address" placeholder="Địa chỉ đầy đủ (tuỳ chọn)" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="billing_name" placeholder="Tên xuất hóa đơn" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="billing_phone" placeholder="SĐT xuất hóa đơn" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
+      <input name="billing_email" placeholder="Email xuất hóa đơn" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
       <textarea name="note" rows={4} placeholder="Ghi chú" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 text-[color:var(--text)] outline-none placeholder:text-[color:var(--muted)]" />
       <button type="submit" disabled={pending} className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950 disabled:opacity-60">
         {pending ? "Đang lưu..." : "Tạo khách hàng"}

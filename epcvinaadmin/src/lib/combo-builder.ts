@@ -10,6 +10,7 @@ export const comboItemGroups = [
   { id: "wiring", label: "Hệ dây điện" },
   { id: "cabinet", label: "Tủ điện" },
   { id: "grounding", label: "Hệ tiếp địa" },
+  { id: "labor", label: "Chi phí nhân công" },
 ] as const;
 
 export type ComboGroupId = (typeof comboItemGroups)[number]["id"];
@@ -23,6 +24,7 @@ export function getProductGroup(product: ProductRow): ComboGroupId {
   if (category.includes("dây") || category.includes("cáp") || category.includes("wire")) return "wiring";
   if (category.includes("tủ điện") || category.includes("cabinet") || category.includes("meter")) return "cabinet";
   if (category.includes("tiếp địa") || category.includes("ground")) return "grounding";
+  if (category.includes("nhân công") || category.includes("thi công") || category.includes("lao động") || category.includes("labor")) return "labor";
   return "wiring";
 }
 

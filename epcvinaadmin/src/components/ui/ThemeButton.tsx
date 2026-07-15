@@ -12,7 +12,7 @@ const base = "inline-flex items-center justify-center gap-2 rounded-full border 
 
 const tones = {
   primary: "border-transparent bg-[color:var(--accent)] text-white hover:brightness-110",
-  secondary: "border-[color:var(--border)] bg-[color:var(--panel)] text-[color:var(--text)] hover:bg-white/10",
+  secondary: "border-[color:var(--border)] bg-white text-[color:var(--text)] shadow-sm hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]",
   ghost: "border-[color:var(--border)] bg-transparent text-[color:var(--text)] hover:bg-white/10",
   danger: "border-transparent bg-[color:var(--danger)] text-white hover:brightness-110",
 };

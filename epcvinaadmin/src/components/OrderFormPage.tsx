@@ -25,8 +25,6 @@ type Props = {
   action: (state: OrderActionState, formData: FormData) => Promise<OrderActionState>;
   pdfAction?: (formData: FormData) => Promise<void>;
   orderId?: string;
-  customers: { id: string; name: string }[];
-  projects: Option[];
   discounts: { id: string; name: string; discount_type: string; value: number; is_active?: boolean }[];
   paymentPolicies: {
     id: string;
@@ -40,10 +38,17 @@ type Props = {
   combos: { id: string; name: string }[];
   products: { id: string; name: string }[];
   comboBomMap?: Record<string, { name: string; groups: Array<[string, any[]]> }>;
+  customerLabel?: string;
+  projectLabel?: string;
+  invoiceCustomerLabel?: string;
+  invoiceContactLabel?: string;
   initialValues?: {
     id?: string;
     order_no?: string;
+    customer_type?: string;
     customer_id?: string;
+    invoice_customer_id?: string;
+    invoice_contact_id?: string;
     project_id?: string;
     order_type?: string;
     status?: string;
@@ -77,13 +82,15 @@ export function OrderFormPage({
   action,
   pdfAction,
   orderId,
-  customers,
-  projects,
   discounts,
   paymentPolicies,
   combos,
   products,
   comboBomMap,
+  customerLabel,
+  projectLabel,
+  invoiceCustomerLabel,
+  invoiceContactLabel,
   initialValues,
   initialLines,
 }: Props) {
@@ -209,7 +216,17 @@ export function OrderFormPage({
               <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">Thông tin khách</div>
               <div className="mt-1 text-xs text-slate-500">Khách hàng và dự án liên quan.</div>
             </div>
-            <OrderCustomerProjectFields customers={customers} projects={projects} defaultCustomerId={initialValues?.customer_id ?? ""} defaultProjectId={initialValues?.project_id ?? ""} />
+            <OrderCustomerProjectFields
+              defaultCustomerId={initialValues?.customer_id ?? ""}
+              defaultCustomerLabel={customerLabel}
+              defaultProjectId={initialValues?.project_id ?? ""}
+              defaultProjectLabel={projectLabel}
+              defaultCustomerType={initialValues?.customer_type === "company" ? "company" : "contact"}
+              defaultInvoiceCustomerId={initialValues?.invoice_customer_id ?? ""}
+              defaultInvoiceCustomerLabel={invoiceCustomerLabel}
+              defaultInvoiceContactId={initialValues?.invoice_contact_id ?? ""}
+              defaultInvoiceContactLabel={invoiceContactLabel}
+            />
           </div>
 
           <div className="grid gap-3 rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">

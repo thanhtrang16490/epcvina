@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { FormattedNumberInput } from "@/components/FormattedNumberInput";
+import { AsyncLookupSelect } from "@/components/AsyncLookupSelect";
 import { comboItemGroups } from "@/lib/combo-builder";
 
 export type ComboExcelSheetRow = {
@@ -25,7 +26,6 @@ type Props = {
   title?: string;
   description?: string;
   initialRows: ComboExcelSheetRow[];
-  products: { id: string; brand: string; name: string; cost_price?: number; sale_price_vat?: number }[];
   onSaveAction: (formData: FormData) => Promise<void>;
 };
 
@@ -76,7 +76,7 @@ function inferGroupId(row: ComboExcelSheetRow) {
   return "wiring";
 }
 
-export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", description = "Chỉnh BOM theo bảng giống data sheet.", initialRows, products, onSaveAction }: Props) {
+export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", description = "Chỉnh BOM theo bảng giống data sheet.", initialRows, onSaveAction }: Props) {
   const [rows, setRows] = useState<ComboExcelSheetRow[]>(
     initialRows.length ? initialRows.map((row, index) => clampRow(row, index + 1)) : [emptyRow(1)],
   );
@@ -143,17 +143,20 @@ export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", descripti
             <p className="mt-1 max-w-3xl text-xs leading-5 text-[color:var(--muted)]">{description}</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button type="button" onClick={() => addRowToGroup("panel")} className="rounded-xl border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--text)]">
+            <button type="button" onClick={() => addRowToGroup("panel")} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
               + Tấm pin
             </button>
-            <button type="button" onClick={() => addRowToGroup("inverter")} className="rounded-xl border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--text)]">
+            <button type="button" onClick={() => addRowToGroup("inverter")} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
               + Inverter
             </button>
-            <button type="button" onClick={() => addRowToGroup("battery")} className="rounded-xl border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--text)]">
+            <button type="button" onClick={() => addRowToGroup("battery")} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
               + Pin
             </button>
-            <button type="button" onClick={() => addRowToGroup("wiring")} className="rounded-xl border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--text)]">
+            <button type="button" onClick={() => addRowToGroup("wiring")} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
               + Phụ trợ
+            </button>
+            <button type="button" onClick={() => addRowToGroup("labor")} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
+              + Nhân công
             </button>
           </div>
         </div>
@@ -164,11 +167,11 @@ export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", descripti
             const groupSale = groupTotals[group.id]?.sale ?? 0;
             const groupCost = groupTotals[group.id]?.cost ?? 0;
             return (
-              <details key={group.id} open className="rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)]">
+              <details key={group.id} open className="rounded-[1.25rem] border border-slate-200 bg-white">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-3 py-3">
                   <div>
-                    <div className="text-xs font-semibold text-[color:var(--text)]">{group.label}</div>
-                    <div className="mt-1 text-[11px] text-[color:var(--muted)]">
+                    <div className="text-xs font-semibold text-slate-900">{group.label}</div>
+                    <div className="mt-1 text-[11px] text-slate-500">
                       {groupedRows.length} dòng · Giá bán {groupSale.toLocaleString("vi-VN")} đ · Giá vốn {groupCost.toLocaleString("vi-VN")} đ
                     </div>
                   </div>
@@ -178,14 +181,14 @@ export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", descripti
                       event.preventDefault();
                       addRowToGroup(group.id);
                     }}
-                    className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-2.5 py-1 text-[11px] font-medium text-cyan-100"
+                    className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-700 hover:border-[color:var(--accent)]/30"
                   >
                     + Thêm dòng
                   </button>
                 </summary>
-                <div className="overflow-x-auto border-t border-[color:var(--border)]">
-                  <table className="min-w-[1260px] divide-y divide-[color:var(--border)] text-left text-xs">
-                    <thead className="bg-[color:var(--bg-elevated)] text-[10px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                <div className="overflow-x-auto border-t border-slate-200">
+                  <table className="min-w-[1260px] divide-y divide-slate-200 text-left text-xs">
+                    <thead className="bg-slate-50 text-[10px] uppercase tracking-[0.16em] text-slate-500">
                       <tr>
                         <th className="px-2 py-2">No.</th>
                         <th className="px-2 py-2">Category</th>
@@ -204,7 +207,7 @@ export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", descripti
                         <th className="px-2 py-2">Action</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[color:var(--border)]">
+                    <tbody className="divide-y divide-slate-200">
                       {groupedRows.length ? (
                         groupedRows.map((row) => {
                           const index = rows.findIndex((item) => item.no === row.no);
@@ -212,54 +215,52 @@ export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", descripti
                           const totalCost = calcTotal(row.cost_price, row.quantity);
                           const margin = totalSale > 0 ? ((totalSale - totalCost) / totalSale) * 100 : 0;
                           return (
-                            <tr key={`${group.id}-${row.no}`} className="bg-[color:var(--panel)]">
-                              <td className="px-2 py-2 text-[color:var(--muted)]">{row.no}</td>
+                            <tr key={`${group.id}-${row.no}`} className="bg-white">
+                              <td className="px-2 py-2 text-slate-500">{row.no}</td>
                               <td className="px-2 py-2">
-                                <input value={row.category} onChange={(event) => updateRow(index, { category: event.target.value })} className="w-36 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <input value={row.category} onChange={(event) => updateRow(index, { category: event.target.value })} className="w-36 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-2 py-2">
-                                <textarea value={row.specification} onChange={(event) => updateRow(index, { specification: event.target.value })} rows={1} className="w-64 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs leading-5 text-[color:var(--text)] outline-none" />
+                                <textarea value={row.specification} onChange={(event) => updateRow(index, { specification: event.target.value })} rows={1} className="w-64 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs leading-5 text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-2 py-2">
-                                <input value={row.brand_name} onChange={(event) => updateRow(index, { brand_name: event.target.value })} className="w-28 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <input value={row.brand_name} onChange={(event) => updateRow(index, { brand_name: event.target.value })} className="w-28 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-2 py-2">
-                                <input value={row.unit} onChange={(event) => updateRow(index, { unit: event.target.value })} className="w-20 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <input value={row.unit} onChange={(event) => updateRow(index, { unit: event.target.value })} className="w-20 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-2 py-2">
-                                <FormattedNumberInput name={`qty_${row.no}`} min={0} step={1} value={row.quantity} onValueChange={(value) => updateRow(index, { quantity: Number(value) || 1 })} className="w-20 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <FormattedNumberInput name={`qty_${row.no}`} min={0} step={1} value={row.quantity} onValueChange={(value) => updateRow(index, { quantity: Number(value) || 1 })} className="w-20 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-2 py-2">
-                                <FormattedNumberInput name={`unit_price_vat_${row.no}`} min={0} step={1} value={row.unit_price_vat} onValueChange={(value) => updateRow(index, { unit_price_vat: Number(value) || 0 })} className="w-32 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <FormattedNumberInput name={`unit_price_vat_${row.no}`} min={0} step={1} value={row.unit_price_vat} onValueChange={(value) => updateRow(index, { unit_price_vat: Number(value) || 0 })} className="w-32 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
-                              <td className="px-2 py-2 text-[color:var(--text)]">{totalSale.toLocaleString("vi-VN")}</td>
+                              <td className="px-2 py-2 text-slate-900">{totalSale.toLocaleString("vi-VN")}</td>
                               <td className="px-2 py-2">
-                                <input value={row.warranty} onChange={(event) => updateRow(index, { warranty: event.target.value })} className="w-24 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <input value={row.warranty} onChange={(event) => updateRow(index, { warranty: event.target.value })} className="w-24 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-2 py-2">
-                                <FormattedNumberInput name={`cost_${row.no}`} min={0} step={1} value={row.cost_price} onValueChange={(value) => updateRow(index, { cost_price: Number(value) || 0 })} className="w-32 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <FormattedNumberInput name={`cost_${row.no}`} min={0} step={1} value={row.cost_price} onValueChange={(value) => updateRow(index, { cost_price: Number(value) || 0 })} className="w-32 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
-                              <td className="px-2 py-2 text-[color:var(--text)]">{totalCost.toLocaleString("vi-VN")}</td>
-                              <td className="px-2 py-2 text-[color:var(--text)]">{margin.toFixed(1)}%</td>
+                              <td className="px-2 py-2 text-slate-900">{totalCost.toLocaleString("vi-VN")}</td>
+                              <td className="px-2 py-2 text-slate-900">{margin.toFixed(1)}%</td>
                               <td className="px-2 py-2">
-                                <select
+                                <AsyncLookupSelect
+                                  name={`product_ref_${row.no}`}
                                   value={row.reference_product_id ?? row.product_id}
-                                  onChange={(event) => updateRow(index, { product_id: event.target.value, reference_product_id: event.target.value })}
-                                  className="w-52 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none"
-                                >
-                                  <option value="">Chọn tham chiếu</option>
-                                  {products.map((product) => (
-                                    <option key={product.id} value={product.id}>
-                                      {product.brand} - {product.name}
-                                    </option>
-                                  ))}
-                                </select>
+                                  onValueChange={(value) => updateRow(index, { product_id: value, reference_product_id: value })}
+                                  placeholder="Chọn tham chiếu"
+                                  endpoint="/api/search/products"
+                                  initialLabel={row.brand_name && row.specification ? `${row.brand_name} - ${row.specification}` : row.specification || row.brand_name}
+                                  renderSelected={(item) => (item ? <div className="text-xs text-slate-600">{item.label}{item.meta ? ` · ${item.meta}` : ""}</div> : null)}
+                                  className="w-52"
+                                />
                               </td>
                               <td className="px-2 py-2">
-                                <input value={row.notes} onChange={(event) => updateRow(index, { notes: event.target.value })} className="w-36 rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)] outline-none" />
+                                <input value={row.notes} onChange={(event) => updateRow(index, { notes: event.target.value })} className="w-36 rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-2 py-2">
-                                <button type="button" onClick={() => removeRow(index)} className="rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1.5 text-xs text-[color:var(--text)]">
+                                <button type="button" onClick={() => removeRow(index)} className="rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
                                   Xóa
                                 </button>
                               </td>
@@ -268,7 +269,7 @@ export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", descripti
                         })
                       ) : (
                         <tr>
-                          <td className="px-3 py-4 text-sm text-[color:var(--muted)]" colSpan={14}>
+                          <td className="px-3 py-4 text-sm text-slate-500" colSpan={14}>
                             Chưa có dòng nào trong nhóm này.
                           </td>
                         </tr>
@@ -281,17 +282,17 @@ export function ComboExcelSheetEditor({ comboId, title = "Edit Excel", descripti
           })}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[color:var(--border)] px-4 py-3 text-xs text-[color:var(--muted)]">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 px-4 py-3 text-xs text-slate-500">
           <div>
-            Tổng giá bán: <span className="text-[color:var(--text)]">{totals.sale.toLocaleString("vi-VN")} đ</span>
+            Tổng giá bán: <span className="text-slate-900">{totals.sale.toLocaleString("vi-VN")} đ</span>
             {" · "}
-            Tổng giá vốn: <span className="text-[color:var(--text)]">{totals.cost.toLocaleString("vi-VN")} đ</span>
+            Tổng giá vốn: <span className="text-slate-900">{totals.cost.toLocaleString("vi-VN")} đ</span>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button type="button" onClick={() => setRows((current) => [...current, emptyRow(current.length + 1)])} className="rounded-lg border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-xs text-[color:var(--text)]">
+            <button type="button" onClick={() => setRows((current) => [...current, emptyRow(current.length + 1)])} className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
               + Thêm dòng
             </button>
-            <button type="submit" className="rounded-lg bg-cyan-400 px-3 py-2 text-xs font-medium text-slate-950">
+            <button type="submit" className="rounded-lg bg-[color:var(--accent)] px-3 py-2 text-xs font-medium text-white shadow-sm">
               Lưu Excel
             </button>
           </div>

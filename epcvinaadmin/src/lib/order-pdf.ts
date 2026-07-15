@@ -83,6 +83,19 @@ function drawBadge(doc: PDFKit.PDFDocument, x: number, y: number, text: string, 
   return width;
 }
 
+function inferGroupLabel(sheetGroup: string, itemName: string, category: string) {
+  const text = `${sheetGroup} ${itemName} ${category}`.toLowerCase();
+  if (text.includes("panel") || text.includes("pin") || text.includes("pv")) return "Tấm pin";
+  if (text.includes("inverter") || text.includes("biến tần")) return "Inverter";
+  if (text.includes("battery") || text.includes("lithium") || text.includes("pin lưu trữ")) return "Pin lưu trữ";
+  if (text.includes("mount") || text.includes("rail") || text.includes("khung")) return "Khung lắp";
+  if (text.includes("wire") || text.includes("cáp") || text.includes("dây") || text.includes("mc4")) return "Dây và phụ kiện";
+  if (text.includes("cabinet") || text.includes("tủ điện") || text.includes("meter")) return "Tủ điện";
+  if (text.includes("ground") || text.includes("tiếp địa")) return "Tiếp địa";
+  if (text.includes("labor") || text.includes("nhân công") || text.includes("thi công")) return "Nhân công lắp đặt";
+  return "Khác";
+}
+
 export async function generateOrderPdf(orderId: string, options?: { persist?: boolean }) {
   const persist = options?.persist ?? true;
   const supabase = createSupabaseAdminClient();
@@ -128,11 +141,11 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
   drawBadge(doc, 430, 84, safeText(order.payment_policy_code || "3:6:1"), "#f0fdf4", "#86efac", "#166534");
 
   let y = 138;
-  doc.font("body-bold").fontSize(13).fillColor("#0f172a").text("Tổng quan đơn hàng", 50, y);
+  doc.font("body-bold").fontSize(13).fillColor("#0f172a").text("Tổng quan báo giá", 50, y);
   y += 10;
-  drawMetricCard(doc, 50, y, 113, "Tạm tính", money(Number(order.subtotal ?? 0)));
+  drawMetricCard(doc, 50, y, 113, "Trước CK", money(Number(order.subtotal ?? 0)));
   drawMetricCard(doc, 170, y, 113, "Chiết khấu", money(Number(order.discount ?? 0)));
-  drawMetricCard(doc, 290, y, 113, "Tổng tiền", money(Number(order.total ?? 0)), "#0ea5e9");
+  drawMetricCard(doc, 290, y, 113, "Thanh toán", money(Number(order.total ?? 0)), "#0ea5e9");
   drawMetricCard(doc, 410, y, 135, "Chính sách", safeText(order.payment_policy_name || order.payment_policy_code || "3 : 6 : 1"), "#22c55e");
   y += 68;
 
@@ -186,7 +199,7 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
   const comboItems = items.filter((item: any) => item.item_type === "combo");
   if (comboItems.length) {
     y += 4;
-    y = drawSection(doc, "BOM combo", y);
+    y = drawSection(doc, "Chi tiết combo", y);
     for (const comboItem of comboItems as any[]) {
       const snapshot = comboItem.snapshot_data ?? {};
       const combo = snapshot.combo_snapshot ?? snapshot.combo ?? null;
@@ -195,15 +208,79 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
         doc.addPage();
         y = 50;
       }
-      doc.font("body-bold").fontSize(10).fillColor("#0f172a").text(`${safeText(combo?.name || comboItem.item_name)}`, 50, y);
-      y += 16;
-      for (const row of bomRows) {
+      const comboName = safeText(combo?.name || comboItem.item_name);
+      const comboQty = Number(comboItem.quantity ?? 0);
+      const comboUnitPrice = Number(comboItem.unit_price ?? 0);
+      const comboTotal = Number(comboItem.total_price ?? 0);
+      doc.roundedRect(50, y, 495, 22, 6).fillAndStroke("#eff6ff", "#bfdbfe");
+      doc.font("body-bold").fontSize(10).fillColor("#0f172a").text(comboName, 58, y + 5, { width: 240 });
+      doc.font("body").fontSize(9).fillColor("#334155").text(`SL: ${comboQty}`, 314, y + 5, { width: 30, align: "right" });
+      doc.text(`Đơn giá: ${money(comboUnitPrice)}`, 350, y + 5, { width: 100, align: "right" });
+      doc.font("body-bold").text(`Tổng: ${money(comboTotal)}`, 452, y + 5, { width: 86, align: "right" });
+      y += 28;
+
+      const groupedRows = bomRows.reduce<Record<string, any[]>>((acc, row) => {
+        const groupLabel = inferGroupLabel(String(row.sheet_group ?? ""), String(row.item_name ?? ""), String(row.category ?? ""));
+        const next = acc[groupLabel] ?? [];
+        next.push(row);
+        acc[groupLabel] = next;
+        return acc;
+      }, {});
+
+      const groupOrder = ["Tấm pin", "Inverter", "Pin lưu trữ", "Khung lắp", "Dây và phụ kiện", "Tủ điện", "Tiếp địa", "Nhân công lắp đặt", "Khác"];
+
+      if (y > 730) {
+        doc.addPage();
+        y = 50;
+      }
+      doc.font("body").fontSize(7.8).fillColor("#64748b");
+      doc.text("No.", 60, y, { width: 20 });
+      doc.text("Vật tư", 84, y, { width: 268 });
+      doc.text("SL", 360, y, { width: 34, align: "right" });
+      doc.text("Đơn giá", 401, y, { width: 64, align: "right" });
+      doc.text("Thành tiền", 472, y, { width: 60, align: "right" });
+      y += 11;
+
+      for (const groupLabel of groupOrder) {
+        const rows = groupedRows[groupLabel] ?? [];
+        if (!rows.length) continue;
         if (y > 730) {
           doc.addPage();
           y = 50;
         }
-        doc.font("body").fontSize(9).fillColor("#334155").text(`- ${safeText(row.item_name)} x${Number(row.quantity ?? 0)} | ${money(Number(row.total_price_vat ?? row.unit_price_vat ?? 0))}`, 60, y, { width: 485 });
-        y += 13;
+        const groupTotal = rows.reduce((sum, row) => sum + Number(row.total_price_vat ?? row.unit_price_vat * Number(row.quantity ?? 0) ?? 0), 0);
+        doc.roundedRect(54, y, 487, 16, 5).fillAndStroke("#f8fafc", "#e2e8f0");
+        doc.font("body-bold").fontSize(8.5).fillColor("#0f172a").text(groupLabel, 60, y + 4, { width: 180 });
+        doc.text(money(groupTotal), 452, y + 4, { width: 82, align: "right" });
+        y += 18;
+        for (const row of rows) {
+          if (y > 730) {
+            doc.addPage();
+            y = 50;
+          }
+          const rowQty = Number(row.quantity ?? 0);
+          const rowUnitPrice = Number(row.unit_price_vat ?? 0);
+          const rowTotal = Number(row.total_price_vat ?? rowUnitPrice * rowQty);
+          const rowHeight = Math.max(
+            18,
+            doc.heightOfString(safeText(row.item_name), { width: 268, align: "left" }) + 8,
+          );
+          doc.roundedRect(54, y - 1, 487, rowHeight + 2, 3).fillAndStroke("#ffffff", "#eef2f7");
+          doc.font("body").fontSize(7.8).fillColor("#0f172a").text(String(row.no ?? row.sort_order ?? "-"), 60, y, { width: 20, height: rowHeight, ellipsis: true });
+          const itemLabel = safeText(row.item_name);
+          const itemMeta = [safeText(row.category), safeText(row.brand_name || row.brand || row.manufacturer || "-"), safeText(row.unit || row.uom || "pcs")]
+            .filter((part) => part !== "-")
+            .join(" · ");
+          doc.text(itemLabel, 84, y, { width: 268, height: rowHeight, ellipsis: true });
+          if (itemMeta !== "-") {
+            doc.font("body").fontSize(6.7).fillColor("#64748b").text(itemMeta, 84, y + 10, { width: 268, height: Math.max(10, rowHeight - 10), ellipsis: true });
+          }
+          doc.font("body").fontSize(7.8).fillColor("#0f172a").text(String(rowQty || 0), 360, y, { width: 34, align: "right", height: rowHeight });
+          doc.text(money(rowUnitPrice), 401, y, { width: 64, align: "right", height: rowHeight, ellipsis: true });
+          doc.text(money(rowTotal), 472, y, { width: 60, align: "right", height: rowHeight, ellipsis: true });
+          y += rowHeight + 2;
+        }
+        y += 6;
       }
       y += 6;
     }
@@ -218,7 +295,7 @@ export async function generateOrderPdf(orderId: string, options?: { persist?: bo
   doc.font("body").fontSize(9).fillColor("#334155").text("Đây là hồ sơ bán hàng EPCVINA Solar. Giá trị thanh toán được lưu theo chính sách và lịch sử ghi nhận riêng.", 50, y, { width: 495 });
   y += 18;
   doc.font("body").fontSize(9).fillColor("#334155").text(`Chiết khấu áp dụng: ${safeText(order.discount_name || "Không áp dụng")}`, 50, y);
-  doc.text(`Số lần thanh toán đã ghi nhận: ${items.length ? safeText(order.total ?? 0) : "0"}`, 290, y);
+  doc.text(`Tổng giá trị đơn: ${money(Number(order.total ?? 0))}`, 290, y);
 
   doc.end();
   const pdf = await finished;

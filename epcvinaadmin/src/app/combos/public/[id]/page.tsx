@@ -119,7 +119,14 @@ export default async function PublicComboDetailPage({ params }: Props) {
   const supabase = await createSupabaseServerClient();
   const pricingSettings = await getPricingSettings(supabase);
   const data = supabase
-    ? (normalizeCombo((await supabase.from("combos").select("*").eq("id", id).or("status.eq.active,is_active.eq.true").single()).data ?? {}) as ComboData)
+    ? (normalizeCombo(
+        (await supabase
+          .from("combos")
+          .select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls")
+          .eq("id", id)
+          .or("status.eq.active,is_active.eq.true")
+          .single()).data ?? {},
+      ) as ComboData)
     : null;
   if (!data) notFound();
 
@@ -143,7 +150,11 @@ export default async function PublicComboDetailPage({ params }: Props) {
   }).paybackYears;
 
   const comboItems = supabase
-    ? ((await supabase.from("combo_items").select("*, product:products(*)").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(
+    ? ((await supabase
+        .from("combo_items")
+        .select("id, combo_id, product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, note, product:products(id, name, brand, category, cover_image_url, image_urls, technical_specs)")
+        .eq("combo_id", id)
+        .order("sort_order", { ascending: true })).data ?? []).map(
         (row: any) => ({
           ...normalizeComboItem(row),
           product: row.product ?? null,

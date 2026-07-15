@@ -8,6 +8,7 @@ import { buildComboFinance, round2 } from "@/lib/combo-finance";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeCombo, normalizeComboItem } from "@/lib/supabase/normalize";
 import { comboItemGroups } from "@/lib/combo-builder";
+import { getCachedComboCategories } from "@/lib/reference-data";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -90,10 +91,18 @@ export default async function ComboShowPage({ params }: Props) {
   const { id } = await params;
   const supabase = await createSupabaseServerClient();
   const data = supabase
-    ? (normalizeCombo((await supabase.from("combos").select("*").eq("id", id).single()).data ?? {}) as ComboViewData)
+    ? (normalizeCombo(
+        (await supabase
+          .from("combos")
+          .select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls")
+          .eq("id", id)
+          .single()).data ?? {},
+      ) as ComboViewData)
     : null;
   if (!data) notFound();
   const combo = data as ComboViewData;
+  const comboCategories = supabase ? await getCachedComboCategories() : [];
+  const comboCategoryName = combo.combo_category_id ? comboCategories.find((item: any) => String(item.id) === String(combo.combo_category_id))?.name ?? null : null;
   const finance = buildComboFinance({
     solarKw: Number(combo.solar_kw ?? 0),
     costPrice: Number(combo.cost_price ?? 0) * 1_000_000,
@@ -104,7 +113,11 @@ export default async function ComboShowPage({ params }: Props) {
   const monthlyProduction = Math.round(finance.monthlyProductionKwh);
   const paybackYears = finance.paybackYears;
   const comboItems = supabase
-    ? ((await supabase.from("combo_items").select("*, product:products(*)").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(
+    ? ((await supabase
+        .from("combo_items")
+        .select("id, combo_id, product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, note, product:products(id, name, brand, category, cover_image_url, image_urls, technical_specs)")
+        .eq("combo_id", id)
+        .order("sort_order", { ascending: true })).data ?? []).map(
         (row: any) => ({
           ...normalizeComboItem(row),
           product: row.product ?? null,
@@ -156,6 +169,7 @@ export default async function ComboShowPage({ params }: Props) {
             <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">{combo.slug}</span>
             <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">{systemType}</span>
             <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">{combo.phase === 1 ? "1 pha" : "3 pha"}</span>
+            {comboCategoryName ? <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">{comboCategoryName}</span> : null}
             <span className={combo.combo_type === "custom" ? "rounded-full bg-fuchsia-400/15 px-3 py-1 text-xs font-semibold text-fuchsia-100" : "rounded-full bg-cyan-400/15 px-3 py-1 text-xs font-semibold text-cyan-100"}>
               {getComboTypeLabel(combo)}
             </span>

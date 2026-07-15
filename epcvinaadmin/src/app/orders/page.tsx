@@ -2,6 +2,7 @@ import { AdminShell } from "@/components/AdminShell";
 import { CrudFilterBar } from "@/components/CrudFilterBar";
 import { SectionTitle } from "@/components/SectionTitle";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -10,33 +11,62 @@ function normalizeQuery(value: string | string[] | undefined) {
   return typeof value === "string" ? value : "";
 }
 
+function escapeLike(value: string) {
+  return value.replace(/[%_]/g, "\\$&").replace(/,/g, " ");
+}
+
 export default async function OrdersPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const params = (await searchParams) ?? {};
   const query = normalizeQuery(params.q).toLowerCase();
   const statusFilter = normalizeQuery(params.status);
   const typeFilter = normalizeQuery(params.type);
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 20, 50);
+  const { start, end } = getPageRange(page, pageSize);
   const supabase = createSupabaseAdminClient();
-  const [orders, customers, projects, combos, products, comboItemsRes, deviceItemsRes] = supabase
+  const searchPattern = escapeLike(query);
+  let ordersQuery = supabase
+    ? supabase
+        .from("orders")
+        .select("id, order_no, slug, customer_id, project_id, order_type, status, total, created_at", { count: "exact" })
+        .order("created_at", { ascending: false })
+    : null;
+  let customerNameById = new Map<string, string>();
+  let projectNameById = new Map<string, string>();
+  if (supabase && ordersQuery) {
+    if (statusFilter) ordersQuery = ordersQuery.eq("status", statusFilter);
+    if (typeFilter) ordersQuery = ordersQuery.eq("order_type", typeFilter);
+    if (query) {
+      const [matchingCustomers, matchingProjects] = await Promise.all([
+        supabase.from("customers").select("id, name").ilike("name", `%${searchPattern}%`),
+        supabase.from("projects").select("id, name").ilike("name", `%${searchPattern}%`),
+      ]);
+      customerNameById = new Map((matchingCustomers.data ?? []).map((row: any) => [String(row.id), String(row.name)]));
+      projectNameById = new Map((matchingProjects.data ?? []).map((row: any) => [String(row.id), String(row.name)]));
+      const customerIds = Array.from(customerNameById.keys());
+      const projectIds = Array.from(projectNameById.keys());
+      const clauses = [`order_no.ilike.%${searchPattern}%`, `slug.ilike.%${searchPattern}%`];
+      if (customerIds.length) clauses.push(`customer_id.in.(${customerIds.join(",")})`);
+      if (projectIds.length) clauses.push(`project_id.in.(${projectIds.join(",")})`);
+      ordersQuery = ordersQuery.or(clauses.join(","));
+    }
+  }
+  const orders = ordersQuery ? await ordersQuery.range(start, end) : { data: [], count: 0 };
+  const pageOrders = orders.data ?? [];
+  const pageOrderIds = pageOrders.map((row: any) => String(row.id));
+  const [customers, projects, combos, products, comboItemsRes, deviceItemsRes] = supabase
     ? await Promise.all([
-        supabase.from("orders").select("*").order("created_at", { ascending: false }),
-        supabase.from("customers").select("*").order("sort_order", { ascending: true }),
+        supabase.from("customers").select("id, name").order("sort_order", { ascending: true }),
         supabase.from("projects").select("id, name, customer_id, sort_order").order("sort_order", { ascending: true }),
         supabase.from("combos").select("id, name").order("sort_order", { ascending: true }),
         supabase.from("products").select("id, name").order("sort_order", { ascending: true }),
-        supabase.from("order_items").select("id, order_id, item_type").eq("item_type", "combo"),
-        supabase.from("order_items").select("id, order_id, item_type").eq("item_type", "product"),
+        pageOrderIds.length ? supabase.from("order_items").select("id, order_id, item_type").in("order_id", pageOrderIds).eq("item_type", "combo") : Promise.resolve({ data: [] }),
+        pageOrderIds.length ? supabase.from("order_items").select("id, order_id, item_type").in("order_id", pageOrderIds).eq("item_type", "product") : Promise.resolve({ data: [] }),
       ])
-    : [{ data: [] }, { data: [] }, { data: [] }, { data: [] }, { data: [] }, { data: [] }, { data: [] }];
+    : [{ data: [] }, { data: [] }, { data: [] }, { data: [] }, { data: [] }, { data: [] }];
   const combosCount = comboItemsRes.data?.length ?? 0;
   const deviceCount = deviceItemsRes.data?.length ?? 0;
-  const filteredOrders = (orders.data ?? []).filter((row: any) => {
-    const customer = (customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name || "";
-    const project = (projects.data ?? []).find((p: any) => p.id === row.project_id)?.name || "";
-    const matchesQuery = !query || [row.order_no, row.slug, customer, project].join(" ").toLowerCase().includes(query);
-    const matchesStatus = !statusFilter || String(row.status ?? "") === statusFilter;
-    const matchesType = !typeFilter || String(row.order_type ?? "") === typeFilter;
-    return matchesQuery && matchesStatus && matchesType;
-  });
+  const filteredOrders = pageOrders;
   return (
     <AdminShell>
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
@@ -49,13 +79,13 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
         </div>
         <CrudFilterBar
           subtitle="Sales"
-          title={`Đơn hàng (${filteredOrders.length})`}
+          title={`Đơn hàng (${orders.count ?? filteredOrders.length})`}
           searchLabel="Tìm theo mã đơn, khách hàng, dự án"
           searchValue={query}
-          searchSuggestions={(orders.data ?? []).slice(0, 8).map((row: any) => ({
+          searchSuggestions={pageOrders.slice(0, 8).map((row: any) => ({
             label: row.order_no || row.slug || "Đơn hàng",
             href: `/orders/${row.id}`,
-            meta: [(customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name, (projects.data ?? []).find((p: any) => p.id === row.project_id)?.name]
+            meta: [customerNameById.get(String(row.customer_id ?? "")) ?? (customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name, projectNameById.get(String(row.project_id ?? "")) ?? (projects.data ?? []).find((p: any) => p.id === row.project_id)?.name]
               .filter(Boolean)
               .join(" · "),
           }))}
@@ -87,7 +117,7 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
         <div className="mb-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
             <div className="text-sm text-slate-400">Đơn hàng</div>
-            <div className="mt-2 text-3xl font-semibold text-white">{(orders.data ?? []).length}</div>
+            <div className="mt-2 text-3xl font-semibold text-white">{pageOrders.length}</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
             <div className="text-sm text-slate-400">Combo items</div>
@@ -169,6 +199,15 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
               </tbody>
             </table>
             {!filteredOrders.length && <div className="rounded-3xl border border-dashed border-white/10 bg-slate-950/30 p-6 text-sm text-slate-400">Không có đơn hàng phù hợp bộ lọc.</div>}
+          </div>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-slate-300">
+            <div>
+              Trang {page} / {getPageCount(Number(orders.count ?? 0), pageSize)}
+            </div>
+            <div className="flex gap-2">
+              {page > 1 ? <Link href={`?${new URLSearchParams({ ...(params as Record<string, string>), page: String(page - 1), pageSize: String(pageSize) }).toString()}`} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2">Trước</Link> : null}
+              {(orders.count ?? 0) > end + 1 ? <Link href={`?${new URLSearchParams({ ...(params as Record<string, string>), page: String(page + 1), pageSize: String(pageSize) }).toString()}`} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2">Sau</Link> : null}
+            </div>
           </div>
         </section>
       </main>

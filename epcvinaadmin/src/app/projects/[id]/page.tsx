@@ -13,15 +13,16 @@ export default async function ProjectDetailPage({ params }: Props) {
   const { id } = await params;
   const supabase = createSupabaseAdminClient();
   if (!supabase) notFound();
-  const [projectRes, customerRes, orderRes, orderItemsRes] = await Promise.all([
-    supabase.from("projects").select("*").eq("id", id).single(),
-    supabase.from("customers").select("*"),
-    supabase.from("orders").select("*").eq("project_id", id).maybeSingle(),
-    supabase.from("order_items").select("*").eq("order_id", (await supabase.from("orders").select("id").eq("project_id", id).maybeSingle()).data?.id ?? ""),
+  const [projectRes, orderRes, orderItemsRes] = await Promise.all([
+    supabase.from("projects").select("id, slug, customer_id, name, code, address, capacity, system_type, completion_date, image_url, gallery_urls, description, source_url, status, note, sort_order, is_active, created_at").eq("id", id).single(),
+    supabase.from("orders").select("id, slug, customer_id, project_id, order_no, order_type, status, order_date, subtotal, discount, total, created_at").eq("project_id", id).maybeSingle(),
+    supabase.from("order_items").select("id, order_id, combo_id, product_id, item_name, item_type, quantity, unit_price, total_price, note, sort_order, created_at").eq("order_id", (await supabase.from("orders").select("id").eq("project_id", id).maybeSingle()).data?.id ?? ""),
   ]);
   const project = projectRes.data;
   if (!project) notFound();
-  const customer = (customerRes.data ?? []).find((item: any) => item.id === project.customer_id) ?? null;
+  const customer = project.customer_id
+    ? (await supabase.from("customers").select("id, slug, name, customer_type, parent_company_id, phone, email, address, tax_code, province, district, ward, address_detail, billing_name, billing_phone, billing_email, note, sort_order, is_active").eq("id", project.customer_id).maybeSingle()).data ?? null
+    : null;
   const order = orderRes.data ?? null;
   const orderItems = order ? (orderItemsRes.data ?? []) : [];
 

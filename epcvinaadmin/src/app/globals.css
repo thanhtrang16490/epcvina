@@ -66,8 +66,13 @@ html[data-theme="light"] .bg-slate-950\/90 {
 }
 
 html[data-theme="light"] .bg-white\/5,
+html[data-theme="light"] .bg-white\/8,
 html[data-theme="light"] .bg-white\/10 {
   background-color: var(--panel) !important;
+}
+
+html[data-theme="light"] .bg-white {
+  background-color: var(--panel-strong) !important;
 }
 
 html[data-theme="light"] .theme-card-hero {

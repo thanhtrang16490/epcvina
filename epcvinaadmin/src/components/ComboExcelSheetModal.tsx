@@ -138,7 +138,7 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
 
   return (
     <ModalShell
-      trigger={<span className="inline-flex w-full items-center justify-center rounded-2xl border border-cyan-400/30 bg-cyan-400/10 px-4 py-3 text-sm font-medium text-cyan-100 sm:w-auto">{triggerLabel}</span>}
+      trigger={<span className="inline-flex w-full items-center justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm sm:w-auto">{triggerLabel}</span>}
       title={title}
       description={description}
     >
@@ -150,11 +150,11 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
             const groupSale = groupTotals[group.id]?.sale ?? 0;
             const groupCost = groupTotals[group.id]?.cost ?? 0;
             return (
-              <details key={group.id} open className="rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--panel)]">
+              <details key={group.id} open className="rounded-[1.25rem] border border-slate-200 bg-white">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-4 py-4">
                   <div>
-                    <div className="text-sm font-semibold text-[color:var(--text)]">{group.label}</div>
-                    <div className="mt-1 text-xs text-[color:var(--muted)]">
+                    <div className="text-sm font-semibold text-slate-900">{group.label}</div>
+                    <div className="mt-1 text-xs text-slate-500">
                       {groupedRows.length} dòng · Giá bán {groupSale.toLocaleString("vi-VN")} đ · Giá vốn {groupCost.toLocaleString("vi-VN")} đ
                     </div>
                   </div>
@@ -164,14 +164,14 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
                       event.preventDefault();
                       addRowToGroup(group.id);
                     }}
-                    className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1.5 text-xs font-medium text-cyan-100"
+                    className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700 hover:border-[color:var(--accent)]/30"
                   >
                     + Thêm dòng
                   </button>
                 </summary>
-                <div className="overflow-x-auto border-t border-[color:var(--border)]">
-                  <table className="min-w-[1400px] divide-y divide-[color:var(--border)] text-left text-sm">
-                    <thead className="bg-[color:var(--bg-elevated)] text-[color:var(--muted)]">
+                <div className="overflow-x-auto border-t border-slate-200">
+                  <table className="min-w-[1400px] divide-y divide-slate-200 text-left text-sm">
+                    <thead className="bg-slate-50 text-slate-500">
                       <tr>
                         <th className="px-3 py-3">No.</th>
                         <th className="px-3 py-3">Category</th>
@@ -189,7 +189,7 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
                         <th className="px-3 py-3">Action</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[color:var(--border)]">
+                    <tbody className="divide-y divide-slate-200">
                       {groupedRows.length ? (
                         groupedRows.map((row) => {
                           const index = rows.findIndex((item) => item.no === row.no);
@@ -197,40 +197,40 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
                           const totalCost = calcTotal(row.cost_price, row.quantity);
                           const margin = totalSale > 0 ? ((totalSale - totalCost) / totalSale) * 100 : 0;
                           return (
-                            <tr key={`${group.id}-${row.no}`} className="bg-[color:var(--panel)]">
-                              <td className="px-3 py-3 text-[color:var(--muted)]">{row.no}</td>
+                            <tr key={`${group.id}-${row.no}`} className="bg-white">
+                              <td className="px-3 py-3 text-slate-500">{row.no}</td>
                               <td className="px-3 py-3">
-                                <input value={row.category} onChange={(event) => updateRow(index, { category: event.target.value })} className="w-40 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
+                                <input value={row.category} onChange={(event) => updateRow(index, { category: event.target.value })} className="w-40 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-3 py-3">
-                                <textarea value={row.specification} onChange={(event) => updateRow(index, { specification: event.target.value })} rows={2} className="w-72 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
+                                <textarea value={row.specification} onChange={(event) => updateRow(index, { specification: event.target.value })} rows={2} className="w-72 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-3 py-3">
-                                <input value={row.brand_name} onChange={(event) => updateRow(index, { brand_name: event.target.value })} className="w-36 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
+                                <input value={row.brand_name} onChange={(event) => updateRow(index, { brand_name: event.target.value })} className="w-36 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-3 py-3">
-                                <input value={row.unit} onChange={(event) => updateRow(index, { unit: event.target.value })} className="w-24 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
+                                <input value={row.unit} onChange={(event) => updateRow(index, { unit: event.target.value })} className="w-24 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-3 py-3">
-                                <FormattedNumberInput name={`qty_${row.no}`} min={0} step={1} value={row.quantity} onValueChange={(value) => updateRow(index, { quantity: Number(value) || 1 })} className="w-24 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
+                                <FormattedNumberInput name={`qty_${row.no}`} min={0} step={1} value={row.quantity} onValueChange={(value) => updateRow(index, { quantity: Number(value) || 1 })} className="w-24 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-3 py-3">
-                                <FormattedNumberInput name={`unit_price_vat_${row.no}`} min={0} step={1} value={row.unit_price_vat} onValueChange={(value) => updateRow(index, { unit_price_vat: Number(value) || 0 })} className="w-36 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
+                                <FormattedNumberInput name={`unit_price_vat_${row.no}`} min={0} step={1} value={row.unit_price_vat} onValueChange={(value) => updateRow(index, { unit_price_vat: Number(value) || 0 })} className="w-36 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
-                              <td className="px-3 py-3 text-[color:var(--text)]">{totalSale.toLocaleString("vi-VN")}</td>
+                              <td className="px-3 py-3 text-slate-900">{totalSale.toLocaleString("vi-VN")}</td>
                               <td className="px-3 py-3">
-                                <input value={row.warranty} onChange={(event) => updateRow(index, { warranty: event.target.value })} className="w-28 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
-                              </td>
-                              <td className="px-3 py-3">
-                                <FormattedNumberInput name={`cost_${row.no}`} min={0} step={1} value={row.cost_price} onValueChange={(value) => updateRow(index, { cost_price: Number(value) || 0 })} className="w-36 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
-                              </td>
-                              <td className="px-3 py-3 text-[color:var(--text)]">{totalCost.toLocaleString("vi-VN")}</td>
-                              <td className="px-3 py-3 text-[color:var(--text)]">{margin.toFixed(1)}%</td>
-                              <td className="px-3 py-3">
-                                <input value={row.notes} onChange={(event) => updateRow(index, { notes: event.target.value })} className="w-44 rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] outline-none" />
+                                <input value={row.warranty} onChange={(event) => updateRow(index, { warranty: event.target.value })} className="w-28 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-3 py-3">
-                                <button type="button" onClick={() => removeRow(index)} className="rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)]">
+                                <FormattedNumberInput name={`cost_${row.no}`} min={0} step={1} value={row.cost_price} onValueChange={(value) => updateRow(index, { cost_price: Number(value) || 0 })} className="w-36 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
+                              </td>
+                              <td className="px-3 py-3 text-slate-900">{totalCost.toLocaleString("vi-VN")}</td>
+                              <td className="px-3 py-3 text-slate-900">{margin.toFixed(1)}%</td>
+                              <td className="px-3 py-3">
+                                <input value={row.notes} onChange={(event) => updateRow(index, { notes: event.target.value })} className="w-44 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
+                              </td>
+                              <td className="px-3 py-3">
+                                <button type="button" onClick={() => removeRow(index)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
                                   Xóa
                                 </button>
                               </td>
@@ -239,7 +239,7 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
                         })
                       ) : (
                         <tr>
-                          <td className="px-3 py-4 text-sm text-[color:var(--muted)]" colSpan={14}>
+                          <td className="px-3 py-4 text-sm text-slate-500" colSpan={14}>
                             Chưa có dòng nào trong nhóm này.
                           </td>
                         </tr>
@@ -252,17 +252,17 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
           })}
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-4 text-sm text-[color:var(--muted)]">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm text-slate-500">
           <div>
-            Tổng giá bán: <span className="text-[color:var(--text)]">{totals.sale.toLocaleString("vi-VN")} đ</span>
+            Tổng giá bán: <span className="text-slate-900">{totals.sale.toLocaleString("vi-VN")} đ</span>
             {" · "}
-            Tổng giá vốn: <span className="text-[color:var(--text)]">{totals.cost.toLocaleString("vi-VN")} đ</span>
+            Tổng giá vốn: <span className="text-slate-900">{totals.cost.toLocaleString("vi-VN")} đ</span>
           </div>
           <div className="flex flex-wrap gap-2">
-            <button type="button" onClick={addRow} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
+            <button type="button" onClick={addRow} className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
               + Thêm dòng
             </button>
-            <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-2 font-medium text-slate-950">
+            <button type="submit" className="rounded-2xl bg-[color:var(--accent)] px-4 py-2 font-medium text-white shadow-sm">
               Lưu Excel
             </button>
           </div>

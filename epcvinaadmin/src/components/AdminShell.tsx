@@ -216,9 +216,13 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const [crmCounts, setCrmCounts] = useState({ customers: 0, projects: 0, orders: 0 });
   const [collapsed, setCollapsed] = useState(true);
   const [hovered, setHovered] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const [themeReady, setThemeReady] = useState(false);
-  const [themeTooltip, setThemeTooltip] = useState("Chuyển sang light mode");
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window === "undefined") return "dark";
+    const stored = window.localStorage.getItem("epcvina-theme");
+    if (stored === "light" || stored === "dark") return stored;
+    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  });
+  const [themeTooltip, setThemeTooltip] = useState(() => (theme === "dark" ? "Chuyển sang light mode" : "Chuyển sang dark mode"));
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     dashboard: true,
     sales: true,
@@ -245,11 +249,13 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = window.localStorage.getItem("epcvina-theme");
-    const initial = stored === "light" ? "light" : "dark";
+    const bootstrapped = document.documentElement.dataset.theme;
+    const prefersLight = window.matchMedia?.("(prefers-color-scheme: light)").matches;
+    const initial = stored === "light" || stored === "dark" ? stored : bootstrapped === "light" ? "light" : prefersLight ? "light" : "dark";
     setTheme(initial);
     setThemeTooltip(initial === "dark" ? "Chuyển sang light mode" : "Chuyển sang dark mode");
     document.documentElement.dataset.theme = initial;
-    setThemeReady(true);
+    document.documentElement.style.colorScheme = initial;
   }, []);
 
   useEffect(() => {
@@ -305,8 +311,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    if (!themeReady) return;
     document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
     window.localStorage.setItem("epcvina-theme", theme);
     setThemeTooltip(theme === "dark" ? "Chuyển sang light mode" : "Chuyển sang dark mode");
   }, [theme]);
@@ -322,6 +328,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       if (event.key === "epcvina-theme" && (event.newValue === "light" || event.newValue === "dark")) {
         setTheme(event.newValue);
         document.documentElement.dataset.theme = event.newValue;
+        document.documentElement.style.colorScheme = event.newValue;
       }
     };
 
@@ -330,6 +337,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
       if (event.data === "light" || event.data === "dark") {
         setTheme(event.data);
         document.documentElement.dataset.theme = event.data;
+        document.documentElement.style.colorScheme = event.data;
       }
     };
 

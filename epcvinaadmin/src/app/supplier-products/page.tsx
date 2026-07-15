@@ -1,8 +1,9 @@
 import { AdminShell } from "@/components/AdminShell";
-import { FormattedNumberInput } from "@/components/FormattedNumberInput";
 import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
+import { SupplierProductMappingForm } from "@/components/SupplierProductMappingForm";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -26,15 +27,17 @@ async function createMapping(formData: FormData) {
   redirect("/supplier-products");
 }
 
-export default async function SupplierProductsPage() {
+export default async function SupplierProductsPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = (await searchParams) ?? {};
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 20, 50);
+  const { start, end } = getPageRange(page, pageSize);
   const supabase = createSupabaseAdminClient();
-  const [rows, suppliers, products] = supabase
+  const [rows] = supabase
     ? await Promise.all([
-        supabase.from("supplier_products").select("*").order("created_at", { ascending: false }),
-        supabase.from("suppliers").select("*").order("sort_order", { ascending: true }),
-        supabase.from("products").select("*").order("sort_order", { ascending: true }),
+        supabase.from("supplier_products").select("id, supplier_id, product_id, supplier_sku, supplier_price, min_order_qty, lead_time_days, note, created_at, suppliers(name), products(name)", { count: "exact" }).order("created_at", { ascending: false }).range(start, end),
       ])
-    : [{ data: [] }, { data: [] }, { data: [] }];
+    : [{ data: [] }];
   return (
     <AdminShell>
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
@@ -44,37 +47,21 @@ export default async function SupplierProductsPage() {
         </div>
         <div className="mb-4 flex justify-end">
           <ModalShell trigger={<span className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">Thêm ánh xạ</span>} title="Thêm mapping" description="Gắn sản phẩm vào nhà cung cấp.">
-            <form action={createMapping} className="grid gap-3">
-              <select name="supplier_id" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
-                <option value="">Chọn nhà cung cấp</option>
-                {(suppliers.data ?? []).map((supplier: any) => <option key={supplier.id} value={supplier.id}>{supplier.name}</option>)}
-              </select>
-              <select name="product_id" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
-                <option value="">Chọn sản phẩm</option>
-                {(products.data ?? []).map((product: any) => <option key={product.id} value={product.id}>{product.name}</option>)}
-              </select>
-              <input name="supplier_sku" placeholder="SKU nhà cung cấp" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <div className="grid grid-cols-3 gap-3">
-                <FormattedNumberInput name="supplier_price" placeholder="Giá NCC" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                <FormattedNumberInput name="min_order_qty" defaultValue={1} placeholder="MOQ" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                <FormattedNumberInput name="lead_time_days" placeholder="Lead time" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              </div>
-              <textarea name="note" rows={4} placeholder="Ghi chú" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-              <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">Lưu mapping</button>
-            </form>
+            <SupplierProductMappingForm action={createMapping} />
           </ModalShell>
         </div>
         <section className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
           <div className="space-y-3">
             {(rows.data ?? []).map((row: any) => (
               <div key={row.id} className="grid gap-3 rounded-3xl border border-white/10 bg-slate-950/50 p-4 lg:grid-cols-[1fr_1fr_1fr_120px] lg:items-center">
-                <div className="text-white">{(suppliers.data ?? []).find((s: any) => s.id === row.supplier_id)?.name || "-"}</div>
-                <div className="text-slate-300">{(products.data ?? []).find((p: any) => p.id === row.product_id)?.name || "-"}</div>
+                <div className="text-white">{row.suppliers?.name || row.supplier_id || "-"}</div>
+                <div className="text-slate-300">{row.products?.name || row.product_id || "-"}</div>
                 <div className="text-slate-300">{row.supplier_sku || "-"}</div>
                 <div className="text-slate-300">{Number(row.supplier_price ?? 0).toLocaleString("vi-VN")}</div>
               </div>
             ))}
           </div>
+          <div className="mt-4 text-sm text-slate-400">Trang {page} / {getPageCount(Number(rows.count ?? 0), pageSize)}</div>
         </section>
       </main>
     </AdminShell>

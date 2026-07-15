@@ -1,6 +1,7 @@
 import { AdminShell } from "@/components/AdminShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
@@ -19,13 +20,17 @@ function statusChip(status?: string) {
   }
 }
 
-export default async function ProjectsPage() {
+export default async function ProjectsPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = (await searchParams) ?? {};
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 20, 50);
+  const { start, end } = getPageRange(page, pageSize);
   const supabase = createSupabaseAdminClient();
   const [projects, customers, orders] = supabase
     ? await Promise.all([
-        supabase.from("projects").select("*").order("sort_order", { ascending: true }),
-        supabase.from("customers").select("*").order("sort_order", { ascending: true }),
-        supabase.from("orders").select("*").order("created_at", { ascending: false }),
+        supabase.from("projects").select("id, name, slug, code, address, status, customer_id, sort_order, created_at", { count: "exact" }).order("sort_order", { ascending: true }).range(start, end),
+        supabase.from("customers").select("id, name").order("sort_order", { ascending: true }),
+        supabase.from("orders").select("id, project_id, total, order_no, slug, status, created_at").order("created_at", { ascending: false }),
       ])
     : [{ data: [], error: { message: "Thiếu env Supabase service role" } }, { data: [], error: null }, { data: [], error: null }];
   const queryError = projects.error?.message || customers.error?.message || orders.error?.message || null;
@@ -50,7 +55,7 @@ export default async function ProjectsPage() {
         <div className="mb-4 grid gap-3 md:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
             <div className="text-sm text-slate-400">Tổng dự án</div>
-            <div className="mt-2 text-3xl font-semibold text-white">{(projects.data ?? []).length}</div>
+            <div className="mt-2 text-3xl font-semibold text-white">{projects.count ?? (projects.data ?? []).length}</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-4">
             <div className="text-sm text-slate-400">Có khách hàng</div>
@@ -136,6 +141,7 @@ export default async function ProjectsPage() {
               </tbody>
             </table>
           </div>
+          <div className="mt-4 text-sm text-[color:var(--muted)]">Trang {page} / {getPageCount(Number(projects.count ?? 0), pageSize)}</div>
         </section>
       </main>
     </AdminShell>

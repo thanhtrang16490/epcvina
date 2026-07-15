@@ -6,6 +6,7 @@ import { getPricingSettings } from "@/lib/pricing-settings";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { parseLocaleNumber } from "@/lib/number-format";
 import { normalizeCombo, normalizeProduct } from "@/lib/supabase/normalize";
+import { getCachedComboCategories } from "@/lib/reference-data";
 import { slugify } from "@/lib/slug";
 import { parseImageUrls, uploadMediaFiles } from "@/lib/storage-media";
 import Link from "next/link";
@@ -82,14 +83,14 @@ export default async function ComboEditPage({ params }: Props) {
   const supabase = await createSupabaseServerClient();
   const pricingSettings = await getPricingSettings(supabase);
   const data = supabase
-    ? (normalizeCombo((await supabase.from("combos").select("*").eq("id", id).single()).data ?? {}) as ComboFormData)
+    ? (normalizeCombo((await supabase.from("combos").select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls").eq("id", id).single()).data ?? {}) as ComboFormData)
     : null;
   if (!data) notFound();
   const combo = data as ComboFormData;
   const products = supabase
-    ? ((await supabase.from("products").select("*").order("sort_order", { ascending: true })).data ?? []).map((product) => normalizeProduct(product))
+    ? ((await supabase.from("products").select("id, slug, name, category, brand, unit, quantity, cost_price, sale_price_vat, warranty, description, cover_image_url, image_urls, status, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product) => normalizeProduct(product))
     : [];
-  const comboCategories = supabase ? ((await supabase.from("combo_categories").select("*").order("sort_order", { ascending: true })).data ?? []) : [];
+  const comboCategories = supabase ? await getCachedComboCategories() : [];
   return (
     <AdminShell>
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">

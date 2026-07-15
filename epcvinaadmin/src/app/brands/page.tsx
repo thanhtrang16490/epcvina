@@ -6,11 +6,14 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { ImageField } from "@/components/ImageField";
 import { SlugField } from "@/components/SlugField";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
+import { getCachedBrands } from "@/lib/reference-data";
 import { slugify } from "@/lib/slug";
 import { uploadMediaFiles } from "@/lib/storage-media";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { referenceDataTags } from "@/lib/reference-data";
 
 export const dynamic = "force-dynamic";
 
@@ -37,6 +40,7 @@ async function createBrand(formData: FormData) {
     is_active: String(formData.get("is_active") ?? "true") === "true",
   });
   revalidatePath("/brands");
+  revalidateTag(referenceDataTags.brands);
   redirect("/brands");
 }
 
@@ -63,6 +67,7 @@ async function updateBrand(formData: FormData) {
     is_active: String(formData.get("is_active") ?? "true") === "true",
   }).eq("id", String(formData.get("id") ?? ""));
   revalidatePath("/brands");
+  revalidateTag(referenceDataTags.brands);
   redirect("/brands");
 }
 
@@ -72,12 +77,19 @@ async function deleteBrand(formData: FormData) {
   if (!supabase) return;
   await supabase.from("brands").delete().eq("id", String(formData.get("id") ?? ""));
   revalidatePath("/brands");
+  revalidateTag(referenceDataTags.brands);
   redirect("/brands");
 }
 
-export default async function BrandsPage() {
+export default async function BrandsPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = (await searchParams) ?? {};
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 20, 50);
+  const { start, end } = getPageRange(page, pageSize);
   const supabase = createSupabaseAdminClient();
-  const brands = supabase ? ((await supabase.from("brands").select("*").order("sort_order", { ascending: true })).data ?? []) : [];
+  const allBrands = supabase ? await getCachedBrands() : [];
+  const brandsRes = { data: allBrands.slice(start, end + 1), count: allBrands.length };
+  const brands = brandsRes.data ?? [];
   return (
     <AdminShell>
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
@@ -122,7 +134,9 @@ export default async function BrandsPage() {
                   {(brand.image_url || brand.logo_url) ? <img src={brand.image_url || brand.logo_url} alt={brand.name} className="h-full w-full object-cover" /> : null}
                 </div>
                 <div>
-                  <div className="font-medium text-white">{brand.name}</div>
+                  <Link href={`/brands/${brand.id}`} className="font-medium text-white transition hover:text-cyan-300">
+                    {brand.name}
+                  </Link>
                   <div className="mt-2">
                     <span className="inline-flex rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
                       {brand.slug}
@@ -153,6 +167,7 @@ export default async function BrandsPage() {
               </div>
             ))}
           </div>
+          <div className="mt-4 text-sm text-slate-400">Trang {page} / {getPageCount(Number(brandsRes.count ?? 0), pageSize)}</div>
         </section>
       </main>
     </AdminShell>

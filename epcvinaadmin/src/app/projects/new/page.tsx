@@ -2,7 +2,6 @@ import Link from "next/link";
 import { AdminShell } from "@/components/AdminShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ProjectCreateForm } from "@/components/ProjectCreateForm";
-import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { upsertProjectWithDependencies } from "@/lib/project-form-actions";
 
 export const dynamic = "force-dynamic";
@@ -23,13 +22,6 @@ async function createProject(_: FormState, formData: FormData): Promise<FormStat
 }
 
 export default async function ProjectNewPage() {
-  const supabase = createSupabaseAdminClient();
-  const [customers] = supabase
-    ? await Promise.all([
-        supabase.from("customers").select("*").order("sort_order", { ascending: true }),
-      ])
-    : [{ data: [] }];
-
   return (
     <AdminShell>
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
@@ -42,7 +34,6 @@ export default async function ProjectNewPage() {
 
         <ProjectCreateForm
           action={createProject}
-          customers={(customers.data ?? []).map((customer: any) => ({ id: String(customer.id), name: String(customer.name) }))}
           submitLabel="Tạo dự án"
         />
       </main>

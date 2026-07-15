@@ -3,6 +3,7 @@ import { TechnicalSpecsView } from "@/components/TechnicalSpecs";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeLinkButton } from "@/components/ui/ThemeButton";
 import { ThemeCard } from "@/components/ui/ThemeCard";
+import { getCachedBrands, getCachedProductCategories } from "@/lib/reference-data";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeProduct } from "@/lib/supabase/normalize";
 import { notFound } from "next/navigation";
@@ -41,9 +42,20 @@ function getProductGallery(product: ProductViewData & { cover_image_url?: string
 export default async function ProductShowPage({ params }: Props) {
   const { id } = await params;
   const supabase = await createSupabaseServerClient();
-  const data = supabase ? normalizeProduct((await supabase.from("products").select("*").eq("id", id).single()).data ?? {}) : null;
+  const data = supabase
+    ? normalizeProduct(
+        (await supabase
+          .from("products")
+          .select("id, slug, name, category_id, category, brand_id, brand, unit, quantity, cost_price, sale_price_vat, warranty, description, technical_specs, cover_image_url, image_urls, status, is_active, sort_order")
+          .eq("id", id)
+          .single()).data ?? {},
+      )
+    : null;
   if (!data) notFound();
   const product = data as ProductViewData;
+  const [brands, categories] = supabase ? await Promise.all([getCachedBrands(), getCachedProductCategories()]) : [[], []];
+  const brandName = product.brand_id ? brands.find((item: any) => String(item.id) === String(product.brand_id))?.name ?? product.brand : product.brand;
+  const categoryName = product.category_id ? categories.find((item: any) => String(item.id) === String(product.category_id))?.name ?? product.category : product.category;
 
   return (
     <AdminShell>
@@ -66,13 +78,13 @@ export default async function ProductShowPage({ params }: Props) {
             ) : null}
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-orange-500/90 px-2.5 py-1 text-xs font-bold text-white backdrop-blur-sm">
-                {groupLabel(product.category)}
+                {groupLabel(String(categoryName ?? product.category ?? ""))}
               </span>
-              <span className="text-xs uppercase tracking-[0.24em] text-cyan-100">{product.brand}</span>
+              <span className="text-xs uppercase tracking-[0.24em] text-cyan-100">{brandName || "-"}</span>
             </div>
 
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-white">{product.name}</h2>
-            <p className="mt-2 text-sm text-slate-300">{product.category} · {product.unit} · SL {product.quantity}</p>
+            <p className="mt-2 text-sm text-slate-300">{categoryName || "-"} · {product.unit} · SL {product.quantity}</p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
@@ -111,10 +123,10 @@ export default async function ProductShowPage({ params }: Props) {
                 <span className="text-slate-400">Bảo hành</span>
                 <span className="text-white">{product.warranty || "-"}</span>
               </div>
-              <div className="flex justify-between rounded-2xl bg-white/5 px-4 py-3">
-                <span className="text-slate-400">Nhóm</span>
-                <span className="text-white">{groupLabel(product.category)}</span>
-              </div>
+                <div className="flex justify-between rounded-2xl bg-white/5 px-4 py-3">
+                  <span className="text-slate-400">Nhóm</span>
+                  <span className="text-white">{groupLabel(String(categoryName ?? product.category ?? ""))}</span>
+                </div>
             </div>
           </ThemeCard>
         </section>

@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AsyncLookupSelect } from "@/components/AsyncLookupSelect";
 
 import { slugify } from "@/lib/slug";
 
@@ -13,14 +14,8 @@ type FormState = {
 
 const initialState: FormState = { ok: false, error: null, projectId: null };
 
-type CustomerOption = {
-  id: string;
-  name: string;
-};
-
 type Props = {
   action: (state: FormState, formData: FormData) => Promise<FormState>;
-  customers: CustomerOption[];
   initialValues?: {
     name?: string;
     customer_id?: string;
@@ -30,10 +25,11 @@ type Props = {
     note?: string;
     status?: "active" | "inactive";
   };
+  customerLabel?: string;
   submitLabel: string;
 };
 
-export function ProjectCreateForm({ action, customers, initialValues, submitLabel }: Props) {
+export function ProjectCreateForm({ action, initialValues, customerLabel = "", submitLabel }: Props) {
   const router = useRouter();
   const [state, formAction, pending] = useActionState(action, initialState);
   const [name, setName] = useState(initialValues?.name ?? "");
@@ -93,22 +89,17 @@ export function ProjectCreateForm({ action, customers, initialValues, submitLabe
         />
         <label className="grid gap-2 md:col-span-2">
           <span className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Khách hàng</span>
-          <select
+          <AsyncLookupSelect
             name="customer_id"
             value={customerId}
-            onChange={(event) => {
-              setCustomerId(event.target.value);
+            onValueChange={(value) => {
+              setCustomerId(value);
               if (customerError) setCustomerError(null);
             }}
-            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white"
-          >
-            <option value="">Chọn khách hàng</option>
-            {customers.map((customer) => (
-              <option key={customer.id} value={customer.id}>
-                {customer.name}
-              </option>
-            ))}
-          </select>
+            placeholder="Chọn khách hàng"
+            endpoint="/api/search/customers"
+            initialLabel={customerLabel}
+          />
           {customerError ? <span className="text-xs text-rose-200">{customerError}</span> : null}
         </label>
         <input

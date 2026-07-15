@@ -207,7 +207,7 @@ export function CrudFilterBar({
 
       {searchOpen && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md"
+          className="fixed inset-0 z-50 bg-[color:var(--bg)]/72 backdrop-blur-md"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setSearchOpen(false);
           }}
@@ -217,9 +217,9 @@ export function CrudFilterBar({
               role="dialog"
               aria-modal="true"
               aria-label={searchLabel}
-              className="w-full overflow-hidden rounded-[28px] border border-white/10 bg-[color:var(--panel-strong)] shadow-[0_30px_120px_rgba(0,0,0,0.45)]"
+              className="w-full overflow-hidden rounded-[28px] border border-[color:var(--border)] bg-[color:var(--panel-strong)] shadow-[0_30px_120px_rgba(0,0,0,0.22)]"
             >
-              <div className="flex items-center justify-between border-b border-white/5 px-5 py-4">
+              <div className="flex items-center justify-between border-b border-[color:var(--border)] px-5 py-4">
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.32em] text-[color:var(--accent)]">Search</div>
                   <h3 className="mt-1 text-lg font-semibold text-[color:var(--text)]">{searchLabel}</h3>
@@ -227,7 +227,7 @@ export function CrudFilterBar({
                 <button
                   type="button"
                   onClick={() => setSearchOpen(false)}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10"
+                  className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10"
                 >
                   Đóng
                 </button>
@@ -252,13 +252,13 @@ export function CrudFilterBar({
                       name={searchName}
                       defaultValue={searchValue}
                       placeholder={`Nhập ${searchLabel.toLowerCase()}`}
-                      className="h-14 w-full rounded-2xl border border-white/10 bg-[color:var(--panel)] pl-11 pr-4 text-[color:var(--text)] outline-none ring-0 placeholder:text-[color:var(--muted)]"
+                      className="h-14 w-full rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] pl-11 pr-4 text-[color:var(--text)] outline-none ring-0 placeholder:text-[color:var(--muted)]"
                     />
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] text-[color:var(--muted)]">
-                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1">↑↓ chọn</span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1">Enter mở kết quả đầu</span>
-                    <span className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1">Esc đóng</span>
+                    <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1">↑↓ chọn</span>
+                    <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1">Enter mở kết quả đầu</span>
+                    <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1">Esc đóng</span>
                   </div>
                 </label>
 
@@ -267,7 +267,7 @@ export function CrudFilterBar({
                     <span>Gợi ý nhanh</span>
                     <span>{visibleSuggestions.length} kết quả</span>
                   </div>
-                  <div className="max-h-72 overflow-y-auto rounded-2xl border border-white/10 bg-white/[0.03] p-2">
+                  <div className="max-h-72 overflow-y-auto rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-2">
                     {visibleSuggestions.length ? (
                       suggestionGroups.map((group) => (
                         <div key={group.label} className="space-y-1">
@@ -283,7 +283,7 @@ export function CrudFilterBar({
                                 href={item.href}
                                 onMouseEnter={() => setActiveSuggestionIndex(index)}
                                 className={`flex items-center justify-between gap-4 rounded-xl px-3 py-3 transition ${
-                                  activeSuggestionIndex === index ? "bg-white/10 ring-1 ring-white/10" : "hover:bg-white/5"
+                                  activeSuggestionIndex === index ? "bg-white/10 ring-1 ring-[color:var(--border)]" : "hover:bg-white/5"
                                 }`}
                               >
                                 <div className="min-w-0">
@@ -308,13 +308,13 @@ export function CrudFilterBar({
                   <button type="submit" className="rounded-2xl bg-[color:var(--accent)] px-4 py-3 text-sm font-medium text-white transition hover:brightness-110">
                     Tìm kiếm
                   </button>
-                  <a href="?" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-[color:var(--text)] transition hover:bg-white/10">
+                  <a href="?" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)] transition hover:bg-white/10">
                     Xóa
                   </a>
                   <span className="ml-auto hidden text-xs text-[color:var(--muted)] sm:inline-flex">
-                    <kbd className="rounded-md border border-white/10 bg-white/5 px-2 py-1">Esc</kbd>
+                    <kbd className="rounded-md border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1">Esc</kbd>
                     <span className="mx-2">đóng</span>
-                    <kbd className="rounded-md border border-white/10 bg-white/5 px-2 py-1">⌘K</kbd>
+                    <kbd className="rounded-md border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-1">⌘K</kbd>
                     <span className="mx-2">mở lại</span>
                   </span>
                 </div>

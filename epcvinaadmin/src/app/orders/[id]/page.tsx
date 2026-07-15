@@ -18,10 +18,10 @@ export default async function OrderDetailPage({ params }: Props) {
   if (!supabase) notFound();
 
   const [orderRes, itemsRes, productsRes, combosRes] = await Promise.all([
-    supabase.from("orders").select("*").eq("id", id).single(),
-    supabase.from("order_items").select("*").eq("order_id", id).order("sort_order", { ascending: true }),
-    supabase.from("products").select("*").order("sort_order", { ascending: true }),
-    supabase.from("combos").select("*").order("sort_order", { ascending: true }),
+    supabase.from("orders").select("id, slug, customer_id, project_id, invoice_customer_id, invoice_contact_id, order_no, order_type, status, order_date, note, subtotal, discount, total, payment_method, discount_id, discount_name, discount_type, discount_value, payment_policy_id, payment_policy_name, payment_policy_code, payment_policy_deposit_percent, payment_policy_delivery_percent, payment_policy_acceptance_percent, deposit_amount, delivery_amount, acceptance_amount, pdf_generated_at, pdf_url, created_at, updated_at").eq("id", id).single(),
+    supabase.from("order_items").select("id, order_id, combo_id, product_id, item_name, item_type, quantity, unit_price, total_price, note, sort_order, snapshot_data, created_at").eq("order_id", id).order("sort_order", { ascending: true }),
+    supabase.from("products").select("id, name, brand, category, cover_image_url, image_urls, technical_specs, status, is_active, sort_order").order("sort_order", { ascending: true }),
+    supabase.from("combos").select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id").order("sort_order", { ascending: true }),
   ]);
 
   const order = orderRes.data;
@@ -31,23 +31,28 @@ export default async function OrderDetailPage({ params }: Props) {
   const products = (productsRes.data ?? []).map(normalizeProduct);
   const combos = (combosRes.data ?? []).map(normalizeCombo);
 
-  const [customerRes, projectRes] = await Promise.all([
-    order.customer_id ? supabase.from("customers").select("*").eq("id", order.customer_id).maybeSingle() : Promise.resolve({ data: null }),
-    order.project_id ? supabase.from("projects").select("*").eq("id", order.project_id).maybeSingle() : Promise.resolve({ data: null }),
+  const [customerRes, projectRes, invoiceCustomerRes, invoiceContactRes] = await Promise.all([
+    order.customer_id ? supabase.from("customers").select("id, slug, name, customer_type, parent_company_id, phone, email, tax_code, address, province, district, ward, address_detail, billing_name, billing_phone, billing_email, note, sort_order, is_active, status").eq("id", order.customer_id).maybeSingle() : Promise.resolve({ data: null }),
+    order.project_id ? supabase.from("projects").select("id, slug, customer_id, name, code, address, capacity, system_type, completion_date, status, note, sort_order, is_active, created_at").eq("id", order.project_id).maybeSingle() : Promise.resolve({ data: null }),
+    order.invoice_customer_id ? supabase.from("customers").select("id, slug, name, customer_type, parent_company_id, phone, email, tax_code, address, province, district, ward, address_detail, billing_name, billing_phone, billing_email, note, sort_order, is_active, status").eq("id", order.invoice_customer_id).maybeSingle() : Promise.resolve({ data: null }),
+    order.invoice_contact_id ? supabase.from("customers").select("id, slug, name, customer_type, parent_company_id, phone, email, tax_code, address, province, district, ward, address_detail, billing_name, billing_phone, billing_email, note, sort_order, is_active, status").eq("id", order.invoice_contact_id).maybeSingle() : Promise.resolve({ data: null }),
   ]);
 
   const customer = customerRes.data ?? null;
   const project = projectRes.data ?? null;
+  const invoiceCustomer = invoiceCustomerRes.data ?? null;
+  const invoiceContact = invoiceContactRes.data ?? null;
+  const resolvedCustomer = customer ?? (project?.customer_id ? (await supabase.from("customers").select("id, slug, name, customer_type, parent_company_id, phone, email, tax_code, address, province, district, ward, address_detail, billing_name, billing_phone, billing_email, note, sort_order, is_active").eq("id", project.customer_id).maybeSingle()).data ?? null : null) ?? invoiceCustomer;
   const pdfVersionsRes = await supabase
     .from("order_pdf_versions")
-    .select("*")
+    .select("id, order_id, version_no, pdf_url, file_name, generated_at, created_at")
     .eq("order_id", id)
     .order("generated_at", { ascending: false })
     .limit(8);
   const pdfVersions = pdfVersionsRes.data ?? [];
   const paymentRowsRes = await supabase
     .from("order_payments")
-    .select("*")
+    .select("id, order_id, amount, payment_date, method, status, note, created_at, updated_at")
     .eq("order_id", id)
     .order("payment_date", { ascending: false })
     .order("created_at", { ascending: false });
@@ -90,7 +95,7 @@ export default async function OrderDetailPage({ params }: Props) {
     <AdminShell>
       <OrderDetailWorkspace
         order={order}
-        customer={customer}
+        customer={resolvedCustomer}
         project={project}
         items={items}
         comboGroups={bomGroups.filter(([, groupItems]) => groupItems.length > 0) as Array<[string, any[]]>}
@@ -108,6 +113,8 @@ export default async function OrderDetailPage({ params }: Props) {
         paidTotal={paidTotal}
         remainingTotal={remainingTotal}
         paymentAction={createOrderPaymentAction}
+        invoiceCustomer={invoiceCustomer}
+        invoiceContact={invoiceContact}
       />
     </AdminShell>
   );

@@ -5,6 +5,7 @@ import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SlugField } from "@/components/SlugField";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -19,10 +20,19 @@ async function createCustomer(_: { ok: boolean; error: string | null }, formData
   const { error } = await supabase.from("customers").upsert({
     slug: String(formData.get("slug") ?? "").trim(),
     name,
+    customer_type: String(formData.get("customer_type") ?? "contact"),
+    parent_company_id: String(formData.get("parent_company_id") ?? "").trim() || null,
     phone: String(formData.get("phone") ?? "").trim() || null,
     email: String(formData.get("email") ?? "").trim() || null,
     tax_code: String(formData.get("tax_code") ?? "").trim() || null,
     address: String(formData.get("address") ?? "").trim() || null,
+    province: String(formData.get("province") ?? "").trim() || null,
+    district: String(formData.get("district") ?? "").trim() || null,
+    ward: String(formData.get("ward") ?? "").trim() || null,
+    address_detail: String(formData.get("address_detail") ?? "").trim() || null,
+    billing_name: String(formData.get("billing_name") ?? "").trim() || null,
+    billing_phone: String(formData.get("billing_phone") ?? "").trim() || null,
+    billing_email: String(formData.get("billing_email") ?? "").trim() || null,
     note: String(formData.get("note") ?? "").trim() || null,
     sort_order: Number(formData.get("sort_order") ?? 0),
     is_active: true,
@@ -40,10 +50,19 @@ async function updateCustomer(formData: FormData) {
   const { error } = await supabase.from("customers").update({
     slug: String(formData.get("slug") ?? "").trim(),
     name,
+    customer_type: String(formData.get("customer_type") ?? "contact"),
+    parent_company_id: String(formData.get("parent_company_id") ?? "").trim() || null,
     phone: String(formData.get("phone") ?? "").trim() || null,
     email: String(formData.get("email") ?? "").trim() || null,
     tax_code: String(formData.get("tax_code") ?? "").trim() || null,
     address: String(formData.get("address") ?? "").trim() || null,
+    province: String(formData.get("province") ?? "").trim() || null,
+    district: String(formData.get("district") ?? "").trim() || null,
+    ward: String(formData.get("ward") ?? "").trim() || null,
+    address_detail: String(formData.get("address_detail") ?? "").trim() || null,
+    billing_name: String(formData.get("billing_name") ?? "").trim() || null,
+    billing_phone: String(formData.get("billing_phone") ?? "").trim() || null,
+    billing_email: String(formData.get("billing_email") ?? "").trim() || null,
     note: String(formData.get("note") ?? "").trim() || null,
     sort_order: Number(formData.get("sort_order") ?? 0),
     is_active: String(formData.get("status") ?? "active") === "active",
@@ -53,11 +72,19 @@ async function updateCustomer(formData: FormData) {
   redirect("/customers");
 }
 
-export default async function CustomersPage() {
+function normalizeQuery(value: string | string[] | undefined) {
+  return typeof value === "string" ? value : "";
+}
+
+export default async function CustomersPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = (await searchParams) ?? {};
   const supabase = createSupabaseAdminClient();
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 20, 50);
+  const { start, end } = getPageRange(page, pageSize);
   const [rowsRes, projectsRes, ordersRes] = supabase
     ? await Promise.all([
-        supabase.from("customers").select("*").order("sort_order", { ascending: true }),
+        supabase.from("customers").select("id, slug, name, customer_type, parent_company_id, phone, email, tax_code, address, province, district, ward, address_detail, billing_name, billing_phone, billing_email, note, sort_order, is_active", { count: "exact" }).order("sort_order", { ascending: true }).range(start, end),
         supabase.from("projects").select("id, customer_id").order("sort_order", { ascending: true }),
         supabase.from("orders").select("id, customer_id").order("created_at", { ascending: false }),
       ])
@@ -78,7 +105,7 @@ export default async function CustomersPage() {
         </div>
         <CrudFilterBar
           subtitle="CRM"
-          title={`Khách hàng (${rows.length})`}
+          title={`Khách hàng (${rowsRes.count ?? rows.length})`}
           searchLabel="Tìm theo tên, điện thoại, email"
           searchSuggestions={rows.slice(0, 8).map((row: any) => ({
             label: row.name,
@@ -134,14 +161,23 @@ export default async function CustomersPage() {
                 {rows.map((row: any) => {
                   const projectCount = (projects as any[]).filter((project) => project.customer_id === row.id).length;
                   const orderCount = (orders as any[]).filter((order) => order.customer_id === row.id).length;
+                  const customerType = row.customer_type ?? "contact";
                   return (
                     <tr key={row.id} className="bg-[color:var(--panel)]/70 text-[color:var(--text)]">
                       <td className="px-4 py-3 align-top">
                         <div className="font-medium">{row.name}</div>
                         <div className="mt-2 flex flex-wrap gap-2">
+                          <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--accent)]/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--accent)]">
+                            {customerType === "company" ? "Doanh nghiệp" : "Liên hệ"}
+                          </span>
                           <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
                             {row.slug}
                           </span>
+                          {row.parent_company_id ? (
+                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                              Thuộc công ty
+                            </span>
+                          ) : null}
                           {row.tax_code ? (
                             <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
                               MST {row.tax_code}
@@ -150,10 +186,15 @@ export default async function CustomersPage() {
                         </div>
                       </td>
                       <td className="px-4 py-3 align-top text-[color:var(--muted)]">
-                        <div>{row.phone || "-"}</div>
-                        <div className="mt-1 text-xs">{row.email || "-"}</div>
+                        <div>{row.phone || row.billing_phone || "-"}</div>
+                        <div className="mt-1 text-xs">{row.email || row.billing_email || "-"}</div>
                       </td>
-                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">{row.address || "-"}</td>
+                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">
+                        <div>{row.address_detail || row.address || "-"}</div>
+                        <div className="mt-1 text-xs">
+                          {[row.ward, row.district, row.province].filter(Boolean).join(" · ") || "-"}
+                        </div>
+                      </td>
                       <td className="px-4 py-3 align-top text-[color:var(--muted)]">
                         <div>{projectCount} dự án</div>
                         <div className="mt-1 text-xs">{orderCount} đơn hàng</div>
@@ -171,10 +212,22 @@ export default async function CustomersPage() {
                     <form action={updateCustomer} className="grid gap-3">
                       <input type="hidden" name="id" value={row.id} />
                       <SlugField name="name" label="Tên khách hàng" defaultValue={row.name} defaultSlug={row.slug} />
+                      <select name="customer_type" defaultValue={row.customer_type ?? "contact"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
+                        <option value="contact">Liên hệ / Cá nhân</option>
+                        <option value="company">Doanh nghiệp</option>
+                      </select>
+                      <input type="hidden" name="parent_company_id" value={row.parent_company_id ?? ""} />
                       <input name="phone" defaultValue={row.phone ?? ""} placeholder="Số điện thoại" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <input name="email" defaultValue={row.email ?? ""} placeholder="Email" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <input name="tax_code" defaultValue={row.tax_code ?? ""} placeholder="Mã số thuế" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                      <input name="address" defaultValue={row.address ?? ""} placeholder="Địa chỉ" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="province" defaultValue={row.province ?? ""} placeholder="Tỉnh / Thành" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="district" defaultValue={row.district ?? ""} placeholder="Quận / Huyện" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="ward" defaultValue={row.ward ?? ""} placeholder="Xã / Phường" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="address_detail" defaultValue={row.address_detail ?? ""} placeholder="Địa chỉ chi tiết" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="address" defaultValue={row.address ?? ""} placeholder="Địa chỉ đầy đủ" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="billing_name" defaultValue={row.billing_name ?? ""} placeholder="Tên xuất hoá đơn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="billing_phone" defaultValue={row.billing_phone ?? ""} placeholder="SĐT xuất hoá đơn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      <input name="billing_email" defaultValue={row.billing_email ?? ""} placeholder="Email xuất hoá đơn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <select name="status" defaultValue={row.status ?? (row.is_active ? "active" : "inactive")} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
@@ -196,6 +249,11 @@ export default async function CustomersPage() {
                 ) : null}
               </tbody>
             </table>
+          </div>
+          <div className="mt-4 flex items-center justify-between gap-3 text-sm text-[color:var(--muted)]">
+            <div>
+              Trang {page} / {getPageCount(Number(rowsRes.count ?? rows.length), pageSize)}
+            </div>
           </div>
         </section>
       </main>

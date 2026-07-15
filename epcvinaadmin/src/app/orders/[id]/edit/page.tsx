@@ -4,6 +4,7 @@ import { generateOrderPdfAction, updateOrderAction } from "@/app/orders/actions"
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { comboItemGroups } from "@/lib/combo-builder";
 import { normalizeComboItem } from "@/lib/supabase/normalize";
+import { getCachedDiscounts, getCachedPaymentPolicies } from "@/lib/reference-data";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -15,20 +16,30 @@ export default async function OrderEditPage({ params }: Props) {
   const supabase = createSupabaseAdminClient();
   if (!supabase) notFound();
 
-  const [orderRes, customers, projects, discounts, paymentPolicies, combos, products, itemsRes, comboItemsRes] = await Promise.all([
-    supabase.from("orders").select("*").eq("id", id).single(),
-    supabase.from("customers").select("*").order("sort_order", { ascending: true }),
-    supabase.from("projects").select("*").order("sort_order", { ascending: true }),
-    supabase.from("discounts").select("*").order("sort_order", { ascending: true }),
-    supabase.from("payment_policies").select("*").order("sort_order", { ascending: true }),
+  const [orderRes, discounts, paymentPolicies, combos, products, itemsRes, comboItemsRes] = await Promise.all([
+    supabase.from("orders").select("id, slug, customer_id, project_id, order_no, order_type, status, order_date, note, subtotal, discount, total, payment_method, discount_id, discount_name, discount_type, discount_value, payment_policy_id, payment_policy_name, payment_policy_code, payment_policy_deposit_percent, payment_policy_delivery_percent, payment_policy_acceptance_percent, deposit_amount, delivery_amount, acceptance_amount, pdf_generated_at, pdf_url, created_at, updated_at, customer_type, invoice_customer_id, invoice_contact_id").eq("id", id).single(),
+    getCachedDiscounts(),
+    getCachedPaymentPolicies(),
     supabase.from("combos").select("id, name").order("sort_order", { ascending: true }),
     supabase.from("products").select("id, name").order("sort_order", { ascending: true }),
-    supabase.from("order_items").select("*").eq("order_id", id).order("sort_order", { ascending: true }),
-    supabase.from("combo_items").select("*").order("sort_order", { ascending: true }),
+    supabase.from("order_items").select("id, order_id, combo_id, product_id, item_name, item_type, quantity, unit_price, total_price, note, sort_order, snapshot_data, created_at").eq("order_id", id).order("sort_order", { ascending: true }),
+    supabase.from("combo_items").select("id, combo_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, sheet_group, product_id").order("sort_order", { ascending: true }),
   ]);
 
   const order = orderRes.data;
   if (!order) notFound();
+
+  const [customerRes, projectRes, invoiceCustomerRes, invoiceContactRes] = await Promise.all([
+    order.customer_id ? supabase.from("customers").select("id, name").eq("id", order.customer_id).maybeSingle() : Promise.resolve({ data: null }),
+    order.project_id ? supabase.from("projects").select("id, name").eq("id", order.project_id).maybeSingle() : Promise.resolve({ data: null }),
+    order.invoice_customer_id ? supabase.from("customers").select("id, name").eq("id", order.invoice_customer_id).maybeSingle() : Promise.resolve({ data: null }),
+    order.invoice_contact_id ? supabase.from("customers").select("id, name").eq("id", order.invoice_contact_id).maybeSingle() : Promise.resolve({ data: null }),
+  ]);
+
+  const customer = customerRes.data ?? null;
+  const project = projectRes.data ?? null;
+  const invoiceCustomer = invoiceCustomerRes.data ?? null;
+  const invoiceContact = invoiceContactRes.data ?? null;
 
   const initialLines = (itemsRes.data ?? []).map((item: any) => ({
     line_type: item.item_type === "product" ? "product" : "combo",
@@ -63,8 +74,6 @@ export default async function OrderEditPage({ params }: Props) {
         action={updateOrderAction}
         pdfAction={generateOrderPdfAction}
         orderId={String(order.id)}
-        customers={(customers.data ?? []).map((customer: any) => ({ id: String(customer.id), name: String(customer.name), phone: customer.phone, email: customer.email, address: customer.address, tax_code: customer.tax_code, province: customer.province }))}
-        projects={(projects.data ?? []).map((project: any) => ({ id: String(project.id), name: String(project.name), customer_id: project.customer_id ? String(project.customer_id) : null, address: project.address, status: project.status }))}
         discounts={(discounts.data ?? []).map((discount: any) => ({ id: String(discount.id), name: String(discount.name), discount_type: String(discount.discount_type ?? "fixed"), value: Number(discount.value ?? 0), is_active: discount.is_active }))}
         paymentPolicies={(paymentPolicies.data ?? []).map((policy: any) => ({ id: String(policy.id), name: String(policy.name), policy_code: String(policy.policy_code ?? "3:6:1"), deposit_percent: Number(policy.deposit_percent ?? 30), delivery_percent: Number(policy.delivery_percent ?? 60), acceptance_percent: Number(policy.acceptance_percent ?? 10), is_active: policy.is_active }))}
         combos={(combos.data ?? []).map((combo: any) => ({ id: String(combo.id), name: String(combo.name) }))}
@@ -100,6 +109,10 @@ export default async function OrderEditPage({ params }: Props) {
           note: String(order.note ?? ""),
         }}
         initialLines={initialLines}
+        customerLabel={customer?.name ?? ""}
+        projectLabel={project?.name ?? ""}
+        invoiceCustomerLabel={invoiceCustomer?.name ?? ""}
+        invoiceContactLabel={invoiceContact?.name ?? ""}
       />
     </AdminShell>
   );

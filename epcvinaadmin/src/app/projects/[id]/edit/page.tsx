@@ -36,11 +36,11 @@ export default async function ProjectEditPage({ params }: Props) {
   const supabase = createSupabaseAdminClient();
   if (!supabase) notFound();
 
-  const projectRes = await supabase.from("projects").select("*").eq("id", id).single();
+  const projectRes = await supabase.from("projects").select("id, slug, customer_id, name, code, address, capacity, system_type, completion_date, image_url, gallery_urls, description, source_url, status, note, sort_order, is_active, created_at").eq("id", id).single();
   const project = projectRes.data;
   if (!project) notFound();
 
-  const customersRes = await supabase.from("customers").select("id, name").order("sort_order", { ascending: true });
+  const customerRes = project.customer_id ? await supabase.from("customers").select("id, name").eq("id", project.customer_id).maybeSingle() : { data: null };
 
   return (
     <AdminShell>
@@ -55,7 +55,7 @@ export default async function ProjectEditPage({ params }: Props) {
         <ProjectCreateForm
           action={updateProject}
           submitLabel="Lưu dự án"
-          customers={(customersRes.data ?? []).map((customer: any) => ({ id: String(customer.id), name: String(customer.name) }))}
+          customerLabel={customerRes.data ? String(customerRes.data.name ?? "") : ""}
           initialValues={{
             name: String(project.name ?? ""),
             customer_id: String(project.customer_id ?? ""),

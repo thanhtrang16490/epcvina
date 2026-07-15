@@ -5,11 +5,14 @@ import { ImageField } from "@/components/ImageField";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SlugField } from "@/components/SlugField";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
+import { getCachedProductCategories } from "@/lib/reference-data";
 import { slugify } from "@/lib/slug";
 import { uploadMediaFiles } from "@/lib/storage-media";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { referenceDataTags } from "@/lib/reference-data";
 
 export const dynamic = "force-dynamic";
 
@@ -36,6 +39,7 @@ async function createCategory(formData: FormData) {
     is_active: String(formData.get("is_active") ?? "true") === "true",
   });
   revalidatePath("/product-categories");
+  revalidateTag(referenceDataTags.productCategories);
   redirect("/product-categories");
 }
 
@@ -62,6 +66,7 @@ async function updateCategory(formData: FormData) {
     is_active: String(formData.get("is_active") ?? "true") === "true",
   }).eq("id", String(formData.get("id") ?? ""));
   revalidatePath("/product-categories");
+  revalidateTag(referenceDataTags.productCategories);
   redirect("/product-categories");
 }
 
@@ -71,12 +76,19 @@ async function deleteCategory(formData: FormData) {
   if (!supabase) return;
   await supabase.from("product_categories").delete().eq("id", String(formData.get("id") ?? ""));
   revalidatePath("/product-categories");
+  revalidateTag(referenceDataTags.productCategories);
   redirect("/product-categories");
 }
 
-export default async function ProductCategoriesPage() {
+export default async function ProductCategoriesPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = (await searchParams) ?? {};
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 20, 50);
+  const { start, end } = getPageRange(page, pageSize);
   const supabase = createSupabaseAdminClient();
-  const categories = supabase ? ((await supabase.from("product_categories").select("*").order("sort_order", { ascending: true })).data ?? []) : [];
+  const allCategories = supabase ? await getCachedProductCategories() : [];
+  const categoriesRes = { data: allCategories.slice(start, end + 1), count: allCategories.length };
+  const categories = categoriesRes.data ?? [];
   return (
     <AdminShell>
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
@@ -108,7 +120,9 @@ export default async function ProductCategoriesPage() {
                   {category.image_url ? <img src={category.image_url} alt={category.name} className="h-full w-full object-cover" /> : null}
                 </div>
                 <div>
-                  <div className="font-medium text-white">{category.name}</div>
+                  <Link href={`/product-categories/${category.id}`} className="font-medium text-white transition hover:text-cyan-300">
+                    {category.name}
+                  </Link>
                   <div className="mt-2">
                     <span className="inline-flex rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
                       {category.slug}
@@ -140,6 +154,7 @@ export default async function ProductCategoriesPage() {
               </div>
             ))}
           </div>
+          <div className="mt-4 text-sm text-slate-400">Trang {page} / {getPageCount(Number(categoriesRes.count ?? 0), pageSize)}</div>
         </section>
       </main>
     </AdminShell>

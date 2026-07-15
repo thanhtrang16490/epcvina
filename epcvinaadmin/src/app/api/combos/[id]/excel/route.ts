@@ -35,9 +35,15 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
     return NextResponse.json({ error: "Supabase unavailable" }, { status: 500 });
   }
 
-  const combo = normalizeCombo((await supabase.from("combos").select("*").eq("id", id).single()).data ?? {});
-  const items = ((await supabase.from("combo_items").select("*").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem);
-  const products = ((await supabase.from("products").select("*").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
+  const combo = normalizeCombo(
+    (await supabase
+      .from("combos")
+      .select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls")
+      .eq("id", id)
+      .single()).data ?? {},
+  );
+  const items = ((await supabase.from("combo_items").select("id, combo_id, product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, note, sheet_group, reference_product_id").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem);
+  const products = ((await supabase.from("products").select("id, slug, name, category, brand, unit, cost_price, sale_price_vat, warranty, cover_image_url, image_urls, status, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
     id: String(product.id),
     name: String(product.name ?? ""),
     category: String(product.category ?? ""),

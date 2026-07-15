@@ -5,6 +5,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { slugify } from "@/lib/slug";
 import { parseImageUrls, uploadMediaFiles } from "@/lib/storage-media";
+import { getCachedComboCategories } from "@/lib/reference-data";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -60,7 +61,7 @@ async function createCombo(formData: FormData) {
 
 export default async function ComboNewPage() {
   const supabase = await createSupabaseServerClient();
-  const comboCategories = supabase ? ((await supabase.from("combo_categories").select("*").order("sort_order", { ascending: true })).data ?? []) : [];
+  const comboCategories = supabase ? await getCachedComboCategories() : [];
 
   return (
     <AdminShell>

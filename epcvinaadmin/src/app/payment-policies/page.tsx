@@ -1,11 +1,14 @@
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
+import { referenceDataTags } from "@/lib/reference-data";
 import { AdminShell } from "@/components/AdminShell";
 import { CrudFilterBar } from "@/components/CrudFilterBar";
 import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SlugField } from "@/components/SlugField";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
+import { getCachedPaymentPolicies } from "@/lib/reference-data";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export const dynamic = "force-dynamic";
@@ -26,6 +29,7 @@ async function createPolicy(formData: FormData) {
     sort_order: Number(formData.get("sort_order") ?? 0),
   });
   revalidatePath("/payment-policies");
+  revalidateTag(referenceDataTags.paymentPolicies);
   redirect("/payment-policies");
 }
 
@@ -45,6 +49,7 @@ async function updatePolicy(formData: FormData) {
     sort_order: Number(formData.get("sort_order") ?? 0),
   }).eq("id", String(formData.get("id") ?? ""));
   revalidatePath("/payment-policies");
+  revalidateTag(referenceDataTags.paymentPolicies);
   redirect("/payment-policies");
 }
 
@@ -54,6 +59,7 @@ async function deletePolicy(formData: FormData) {
   if (!supabase) return;
   await supabase.from("payment_policies").delete().eq("id", String(formData.get("id") ?? ""));
   revalidatePath("/payment-policies");
+  revalidateTag(referenceDataTags.paymentPolicies);
   redirect("/payment-policies");
 }
 
@@ -61,9 +67,18 @@ function money(value: number) {
   return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(value);
 }
 
-export default async function PaymentPoliciesPage() {
+export default async function PaymentPoliciesPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ page?: string; pageSize?: string }>;
+}) {
   const supabase = createSupabaseAdminClient();
-  const rows = supabase ? (await supabase.from("payment_policies").select("*").order("sort_order", { ascending: true })).data ?? [] : [];
+  const params = (await searchParams) ?? {};
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 10, 20);
+  const { start, end } = getPageRange(page, pageSize);
+  const rows = supabase ? await getCachedPaymentPolicies() : [];
+  const rowsRes = { data: rows.slice(start, end + 1), count: rows.length };
 
   return (
     <AdminShell>
@@ -77,7 +92,7 @@ export default async function PaymentPoliciesPage() {
 
         <CrudFilterBar
           subtitle="Sales"
-          title={`Chính sách (${rows.length})`}
+          title={`Chính sách (${rowsRes.count ?? rows.length})`}
           searchLabel="Tìm theo tên, mã chính sách"
           searchSuggestions={rows.slice(0, 8).map((row: any) => ({
             label: row.name,
@@ -216,6 +231,13 @@ export default async function PaymentPoliciesPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+          <div className="mt-4 flex items-center justify-between gap-3 text-sm text-[color:var(--muted)]">
+            <span>Trang {page} / {getPageCount(Number(rowsRes.count ?? 0), pageSize)}</span>
+            <div className="flex gap-2">
+              {page > 1 ? <Link href={`?${new URLSearchParams({ ...(params as Record<string, string>), page: String(page - 1), pageSize: String(pageSize) }).toString()}`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-[color:var(--text)]">Trước</Link> : null}
+              {(rowsRes.count ?? 0) > end + 1 ? <Link href={`?${new URLSearchParams({ ...(params as Record<string, string>), page: String(page + 1), pageSize: String(pageSize) }).toString()}`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-[color:var(--text)]">Sau</Link> : null}
+            </div>
           </div>
         </section>
       </main>

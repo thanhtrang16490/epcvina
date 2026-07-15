@@ -3,6 +3,7 @@ import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SlugField } from "@/components/SlugField";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import { slugify } from "@/lib/slug";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
@@ -52,9 +53,14 @@ async function updateSupplier(formData: FormData) {
   redirect("/suppliers");
 }
 
-export default async function SuppliersPage() {
+export default async function SuppliersPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = (await searchParams) ?? {};
+  const page = getPage(params.page);
+  const pageSize = getPageSize(params.pageSize, 20, 50);
+  const { start, end } = getPageRange(page, pageSize);
   const supabase = createSupabaseAdminClient();
-  const rows = supabase ? ((await supabase.from("suppliers").select("*").order("sort_order", { ascending: true })).data ?? []) : [];
+  const rowsRes = supabase ? await supabase.from("suppliers").select("id, slug, name, phone, email, address, contact_name, website, note, sort_order, is_active, created_at", { count: "exact" }).order("sort_order", { ascending: true }).range(start, end) : { data: [], count: 0 };
+  const rows = rowsRes.data ?? [];
   return (
     <AdminShell>
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
@@ -104,6 +110,7 @@ export default async function SuppliersPage() {
               </div>
             ))}
           </div>
+          <div className="mt-4 text-sm text-slate-400">Trang {page} / {getPageCount(Number(rowsRes.count ?? 0), pageSize)}</div>
         </section>
       </main>
     </AdminShell>
