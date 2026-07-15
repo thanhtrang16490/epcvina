@@ -6,7 +6,8 @@
     "dev": "next dev",
     "dev:clean": "rm -rf .next && next dev",
     "prebuild": "sh -c 'if [ -d .next ]; then find .next -mindepth 1 -maxdepth 1 ! -name cache -exec rm -rf {} +; fi'",
-    "build": "NAPI_RS_FORCE_WASI=true next build",
+    "postinstall": "node scripts/install-tailwind-oxide.mjs",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test:number-format": "node scripts/test-number-format.mjs",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@tailwindcss/oxide": "^4.3.2",
+    "@tailwindcss/oxide-wasm32-wasi": "^4.3.2",
     "@types/node": "^24.1.0",
     "@types/pdfkit": "^0.17.6",
     "@types/react": "^18.3.1",
