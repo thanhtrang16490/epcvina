@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev:clean": "rm -rf .next && next dev",
     "prebuild": "sh -c 'if [ -d .next ]; then find .next -mindepth 1 -maxdepth 1 ! -name cache -exec rm -rf {} +; fi'",
-    "build": "next build",
+    "build": "NAPI_RS_FORCE_WASI=true next build",
     "start": "next start",
     "lint": "next lint",
     "test:number-format": "node scripts/test-number-format.mjs",
