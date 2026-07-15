@@ -5,13 +5,32 @@ import { useAuth } from '../../src/contexts/AuthContext'
 import { useRouter } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { supabase } from '../../src/lib/supabase'
-import { hasTeamFeatures } from '../../src/lib/feature-flags'
+
+type Profile = {
+  full_name?: string | null
+  email?: string | null
+  phone?: string | null
+  role?: 'admin' | 'sale_admin' | 'sale' | 'customer' | 'warehouse' | string | null
+}
+
+const COLORS = {
+  background: '#f0f9ff',
+  danger: '#ef4444',
+  primary: '#175ead',
+  primarySoft: 'rgba(23, 94, 173, 0.1)',
+  primarySoft2: 'rgba(23, 94, 173, 0.05)',
+  shadow: '#000',
+  surface: '#ffffff',
+  text: '#111827',
+  textMuted: '#6b7280',
+  textFaint: '#9ca3af',
+  white: '#ffffff',
+}
 
 export default function MenuScreen() {
-  const { user, signOut } = useAuth()
+  const { signOut } = useAuth()
   const router = useRouter()
-  const [profile, setProfile] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+  const [profile, setProfile] = useState<Profile | null>(null)
 
   useEffect(() => {
     fetchProfile()
@@ -28,11 +47,9 @@ export default function MenuScreen() {
         .eq('id', authUser.id)
         .single()
 
-      setProfile(profileData)
+      setProfile(profileData as Profile | null)
     } catch (error) {
       console.error('Error fetching profile:', error)
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -109,68 +126,6 @@ export default function MenuScreen() {
     })
   }
 
-  const adminMenuItems = []
-
-  if (isAdmin || isSaleAdmin) {
-    // Add Team Management for sale_admin
-    if (isSaleAdmin) {
-      adminMenuItems.push({
-        title: 'Quản lý Team',
-        description: 'Xem và quản lý thành viên trong team',
-        icon: 'people-circle',
-        color: '#175ead',
-        bg: '#dbeafe',
-        onPress: () => router.push('/(sales)/team' as any),
-      })
-    }
-
-    adminMenuItems.push(
-      {
-        title: 'Phân tích dữ liệu',
-        description: 'Analytics và insights chi tiết',
-        icon: 'analytics',
-        color: '#8b5cf6',
-        bg: '#f3e8ff',
-        onPress: () => router.push('/(sales)/analytics'),
-      },
-      {
-        title: 'Quản lý danh mục',
-        description: 'Tạo và chỉnh sửa danh mục sản phẩm',
-        icon: 'folder',
-        color: '#f59e0b',
-        bg: '#fef3c7',
-        onPress: () => router.push('/(sales)/categories'),
-      },
-      {
-        title: 'Xuất dữ liệu',
-        description: 'Export CSV/Excel cho báo cáo',
-        icon: 'download',
-        color: '#10b981',
-        bg: '#d1fae5',
-        onPress: () => router.push('/(sales)/export'),
-      },
-      {
-        title: 'Quản lý nhân sự',
-        description: 'Quản lý tài khoản và phân quyền',
-        icon: 'shield-checkmark',
-        color: '#ef4444',
-        bg: '#fee2e2',
-        onPress: () => router.push('/(sales)/users'),
-      }
-    )
-  }
-
-  if (isAdmin) {
-    adminMenuItems.push({
-      title: 'Cài đặt hệ thống',
-      description: 'Cấu hình và tùy chỉnh hệ thống',
-      icon: 'settings',
-      color: '#6b7280',
-      bg: '#f3f4f6',
-      onPress: () => router.push('/(sales)/settings'),
-    })
-  }
-
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       {/* Header with Logo */}
@@ -195,7 +150,7 @@ export default function MenuScreen() {
         {/* Page Header */}
         <View style={styles.pageHeader}>
           <Text style={styles.title}>Menu</Text>
-          <Text style={styles.subtitle}>Các tính năng bổ sung và công cụ quản trị</Text>
+        <Text style={styles.subtitle}>Các tính năng bổ sung dành cho bán hàng và khách hàng</Text>
         </View>
 
         {/* User Info Card */}
@@ -232,48 +187,7 @@ export default function MenuScreen() {
                 >
                   <View style={styles.menuItemContent}>
                     <View style={[styles.menuIcon, { backgroundColor: item.bg }]}>
-                      <Ionicons name={item.icon as any} size={24} color={item.color} />
-                    </View>
-                    <View style={styles.menuItemText}>
-                      <Text style={styles.menuItemTitle}>{item.title}</Text>
-                      <Text style={styles.menuItemDescription} numberOfLines={1}>
-                        {item.description}
-                      </Text>
-                    </View>
-                    <Ionicons name="chevron-forward" size={20} color="#d1d5db" />
-                  </View>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </>
-        )}
-
-        {/* Admin Tools Section */}
-        {(isAdmin || isSaleAdmin) && adminMenuItems.length > 0 && (
-          <>
-            <View style={styles.sectionHeader}>
-              <View style={styles.sectionTitleContainer}>
-                <Ionicons name="shield-checkmark" size={20} color="#175ead" />
-                <Text style={styles.sectionTitle}>Công cụ quản trị</Text>
-              </View>
-              <View style={styles.adminBadge}>
-                <Text style={styles.adminBadgeText}>
-                  {isAdmin ? 'ADMIN' : 'SALE ADMIN'}
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.menuGrid}>
-              {adminMenuItems.map((item, index) => (
-                <TouchableOpacity
-                  key={`admin-${index}`}
-                  style={styles.menuItem}
-                  onPress={item.onPress}
-                  activeOpacity={0.7}
-                >
-                  <View style={styles.menuItemContent}>
-                    <View style={[styles.menuIcon, { backgroundColor: item.bg }]}>
-                      <Ionicons name={item.icon as any} size={24} color={item.color} />
+                      <Ionicons name={item.icon as keyof typeof Ionicons.glyphMap} size={24} color={item.color} />
                     </View>
                     <View style={styles.menuItemText}>
                       <Text style={styles.menuItemTitle}>{item.title}</Text>
@@ -307,191 +221,179 @@ export default function MenuScreen() {
 }
 
 const styles = StyleSheet.create({
+  closeButton: {
+    alignItems: 'center',
+    height: 40,
+    justifyContent: 'center',
+    width: 40,
+  },
   container: {
+    backgroundColor: COLORS.background,
     flex: 1,
-    backgroundColor: '#f0f9ff',
-  },
-  topHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: '#f0f9ff',
-  },
-  logoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
   },
   logo: {
-    width: 40,
     height: 40,
+    width: 40,
+  },
+  logoContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 8,
   },
   logoTitle: {
+    color: COLORS.text,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#111827',
   },
-  closeButton: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
+  logoutButton: {
     alignItems: 'center',
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    padding: 16,
-    gap: 20,
-  },
-  pageHeader: {
-    marginBottom: 8,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#6b7280',
-    fontStyle: 'italic',
-  },
-  userCard: {
-    backgroundColor: 'rgba(23, 94, 173, 0.05)',
-    borderRadius: 16,
-    padding: 16,
+    backgroundColor: COLORS.danger,
+    borderRadius: 12,
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  userAvatar: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: 'rgba(23, 94, 173, 0.1)',
+    gap: 8,
     justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 12,
+    paddingVertical: 16,
   },
-  userAvatarText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#175ead',
-  },
-  userInfo: {
-    flex: 1,
-  },
-  userName: {
+  logoutButtonText: {
+    color: COLORS.white,
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: 2,
-  },
-  userEmail: {
-    fontSize: 12,
-    color: '#6b7280',
-    marginBottom: 4,
-  },
-  userRole: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: '#175ead',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    fontWeight: '600',
   },
   menuGrid: {
     gap: 12,
   },
+  menuIcon: {
+    alignItems: 'center',
+    borderRadius: 12,
+    height: 48,
+    justifyContent: 'center',
+    width: 48,
+  },
   menuItem: {
-    backgroundColor: 'white',
+    backgroundColor: COLORS.surface,
     borderRadius: 16,
-    shadowColor: '#000',
+    elevation: 2,
+    shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
-    elevation: 2,
   },
   menuItemContent: {
+    alignItems: 'center',
     flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
     gap: 12,
+    padding: 16,
   },
-  menuIcon: {
-    width: 48,
-    height: 48,
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
+  menuItemDescription: {
+    color: COLORS.textMuted,
+    fontSize: 12,
   },
   menuItemText: {
     flex: 1,
   },
   menuItemTitle: {
+    color: COLORS.text,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#111827',
     marginBottom: 2,
   },
-  menuItemDescription: {
-    fontSize: 12,
-    color: '#6b7280',
+  pageHeader: {
+    marginBottom: 8,
+  },
+  scrollContent: {
+    gap: 20,
+    padding: 16,
+  },
+  scrollView: {
+    flex: 1,
   },
   sectionHeader: {
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     marginBottom: 12,
   },
-  sectionTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
   sectionTitle: {
+    color: COLORS.text,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#111827',
   },
-  adminBadge: {
-    backgroundColor: '#dbeafe',
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 12,
+  sectionTitleContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 8,
   },
-  adminBadgeText: {
+  subtitle: {
+    color: COLORS.textMuted,
+    fontSize: 14,
+    fontStyle: 'italic',
+  },
+  title: {
+    color: COLORS.text,
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  topHeader: {
+    alignItems: 'center',
+    backgroundColor: COLORS.background,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  userAvatar: {
+    alignItems: 'center',
+    backgroundColor: COLORS.primarySoft,
+    borderRadius: 28,
+    height: 56,
+    justifyContent: 'center',
+    width: 56,
+  },
+  userAvatarText: {
+    color: COLORS.primary,
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  userCard: {
+    alignItems: 'center',
+    backgroundColor: COLORS.primarySoft2,
+    borderRadius: 16,
+    flexDirection: 'row',
+    gap: 12,
+    padding: 16,
+  },
+  userEmail: {
+    color: COLORS.textMuted,
+    fontSize: 12,
+    marginBottom: 4,
+  },
+  userInfo: {
+    flex: 1,
+  },
+  userName: {
+    color: COLORS.text,
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 2,
+  },
+  userRole: {
+    color: COLORS.primary,
     fontSize: 10,
     fontWeight: 'bold',
-    color: '#175ead',
     letterSpacing: 0.5,
-  },
-  logoutButton: {
-    backgroundColor: '#ef4444',
-    borderRadius: 12,
-    paddingVertical: 16,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 8,
-    marginTop: 12,
-  },
-  logoutButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '600',
+    textTransform: 'uppercase',
   },
   version: {
+    color: COLORS.textFaint,
     fontSize: 10,
-    color: '#9ca3af',
-    textAlign: 'center',
     fontWeight: 'bold',
-    textTransform: 'uppercase',
     letterSpacing: 1,
-    opacity: 0.5,
-    marginTop: 8,
     marginBottom: 20,
+    marginTop: 8,
+    opacity: 0.5,
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
 })

@@ -10,7 +10,6 @@ import {
   Image,
   RefreshControl,
 } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { router } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { useDebounce } from '../../src/hooks/useDebounce'
@@ -287,69 +286,91 @@ export default function PublicProductsScreen() {
       {/* Sticky CTA Banner */}
       <View style={styles.ctaBanner}>
         <Text style={styles.ctaText}>Muốn đặt hàng?</Text>
-        <TouchableOpacity
-          style={styles.ctaButton}
-          onPress={() => router.push('/(auth)/login')}
-          activeOpacity={0.8}
-        >
-          <Text style={styles.ctaButtonText}>Đăng nhập ngay</Text>
-          <Ionicons name="arrow-forward" size={16} color="#fff" />
-        </TouchableOpacity>
+        <View style={styles.ctaActions}>
+          <TouchableOpacity
+            style={styles.secondaryCtaButton}
+            onPress={() => router.push('/(public)/system-advisor')}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.secondaryCtaButtonText}>Tư vấn hệ thống</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.ctaButton}
+            onPress={() => router.push('/(auth)/login')}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.ctaButtonText}>Đăng nhập ngay</Text>
+            <Ionicons name="arrow-forward" size={16} color="#fff" />
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f9fafb' },
-  searchContainer: {
-    flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff',
-    marginHorizontal: 16, marginVertical: 12, borderRadius: 12, borderWidth: 1,
-    borderColor: '#e5e7eb', paddingHorizontal: 12,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.06, shadowRadius: 4, elevation: 2,
-  },
-  searchIcon: { marginRight: 8 },
-  searchInput: { flex: 1, height: 44, fontSize: 15, color: '#111827' },
-  categoryScroll: { flexGrow: 0, marginBottom: 8 },
-  categoryList: { paddingHorizontal: 16, gap: 8 },
   categoryChip: {
-    paddingHorizontal: 14, paddingVertical: 7, borderRadius: 20, backgroundColor: '#fff',
-    borderWidth: 1, borderColor: '#e5e7eb', marginRight: 8,
+    backgroundColor: '#fff', borderColor: '#e5e7eb', borderRadius: 20, borderWidth: 1,
+    marginRight: 8, paddingHorizontal: 14, paddingVertical: 7,
   },
   categoryChipActive: { backgroundColor: '#175ead', borderColor: '#175ead' },
-  categoryText: { fontSize: 13, fontWeight: '500', color: '#6b7280' },
+  categoryList: { gap: 8, paddingHorizontal: 16 },
+  categoryScroll: { flexGrow: 0, marginBottom: 8 },
+  categoryText: { color: '#6b7280', fontSize: 13, fontWeight: '500' },
   categoryTextActive: { color: '#fff' },
-  productGrid: { paddingHorizontal: 12, paddingBottom: 80 },
-  productGridEmpty: { flex: 1 },
-  row: { justifyContent: 'space-between', marginBottom: 12 },
-  productCard: {
-    width: '48.5%', backgroundColor: '#fff', borderRadius: 12, overflow: 'hidden',
-    borderWidth: 1, borderColor: '#e5e7eb',
-    shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.06, shadowRadius: 4, elevation: 2,
+  centered: { alignItems: 'center', flex: 1, gap: 12, justifyContent: 'center', paddingVertical: 60 },
+  container: { backgroundColor: '#f9fafb', flex: 1 },
+  ctaActions: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 8,
   },
-  productImage: { width: '100%', height: 130, backgroundColor: '#f3f4f6' },
-  productInfo: { padding: 10 },
-  productCode: { fontSize: 11, color: '#9ca3af', marginBottom: 2 },
-  productName: { fontSize: 13, fontWeight: '600', color: '#111827', lineHeight: 18, marginBottom: 6 },
-  productPrice: { fontSize: 15, fontWeight: '700', color: '#175ead', marginBottom: 6 },
-  centered: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 12, paddingVertical: 60 },
-  loadingText: { fontSize: 14, color: '#6b7280', marginTop: 8 },
-  emptyTitle: { fontSize: 16, fontWeight: '600', color: '#374151', marginTop: 8 },
-  emptySubtitle: { fontSize: 13, color: '#9ca3af', textAlign: 'center', paddingHorizontal: 32 },
-  retryButton: { marginTop: 4, paddingHorizontal: 24, paddingVertical: 10, borderRadius: 20, backgroundColor: '#175ead' },
-  retryText: { fontSize: 14, fontWeight: '600', color: '#fff' },
-  loadingMore: { paddingVertical: 20, alignItems: 'center' },
   ctaBanner: {
-    position: 'absolute', bottom: 0, left: 0, right: 0,
-    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-    backgroundColor: '#fff', borderTopWidth: 1, borderTopColor: '#e5e7eb',
-    paddingHorizontal: 16, paddingVertical: 12,
-    shadowColor: '#000', shadowOffset: { width: 0, height: -2 }, shadowOpacity: 0.08, shadowRadius: 8, elevation: 8,
+    alignItems: 'center', backgroundColor: '#fff', borderTopColor: '#e5e7eb', borderTopWidth: 1,
+    bottom: 0, elevation: 8, flexDirection: 'row',
+    justifyContent: 'space-between', left: 0, paddingHorizontal: 16,
+    paddingVertical: 12, position: 'absolute',
+    right: 0, shadowColor: '#000', shadowOffset: { width: 0, height: -2 }, shadowOpacity: 0.08, shadowRadius: 8,
   },
-  ctaText: { fontSize: 14, color: '#374151', fontWeight: '500' },
   ctaButton: {
-    flexDirection: 'row', alignItems: 'center', gap: 6,
-    backgroundColor: '#175ead', paddingHorizontal: 16, paddingVertical: 10, borderRadius: 20,
+    alignItems: 'center', backgroundColor: '#175ead', borderRadius: 20,
+    flexDirection: 'row', gap: 6, paddingHorizontal: 16, paddingVertical: 10,
   },
-  ctaButtonText: { fontSize: 14, fontWeight: '600', color: '#fff' },
+  ctaButtonText: { color: '#fff', fontSize: 14, fontWeight: '600' },
+  ctaText: { color: '#374151', fontSize: 14, fontWeight: '500' },
+  emptySubtitle: { color: '#9ca3af', fontSize: 13, paddingHorizontal: 32, textAlign: 'center' },
+  emptyTitle: { color: '#374151', fontSize: 16, fontWeight: '600', marginTop: 8 },
+  loadingMore: { alignItems: 'center', paddingVertical: 20 },
+  loadingText: { color: '#6b7280', fontSize: 14, marginTop: 8 },
+  productCard: {
+    backgroundColor: '#fff', borderColor: '#e5e7eb', borderRadius: 12, borderWidth: 1,
+    elevation: 2, overflow: 'hidden',
+    shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.06, shadowRadius: 4, width: '48.5%',
+  },
+  productCode: { color: '#9ca3af', fontSize: 11, marginBottom: 2 },
+  productGrid: { paddingBottom: 80, paddingHorizontal: 12 },
+  productGridEmpty: { flex: 1 },
+  productImage: { backgroundColor: '#f3f4f6', height: 130, width: '100%' },
+  productInfo: { padding: 10 },
+  productName: { color: '#111827', fontSize: 13, fontWeight: '600', lineHeight: 18, marginBottom: 6 },
+  productPrice: { color: '#175ead', fontSize: 15, fontWeight: '700', marginBottom: 6 },
+  retryButton: { backgroundColor: '#175ead', borderRadius: 20, marginTop: 4, paddingHorizontal: 24, paddingVertical: 10 },
+  retryText: { color: '#fff', fontSize: 14, fontWeight: '600' },
+  row: { justifyContent: 'space-between', marginBottom: 12 },
+  searchContainer: {
+    alignItems: 'center', backgroundColor: '#fff', borderColor: '#e5e7eb',
+    borderRadius: 12, borderWidth: 1, elevation: 2, flexDirection: 'row',
+    marginHorizontal: 16, marginVertical: 12,
+    paddingHorizontal: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.06, shadowRadius: 4,
+  },
+  searchIcon: { marginRight: 8 },
+  searchInput: { color: '#111827', flex: 1, fontSize: 15, height: 44 },
+  secondaryCtaButton: {
+    borderColor: '#175ead',
+    borderRadius: 20,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
+  secondaryCtaButtonText: { color: '#175ead', fontSize: 14, fontWeight: '600' },
 })

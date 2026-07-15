@@ -1,5 +1,5 @@
 import { Stack, router } from 'expo-router'
-import { View, Text, TouchableOpacity, StyleSheet, Platform, StatusBar, Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -20,6 +20,7 @@ export default function PublicLayout() {
     >
       <Stack.Screen name="products" options={{ title: 'Sản phẩm' }} />
       <Stack.Screen name="product/[id]" options={{ presentation: 'card' }} />
+      <Stack.Screen name="system-advisor" options={{ title: 'Tư vấn hệ thống' }} />
     </Stack>
   )
 }
@@ -58,71 +59,71 @@ function PublicHeader() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    backgroundColor: '#ffffff',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    minHeight: 60,
-  },
   brand: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     gap: 10,
   },
-  logoContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 8,
-    backgroundColor: '#f0f9ff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#bfdbfe',
+  brandName: {
+    color: '#175ead',
+    fontSize: 18,
+    fontWeight: '700',
+    letterSpacing: 0.3,
   },
-  logo: {
-    width: 28,
-    height: 28,
+  brandSubtitle: {
+    color: '#6b7280',
+    fontSize: 11,
+    marginTop: 1,
   },
   brandTextContainer: {
     justifyContent: 'center',
   },
-  brandName: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#175ead',
-    letterSpacing: 0.3,
-  },
-  brandSubtitle: {
-    fontSize: 11,
-    color: '#6b7280',
-    marginTop: 1,
+  container: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    minHeight: 60,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
   loginButton: {
-    flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: '#eff6ff',
+    borderColor: '#175ead',
+    borderRadius: 20,
+    borderWidth: 1.5,
+    flexDirection: 'row',
     gap: 6,
     paddingHorizontal: 14,
     paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1.5,
-    borderColor: '#175ead',
-    backgroundColor: '#eff6ff',
   },
   loginText: {
+    color: '#175ead',
     fontSize: 14,
     fontWeight: '600',
-    color: '#175ead',
+  },
+  logo: {
+    height: 28,
+    width: 28,
+  },
+  logoContainer: {
+    alignItems: 'center',
+    backgroundColor: '#f0f9ff',
+    borderColor: '#bfdbfe',
+    borderRadius: 8,
+    borderWidth: 1,
+    height: 40,
+    justifyContent: 'center',
+    width: 40,
+  },
+  safeArea: {
+    backgroundColor: '#ffffff',
+    borderBottomColor: '#e5e7eb',
+    borderBottomWidth: 1,
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
   },
 })
