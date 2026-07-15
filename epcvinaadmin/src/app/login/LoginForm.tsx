@@ -5,11 +5,8 @@ import { useRouter } from "next/navigation";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 
-type Mode = "login" | "register";
-
 export function LoginForm() {
   const router = useRouter();
-  const [mode, setMode] = useState<Mode>("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -30,38 +27,20 @@ export function LoginForm() {
 
     setLoading(true);
     try {
-      if (mode === "login") {
-        const { data, error: signInError } = await supabaseBrowserClient.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (signInError) throw signInError;
-
-        if (!data.session) {
-          throw new Error("Không tạo được phiên đăng nhập.");
-        }
-
-        setMessage("Đăng nhập thành công, đang chuyển vào trang quản trị...");
-        router.replace("/");
-        router.refresh();
-        return;
-      }
-
-      const { data, error: signUpError } = await supabaseBrowserClient.auth.signUp({
+      const { data, error: signInError } = await supabaseBrowserClient.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (signUpError) throw signUpError;
+      if (signInError) throw signInError;
 
       if (!data.session) {
-        setMessage("Đã tạo tài khoản. Nếu Supabase yêu cầu xác thực email, hãy kiểm tra hộp thư.");
-      } else {
-        setMessage("Tạo tài khoản thành công, đang chuyển vào trang quản trị...");
-        router.replace("/");
-        router.refresh();
+        throw new Error("Không tạo được phiên đăng nhập.");
       }
+
+      setMessage("Đăng nhập thành công, đang chuyển vào trang quản trị...");
+      router.replace("/");
+      router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Đăng nhập thất bại.");
     } finally {
@@ -104,27 +83,6 @@ export function LoginForm() {
             </div>
             <h1 className="mt-4 text-3xl font-semibold text-[color:var(--text)]">Đăng nhập quản trị</h1>
             <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">Dùng Supabase Auth để vào hệ thống.</p>
-          </div>
-
-          <div className="login-tabs flex rounded-2xl p-1">
-            <button
-              type="button"
-              onClick={() => setMode("login")}
-              className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition ${
-                mode === "login" ? "login-tab-active" : "login-tab-inactive"
-              }`}
-            >
-              Đăng nhập
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode("register")}
-              className={`flex-1 rounded-xl px-4 py-3 text-sm font-medium transition ${
-                mode === "register" ? "login-tab-active" : "login-tab-inactive"
-              }`}
-            >
-              Tạo tài khoản
-            </button>
           </div>
 
           <form onSubmit={submit} autoComplete="off" className="mt-6 grid gap-4">
@@ -170,7 +128,7 @@ export function LoginForm() {
               disabled={loading || !isReady}
               className="login-submit mt-2 inline-flex h-12 items-center justify-center rounded-2xl px-4 font-semibold transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading ? "Đang xử lý..." : mode === "login" ? "Đăng nhập" : "Tạo tài khoản"}
+              {loading ? "Đang xử lý..." : "Đăng nhập"}
             </button>
 
             {message ? (
