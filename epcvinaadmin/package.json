@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:clean": "rm -rf .next && next dev",
-    "prebuild": "rm -rf .next",
+    "prebuild": "sh -c 'if [ -d .next ]; then find .next -mindepth 1 -maxdepth 1 ! -name cache -exec rm -rf {} +; fi'",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
