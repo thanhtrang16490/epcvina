@@ -216,6 +216,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const [crmCounts, setCrmCounts] = useState({ customers: 0, projects: 0, orders: 0 });
   const [collapsed, setCollapsed] = useState(true);
   const [hovered, setHovered] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") return "dark";
     const stored = window.localStorage.getItem("epcvina-theme");
@@ -231,7 +233,6 @@ export function AdminShell({ children }: { children: ReactNode }) {
     storefront: false,
     system: false,
   });
-  const sidebarExpanded = useMemo(() => !collapsed || hovered, [collapsed, hovered]);
   const shellText = theme === "light" ? "text-slate-900" : "text-white";
   const sidebarClass =
     theme === "light"
@@ -246,6 +247,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
       : "border-[color:var(--accent)]/40 bg-[color:var(--accent)]/12 text-white shadow-[0_0_0_1px_rgba(255,85,0,0.18)]";
   const navChildIdle = theme === "light" ? "border-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-950" : "border-transparent text-slate-400 hover:bg-white/8 hover:text-white";
   const navChildActive = theme === "light" ? "border-orange-200 bg-orange-50 text-slate-950" : "border-orange-400/30 bg-orange-400/10 text-white";
+  const mobileSidebarOpen = isMobile && mobileMenuOpen;
+  const desktopSidebarExpanded = useMemo(() => !collapsed || hovered, [collapsed, hovered]);
+  const sidebarExpanded = isMobile ? true : desktopSidebarExpanded;
 
   useEffect(() => {
     const stored = window.localStorage.getItem("epcvina-theme");
@@ -260,9 +264,12 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const syncCollapsed = () => {
-      if (window.innerWidth < 1024) {
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
+      if (mobile) {
         setCollapsed(true);
         setHovered(false);
+        setMobileMenuOpen(false);
       }
     };
     syncCollapsed();
@@ -324,6 +331,10 @@ export function AdminShell({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
     const onStorage = (event: StorageEvent) => {
       if (event.key === "epcvina-theme" && (event.newValue === "light" || event.newValue === "dark")) {
         setTheme(event.newValue);
@@ -353,34 +364,62 @@ export function AdminShell({ children }: { children: ReactNode }) {
   return (
     <AuthGate>
       <div className={`min-h-screen ${shellText}`}>
-        {sidebarExpanded ? <div className="pointer-events-none fixed inset-0 z-30 bg-slate-950/22 backdrop-blur-[1.5px] lg:block hidden" /> : null}
+        {mobileSidebarOpen ? (
+          <button
+            type="button"
+            aria-label="Đóng menu"
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 z-40 bg-slate-950/35 backdrop-blur-[1.5px] lg:hidden"
+          />
+        ) : null}
         <aside
-          className={`fixed left-0 top-0 z-40 h-screen overflow-y-auto border-r border-[color:var(--border)] bg-[color:var(--panel-strong)]/78 backdrop-blur-2xl shadow-[4px_0_28px_rgba(0,0,0,0.18)] px-2 py-3 transition-[width,transform] duration-300 ease-out lg:px-3 lg:py-4 ${
-            sidebarExpanded ? "w-[252px] translate-x-0" : "w-[64px] translate-x-0"
+          className={`fixed left-0 top-0 z-50 h-dvh overflow-y-auto border-r border-[color:var(--border)] bg-[color:var(--panel-strong)]/90 backdrop-blur-2xl shadow-[4px_0_28px_rgba(0,0,0,0.18)] px-2 py-3 transition-[width,transform] duration-300 ease-out lg:px-3 lg:py-4 ${
+            isMobile
+              ? `${mobileSidebarOpen ? "w-[86vw] max-w-[320px] translate-x-0" : "w-[86vw] max-w-[320px] -translate-x-full"}`
+              : sidebarExpanded
+                ? "w-[252px] translate-x-0"
+                : "w-[64px] translate-x-0"
           }`}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
+          onMouseEnter={() => {
+            if (!isMobile) setHovered(true);
+          }}
+          onMouseLeave={() => {
+            if (!isMobile) setHovered(false);
+          }}
         >
-            <div className="sticky top-3 lg:top-4">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex min-w-0 items-center gap-2.5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
-                    <span className="text-[11px] font-semibold tracking-[0.18em] text-orange-500">E</span>
-                  </div>
-                  <div className={sidebarExpanded ? "min-w-0" : "sr-only"}>
-                    <div className="truncate text-sm font-semibold text-white">EPCVINA Solar</div>
-                    <div className="text-[10px] uppercase tracking-[0.24em] text-orange-500">Admin</div>
-                  </div>
+          <div className="sticky top-3 lg:top-4">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                  <span className="text-[11px] font-semibold tracking-[0.18em] text-orange-500">E</span>
                 </div>
+                <div className={sidebarExpanded ? "min-w-0" : "sr-only"}>
+                  <div className="truncate text-sm font-semibold text-white">EPCVINA Solar</div>
+                  <div className="text-[10px] uppercase tracking-[0.24em] text-orange-500">Admin</div>
+                </div>
+              </div>
+              {isMobile ? (
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition active:scale-[0.98]"
+                  aria-label="Đóng sidebar"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" className="h-4.5 w-4.5" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  </svg>
+                </button>
+              ) : (
                 <button
                   type="button"
                   onClick={() => setCollapsed((value) => !value)}
-                  className={`flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10`}
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10"
                   aria-label={sidebarExpanded ? "Thu sidebar" : "Mở sidebar"}
                 >
                   <NavIcon kind="chevron" />
                 </button>
-              </div>
+              )}
+            </div>
 
               {sidebarExpanded ? (
                 <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-sm">
@@ -402,7 +441,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
                       <button
                         type="button"
                         onClick={() => setOpenGroups((value) => ({ ...value, [group.id]: !value[group.id] }))}
-                        className={`flex w-full items-center gap-2 rounded-2xl border px-2.5 py-2 text-sm transition ${groupActive ? navActive : navIdle} ${sidebarExpanded ? "" : "justify-center px-2"}`}
+                        className={`flex w-full items-center gap-2 rounded-2xl border px-2.5 py-2 text-sm transition ${groupActive ? navActive : navIdle} ${sidebarExpanded ? "" : "justify-center px-2"} ${isMobile ? "touch-manipulation active:scale-[0.99]" : ""}`}
                         aria-expanded={expanded}
                         aria-label={sidebarExpanded ? `${expanded ? "Thu" : "Mở"} ${group.label}` : group.label}
                         title={sidebarExpanded ? group.description : group.label}
@@ -429,7 +468,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
                               <Link
                                 key={item.href}
                                 href={item.href as never}
-                                className={`flex items-center gap-2.5 rounded-xl border px-3 py-2 text-sm transition ${active ? navChildActive : navChildIdle}`}
+                                className={`flex items-center gap-2.5 rounded-xl border px-3 py-2 text-sm transition ${active ? navChildActive : navChildIdle} ${isMobile ? "touch-manipulation active:scale-[0.99]" : ""}`}
                               >
                                 <NavIcon kind={item.icon} />
                                 <span className="min-w-0 flex-1 truncate">{item.label}</span>
@@ -455,7 +494,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
                 <button
                   type="button"
                   onClick={() => logout()}
-                  className={`flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10 lg:w-full lg:px-3 lg:py-2.5 lg:text-sm`}
+                  className={`flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10 lg:w-full lg:px-3 lg:py-2.5 lg:text-sm ${isMobile ? "touch-manipulation active:scale-[0.98]" : ""}`}
                 >
                   <NavIcon kind="logout" />
                   <span className={sidebarExpanded ? "ml-2" : "sr-only"}>Đăng xuất</span>
@@ -484,7 +523,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
                   }}
                   className={`flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 transition ${
                     theme === "light" ? "bg-[color:var(--accent)] text-white hover:brightness-110" : "bg-white/5 text-slate-200 hover:bg-white/10"
-                  } lg:w-full lg:justify-start lg:gap-2 lg:px-3 lg:py-2.5`}
+                  } lg:w-full lg:justify-start lg:gap-2 lg:px-3 lg:py-2.5 ${isMobile ? "touch-manipulation active:scale-[0.98]" : ""}`}
                   aria-label="Đổi giao diện"
                   aria-pressed={theme === "light"}
                   title={themeTooltip}
@@ -495,7 +534,33 @@ export function AdminShell({ children }: { children: ReactNode }) {
               </div>
             </div>
           </aside>
-        <section className="min-w-0 px-4 py-4 md:px-6 lg:px-8 lg:pl-[96px]">{children}</section>
+        <section className="min-w-0 px-4 py-4 md:px-6 lg:px-8 lg:pl-[96px]">
+          <div className="mb-4 hidden lg:hidden" />
+          <div className="mb-4 rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 shadow-md lg:hidden">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen((value) => !value)}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] text-[color:var(--text)] shadow-sm transition active:scale-[0.98]"
+                aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
+                aria-expanded={mobileMenuOpen}
+              >
+                <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+                  {mobileMenuOpen ? (
+                    <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  ) : (
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  )}
+                </svg>
+              </button>
+              <div className="min-w-0 flex-1">
+                <div className="truncate text-[13px] font-semibold tracking-[0.16em] text-[color:var(--text)]">EPCVINA ADMIN</div>
+                <div className="mt-0.5 truncate text-xs text-[color:var(--muted)]">Điều khiển hệ thống</div>
+              </div>
+            </div>
+          </div>
+          {children}
+        </section>
       </div>
     </AuthGate>
   );

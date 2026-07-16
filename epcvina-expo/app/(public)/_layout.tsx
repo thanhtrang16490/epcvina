@@ -20,7 +20,6 @@ export default function PublicLayout() {
     >
       <Stack.Screen name="products" options={{ title: 'Sản phẩm' }} />
       <Stack.Screen name="product/[id]" options={{ presentation: 'card' }} />
-      <Stack.Screen name="system-advisor" options={{ title: 'Tư vấn hệ thống' }} />
     </Stack>
   )
 }
