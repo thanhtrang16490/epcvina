@@ -265,7 +265,7 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
         </div>
 
         <section className="mt-6">
-          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">
+          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-3 md:p-6">
             <SectionTitle eyebrow="Danh sách" title="Bảng combo" description="Đậm đặc thông tin như dashboard Magento, ưu tiên giá vốn, giá bán và lợi nhuận." />
             <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-[color:var(--muted)]">
               <span className="uppercase tracking-[0.24em]">Tóm tắt:</span>

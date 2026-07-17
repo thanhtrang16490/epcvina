@@ -534,9 +534,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
               </div>
             </div>
           </aside>
-        <section className="min-w-0 px-4 py-4 md:px-6 lg:px-8 lg:pl-[96px]">
+        <section className="min-w-0 px-2 py-2 md:px-4 md:py-4 lg:px-8 lg:pl-[96px]">
           <div className="mb-4 hidden lg:hidden" />
-          <div className="mb-4 rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-3 shadow-md lg:hidden">
+          <div className="mb-3 rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2.5 shadow-md lg:hidden">
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -554,7 +554,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
                 </svg>
               </button>
               <div className="min-w-0 flex-1">
-                <div className="truncate text-[13px] font-semibold tracking-[0.16em] text-[color:var(--text)]">EPCVINA ADMIN</div>
+                <div className="truncate text-[12px] font-semibold tracking-[0.14em] text-[color:var(--text)]">EPCVINA ADMIN</div>
                 <div className="mt-0.5 truncate text-xs text-[color:var(--muted)]">Điều khiển hệ thống</div>
               </div>
             </div>

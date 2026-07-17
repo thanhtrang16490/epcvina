@@ -288,7 +288,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
         </div>
 
         <section className="mt-6">
-          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">
+          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-3 md:p-6">
             <SectionTitle eyebrow="Danh sách" title="Bảng sản phẩm" description="Dạng bảng dày dữ liệu để thao tác nhanh như hệ quản trị e-commerce." />
             <form action={bulkUpdateProductStatus} className="mt-4 space-y-3">
               <div className="flex flex-col gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-3 sm:flex-row sm:flex-wrap sm:items-end">
