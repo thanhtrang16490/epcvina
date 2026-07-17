@@ -27,7 +27,7 @@ export default async function ProjectNewPage() {
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="CRM" title="Thêm dự án" description="Tạo dự án, khách hàng và đơn hàng từ cùng một form." />
-          <Link href="/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+          <Link href="/admin/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
             Back
           </Link>
         </div>

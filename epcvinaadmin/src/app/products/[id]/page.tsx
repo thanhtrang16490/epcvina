@@ -62,7 +62,7 @@ export default async function ProductShowPage({ params }: Props) {
       <main className="mx-auto max-w-5xl px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between gap-3">
           <SectionTitle eyebrow="Chi tiết sản phẩm" title={product.name} description={product.description || "Thông tin sản phẩm."} />
-          <ThemeLinkButton href="/products" tone="secondary">
+          <ThemeLinkButton href="/admin/products" tone="secondary">
             Back
           </ThemeLinkButton>
         </div>

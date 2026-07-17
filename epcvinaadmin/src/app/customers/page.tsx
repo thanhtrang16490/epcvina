@@ -100,8 +100,8 @@ export default async function CustomersPage({ searchParams }: { searchParams?: P
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="CRM" title="Khách hàng" description="Quản lý khách hàng và liên kết tới dự án, đơn hàng." />
           <div className="flex gap-2">
-            <Link href="/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Dự án</Link>
-            <Link href="/orders" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Đơn hàng</Link>
+            <Link href="/admin/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Dự án</Link>
+            <Link href="/admin/orders" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Đơn hàng</Link>
           </div>
         </div>
         <CrudFilterBar
@@ -114,8 +114,8 @@ export default async function CustomersPage({ searchParams }: { searchParams?: P
             meta: [row.phone, row.email].filter(Boolean).join(" · "),
           }))}
           secondaryLinks={[
-            { href: "/", label: "Dashboard" },
-            { href: "/orders", label: "Đơn hàng" },
+            { href: "/admin", label: "Dashboard" },
+            { href: "/admin/orders", label: "Đơn hàng" },
           ]}
         />
         <div className="mb-4 grid gap-3 md:grid-cols-3">

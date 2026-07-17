@@ -304,7 +304,7 @@ export default async function ComboExcelPage({ params }: Props) {
             <a href={`/combos/${combo.id}/edit`} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
               Quay lại combo
             </a>
-            <a href="/combos" className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
+            <a href="/admin/combos" className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
               Danh sách combo
             </a>
           </div>

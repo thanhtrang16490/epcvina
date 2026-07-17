@@ -25,9 +25,9 @@ async function updateProject(_: FormState, formData: FormData): Promise<FormStat
   if (!nextId) {
     return { ok: false, error: "Không cập nhật được dự án. Kiểm tra lại dữ liệu và thử lại.", projectId: null };
   }
-  revalidatePath("/projects");
-  revalidatePath("/customers");
-  revalidatePath("/orders");
+  revalidatePath("/admin/projects");
+  revalidatePath("/admin/customers");
+  revalidatePath("/admin/orders");
   return { ok: true, error: null, projectId: nextId };
 }
 
@@ -47,7 +47,7 @@ export default async function ProjectEditPage({ params }: Props) {
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="CRM" title={`Sửa dự án: ${project.name}`} description="Sửa dự án, khách hàng và thông tin cơ bản." />
-          <Link href="/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+          <Link href="/admin/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
             Back
           </Link>
         </div>

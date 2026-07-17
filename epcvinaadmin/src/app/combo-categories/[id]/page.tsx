@@ -60,10 +60,10 @@ export default async function ComboCategoryDetailPage({ params }: { params: Prom
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Link href="/combo-categories" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
+              <Link href="/admin/combo-categories" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
                 Danh mục
               </Link>
-              <Link href="/combos" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
+              <Link href="/admin/combos" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
                 Combo
               </Link>
             </div>

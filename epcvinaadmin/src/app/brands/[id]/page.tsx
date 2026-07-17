@@ -78,10 +78,10 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Link href="/brands" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
+              <Link href="/admin/brands" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
                 Danh sách brand
               </Link>
-              <Link href="/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
+              <Link href="/admin/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
                 Sản phẩm
               </Link>
             </div>
@@ -148,10 +148,10 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
             <div className="mt-6 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
               <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Điều hướng nhanh</div>
               <div className="mt-3 flex flex-wrap gap-2">
-                <Link href="/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10">
+                <Link href="/admin/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10">
                   Tới sản phẩm
                 </Link>
-                <Link href="/brands" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10">
+                <Link href="/admin/brands" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10">
                   Tới danh sách brand
                 </Link>
               </div>

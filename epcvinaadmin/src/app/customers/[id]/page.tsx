@@ -58,10 +58,10 @@ export default async function CustomerDetailPage({ params }: Props) {
             description={isCompany ? "Hồ sơ doanh nghiệp, danh bạ liên hệ và lịch sử giao dịch." : "Hồ sơ liên hệ, công ty liên kết và lịch sử giao dịch."}
           />
           <div className="flex gap-2">
-            <ThemeLinkButton href="/customers" tone="ghost">
+            <ThemeLinkButton href="/admin/customers" tone="ghost">
               Quay lại
             </ThemeLinkButton>
-            <ThemeLinkButton href="/projects/new" tone="secondary">
+            <ThemeLinkButton href="/admin/projects/new" tone="secondary">
               Tạo dự án
             </ThemeLinkButton>
           </div>

@@ -110,7 +110,7 @@ export default async function ComboCategoriesPage({ searchParams }: { searchPara
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="Danh mục" title="Quản lý danh mục combo" description="Chuẩn hóa nhóm combo theo epcvinasolar." />
-          <Link href="/combos" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Combo</Link>
+          <Link href="/admin/combos" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Combo</Link>
         </div>
         <div className="mb-4 flex justify-end">
           <ModalShell

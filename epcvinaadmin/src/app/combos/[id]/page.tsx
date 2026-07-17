@@ -144,13 +144,13 @@ export default async function ComboShowPage({ params }: Props) {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <SectionTitle eyebrow="Combo detail" title={combo.name} description={combo.description} />
           <div className="flex flex-wrap gap-2">
-            <ThemeLinkButton href={`/combos/${combo.id}/edit`} tone="primary">
+            <ThemeLinkButton href={`/admin/combos/${combo.id}/edit`} tone="primary">
               Sửa combo
             </ThemeLinkButton>
-            <ThemeLinkButton href={`/combos/${combo.id}/excel`} tone="secondary">
+            <ThemeLinkButton href={`/admin/combos/${combo.id}/excel`} tone="secondary">
               Xem sheet
             </ThemeLinkButton>
-            <ThemeLinkButton href="/combos" tone="secondary">
+            <ThemeLinkButton href="/admin/combos" tone="secondary">
               Back
             </ThemeLinkButton>
           </div>

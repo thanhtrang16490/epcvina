@@ -199,10 +199,10 @@ export function OrderFormPage({
                   </div>
                 </div>
               </ModalShell>
-              <a href={`/orders/${orderId}/pdf`} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">Tải PDF</a>
+              <a href={`/admin/orders/${orderId}/pdf`} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">Tải PDF</a>
             </>
           ) : null}
-          <Link href="/orders" className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">
+          <Link href="/admin/orders" className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">
             Quay lại
           </Link>
         </div>

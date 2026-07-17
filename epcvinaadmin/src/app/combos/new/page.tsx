@@ -68,7 +68,7 @@ export default async function ComboNewPage() {
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="Combo" title="Thêm combo mới" description="Tạo combo xong sẽ chuyển sang trang Excel BOM để nhập cấu trúc vật tư." />
-          <Link href="/combos" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+          <Link href="/admin/combos" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
             Back
           </Link>
         </div>

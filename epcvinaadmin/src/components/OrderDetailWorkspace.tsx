@@ -128,11 +128,11 @@ export function OrderDetailWorkspace({
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <ThemeLinkButton href={`/orders/${order.id}/edit`} tone="secondary">Sửa</ThemeLinkButton>
+            <ThemeLinkButton href={`/admin/orders/${order.id}/edit`} tone="secondary">Sửa</ThemeLinkButton>
             <ThemeLinkButton href={customerHistoryHref || "#"} tone="secondary">Lịch sử khách</ThemeLinkButton>
             <ThemeLinkButton href={projectHistoryHref || "#"} tone="secondary">Lịch sử dự án</ThemeLinkButton>
-            <ThemeLinkButton href={`/orders/${order.id}/pdf`} tone="primary">Tải PDF</ThemeLinkButton>
-            <ThemeLinkButton href={`/orders/${order.id}/edit`} tone="ghost">Mở sửa nhanh</ThemeLinkButton>
+            <ThemeLinkButton href={`/admin/orders/${order.id}/pdf`} tone="primary">Tải PDF</ThemeLinkButton>
+            <ThemeLinkButton href={`/admin/orders/${order.id}/edit`} tone="ghost">Mở sửa nhanh</ThemeLinkButton>
           </div>
         </div>
       </div>

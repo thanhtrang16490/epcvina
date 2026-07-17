@@ -73,9 +73,9 @@ async function saveCombo(formData: FormData) {
     combo_type: String(formData.get("combo_type") ?? "standard"),
   }).eq("id", id);
 
-  revalidatePath("/combos");
-  revalidatePath(`/combos/${id}`);
-  redirect(`/combos/${id}/excel`);
+  revalidatePath("/admin/combos");
+  revalidatePath(`/admin/combos/${id}`);
+  redirect(`/admin/combos/${id}/excel`);
 }
 
 export default async function ComboEditPage({ params }: Props) {
@@ -97,10 +97,10 @@ export default async function ComboEditPage({ params }: Props) {
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="Chỉnh sửa" title={combo.name} description="Sửa thông tin combo, BOM sẽ chỉnh ở trang Excel riêng để đồng bộ cùng một logic." />
           <div className="flex flex-wrap items-center gap-2">
-            <Link href={`/combos/${combo.id}/excel`} className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-100">
+            <Link href={`/admin/combos/${combo.id}/excel`} className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-100">
               Edit excel
             </Link>
-            <Link href="/combos" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+            <Link href="/admin/combos" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
               Back
             </Link>
           </div>
@@ -164,7 +164,7 @@ export default async function ComboEditPage({ params }: Props) {
           </div>
 
           <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-cyan-400/10 p-4 text-sm text-cyan-50">
-            BOM combo được đồng bộ ở trang Excel riêng. Bấm <Link href={`/combos/${combo.id}/excel`} className="underline underline-offset-4">Edit excel</Link> để cập nhật vật tư, giá vốn và tham chiếu sản phẩm.
+            BOM combo được đồng bộ ở trang Excel riêng. Bấm <Link href={`/admin/combos/${combo.id}/excel`} className="underline underline-offset-4">Edit excel</Link> để cập nhật vật tư, giá vốn và tham chiếu sản phẩm.
           </div>
 
           <button type="submit" className="mt-4 rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">

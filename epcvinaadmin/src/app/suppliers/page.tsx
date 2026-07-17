@@ -66,7 +66,7 @@ export default async function SuppliersPage({ searchParams }: { searchParams?: P
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="CRM" title="Nhà cung cấp" description="Quản lý nhà cung cấp và ánh xạ sang sản phẩm." />
-          <Link href="/supplier-products" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Ánh xạ SP</Link>
+          <Link href="/admin/supplier-products" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Ánh xạ SP</Link>
         </div>
         <div className="mb-4 flex justify-end">
           <ModalShell trigger={<span className="rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950">Thêm nhà cung cấp</span>} title="Thêm nhà cung cấp" description="Tạo nhà cung cấp mới.">

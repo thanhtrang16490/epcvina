@@ -82,7 +82,7 @@ export default async function DiscountsPage({
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between gap-3">
           <SectionTitle eyebrow="Sales" title="Quản lý chiết khấu" description="Tạo rule chiết khấu để áp vào đơn hàng và tổng tiền." />
-          <Link href="/orders" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)]">
+          <Link href="/admin/orders" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)]">
             Đơn hàng
           </Link>
         </div>
@@ -93,11 +93,11 @@ export default async function DiscountsPage({
           searchLabel="Tìm theo tên, slug, mô tả"
           searchSuggestions={rows.slice(0, 8).map((row: any) => ({
             label: row.name,
-            href: `/discounts`,
+            href: `/admin/discounts`,
             meta: [row.discount_type === "percent" ? `${row.value}%` : `${formatMoney(Number(row.value ?? 0))} đ`, row.description].filter(Boolean).join(" · "),
             group: "Discounts",
           }))}
-          secondaryLinks={[{ href: "/orders", label: "Đơn hàng" }]}
+          secondaryLinks={[{ href: "/admin/orders", label: "Đơn hàng" }]}
         />
 
         <div className="mt-4 flex justify-end">

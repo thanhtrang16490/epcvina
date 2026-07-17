@@ -125,9 +125,9 @@ async function deleteCombo(formData: FormData) {
   const supabase = createSupabaseAdminClient();
   if (!supabase) return;
   await supabase.from("combos").delete().eq("id", String(formData.get("id") ?? ""));
-  revalidatePath("/combos");
+  revalidatePath("/admin/combos");
   revalidateTag(referenceDataTags.combos);
-  redirect("/combos");
+  redirect("/admin/combos");
 }
 
 async function bulkUpdateComboStatus(formData: FormData) {
@@ -141,9 +141,9 @@ async function bulkUpdateComboStatus(formData: FormData) {
     status,
     is_active: status === "active",
   }).in("id", ids);
-  revalidatePath("/combos");
+  revalidatePath("/admin/combos");
   revalidateTag(referenceDataTags.combos);
-  redirect("/combos");
+  redirect("/admin/combos");
 }
 
 export default async function CombosPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
@@ -207,12 +207,12 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
           searchValue={query}
           searchSuggestions={rows.slice(0, 8).map((combo) => ({
             label: combo.name,
-            href: `/combos/${combo.id}`,
+            href: `/admin/combos/${combo.id}`,
             meta: [combo.code, combo.combo_type === "custom" ? "Tuỳ biến" : "Chuẩn"].filter(Boolean).join(" · "),
           }))}
           secondaryLinks={[
             { href: "/", label: "Dashboard" },
-            { href: "/products", label: "Sản phẩm" },
+            { href: "/admin/products", label: "Sản phẩm" },
           ]}
           filters={[
             {
@@ -260,7 +260,7 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
           ]}
         />
         <div className="mt-4 flex justify-end">
-          <Link href="/combos/new" className="w-full rounded-2xl bg-[color:var(--accent)] px-4 py-3 text-center text-sm font-medium text-white sm:w-auto">
+          <Link href="/admin/combos/new" className="w-full rounded-2xl bg-[color:var(--accent)] px-4 py-3 text-center text-sm font-medium text-white sm:w-auto">
             Thêm combo
           </Link>
         </div>
@@ -336,8 +336,8 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
                             </span>
                           </div>
                           <div className="mt-2 flex flex-wrap gap-2">
-                            <Link href={`/combos/${combo.id}/edit`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[11px] text-[color:var(--text)]">Sửa</Link>
-                            <Link href={`/combos/${combo.id}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[11px] text-[color:var(--text)]">Xem</Link>
+                            <Link href={`/admin/combos/${combo.id}/edit`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[11px] text-[color:var(--text)]">Sửa</Link>
+                            <Link href={`/admin/combos/${combo.id}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[11px] text-[color:var(--text)]">Xem</Link>
                           </div>
                         </div>
                       </div>
@@ -435,8 +435,8 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
                           </td>
                           <td className="px-4 py-4">
                             <div className="flex flex-wrap gap-2">
-                              <Link href={`/combos/${combo.id}/edit`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Sửa</Link>
-                              <Link href={`/combos/${combo.id}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Xem</Link>
+                              <Link href={`/admin/combos/${combo.id}/edit`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Sửa</Link>
+                              <Link href={`/admin/combos/${combo.id}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Xem</Link>
                             </div>
                           </td>
                         </tr>

@@ -86,7 +86,7 @@ export default async function PaymentPoliciesPage({
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between gap-3">
           <SectionTitle eyebrow="Sales" title="Chính sách thanh toán" description="Quản lý các mốc thanh toán cho đơn hàng." />
-          <Link href="/orders" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)]">
+          <Link href="/admin/orders" className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)]">
             Đơn hàng
           </Link>
         </div>
@@ -101,7 +101,7 @@ export default async function PaymentPoliciesPage({
             meta: `${row.policy_code} · ${row.deposit_percent}% / ${row.delivery_percent}% / ${row.acceptance_percent}%`,
             group: "Policies",
           }))}
-          secondaryLinks={[{ href: "/orders", label: "Đơn hàng" }]}
+          secondaryLinks={[{ href: "/admin/orders", label: "Đơn hàng" }]}
         />
 
         <div className="mt-4 flex justify-end">

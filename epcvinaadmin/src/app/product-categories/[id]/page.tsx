@@ -80,10 +80,10 @@ export default async function ProductCategoryDetailPage({ params }: { params: Pr
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
-              <Link href="/product-categories" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
+              <Link href="/admin/product-categories" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
                 Danh mục
               </Link>
-              <Link href="/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
+              <Link href="/admin/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">
                 Sản phẩm
               </Link>
             </div>

@@ -74,8 +74,8 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
         <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <SectionTitle eyebrow="Sales" title="Đơn hàng" description="Đơn hàng sẽ link tới khách hàng, dự án và chi tiết combo/thiết bị." />
           <div className="flex flex-wrap gap-2">
-            <Link href="/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Dự án</Link>
-            <Link href="/customers" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Khách hàng</Link>
+            <Link href="/admin/projects" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Dự án</Link>
+            <Link href="/admin/customers" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Khách hàng</Link>
           </div>
         </div>
         <CrudFilterBar
@@ -91,8 +91,8 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
               .join(" · "),
           }))}
           secondaryLinks={[
-            { href: "/", label: "Dashboard" },
-            { href: "/customers", label: "Khách hàng" },
+            { href: "/admin", label: "Dashboard" },
+            { href: "/admin/customers", label: "Khách hàng" },
           ]}
           filters={[
             {
@@ -144,7 +144,7 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
           <button type="submit" className="w-full rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">Lọc</button>
         </form>
         <div className="mb-4 flex justify-end">
-          <Link href="/orders/new" className="inline-flex w-full justify-center rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950 sm:w-auto">
+          <Link href="/admin/orders/new" className="inline-flex w-full justify-center rounded-2xl bg-cyan-400 px-4 py-3 text-sm font-medium text-slate-950 sm:w-auto">
             Thêm đơn hàng
           </Link>
         </div>
@@ -185,8 +185,8 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
                 header: "Hành động",
                 render: (row: any) => (
                   <div className="flex gap-2">
-                    <Link href={`/orders/${row.id}`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Chi tiết</Link>
-                    <Link href={`/orders/${row.id}/edit`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Sửa</Link>
+                    <Link href={`/admin/orders/${row.id}`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Chi tiết</Link>
+                    <Link href={`/admin/orders/${row.id}/edit`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Sửa</Link>
                   </div>
                 ),
               },
@@ -211,8 +211,8 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
             ]}
             mobileActions={(row: any) => (
               <>
-                <Link href={`/orders/${row.id}`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Chi tiết</Link>
-                <Link href={`/orders/${row.id}/edit`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Sửa</Link>
+                <Link href={`/admin/orders/${row.id}`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Chi tiết</Link>
+                <Link href={`/admin/orders/${row.id}/edit`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Sửa</Link>
               </>
             )}
             emptyState="Không có đơn hàng phù hợp bộ lọc."
