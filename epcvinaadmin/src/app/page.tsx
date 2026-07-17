@@ -17,10 +17,13 @@ export default async function PublicHomePage() {
       ])
     : [{ data: [] }, { data: [] }];
 
-  const products = (productsResult.data ?? []).map(normalizeProduct).slice(0, 8);
-  const combos = (combosResult.data ?? []).map(normalizeCombo).slice(0, 6);
-  const activeProducts = products.filter((product) => product.is_active !== false).length;
-  const activeCombos = combos.filter((combo) => combo.is_active !== false).length;
+  const allProducts = (productsResult.data ?? []).map(normalizeProduct);
+  const allCombos = (combosResult.data ?? []).map(normalizeCombo);
+  const products = allProducts.slice(0, 8);
+  const combos = allCombos.slice(0, 6);
+  const publicProductsTotal = allProducts.filter((product) => product.status !== "inactive").length;
+  const publicCombosTotal = allCombos.filter((combo) => combo.status !== "inactive").length;
+  const publicVisibleTotal = publicProductsTotal + publicCombosTotal;
 
   return (
     <PublicShell>
@@ -53,15 +56,15 @@ export default async function PublicHomePage() {
             <div className="grid gap-4 p-6 md:p-10 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
               <ThemeCard className="p-4">
                 <div className="text-sm text-[color:var(--muted)]">Combo public</div>
-                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{combos.length}</div>
+                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{publicCombosTotal}</div>
               </ThemeCard>
               <ThemeCard className="p-4">
                 <div className="text-sm text-[color:var(--muted)]">Sản phẩm public</div>
-                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{products.length}</div>
+                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{publicProductsTotal}</div>
               </ThemeCard>
               <ThemeCard className="p-4">
-                <div className="text-sm text-[color:var(--muted)]">Đang active</div>
-                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{activeProducts + activeCombos}</div>
+                <div className="text-sm text-[color:var(--muted)]">Tổng hiển thị</div>
+                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{publicVisibleTotal}</div>
               </ThemeCard>
             </div>
           </div>

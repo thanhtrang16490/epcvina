@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AdminShell } from "@/components/AdminShell";
+import { PublicShell } from "@/components/PublicShell";
 import { CustomerTypePhaseField } from "@/components/CustomerTypePhaseField";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
@@ -76,7 +76,7 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
   const regionPreset = regionPresets[inputs.region];
 
   return (
-    <AdminShell>
+    <PublicShell>
       <main className="mx-auto max-w-7xl px-4 py-4 md:px-0">
         <ThemeCard tone="hero" className="overflow-hidden p-6 md:p-8">
           <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
@@ -318,9 +318,6 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
                         <Link href={`/combos/public/${combo.id}`} className="rounded-full bg-cyan-400 px-4 py-2 text-sm font-medium text-slate-950">
                           Xem public
                         </Link>
-                        <Link href={`/combos/${combo.id}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm font-medium text-[color:var(--text)]">
-                          Mở admin
-                        </Link>
                       </div>
                     </div>
                   ))
@@ -359,6 +356,6 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
           </div>
         </ThemeCard>
       </main>
-    </AdminShell>
+    </PublicShell>
   );
 }

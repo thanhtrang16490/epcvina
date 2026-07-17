@@ -21,7 +21,7 @@ export function LoginForm() {
     setMessage(null);
 
     if (!supabaseBrowserClient) {
-      setError("Thiếu cấu hình Supabase trong biến môi trường.");
+      setError("Thiếu cấu hình đăng nhập trong môi trường.");
       return;
     }
 
@@ -56,34 +56,34 @@ export function LoginForm() {
             EPCVINA Admin
           </div>
           <h1 className="mt-8 max-w-xl text-5xl font-semibold leading-tight text-[color:var(--text)]">
-            Quản lý combo, sản phẩm và API từ một nơi duy nhất.
+            Đăng nhập quản trị.
           </h1>
           <p className="mt-5 max-w-lg text-base leading-7 text-[color:var(--muted)]">
-            Trang đăng nhập này kết nối thẳng Supabase Auth để đăng nhập thật, rồi chuyển vào dashboard admin.
+            Đăng nhập thật và chuyển vào dashboard admin sau khi xác thực.
           </p>
         </div>
 
         <div className="grid gap-4 text-sm text-[color:var(--muted)]">
           <div className="login-info-card rounded-2xl p-4">
-            <div className="text-[color:var(--accent-2)]">Sẵn cho Supabase</div>
-            <div className="mt-1">Session được tạo bằng `signInWithPassword` trên browser.</div>
+            <div className="text-[color:var(--accent-2)]">Xác thực thật</div>
+            <div className="mt-1">Đăng nhập bằng tài khoản quản trị.</div>
           </div>
           <div className="login-info-card rounded-2xl p-4">
-            <div className="text-[color:var(--accent-2)]">Sẵn cho Admin</div>
-            <div className="mt-1">Đăng nhập xong sẽ đi vào dashboard và dùng Supabase trực tiếp.</div>
+            <div className="text-[color:var(--accent-2)]">Chuyển hướng</div>
+            <div className="mt-1">Đăng nhập xong vào dashboard admin.</div>
           </div>
         </div>
       </aside>
 
       <section className="flex items-center p-6 sm:p-8 lg:p-10">
         <div className="mx-auto flex w-full max-w-md flex-col">
-          <div className="mb-8 lg:hidden">
-            <div className="login-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.28em]">
-              EPCVINA Admin
+            <div className="mb-8 lg:hidden">
+              <div className="login-badge inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium uppercase tracking-[0.28em]">
+                EPCVINA Admin
+              </div>
+              <h1 className="mt-4 text-3xl font-semibold text-[color:var(--text)]">Đăng nhập quản trị</h1>
+            <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">Dùng tài khoản quản trị để vào hệ thống.</p>
             </div>
-            <h1 className="mt-4 text-3xl font-semibold text-[color:var(--text)]">Đăng nhập quản trị</h1>
-            <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">Dùng Supabase Auth để vào hệ thống.</p>
-          </div>
 
           <form onSubmit={submit} autoComplete="off" className="mt-6 grid gap-4">
             <div>
