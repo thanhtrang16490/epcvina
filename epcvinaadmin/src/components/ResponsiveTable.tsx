@@ -35,31 +35,31 @@ export function ResponsiveTable<T>({
   emptyState,
 }: Props<T>) {
   return (
-    <ThemeCard className="overflow-hidden rounded-3xl">
+    <ThemeCard className="overflow-hidden rounded-[1.5rem] md:rounded-[2rem]">
       <div className="md:hidden">
-        <div className="divide-y divide-[color:var(--border)]">
+        <div className="divide-y divide-[color:var(--border)]/70">
           {rows.length ? (
             rows.map((row, index) => (
-              <article key={getRowKey(row, index)} className="space-y-4 px-4 py-4">
-                <div>
-                  <div className="text-base font-medium text-[color:var(--text)]">{mobileTitle(row)}</div>
-                  {mobileSummary ? <div className="mt-1 text-sm text-[color:var(--muted)]">{mobileSummary(row)}</div> : null}
+              <article key={getRowKey(row, index)} className="space-y-3 px-4 py-3">
+                <div className="space-y-1">
+                  <div className="text-[15px] font-semibold leading-snug text-[color:var(--text)]">{mobileTitle(row)}</div>
+                  {mobileSummary ? <div className="text-xs text-[color:var(--muted)]">{mobileSummary(row)}</div> : null}
                 </div>
                 {mobileDetails.length ? (
-                  <dl className="grid gap-3">
+                  <dl className="grid gap-2">
                     {mobileDetails.map((detail) => (
-                      <div key={detail.label} className={`flex items-start justify-between gap-4 rounded-2xl bg-[color:var(--bg-elevated)] px-3 py-2 text-sm ${detail.className ?? ""}`}>
+                      <div key={detail.label} className={`flex items-start justify-between gap-3 rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--bg-elevated)]/70 px-3 py-2 text-xs ${detail.className ?? ""}`}>
                         <dt className="shrink-0 text-[color:var(--muted)]">{detail.label}</dt>
-                        <dd className="text-right text-[color:var(--text)]">{detail.render(row)}</dd>
+                        <dd className="text-right leading-snug text-[color:var(--text)]">{detail.render(row)}</dd>
                       </div>
                     ))}
                   </dl>
                 ) : null}
-                {mobileActions ? <div className="flex flex-wrap gap-2">{mobileActions(row)}</div> : null}
+                {mobileActions ? <div className="flex flex-wrap gap-2 pt-1">{mobileActions(row)}</div> : null}
               </article>
             ))
           ) : (
-            <div className="px-4 py-8">{emptyState}</div>
+            <div className="px-4 py-6 text-sm text-[color:var(--muted)]">{emptyState}</div>
           )}
         </div>
       </div>
@@ -76,10 +76,10 @@ export function ResponsiveTable<T>({
               </tr>
             </thead>
             <tbody className="divide-y divide-[color:var(--border)]">
-              {rows.length ? (
-                rows.map((row, index) => (
-                  <tr key={getRowKey(row, index)} className="bg-[color:var(--panel)]/70 text-[color:var(--text)]">
-                    {columns.map((column) => (
+                {rows.length ? (
+                  rows.map((row, index) => (
+                    <tr key={getRowKey(row, index)} className="bg-[color:var(--panel)]/70 text-[color:var(--text)]">
+                      {columns.map((column) => (
                       <td key={column.header} className={`px-4 py-3 align-top ${column.className ?? ""}`}>
                         {column.render(row)}
                       </td>

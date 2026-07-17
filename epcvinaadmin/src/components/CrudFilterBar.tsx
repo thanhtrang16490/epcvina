@@ -130,17 +130,17 @@ export function CrudFilterBar({
 
   return (
     <div className="sticky top-4 z-20 rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] px-3 py-2.5 shadow-[var(--surface-shadow)] backdrop-blur md:px-4">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div className="min-w-0">
           <div className="text-[10px] uppercase tracking-[0.28em] text-[color:var(--accent)]">{subtitle}</div>
           <h2 className="mt-0.5 truncate text-lg font-semibold text-[color:var(--text)] md:text-xl">{title}</h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 md:justify-end">
           {secondaryLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-xs text-[color:var(--text)] transition hover:bg-white/10"
+              className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-[11px] text-[color:var(--text)] transition hover:bg-white/10"
             >
               {link.label}
             </a>
@@ -148,7 +148,7 @@ export function CrudFilterBar({
           {primaryLink && (
             <a
               href={primaryLink.href}
-              className="rounded-full bg-[color:var(--accent)] px-3 py-2 text-xs font-medium text-white transition hover:brightness-110"
+              className="rounded-full bg-[color:var(--accent)] px-3 py-2 text-[11px] font-medium text-white transition hover:brightness-110"
             >
               {primaryLink.label}
             </a>
@@ -165,10 +165,10 @@ export function CrudFilterBar({
         </div>
       </div>
 
-      <form method="get" className="mt-3 flex flex-wrap items-end gap-2">
+      <form method="get" className="mt-3 grid gap-2 md:flex md:flex-wrap md:items-end">
         <input type="hidden" name={searchName} value={searchValue} />
         {filters.map((filter) => (
-          <label key={filter.name} className="min-w-[150px] flex-1">
+          <label key={filter.name} className="min-w-0 md:min-w-[150px] md:flex-1">
             <span className="mb-1 block text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">{filter.label}</span>
             <select
               name={filter.name}
@@ -184,7 +184,7 @@ export function CrudFilterBar({
             </select>
           </label>
         ))}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 md:justify-end">
           <button type="submit" className="rounded-xl bg-[color:var(--accent)] px-4 py-2 text-sm font-medium text-white transition hover:brightness-110">
             Lọc
           </button>
@@ -194,7 +194,7 @@ export function CrudFilterBar({
         </div>
       </form>
 
-      <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px] text-[color:var(--muted)]">
+      <div className="mt-2 flex flex-wrap items-center gap-2 text-[10px] text-[color:var(--muted)] md:text-[11px]">
         <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2.5 py-1">Đang lọc: {activeFilterCount}</span>
         {filters.map((filter) =>
           filter.value ? (
