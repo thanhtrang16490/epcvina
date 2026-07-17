@@ -180,8 +180,9 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
   const rawCombosRes = combosQuery ? await combosQuery.range(start, end) : { data: [], count: 0 };
   const rawCombos = rawCombosRes.data ?? [];
   const comboCategories = supabase ? await getCachedComboCategories() : [];
-  const visibleComboCategories = comboCategories.filter((category: { name?: string; slug?: string }) => !isHiddenComboCategory(category));
-  const comboCategoryNameById = new Map(visibleComboCategories.map((category: { id: string; name: string }) => [category.id, category.name]));
+  const visibleComboCategories = comboCategories as Array<{ id: string; name: string; slug?: string }>;
+  const visibleComboCategoriesFiltered = visibleComboCategories.filter((category) => !isHiddenComboCategory(category));
+  const comboCategoryNameById = new Map(visibleComboCategoriesFiltered.map((category) => [category.id, category.name]));
   const rows = rawCombos.map(normalizeCombo) as ComboRow[];
   const avgMargin = rows.length ? rows.reduce((sum, combo) => sum + Number(combo.margin ?? 0), 0) / rows.length : 0;
 
@@ -265,7 +266,7 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
         </div>
 
         <section className="mt-6">
-          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-3 md:p-6">
+          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-2.5 md:p-6">
             <SectionTitle eyebrow="Danh sách" title="Bảng combo" description="Đậm đặc thông tin như dashboard Magento, ưu tiên giá vốn, giá bán và lợi nhuận." />
             <div className="mt-4 flex flex-wrap items-center gap-2 text-xs text-[color:var(--muted)]">
               <span className="uppercase tracking-[0.24em]">Tóm tắt:</span>

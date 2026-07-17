@@ -195,7 +195,11 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
   const rawProductsRes = productsQuery ? await productsQuery.range(start, end) : { data: [], count: 0 };
   const rawProducts = rawProductsRes.data ?? [];
   const products = rawProducts.map(normalizeProduct);
-  const [brands, categories] = supabase ? await Promise.all([getCachedBrands(), getCachedProductCategories()]) : [[], []];
+  const [brands, categories] = supabase
+    ? await Promise.all([getCachedBrands(), getCachedProductCategories()])
+    : [[], []];
+  const typedBrands = brands as Array<{ id: string; name: string }>;
+  const typedCategories = categories as Array<{ id: string; name: string }>;
 
   return (
     <AdminShell>
@@ -219,13 +223,13 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
               name: "category",
               label: "Danh mục",
               value: categoryFilter,
-              options: categories.map((category: { id: string; name: string }) => ({ label: category.name, value: category.id })),
+              options: typedCategories.map((category) => ({ label: category.name, value: category.id })),
             },
             {
               name: "brand",
               label: "Brand",
               value: brandFilter,
-              options: brands.map((brand: { id: string; name: string }) => ({ label: brand.name, value: brand.id })),
+              options: typedBrands.map((brand) => ({ label: brand.name, value: brand.id })),
             },
             {
               name: "status",
@@ -248,7 +252,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
               <input name="name" placeholder="Tên sản phẩm" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
               <select name="category_id" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                 <option value="">Chọn danh mục</option>
-                {categories.map((category: { id: string; name: string }) => (
+                {typedCategories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.name}
                   </option>
@@ -256,7 +260,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
               </select>
               <select name="brand_id" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                 <option value="">Chọn brand</option>
-                {brands.map((brand: { id: string; name: string }) => (
+                {typedBrands.map((brand) => (
                   <option key={brand.id} value={brand.id}>
                     {brand.name}
                   </option>
@@ -288,7 +292,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
         </div>
 
         <section className="mt-6">
-          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-3 md:p-6">
+          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-2.5 md:p-6">
             <SectionTitle eyebrow="Danh sách" title="Bảng sản phẩm" description="Dạng bảng dày dữ liệu để thao tác nhanh như hệ quản trị e-commerce." />
             <form action={bulkUpdateProductStatus} className="mt-4 space-y-3">
               <div className="flex flex-col gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-3 sm:flex-row sm:flex-wrap sm:items-end">
@@ -346,7 +350,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                                 <input name="name" defaultValue={product.name} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                                 <select name="category_id" defaultValue={(product as typeof product & { category_id?: string | null }).category_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                                   <option value="">Chọn danh mục</option>
-                                  {categories.map((category: { id: string; name: string }) => (
+                                  {typedCategories.map((category) => (
                                     <option key={category.id} value={category.id}>
                                       {category.name}
                                     </option>
@@ -354,7 +358,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                                 </select>
                                 <select name="brand_id" defaultValue={(product as typeof product & { brand_id?: string | null }).brand_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                                   <option value="">Chọn brand</option>
-                                  {brands.map((brand: { id: string; name: string }) => (
+                                  {typedBrands.map((brand) => (
                                     <option key={brand.id} value={brand.id}>
                                       {brand.name}
                                     </option>
@@ -426,9 +430,9 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                               <div className="truncate font-medium text-[color:var(--text)]">{product.name}</div>
                               <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-[color:var(--muted)]">
                                 <span className="whitespace-nowrap">{product.slug}</span>
-                                {product.category_id ? (
+                                {(product as any).category_id ? (
                                   <Link
-                                    href={`/product-categories/${(product as typeof product & { category_id?: string | null }).category_id}`}
+                                    href={`/product-categories/${(product as any).category_id}`}
                                     className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2 py-0.5 text-[10px] uppercase tracking-[0.22em] text-[color:var(--text)] transition hover:bg-white/10"
                                   >
                                     {product.category}
@@ -438,9 +442,9 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                                     {product.category}
                                   </span>
                                 )}
-                                {product.brand_id ? (
+                                {(product as any).brand_id ? (
                                   <Link
-                                    href={`/brands/${(product as typeof product & { brand_id?: string | null }).brand_id}`}
+                                    href={`/brands/${(product as any).brand_id}`}
                                     className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2 py-0.5 text-[10px] uppercase tracking-[0.22em] text-[color:var(--text)] transition hover:bg-white/10"
                                   >
                                     {product.brand}
@@ -477,17 +481,17 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                             <form action={updateProduct} encType="multipart/form-data" className="grid gap-3">
                               <input type="hidden" name="id" value={product.id} />
                               <input name="name" defaultValue={product.name} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                              <select name="category_id" defaultValue={(product as typeof product & { category_id?: string | null }).category_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
+                              <select name="category_id" defaultValue={(product as any).category_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                                 <option value="">Chọn danh mục</option>
-                                {categories.map((category: { id: string; name: string }) => (
+                                {typedCategories.map((category) => (
                                   <option key={category.id} value={category.id}>
                                     {category.name}
                                   </option>
                                 ))}
                               </select>
-                              <select name="brand_id" defaultValue={(product as typeof product & { brand_id?: string | null }).brand_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
+                              <select name="brand_id" defaultValue={(product as any).brand_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                                 <option value="">Chọn brand</option>
-                                {brands.map((brand: { id: string; name: string }) => (
+                                {typedBrands.map((brand) => (
                                   <option key={brand.id} value={brand.id}>
                                     {brand.name}
                                   </option>
