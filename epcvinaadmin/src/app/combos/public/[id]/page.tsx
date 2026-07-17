@@ -342,7 +342,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
   const comboItems = publicClient
     ? ((await publicClient
       .from("combo_items")
-        .select("id, combo_id, product_id, reference_product_id, category, item_name, unit, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, sheet_group, gross_margin, warranty, notes")
+        .select("id, combo_id, product_id, reference_product_id, category, item_name, brand, unit, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, sheet_group, gross_margin, warranty, notes")
         .eq("combo_id", combo.id)
         .order("sort_order", { ascending: true })).data ?? []).map((row: any) => normalizeComboItem(row) as ComboItemRow)
     : [];
