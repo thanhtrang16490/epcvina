@@ -64,6 +64,7 @@ export function CrudFilterBar({
   filters = [],
 }: Props) {
   const [searchOpen, setSearchOpen] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const suggestionLinkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
@@ -91,6 +92,10 @@ export function CrudFilterBar({
   useEffect(() => {
     setActiveSuggestionIndex(0);
   }, [searchOpen, searchValue]);
+
+  useEffect(() => {
+    setFilterOpen(false);
+  }, [searchValue]);
 
   useEffect(() => {
     if (!searchOpen) return;
@@ -165,7 +170,50 @@ export function CrudFilterBar({
         </div>
       </div>
 
-      <form method="get" className="mt-3 grid gap-2 md:flex md:flex-wrap md:items-end">
+      <div className="mt-3 md:hidden">
+        <button
+          type="button"
+          onClick={() => setFilterOpen((current) => !current)}
+          className="inline-flex w-full items-center justify-between rounded-xl border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-sm text-[color:var(--text)]"
+        >
+          <span>Lọc</span>
+          <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2 py-0.5 text-[11px] text-[color:var(--muted)]">
+            {activeFilterCount}
+          </span>
+        </button>
+        {filterOpen ? (
+          <form method="get" className="mt-2 space-y-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-3">
+            <input type="hidden" name={searchName} value={searchValue} />
+            {filters.map((filter) => (
+              <label key={filter.name} className="block">
+                <span className="mb-1 block text-[10px] uppercase tracking-[0.22em] text-[color:var(--muted)]">{filter.label}</span>
+                <select
+                  name={filter.name}
+                  defaultValue={filter.value ?? ""}
+                  className="w-full rounded-xl border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-2 text-sm text-[color:var(--text)] outline-none"
+                >
+                  <option value="">Tất cả</option>
+                  {filter.options.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ))}
+            <div className="flex gap-2">
+              <button type="submit" className="flex-1 rounded-xl bg-[color:var(--accent)] px-4 py-2 text-sm font-medium text-white transition hover:brightness-110">
+                Áp dụng
+              </button>
+              <a href="?" className="flex-1 rounded-xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-center text-sm text-[color:var(--text)] transition hover:bg-white/10">
+                Xóa
+              </a>
+            </div>
+          </form>
+        ) : null}
+      </div>
+
+      <form method="get" className="mt-3 hidden gap-2 md:flex md:flex-wrap md:items-end">
         <input type="hidden" name={searchName} value={searchValue} />
         {filters.map((filter) => (
           <label key={filter.name} className="min-w-0 md:min-w-[150px] md:flex-1">
@@ -194,7 +242,7 @@ export function CrudFilterBar({
         </div>
       </form>
 
-      <div className="mt-2 flex flex-wrap items-center gap-2 text-[10px] text-[color:var(--muted)] md:text-[11px]">
+      <div className="mt-2 hidden flex-wrap items-center gap-2 text-[10px] text-[color:var(--muted)] md:flex md:text-[11px]">
         <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2.5 py-1">Đang lọc: {activeFilterCount}</span>
         {filters.map((filter) =>
           filter.value ? (

@@ -304,7 +304,93 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                 </button>
               <div className="text-sm text-[color:var(--muted)]">Chọn các dòng cần đổi trạng thái rồi bấm cập nhật.</div>
               </div>
-              <div className="overflow-x-auto rounded-[1.5rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)]">
+              <div className="md:hidden">
+                <div className="space-y-3">
+                  {products.map((product) => (
+                    <article key={product.id} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-3">
+                      <div className="flex items-start gap-3">
+                        {thumbnailUrl(product as typeof product & { cover_image_url?: string; image_urls?: string[] }) ? (
+                          <img
+                            src={thumbnailUrl(product as typeof product & { cover_image_url?: string; image_urls?: string[] })}
+                            alt={product.name}
+                            className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] text-[10px] text-[color:var(--muted)]">
+                            No img
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <div className="truncate text-sm font-medium text-[color:var(--text)]">{product.name}</div>
+                          <div className="mt-1 flex flex-wrap gap-1.5 text-[10px] text-[color:var(--muted)]">
+                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2 py-0.5">{product.slug}</span>
+                            <span className={`rounded-full border px-2 py-0.5 font-medium ${typeChip(product)}`}>{product.category || "-"}</span>
+                            <span className={`rounded-full border px-2 py-0.5 font-medium ${statusChip((product as typeof product & { status?: string }).status)}`}>
+                              {(product as typeof product & { status?: string }).status === "active" ? "Active" : "Inactive"}
+                            </span>
+                          </div>
+                          <div className="mt-2 grid grid-cols-2 gap-2 text-[11px] text-[color:var(--muted)]">
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Brand: {product.brand || "-"}</div>
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Kho: {product.quantity}</div>
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Giá bán: {Number(product.sale_price_vat ?? 0).toLocaleString("vi-VN")} đ</div>
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Giá vốn: {Number(product.cost_price ?? 0).toLocaleString("vi-VN")} đ</div>
+                          </div>
+                          <div className="mt-2">
+                            <ModalShell
+                              trigger={<span className="inline-flex rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-1.5 text-[11px] text-[color:var(--text)]">Sửa</span>}
+                              title={`Sửa sản phẩm: ${product.name}`}
+                              description="Chỉnh sửa trực tiếp ngay trong modal mà không rời danh sách."
+                            >
+                              <form action={updateProduct} encType="multipart/form-data" className="grid gap-3">
+                                <input type="hidden" name="id" value={product.id} />
+                                <input name="name" defaultValue={product.name} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                <select name="category_id" defaultValue={(product as typeof product & { category_id?: string | null }).category_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
+                                  <option value="">Chọn danh mục</option>
+                                  {categories.map((category: { id: string; name: string }) => (
+                                    <option key={category.id} value={category.id}>
+                                      {category.name}
+                                    </option>
+                                  ))}
+                                </select>
+                                <select name="brand_id" defaultValue={(product as typeof product & { brand_id?: string | null }).brand_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
+                                  <option value="">Chọn brand</option>
+                                  {brands.map((brand: { id: string; name: string }) => (
+                                    <option key={brand.id} value={brand.id}>
+                                      {brand.name}
+                                    </option>
+                                  ))}
+                                </select>
+                                <input name="category" defaultValue={product.category} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                <input name="brand" defaultValue={product.brand} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                <div className="grid gap-3 sm:grid-cols-2">
+                                  <input name="unit" defaultValue={product.unit} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                  <FormattedNumberInput name="quantity" defaultValue={product.quantity} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                                </div>
+                                <div className="grid gap-3 sm:grid-cols-2">
+                                  <FormattedNumberInput name="sale_price_vat" defaultValue={product.sale_price_vat} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                                  <FormattedNumberInput name="cost_price" defaultValue={product.cost_price} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                                </div>
+                                <input name="cover_image_url" defaultValue={(product as typeof product & { cover_image_url?: string }).cover_image_url ?? ""} placeholder="Cover image URL" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                <textarea name="image_urls" rows={3} defaultValue={((product as typeof product & { image_urls?: string[] }).image_urls ?? []).join("\n")} placeholder="Các URL ảnh khác" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                <input name="images" type="file" multiple accept="image/*" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] file:mr-3 file:rounded-full file:border-0 file:bg-[color:var(--accent)] file:px-4 file:py-2 file:text-white" />
+                                <input name="warranty" defaultValue={product.warranty} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                <select name="status" defaultValue={(product as typeof product & { status?: string }).status ?? "inactive"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
+                                  <option value="active">Active</option>
+                                  <option value="inactive">Inactive</option>
+                                </select>
+                                <textarea name="description" defaultValue={product.description} rows={4} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                                <TechnicalSpecsEditor name="technical_specs" defaultValue={(product as typeof product & { technical_specs?: unknown }).technical_specs} />
+                                <button type="submit" className="rounded-2xl bg-[color:var(--accent)] px-4 py-3 font-medium text-white">Lưu</button>
+                              </form>
+                            </ModalShell>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
+              <div className="hidden overflow-x-auto rounded-[1.5rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] md:block">
                 <table className="min-w-[1100px] divide-y divide-[color:var(--border)] text-left text-sm">
                   <thead className="bg-[color:var(--panel-strong)] text-[color:var(--muted)]">
                     <tr>

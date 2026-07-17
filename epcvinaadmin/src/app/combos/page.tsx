@@ -291,7 +291,60 @@ export default async function CombosPage({ searchParams }: { searchParams?: Prom
                 Cập nhật hàng loạt
               </button>
               <div className="text-sm text-[color:var(--muted)]">Chọn combo rồi đổi trạng thái.</div>
-              <div className="w-full overflow-x-auto rounded-[1.5rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)]">
+              <div className="md:hidden space-y-3">
+                {rows.map((combo) => {
+                  const profit = getProfit(combo);
+                  const comboGroup = getComboGroupLabel({
+                    code: combo.code,
+                    phase: combo.phase,
+                    battery_kwh: combo.battery_kwh == null ? null : Number(combo.battery_kwh),
+                    battery_type: combo.battery_type,
+                  });
+                  const batteryLabel = Number(combo.battery_kwh ?? 0) > 0
+                    ? `${Number(combo.battery_kwh).toFixed(1)} kWh${combo.battery_type ? ` · ${combo.battery_type}` : ""}`
+                    : "-";
+                  return (
+                    <article key={combo.id} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-3">
+                      <div className="flex items-start gap-3">
+                        {thumbnailUrl(combo as typeof combo & { cover_image_url?: string; image_urls?: string[] }) ? (
+                          <img
+                            src={thumbnailUrl(combo as typeof combo & { cover_image_url?: string; image_urls?: string[] })}
+                            alt={combo.name}
+                            className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] text-[10px] text-[color:var(--muted)]">No img</div>
+                        )}
+                        <div className="min-w-0 flex-1">
+                          <div className="truncate text-sm font-medium text-[color:var(--text)]">{combo.name}</div>
+                          <div className="mt-1 text-[10px] text-[color:var(--muted)]">{combo.code} · {getBrandLine(combo)}</div>
+                          <div className="mt-2 flex flex-wrap gap-1.5 text-[10px]">
+                            <span className={`rounded-full border px-2 py-0.5 font-medium ${comboTypeChip(combo)}`}>{comboTypeLabel(combo)}</span>
+                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2 py-0.5 text-[color:var(--text)]">{comboGroup}</span>
+                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2 py-0.5 text-[color:var(--text)]">{combo.phase === 1 ? "1 pha" : "3 pha"}</span>
+                          </div>
+                          <div className="mt-2 grid grid-cols-2 gap-2 text-[11px] text-[color:var(--muted)]">
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Dung lượng: {batteryLabel}</div>
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Giá vốn: {formatVND(Number(combo.cost_price ?? 0))}</div>
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Giá bán: {formatVND(Number(combo.reference_price ?? 0))}</div>
+                            <div className="rounded-xl border border-[color:var(--border)]/60 bg-[color:var(--panel)] px-2 py-1.5">Lãi: {formatVND(profit.profitRef)}</div>
+                          </div>
+                          <div className="mt-2">
+                            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${statusChip(combo.status)}`}>
+                              {combo.status === "active" ? "Active" : "Inactive"}
+                            </span>
+                          </div>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            <Link href={`/combos/${combo.id}/edit`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[11px] text-[color:var(--text)]">Sửa</Link>
+                            <Link href={`/combos/${combo.id}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1.5 text-[11px] text-[color:var(--text)]">Xem</Link>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+              <div className="hidden w-full overflow-x-auto rounded-[1.5rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] md:block">
                 <table className="min-w-[1220px] divide-y divide-[color:var(--border)] text-left text-sm">
                   <thead className="bg-[color:var(--panel-strong)] text-[color:var(--muted)]">
                     <tr>
