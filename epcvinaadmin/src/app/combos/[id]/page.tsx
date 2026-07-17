@@ -114,8 +114,8 @@ export default async function ComboShowPage({ params }: Props) {
   const paybackYears = finance.paybackYears;
   const comboItems = supabase
     ? ((await supabase
-        .from("combo_items")
-        .select("id, combo_id, product_id, reference_product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, notes, sheet_group, gross_margin, warranty")
+      .from("combo_items")
+        .select("id, combo_id, product_id, reference_product_id, category, item_name, brand, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, notes, sheet_group, gross_margin, warranty")
         .eq("combo_id", id)
         .order("sort_order", { ascending: true })).data ?? []).map((row: any) => normalizeComboItem(row) as ComboItemRow)
     : [];
@@ -136,10 +136,10 @@ export default async function ComboShowPage({ params }: Props) {
   return (
     <AdminShell>
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-4 md:p-5">
           <SectionTitle eyebrow="Combo detail" title={combo.name} description={combo.description} />
           <div className="flex flex-wrap gap-2">
-            <ThemeLinkButton href={`/admin/combos/${combo.id}/edit`} tone="primary">
+            <ThemeLinkButton href={`/admin/combos/${combo.id}/edit`} tone="secondary">
               Sửa combo
             </ThemeLinkButton>
             <ThemeLinkButton href={`/admin/combos/${combo.id}/excel`} tone="secondary">

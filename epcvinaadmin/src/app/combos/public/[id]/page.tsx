@@ -258,31 +258,6 @@ function getProductTitlePower(item: ComboItemRow, kind: "panel" | "inverter" | "
   return "";
 }
 
-function getComboDisplayName(combo: ComboData, comboItems: ComboItemRow[]) {
-  const systemLabel = combo.battery_kwh ? "Hybrid" : "On-grid";
-  const phaseLabel = combo.phase === 1 ? "1P" : "3P";
-  const voltageLabel = combo.battery_kwh ? (getVoltageLabel(combo) ?? "ÁP THẤP") : "";
-
-  const panel = comboItems.find((item) => getGroupLabel(item) === "Tấm quang năng");
-  const inverter = comboItems.find((item) => getGroupLabel(item) === "Biến tần");
-  const battery = comboItems.find((item) => getGroupLabel(item) === "Pin lưu trữ");
-
-  const parts = [
-    `${systemLabel} ${combo.solar_kw}kWp ${phaseLabel}${voltageLabel ? ` ${voltageLabel.toUpperCase()}` : ""}`.trim(),
-    panel?.referenceProduct?.brand || panel?.product?.brand
-      ? `${(panel?.referenceProduct?.brand || panel?.product?.brand || "").trim()}${getProductTitlePower(panel ?? ({} as ComboItemRow), "panel") ? ` ${getProductTitlePower(panel ?? ({} as ComboItemRow), "panel")}` : ""}`.trim()
-      : "",
-    inverter?.referenceProduct?.brand || inverter?.product?.brand
-      ? `${(inverter?.referenceProduct?.brand || inverter?.product?.brand || "").trim()}${getProductTitlePower(inverter ?? ({} as ComboItemRow), "inverter") ? ` ${getProductTitlePower(inverter ?? ({} as ComboItemRow), "inverter")}` : ""}`.trim()
-      : "",
-    battery?.referenceProduct?.brand || battery?.product?.brand
-      ? `${(battery?.referenceProduct?.brand || battery?.product?.brand || "").trim()}${getProductTitlePower(battery ?? ({} as ComboItemRow), "battery") ? ` ${getProductTitlePower(battery ?? ({} as ComboItemRow), "battery")}` : ""}`.trim()
-      : "",
-  ].filter(Boolean);
-
-  return parts.join(" - ").toLowerCase();
-}
-
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-[1.2rem] border border-white/10 bg-white/5 p-4">
@@ -325,16 +300,24 @@ export default async function PublicComboDetailPage({ params }: Props) {
   const publicClient = createSupabaseAdminClient() ?? supabase;
   const sessionUser = supabase ? (await supabase.auth.getUser()).data.user : null;
   const pricingSettings = await getPricingSettings(supabase);
-  const data = publicClient
-    ? (normalizeCombo(
-        (await publicClient
+  const comboSelect =
+    "id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls";
+  const resolvedCombo = publicClient
+    ? await (async () => {
+        const baseQuery = publicClient
           .from("combos")
-          .select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls")
-          .eq("id", id)
-          .or("status.eq.active,is_active.eq.true")
-          .single()).data ?? {},
-      ) as ComboData)
+          .select(comboSelect)
+          .or("status.eq.active,is_active.eq.true");
+        const looksLikeUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+        if (looksLikeUuid) {
+          const byId = await baseQuery.eq("id", id).maybeSingle();
+          if (byId.data) return byId.data;
+        }
+        const bySlug = await baseQuery.eq("slug", id).maybeSingle();
+        return bySlug.data ?? null;
+      })()
     : null;
+  const data = resolvedCombo ? (normalizeCombo(resolvedCombo) as ComboData) : null;
   if (!data) notFound();
 
   const combo = data as ComboData;
@@ -360,7 +343,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
     ? ((await publicClient
       .from("combo_items")
         .select("id, combo_id, product_id, reference_product_id, category, item_name, unit, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, sheet_group, gross_margin, warranty, notes")
-        .eq("combo_id", id)
+        .eq("combo_id", combo.id)
         .order("sort_order", { ascending: true })).data ?? []).map((row: any) => normalizeComboItem(row) as ComboItemRow)
     : [];
 
@@ -404,7 +387,8 @@ export default async function PublicComboDetailPage({ params }: Props) {
       referenceProduct: manualReference,
       item_name: product?.name?.trim() || item.item_name,
       category: product?.category?.trim() || item.category,
-      brand: product?.brand?.trim() || item.brand,
+      brand: item.brand?.trim() || product?.brand?.trim() || "",
+      productBrand: product?.brand?.trim() || "",
       unit: item.unit || "",
     };
   });
@@ -473,7 +457,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
 
               <div>
                 <div className="text-xs uppercase tracking-[0.28em] text-slate-400">Combo public</div>
-                <h1 className="mt-3 text-3xl font-semibold leading-tight text-white md:text-5xl">{getComboDisplayName(combo, comboItemsWithProduct)}</h1>
+                <h1 className="mt-3 text-3xl font-semibold leading-tight text-white md:text-5xl">{combo.name}</h1>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">{combo.description}</p>
                 <p className="mt-4 text-sm font-medium uppercase tracking-[0.24em] text-orange-100">
                   {combo.source_kind || "project"} · {combo.phase === 1 ? "1 pha" : "3 pha"}
@@ -594,7 +578,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                                 <h3 className="text-sm font-bold leading-snug text-[color:var(--text)] group-hover:text-[color:var(--accent)]">
                                   {item.referenceProduct?.name?.trim() || "Sản phẩm tham chiếu"}
                                 </h3>
-                                <p className="mt-1 text-xs text-[color:var(--muted)]">{item.referenceProduct?.brand || item.brand || "EPCVINA"}</p>
+                                <p className="mt-1 text-xs text-[color:var(--muted)]">{item.brand || item.referenceProduct?.brand || "EPCVINA"}</p>
                               </div>
                             </div>
 
@@ -690,7 +674,6 @@ export default async function PublicComboDetailPage({ params }: Props) {
                           <div className="grid grid-cols-[minmax(0,1.8fr)_100px_90px_80px_90px_120px_120px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
                             <div className="min-w-0">
                               <div className="truncate text-sm font-medium text-[color:var(--text)]">{group.label}</div>
-                              <div className="mt-1 text-xs text-[color:var(--muted)]">Gộp nhiều vật tư phụ trong cùng nhóm</div>
                             </div>
                             <div className="min-w-0 text-center text-xs text-[color:var(--text)]">2 năm</div>
                             <div className="text-center text-sm text-[color:var(--text)]">
@@ -745,11 +728,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                             <div>
                             <div className="text-sm font-semibold text-[color:var(--text)]">{shouldHideGroupTitle(group.label) ? "" : group.label}</div>
                             <div className="mt-1 text-xs text-[color:var(--muted)]">
-                              {group.label === "Nhân công lắp đặt"
-                                ? "1 khoản chi phí theo sheet"
-                                : group.primary
-                                  ? `${group.items.length} vật tư`
-                                  : "Gộp các vật tư phụ trong cùng nhóm"}
+                              {group.label === "Nhân công lắp đặt" ? "1 khoản chi phí theo sheet" : group.primary ? `${group.items.length} vật tư` : null}
                             </div>
                             </div>
                         </div>
@@ -799,7 +778,6 @@ export default async function PublicComboDetailPage({ params }: Props) {
                               <div className="grid grid-cols-[minmax(0,1.8fr)_100px_90px_80px_90px_120px_120px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
                                 <div className="min-w-0">
                                   <div className="truncate text-sm font-medium text-[color:var(--text)]">{group.label}</div>
-                                  <div className="mt-1 text-xs text-[color:var(--muted)]">Gộp nhiều vật tư phụ trong cùng nhóm</div>
                                 </div>
                                 <div className="min-w-0 text-right text-xs text-[color:var(--text)]">2 năm</div>
                                 <div className="text-sm text-[color:var(--text)]">

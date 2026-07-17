@@ -26,7 +26,7 @@ type Props = {
 };
 
 function formatMillions(value: number) {
-  return `${new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(value)} đ`;
+  return `${new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(Math.round(Number(value ?? 0) / 1000) * 1000)} đ`;
 }
 
 function getItemTitle(item: BomItem) {
@@ -38,6 +38,10 @@ function getReferenceLabel(item: BomItem) {
   const productBrand = item.product?.brand?.trim();
   if (productBrand && productName) return `${productBrand} · ${productName}`;
   return productName || productBrand || "Không gắn sản phẩm tham chiếu";
+}
+
+function getDisplayBrand(item: BomItem) {
+  return item.brand?.trim() || item.product?.brand?.trim() || "EPCVINA";
 }
 
 function getCustomPrice(item: BomItem) {
@@ -123,6 +127,7 @@ export function ComboBomAccordion({ groups }: Props) {
                           <div className="mt-1 inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-500">
                             {laborGroup ? "Nhân công lắp đặt" : item.category || "BOM line"}
                           </div>
+                          <div className="mt-1 text-xs text-slate-500">{getDisplayBrand(item)}</div>
                         </td>
                         <td className="px-4 py-3 text-slate-500">
                           <div className="text-sm font-medium text-slate-900">{getReferenceLabel(item)}</div>

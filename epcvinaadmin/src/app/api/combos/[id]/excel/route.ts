@@ -42,7 +42,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
       .eq("id", id)
       .single()).data ?? {},
   );
-  const items = ((await supabase.from("combo_items").select("id, combo_id, product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, notes, sheet_group, reference_product_id").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem);
+  const items = ((await supabase.from("combo_items").select("id, combo_id, product_id, category, item_name, brand, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, notes, sheet_group, reference_product_id").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem);
   const products = ((await supabase.from("products").select("id, slug, name, category, brand, unit, cost_price, sale_price_vat, warranty, cover_image_url, image_urls, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
     id: String(product.id),
     name: String(product.name ?? ""),
@@ -96,7 +96,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
       ...item,
       category: ref?.category || item.category || "",
       item_name: ref?.name || item.item_name || "",
-      brand: ref?.brand || item.brand || "",
+      brand: item.brand || ref?.brand || "",
       unit: ref?.unit || item.unit || "",
       unit_price_vat: Number(ref?.sale_price_vat ?? 0) > 0 ? Number(ref?.sale_price_vat ?? 0) : Number(item.unit_price_vat ?? 0),
       cost_price: Number(ref?.cost_price ?? 0) > 0 ? Number(ref?.cost_price ?? 0) : Number(item.cost_price ?? 0),
