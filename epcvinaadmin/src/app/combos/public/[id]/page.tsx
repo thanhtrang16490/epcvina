@@ -407,7 +407,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
     .map(([label, items]) => ({
     label,
     items,
-    total: items.reduce((sum, item) => sum + getPreVatTotalPrice(item), 0),
+    total: items.reduce((sum, item) => sum + getCustomPrice(item), 0),
     primary: isPrimaryGroup(label),
     }))
     .sort((a, b) => getGroupOrder(a.label) - getGroupOrder(b.label));
@@ -421,9 +421,9 @@ export default async function PublicComboDetailPage({ params }: Props) {
     .filter((group) => group.items.length > 0);
   const accessoryGroups = displayGroups.filter((group) => !group.primary);
   const laborGroup = displayGroups.find((group) => group.label === "Nhân công lắp đặt");
-  const bomSubTotal = publicItems.reduce((sum, item) => sum + getPreVatTotalPrice(item), 0);
+  const bomSubTotal = publicItems.reduce((sum, item) => sum + getCustomPrice(item), 0);
   const bomVat = bomSubTotal * 0.1;
-  const bomGrandTotal = bomSubTotal + bomVat;
+  const bomGrandTotal = Number(combo.reference_price ?? 0) || bomSubTotal + bomVat;
 
   return (
     <PublicShell>
@@ -651,8 +651,8 @@ export default async function PublicComboDetailPage({ params }: Props) {
                               <div className="text-center text-sm text-[color:var(--text)]">{getItemUnit(item, group.label)}</div>
                               <div className="text-center text-sm text-[color:var(--text)]">x{item.quantity}</div>
                               <div className="text-right text-sm text-[color:var(--text)]">{moneyDisplay(getPreVatUnitPrice(item))}</div>
-                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{moneyDisplay(getPreVatTotalPrice(item))}</div>
-                              <div className="text-right text-sm text-[color:var(--text)]">{moneyDisplay(getPreVatTotalPrice(item))}</div>
+                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{moneyDisplay(getCustomPrice(item))}</div>
+                              <div className="text-right text-sm text-[color:var(--text)]">{moneyDisplay(getCustomPrice(item))}</div>
                             </div>
                           ))
                         ) : group.label === "Chi phí nhân công" ? (
@@ -666,8 +666,8 @@ export default async function PublicComboDetailPage({ params }: Props) {
                               <div className="text-center text-sm text-[color:var(--text)]">{getItemUnit(item, group.label)}</div>
                               <div className="text-center text-sm text-[color:var(--text)]">1</div>
                               <div className="text-right text-sm text-[color:var(--text)]">{moneyDisplay(getPreVatUnitPrice(item))}</div>
-                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{moneyDisplay(getPreVatTotalPrice(item))}</div>
-                              <div className="text-right text-sm text-[color:var(--text)]">{moneyDisplay(getPreVatTotalPrice(item))}</div>
+                              <div className="text-right text-sm font-medium text-[color:var(--text)]">{moneyDisplay(getCustomPrice(item))}</div>
+                              <div className="text-right text-sm text-[color:var(--text)]">{moneyDisplay(getCustomPrice(item))}</div>
                             </div>
                           ))
                         ) : (
@@ -755,8 +755,8 @@ export default async function PublicComboDetailPage({ params }: Props) {
                                   <div className="text-sm text-[color:var(--text)]">{getItemUnit(item, group.label)}</div>
                                   <div className="text-right text-sm text-[color:var(--text)]">x{item.quantity}</div>
                                   <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(getPreVatUnitPrice(item))}</div>
-                                  <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getPreVatTotalPrice(item))}</div>
-                                  <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(getPreVatTotalPrice(item))}</div>
+                                  <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
+                                  <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
                                 </div>
                               ))
                             ) : group.label === "Chi phí nhân công" ? (
@@ -770,8 +770,8 @@ export default async function PublicComboDetailPage({ params }: Props) {
                                   <div className="text-sm text-[color:var(--text)]">{getItemUnit(item, group.label)}</div>
                                   <div className="text-right text-sm text-[color:var(--text)]">1</div>
                                   <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(getPreVatUnitPrice(item))}</div>
-                                  <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getPreVatTotalPrice(item))}</div>
-                                  <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(getPreVatTotalPrice(item))}</div>
+                                  <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
+                                  <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
                                 </div>
                               ))
                             ) : (
