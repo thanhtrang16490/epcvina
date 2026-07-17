@@ -43,7 +43,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
       .single()).data ?? {},
   );
   const items = ((await supabase.from("combo_items").select("id, combo_id, product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, note, sheet_group, reference_product_id").eq("combo_id", id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem);
-  const products = ((await supabase.from("products").select("id, slug, name, category, brand, unit, cost_price, sale_price_vat, warranty, cover_image_url, image_urls, status, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
+  const products = ((await supabase.from("products").select("id, slug, name, category, brand, unit, cost_price, sale_price_vat, warranty, cover_image_url, image_urls, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
     id: String(product.id),
     name: String(product.name ?? ""),
     category: String(product.category ?? ""),

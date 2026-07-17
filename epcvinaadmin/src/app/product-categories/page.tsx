@@ -94,7 +94,7 @@ export default async function ProductCategoriesPage({ searchParams }: { searchPa
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="Danh mục" title="Quản lý danh mục sản phẩm" description="Dùng cho sản phẩm, combo items và lọc catalog." />
-          <Link href="/products" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Sản phẩm</Link>
+          <Link href="/admin/products" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Sản phẩm</Link>
         </div>
         <div className="mb-4 flex justify-end">
           <ModalShell

@@ -2,6 +2,7 @@ import { PublicShell } from "@/components/PublicShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { TechnicalSpecsView } from "@/components/TechnicalSpecs";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeProduct } from "@/lib/supabase/normalize";
 import { notFound } from "next/navigation";
@@ -29,16 +30,16 @@ function getCategoryLabel(category: string) {
 export default async function PublicProductDetailPage({ params }: Props) {
   const { id } = await params;
   const supabase = await createSupabaseServerClient();
-  const productRecord = supabase
-    ? ((await supabase
+  const publicClient = createSupabaseAdminClient() ?? supabase;
+  const productRecord = publicClient
+    ? ((await publicClient
         .from("products")
-        .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, warranty, description, technical_specs, cover_image_url, image_urls, status, is_active, sort_order")
+        .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, warranty, description, technical_specs, cover_image_url, image_urls, is_active, sort_order")
         .eq("id", id)
-        .or("status.eq.active,is_active.eq.true")
         .maybeSingle()).data ??
-        (await supabase
+        (await publicClient
           .from("products")
-          .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, warranty, description, technical_specs, cover_image_url, image_urls, status, is_active, sort_order")
+          .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, warranty, description, technical_specs, cover_image_url, image_urls, is_active, sort_order")
           .eq("id", id)
           .maybeSingle()).data ??
         null)

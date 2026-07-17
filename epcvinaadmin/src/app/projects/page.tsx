@@ -42,13 +42,13 @@ export default async function ProjectsPage({ searchParams }: { searchParams?: Pr
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="CRM" title="Dự án" description="Dự án là nguồn tạo khách hàng và đơn hàng." />
           <div className="flex gap-2">
-            <Link href="/projects/new" className="rounded-full bg-cyan-400 px-4 py-2.5 text-sm font-medium text-slate-950">
+            <Link href="/admin/projects/new" className="rounded-full bg-cyan-400 px-4 py-2.5 text-sm font-medium text-slate-950">
               Thêm dự án
             </Link>
-            <Link href="/customers" className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200">
+            <Link href="/admin/customers" className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200">
               Khách hàng
             </Link>
-            <Link href="/orders" className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200">
+            <Link href="/admin/orders" className="rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-slate-200">
               Đơn hàng
             </Link>
           </div>

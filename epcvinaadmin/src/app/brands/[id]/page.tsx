@@ -39,7 +39,7 @@ export default async function BrandDetailPage({ params }: { params: Promise<{ id
 
   const [brandRes, productsRes, brandsRes] = await Promise.all([
     supabase.from("brands").select("id, slug, name, description, image_url, logo_url, status, is_active, sort_order").eq("id", brandId).maybeSingle(),
-    supabase.from("products").select("id, name, slug, brand_id, brand, category_id, category, unit, sale_price_vat, status, is_active, cover_image_url, image_urls, sort_order").order("sort_order", { ascending: true }),
+    supabase.from("products").select("id, name, slug, brand_id, brand, category_id, category, unit, sale_price_vat, is_active, cover_image_url, image_urls, sort_order").order("sort_order", { ascending: true }),
     getCachedBrands(),
   ]);
 

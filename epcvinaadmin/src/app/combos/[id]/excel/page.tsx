@@ -85,7 +85,7 @@ async function saveComboExcelSheet(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const rows = parseSheetRows(formData);
   const products = supabase
-    ? ((await supabase.from("products").select("id, slug, name, category, brand, unit, cost_price, sale_price_vat, warranty, cover_image_url, image_urls, status, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
+    ? ((await supabase.from("products").select("id, slug, name, category, brand, unit, cost_price, sale_price_vat, warranty, cover_image_url, image_urls, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product: any) => ({
         id: String(product.id),
         name: String(product.name ?? ""),
         category: String(product.category ?? ""),

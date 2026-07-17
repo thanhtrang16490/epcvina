@@ -88,7 +88,7 @@ export default async function ComboEditPage({ params }: Props) {
   if (!data) notFound();
   const combo = data as ComboFormData;
   const products = supabase
-    ? ((await supabase.from("products").select("id, slug, name, category, brand, unit, quantity, cost_price, sale_price_vat, warranty, description, cover_image_url, image_urls, status, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product) => normalizeProduct(product))
+    ? ((await supabase.from("products").select("id, slug, name, category, brand, unit, quantity, cost_price, sale_price_vat, warranty, description, cover_image_url, image_urls, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product) => normalizeProduct(product))
     : [];
   const comboCategories = supabase ? await getCachedComboCategories() : [];
   return (
@@ -112,7 +112,7 @@ export default async function ComboEditPage({ params }: Props) {
             <input name="name" defaultValue={combo.name} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] md:col-span-2" />
             <select name="combo_category_id" defaultValue={combo.combo_category_id ?? ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] md:col-span-2">
               <option value="">Chọn danh mục combo</option>
-              {comboCategories.map((category: { id: string; name: string }) => (
+              {((comboCategories as Array<{ id: string; name: string }>)).map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.name}
                 </option>

@@ -20,7 +20,7 @@ export default async function OrderDetailPage({ params }: Props) {
   const [orderRes, itemsRes, productsRes, combosRes] = await Promise.all([
     supabase.from("orders").select("id, slug, customer_id, project_id, invoice_customer_id, invoice_contact_id, order_no, order_type, status, order_date, note, subtotal, discount, total, payment_method, discount_id, discount_name, discount_type, discount_value, payment_policy_id, payment_policy_name, payment_policy_code, payment_policy_deposit_percent, payment_policy_delivery_percent, payment_policy_acceptance_percent, deposit_amount, delivery_amount, acceptance_amount, pdf_generated_at, pdf_url, created_at, updated_at").eq("id", id).single(),
     supabase.from("order_items").select("id, order_id, combo_id, product_id, item_name, item_type, quantity, unit_price, total_price, note, sort_order, snapshot_data, created_at").eq("order_id", id).order("sort_order", { ascending: true }),
-    supabase.from("products").select("id, name, brand, category, cover_image_url, image_urls, technical_specs, status, is_active, sort_order").order("sort_order", { ascending: true }),
+    supabase.from("products").select("id, name, brand, category, cover_image_url, image_urls, technical_specs, is_active, sort_order").order("sort_order", { ascending: true }),
     supabase.from("combos").select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id").order("sort_order", { ascending: true }),
   ]);
 

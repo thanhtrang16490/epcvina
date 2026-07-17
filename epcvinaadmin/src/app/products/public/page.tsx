@@ -3,6 +3,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { ProductCatalogClient } from "@/components/ProductCatalogClient";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { ThemeLinkButton } from "@/components/ui/ThemeButton";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeProduct } from "@/lib/supabase/normalize";
 
@@ -11,17 +12,11 @@ export const dynamic = "force-dynamic";
 async function loadPublicProducts(supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>) {
   if (!supabase) return [];
 
-  const query = supabase
-    .from("products")
-    .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, description, cover_image_url, image_urls, status, is_active, sort_order")
-    .or("status.eq.active,is_active.eq.true")
-    .order("sort_order", { ascending: true });
-  const primary = (await query).data ?? [];
-  if (primary.length > 0) return primary.map(normalizeProduct);
+  const publicClient = createSupabaseAdminClient() ?? supabase;
 
-  const fallback = (await supabase
+  const fallback = (await publicClient
     .from("products")
-    .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, description, cover_image_url, image_urls, status, is_active, sort_order")
+    .select("id, slug, name, category_id, category, brand_id, brand, unit, sale_price_vat, description, cover_image_url, image_urls, is_active, sort_order")
     .order("sort_order", { ascending: true })).data ?? [];
   return fallback.map(normalizeProduct);
 }
@@ -29,6 +24,7 @@ async function loadPublicProducts(supabase: Awaited<ReturnType<typeof createSupa
 export default async function PublicProductsPage() {
   const supabase = await createSupabaseServerClient();
   const products = await loadPublicProducts(supabase);
+  const sourceLabel = createSupabaseAdminClient() ? "Supabase admin" : "Supabase";
 
   return (
     <PublicShell>
@@ -62,7 +58,7 @@ export default async function PublicProductsPage() {
                   Xem combo public
                 </ThemeLinkButton>
                 <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
-                  Nguồn: {supabase ? "Supabase" : "Empty"}
+                  Nguồn: {supabase ? sourceLabel : "Empty"}
                 </span>
               </div>
             </div>

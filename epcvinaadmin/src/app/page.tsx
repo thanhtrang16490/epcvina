@@ -1,66 +1,102 @@
-import Link from "next/link";
-import { AdminShell } from "@/components/AdminShell";
+import { PublicShell } from "@/components/PublicShell";
 import { SectionTitle } from "@/components/SectionTitle";
-import { RefreshDashboardButton } from "@/components/RefreshDashboardButton";
-import { DashboardMetrics } from "@/components/DashboardMetrics";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
+import { ThemeCard } from "@/components/ui/ThemeCard";
+import { ThemeLinkButton } from "@/components/ui/ThemeButton";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { normalizeCombo, normalizeProduct } from "@/lib/supabase/normalize";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
+export default async function PublicHomePage() {
+  const supabase = createSupabaseAdminClient();
+
+  const [productsResult, combosResult] = supabase
+    ? await Promise.all([
+        supabase.from("products").select("id, slug, name, category, brand, unit, sale_price_vat, description, cover_image_url, image_urls, is_active, sort_order").order("sort_order", { ascending: true }),
+        supabase.from("combos").select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, combo_type, source_kind, combo_category_id, cover_image_url, image_urls").order("sort_order", { ascending: true }),
+      ])
+    : [{ data: [] }, { data: [] }];
+
+  const products = (productsResult.data ?? []).map(normalizeProduct).slice(0, 8);
+  const combos = (combosResult.data ?? []).map(normalizeCombo).slice(0, 6);
+  const activeProducts = products.filter((product) => product.is_active !== false).length;
+  const activeCombos = combos.filter((combo) => combo.is_active !== false).length;
+
   return (
-    <AdminShell>
-      <main className="mx-auto max-w-7xl px-4 py-4 md:px-0">
-        <section className="rounded-[2rem] border border-[color:var(--border)] bg-[radial-gradient(circle_at_top_right,_color-mix(in_srgb,var(--accent)_16%,transparent),_transparent_28%),linear-gradient(135deg,color-mix(in_srgb,var(--panel-strong)_92%,#fff_8%),var(--panel))] p-6 shadow-2xl md:p-8">
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div className="max-w-3xl">
-              <div className="inline-flex rounded-full border border-[color:var(--border)] bg-[color:var(--accent)]/10 px-3 py-1 text-xs uppercase tracking-[0.28em] text-[color:var(--accent)]">
-                Magento-style Admin
+    <PublicShell>
+      <div className="space-y-8">
+        <ThemeCard tone="hero" className="overflow-hidden p-0">
+          <div className="grid gap-0 lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="p-6 md:p-10">
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.28em] text-cyan-100">
+                <span>▣</span>
+                EPCVINA Public
               </div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[color:var(--text)] md:text-6xl">
-                EPCVINA Admin
+              <h1 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-6xl">
+                Giải pháp điện mặt trời cho nhà ở và doanh nghiệp
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[color:var(--muted)] md:text-base">
-                Điều hành combo, sản phẩm, brand và danh mục theo kiểu dashboard enterprise. Dữ liệu đang đọc từ Supabase thật để đồng bộ cho epcvinasolar về sau.
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
+                Xem catalog công khai theo phong cách EPCVINA Solar, với combo, sản phẩm và các điểm vào tư vấn rõ ràng.
               </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <ThemeLinkButton href="/combos/public" tone="primary">
+                  Xem combo
+                </ThemeLinkButton>
+                <ThemeLinkButton href="/products/public" tone="secondary">
+                  Xem sản phẩm
+                </ThemeLinkButton>
+                <ThemeLinkButton href="/system-advisor" tone="ghost">
+                  Tư vấn hệ thống
+                </ThemeLinkButton>
+              </div>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <RefreshDashboardButton />
-              <Link href="/combos" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Combo</Link>
-              <Link href="/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Sản phẩm</Link>
-              <Link href="/brands" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Brand</Link>
+            <div className="grid gap-4 p-6 md:p-10 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              <ThemeCard className="p-4">
+                <div className="text-sm text-[color:var(--muted)]">Combo public</div>
+                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{combos.length}</div>
+              </ThemeCard>
+              <ThemeCard className="p-4">
+                <div className="text-sm text-[color:var(--muted)]">Sản phẩm public</div>
+                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{products.length}</div>
+              </ThemeCard>
+              <ThemeCard className="p-4">
+                <div className="text-sm text-[color:var(--muted)]">Đang active</div>
+                <div className="mt-1 text-3xl font-semibold text-[color:var(--text)]">{activeProducts + activeCombos}</div>
+              </ThemeCard>
             </div>
           </div>
+        </ThemeCard>
 
-          <DashboardMetrics />
-        </section>
-        <section className="mt-8 grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">
-            <SectionTitle eyebrow="Tác vụ nhanh" title="Điểm vào chính" description="Đi tới module cần xử lý ngay, không cần cuộn nhiều." />
+        <section className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
+          <ThemeCard className="p-6">
+            <SectionTitle eyebrow="Điểm vào nhanh" title="Đi tới ngay" description="Các trang public cần xem nhanh nhất." />
             <div className="mt-5 grid gap-3">
-              <Link href="/products" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Quản lý sản phẩm</Link>
-              <Link href="/combos" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Quản lý combo</Link>
-              <Link href="/brands" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Brand</Link>
-              <Link href="/product-categories" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Danh mục sản phẩm</Link>
-              <Link href="/combo-categories" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Danh mục combo</Link>
+              <ThemeLinkButton href="/products/public" tone="secondary" className="w-full justify-start rounded-2xl">
+                Catalog sản phẩm
+              </ThemeLinkButton>
+              <ThemeLinkButton href="/combos/public" tone="secondary" className="w-full justify-start rounded-2xl">
+                Catalog combo
+              </ThemeLinkButton>
+              <ThemeLinkButton href="/system-advisor" tone="secondary" className="w-full justify-start rounded-2xl">
+                System advisor
+              </ThemeLinkButton>
             </div>
-          </div>
+          </ThemeCard>
 
-          <div className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">
-            <SectionTitle eyebrow="Tích hợp" title="API & dữ liệu" description="Các bảng này sẽ là nguồn dữ liệu cho epcvinasolar." />
-            <div className="mt-4 space-y-3 text-sm text-[color:var(--text)]">
-              <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-[color:var(--accent)]">GET /api/catalog</div>
-                <div className="mt-1 text-[color:var(--muted)]">Catalog tổng hợp từ Supabase.</div>
-              </div>
-              <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-[color:var(--accent)]">GET /api/combos</div>
-                <div className="mt-1 text-[color:var(--muted)]">Danh sách combo cho public site.</div>
-              </div>
+          <ThemeCard className="p-6">
+            <SectionTitle eyebrow="Catalog" title="Sản phẩm nổi bật" description="Dữ liệu đang đọc trực tiếp từ Supabase." />
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {products.map((product) => (
+                <ThemeCard key={product.id} className="p-4">
+                  <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--accent)]">{product.brand || "EPCVINA"}</div>
+                  <div className="mt-2 text-base font-semibold text-[color:var(--text)]">{product.name}</div>
+                  <div className="mt-1 text-xs text-[color:var(--muted)]">{product.category || "-"}</div>
+                </ThemeCard>
+              ))}
             </div>
-          </div>
+          </ThemeCard>
         </section>
-      </main>
-    </AdminShell>
+      </div>
+    </PublicShell>
   );
 }

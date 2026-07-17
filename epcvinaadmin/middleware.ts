@@ -1,12 +1,42 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
+const legacyAdminPrefixes = [
+  "/orders",
+  "/projects",
+  "/customers",
+  "/discounts",
+  "/payment-policies",
+  "/combos",
+  "/products",
+  "/combo-categories",
+  "/product-categories",
+  "/brands",
+  "/suppliers",
+  "/supplier-products",
+  "/settings",
+];
+
 function isProtectedPath(pathname: string) {
-  return pathname === "/" || pathname.startsWith("/combos") || pathname.startsWith("/products");
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) return true;
+  return false;
 }
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/admin/")) {
+    const legacyPath = pathname.replace(/^\/admin/, "");
+    const response = NextResponse.rewrite(new URL(legacyPath || "/", request.url));
+    return response;
+  }
+
+  const isLegacyPublicPath = pathname === "/products/public" || pathname.startsWith("/products/public/") || pathname === "/combos/public" || pathname.startsWith("/combos/public/");
+  const isLegacyAdminPath = legacyAdminPrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+  if (isLegacyAdminPath && !isLegacyPublicPath) {
+    const redirectedUrl = new URL(`/admin${pathname}`, request.url);
+    return NextResponse.redirect(redirectedUrl);
+  }
 
   if (!isProtectedPath(pathname)) {
     return NextResponse.next();
@@ -61,5 +91,20 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/combos/:path*", "/products/:path*"],
+  matcher: [
+    "/admin/:path*",
+    "/orders/:path*",
+    "/projects/:path*",
+    "/customers/:path*",
+    "/discounts/:path*",
+    "/payment-policies/:path*",
+    "/combos/:path*",
+    "/products/:path*",
+    "/combo-categories/:path*",
+    "/product-categories/:path*",
+    "/brands/:path*",
+    "/suppliers/:path*",
+    "/supplier-products/:path*",
+    "/settings/:path*",
+  ],
 };

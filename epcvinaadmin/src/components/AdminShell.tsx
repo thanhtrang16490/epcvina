@@ -28,7 +28,7 @@ const navGroups: NavGroup[] = [
     label: "Tổng quan",
     icon: "dashboard",
     description: "Sức khỏe dữ liệu và chỉ số chính",
-    items: [{ href: "/", label: "Dashboard", icon: "dashboard" }],
+    items: [{ href: "/admin", label: "Dashboard", icon: "dashboard" }],
   },
   {
     id: "sales",
@@ -37,10 +37,10 @@ const navGroups: NavGroup[] = [
     description: "Khách hàng, dự án và đơn hàng",
     items: [
       { href: "/orders", label: "Đơn hàng", icon: "orders" },
-      { href: "/projects", label: "Dự án", icon: "project" },
-      { href: "/customers", label: "Khách hàng", icon: "customer" },
-      { href: "/discounts", label: "Chiết khấu", icon: "card" },
-      { href: "/payment-policies", label: "Thanh toán", icon: "card" },
+      { href: "/admin/projects", label: "Dự án", icon: "project" },
+      { href: "/admin/customers", label: "Khách hàng", icon: "customer" },
+      { href: "/admin/discounts", label: "Chiết khấu", icon: "card" },
+      { href: "/admin/payment-policies", label: "Thanh toán", icon: "card" },
     ],
   },
   {
@@ -51,9 +51,9 @@ const navGroups: NavGroup[] = [
     items: [
       { href: "/combos", label: "Combo", icon: "combo", badge: "CRUD" },
       { href: "/products", label: "Sản phẩm", icon: "box", badge: "CRUD" },
-      { href: "/combo-categories", label: "Danh mục combo", icon: "category" },
-      { href: "/product-categories", label: "Danh mục sản phẩm", icon: "category" },
-      { href: "/brands", label: "Thương hiệu", icon: "brand" },
+      { href: "/admin/combo-categories", label: "Danh mục combo", icon: "category" },
+      { href: "/admin/product-categories", label: "Danh mục sản phẩm", icon: "category" },
+      { href: "/admin/brands", label: "Thương hiệu", icon: "brand" },
     ],
   },
   {
@@ -63,7 +63,7 @@ const navGroups: NavGroup[] = [
     description: "Nhà cung cấp và ánh xạ sản phẩm",
     items: [
       { href: "/suppliers", label: "Nhà cung cấp", icon: "supplier" },
-      { href: "/supplier-products", label: "SP theo nhà cung cấp", icon: "box" },
+      { href: "/admin/supplier-products", label: "SP theo nhà cung cấp", icon: "box" },
     ],
   },
   {
@@ -83,7 +83,7 @@ const navGroups: NavGroup[] = [
     description: "Thông tin doanh nghiệp và cấu hình",
     items: [
       { href: "/system-advisor", label: "Tư vấn hệ thống", icon: "card", badge: "New" },
-      { href: "/settings", label: "Cài đặt doanh nghiệp", icon: "settings" },
+      { href: "/admin/settings", label: "Cài đặt doanh nghiệp", icon: "settings" },
     ],
   },
 ];

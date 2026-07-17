@@ -95,7 +95,7 @@ export default async function BrandsPage({ searchParams }: { searchParams?: Prom
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
         <div className="mb-6 flex items-center justify-between">
           <SectionTitle eyebrow="Danh mục" title="Quản lý Brand" description="Brand dùng chung cho sản phẩm và BOM combo." />
-          <Link href="/products" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Sản phẩm</Link>
+          <Link href="/admin/products" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">Sản phẩm</Link>
         </div>
         <CrudFilterBar
           subtitle="Danh mục"
@@ -107,8 +107,8 @@ export default async function BrandsPage({ searchParams }: { searchParams?: Prom
             meta: brand.slug,
           }))}
           secondaryLinks={[
-            { href: "/", label: "Dashboard" },
-            { href: "/products", label: "Sản phẩm" },
+            { href: "/admin", label: "Dashboard" },
+            { href: "/admin/products", label: "Sản phẩm" },
           ]}
         />
         <div className="mb-4 flex justify-end">
@@ -134,7 +134,7 @@ export default async function BrandsPage({ searchParams }: { searchParams?: Prom
                   {(brand.image_url || brand.logo_url) ? <img src={brand.image_url || brand.logo_url} alt={brand.name} className="h-full w-full object-cover" /> : null}
                 </div>
                 <div>
-                  <Link href={`/brands/${brand.id}`} className="font-medium text-white transition hover:text-cyan-300">
+                    <Link href={`/admin/brands/${brand.id}`} className="font-medium text-white transition hover:text-cyan-300">
                     {brand.name}
                   </Link>
                   <div className="mt-2">

@@ -4,6 +4,7 @@ import { PublicComboCatalog } from "@/components/PublicComboCatalog";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { ThemeLinkButton } from "@/components/ui/ThemeButton";
 import { getPricingSettings } from "@/lib/pricing-settings";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeCombo } from "@/lib/supabase/normalize";
 
@@ -11,12 +12,13 @@ export const dynamic = "force-dynamic";
 
 export default async function PublicCombosPage() {
   const supabase = await createSupabaseServerClient();
-  const pricingSettings = await getPricingSettings(supabase);
-  const combos = supabase
-    ? ((await supabase
+  const publicClient = createSupabaseAdminClient() ?? supabase;
+  const pricingSettings = await getPricingSettings(publicClient ?? supabase);
+  const combos = publicClient
+    ? ((await publicClient
         .from("combos")
         .select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls")
-        .or("status.eq.active,is_active.eq.true")
+        .eq("status", "public")
         .order("sort_order", { ascending: true })).data ?? []).map(normalizeCombo)
     : [];
   const normalizedCombos = combos.map((combo) => ({
