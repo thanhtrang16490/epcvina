@@ -99,6 +99,13 @@ function laborRatePerKwp(combo) {
   return code.startsWith("HY") || comboType === "custom" ? 900000 : 500000;
 }
 
+function cleanWorkbookBrand(brand) {
+  const value = String(brand ?? "").trim();
+  if (!value) return "";
+  if (value.toUpperCase() === "SLM") return "";
+  return value;
+}
+
 async function main() {
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
     const envText = await fs.readFile(envPath, "utf8");
@@ -193,7 +200,7 @@ async function main() {
         source_sheet: source.sheet,
         item_name: item.specification || item.category || "Item",
         category: item.category,
-        brand: item.brand,
+        brand: isService ? "" : cleanWorkbookBrand(item.brand),
         unit: item.unit,
         quantity: Number(item.quantity ?? 0),
         unit_price_vat: unitPrice,
