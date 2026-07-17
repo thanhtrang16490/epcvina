@@ -112,6 +112,21 @@ async function main() {
 
   const { data: products, error: productsError } = await supabase.from("products").select("id,name,category,brand,slug");
   if (productsError) throw productsError;
+  const workbookSourceKind = "workbook_2026";
+  const { data: existingCombos, error: existingCombosError } = await supabase
+    .from("combos")
+    .select("id")
+    .eq("source_kind", workbookSourceKind);
+  if (existingCombosError) throw existingCombosError;
+
+  const existingComboIds = (existingCombos ?? []).map((item) => String(item.id)).filter(Boolean);
+  if (existingComboIds.length) {
+    const { error: deleteExistingItemsError } = await supabase.from("combo_items").delete().in("combo_id", existingComboIds);
+    if (deleteExistingItemsError) throw deleteExistingItemsError;
+    const { error: deleteExistingCombosError } = await supabase.from("combos").delete().in("id", existingComboIds);
+    if (deleteExistingCombosError) throw deleteExistingCombosError;
+  }
+
   const insertedCombos = [];
   for (const rec of raw) {
     const insertPayload = {
@@ -146,6 +161,7 @@ async function main() {
       roof_area_m2: 0,
       combo_group: rec.code.startsWith("HY") ? "hybrid" : "on-grid",
       source_file: rec.sheet,
+      source_kind: workbookSourceKind,
       cover_image_url: null,
       image_urls: [],
     };
