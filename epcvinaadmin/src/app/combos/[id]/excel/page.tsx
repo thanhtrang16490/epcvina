@@ -40,6 +40,36 @@ function inferSheetGroup(row: {
   return "wiring";
 }
 
+function calcPreVatTotal(value: number, quantity: number) {
+  return Math.round((Number(value || 0) / 1.1) * Number(quantity || 0));
+}
+
+function normalizeSheetGroup(row: {
+  category?: string;
+  specification?: string;
+  sheet_group?: string;
+  no?: number;
+}, previousGroup: string | null) {
+  const explicitGroup = String(row.sheet_group ?? "").trim().toLowerCase();
+  if (explicitGroup) return explicitGroup;
+
+  const text = `${row.category ?? ""} ${row.specification ?? ""}`.toLowerCase();
+  const inferredGroup = inferSheetGroup(row);
+  const isGrounding = text.includes("tiếp địa") || text.includes("ground");
+
+  if (!text.trim() && previousGroup) return previousGroup;
+  if (isGrounding) return "grounding";
+  if (previousGroup && previousGroup !== inferredGroup) {
+    const isAccessory = text.includes("dây") || text.includes("cáp") || text.includes("mc4") || text.includes("wire") || text.includes("kẹp");
+    const isBatteryAccessory = text.includes("giao tiếp") || text.includes("tín hiệu") || text.includes("pin");
+    const isInverterAccessory = text.includes("ct") || text.includes("meter") || text.includes("chống phát ngược");
+    if (isAccessory || (previousGroup === "inverter" && isInverterAccessory)) return previousGroup;
+    if (previousGroup === "battery" && isBatteryAccessory) return previousGroup;
+  }
+
+  return inferredGroup || previousGroup || "wiring";
+}
+
 type RefProduct = {
   id: string;
   name: string;
@@ -98,24 +128,26 @@ async function saveComboExcelSheet(formData: FormData) {
     : [];
   const productsById = new Map<string, RefProduct>(products.map((product) => [product.id, product]));
 
+  let lastSheetGroup: string | null = null;
   const normalizedRows = rows
     .map((row: any, index: number) => {
       const base = {
-      no: index + 1,
-      product_id: String(row.product_id ?? "").trim() || null,
-      reference_product_id: String(row.reference_product_id ?? row.product_id ?? "").trim() || null,
-      sheet_group: inferSheetGroup(row),
-      category: String(row.category ?? "").trim(),
-      specification: String(row.specification ?? "").trim(),
-      brand_name: String(row.brand_name ?? "").trim(),
-      unit: String(row.unit ?? "").trim(),
-      quantity: Math.max(1, Number(row.quantity ?? 1)),
-      unit_price_vat: Math.max(0, Number(row.unit_price_vat ?? 0)),
-      warranty: String(row.warranty ?? "").trim(),
-      cost_price: Math.max(0, Number(row.cost_price ?? 0)),
-      gross_margin: Math.max(0, Number(row.gross_margin ?? 0)),
-      notes: String(row.notes ?? "").trim(),
+        no: index + 1,
+        product_id: String(row.product_id ?? "").trim() || null,
+        reference_product_id: String(row.reference_product_id ?? row.product_id ?? "").trim() || null,
+        sheet_group: normalizeSheetGroup(row, lastSheetGroup),
+        category: String(row.category ?? "").trim(),
+        specification: String(row.specification ?? "").trim(),
+        brand_name: String(row.brand_name ?? "").trim(),
+        unit: String(row.unit ?? "").trim(),
+        quantity: Math.max(1, Number(row.quantity ?? 1)),
+        unit_price_vat: Math.max(0, Number(row.unit_price_vat ?? 0)),
+        warranty: String(row.warranty ?? "").trim(),
+        cost_price: Math.max(0, Number(row.cost_price ?? 0)),
+        gross_margin: Math.max(0, Number(row.gross_margin ?? 0)),
+        notes: String(row.notes ?? "").trim(),
       };
+      lastSheetGroup = base.sheet_group;
       return applyReferenceDefaults(base, productsById);
     })
     .filter((row) => row.specification || row.category || row.unit_price_vat > 0 || row.cost_price > 0);
@@ -207,8 +239,8 @@ async function saveComboExcelSheet(formData: FormData) {
     await supabase.from("combo_items").insert(items);
   }
 
-  const totalSale = items.reduce((sum, item) => sum + Number(item.total_price_vat ?? 0), 0);
-  const totalCost = items.reduce((sum, item) => sum + Number(item.total_cost_price ?? 0), 0);
+  const totalSale = items.reduce((sum, item) => sum + calcPreVatTotal(Number(item.unit_price_vat ?? 0), Number(item.quantity ?? 0)), 0);
+  const totalCost = items.reduce((sum, item) => sum + calcPreVatTotal(Number(item.cost_price ?? 0), Number(item.quantity ?? 0)), 0);
   const marginPct = totalSale > 0 ? ((totalSale - totalCost) / totalSale) * 100 : 0;
 
   await supabase
@@ -235,7 +267,7 @@ export default async function ComboExcelPage({ params }: Props) {
   if (!combo) notFound();
 
   const comboItems = supabase
-    ? ((await supabase.from("combo_items").select("id, combo_id, product_id, reference_product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, gross_margin, notes, sheet_group, sort_order").eq("combo_id", combo.id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem)
+    ? ((await supabase.from("combo_items").select("id, combo_id, product_id, reference_product_id, category, item_name, brand, unit, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, gross_margin, notes, sheet_group, sort_order").eq("combo_id", combo.id).order("sort_order", { ascending: true })).data ?? []).map(normalizeComboItem)
     : [];
 
   const hasLabor = comboItems.some((item) => String(item.sheet_group ?? "") === "labor");

@@ -58,6 +58,14 @@ function calcTotal(value: number, quantity: number) {
   return Math.round(Number(value || 0) * Number(quantity || 0));
 }
 
+function calcPreVatTotal(value: number, quantity: number) {
+  return Math.round((Number(value || 0) / 1.1) * Number(quantity || 0));
+}
+
+function formatVnd(value: number) {
+  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(Math.round(Number(value ?? 0) / 1000) * 1000);
+}
+
 function inferGroupId(row: SheetRow) {
   const text = `${row.category ?? ""} ${row.specification ?? ""}`.toLowerCase();
   if (text.includes("nhan cong") || text.includes("nhân công") || text.includes("thi cong") || text.includes("thi công")) return "labor";
@@ -79,8 +87,8 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
   const totals = useMemo(() => {
     return rows.reduce(
       (acc, row) => {
-        const sale = calcTotal(row.unit_price_vat, row.quantity);
-        const cost = calcTotal(row.cost_price, row.quantity);
+        const sale = calcPreVatTotal(row.unit_price_vat, row.quantity);
+        const cost = calcPreVatTotal(row.cost_price, row.quantity);
         acc.sale += sale;
         acc.cost += cost;
         return acc;
@@ -101,8 +109,8 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
       const grouped = rowsByGroup[group.id] ?? [];
       acc[group.id] = grouped.reduce(
         (sum, row) => ({
-          sale: sum.sale + calcTotal(row.unit_price_vat, row.quantity),
-          cost: sum.cost + calcTotal(row.cost_price, row.quantity),
+          sale: sum.sale + calcPreVatTotal(row.unit_price_vat, row.quantity),
+          cost: sum.cost + calcPreVatTotal(row.cost_price, row.quantity),
         }),
         { sale: 0, cost: 0 },
       );
@@ -155,7 +163,7 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
                   <div>
                     <div className="text-sm font-semibold text-slate-900">{group.label}</div>
                     <div className="mt-1 text-xs text-slate-500">
-                      {groupedRows.length} dòng · Giá bán {groupSale.toLocaleString("vi-VN")} đ · Giá vốn {groupCost.toLocaleString("vi-VN")} đ
+                      {groupedRows.length} dòng · Giá bán {formatVnd(groupSale)} đ · Giá vốn {formatVnd(groupCost)} đ
                     </div>
                   </div>
                   <button
@@ -193,8 +201,8 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
                       {groupedRows.length ? (
                         groupedRows.map((row) => {
                           const index = rows.findIndex((item) => item.no === row.no);
-                          const totalSale = calcTotal(row.unit_price_vat, row.quantity);
-                          const totalCost = calcTotal(row.cost_price, row.quantity);
+                          const totalSale = calcPreVatTotal(row.unit_price_vat, row.quantity);
+                          const totalCost = calcPreVatTotal(row.cost_price, row.quantity);
                           const margin = totalSale > 0 ? ((totalSale - totalCost) / totalSale) * 100 : 0;
                           return (
                             <tr key={`${group.id}-${row.no}`} className="bg-white">
@@ -217,14 +225,14 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
                               <td className="px-3 py-3">
                                 <FormattedNumberInput name={`unit_price_vat_${row.no}`} min={0} step={1} value={row.unit_price_vat} onValueChange={(value) => updateRow(index, { unit_price_vat: Number(value) || 0 })} className="w-36 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
-                              <td className="px-3 py-3 text-slate-900">{totalSale.toLocaleString("vi-VN")}</td>
+                              <td className="px-3 py-3 text-slate-900">{formatVnd(totalSale)}</td>
                               <td className="px-3 py-3">
                                 <input value={row.warranty} onChange={(event) => updateRow(index, { warranty: event.target.value })} className="w-28 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
                               <td className="px-3 py-3">
                                 <FormattedNumberInput name={`cost_${row.no}`} min={0} step={1} value={row.cost_price} onValueChange={(value) => updateRow(index, { cost_price: Number(value) || 0 })} className="w-36 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
                               </td>
-                              <td className="px-3 py-3 text-slate-900">{totalCost.toLocaleString("vi-VN")}</td>
+                              <td className="px-3 py-3 text-slate-900">{formatVnd(totalCost)}</td>
                               <td className="px-3 py-3 text-slate-900">{margin.toFixed(1)}%</td>
                               <td className="px-3 py-3">
                                 <input value={row.notes} onChange={(event) => updateRow(index, { notes: event.target.value })} className="w-44 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-[color:var(--accent)]/40" />
@@ -254,9 +262,9 @@ export function ComboExcelSheetModal({ title = "Edit Excel", description = "Ch�
 
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.25rem] border border-slate-200 bg-white p-4 text-sm text-slate-500">
           <div>
-            Tổng giá bán: <span className="text-slate-900">{totals.sale.toLocaleString("vi-VN")} đ</span>
+            Tổng giá bán (chưa VAT): <span className="text-slate-900">{formatVnd(totals.sale)} đ</span>
             {" · "}
-            Tổng giá vốn: <span className="text-slate-900">{totals.cost.toLocaleString("vi-VN")} đ</span>
+            Tổng giá vốn (chưa VAT): <span className="text-slate-900">{formatVnd(totals.cost)} đ</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <button type="button" onClick={addRow} className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm text-slate-700 shadow-sm hover:border-[color:var(--accent)]/30">
