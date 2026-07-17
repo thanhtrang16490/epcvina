@@ -2,6 +2,7 @@ import { AdminShell } from "@/components/AdminShell";
 import { CrudFilterBar } from "@/components/CrudFilterBar";
 import { CustomerCreateForm } from "@/components/CustomerCreateForm";
 import { ModalShell } from "@/components/ModalShell";
+import { ResponsiveTable } from "@/components/ResponsiveTable";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SlugField } from "@/components/SlugField";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -145,70 +146,75 @@ export default async function CustomersPage({ searchParams }: { searchParams?: P
           </ModalShell>
         </div>
         <section className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">
-          <div className="overflow-hidden rounded-[1.5rem] border border-[color:var(--border)]">
-            <table className="min-w-full divide-y divide-[color:var(--border)] text-left text-sm">
-              <thead className="bg-[color:var(--bg-elevated)] text-[color:var(--muted)]">
-                <tr>
-                  <th className="px-4 py-3 font-medium">Khách hàng</th>
-                  <th className="px-4 py-3 font-medium">Liên hệ</th>
-                  <th className="px-4 py-3 font-medium">Địa chỉ</th>
-                  <th className="px-4 py-3 font-medium">Lịch sử</th>
-                  <th className="px-4 py-3 font-medium">Trạng thái</th>
-                  <th className="px-4 py-3 font-medium">Hành động</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[color:var(--border)]">
-                {rows.map((row: any) => {
-                  const projectCount = (projects as any[]).filter((project) => project.customer_id === row.id).length;
-                  const orderCount = (orders as any[]).filter((order) => order.customer_id === row.id).length;
+          <ResponsiveTable
+            rows={rows}
+            getRowKey={(row: any) => row.id}
+            columns={[
+              {
+                header: "Khách hàng",
+                render: (row: any) => {
                   const customerType = row.customer_type ?? "contact";
                   return (
-                    <tr key={row.id} className="bg-[color:var(--panel)]/70 text-[color:var(--text)]">
-                      <td className="px-4 py-3 align-top">
-                        <div className="font-medium">{row.name}</div>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--accent)]/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--accent)]">
-                            {customerType === "company" ? "Doanh nghiệp" : "Liên hệ"}
-                          </span>
-                          <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                            {row.slug}
-                          </span>
-                          {row.parent_company_id ? (
-                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                              Thuộc công ty
-                            </span>
-                          ) : null}
-                          {row.tax_code ? (
-                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                              MST {row.tax_code}
-                            </span>
-                          ) : null}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">
-                        <div>{row.phone || row.billing_phone || "-"}</div>
-                        <div className="mt-1 text-xs">{row.email || row.billing_email || "-"}</div>
-                      </td>
-                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">
-                        <div>{row.address_detail || row.address || "-"}</div>
-                        <div className="mt-1 text-xs">
-                          {[row.ward, row.district, row.province].filter(Boolean).join(" · ") || "-"}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">
-                        <div>{projectCount} dự án</div>
-                        <div className="mt-1 text-xs">{orderCount} đơn hàng</div>
-                        <Link href={`/customers/${row.id}`} className="mt-2 inline-flex text-xs font-medium text-cyan-600 dark:text-cyan-300">
-                          Xem lịch sử
-                        </Link>
-                      </td>
-                      <td className="px-4 py-3 align-top">
-                        <span className={(row.status ?? (row.is_active ? "active" : "inactive")) === "active" ? "rounded-full border border-emerald-400/30 bg-emerald-400/15 px-2 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-200" : "rounded-full border border-slate-400/30 bg-slate-400/15 px-2 py-0.5 text-[10px] font-medium text-slate-700 dark:text-slate-200"}>
-                          {(row.status ?? (row.is_active ? "active" : "inactive")) === "active" ? "Active" : "Inactive"}
+                    <div>
+                      <div className="font-medium">{row.name}</div>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--accent)]/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--accent)]">
+                          {customerType === "company" ? "Doanh nghiệp" : "Liên hệ"}
                         </span>
-                      </td>
-                      <td className="px-4 py-3 align-top">
-                        <ModalShell trigger={<span className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</span>} title={`Sửa khách hàng: ${row.name}`} description="Chỉnh trực tiếp trong modal.">
+                        <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
+                          {row.slug}
+                        </span>
+                        {row.parent_company_id ? <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">Thuộc công ty</span> : null}
+                        {row.tax_code ? <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">MST {row.tax_code}</span> : null}
+                      </div>
+                    </div>
+                  );
+                },
+              },
+              {
+                header: "Liên hệ",
+                render: (row: any) => (
+                  <div className="text-[color:var(--muted)]">
+                    <div>{row.phone || row.billing_phone || "-"}</div>
+                    <div className="mt-1 text-xs">{row.email || row.billing_email || "-"}</div>
+                  </div>
+                ),
+              },
+              {
+                header: "Địa chỉ",
+                render: (row: any) => (
+                  <div className="text-[color:var(--muted)]">
+                    <div>{row.address_detail || row.address || "-"}</div>
+                    <div className="mt-1 text-xs">{[row.ward, row.district, row.province].filter(Boolean).join(" · ") || "-"}</div>
+                  </div>
+                ),
+              },
+              {
+                header: "Lịch sử",
+                render: (row: any) => {
+                  const projectCount = (projects as any[]).filter((project) => project.customer_id === row.id).length;
+                  const orderCount = (orders as any[]).filter((order) => order.customer_id === row.id).length;
+                  return (
+                    <div className="text-[color:var(--muted)]">
+                      <div>{projectCount} dự án</div>
+                      <div className="mt-1 text-xs">{orderCount} đơn hàng</div>
+                      <Link href={`/customers/${row.id}`} className="mt-2 inline-flex text-xs font-medium text-cyan-600 dark:text-cyan-300">Xem lịch sử</Link>
+                    </div>
+                  );
+                },
+              },
+              {
+                header: "Trạng thái",
+                render: (row: any) => (
+                  <span className={(row.status ?? (row.is_active ? "active" : "inactive")) === "active" ? "rounded-full border border-emerald-400/30 bg-emerald-400/15 px-2 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-200" : "rounded-full border border-slate-400/30 bg-slate-400/15 px-2 py-0.5 text-[10px] font-medium text-slate-700 dark:text-slate-200"}>
+                    {(row.status ?? (row.is_active ? "active" : "inactive")) === "active" ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+              {
+                header: "Hành động",
+                render: (row: any) => (
+                  <ModalShell trigger={<span className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</span>} title={`Sửa khách hàng: ${row.name}`} description="Chỉnh trực tiếp trong modal.">
                     <form action={updateCustomer} className="grid gap-3">
                       <input type="hidden" name="id" value={row.id} />
                       <SlugField name="name" label="Tên khách hàng" defaultValue={row.name} defaultSlug={row.slug} />
@@ -235,21 +241,59 @@ export default async function CustomersPage({ searchParams }: { searchParams?: P
                       <textarea name="note" defaultValue={row.note ?? ""} rows={4} placeholder="Ghi chú" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
                       <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">Lưu</button>
                     </form>
-                        </ModalShell>
-                      </td>
-                    </tr>
-                  );
-                })}
-                {!rows.length ? (
-                  <tr>
-                    <td colSpan={6} className="px-4 py-8 text-sm text-[color:var(--muted)]">
-                      Chưa có khách hàng.
-                    </td>
-                  </tr>
-                ) : null}
-              </tbody>
-            </table>
-          </div>
+                  </ModalShell>
+                ),
+              },
+            ]}
+            mobileTitle={(row: any) => row.name}
+            mobileSummary={(row: any) => {
+              const customerType = row.customer_type ?? "contact";
+              return `${customerType === "company" ? "Doanh nghiệp" : "Liên hệ"} · ${row.phone || row.billing_phone || "-"}`;
+            }}
+            mobileDetails={[
+              { label: "Email", render: (row: any) => row.email || row.billing_email || "-" },
+              { label: "Địa chỉ", render: (row: any) => row.address_detail || row.address || "-" },
+              {
+                label: "Trạng thái",
+                render: (row: any) => (
+                  <span className={(row.status ?? (row.is_active ? "active" : "inactive")) === "active" ? "rounded-full border border-emerald-400/30 bg-emerald-400/15 px-2 py-0.5 text-[10px] font-medium text-emerald-700 dark:text-emerald-200" : "rounded-full border border-slate-400/30 bg-slate-400/15 px-2 py-0.5 text-[10px] font-medium text-slate-700 dark:text-slate-200"}>
+                    {(row.status ?? (row.is_active ? "active" : "inactive")) === "active" ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+            ]}
+            mobileActions={(row: any) => (
+              <ModalShell trigger={<span className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</span>} title={`Sửa khách hàng: ${row.name}`} description="Chỉnh trực tiếp trong modal.">
+                <form action={updateCustomer} className="grid gap-3">
+                  <input type="hidden" name="id" value={row.id} />
+                  <SlugField name="name" label="Tên khách hàng" defaultValue={row.name} defaultSlug={row.slug} />
+                  <select name="customer_type" defaultValue={row.customer_type ?? "contact"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
+                    <option value="contact">Liên hệ / Cá nhân</option>
+                    <option value="company">Doanh nghiệp</option>
+                  </select>
+                  <input type="hidden" name="parent_company_id" value={row.parent_company_id ?? ""} />
+                  <input name="phone" defaultValue={row.phone ?? ""} placeholder="Số điện thoại" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="email" defaultValue={row.email ?? ""} placeholder="Email" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="tax_code" defaultValue={row.tax_code ?? ""} placeholder="Mã số thuế" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="province" defaultValue={row.province ?? ""} placeholder="Tỉnh / Thành" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="district" defaultValue={row.district ?? ""} placeholder="Quận / Huyện" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="ward" defaultValue={row.ward ?? ""} placeholder="Xã / Phường" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="address_detail" defaultValue={row.address_detail ?? ""} placeholder="Địa chỉ chi tiết" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="address" defaultValue={row.address ?? ""} placeholder="Địa chỉ đầy đủ" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="billing_name" defaultValue={row.billing_name ?? ""} placeholder="Tên xuất hoá đơn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="billing_phone" defaultValue={row.billing_phone ?? ""} placeholder="SĐT xuất hoá đơn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <input name="billing_email" defaultValue={row.billing_email ?? ""} placeholder="Email xuất hoá đơn" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <select name="status" defaultValue={row.status ?? (row.is_active ? "active" : "inactive")} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                  <textarea name="note" defaultValue={row.note ?? ""} rows={4} placeholder="Ghi chú" className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                  <button type="submit" className="rounded-2xl bg-cyan-400 px-4 py-3 font-medium text-slate-950">Lưu</button>
+                </form>
+              </ModalShell>
+            )}
+            emptyState="Chưa có khách hàng."
+          />
           <div className="mt-4 flex items-center justify-between gap-3 text-sm text-[color:var(--muted)]">
             <div>
               Trang {page} / {getPageCount(Number(rowsRes.count ?? rows.length), pageSize)}

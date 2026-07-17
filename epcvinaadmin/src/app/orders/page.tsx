@@ -1,5 +1,6 @@
 import { AdminShell } from "@/components/AdminShell";
 import { CrudFilterBar } from "@/components/CrudFilterBar";
+import { ResponsiveTable } from "@/components/ResponsiveTable";
 import { SectionTitle } from "@/components/SectionTitle";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
@@ -148,58 +149,74 @@ export default async function OrdersPage({ searchParams }: { searchParams?: Prom
           </Link>
         </div>
         <section className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
-          <div className="overflow-x-auto rounded-[1.5rem] border border-white/10">
-            <table className="min-w-[1000px] divide-y divide-white/10 text-left text-sm">
-              <thead className="bg-slate-950/80 text-slate-400">
-                <tr>
-                  <th className="px-4 py-3">Đơn hàng</th>
-                  <th className="px-4 py-3">Khách hàng</th>
-                  <th className="px-4 py-3">Dự án</th>
-                  <th className="px-4 py-3">Loại</th>
-                  <th className="px-4 py-3">Tổng tiền</th>
-                  <th className="px-4 py-3">Trạng thái</th>
-                  <th className="px-4 py-3">Hành động</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {filteredOrders.map((row: any) => (
-                  <tr key={row.id} className="bg-slate-950/40">
-                    <td className="px-4 py-3">
-                      <div className="font-medium text-white">{row.order_no || row.slug}</div>
-                      <div className="mt-1 flex flex-wrap gap-2">
-                        <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-[0.22em] text-slate-300">
-                          {row.slug}
-                        </span>
-                        <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-[0.22em] text-slate-300">
-                          {row.order_no || "-"}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 text-slate-300">{(customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name || "-"}</td>
-                    <td className="px-4 py-3 text-slate-300">{(projects.data ?? []).find((p: any) => p.id === row.project_id)?.name || "-"}</td>
-                    <td className="px-4 py-3 text-slate-300">{row.order_type || "-"}</td>
-                    <td className="px-4 py-3 text-slate-200">{Number(row.total ?? 0).toLocaleString("vi-VN")} đ</td>
-                    <td className="px-4 py-3">
-                      <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${
-                        row.status === "active"
-                          ? "border-emerald-400/30 bg-emerald-400/15 text-emerald-200"
-                          : "border-slate-400/30 bg-slate-400/15 text-slate-200"
-                      }`}>
-                        {row.status === "active" ? "Active" : "Inactive"}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3">
-                      <div className="flex gap-2">
-                        <Link href={`/orders/${row.id}`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Chi tiết</Link>
-                        <Link href={`/orders/${row.id}/edit`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Sửa</Link>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            {!filteredOrders.length && <div className="rounded-3xl border border-dashed border-white/10 bg-slate-950/30 p-6 text-sm text-slate-400">Không có đơn hàng phù hợp bộ lọc.</div>}
-          </div>
+          <ResponsiveTable
+            rows={filteredOrders}
+            getRowKey={(row: any) => row.id}
+            columns={[
+              {
+                header: "Đơn hàng",
+                render: (row: any) => (
+                  <div>
+                    <div className="font-medium text-white">{row.order_no || row.slug}</div>
+                    <div className="mt-1 flex flex-wrap gap-2">
+                      <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-[0.22em] text-slate-300">{row.slug}</span>
+                      <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-[0.22em] text-slate-300">{row.order_no || "-"}</span>
+                    </div>
+                  </div>
+                ),
+              },
+              { header: "Khách hàng", render: (row: any) => (customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name || "-" },
+              { header: "Dự án", render: (row: any) => (projects.data ?? []).find((p: any) => p.id === row.project_id)?.name || "-" },
+              { header: "Loại", render: (row: any) => row.order_type || "-" },
+              { header: "Tổng tiền", render: (row: any) => `${Number(row.total ?? 0).toLocaleString("vi-VN")} đ` },
+              {
+                header: "Trạng thái",
+                render: (row: any) => (
+                  <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${
+                    row.status === "active"
+                      ? "border-emerald-400/30 bg-emerald-400/15 text-emerald-200"
+                      : "border-slate-400/30 bg-slate-400/15 text-slate-200"
+                  }`}>
+                    {row.status === "active" ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+              {
+                header: "Hành động",
+                render: (row: any) => (
+                  <div className="flex gap-2">
+                    <Link href={`/orders/${row.id}`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Chi tiết</Link>
+                    <Link href={`/orders/${row.id}/edit`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Sửa</Link>
+                  </div>
+                ),
+              },
+            ]}
+            mobileTitle={(row: any) => row.order_no || row.slug}
+            mobileSummary={(row: any) => `${(customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name || "-"} · ${(projects.data ?? []).find((p: any) => p.id === row.project_id)?.name || "-"}`}
+            mobileDetails={[
+              { label: "Loại", render: (row: any) => row.order_type || "-" },
+              { label: "Tổng tiền", render: (row: any) => `${Number(row.total ?? 0).toLocaleString("vi-VN")} đ` },
+              {
+                label: "Trạng thái",
+                render: (row: any) => (
+                  <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${
+                    row.status === "active"
+                      ? "border-emerald-400/30 bg-emerald-400/15 text-emerald-200"
+                      : "border-slate-400/30 bg-slate-400/15 text-slate-200"
+                  }`}>
+                    {row.status === "active" ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+            ]}
+            mobileActions={(row: any) => (
+              <>
+                <Link href={`/orders/${row.id}`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Chi tiết</Link>
+                <Link href={`/orders/${row.id}/edit`} className="rounded-2xl bg-white/5 px-4 py-3 text-sm text-slate-200">Sửa</Link>
+              </>
+            )}
+            emptyState="Không có đơn hàng phù hợp bộ lọc."
+          />
           <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-sm text-slate-300">
             <div>
               Trang {page} / {getPageCount(Number(orders.count ?? 0), pageSize)}

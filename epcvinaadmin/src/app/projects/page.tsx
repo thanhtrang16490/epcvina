@@ -1,5 +1,6 @@
 import { AdminShell } from "@/components/AdminShell";
 import { SectionTitle } from "@/components/SectionTitle";
+import { ResponsiveTable } from "@/components/ResponsiveTable";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
@@ -76,71 +77,82 @@ export default async function ProjectsPage({ searchParams }: { searchParams?: Pr
         ) : null}
 
         <section className="rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">
-          <div className="overflow-hidden rounded-[1.5rem] border border-[color:var(--border)]">
-            <table className="min-w-full divide-y divide-[color:var(--border)] text-left text-sm">
-              <thead className="bg-[color:var(--bg-elevated)] text-[color:var(--muted)]">
-                <tr>
-                  <th className="px-4 py-3 font-medium">Dự án</th>
-                  <th className="px-4 py-3 font-medium">Khách hàng</th>
-                  <th className="px-4 py-3 font-medium">Đơn hàng</th>
-                  <th className="px-4 py-3 font-medium">Địa chỉ</th>
-                  <th className="px-4 py-3 font-medium">Trạng thái</th>
-                  <th className="px-4 py-3 font-medium">Hành động</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[color:var(--border)]">
-                {(projects.data ?? []).map((row: any) => {
-                  const customer = (customers.data ?? []).find((c: any) => c.id === row.customer_id);
+          <ResponsiveTable
+            rows={projects.data ?? []}
+            getRowKey={(row: any) => row.id}
+            columns={[
+              {
+                header: "Dự án",
+                render: (row: any) => (
+                  <div>
+                    <div className="font-medium">{row.name}</div>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">{row.slug}</span>
+                      {row.code ? <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">{row.code}</span> : null}
+                    </div>
+                  </div>
+                ),
+              },
+              { header: "Khách hàng", render: (row: any) => (customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name || "-" },
+              {
+                header: "Đơn hàng",
+                render: (row: any) => {
                   const order = (orders.data ?? []).find((item: any) => item.project_id === row.id);
                   return (
-                    <tr key={row.id} className="bg-[color:var(--panel)]/70 text-[color:var(--text)]">
-                      <td className="px-4 py-3 align-top">
-                        <div className="font-medium">{row.name}</div>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                            {row.slug}
-                          </span>
-                          {row.code ? (
-                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-[color:var(--muted)]">
-                              {row.code}
-                            </span>
-                          ) : null}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">{customer?.name || "-"}</td>
-                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">
-                        <div>{order?.order_no || order?.slug || "-"}</div>
-                        <div className="mt-1 text-xs">{order ? `${Number(order.total ?? 0).toLocaleString("vi-VN")} đ` : ""}</div>
-                      </td>
-                      <td className="px-4 py-3 align-top text-[color:var(--muted)]">{row.address || "-"}</td>
-                      <td className="px-4 py-3 align-top">
-                        <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${statusChip(row.status)}`}>
-                          {row.status === "active" ? "Active" : "Inactive"}
-                        </span>
-                      </td>
-                      <td className="px-4 py-3 align-top">
-                        <div className="flex gap-2">
-                          <Link href={`/projects/${row.id}`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">
-                            Chi tiết
-                          </Link>
-                          <Link href={`/projects/${row.id}/edit`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">
-                            Sửa
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
+                    <div>
+                      <div>{order?.order_no || order?.slug || "-"}</div>
+                      <div className="mt-1 text-xs">{order ? `${Number(order.total ?? 0).toLocaleString("vi-VN")} đ` : ""}</div>
+                    </div>
                   );
-                })}
-                {!(projects.data ?? []).length ? (
-                  <tr>
-                    <td colSpan={6} className="px-4 py-8 text-sm text-[color:var(--muted)]">
-                      Chưa có dự án.
-                    </td>
-                  </tr>
-                ) : null}
-              </tbody>
-            </table>
-          </div>
+                },
+              },
+              { header: "Địa chỉ", render: (row: any) => row.address || "-" },
+              {
+                header: "Trạng thái",
+                render: (row: any) => (
+                  <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${statusChip(row.status)}`}>
+                    {row.status === "active" ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+              {
+                header: "Hành động",
+                render: (row: any) => (
+                  <div className="flex gap-2">
+                    <Link href={`/projects/${row.id}`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Chi tiết</Link>
+                    <Link href={`/projects/${row.id}/edit`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</Link>
+                  </div>
+                ),
+              },
+            ]}
+            mobileTitle={(row: any) => row.name}
+            mobileSummary={(row: any) => (customers.data ?? []).find((c: any) => c.id === row.customer_id)?.name || "-"}
+            mobileDetails={[
+              {
+                label: "Đơn hàng",
+                render: (row: any) => {
+                  const order = (orders.data ?? []).find((item: any) => item.project_id === row.id);
+                  return order?.order_no || order?.slug || "-";
+                },
+              },
+              { label: "Địa chỉ", render: (row: any) => row.address || "-" },
+              {
+                label: "Trạng thái",
+                render: (row: any) => (
+                  <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${statusChip(row.status)}`}>
+                    {row.status === "active" ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+            ]}
+            mobileActions={(row: any) => (
+              <>
+                <Link href={`/projects/${row.id}`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Chi tiết</Link>
+                <Link href={`/projects/${row.id}/edit`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</Link>
+              </>
+            )}
+            emptyState="Chưa có dự án."
+          />
           <div className="mt-4 text-sm text-[color:var(--muted)]">Trang {page} / {getPageCount(Number(projects.count ?? 0), pageSize)}</div>
         </section>
       </main>

@@ -5,6 +5,7 @@ import { referenceDataTags } from "@/lib/reference-data";
 import { AdminShell } from "@/components/AdminShell";
 import { CrudFilterBar } from "@/components/CrudFilterBar";
 import { ModalShell } from "@/components/ModalShell";
+import { ResponsiveTable } from "@/components/ResponsiveTable";
 import { SectionTitle } from "@/components/SectionTitle";
 import { SlugField } from "@/components/SlugField";
 import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
@@ -145,98 +146,147 @@ export default async function DiscountsPage({
         </div>
 
         <section className="mt-4 rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-6">
-          <div className="overflow-hidden rounded-[1.5rem] border border-[color:var(--border)]">
-            <table className="min-w-full divide-y divide-[color:var(--border)] text-left text-sm">
-              <thead className="bg-[color:var(--bg-elevated)] text-[color:var(--muted)]">
-                <tr>
-                  <th className="px-4 py-3 font-medium">Tên</th>
-                  <th className="px-4 py-3 font-medium">Loại</th>
-                  <th className="px-4 py-3 font-medium">Giá trị</th>
-                  <th className="px-4 py-3 font-medium">Mô tả</th>
-                  <th className="px-4 py-3 font-medium">Trạng thái</th>
-                  <th className="px-4 py-3 font-medium">Hành động</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[color:var(--border)]">
-                {rows.map((row: any) => (
-                  <tr key={row.id} className="bg-[color:var(--panel)]/70 text-[color:var(--text)]">
-                    <td className="px-4 py-3 align-top">
-                      <div className="font-medium">{row.name}</div>
-                      <div className="mt-1 text-xs text-[color:var(--muted)]">{row.slug}</div>
-                    </td>
-                    <td className="px-4 py-3 align-top text-[color:var(--muted)]">{row.discount_type === "percent" ? "Phần trăm" : "Số tiền cố định"}</td>
-                    <td className="px-4 py-3 align-top text-[color:var(--muted)]">
-                      {row.discount_type === "percent" ? `${Number(row.value ?? 0)}%` : `${formatMoney(Number(row.value ?? 0))} đ`}
-                    </td>
-                    <td className="px-4 py-3 align-top text-[color:var(--muted)]">{row.description || "-"}</td>
-                    <td className="px-4 py-3 align-top">
-                      <span className={(row.is_active ? "border-emerald-400/30 bg-emerald-400/15 text-emerald-700" : "border-slate-400/30 bg-slate-400/15 text-slate-700") + " rounded-full border px-2.5 py-1 text-[10px] font-medium"}>
-                        {row.is_active ? "Active" : "Inactive"}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 align-top">
-                      <ModalShell
-                        trigger={<span className="mr-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</span>}
-                        title={`Sửa chiết khấu: ${row.name}`}
-                        description="Cập nhật rule chiết khấu."
-                      >
-                        <form action={updateDiscount} className="grid gap-3">
-                          <input type="hidden" name="id" value={row.id} />
-                          <SlugField name="name" label="Tên chiết khấu" defaultValue={row.name} defaultSlug={row.slug} />
-                          <div className="grid gap-3 md:grid-cols-2">
-                            <label className="grid gap-2">
-                              <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Loại</span>
-                              <select name="discount_type" defaultValue={row.discount_type ?? "fixed"} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
-                                <option value="fixed">Số tiền cố định</option>
-                                <option value="percent">Phần trăm</option>
-                              </select>
-                            </label>
-                            <label className="grid gap-2">
-                              <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Giá trị</span>
-                              <input name="value" type="number" step="0.01" defaultValue={row.value ?? 0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                            </label>
-                          </div>
-                          <label className="grid gap-2">
-                            <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Mô tả</span>
-                            <textarea name="description" rows={3} defaultValue={row.description ?? ""} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                          </label>
-                          <div className="grid gap-3 md:grid-cols-2">
-                            <label className="grid gap-2">
-                              <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Trạng thái</span>
-                              <select name="is_active" defaultValue={row.is_active ? "true" : "false"} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
-                                <option value="true">Active</option>
-                                <option value="false">Inactive</option>
-                              </select>
-                            </label>
-                            <label className="grid gap-2">
-                              <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Thứ tự</span>
-                              <input name="sort_order" type="number" defaultValue={row.sort_order ?? 0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
-                            </label>
-                          </div>
-                          <button type="submit" className="rounded-2xl bg-[color:var(--accent)] px-4 py-3 font-medium text-white">
-                            Lưu
-                          </button>
-                        </form>
-                      </ModalShell>
-                      <form action={deleteDiscount} className="inline">
+          <ResponsiveTable
+            rows={rows}
+            getRowKey={(row: any) => row.id}
+            columns={[
+              {
+                header: "Tên",
+                render: (row: any) => (
+                  <div>
+                    <div className="font-medium">{row.name}</div>
+                    <div className="mt-1 text-xs text-[color:var(--muted)]">{row.slug}</div>
+                  </div>
+                ),
+              },
+              { header: "Loại", render: (row: any) => (row.discount_type === "percent" ? "Phần trăm" : "Số tiền cố định") },
+              { header: "Giá trị", render: (row: any) => (row.discount_type === "percent" ? `${Number(row.value ?? 0)}%` : `${formatMoney(Number(row.value ?? 0))} đ`) },
+              { header: "Mô tả", render: (row: any) => row.description || "-" },
+              {
+                header: "Trạng thái",
+                render: (row: any) => (
+                  <span className={(row.is_active ? "border-emerald-400/30 bg-emerald-400/15 text-emerald-700" : "border-slate-400/30 bg-slate-400/15 text-slate-700") + " rounded-full border px-2.5 py-1 text-[10px] font-medium"}>
+                    {row.is_active ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+              {
+                header: "Hành động",
+                render: (row: any) => (
+                  <>
+                    <ModalShell
+                      trigger={<span className="mr-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</span>}
+                      title={`Sửa chiết khấu: ${row.name}`}
+                      description="Cập nhật rule chiết khấu."
+                    >
+                      <form action={updateDiscount} className="grid gap-3">
                         <input type="hidden" name="id" value={row.id} />
-                        <button type="submit" className="rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-700">
-                          Xóa
-                        </button>
+                        <SlugField name="name" label="Tên chiết khấu" defaultValue={row.name} defaultSlug={row.slug} />
+                        <div className="grid gap-3 md:grid-cols-2">
+                          <label className="grid gap-2">
+                            <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Loại</span>
+                            <select name="discount_type" defaultValue={row.discount_type ?? "fixed"} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+                              <option value="fixed">Số tiền cố định</option>
+                              <option value="percent">Phần trăm</option>
+                            </select>
+                          </label>
+                          <label className="grid gap-2">
+                            <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Giá trị</span>
+                            <input name="value" type="number" step="0.01" defaultValue={row.value ?? 0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                          </label>
+                        </div>
+                        <label className="grid gap-2">
+                          <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Mô tả</span>
+                          <textarea name="description" rows={3} defaultValue={row.description ?? ""} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                        </label>
+                        <div className="grid gap-3 md:grid-cols-2">
+                          <label className="grid gap-2">
+                            <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Trạng thái</span>
+                            <select name="is_active" defaultValue={row.is_active ? "true" : "false"} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+                              <option value="true">Active</option>
+                              <option value="false">Inactive</option>
+                            </select>
+                          </label>
+                          <label className="grid gap-2">
+                            <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Thứ tự</span>
+                            <input name="sort_order" type="number" defaultValue={row.sort_order ?? 0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                          </label>
+                        </div>
+                        <button type="submit" className="rounded-2xl bg-[color:var(--accent)] px-4 py-3 font-medium text-white">Lưu</button>
                       </form>
-                    </td>
-                  </tr>
-                ))}
-                {!rows.length ? (
-                  <tr>
-                    <td colSpan={6} className="px-4 py-8 text-sm text-[color:var(--muted)]">
-                      Chưa có chiết khấu nào.
-                    </td>
-                  </tr>
-                ) : null}
-              </tbody>
-            </table>
-          </div>
+                    </ModalShell>
+                    <form action={deleteDiscount} className="inline">
+                      <input type="hidden" name="id" value={row.id} />
+                      <button type="submit" className="rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-700">Xóa</button>
+                    </form>
+                  </>
+                ),
+              },
+            ]}
+            mobileTitle={(row: any) => row.name}
+            mobileSummary={(row: any) => `${row.discount_type === "percent" ? "Phần trăm" : "Số tiền cố định"} · ${row.discount_type === "percent" ? `${Number(row.value ?? 0)}%` : `${formatMoney(Number(row.value ?? 0))} đ`}`}
+            mobileDetails={[
+              { label: "Mô tả", render: (row: any) => row.description || "-" },
+              {
+                label: "Trạng thái",
+                render: (row: any) => (
+                  <span className={(row.is_active ? "border-emerald-400/30 bg-emerald-400/15 text-emerald-700" : "border-slate-400/30 bg-slate-400/15 text-slate-700") + " rounded-full border px-2.5 py-1 text-[10px] font-medium"}>
+                    {row.is_active ? "Active" : "Inactive"}
+                  </span>
+                ),
+              },
+            ]}
+            mobileActions={(row: any) => (
+              <>
+                <ModalShell
+                  trigger={<span className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-sm text-[color:var(--text)]">Sửa</span>}
+                  title={`Sửa chiết khấu: ${row.name}`}
+                  description="Cập nhật rule chiết khấu."
+                >
+                  <form action={updateDiscount} className="grid gap-3">
+                    <input type="hidden" name="id" value={row.id} />
+                    <SlugField name="name" label="Tên chiết khấu" defaultValue={row.name} defaultSlug={row.slug} />
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <label className="grid gap-2">
+                        <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Loại</span>
+                        <select name="discount_type" defaultValue={row.discount_type ?? "fixed"} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+                          <option value="fixed">Số tiền cố định</option>
+                          <option value="percent">Phần trăm</option>
+                        </select>
+                      </label>
+                      <label className="grid gap-2">
+                        <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Giá trị</span>
+                        <input name="value" type="number" step="0.01" defaultValue={row.value ?? 0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      </label>
+                    </div>
+                    <label className="grid gap-2">
+                      <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Mô tả</span>
+                      <textarea name="description" rows={3} defaultValue={row.description ?? ""} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                    </label>
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <label className="grid gap-2">
+                        <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Trạng thái</span>
+                        <select name="is_active" defaultValue={row.is_active ? "true" : "false"} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white">
+                          <option value="true">Active</option>
+                          <option value="false">Inactive</option>
+                        </select>
+                      </label>
+                      <label className="grid gap-2">
+                        <span className="text-xs uppercase tracking-[0.24em] text-slate-400">Thứ tự</span>
+                        <input name="sort_order" type="number" defaultValue={row.sort_order ?? 0} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white" />
+                      </label>
+                    </div>
+                    <button type="submit" className="rounded-2xl bg-[color:var(--accent)] px-4 py-3 font-medium text-white">Lưu</button>
+                  </form>
+                </ModalShell>
+                <form action={deleteDiscount} className="inline">
+                  <input type="hidden" name="id" value={row.id} />
+                  <button type="submit" className="rounded-2xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-700">Xóa</button>
+                </form>
+              </>
+            )}
+            emptyState="Chưa có chiết khấu nào."
+          />
           <div className="mt-4 flex items-center justify-between gap-3 text-sm text-[color:var(--muted)]">
             <span>Trang {page} / {getPageCount(Number(rowsRes.count ?? 0), pageSize)}</span>
             <div className="flex gap-2">
