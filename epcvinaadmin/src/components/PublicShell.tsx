@@ -1,12 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import type { ReactNode } from "react";
 import { ThemeLinkButton } from "@/components/ui/ThemeButton";
 
 export function PublicShell({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const root = document.documentElement;
+    const previousTheme = root.dataset.theme;
+    const previousColorScheme = root.style.colorScheme;
+    root.dataset.theme = "light";
+    root.style.colorScheme = "light";
+    return () => {
+      if (previousTheme) root.dataset.theme = previousTheme;
+      else delete root.dataset.theme;
+      root.style.colorScheme = previousColorScheme;
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,138,61,0.14),transparent_28%),linear-gradient(180deg,var(--bg),var(--bg-elevated))] text-[color:var(--text)]">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(255,90,31,0.1),transparent_28%),linear-gradient(180deg,var(--bg),var(--bg-elevated))] text-[color:var(--text)]">
       <header className="sticky top-0 z-30 border-b border-[color:var(--border)] bg-[color:var(--panel)]/92 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-0">
           <Link href="/" className="text-sm font-semibold uppercase tracking-[0.26em] text-[color:var(--accent)]">

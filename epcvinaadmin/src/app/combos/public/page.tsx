@@ -1,7 +1,5 @@
 import { PublicShell } from "@/components/PublicShell";
-import { SectionTitle } from "@/components/SectionTitle";
 import { PublicComboCatalog } from "@/components/PublicComboCatalog";
-import { ThemeCard } from "@/components/ui/ThemeCard";
 import { ThemeLinkButton } from "@/components/ui/ThemeButton";
 import { getPricingSettings } from "@/lib/pricing-settings";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
@@ -34,62 +32,25 @@ export default async function PublicCombosPage() {
   return (
     <PublicShell>
       <div className="mx-auto max-w-7xl">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <SectionTitle
-            eyebrow="Public view"
-            title="Combo card theo style EPCVINA Solar"
-            description="Bố cục public-style để xem nhanh combo như trang bán hàng."
-          />
-          <div className="flex gap-2">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-4">
+          <div className="min-w-0">
+            <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Public view</div>
+            <h1 className="mt-1 text-2xl font-semibold text-[color:var(--text)] md:text-3xl">Combo card public</h1>
+            <p className="mt-1 max-w-2xl text-sm text-[color:var(--muted)]">
+              Bố cục public để xem nhanh combo theo kiểu catalog, đồng bộ với trang sản phẩm public.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
             <ThemeLinkButton href="/products/public" tone="secondary">
               Product public
             </ThemeLinkButton>
-          </div>
-        </div>
-
-        <ThemeCard tone="hero" className="relative overflow-hidden p-6 md:p-10">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-0 right-0 h-72 w-72 translate-x-1/3 -translate-y-1/3 rounded-full bg-orange-400/20" />
-            <div className="absolute bottom-0 left-0 h-56 w-56 -translate-x-1/4 translate-y-1/4 rounded-full bg-cyan-400/10" />
-          </div>
-
-          <div className="relative flex flex-wrap items-center justify-between gap-4">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs uppercase tracking-[0.28em] text-cyan-100">
-              <span className="text-sm">☀</span>
-              EPCVINA Combo Card
-            </div>
-            <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+            <span className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--muted)]">
               Nguồn: {supabase ? "Supabase" : "Empty"}
-            </div>
+            </span>
           </div>
-
-          <div className="relative mt-8 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <div className="text-sm text-slate-400">Tổng combo</div>
-              <div className="mt-1 text-3xl font-semibold text-white">{normalizedCombos.length}</div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <div className="text-sm text-slate-400">Đang active</div>
-              <div className="mt-1 text-3xl font-semibold text-white">{normalizedCombos.filter((combo) => combo.is_active).length}</div>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <div className="text-sm text-slate-400">Chuẩn public</div>
-              <div className="mt-1 text-3xl font-semibold text-white">Card</div>
-            </div>
-          </div>
-        </ThemeCard>
-
-        <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          {normalizedCombos.slice(0, 4).map((combo) => (
-            <ThemeCard key={combo.id} className="p-4">
-              <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">{combo.combo_type === "custom" ? "Tuỳ biến" : "Chuẩn"}</div>
-              <div className="mt-2 text-base font-semibold text-[color:var(--text)]">{combo.name}</div>
-              <div className="mt-1 text-xs text-[color:var(--muted)]">{combo.code}</div>
-            </ThemeCard>
-          ))}
         </div>
 
-        <div className="mt-8">
+        <div className="mt-2">
           <PublicComboCatalog combos={normalizedCombos} pricingSettings={pricingSettings} />
         </div>
       </div>
