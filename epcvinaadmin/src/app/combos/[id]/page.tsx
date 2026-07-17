@@ -115,14 +115,9 @@ export default async function ComboShowPage({ params }: Props) {
   const comboItems = supabase
     ? ((await supabase
         .from("combo_items")
-        .select("id, combo_id, product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, note, product:products(id, name, brand, category, cover_image_url, image_urls, technical_specs)")
+        .select("id, combo_id, product_id, reference_product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, notes, sheet_group, gross_margin, warranty")
         .eq("combo_id", id)
-        .order("sort_order", { ascending: true })).data ?? []).map(
-        (row: any) => ({
-          ...normalizeComboItem(row),
-          product: row.product ?? null,
-        }),
-      ) as ComboItemRow[]
+        .order("sort_order", { ascending: true })).data ?? []).map((row: any) => normalizeComboItem(row) as ComboItemRow)
     : [];
   const areaM2 = getComboAreaM2(comboItems);
   const groupedItems = comboItems.reduce<Record<string, ComboItemRow[]>>((acc, item) => {
@@ -298,7 +293,11 @@ export default async function ComboShowPage({ params }: Props) {
         </ThemeCard>
 
         <ThemeCard className="mt-6 p-6">
-          <SectionTitle eyebrow="BOM" title="Combo items" description="Hiển thị trực tiếp vật tư cấu thành combo ngay tại trang chi tiết." />
+          <SectionTitle
+            eyebrow="BOM"
+            title="Bản kê chi tiết vật tư"
+            description="Bản kê chi tiết vật tư dựa theo excel BOM đã làm trước đó."
+          />
           <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
             {groupedSummary.map((group) => (
               <div key={group.label} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-4">
@@ -310,7 +309,7 @@ export default async function ComboShowPage({ params }: Props) {
           </div>
           {laborSummary ? (
             <div className="mt-4 rounded-2xl border border-orange-400/30 bg-orange-400/10 p-4">
-              <div className="text-xs uppercase tracking-[0.24em] text-orange-200">Chi phí nhân công theo sheet</div>
+              <div className="text-xs uppercase tracking-[0.24em] text-orange-200">Theo Excel BOM</div>
               <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
                 <div className="text-sm text-white/90">Khoản nhân công lắp đặt đã được tách riêng khỏi BOM vật tư.</div>
                 <div className="text-xl font-semibold text-white">{formatVND(laborSummary.total)}</div>

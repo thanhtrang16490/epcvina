@@ -6,6 +6,7 @@ import { getDisplayedComboPrice } from "@/lib/combo-price";
 import { buildComboFinance, round2 } from "@/lib/combo-finance";
 import { formatMoneyVnd } from "@/lib/money-format";
 import { getPricingSettings } from "@/lib/pricing-settings";
+import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { normalizeCombo, normalizeComboItem } from "@/lib/supabase/normalize";
 import { notFound } from "next/navigation";
@@ -27,6 +28,16 @@ type ComboItemRow = ReturnType<typeof normalizeComboItem> & {
     image_urls?: string[];
     technical_specs?: unknown;
   } | null;
+};
+
+type PublicProductRow = {
+  id: string;
+  name?: string;
+  brand?: string;
+  category?: string;
+  cover_image_url?: string;
+  image_urls?: string[];
+  technical_specs?: unknown;
 };
 
 function getGroupLabel(item: ComboItemRow) {
@@ -68,6 +79,10 @@ function getCustomPrice(item: ComboItemRow) {
 
 function getReferencePrice(item: ComboItemRow) {
   return Number(item.total_cost_price || item.cost_price * item.quantity || 0);
+}
+
+function getItemTitle(item: ComboItemRow) {
+  return item.product?.name?.trim() || item.item_name || "Vật tư";
 }
 
 function getDisplayedMaterialPrice(item: ComboItemRow) {
@@ -117,10 +132,11 @@ function FeatureRow({ label, value }: { label: string; value: string }) {
 export default async function PublicComboDetailPage({ params }: Props) {
   const { id } = await params;
   const supabase = await createSupabaseServerClient();
+  const publicClient = createSupabaseAdminClient() ?? supabase;
   const pricingSettings = await getPricingSettings(supabase);
-  const data = supabase
+  const data = publicClient
     ? (normalizeCombo(
-        (await supabase
+        (await publicClient
           .from("combos")
           .select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls")
           .eq("id", id)
@@ -149,21 +165,56 @@ export default async function PublicComboDetailPage({ params }: Props) {
     pricingSettings,
   }).paybackYears;
 
-  const comboItems = supabase
-    ? ((await supabase
+  const comboItems = publicClient
+    ? ((await publicClient
         .from("combo_items")
-        .select("id, combo_id, product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, note, product:products(id, name, brand, category, cover_image_url, image_urls, technical_specs)")
+        .select("id, combo_id, product_id, reference_product_id, category, item_name, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, sheet_group, gross_margin, warranty, notes")
         .eq("combo_id", id)
-        .order("sort_order", { ascending: true })).data ?? []).map(
-        (row: any) => ({
-          ...normalizeComboItem(row),
-          product: row.product ?? null,
-        }),
-      ) as ComboItemRow[]
+        .order("sort_order", { ascending: true })).data ?? []).map((row: any) => normalizeComboItem(row) as ComboItemRow)
     : [];
-  const areaM2 = getComboAreaM2(comboItems);
 
-  const publicItems = comboItems.filter((item) => item.quantity > 0 || Number(item.total_price_vat ?? 0) > 0 || Number(item.total_cost_price ?? 0) > 0);
+  const productIds = Array.from(
+    new Set(
+      comboItems.flatMap((item) =>
+        [item.product_id, item.reference_product_id]
+          .filter(Boolean)
+          .map((value) => String(value)),
+      ),
+    ),
+  );
+  const productsById = new Map<string, PublicProductRow>();
+  if (publicClient && productIds.length > 0) {
+    const { data: products } = await publicClient
+      .from("products")
+      .select("id, name, brand, category, cover_image_url, image_urls, technical_specs")
+      .in("id", productIds);
+    (products ?? []).forEach((product: any) => {
+      productsById.set(String(product.id), {
+        id: String(product.id),
+        name: product.name ?? "",
+        brand: product.brand ?? "",
+        category: product.category ?? "",
+        cover_image_url: product.cover_image_url ?? "",
+        image_urls: Array.isArray(product.image_urls) ? product.image_urls : [],
+        technical_specs: product.technical_specs ?? null,
+      });
+    });
+  }
+
+  const comboItemsWithProduct = comboItems.map((item) => {
+    const ref = item.product_id ? productsById.get(String(item.product_id)) : item.reference_product_id ? productsById.get(String(item.reference_product_id)) : null;
+    return {
+      ...item,
+      product: ref ?? null,
+      item_name: ref?.name?.trim() || item.item_name,
+      category: ref?.category?.trim() || item.category,
+      brand: ref?.brand?.trim() || item.brand,
+    };
+  });
+
+  const areaM2 = getComboAreaM2(comboItemsWithProduct);
+
+  const publicItems = comboItemsWithProduct.filter((item) => item.quantity > 0 || Number(item.total_price_vat ?? 0) > 0 || Number(item.total_cost_price ?? 0) > 0);
   const groupedItems = publicItems.reduce<Record<string, ComboItemRow[]>>((acc, item) => {
     const key = getGroupLabel(item);
     if (!acc[key]) acc[key] = [];
@@ -336,16 +387,77 @@ export default async function PublicComboDetailPage({ params }: Props) {
         </ThemeCard>
 
         <ThemeCard id="bom" className="p-6">
-          <SectionTitle eyebrow="BOM" title="Bản kê chi tiết vật tư" description="Các nhóm phụ được gộp gọn; nhóm chính vẫn hiển thị theo từng món như EPCVINA." />
+          <div className="mb-5 flex flex-wrap items-start justify-between gap-3 border-b border-[color:var(--border)] pb-4">
+            <SectionTitle
+              eyebrow="BOM"
+              title="Bản kê chi tiết vật tư"
+              description="Bản kê chi tiết vật tư dựa theo excel BOM đã làm trước đó."
+            />
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1 text-xs font-medium text-[color:var(--muted)]">
+                Excel BOM
+              </span>
+              <span className="inline-flex items-center rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1 text-xs font-medium text-[color:var(--muted)]">
+                Đồng bộ từ combo_items
+              </span>
+            </div>
+          </div>
           {laborGroup ? (
             <div className="mt-5 rounded-[1.2rem] border border-orange-400/30 bg-orange-400/10 p-4">
-              <div className="text-xs uppercase tracking-[0.24em] text-orange-200">Chi phí nhân công theo sheet</div>
+              <div className="text-xs uppercase tracking-[0.24em] text-orange-200">Theo Excel BOM</div>
               <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
                 <div className="text-sm text-white/90">Khoản nhân công lắp đặt được tách riêng khỏi BOM phụ.</div>
                 <div className="text-xl font-semibold text-white">{formatMoneyVnd(laborGroup.total)}</div>
               </div>
             </div>
           ) : null}
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+              <div className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--muted)]">Nhóm chính</div>
+              <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{mainDevices.length}</div>
+            </div>
+            <div className="rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+              <div className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--muted)]">Nhóm phụ</div>
+              <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{accessoryGroups.length}</div>
+            </div>
+            <div className="rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+              <div className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--muted)]">Tổng nhóm</div>
+              <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{displayGroups.length}</div>
+            </div>
+            <div className="rounded-[1.2rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+              <div className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--muted)]">Nguồn</div>
+              <div className="mt-2 text-lg font-semibold text-[color:var(--text)]">Excel BOM</div>
+            </div>
+          </div>
+
+          <div className="mt-5 overflow-hidden rounded-[1.2rem] border border-[color:var(--border)]">
+            <div className="grid grid-cols-[minmax(0,1.6fr)_minmax(0,1.4fr)_90px_110px_120px] gap-3 bg-[color:var(--panel)] px-4 py-3 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--muted)]">
+              <div>Vật tư</div>
+              <div>Tham chiếu</div>
+              <div className="text-right">SL</div>
+              <div className="text-right">Đơn giá</div>
+              <div className="text-right">Thành tiền</div>
+            </div>
+            <div className="divide-y divide-[color:var(--border)] bg-[color:var(--bg-elevated)]">
+              {comboItemsWithProduct.length > 0 ? (
+                comboItemsWithProduct.map((item) => (
+                  <div key={item.id} className="grid grid-cols-[minmax(0,1.6fr)_minmax(0,1.4fr)_90px_110px_120px] gap-3 px-4 py-3">
+                    <div className="min-w-0">
+                      <div className="truncate text-sm font-medium text-[color:var(--text)]">{getItemTitle(item)}</div>
+                      <div className="mt-1 text-xs text-[color:var(--muted)]">{item.category || "Vật tư"}</div>
+                    </div>
+                    <div className="min-w-0 text-sm text-[color:var(--text)]">{getReferenceLabel(item)}</div>
+                    <div className="text-right text-sm text-[color:var(--text)]">x{item.quantity}</div>
+                    <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(Number(item.unit_price_vat ?? 0))}</div>
+                    <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
+                  </div>
+                ))
+              ) : (
+                <div className="px-4 py-6 text-sm text-[color:var(--muted)]">Chưa có dòng Excel BOM.</div>
+              )}
+            </div>
+          </div>
+
           <div className="mt-5 space-y-4">
             {displayGroups.length > 0 ? (
               displayGroups.map((group) => {
@@ -356,7 +468,7 @@ export default async function PublicComboDetailPage({ params }: Props) {
                       <div>
                         <div className="text-sm font-semibold text-[color:var(--text)]">{group.label}</div>
                         <div className="mt-1 text-xs text-[color:var(--muted)]">
-                      {group.label === "Nhân công lắp đặt"
+                          {group.label === "Nhân công lắp đặt"
                             ? "1 khoản chi phí theo sheet"
                             : group.primary
                               ? `${group.items.length} vật tư`
@@ -370,42 +482,54 @@ export default async function PublicComboDetailPage({ params }: Props) {
                     </summary>
 
                     <div className="mt-4 overflow-hidden rounded-[1.2rem] border border-[color:var(--border)]">
-                      <div className="grid grid-cols-[minmax(0,1fr)_72px_140px] gap-3 bg-[color:var(--panel)] px-4 py-3 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--muted)]">
-                        <div>Tên vật tư</div>
+                      <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.5fr)_110px_90px_120px_120px] gap-3 bg-[color:var(--panel)] px-4 py-3 text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--muted)]">
+                        <div>Vật tư</div>
+                        <div>Tham chiếu</div>
                         <div className="text-right">SL</div>
+                        <div className="text-right">Đơn giá</div>
                         <div className="text-right">Thành tiền</div>
+                        <div className="text-right">Ghi chú</div>
                       </div>
                       <div className="divide-y divide-[color:var(--border)]">
                         {group.primary ? (
                           group.items.map((item) => (
-                            <div key={item.id} className="grid grid-cols-[minmax(0,1fr)_72px_140px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
+                            <div key={item.id} className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.5fr)_110px_90px_120px_120px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
                               <div className="min-w-0">
                                 <div className="truncate text-sm font-medium text-[color:var(--text)]">{item.item_name}</div>
                                 <div className="mt-1 text-xs text-[color:var(--muted)]">{getReferenceLabel(item)}</div>
                               </div>
+                              <div className="min-w-0 text-sm text-[color:var(--text)]">{item.brand || "-"}</div>
                               <div className="text-right text-sm text-[color:var(--text)]">x{item.quantity}</div>
+                              <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(Number(item.unit_price_vat ?? 0))}</div>
                               <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
+                              <div className="min-w-0 text-right text-xs text-[color:var(--muted)]">{item.notes || "-"}</div>
                             </div>
                           ))
                         ) : group.label === "Chi phí nhân công" ? (
                           group.items.map((item) => (
-                            <div key={item.id} className="grid grid-cols-[minmax(0,1fr)_72px_140px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
+                            <div key={item.id} className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.5fr)_110px_90px_120px_120px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
                               <div className="min-w-0">
                                 <div className="truncate text-sm font-medium text-[color:var(--text)]">{item.item_name || "Chi phí nhân công"}</div>
                                 <div className="mt-1 text-xs text-[color:var(--muted)]">{getReferenceLabel(item)}</div>
                               </div>
+                              <div className="min-w-0 text-sm text-[color:var(--text)]">{item.brand || "-"}</div>
                               <div className="text-right text-sm text-[color:var(--text)]">1</div>
+                              <div className="text-right text-sm text-[color:var(--text)]">{formatMoneyVnd(Number(item.unit_price_vat ?? 0))}</div>
                               <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(getCustomPrice(item))}</div>
+                              <div className="min-w-0 text-right text-xs text-[color:var(--muted)]">{item.notes || "-"}</div>
                             </div>
                           ))
                         ) : (
-                          <div className="grid grid-cols-[minmax(0,1fr)_72px_140px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
+                          <div className="grid grid-cols-[minmax(0,1.5fr)_minmax(0,1.5fr)_110px_90px_120px_120px] gap-3 bg-[color:var(--bg-elevated)] px-4 py-3">
                             <div className="min-w-0">
                               <div className="truncate text-sm font-medium text-[color:var(--text)]">{group.label}</div>
                               <div className="mt-1 text-xs text-[color:var(--muted)]">Gộp nhiều vật tư phụ trong cùng nhóm</div>
                             </div>
+                            <div className="min-w-0 text-sm text-[color:var(--text)]">-</div>
                             <div className="text-right text-sm text-[color:var(--text)]">x1</div>
+                            <div className="text-right text-sm text-[color:var(--text)]">-</div>
                             <div className="text-right text-sm font-medium text-[color:var(--text)]">{formatMoneyVnd(group.total)}</div>
+                            <div className="min-w-0 text-right text-xs text-[color:var(--muted)]">Nhóm gộp</div>
                           </div>
                         )}
                       </div>
