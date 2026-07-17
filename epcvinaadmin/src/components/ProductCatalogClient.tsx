@@ -17,6 +17,8 @@ type Product = {
   cost_price: number;
   warranty: string;
   description: string;
+  cover_image_url?: string;
+  image_urls?: string[];
 };
 
 type Props = {
@@ -41,7 +43,7 @@ function ProductFallbackArt({ label }: { label: string }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_rgba(56,189,248,0.18),transparent_30%)]" />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/18 bg-white/10 p-4 shadow-2xl backdrop-blur-sm">
-          <img src="/brands/epcvina-solar.png" alt={label} className="h-full w-full object-contain" />
+          <img src="/logo-epcvina-solar-white.png" alt={label} className="h-full w-full object-contain" />
         </div>
       </div>
       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between px-4 pb-4 text-[10px] uppercase tracking-[0.24em] text-white/70">
@@ -104,6 +106,10 @@ export function ProductCatalogClient({ products }: Props) {
       .slice(0, 6);
   }, [products]);
 
+  function getProductImage(product: Product) {
+    return product.cover_image_url || product.image_urls?.[0] || "";
+  }
+
   return (
     <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
       <aside className="space-y-4 lg:sticky lg:top-24 lg:h-fit">
@@ -165,7 +171,7 @@ export function ProductCatalogClient({ products }: Props) {
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {filtered.map((product) => (
             <ThemeCard as="article" key={product.id} className="group overflow-hidden border-[color:var(--border)] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-              <div className="relative aspect-[4/3] overflow-hidden bg-[linear-gradient(135deg,rgba(8,18,33,0.95),rgba(10,26,45,0.82))]">
+              <div className="relative aspect-square overflow-hidden bg-[linear-gradient(135deg,rgba(8,18,33,0.95),rgba(10,26,45,0.82))]">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(251,146,60,0.18),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(59,130,246,0.14),_transparent_30%)]" />
                 <div className="absolute left-3 top-3 z-10 flex flex-col gap-2">
                   <span className="rounded-full bg-[color:var(--accent)] px-2.5 py-1 text-xs font-bold text-white backdrop-blur-sm">
@@ -175,7 +181,15 @@ export function ProductCatalogClient({ products }: Props) {
                     {product.brand}
                   </span>
                 </div>
-                <ProductFallbackArt label={product.name} />
+                {getProductImage(product) ? (
+                  <img
+                    src={getProductImage(product)}
+                    alt={product.name}
+                    className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <ProductFallbackArt label={product.name} />
+                )}
               </div>
 
               <div className="flex flex-col p-4">

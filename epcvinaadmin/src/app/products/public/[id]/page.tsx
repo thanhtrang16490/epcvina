@@ -16,7 +16,7 @@ type Props = {
 type ProductData = ReturnType<typeof normalizeProduct>;
 
 function getProductCover(product: ProductData & { cover_image_url?: string; image_urls?: string[] }) {
-  return product.cover_image_url || product.image_urls?.[0] || "";
+  return product.cover_image_url || product.image_urls?.[0] || "/sample-combo.jpg";
 }
 
 function getCategoryLabel(category: string) {
@@ -54,17 +54,11 @@ export default async function PublicProductDetailPage({ params }: Props) {
         <ThemeCard tone="hero" className="overflow-hidden p-0">
           <div className="grid gap-0 lg:grid-cols-[minmax(0,1.04fr)_minmax(0,0.96fr)]">
             <div className="p-4 md:p-6">
-              {getProductCover(product as typeof product & { cover_image_url?: string; image_urls?: string[] }) ? (
-                <img
-                  src={getProductCover(product as typeof product & { cover_image_url?: string; image_urls?: string[] })}
-                  alt={product.name}
-                  className="aspect-square w-full rounded-[1.5rem] object-cover"
-                />
-              ) : (
-                <div className="flex aspect-square items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 text-sm text-slate-300">
-                  Chưa có ảnh sản phẩm
-                </div>
-              )}
+              <img
+                src={getProductCover(product as typeof product & { cover_image_url?: string; image_urls?: string[] })}
+                alt={product.name}
+                className="aspect-square w-full rounded-[1.5rem] object-cover"
+              />
             </div>
             <div className="flex flex-col gap-5 p-5 md:p-8">
               <div className="flex flex-wrap items-center gap-2">

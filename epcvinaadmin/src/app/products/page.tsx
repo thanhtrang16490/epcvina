@@ -43,6 +43,10 @@ function statusChip(status?: string) {
   }
 }
 
+function toStatusLabel(isActive?: boolean) {
+  return isActive ? "active" : "inactive";
+}
+
 function thumbnailUrl(row: { cover_image_url?: string; image_urls?: string[] }) {
   return row.cover_image_url || row.image_urls?.[0] || "";
 }
@@ -89,7 +93,6 @@ async function createProduct(formData: FormData) {
     technical_specs: parseTechnicalSpecs(formData.get("technical_specs")),
     cover_image_url: coverImageUrl || uploadedUrls[0] || null,
     image_urls: [...new Set([...imageUrls, ...uploadedUrls])],
-    status: String(formData.get("status") ?? "inactive"),
     sort_order: Number(formData.get("sort_order") ?? 0),
     is_active: String(formData.get("status") ?? "inactive") === "active",
   });
@@ -133,7 +136,6 @@ async function updateProduct(formData: FormData) {
     technical_specs: parseTechnicalSpecs(formData.get("technical_specs")),
     cover_image_url: coverImageUrl || uploadedUrls[0] || null,
     image_urls: [...new Set([...imageUrls, ...uploadedUrls])],
-    status: String(formData.get("status") ?? "inactive"),
     sort_order: Number(formData.get("sort_order") ?? 0),
     is_active: String(formData.get("status") ?? "inactive") === "active",
   }).eq("id", id);
@@ -150,7 +152,6 @@ async function bulkUpdateProductStatus(formData: FormData) {
   const ids = formData.getAll("selected_ids").map(String).filter(Boolean);
   if (!ids.length) return;
   await supabase.from("products").update({
-    status,
     is_active: status === "active",
   }).in("id", ids);
   revalidatePath("/products");
@@ -181,7 +182,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
   let productsQuery = supabase
     ? supabase
         .from("products")
-        .select("id, slug, name, category_id, category, brand_id, brand, unit, quantity, sale_price_vat, cost_price, warranty, description, technical_specs, cover_image_url, image_urls, status, sort_order, is_active", {
+        .select("id, slug, name, category_id, category, brand_id, brand, unit, quantity, sale_price_vat, cost_price, warranty, description, technical_specs, cover_image_url, image_urls, sort_order, is_active", {
           count: "exact",
         })
         .order("sort_order", { ascending: true })
@@ -189,7 +190,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
   if (productsQuery) {
     if (brandFilter) productsQuery = productsQuery.eq("brand_id", brandFilter);
     if (categoryFilter) productsQuery = productsQuery.eq("category_id", categoryFilter);
-    if (statusFilter) productsQuery = productsQuery.eq("status", statusFilter);
+    if (statusFilter) productsQuery = productsQuery.eq("is_active", statusFilter === "active");
     if (query) productsQuery = productsQuery.or(`name.ilike.%${searchPattern}%,brand.ilike.%${searchPattern}%,category.ilike.%${searchPattern}%,slug.ilike.%${searchPattern}%`);
   }
   const rawProductsRes = productsQuery ? await productsQuery.range(start, end) : { data: [], count: 0 };
@@ -217,6 +218,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
           secondaryLinks={[
             { href: "/", label: "Dashboard" },
             { href: "/combos", label: "Combo" },
+            { href: "/debug/products-images", label: "Debug ảnh" },
           ]}
           filters={[
             {
@@ -317,20 +319,26 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                           <img
                             src={thumbnailUrl(product as typeof product & { cover_image_url?: string; image_urls?: string[] })}
                             alt={product.name}
-                            className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                            className="h-20 w-20 shrink-0 rounded-2xl object-cover shadow-sm"
                           />
                         ) : (
-                          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] text-[10px] text-[color:var(--muted)]">
+                          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] text-[10px] text-[color:var(--muted)]">
                             No img
                           </div>
                         )}
                         <div className="min-w-0 flex-1">
-                          <div className="truncate text-sm font-medium text-[color:var(--text)]">{product.name}</div>
+                          <Link
+                            href={`/products/${product.id}`}
+                            className="block truncate text-sm font-medium text-[color:var(--text)] transition hover:text-[color:var(--accent)]"
+                            title={`Xem chi tiết: ${product.name}`}
+                          >
+                            {product.name}
+                          </Link>
                           <div className="mt-1 flex flex-wrap gap-1.5 text-[10px] text-[color:var(--muted)]">
-                            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2 py-0.5">{product.slug}</span>
+                            <span className="max-w-[180px] truncate rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2 py-0.5">{product.slug}</span>
                             <span className={`rounded-full border px-2 py-0.5 font-medium ${typeChip(product)}`}>{product.category || "-"}</span>
-                            <span className={`rounded-full border px-2 py-0.5 font-medium ${statusChip((product as typeof product & { status?: string }).status)}`}>
-                              {(product as typeof product & { status?: string }).status === "active" ? "Active" : "Inactive"}
+                            <span className={`rounded-full border px-2 py-0.5 font-medium ${statusChip(toStatusLabel((product as typeof product & { is_active?: boolean }).is_active))}`}>
+                              {(product as typeof product & { is_active?: boolean }).is_active ? "Active" : "Inactive"}
                             </span>
                           </div>
                           <div className="mt-2 grid grid-cols-2 gap-2 text-[11px] text-[color:var(--muted)]">
@@ -378,7 +386,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                                 <textarea name="image_urls" rows={3} defaultValue={((product as typeof product & { image_urls?: string[] }).image_urls ?? []).join("\n")} placeholder="Các URL ảnh khác" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                                 <input name="images" type="file" multiple accept="image/*" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] file:mr-3 file:rounded-full file:border-0 file:bg-[color:var(--accent)] file:px-4 file:py-2 file:text-white" />
                                 <input name="warranty" defaultValue={product.warranty} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                                <select name="status" defaultValue={(product as typeof product & { status?: string }).status ?? "inactive"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
+                                <select name="status" defaultValue={(product as typeof product & { is_active?: boolean }).is_active ? "active" : "inactive"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                                   <option value="active">Active</option>
                                   <option value="inactive">Inactive</option>
                                 </select>
@@ -421,15 +429,21 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                               <img
                                 src={thumbnailUrl(product as typeof product & { cover_image_url?: string; image_urls?: string[] })}
                                 alt={product.name}
-                                className="h-12 w-12 rounded-xl object-cover"
+                                className="h-20 w-20 rounded-2xl object-cover shadow-sm"
                               />
                             ) : (
-                              <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] text-[10px] text-[color:var(--muted)]">No img</div>
+                              <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel-strong)] text-[10px] text-[color:var(--muted)]">No img</div>
                             )}
                             <div className="min-w-0">
-                              <div className="truncate font-medium text-[color:var(--text)]">{product.name}</div>
+                              <Link
+                                href={`/products/${product.id}`}
+                                className="block truncate font-medium text-[color:var(--text)] transition hover:text-[color:var(--accent)]"
+                                title={`Xem chi tiết: ${product.name}`}
+                              >
+                                {product.name}
+                              </Link>
                               <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-[color:var(--muted)]">
-                                <span className="whitespace-nowrap">{product.slug}</span>
+                                <span className="max-w-[220px] truncate whitespace-nowrap">{product.slug}</span>
                                 {(product as any).category_id ? (
                                   <Link
                                     href={`/product-categories/${(product as any).category_id}`}
@@ -464,8 +478,8 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                         <td className="px-4 py-4 text-[color:var(--text)]">{product.brand || "-"}</td>
                         <td className="px-4 py-4 text-[color:var(--text)]">{product.quantity}</td>
                         <td className="px-4 py-4">
-                          <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${statusChip((product as typeof product & { status?: string }).status)}`}>
-                            {(product as typeof product & { status?: string }).status === "active"
+                          <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${statusChip(toStatusLabel((product as typeof product & { is_active?: boolean }).is_active))}`}>
+                            {(product as typeof product & { is_active?: boolean }).is_active
                               ? "Active"
                               : "Inactive"}
                           </span>
@@ -511,7 +525,7 @@ export default async function ProductsPage({ searchParams }: { searchParams?: Pr
                               <textarea name="image_urls" rows={3} defaultValue={((product as typeof product & { image_urls?: string[] }).image_urls ?? []).join("\n")} placeholder="Các URL ảnh khác" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                               <input name="images" type="file" multiple accept="image/*" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] file:mr-3 file:rounded-full file:border-0 file:bg-[color:var(--accent)] file:px-4 file:py-2 file:text-white" />
                               <input name="warranty" defaultValue={product.warranty} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                              <select name="status" defaultValue={(product as typeof product & { status?: string }).status ?? "inactive"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
+                              <select name="status" defaultValue={(product as typeof product & { is_active?: boolean }).is_active ? "active" : "inactive"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none">
                                 <option value="active">Active</option>
                                 <option value="inactive">Inactive</option>
                               </select>
