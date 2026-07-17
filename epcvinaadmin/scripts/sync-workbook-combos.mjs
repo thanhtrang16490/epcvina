@@ -22,6 +22,7 @@ function normalize(value) {
   return String(value ?? "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[đĐ]/g, "d")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
@@ -66,6 +67,26 @@ function sheetGroupForItem(category, specification) {
   if (text.includes("tu dien") || text.includes("cabinet")) return "cabinet";
   if (text.includes("tiep dia") || text.includes("ground")) return "grounding";
   return "wiring";
+}
+
+function normalizeSheetGroup(row, previousGroup) {
+  const explicit = normalize(row.sheet_group);
+  if (explicit) return explicit;
+
+  const category = normalize(row.category);
+  const specification = normalize(row.specification);
+  const text = `${category} ${specification}`.trim();
+  if (!text) return previousGroup || "wiring";
+
+  if (text.includes("nhan cong") || text.includes("thi cong")) return "labor";
+  if (text.includes("pin luu tru") || text.includes("battery") || text.includes("lithium")) return "battery";
+  if (text.includes("tam pin") || text.includes("panel") || text.includes("pv")) return "panel";
+  if (text.includes("inverter") || text.includes("bien tan")) return "inverter";
+  if (text.includes("khung") || text.includes("rail") || text.includes("mount") || text.includes("kep")) return "mounting";
+  if (text.includes("day") || text.includes("cap") || text.includes("mc4") || text.includes("wire")) return "wiring";
+  if (text.includes("tu dien") || text.includes("cabinet") || text.includes("meter")) return "cabinet";
+  if (text.includes("tiep dia") || text.includes("ground")) return "grounding";
+  return previousGroup || "wiring";
 }
 
 function serviceItemRow(sheet) {
@@ -141,7 +162,8 @@ async function main() {
 
   const comboItems = [];
   for (const { row, source } of insertedCombos) {
-    const serviceRow = serviceItemRow(source);
+    const maxSortOrder = Math.max(0, ...source.rows.map((item, index) => Number(item.sort_order ?? index + 1) || index + 1));
+    let lastSheetGroup = null;
     for (const [index, item] of source.rows.entries()) {
       const isService = isServiceItem(item.category, item.specification);
       const product = isService ? null : (products ?? []).find((candidate) => matchProductId(candidate, item.category, item.specification));
@@ -153,25 +175,26 @@ async function main() {
         combo_id: row.id,
         product_id: isService ? null : product?.id ?? null,
         source_sheet: source.sheet,
-        item_name: isService ? (serviceRow?.specification || item.specification || "Nhân công lắp đặt") : item.specification || item.category || "Item",
+        item_name: item.specification || item.category || "Item",
         category: item.category,
-        brand: isService ? "EPCVINA" : item.brand,
-        unit: isService ? "Bộ" : item.unit,
+        brand: item.brand,
+        unit: item.unit,
         quantity: Number(item.quantity ?? 0),
-        unit_price_vat: isService ? Number(serviceRow?.unit_price_vat ?? item.unit_price_vat ?? 0) : unitPrice,
-        total_price_vat: isService ? Number(serviceRow?.total_price_vat ?? item.total_price_vat ?? 0) : totalPrice,
-        cost_price: isService ? Number(serviceRow?.cost_price ?? item.cost_price ?? 0) : costPrice,
-        total_cost_price: isService ? Number(serviceRow?.total_cost_price ?? item.total_cost_price ?? 0) : totalCost,
-        warranty: isService ? String(serviceRow?.warranty ?? item.warranty ?? "") : String(item.warranty ?? ""),
+        unit_price_vat: unitPrice,
+        total_price_vat: totalPrice,
+        cost_price: costPrice,
+        total_cost_price: totalCost,
+        warranty: String(item.warranty ?? ""),
         notes: String(item.notes ?? ""),
         gross_margin: Number(item.gross_margin ?? 0),
-        sheet_group: sheetGroupForItem(item.category, item.specification),
-        sort_order: isService ? 9999 : index + 1,
+        sheet_group: normalizeSheetGroup(item, lastSheetGroup) || sheetGroupForItem(item.category, item.specification),
+        sort_order: index + 1,
       });
+      lastSheetGroup = comboItems[comboItems.length - 1].sheet_group;
     }
 
     const laborCost = Math.round(Number(source.solar_kw ?? 0) * laborRatePerKwp(source));
-    if (laborCost > 0) {
+    if (laborCost > 0 && !source.rows.some((item) => isServiceItem(item.category, item.specification))) {
       comboItems.push({
         combo_id: row.id,
         product_id: null,
@@ -189,7 +212,7 @@ async function main() {
         notes: "Backfill labor rule",
         gross_margin: 0,
         sheet_group: "labor",
-        sort_order: 9999,
+        sort_order: maxSortOrder + 1000,
       });
     }
   }
