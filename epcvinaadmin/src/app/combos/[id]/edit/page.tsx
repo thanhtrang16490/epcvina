@@ -1,12 +1,14 @@
 import { AdminShell } from "@/components/AdminShell";
 import { FormattedNumberInput } from "@/components/FormattedNumberInput";
 import { SectionTitle } from "@/components/SectionTitle";
+import { ThemeCard } from "@/components/ui/ThemeCard";
 import { getLaborCostByKw } from "@/lib/combo-labor";
 import { getPricingSettings } from "@/lib/pricing-settings";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { parseLocaleNumber } from "@/lib/number-format";
 import { normalizeCombo, normalizeProduct } from "@/lib/supabase/normalize";
 import { getCachedComboCategories } from "@/lib/reference-data";
+import { getComboDisplayName } from "@/lib/combo-display-name";
 import { slugify } from "@/lib/slug";
 import { parseImageUrls, uploadMediaFiles } from "@/lib/storage-media";
 import Link from "next/link";
@@ -25,6 +27,24 @@ const currency = new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 });
 
 function formatMoney(value: number) {
   return currency.format(Number(value ?? 0));
+}
+
+function getSystemType(combo: ComboFormData) {
+  return combo.code.startsWith("HY") || combo.battery_kwh ? "Hybrid" : "On-Grid";
+}
+
+function getVoltageLabel(combo: ComboFormData) {
+  const type = String(combo.battery_type ?? "").toUpperCase();
+  if (type === "HV") return "Áp cao";
+  if (type === "LV") return "Áp thấp";
+  return null;
+}
+
+function getBrandLine(combo: ComboFormData) {
+  const panelBrand = "Aiko";
+  const inverterBrand = combo.code.startsWith("HY") ? "SAJ" : "Auxsol";
+  const batteryBrand = combo.battery_kwh ? "Genxgreen" : null;
+  return [panelBrand, inverterBrand, batteryBrand].filter(Boolean).join(" - ");
 }
 
 function parseMoney(value: FormDataEntryValue | null) {
@@ -91,22 +111,86 @@ export default async function ComboEditPage({ params }: Props) {
     ? ((await supabase.from("products").select("id, slug, name, category, brand, unit, quantity, cost_price, sale_price_vat, warranty, description, cover_image_url, image_urls, is_active, sort_order").order("sort_order", { ascending: true })).data ?? []).map((product) => normalizeProduct(product))
     : [];
   const comboCategories = supabase ? await getCachedComboCategories() : [];
+  const systemType = getSystemType(combo);
+  const voltageLabel = getVoltageLabel(combo);
+  const displayName = getComboDisplayName(combo);
   return (
     <AdminShell>
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
-        <div className="mb-6 flex items-center justify-between">
-          <SectionTitle eyebrow="Chỉnh sửa" title={combo.name} description="Sửa thông tin combo, BOM sẽ chỉnh ở trang Excel riêng để đồng bộ cùng một logic." />
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-4 md:p-5">
+          <SectionTitle eyebrow="Chỉnh sửa combo" title={displayName} description={`Tên gốc: ${combo.name} · Trang sửa giữ cùng ngôn ngữ UI với trang xem, nhưng cho phép cập nhật thông tin combo.`} />
           <div className="flex flex-wrap items-center gap-2">
-            <Link href={`/admin/combos/${combo.id}/excel`} className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-100">
+            <Link href={`/combos/public/${combo.id}`} target="_blank" rel="noreferrer" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
+              Xem public
+            </Link>
+            <Link href={`/admin/combos/${combo.id}/excel`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
               Edit excel
             </Link>
-            <Link href="/admin/combos" className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
+            <Link href="/admin/combos" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">
               Back
             </Link>
           </div>
         </div>
-        <form action={saveCombo} encType="multipart/form-data" className="rounded-[2rem] border border-white/10 bg-white/5 p-6">
+        <ThemeCard tone="hero" className="overflow-hidden p-0">
+          <div className="grid gap-0 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
+            <div className="p-4 md:p-6">
+              {(combo as typeof combo & { cover_image_url?: string }).cover_image_url ? (
+                <img
+                  src={(combo as typeof combo & { cover_image_url?: string }).cover_image_url}
+                  alt={combo.name}
+                  className="mb-5 h-60 w-full rounded-3xl object-cover"
+                />
+              ) : null}
+              <div className="mt-5 flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-cyan-400/15 px-3 py-1 text-xs font-semibold text-cyan-100">{combo.code}</span>
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">{systemType}</span>
+                {voltageLabel ? <span className="rounded-full bg-blue-400/15 px-3 py-1 text-xs font-semibold text-blue-100">{voltageLabel}</span> : null}
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white">
+                  {combo.combo_category_id
+                    ? ((comboCategories as Array<{ id: string; name: string }>)).find((item) => String(item.id) === String(combo.combo_category_id))?.name ?? "Chưa gán"
+                    : "Chưa gán"}
+                </span>
+              </div>
+              <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
+                <div className="min-w-0">
+                  <h1 className="text-3xl font-semibold leading-tight text-white md:text-5xl">{displayName}</h1>
+                  <p className="mt-3 max-w-3xl text-base leading-7 text-slate-300">{combo.description}</p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Link href={`/combos/public/${combo.id}`} target="_blank" rel="noreferrer" className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-100 transition hover:border-emerald-300/60 hover:bg-emerald-400/15">
+                    Xem public
+                  </Link>
+                  <Link href={`/admin/combos/${combo.id}/excel`} className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-100 transition hover:border-cyan-300/60 hover:bg-cyan-400/15">
+                    Edit excel
+                  </Link>
+                </div>
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-[10px] uppercase tracking-[0.24em] text-slate-400">Brand line</div>
+                  <div className="mt-2 text-sm font-semibold text-white">{getBrandLine(combo)}</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-[10px] uppercase tracking-[0.24em] text-slate-400">Nguồn</div>
+                  <div className="mt-2 text-sm font-semibold text-white">{combo.source_kind || "-"}</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="text-[10px] uppercase tracking-[0.24em] text-slate-400">BOM</div>
+                  <div className="mt-2 text-sm font-semibold text-white">Chỉnh trực tiếp trong form bên dưới</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ThemeCard>
+
+        <form action={saveCombo} encType="multipart/form-data" className="mt-6 rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-4 md:p-6">
           <input type="hidden" name="id" value={combo.id} />
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <SectionTitle eyebrow="Chỉnh sửa" title="Thông tin combo" description="Các trường bên dưới cho phép cập nhật trực tiếp." />
+            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1 text-xs text-[color:var(--muted)]">
+              {getSystemType(combo)} · {combo.phase === 1 ? "1 pha" : "3 pha"}
+            </span>
+          </div>
           <div className="grid gap-3 md:grid-cols-2">
             <input name="code" defaultValue={combo.code} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
             <input name="name" defaultValue={combo.name} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] md:col-span-2" />

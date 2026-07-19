@@ -53,7 +53,7 @@ export function getSalesElectricityPriceLabel(customerType: "residential" | "com
 }
 
 export function formatVnd(value: number) {
-  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(Number(value ?? 0));
+  return new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(Math.round(Number(value ?? 0) / 1000) * 1000);
 }
 
 export function formatPct(value: number) {

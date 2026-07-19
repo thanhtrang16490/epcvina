@@ -45,21 +45,6 @@ function getBatteryVoltageLabel(combo: AnyCombo) {
   return null;
 }
 
-function getBrandLine(combo: AnyCombo) {
-  const panelBrand = "Aiko";
-  const inverterBrand = combo.systemType === "hybrid" || combo.code.startsWith("HY") ? "SAJ" : "Auxsol";
-  const batteryBrand = combo.code.startsWith("HY") || combo.battery_kwh ? "Genxgreen" : null;
-  return [panelBrand, inverterBrand, batteryBrand].filter(Boolean).join(" - ");
-}
-
-function getComboDisplayName(combo: AnyCombo) {
-  const systemLabel = getSystemType(combo) === "hybrid" ? "Hybrid" : "On-grid";
-  const phaseLabel = combo.phase === 1 ? "1P" : "3P";
-  const voltageLabel = getBatteryVoltageLabel(combo)?.toUpperCase();
-  const base = `${systemLabel} ${combo.solar_kw}kWp ${phaseLabel}${voltageLabel ? ` ${voltageLabel}` : ""}`.trim();
-  return `${base} - ${getBrandLine(combo)}`.toLowerCase();
-}
-
 function getMonthlyProduction(combo: AnyCombo) {
   return Math.round(Number(combo.solar_kw) * 4 * 30);
 }
@@ -202,7 +187,6 @@ export function PublicComboCatalog({ combos, pricingSettings }: Props) {
           const monthlyProduction = getMonthlyProduction(combo);
           const area = getArea(combo);
           const batteryVoltageLabel = getBatteryVoltageLabel(combo);
-          const brandLine = getBrandLine(combo);
           const displayedPrice = getDisplayedComboPrice(combo);
           const finance = buildComboFinance({
             solarKw: Number(combo.solar_kw),
@@ -245,7 +229,7 @@ export function PublicComboCatalog({ combos, pricingSettings }: Props) {
                   <div className="flex items-start gap-2">
                     <div className="flex-1">
                       <h3 className="text-sm font-bold leading-snug text-[color:var(--text)] group-hover:text-[color:var(--accent)]">
-                        {getComboDisplayName(combo)}
+                        {combo.name}
                       </h3>
                       <p className="mt-1 text-xs text-[color:var(--muted)]">
                         {combo.phase === 1 ? "1 pha" : "3 pha"} · {combo.solar_kw} kWp
@@ -255,10 +239,6 @@ export function PublicComboCatalog({ combos, pricingSettings }: Props) {
                       {combo.phase === 1 ? "1P" : "3P"}
                     </span>
                   </div>
-
-                  <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-[color:var(--muted)]">
-                    {brandLine}
-                  </p>
 
                   <p className="mt-3 line-clamp-3 text-xs leading-6 text-[color:var(--muted)]">{combo.description}</p>
 

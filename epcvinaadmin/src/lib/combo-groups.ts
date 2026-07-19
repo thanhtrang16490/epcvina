@@ -43,19 +43,5 @@ export function getComboGroupLabel(combo: { code?: string; phase?: number; batte
 }
 
 export function getComboCategoryLabel(combo: { code?: string; phase?: number; battery_kwh?: number | null; battery_type?: string | null }) {
-  const groupId = getComboGroupId(combo);
-  switch (groupId) {
-    case "on-grid-1phase":
-      return "On-Grid 1 pha";
-    case "on-grid-3phase":
-      return "On-Grid 3 pha";
-    case "hybrid-1phase":
-      return "Hybrid 1 pha";
-    case "hybrid-3phase-lv":
-      return "Hybrid 3 pha áp thấp";
-    case "hybrid-3phase-hv":
-      return "Hybrid 3 pha áp cao";
-    default:
-      return "Khác";
-  }
+  return getComboGroupLabel(combo);
 }

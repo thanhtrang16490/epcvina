@@ -4,7 +4,7 @@ import { ThemeLinkButton } from "@/components/ui/ThemeButton";
 import { getPricingSettings } from "@/lib/pricing-settings";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { normalizeCombo } from "@/lib/supabase/normalize";
+import { normalizeCombo, normalizeComboItem } from "@/lib/supabase/normalize";
 
 export const dynamic = "force-dynamic";
 
@@ -16,18 +16,28 @@ export default async function PublicCombosPage() {
     ? ((await publicClient
         .from("combos")
         .select("id, code, name, slug, phase, solar_kw, battery_kwh, battery_type, cost_price, target_min_price, reference_price, margin, description, sort_order, is_active, status, combo_type, source_kind, combo_category_id, cover_image_url, image_urls")
-        .eq("status", "public")
+        .or("status.eq.public,status.eq.active,is_active.eq.true")
         .order("sort_order", { ascending: true })).data ?? []).map(normalizeCombo)
     : [];
-  const normalizedCombos = combos.map((combo) => ({
-    ...combo,
-    name: combo.name
-      .replace(/Hy-Brid/gi, "Hybrid")
-      .replace(/1pha/gi, "1 pha")
-      .replace(/3pha/gi, "3 pha")
-      .replace(/\s+/g, " ")
-      .trim(),
-  }));
+  const comboIds = combos.map((combo) => combo.id).filter(Boolean);
+  const comboItems = publicClient && comboIds.length
+    ? ((await publicClient
+        .from("combo_items")
+        .select("id, combo_id, product_id, reference_product_id, category, item_name, brand, unit, quantity, unit_price_vat, total_price_vat, cost_price, total_cost_price, sort_order, sheet_group, gross_margin, warranty, notes")
+        .in("combo_id", comboIds)
+        .order("sort_order", { ascending: true })).data ?? []).map((row: any) => normalizeComboItem(row))
+    : [];
+  const comboItemsByComboId = new Map<string, ReturnType<typeof normalizeComboItem>[]>();
+  comboItems.forEach((item) => {
+    const current = comboItemsByComboId.get(item.combo_id) ?? [];
+    current.push(item);
+    comboItemsByComboId.set(item.combo_id, current);
+  });
+  const normalizedCombos = combos.map((combo) => {
+    return {
+      ...combo,
+    };
+  });
 
   return (
     <PublicShell>
