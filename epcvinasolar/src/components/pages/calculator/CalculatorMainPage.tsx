@@ -25,9 +25,12 @@ export default function CalculatorMainPage() {
   const [systemType, setSystemType] = useState('home');
   const [roofType, setRoofType] = useState('steel');
   const [roofArea, setRoofArea] = useState(0);
+  const [usagePercent, setUsagePercent] = useState(80);
+  const [phaseType, setPhaseType] = useState('1p');
   const [bill, setBill] = useState('');
   const progress = useMemo(() => `${Math.min(step, 4) * 25}%`, [step]);
   const billPresets = billPresetsByType[systemType] ?? billPresetsByType.home;
+  const usageTrack = `${usagePercent}%`;
 
   return (
     <div className="min-h-screen bg-[#f5ead7] text-[#231b16]">
@@ -63,7 +66,7 @@ export default function CalculatorMainPage() {
           <div className="flex items-center justify-between">
             <p className="text-[1.35rem] font-extrabold text-[#f59e0b] sm:text-[1.45rem]">Bước {step} / 4</p>
             <p className="text-[1.25rem] font-extrabold text-[#7d7168] sm:text-[1.35rem]">
-              {step === 2 ? 'Mái nhà' : 'Hóa đơn điện'}
+              {step === 2 ? 'Mái nhà' : step === 3 ? 'Thói quen sử dụng' : 'Hóa đơn điện'}
             </p>
           </div>
           <div className="mt-4 grid grid-cols-4 gap-3">
@@ -79,7 +82,7 @@ export default function CalculatorMainPage() {
         </section>
 
         <section className="mt-9">
-          {step < 2 ? (
+          {step === 1 ? (
             <>
               <h3 className="max-w-4xl text-[2rem] font-black leading-[1.03] tracking-tight text-[#231b16] sm:text-[2.6rem]">
                 Tiền điện trung bình mỗi tháng của bạn khoảng bao nhiêu?
@@ -155,7 +158,7 @@ export default function CalculatorMainPage() {
                 </button>
               </div>
             </>
-          ) : (
+          ) : step === 2 ? (
             <>
               <h3 className="max-w-4xl text-[2.15rem] font-black leading-[1.03] tracking-tight text-[#231b16] sm:text-[2.8rem]">
                 Mái nhà của bạn?
@@ -230,12 +233,85 @@ export default function CalculatorMainPage() {
               <div className="mt-8 flex flex-col gap-4">
                 <button
                   type="button"
+                  onClick={() => setStep(3)}
                   className="inline-flex items-center justify-center gap-3 rounded-[24px] bg-[#f7a800] px-6 py-4 text-[1.05rem] font-extrabold text-white shadow-[0_16px_32px_rgba(247,168,0,0.35)] sm:py-5 sm:text-[1.2rem]"
                 >
                   Tiếp tục
                   <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
                 <button type="button" onClick={() => setStep(1)} className="inline-flex items-center justify-center gap-2 text-[1.05rem] font-bold text-[#7d7168] sm:text-[1.15rem]">
+                  <ArrowLeft className="h-5 w-5" />
+                  Quay lại
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              <h3 className="max-w-4xl text-[2.15rem] font-black leading-[1.03] tracking-tight text-[#231b16] sm:text-[2.8rem]">
+                Dùng điện lúc nào?
+              </h3>
+              <p className="mt-4 max-w-4xl text-[1.02rem] leading-[1.55] text-[#7d7168] sm:text-[1.2rem]">
+                Tỷ lệ dùng ban ngày giúp hệ thống gợi ý hòa lưới hay hybrid phù hợp hơn.
+              </p>
+
+              <div className="mt-9 rounded-[34px] bg-[#5f6f87] p-1 shadow-[0_16px_36px_rgba(45,31,20,0.12)]">
+                <div
+                  className="flex h-[124px] items-center justify-center rounded-[30px] bg-[linear-gradient(90deg,#ffbf1b_0%,#f5a400_70%,#f5a400_100%)] transition-all"
+                  style={{ width: usageTrack }}
+                >
+                  <span className="text-[1.25rem] font-extrabold text-white sm:text-[1.45rem]">Ban ngày {usagePercent}%</span>
+                </div>
+                <div className="relative -mt-[124px] flex h-[124px] items-center justify-end pr-8">
+                  <div className="h-12 w-12 rounded-full border-[8px] border-white bg-[#15203a] shadow-[0_8px_16px_rgba(21,32,58,0.35)]" />
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between px-2 text-[1rem] text-[#7d7168] sm:text-[1.15rem]">
+                <span>Ban ngày tự dùng trực tiếp</span>
+                <span>Ban đêm cần cân nhắc pin</span>
+              </div>
+
+              <div className="mt-7 rounded-[30px] border border-[#f5d6a4] bg-[#fff5da] px-8 py-6 text-[1.1rem] leading-[1.5] text-[#9a5f00] shadow-[0_10px_22px_rgba(45,31,20,0.05)] sm:text-[1.25rem]">
+                Dùng điện chủ yếu ban ngày, hệ hòa lưới thường là phương án gọn và kinh tế.
+              </div>
+
+              <div className="mt-8">
+                <p className="text-[1.1rem] font-black text-[#53473d] sm:text-[1.25rem]">Hệ thống điện hiện tại</p>
+                <div className="mt-4 rounded-[28px] border border-[#eadcc8] bg-white p-1 shadow-[0_16px_36px_rgba(45,31,20,0.08)]">
+                  <div className="grid grid-cols-2">
+                    <button
+                      type="button"
+                      onClick={() => setPhaseType('1p')}
+                      className={`rounded-[22px] px-4 py-5 text-center transition-all ${
+                        phaseType === '1p' ? 'bg-[#f7a800] text-white' : 'bg-transparent text-[#7d7168]'
+                      }`}
+                    >
+                      <p className="text-[1.15rem] font-black sm:text-[1.35rem]">1 Pha</p>
+                      <p className="mt-1 text-[0.95rem] font-medium sm:text-[1.05rem]">Hộ gia đình</p>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPhaseType('3p')}
+                      className={`rounded-[22px] px-4 py-5 text-center transition-all ${
+                        phaseType === '3p' ? 'bg-[#f7a800] text-white' : 'bg-transparent text-[#7d7168]'
+                      }`}
+                    >
+                      <p className="text-[1.15rem] font-black sm:text-[1.35rem]">3 Pha</p>
+                      <p className="mt-1 text-[0.95rem] font-medium sm:text-[1.05rem]">Doanh nghiệp</p>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 flex flex-col gap-4">
+                <button
+                  type="button"
+                  className="inline-flex items-center justify-center gap-3 rounded-[24px] bg-[#f7a800] px-6 py-4 text-[1.05rem] font-extrabold text-white shadow-[0_16px_32px_rgba(247,168,0,0.35)] sm:py-5 sm:text-[1.2rem]"
+                >
+                  Xem kết quả
+                  <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
+                </button>
+                <button type="button" onClick={() => setStep(2)} className="inline-flex items-center justify-center gap-2 text-[1.05rem] font-bold text-[#7d7168] sm:text-[1.15rem]">
                   <ArrowLeft className="h-5 w-5" />
                   Quay lại
                 </button>
