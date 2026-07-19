@@ -1,119 +1,172 @@
-import { useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle, Clock, Lightning, ShieldCheck } from '@phosphor-icons/react';
+import { useMemo, useState } from 'react';
+import { ArrowLeft, ArrowRight, CirclesThree, Lightning, Phone, SunDim } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
 export default function ThoiGianHoanVonPage() {
-  const [cost, setCost] = useState(80);
-  const [monthlySaving, setMonthlySaving] = useState(2);
-  const paybackYears = (cost / (monthlySaving * 12)).toFixed(1);
+  const [paybackYears, setPaybackYears] = useState(2.5);
+  const [selectedTab, setSelectedTab] = useState(0);
+
+  const progressDots = useMemo(() => [0, 1, 2], []);
 
   return (
-    <div className="min-h-screen pt-20 md:pt-20 bg-[#fff8f1] text-slate-900">
+    <div className="min-h-screen bg-[#f5ead7] text-[#231b16]">
       <HeaderBar />
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-[#1b2433] text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(245,131,31,0.24),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(208,32,42,0.18),transparent_36%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 py-10 md:py-12">
-          <a href="/calculator" className="inline-flex items-center gap-2 text-sm font-medium text-orange-200 transition-colors hover:text-white">
-            <ArrowLeft className="h-4 w-4" /> Quay lại công cụ
-          </a>
-          <div className="mt-5 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+      <main className="mx-auto flex min-h-[100dvh] max-w-[920px] flex-col px-4 pb-6 pt-20 sm:px-6">
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#f7a800] text-[#6b4300] shadow-[0_10px_28px_rgba(247,168,0,0.25)]">
+              <SunDim className="h-10 w-10" weight="duotone" />
+            </div>
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-orange-200">
-                <Clock className="h-4 w-4" />
-                Tính hoàn vốn
-              </div>
-              <h1 className="mt-4 text-4xl font-black leading-[1.02] tracking-tight md:text-5xl lg:text-6xl">
-                Ước tính thời gian hoàn vốn
-                <span className="block text-orange-300">theo chi phí và tiết kiệm</span>
-              </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300 md:text-base">
-                Nhập tổng chi phí đầu tư và khoản tiết kiệm hàng tháng để xem thời gian thu hồi vốn gần đúng.
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                {[
-                  { icon: <Clock className="h-4 w-4" weight="bold" />, label: 'Hoàn vốn', value: `${paybackYears} năm` },
-                  { icon: <Lightning className="h-4 w-4" weight="bold" />, label: 'Tiết kiệm', value: `${monthlySaving} triệu/tháng` },
-                  { icon: <ShieldCheck className="h-4 w-4" weight="bold" />, label: 'Đầu tư', value: `${cost} triệu` },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur">
-                    <div className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-orange-200">{item.icon}</div>
-                    <p className="text-xs text-slate-400">{item.label}</p>
-                    <p className="mt-1 text-base font-semibold text-white">{item.value}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[28px] border border-white/10 bg-white/8 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.22)] backdrop-blur-xl md:p-5">
-              <div className="rounded-[24px] bg-white px-5 py-5 text-slate-900 shadow-[0_12px_32px_rgba(15,23,42,0.08)] md:px-6 md:py-6">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#d0202a]">Bảng tính nhanh</p>
-                <h2 className="mt-1 text-xl font-bold">Nhập dữ liệu</h2>
-                <div className="mt-6 space-y-5">
-                  <div>
-                    <label className="mb-2 block text-sm font-semibold text-slate-800">Tổng chi phí đầu tư (triệu đồng)</label>
-                    <input
-                      type="number"
-                      value={cost}
-                      onChange={(e) => setCost(Number(e.target.value))}
-                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#f5831f] focus:ring-4 focus:ring-[#fff4e8]"
-                    />
-                  </div>
-                  <div>
-                    <label className="mb-2 block text-sm font-semibold text-slate-800">Tiết kiệm điện hàng tháng (triệu đồng)</label>
-                    <input
-                      type="number"
-                      value={monthlySaving}
-                      step="0.1"
-                      onChange={(e) => setMonthlySaving(Number(e.target.value))}
-                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#f5831f] focus:ring-4 focus:ring-[#fff4e8]"
-                    />
-                  </div>
-                </div>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a href="/tu-van-giai-phap" className="inline-flex items-center gap-2 rounded-full bg-[#d0202a] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_28px_rgba(208,32,42,0.22)] transition-transform hover:-translate-y-0.5 active:scale-[0.98]">
-                    Nhận phương án
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-3 text-sm font-medium text-slate-600">
-                    <CheckCircle className="h-4 w-4 text-[#f5831f]" weight="fill" />
-                    Báo giá tham khảo
-                  </span>
-                </div>
-              </div>
+              <h1 className="text-[1.55rem] font-extrabold tracking-tight text-[#2b211b] sm:text-[1.8rem]">Máy tính Điện Mặt Trời</h1>
+              <p className="mt-1 text-[0.9rem] leading-tight text-[#7d7168] sm:text-[1rem]">Ước tính theo hoá đơn thực tế</p>
             </div>
           </div>
+          <span className="rounded-full border border-[#f3dfae] bg-[#fff3d6] px-5 py-3 text-[1.05rem] font-bold text-[#9a6a00] sm:text-[1.1rem]">
+            Bước 3/3
+          </span>
         </div>
-      </section>
 
-      <section className="py-10 md:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-4 lg:grid-cols-[1fr_0.95fr]">
-            <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_14px_32px_rgba(15,23,42,0.04)] md:p-6">
-              <h3 className="text-lg font-bold text-slate-950">Kết quả</h3>
-              <div className="mt-4 rounded-2xl border border-[#ffd7be] bg-[#fff4e8] px-4 py-5 text-center">
-                <p className="text-sm text-slate-600">Thời gian hoàn vốn</p>
-                <p className="mt-2 text-5xl font-black text-[#d0202a]">{paybackYears} năm</p>
-                <p className="mt-2 text-sm text-slate-500">Sau hoàn vốn, tiết kiệm {monthlySaving} triệu/tháng × 20+ năm</p>
-              </div>
+        <section className="rounded-[36px] bg-[radial-gradient(circle_at_top_right,rgba(255,206,105,0.18),transparent_24%),linear-gradient(180deg,#0c1326_0%,#11192e_100%)] px-6 py-7 text-white shadow-[0_24px_80px_rgba(29,19,8,0.26)] sm:px-8 sm:py-9">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-[0.82rem] font-black uppercase tracking-[0.24em] text-[#ffbf27] sm:text-[0.95rem]">TỐT CHO GIA ĐÌNH & MÔI TRƯỜNG</p>
+              <h2 className="mt-5 text-[3.15rem] font-black leading-[0.92] tracking-tight text-white sm:text-[4rem]">
+                ~2.7 tấn CO₂/năm
+              </h2>
             </div>
-            <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-[0_14px_32px_rgba(15,23,42,0.04)] md:p-6">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#d0202a]">Gợi ý nhanh</p>
-              <div className="mt-4 space-y-3">
-                {[
-                  'Dữ liệu đầu vào càng sát thực tế thì kết quả càng chính xác.',
-                  'Nên kiểm tra thêm giá vật tư và công suất để chốt phương án.',
-                  'Hoàn vốn nhanh hơn khi sản lượng tiêu thụ tự dùng cao.',
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                    <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[#f5831f]" />
-                    <p className="text-sm leading-6 text-slate-600">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <span className="rounded-full bg-white/10 px-4 py-2 text-[0.95rem] font-bold text-white/90 backdrop-blur sm:text-[1.05rem]">
+              Giảm phát thải
+            </span>
           </div>
+
+          <div className="mt-6 space-y-3 rounded-[28px] bg-white/8 p-3 backdrop-blur-sm">
+            {[
+              { value: '~130', label: 'cây xanh hấp thụ CO₂ trong một năm', icon: '🌿' },
+              { value: '18', label: 'chuyến bay Hà Nội - TP.HCM khử hối', icon: '✈️' },
+              { value: '~23.000 km', label: 'quãng đường xe máy phát thải tương đương', icon: '🛵' },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-4 rounded-[22px] bg-[rgba(255,255,255,0.08)] px-4 py-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#22304f] text-[1.25rem]">{item.icon}</div>
+                <div>
+                  <p className="text-[1.05rem] font-extrabold text-white sm:text-[1.15rem]">{item.value}</p>
+                  <p className="text-[0.95rem] leading-6 text-slate-300 sm:text-[1rem]">{item.label}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-4 text-[0.95rem] leading-7 text-slate-300 sm:text-[1rem]">
+            Theo giá carbon EU: tương đương ~5 triệu đồng mỗi năm.
+          </p>
+        </section>
+
+        <div className="mt-4 flex items-center justify-center gap-3">
+          <button type="button" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e5d7c2] bg-white text-[#8b7764] shadow-sm">
+            <ArrowLeft className="h-4 w-4" />
+          </button>
+          {progressDots.map((dot) => (
+            <span key={dot} className={`h-2.5 rounded-full ${dot === selectedTab ? 'w-8 bg-[#f59e0b]' : 'w-2.5 bg-[#e0cfbb]'}`} />
+          ))}
+          <button type="button" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e5d7c2] bg-white text-[#8b7764] shadow-sm">
+            <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
-      </section>
+
+        <section className="mt-5">
+          <p className="text-[1rem] font-medium text-[#7d7168] sm:text-[1.05rem]">Hệ thống phù hợp với gia đình anh/chị</p>
+
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            {[
+              { icon: <Lightning className="h-5 w-5" />, value: '3.9 kWp', label: 'Công suất nên lắp' },
+              { icon: <CirclesThree className="h-5 w-5" />, value: '6 tấm', label: 'Pin 650 Wp/tấm' },
+              { icon: <SunDim className="h-5 w-5" />, value: 'Hệ Hòa Lưới', label: 'không cần Pin lưu trữ' },
+              { icon: <Phone className="h-5 w-5" />, value: '30–33 tr', label: 'Chi phí dự kiến' },
+            ].map((item, index) => (
+              <div key={item.label} className="rounded-[22px] border border-[#eadcc8] bg-[#fffdf7] px-4 py-4 shadow-[0_10px_22px_rgba(45,31,20,0.06)]">
+                <div className="flex items-center gap-2 text-[#f59e0b]">{item.icon}</div>
+                <p className={`mt-3 ${index < 2 ? 'text-[2.05rem]' : 'text-[1.55rem]'} font-black leading-none text-[#231b16]`}>{item.value}</p>
+                <p className="mt-1 text-[0.92rem] leading-5 text-[#7d7168] sm:text-[0.98rem]">{item.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-3 rounded-[24px] border border-[#eadcc8] bg-white px-4 py-5 shadow-[0_10px_22px_rgba(45,31,20,0.06)]">
+            <h3 className="text-[1.2rem] font-black text-[#231b16] sm:text-[1.35rem]">Thời gian hoàn vốn</h3>
+            <div className="mt-6 h-48 rounded-[20px] bg-[linear-gradient(180deg,#fffaf4_0%,#fff4e2_100%)] p-4">
+              <div className="flex h-full items-end">
+                <div className="relative w-full">
+                  <div className="absolute left-0 top-16 right-0 border-t-2 border-dashed border-[#c9b7a2]" />
+                  <div className="absolute left-0 bottom-10 text-[1rem] font-medium text-[#8d7a66]">0</div>
+                  <div className="absolute left-[31%] bottom-10 text-[1rem] font-black text-[#1f8b45]">~{paybackYears} năm</div>
+                  <div className="absolute right-0 bottom-10 text-[1rem] font-medium text-[#8d7a66]">12</div>
+                  <div className="absolute left-10 top-16 text-[0.95rem] font-semibold text-[#8d7a66]">Vốn đầu tư</div>
+                  <div className="absolute left-0 right-0 bottom-12 h-[2px] bg-[#e8d7c1]" />
+                  <div
+                    className="absolute left-0 top-[52px] h-[2px] bg-[#f59e0b]"
+                    style={{ width: `${Math.min(100, Math.max(18, paybackYears * 14))}%` }}
+                  />
+                  <div className="absolute left-[30%] top-[49px] h-5 w-5 rounded-full border-4 border-[#f59e0b] bg-white shadow-sm" />
+                </div>
+              </div>
+            </div>
+            <button
+              type="button"
+              className="mt-4 w-full rounded-[18px] bg-[#f59e0b] px-5 py-4 text-[1rem] font-extrabold text-white shadow-[0_16px_32px_rgba(245,158,11,0.25)] sm:text-[1.1rem]"
+            >
+              Đăng Ký Khảo Sát & Thiết Kế Miễn Phí
+              <span className="mt-1 block text-[0.84rem] font-medium text-white/90 sm:text-[0.92rem]">
+                Nhà thầu uy tín gần bạn lên phương án miễn phí
+              </span>
+            </button>
+          </div>
+
+          <p className="mt-4 text-[0.95rem] leading-7 text-[#7d7168] sm:text-[1rem]">
+            Nhà bạn đủ điều kiện để khảo sát điện mặt trời. Bước tiếp theo: nhà thầu uy tín gần bạn kiểm tra mái, hóa đơn và lên thiết kế miễn phí.
+          </p>
+
+          <div className="mt-5 rounded-[26px] border border-[#eadcc8] bg-white px-5 py-6 shadow-[0_12px_28px_rgba(45,31,20,0.06)]">
+            <p className="text-center text-[0.88rem] font-black tracking-[0.2em] text-[#1f8b45] sm:text-[0.95rem]">MIỄN PHÍ - NHÀ THẦU UY TÍN GẦN BẠN</p>
+            <h4 className="mt-3 text-center text-[1.35rem] font-black leading-[1.1] text-[#231b16] sm:text-[1.55rem]">
+              Để lại thông tin để được khảo sát & lên thiết kế miễn phí
+            </h4>
+            <p className="mt-4 text-center text-[0.95rem] leading-7 text-[#7d7168] sm:text-[1rem]">
+              Kỹ thuật viên sẽ liên hệ, kiểm tra hóa đơn và mái nhà, rồi đề xuất phương án điện mặt trời phù hợp với nhu cầu thực tế của bạn.
+            </p>
+            <button
+              type="button"
+              className="mt-5 w-full rounded-[18px] bg-[#f59e0b] px-5 py-4 text-[1rem] font-extrabold text-white shadow-[0_16px_32px_rgba(245,158,11,0.25)] sm:text-[1.1rem]"
+            >
+              Gửi thông tin khảo sát miễn phí
+              <ArrowRight className="ml-2 inline h-5 w-5" />
+            </button>
+          </div>
+
+          <button
+            type="button"
+            className="mx-auto mt-5 block text-[0.95rem] font-medium text-[#94a3b8] sm:text-[1rem]"
+          >
+            Xem thêm chi tiết kỹ thuật
+          </button>
+
+          <div className="mt-5 flex justify-center gap-6 text-[0.95rem] font-medium text-[#8a7d70] sm:text-[1rem]">
+            <button type="button">← Sửa lại</button>
+            <button type="button">↩ Tính lại từ đầu</button>
+          </div>
+        </section>
+
+        <div className="sticky bottom-3 mt-6 rounded-[22px] border border-[#eadcc8] bg-white px-4 py-4 shadow-[0_12px_28px_rgba(45,31,20,0.08)]">
+          <p className="text-center text-[0.9rem] text-[#8a7d70]">
+            • Nhà đủ điều kiện để khảo sát điện mặt trời
+          </p>
+          <button
+            type="button"
+            className="mt-3 w-full rounded-[16px] bg-[#f59e0b] px-5 py-4 text-[1rem] font-extrabold text-white shadow-[0_16px_32px_rgba(245,158,11,0.24)]"
+          >
+            Đăng ký khảo sát & thiết kế miễn phí
+          </button>
+        </div>
+      </main>
     </div>
   );
 }
