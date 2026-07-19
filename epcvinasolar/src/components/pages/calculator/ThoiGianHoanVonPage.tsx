@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ArrowLeft, ArrowRight, CirclesThree, Lightning, Phone, SunDim } from '@phosphor-icons/react';
-import HeaderBar from '../../home/layout/HeaderBar';
+import CalculatorPageShell from './CalculatorPageShell';
 
 export default function ThoiGianHoanVonPage() {
   const [paybackYears, setPaybackYears] = useState(2.5);
@@ -9,9 +9,17 @@ export default function ThoiGianHoanVonPage() {
   const progressDots = useMemo(() => [0, 1, 2], []);
 
   return (
-    <div className="min-h-screen bg-[#f5ead7] text-[#231b16]">
-      <HeaderBar />
-      <main className="mx-auto flex min-h-[100dvh] max-w-[920px] flex-col px-4 pb-6 pt-20 sm:px-6">
+    <CalculatorPageShell
+      title="Tính thời gian hoàn vốn rõ ràng theo mức đầu tư."
+      description="Xem nhanh hệ thống mất bao lâu để thu hồi vốn dựa trên chi phí, sản lượng và mức tiết kiệm thực tế."
+      stats={[
+        { label: 'Bước', value: '3 / 3' },
+        { label: 'Hoàn vốn', value: `~${paybackYears} năm` },
+        { label: 'Điểm sáng', value: 'CO₂ giảm' },
+      ]}
+      sidebar={<div className="text-sm text-slate-300">Sidebar</div>}
+    >
+      <div>
         <div className="mb-5 flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#f7a800] text-[#6b4300] shadow-[0_10px_28px_rgba(247,168,0,0.25)]">
@@ -166,7 +174,7 @@ export default function ThoiGianHoanVonPage() {
             Đăng ký khảo sát & thiết kế miễn phí
           </button>
         </div>
-      </main>
-    </div>
+      </div>
+    </CalculatorPageShell>
   );
 }
