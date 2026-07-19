@@ -208,7 +208,7 @@ export default function CalculatorMainPage() {
                   >
                     -
                   </button>
-                  <div className="flex h-24 flex-1 items-center justify-center rounded-[28px] border border-[#eadcc8] bg-white text-[3rem] font-black text-[#9a948d] shadow-[0_16px_36px_rgba(45,31,20,0.08)]">
+                  <div className="flex h-24 flex-1 items-center justify-center rounded-[28px] border border-[#eadcc8] bg-white text-[3.5rem] font-black text-[#2b211b] shadow-[0_16px_36px_rgba(45,31,20,0.08)]">
                     {roofArea}
                     <span className="ml-4 text-[1.1rem] font-extrabold text-[#7d7168] sm:text-[1.25rem]">m²</span>
                   </div>
@@ -220,12 +220,17 @@ export default function CalculatorMainPage() {
                     +
                   </button>
                 </div>
+                <div className="mt-4 flex justify-center">
+                  <span className="rounded-full border border-[#f7d79d] bg-[#fff4d8] px-6 py-3 text-[1rem] font-semibold text-[#f59e0b] sm:text-[1.05rem]">
+                    Có thể lắp tối đa khoảng 30.8 kWp
+                  </span>
+                </div>
               </div>
 
               <div className="mt-8 flex flex-col gap-4">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center gap-3 rounded-[24px] bg-[#f8cb84] px-6 py-4 text-[1.05rem] font-extrabold text-white shadow-[0_16px_32px_rgba(248,203,132,0.45)] sm:py-5 sm:text-[1.2rem]"
+                  className="inline-flex items-center justify-center gap-3 rounded-[24px] bg-[#f7a800] px-6 py-4 text-[1.05rem] font-extrabold text-white shadow-[0_16px_32px_rgba(247,168,0,0.35)] sm:py-5 sm:text-[1.2rem]"
                 >
                   Tiếp tục
                   <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
