@@ -77,53 +77,65 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
 
   return (
     <PublicShell>
-      <main className="mx-auto max-w-7xl px-4 py-4 md:px-0">
-        <ThemeCard tone="hero" className="overflow-hidden p-6 md:p-8">
-          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+      <main className="mx-auto max-w-7xl px-3 py-3 md:px-0 md:py-4">
+        <div className="mb-3 grid grid-cols-3 gap-2 md:hidden">
+          <a href="#advisor-input" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-center text-[11px] font-medium text-[color:var(--text)]">
+            Nhập liệu
+          </a>
+          <a href="#advisor-result" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-center text-[11px] font-medium text-[color:var(--text)]">
+            Kết quả
+          </a>
+          <a href="#advisor-combo" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-center text-[11px] font-medium text-[color:var(--text)]">
+            Combo
+          </a>
+        </div>
+
+        <ThemeCard tone="hero" className="overflow-hidden p-4 md:p-8">
+          <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
             <div className="max-w-3xl">
-              <div className="inline-flex rounded-full border border-orange-400/30 bg-orange-400/10 px-3 py-1 text-xs uppercase tracking-[0.28em] text-orange-200">
+              <div className="inline-flex rounded-full border border-orange-400/30 bg-orange-400/10 px-3 py-1 text-[10px] uppercase tracking-[0.26em] text-orange-200 md:text-xs md:tracking-[0.28em]">
                 Tư vấn hệ thống
               </div>
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white md:mt-4 md:text-6xl">
                 Đề xuất hệ phù hợp cho khách chỉ từ vài thông số
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 md:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300 md:mt-4 md:text-base md:leading-7">
                 Nhập tiền điện, khu vực, diện tích mái và nhu cầu lưu trữ. Hệ thống sẽ tính nhanh công suất đề xuất, phần tiết kiệm điện, hoàn vốn, ROI và gợi ý combo public phù hợp nhất.
               </p>
             </div>
-            <div className="grid min-w-0 gap-3 sm:grid-cols-2">
-              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Giờ nắng hiệu dụng (PSH)</div>
-                <div className="mt-2 text-2xl font-semibold text-white">{number1(inputs.psh)}h</div>
+            <div className="grid min-w-0 gap-2 sm:grid-cols-2">
+              <div className="rounded-[1.25rem] border border-white/10 bg-white/10 p-3 backdrop-blur-sm md:rounded-3xl md:p-4">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 md:text-xs md:tracking-[0.24em]">Giờ nắng hiệu dụng (PSH)</div>
+                <div className="mt-2 text-xl font-semibold text-white md:text-2xl">{number1(inputs.psh)}h</div>
               </div>
-              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Khu vực</div>
-                <div className="mt-2 text-2xl font-semibold text-white">{regionPreset.label}</div>
-                <div className="mt-2 text-xs leading-5 text-slate-400">{regionPreset.note}</div>
+              <div className="rounded-[1.25rem] border border-white/10 bg-white/10 p-3 backdrop-blur-sm md:rounded-3xl md:p-4">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 md:text-xs md:tracking-[0.24em]">Khu vực</div>
+                <div className="mt-2 text-xl font-semibold text-white md:text-2xl">{regionPreset.label}</div>
+                <div className="mt-2 text-[11px] leading-4 text-slate-400 md:text-xs md:leading-5">{regionPreset.note}</div>
               </div>
-              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Combo gợi ý</div>
-                <div className="mt-2 text-2xl font-semibold text-white">{suggestions.length}</div>
+              <div className="rounded-[1.25rem] border border-white/10 bg-white/10 p-3 backdrop-blur-sm md:rounded-3xl md:p-4">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 md:text-xs md:tracking-[0.24em]">Combo gợi ý</div>
+                <div className="mt-2 text-xl font-semibold text-white md:text-2xl">{suggestions.length}</div>
               </div>
-              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Khuyến nghị</div>
-                <div className="mt-2 text-2xl font-semibold text-white">
+              <div className="rounded-[1.25rem] border border-white/10 bg-white/10 p-3 backdrop-blur-sm md:rounded-3xl md:p-4">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 md:text-xs md:tracking-[0.24em]">Khuyến nghị</div>
+                <div className="mt-2 text-xl font-semibold text-white md:text-2xl">
                   {inputs.batteryWanted ? "Hybrid" : inputs.phase === 3 ? "3 pha cho cả nhà" : "1 pha riêng"}
                 </div>
-                <div className="mt-2 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-100">
+                <div className="mt-2 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium text-cyan-100">
                   {phaseBadgeLabel(inputs)}
                 </div>
-                <div className="mt-2 text-xs leading-5 text-slate-400">
+                <div className="mt-2 text-[11px] leading-4 text-slate-400 md:text-xs md:leading-5">
                   {phaseSuggestion}
                 </div>
               </div>
-              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Giá điện</div>
-                <div className="mt-2 text-2xl font-semibold text-white">{formatVnd(inputs.avgElectricityPriceVnd)}</div>
+              <div className="rounded-[1.25rem] border border-white/10 bg-white/10 p-3 backdrop-blur-sm md:rounded-3xl md:p-4">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 md:text-xs md:tracking-[0.24em]">Giá điện</div>
+                <div className="mt-2 text-xl font-semibold text-white md:text-2xl">{formatVnd(inputs.avgElectricityPriceVnd)}</div>
               </div>
-              <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
-                <div className="text-xs uppercase tracking-[0.24em] text-slate-400">Ngân sách</div>
-                <div className="mt-2 text-2xl font-semibold text-white">
+              <div className="rounded-[1.25rem] border border-white/10 bg-white/10 p-3 backdrop-blur-sm md:rounded-3xl md:p-4">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-slate-400 md:text-xs md:tracking-[0.24em]">Ngân sách</div>
+                <div className="mt-2 text-xl font-semibold text-white md:text-2xl">
                   {inputs.budgetVnd !== null && inputs.budgetVnd > 0 ? formatVnd(inputs.budgetVnd) : "Không giới hạn"}
                 </div>
               </div>
@@ -131,25 +143,25 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
           </div>
         </ThemeCard>
 
-        <section className="mt-6 grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-          <ThemeCard className="p-6">
+        <section className="mt-5 grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
+          <ThemeCard id="advisor-input" className="p-4 md:p-6">
             <SectionTitle eyebrow="Input" title="Nhập thông tin khách" description="Sales chỉ cần nhập phần có thật từ hóa đơn, mái và nhu cầu lưu trữ." />
-            <form className="mt-5 grid gap-4" method="get">
+            <form className="mt-4 grid gap-3 md:mt-5 md:gap-4" method="get">
               <div className="grid gap-2">
-                <label className="text-sm text-[color:var(--muted)]">Tiền điện hàng tháng</label>
+                <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Tiền điện hàng tháng</label>
                 <FormattedNumberInput name="bill" min={0} step={1} defaultValue={inputs.monthlyBillVnd || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                <p className="text-xs text-[color:var(--muted)]">Dùng khi khách chỉ nhớ hóa đơn điện. Mặc định theo {getSalesElectricityPriceLabel(inputs.customerType).toLowerCase()}.</p>
+                <p className="text-[11px] leading-5 text-[color:var(--muted)] md:text-xs">Dùng khi khách chỉ nhớ hóa đơn điện. Mặc định theo {getSalesElectricityPriceLabel(inputs.customerType).toLowerCase()}.</p>
               </div>
 
               <div className="grid gap-2">
-                <label className="text-sm text-[color:var(--muted)]">Hoặc sản lượng tiêu thụ/tháng</label>
+                <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Hoặc sản lượng tiêu thụ/tháng</label>
                 <FormattedNumberInput name="consumption" min={0} step={1} defaultValue={inputs.monthlyConsumptionKwh || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                <p className="text-xs text-[color:var(--muted)]">Chỉ cần nhập 1 trong 2 ô này. Nếu có số kWh thực tế thì ưu tiên dùng số đó.</p>
+                <p className="text-[11px] leading-5 text-[color:var(--muted)] md:text-xs">Chỉ cần nhập 1 trong 2 ô này. Nếu có số kWh thực tế thì ưu tiên dùng số đó.</p>
               </div>
 
               <div className="grid gap-2 md:grid-cols-2">
                 <div className="grid gap-2">
-                  <label className="text-sm text-[color:var(--muted)]">Giá điện trung bình</label>
+                  <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Giá điện trung bình</label>
                   <FormattedNumberInput
                     name="price"
                     min={1}
@@ -162,7 +174,7 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
               </div>
 
               <div className="grid gap-2">
-                <label className="text-sm text-[color:var(--muted)]">Ngân sách dự kiến</label>
+                <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Ngân sách dự kiến</label>
                 <FormattedNumberInput
                   name="budget"
                   min={0}
@@ -170,26 +182,26 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
                   defaultValue={inputs.budgetVnd ?? ""}
                   className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none"
                 />
-                <p className="text-xs text-[color:var(--muted)]">Để trống nếu khách không giới hạn ngân sách. Khi có nhập, combo vượt mức sẽ bị hạ ưu tiên.</p>
+                <p className="text-[11px] leading-5 text-[color:var(--muted)] md:text-xs">Để trống nếu khách không giới hạn ngân sách. Khi có nhập, combo vượt mức sẽ bị hạ ưu tiên.</p>
               </div>
 
-              <div className="grid gap-4 lg:grid-cols-2">
+              <div className="grid gap-3 lg:grid-cols-2">
                 <div className="grid gap-4">
                   <CustomerTypePhaseField defaultCustomerType={inputs.customerType} defaultPhase={inputs.phase} />
                   <RegionPshField defaultRegion={inputs.region} defaultPsh={inputs.psh} />
                 </div>
                 <div className="grid gap-4">
                   <div className="grid gap-2">
-                    <label className="text-sm text-[color:var(--muted)]">Hiệu suất hệ thống (PR)</label>
+                    <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Hiệu suất hệ thống (PR)</label>
                     <FormattedNumberInput name="pr" min={0.01} max={1} step={0.01} required defaultValue={inputs.pr} integer={false} inputMode="decimal" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                    <p className="text-xs text-[color:var(--muted)]">Hệ số suy hao hệ thống, thường dùng khoảng 0.75 - 0.85.</p>
+                    <p className="text-[11px] leading-5 text-[color:var(--muted)] md:text-xs">Hệ số suy hao hệ thống, thường dùng khoảng 0.75 - 0.85.</p>
                   </div>
                   <div className="grid gap-2">
-                    <label className="text-sm text-[color:var(--muted)]">Diện tích mái hữu dụng (m²)</label>
+                    <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Diện tích mái hữu dụng (m²)</label>
                     <FormattedNumberInput name="roof" min={0} step={0.1} required defaultValue={inputs.roofAreaM2 || ""} integer={false} inputMode="decimal" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                   </div>
                   <div className="grid gap-2">
-                    <label className="text-sm text-[color:var(--muted)]">Tỷ lệ dùng điện ban ngày</label>
+                    <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Tỷ lệ dùng điện ban ngày</label>
                     <FormattedNumberInput name="daytime" min={0} max={1} step={0.01} required defaultValue={inputs.daytimeUseRatio} integer={false} inputMode="decimal" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                   </div>
                 </div>
@@ -207,36 +219,36 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
           </ThemeCard>
 
           <div className="space-y-6">
-            <ThemeCard className="p-6">
+            <ThemeCard id="advisor-result" className="p-4 md:p-6">
             <SectionTitle eyebrow="Kết quả" title="Tóm tắt tư vấn" description="Bản nhẩm nhanh cho sales để nói chuyện với khách bằng số liệu rõ ràng." />
             <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Chia sẻ kết quả tư vấn</div>
               <SystemAdvisorShareButton url={shareUrl} label="Copy share link" />
             </div>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
               <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Công suất đề xuất</div>
-                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.recommendedKwP)} kWp</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Công suất đề xuất</div>
+                <div className="mt-2 text-xl font-semibold text-[color:var(--text)] md:text-2xl">{number1(summary.recommendedKwP)} kWp</div>
               </div>
               <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Sản lượng tháng</div>
-                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedMonthlyProductionKwh)} kWh</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Sản lượng tháng</div>
+                <div className="mt-2 text-xl font-semibold text-[color:var(--text)] md:text-2xl">{number1(summary.estimatedMonthlyProductionKwh)} kWh</div>
               </div>
               <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Sản lượng năm</div>
-                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedAnnualProductionKwh)} kWh</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Sản lượng năm</div>
+                <div className="mt-2 text-xl font-semibold text-[color:var(--text)] md:text-2xl">{number1(summary.estimatedAnnualProductionKwh)} kWh</div>
               </div>
               <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Mái cần</div>
-                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedRoofAreaM2)} m²</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Mái cần</div>
+                <div className="mt-2 text-xl font-semibold text-[color:var(--text)] md:text-2xl">{number1(summary.estimatedRoofAreaM2)} m²</div>
               </div>
               <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Đầu tư ước tính</div>
-                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{money(summary.estimatedInvestmentVnd)}</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Đầu tư ước tính</div>
+                <div className="mt-2 text-xl font-semibold text-[color:var(--text)] md:text-2xl">{money(summary.estimatedInvestmentVnd)}</div>
               </div>
               <div className="rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Hoàn vốn</div>
-                <div className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{number1(summary.estimatedPaybackYears)} năm</div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Hoàn vốn</div>
+                <div className="mt-2 text-xl font-semibold text-[color:var(--text)] md:text-2xl">{number1(summary.estimatedPaybackYears)} năm</div>
               </div>
             </div>
 
@@ -265,35 +277,35 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
               </div>
             </ThemeCard>
 
-            <ThemeCard className="p-6">
+            <ThemeCard id="advisor-combo" className="p-4 md:p-6">
               <SectionTitle eyebrow="Combo" title="Đề xuất combo public" description="Các combo dưới đây được chấm theo độ khớp công suất, lưu trữ, mái và hoàn vốn." />
-              <div className="mt-5 space-y-4">
+              <div className="mt-4 space-y-3 md:mt-5 md:space-y-4">
                 {suggestions.length > 0 ? (
                   suggestions.map((combo) => (
-                    <div key={combo.id} className="rounded-[1.4rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-                      <div className="flex flex-wrap items-start justify-between gap-4">
-                        <div>
-                          <div className="text-sm font-semibold text-[color:var(--text)]">{combo.name}</div>
-                          <div className="mt-1 text-xs text-[color:var(--muted)]">
+                    <div key={combo.id} className="rounded-[1.35rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="min-w-0">
+                          <div className="truncate text-sm font-semibold text-[color:var(--text)]">{combo.name}</div>
+                          <div className="mt-1 text-[11px] leading-5 text-[color:var(--muted)]">
                             {combo.code} · {combo.phase} pha · {number1(combo.solar_kw)} kWp{combo.battery_kwh ? ` · ${number1(combo.battery_kwh)} kWh` : ""}
                           </div>
                         </div>
-                        <div className="text-right">
-                          <div className="text-xs uppercase tracking-[0.22em] text-[color:var(--muted)]">Đề xuất</div>
-                          <div className="text-lg font-semibold text-[color:var(--text)]">{number1(combo.estimatedPaybackYears)} năm</div>
+                        <div className="shrink-0 text-right">
+                          <div className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">Đề xuất</div>
+                          <div className="text-base font-semibold text-[color:var(--text)] md:text-lg">{number1(combo.estimatedPaybackYears)} năm</div>
                         </div>
                       </div>
-                      <div className="mt-2 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-700 dark:text-cyan-100">
+                      <div className="mt-2 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium text-cyan-700 dark:text-cyan-100">
                         {combo.fitLabel}
                       </div>
                       {inputs.budgetVnd !== null && inputs.budgetVnd > 0 && (
-                        <div className="mt-2 text-xs text-[color:var(--muted)]">
+                        <div className="mt-2 text-[11px] leading-5 text-[color:var(--muted)]">
                           {combo.displayedPriceVnd <= inputs.budgetVnd
                             ? "Trong ngân sách"
                             : `Vượt ngân sách ${money(combo.displayedPriceVnd - inputs.budgetVnd)}`}
                         </div>
                       )}
-                      <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                      <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                         <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-3 text-sm text-[color:var(--muted)]">
                           {combo.displayedPriceLabel}: <span className="text-[color:var(--text)]">{money(combo.displayedPriceVnd)}</span>
                         </div>
@@ -306,14 +318,14 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
                       </div>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {combo.reasons.map((reason) => (
-                          <span key={reason} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1 text-xs text-[color:var(--muted)]">
+                          <span key={reason} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1 text-[11px] text-[color:var(--muted)]">
                             {reason}
                           </span>
                         ))}
                       </div>
-              <div className="mt-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-3 text-xs leading-6 text-[color:var(--muted)]">
-                Ưu tiên này hiện dựa trên công suất, loại hệ, pin lưu trữ, diện tích mái và hoàn vốn. Nếu muốn, có thể đổi thành logic theo ngân sách hoặc theo rooftop trước.
-              </div>
+                      <div className="mt-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--panel)] p-3 text-[11px] leading-6 text-[color:var(--muted)]">
+                        Ưu tiên này hiện dựa trên công suất, loại hệ, pin lưu trữ, diện tích mái và hoàn vốn. Nếu muốn, có thể đổi thành logic theo ngân sách hoặc theo rooftop trước.
+                      </div>
                       <div className="mt-4 flex flex-wrap gap-2">
                         <Link href={`/combos/public/${combo.id}`} className="rounded-full bg-cyan-400 px-4 py-2 text-sm font-medium text-slate-950">
                           Xem public
@@ -331,8 +343,8 @@ export default async function SystemAdvisorPage({ searchParams }: { searchParams
           </div>
         </section>
 
-        <ThemeCard className="mt-6 p-6">
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <ThemeCard className="mt-5 p-4 md:mt-6 md:p-6">
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
             <div>
               <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Nhẩm nhanh</div>
               <div className="mt-2 text-lg font-semibold text-[color:var(--text)]">1 triệu tiền điện ≈ 3 kWp</div>

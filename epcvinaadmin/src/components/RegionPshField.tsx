@@ -17,7 +17,7 @@ export function RegionPshField({ defaultRegion, defaultPsh }: Props) {
 
   return (
     <div className="grid gap-2">
-      <label className="text-sm text-[color:var(--muted)]">Khu vực</label>
+      <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Khu vực</label>
       <select
         name="region"
         value={region}
@@ -35,11 +35,11 @@ export function RegionPshField({ defaultRegion, defaultPsh }: Props) {
         <option value="south">Miền Nam</option>
         <option value="custom">Tự nhập</option>
       </select>
-      <p className="text-xs text-[color:var(--muted)]">
+      <p className="text-[11px] leading-5 text-[color:var(--muted)] md:text-xs">
         {regionInfo.note} {region !== "custom" ? `PSH tự đổi sang ${regionInfo.psh.toFixed(1)}h.` : "Chọn Tự nhập để chỉnh PSH theo site thực tế."}
       </p>
       <div className="grid gap-2">
-        <label className="text-sm text-[color:var(--muted)]">Giờ nắng hiệu dụng (PSH)</label>
+        <label className="text-xs font-medium text-[color:var(--muted)] md:text-sm">Giờ nắng hiệu dụng (PSH)</label>
         <FormattedNumberInput
           name="psh"
           min={0.1}
@@ -51,7 +51,7 @@ export function RegionPshField({ defaultRegion, defaultPsh }: Props) {
           inputMode="decimal"
           className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none"
         />
-        <p className="text-xs text-[color:var(--muted)]">PSH sẽ ảnh hưởng trực tiếp đến công suất đề xuất và sản lượng dự kiến.</p>
+        <p className="text-[11px] leading-5 text-[color:var(--muted)] md:text-xs">PSH sẽ ảnh hưởng trực tiếp đến công suất đề xuất và sản lượng dự kiến.</p>
       </div>
     </div>
   );
