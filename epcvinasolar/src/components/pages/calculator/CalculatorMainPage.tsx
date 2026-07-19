@@ -1,8 +1,12 @@
 import { useMemo, useState } from 'react';
-import { ArrowLeft, ArrowRight, House, Buildings, Factory, HouseLine, SunDim, CircleNotch } from '@phosphor-icons/react';
+import { ArrowLeft, ArrowRight, Buildings, Factory, HouseLine, Phone, SunDim } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
-const billPresets = ['500k', '1 triệu', '2 triệu', '3 triệu', '5 triệu', '8 triệu'];
+const billPresetsByType: Record<string, string[]> = {
+  home: ['500k', '1 triệu', '2 triệu', '3 triệu', '5 triệu', '8 triệu'],
+  business: ['3 triệu', '5 triệu', '10 triệu', '20 triệu', '30 triệu', '50 triệu'],
+  factory: ['20 triệu', '50 triệu', '100 triệu', '200 triệu', '500 triệu'],
+};
 
 const systemTypes = [
   { id: 'home', label: 'Gia đình', sub: 'Nhà ở, biệt thự', icon: HouseLine },
@@ -15,6 +19,7 @@ export default function CalculatorMainPage() {
   const [systemType, setSystemType] = useState('home');
   const [bill, setBill] = useState('');
   const progress = useMemo(() => `${Math.min(step, 4) * 25}%`, [step]);
+  const billPresets = billPresetsByType[systemType] ?? billPresetsByType.home;
 
   return (
     <div className="min-h-screen bg-[#f5ead7] text-[#231b16]">
@@ -64,7 +69,7 @@ export default function CalculatorMainPage() {
         </section>
 
         <section className="mt-10">
-          <h3 className="max-w-4xl text-[2.8rem] font-black leading-[1.03] tracking-tight text-[#231b16] sm:text-[3.6rem]">
+          <h3 className="max-w-4xl text-[2.65rem] font-black leading-[1.03] tracking-tight text-[#231b16] sm:text-[3.45rem]">
             Tiền điện trung bình mỗi tháng của bạn khoảng bao nhiêu?
           </h3>
 
@@ -92,7 +97,7 @@ export default function CalculatorMainPage() {
           </div>
 
           <div className="mt-8">
-            <p className="text-[1.6rem] font-extrabold text-[#7d7168]">Chọn nhanh theo hóa đơn phổ biến</p>
+            <p className="text-[1.5rem] font-extrabold text-[#7d7168]">Chọn nhanh theo hóa đơn phổ biến</p>
             <div className="mt-4 flex flex-wrap gap-4">
               {billPresets.map((preset) => (
                 <button
@@ -143,7 +148,7 @@ export default function CalculatorMainPage() {
             href="/tu-van-giai-phap"
             className="inline-flex items-center gap-3 rounded-full bg-[#16a34a] px-8 py-4 text-2xl font-bold text-white shadow-[0_18px_36px_rgba(22,163,74,0.28)]"
           >
-            <CircleNotch className="h-6 w-6" />
+            <Phone className="h-6 w-6" weight="bold" />
             0914.264.369
           </a>
         </div>
