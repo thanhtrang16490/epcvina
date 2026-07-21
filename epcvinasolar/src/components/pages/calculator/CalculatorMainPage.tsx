@@ -530,6 +530,31 @@ export default function CalculatorMainPage() {
     }
   }, [screen]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const source = params.get('source');
+    if (source !== 'family-landing') return;
+
+    const typeParam = params.get('type');
+    const billParam = params.get('bill')?.replace(/\D/g, '');
+    const roofParam = params.get('roof')?.replace(/[^\d.]/g, '');
+    const dayParam = Number(params.get('day'));
+    const provinceParam = params.get('province');
+    const validBillType = billTypes.some((item) => item.id === typeParam) ? (typeParam as string) : 'family';
+    const validDayUsage = Number.isFinite(dayParam) ? Math.max(10, Math.min(95, Math.round(dayParam))) : defaultDayUsageByBillType.family;
+
+    setBillType(validBillType);
+    setBillAmount(billParam || String(defaultBillByType.family));
+    setRoofArea(roofParam || String(defaultRoofAreaByType.family));
+    setRoofType(defaultRoofTypeByBillType[validBillType] || defaultRoofTypeByBillType.family);
+    setDayUsage(validDayUsage);
+    setProvince(provinceParam || 'Hà Nội');
+    setExpandedRegion('north');
+    setLoadProfile('standard');
+    setPhaseType(validBillType === 'factory' ? 'three' : 'one');
+    setScreen('result');
+  }, []);
+
   const activeScreen = calculatorScreens.includes(screen) ? screen : 'region';
   const billValue = Number(billAmount) || 0;
   const quickBills = quickBillsByType[billType as keyof typeof quickBillsByType];

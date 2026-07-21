@@ -16,25 +16,25 @@ const trustIndicators = [
 
 export default function SocialProofSection() {
   return (
-    <section className="relative py-16 sm:py-20 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white overflow-hidden">
+    <section className="relative py-10 sm:py-20 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white overflow-hidden">
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-7 sm:mb-12"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
+          <h2 className="text-[26px] sm:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 leading-tight">
             EPCVINA Trong Những Con Số
           </h2>
-          <p className="text-lg text-white/80">Kết quả thực tế, không phải lời hứa</p>
+          <p className="text-[14px] sm:text-lg text-white/80">Kết quả thực tế, không phải lời hứa</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -44,18 +44,18 @@ export default function SocialProofSection() {
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
             >
-              <div className="w-14 h-14 rounded-2xl bg-white/15 flex items-center justify-center mx-auto mb-3">
-                <stat.icon className="w-7 h-7" weight="duotone" />
+              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/15 flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                <stat.icon className="w-6 h-6 sm:w-7 sm:h-7" weight="duotone" />
               </div>
-              <p className="text-4xl sm:text-5xl font-extrabold tracking-tight">{stat.number}</p>
-              <h3 className="text-lg font-bold">{stat.label}</h3>
-              <p className="text-sm text-white/75">{stat.desc}</p>
+              <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">{stat.number}</p>
+              <h3 className="text-[13px] sm:text-lg font-bold leading-tight">{stat.label}</h3>
+              <p className="hidden sm:block text-sm text-white/75">{stat.desc}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-14 pt-8 border-t border-white/20">
+        <div className="mt-8 sm:mt-14 pt-5 sm:pt-8 border-t border-white/20">
           <div className="grid md:grid-cols-3 gap-4">
             {trustIndicators.map((item, i) => (
               <div

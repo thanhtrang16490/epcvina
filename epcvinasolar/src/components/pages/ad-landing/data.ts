@@ -119,7 +119,7 @@ export const FEATURED_PROJECTS: Project[] = [
       rating: 5,
       aspect: 'Tiết kiệm chi phí & Dịch vụ tốt',
     },
-    image: '/du-an/nha-may-thep-ha-noi.jpg',
+    image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png',
     is_featured: true,
   },
   {
@@ -134,7 +134,7 @@ export const FEATURED_PROJECTS: Project[] = [
       rating: 5,
       aspect: 'Thi công phức tạp & Chuyên nghiệp',
     },
-    image: '/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI-PHONG.jpg',
+    image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png',
     is_featured: true,
   },
   {
@@ -144,7 +144,7 @@ export const FEATURED_PROJECTS: Project[] = [
     system_type: 'Hybrid',
     location: 'Dương Nội - Hà Nội',
     completion_date: 'T9.2024',
-    image: '/du-an/DU-AN-VINHOMES-GOLDEN-RIVER-BA-SON-1.jpg',
+    image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png',
     is_featured: false,
   },
   {
@@ -154,7 +154,7 @@ export const FEATURED_PROJECTS: Project[] = [
     system_type: 'Hybrid',
     location: 'Tây Tựu - Hà Nội',
     completion_date: 'T12.2024',
-    image: '/du-an/DU-AN-KEANG-NAM-LAND-MARK-TOWER.jpg',
+    image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png',
     is_featured: false,
   },
 ];

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { CheckCircle, Shield, Medal, Users, Phone } from '@phosphor-icons/react';
+import { Calculator, CheckCircle, Shield, Medal, Users, Phone } from '@phosphor-icons/react';
 import MicroNavigation from './MicroNavigation';
 import HeroSection from './HeroSection';
 import CalculatorSection from './CalculatorSection';
@@ -32,6 +32,12 @@ const brands = [
   { name: 'CFE', desc: 'Pin lưu trữ năng lượng', bg: 'bg-lime-50', border: 'border-lime-100' },
 ];
 
+const trackEvent = (eventName: string, params: Record<string, string | number> = {}) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, params);
+  }
+};
+
 export default function DienMatTroiGiaDinh() {
   const [formData, setFormData] = useState({
     name: '',
@@ -55,16 +61,29 @@ export default function DienMatTroiGiaDinh() {
   };
 
   return (
-    <div className="min-h-screen pt-20 md:pt-20">
+    <div className="min-h-screen pb-20 md:pb-0">
       <MicroNavigation />
       <HeroSection />
       <SocialProofSection />
-      <CalculatorSection onSubmit={(data) => setFormData(prev => ({ ...prev, message: `Hộ gia đình cần lắp điện mặt trời. Hệ đề xuất: ${data.system_size} kWp` }))} />
-      <VideoShowcaseSection />
+      <CalculatorSection
+        onSubmit={(data) => setFormData(prev => ({
+          ...prev,
+          name: data.name || prev.name,
+          phone: data.phone || prev.phone,
+          message: `Hộ gia đình cần lắp điện mặt trời. Hệ đề xuất: ${data.system_size} kWp`,
+        }))}
+      />
+      <div className="hidden md:block">
+        <VideoShowcaseSection />
+      </div>
       <BeforeAfterBillsSection />
       <ProjectsSection />
-      <TestimonialsSection />
-      <PaymentOptionsSection />
+      <div className="hidden md:block">
+        <TestimonialsSection />
+      </div>
+      <div className="hidden md:block">
+        <PaymentOptionsSection />
+      </div>
 
       {/* Why EPCVINA */}
       <section id="bao-hanh" className="py-16 sm:py-20 bg-slate-950 text-white">
@@ -99,7 +118,7 @@ export default function DienMatTroiGiaDinh() {
       </section>
 
       {/* Equipment Brands */}
-      <section id="bang-gia" className="py-16 bg-white">
+      <section id="bang-gia" className="hidden py-16 bg-white md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-10"
@@ -133,7 +152,7 @@ export default function DienMatTroiGiaDinh() {
       <FAQSection />
 
       {/* Final CTA */}
-      <section id="contact" className="py-16 sm:py-20 bg-orange-600 text-white">
+      <section id="contact" className="py-16 sm:py-20 bg-[radial-gradient(circle_at_18%_12%,rgba(255,176,32,.28),transparent_28%),linear-gradient(135deg,#414042_0%,#2F3035_48%,#F58220_150%)] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <motion.div
@@ -143,10 +162,13 @@ export default function DienMatTroiGiaDinh() {
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Sẵn Sàng Bắt Đầu?</h2>
-              <p className="text-lg text-white/85">Gửi thông tin, nhận tư vấn & báo giá chi tiết trong 24h</p>
+              <div className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] font-black uppercase tracking-[.1em] text-orange-100">
+                Khảo sát 0đ
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Nhận phương án solar phù hợp cho nhà anh/chị</h2>
+              <p className="text-lg text-white/85">Gửi thông tin, EPCVINA gọi lại để kiểm tra hóa đơn, mái nhà và nhu cầu dùng điện ban đêm.</p>
               <div className="space-y-2.5">
-                {['Khảo sát & thiết kế miễn phí', 'Báo giá chi tiết từng hạng mục', 'Không phát sinh chi phí', 'Hỗ trợ kỹ thuật trọn đời'].map((item, i) => (
+                {['Không thu phí khảo sát ban đầu', 'Tư vấn On-Grid hay Hybrid theo nhu cầu thật', 'Báo giá theo từng hạng mục thiết bị', 'Không ép lắp đặt khi phương án chưa phù hợp'].map((item, i) => (
                   <div key={i} className="flex items-center gap-2.5">
                     <CheckCircle className="w-5 h-5 flex-shrink-0" weight="fill" />
                     <span className="text-base">{item}</span>
@@ -155,7 +177,7 @@ export default function DienMatTroiGiaDinh() {
               </div>
               <a
                 href="tel:0988446113"
-                className="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-7 py-3.5 rounded-xl text-base hover:bg-slate-50 active:scale-[0.98] transition-all min-h-[44px]"
+                className="inline-flex items-center gap-2 bg-white text-[#C2410C] font-bold px-7 py-3.5 rounded-xl text-base hover:bg-slate-50 active:scale-[0.98] transition-all min-h-[44px]"
               >
                 <Phone className="w-5 h-5" weight="bold" />
                 Gọi Ngay: 0988 446 113
@@ -170,7 +192,8 @@ export default function DienMatTroiGiaDinh() {
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
             >
-              <h3 className="text-xl font-bold mb-4">Gửi Thông Tin Tư Vấn</h3>
+              <h3 className="text-xl font-bold mb-1">Gửi thông tin khảo sát miễn phí</h3>
+              <p className="mb-4 text-sm leading-relaxed text-slate-500">Chỉ cần tên và số điện thoại. Địa chỉ giúp kỹ sư kiểm tra vùng nắng nhanh hơn.</p>
               {formSubmitted && (
                 <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-4">
                   <p className="text-emerald-800 font-semibold text-sm">✓ Đã nhận thông tin!</p>
@@ -178,10 +201,10 @@ export default function DienMatTroiGiaDinh() {
                 </div>
               )}
               {[
-                { label: 'Họ tên', name: 'name', type: 'text', required: true },
-                { label: 'Số điện thoại', name: 'phone', type: 'tel', required: true },
-                { label: 'Địa chỉ', name: 'address', type: 'text', required: false },
-              ].map(({ label, name, type, required }) => (
+                { label: 'Họ tên', name: 'name', type: 'text', required: true, placeholder: 'VD: Anh Minh' },
+                { label: 'Số điện thoại', name: 'phone', type: 'tel', required: true, placeholder: 'VD: 0988 446 113' },
+                { label: 'Địa chỉ', name: 'address', type: 'text', required: false, placeholder: 'VD: Hà Đông, Hà Nội' },
+              ].map(({ label, name, type, required, placeholder }) => (
                 <div key={name}>
                   <label className="block text-sm font-medium text-slate-700 mb-1.5">
                     {label} {required && <span className="text-red-500">*</span>}
@@ -193,6 +216,7 @@ export default function DienMatTroiGiaDinh() {
                     value={formData[name as keyof typeof formData]}
                     onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
                     className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base"
+                    placeholder={placeholder}
                   />
                 </div>
               ))}
@@ -204,21 +228,47 @@ export default function DienMatTroiGiaDinh() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base"
-                  placeholder="VD: Lắp hệ hybrid 10kWp, có pin lưu trữ..."
+                  placeholder="VD: Hóa đơn khoảng 3 triệu/tháng, muốn dùng điện khi mất điện"
                 />
               </div>
               <button
                 type="submit"
                 className="w-full bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold py-3.5 rounded-xl text-base transition-colors min-h-[44px]"
               >
-                Gửi Yêu Cầu Tư Vấn
+                Nhận lịch khảo sát miễn phí
               </button>
+              <p className="text-[11.5px] leading-relaxed text-slate-500">
+                Thông tin chỉ dùng để tư vấn điện mặt trời EPCVINA. Anh/chị có thể yêu cầu không liên hệ lại bất cứ lúc nào.
+              </p>
             </motion.form>
           </div>
         </div>
       </section>
 
       <ExitIntentPopup />
+
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-3 py-2 shadow-[0_-18px_44px_-30px_rgba(15,23,42,.45)] backdrop-blur md:hidden">
+        <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
+          <a
+            href="#calculator"
+            onClick={() => trackEvent('mobile_sticky_calculator_click', { source: 'family_landing' })}
+            className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-3 text-[13px] font-black text-white active:scale-[0.98]"
+            aria-label="Tính chi phí điện mặt trời"
+          >
+            <Calculator className="h-4 w-4" weight="bold" />
+            Tính chi phí
+          </a>
+          <a
+            href="tel:0988446113"
+            onClick={() => trackEvent('mobile_sticky_call_click', { source: 'family_landing' })}
+            className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-xl bg-[#15803D] px-3 text-[13px] font-black text-white active:scale-[0.98]"
+            aria-label="Gọi hotline 0988 446 113"
+          >
+            <Phone className="h-4 w-4" weight="bold" />
+            Gọi EPCVINA
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

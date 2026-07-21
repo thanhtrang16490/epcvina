@@ -2,23 +2,23 @@ import { Phone, ChatCircle } from '@phosphor-icons/react';
 
 export default function MicroNavigation() {
   const navItems = [
-    { label: 'Dự án thực tế', href: '#du-an' },
-    { label: 'Bảng giá tham khảo', href: '#bang-gia' },
-    { label: 'Chính sách bảo hành', href: '#bao-hanh' },
-    { label: 'Tính chi phí', href: '/calculator' },
-    { label: 'Kiến thức', href: '/kien-thuc' },
+    { label: 'Tính chi phí', href: '#calculator' },
+    { label: 'Hóa đơn thực tế', href: '#hoa-don' },
+    { label: 'Dự án nhà dân', href: '#du-an' },
+    { label: 'Bảo hành', href: '#bao-hanh' },
+    { label: 'Nhận khảo sát', href: '#contact' },
   ];
 
   return (
-    <nav className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="sticky top-0 z-40 bg-white/95 border-b border-slate-200 shadow-sm backdrop-blur">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 md:h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 cursor-pointer" aria-label="EPCVINA Solar Homepage">
+          <a href="#top" className="flex items-center gap-2 cursor-pointer" aria-label="EPCVINA Solar">
             <img 
               src="/logo-epcvina-solar.png" 
               alt="EPCVINA Solar" 
-              className="h-10 w-auto object-contain"
+              className="h-8 w-auto object-contain md:h-10"
             />
           </a>
 
@@ -36,7 +36,7 @@ export default function MicroNavigation() {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3">
             {/* Hotline - Desktop */}
             <a
               href="tel:0988446113"
@@ -65,22 +65,23 @@ export default function MicroNavigation() {
             <a
               href="#contact"
               onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_cta_click', { event_category: 'conversion' })}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-5 py-2 rounded-lg transition-all shadow-md hover:shadow-lg cursor-pointer min-h-[44px]"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-3 py-2 rounded-lg transition-all shadow-md hover:shadow-lg cursor-pointer min-h-[40px] text-[13px] md:min-h-[44px] md:px-5 md:text-sm"
               aria-label="Nhận tư vấn miễn phí"
             >
-              Nhận tư vấn miễn phí
+              <span className="md:hidden">Khảo sát</span>
+              <span className="hidden md:inline">Khảo sát miễn phí</span>
             </a>
           </div>
         </div>
 
         {/* Mobile Navigation - Scrollable */}
-        <div className="md:hidden overflow-x-auto -mx-4 px-4 py-2 border-t border-slate-200 scrollbar-hide">
-          <div className="flex gap-4 min-w-max">
+        <div className="md:hidden overflow-x-auto -mx-3 px-3 py-1.5 border-t border-slate-200 scrollbar-hide">
+          <div className="flex gap-2 min-w-max">
             {navItems.map((item, i) => (
               <a
                 key={i}
                 href={item.href}
-                className="text-slate-700 hover:text-orange-600 font-medium text-sm whitespace-nowrap transition-colors cursor-pointer min-h-[44px] flex items-center px-2"
+                className="flex min-h-[34px] items-center whitespace-nowrap rounded-full bg-slate-50 px-3 text-[12px] font-bold text-slate-700 transition-colors hover:text-orange-600"
               >
                 {item.label}
               </a>

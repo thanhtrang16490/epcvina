@@ -17,7 +17,7 @@ export default function BeforeAfterBillsSection() {
       },
       savings: 2600000,
       savingsPercent: 87,
-      image: '/du-an/nha-may-thep-ha-noi.jpg',
+      image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png',
     },
     {
       customer: 'Chú Thanh - Hải Dương',
@@ -34,7 +34,7 @@ export default function BeforeAfterBillsSection() {
       },
       savings: 4500000,
       savingsPercent: 90,
-      image: '/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI-PHONG.jpg',
+      image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png',
     },
     {
       customer: 'Anh Linh - Dương Nội',
@@ -51,21 +51,24 @@ export default function BeforeAfterBillsSection() {
       },
       savings: 1750000,
       savingsPercent: 88,
-      image: '/du-an/DU-AN-VINHOMES-GOLDEN-RIVER-BA-SON-1.jpg',
+      image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png',
     },
   ];
 
   return (
-    <section className="py-16 sm:py-20 bg-white">
+    <section id="hoa-don" className="scroll-mt-24 py-10 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+        <div className="text-center mb-7 sm:mb-12">
+          <h2 className="text-[26px] sm:text-4xl font-bold text-slate-900 mb-2 sm:mb-4 leading-tight">
             Hóa Đơn Điện Trước & Sau Khi Lắp
           </h2>
-          <p className="text-xl text-slate-600">Bằng chứng thực tế, không phải con số ước tính</p>
+          <p className="text-[14px] sm:text-xl text-slate-600">Bằng chứng thực tế, không phải con số ước tính</p>
+          <p className="mx-auto mt-3 max-w-3xl text-[12px] leading-relaxed text-slate-500 sm:text-sm">
+            Mức giảm tiền điện phụ thuộc diện tích mái, hướng nắng, biểu giá điện, dung lượng pin lưu trữ và tỷ lệ tự dùng ban ngày/ban đêm. EPCVINA luôn khảo sát thực tế trước khi chốt phương án.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-8">
           {bills.map((bill, i) => (
             <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all border border-slate-200">
               {/* Customer Info */}
@@ -75,14 +78,14 @@ export default function BeforeAfterBillsSection() {
               </div>
 
               {/* Bills Comparison */}
-              <div className="p-6 space-y-4">
+              <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
                 {/* Before */}
                 <div className={`bg-gradient-to-r ${bill.before.color} rounded-xl p-4 text-white`}>
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-semibold opacity-90">TRƯỚC</span>
                     <span className="text-xs bg-white/20 px-2 py-1 rounded">Hóa đơn cũ</span>
                   </div>
-                  <p className="text-3xl font-black">{bill.before.label}</p>
+                  <p className="text-2xl sm:text-3xl font-black">{bill.before.label}</p>
                 </div>
 
                 {/* Arrow */}
@@ -96,14 +99,14 @@ export default function BeforeAfterBillsSection() {
                     <span className="text-sm font-semibold opacity-90">SAU</span>
                     <span className="text-xs bg-white/20 px-2 py-1 rounded">Có điện mặt trời</span>
                   </div>
-                  <p className="text-3xl font-black">{bill.after.label}</p>
+                  <p className="text-2xl sm:text-3xl font-black">{bill.after.label}</p>
                 </div>
 
                 {/* Savings Badge */}
                 <div className="bg-gradient-to-r from-orange-500 to-yellow-500 rounded-xl p-4 text-white text-center">
                   <TrendDown className="w-6 h-6 mx-auto mb-2" weight="duotone" />
                   <p className="text-sm font-semibold opacity-90 mb-1">Tiết kiệm hàng tháng</p>
-                  <p className="text-4xl font-black">{(bill.savings / 1000000).toFixed(1)} triệu</p>
+                  <p className="text-3xl sm:text-4xl font-black">{(bill.savings / 1000000).toFixed(1)} triệu</p>
                   <p className="text-lg font-bold mt-1">Giảm {bill.savingsPercent}%</p>
                 </div>
               </div>
@@ -123,11 +126,12 @@ export default function BeforeAfterBillsSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <p className="text-xl text-slate-600 mb-4">Bạn muốn tiết kiệm tương tự?</p>
+        <div className="text-center mt-8 sm:mt-12">
+          <p className="text-base sm:text-xl text-slate-600 mb-3 sm:mb-4">Bạn muốn tiết kiệm tương tự?</p>
           <a 
             href="#calculator" 
-            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all shadow-lg hover:shadow-xl"
+            onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'bill_case_calculator_click', { event_category: 'engagement', event_label: 'family_landing' })}
+            className="inline-flex min-h-[48px] items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-5 sm:px-8 py-3 sm:py-4 rounded-xl text-[15px] sm:text-lg transition-all shadow-lg hover:shadow-xl"
           >
             Tính Toán Tiết Kiệm Cho Nhà Bạn →
           </a>

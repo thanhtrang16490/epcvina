@@ -136,8 +136,8 @@ const videoSchema = {
   {/* VideoObject Schema */}
   <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
   
-  {/* Mobile Optimization: Use client:visible for below-fold React components */}
-  <DashboardShell client:load>
+  {/* Ad landing mode: keep the page focused on calculator, hotline and lead form. */}
+  <DashboardShell client:load showChrome={false} showFooter={false}>
       <FamilyLandingPage client:visible />
     </DashboardShell>
 </DashboardLayout>

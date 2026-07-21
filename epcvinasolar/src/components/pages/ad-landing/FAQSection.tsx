@@ -4,6 +4,8 @@ import { FAQ_DATA } from './data';
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const visibleFaqs = showAll ? FAQ_DATA : FAQ_DATA.slice(0, 5);
 
   return (
     <section id="faq" className="py-16 sm:py-20 bg-slate-50">
@@ -15,14 +17,14 @@ export default function FAQSection() {
           <p className="text-xl text-slate-600">Giải đáp mọi thắc mắc về điện mặt trời</p>
         </div>
 
-        <div className="space-y-4">
-          {FAQ_DATA.map((faq, i) => (
+        <div className="space-y-3 sm:space-y-4">
+          {visibleFaqs.map((faq, i) => (
             <div key={i} className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-all"
+                className="w-full flex items-center justify-between p-4 text-left transition-all hover:bg-slate-50 sm:p-6"
               >
-                <span className="text-lg font-semibold text-slate-900 pr-4">{faq.q}</span>
+                <span className="pr-4 text-[15px] font-semibold leading-snug text-slate-900 sm:text-lg">{faq.q}</span>
                 {openIndex === i ? (
                   <CaretUp className="w-5 h-5 text-slate-500 flex-shrink-0" weight="bold" />
                 ) : (
@@ -31,15 +33,27 @@ export default function FAQSection() {
               </button>
 
               {openIndex === i && (
-                <div className="px-6 pb-6">
-                  <p className="text-slate-700 leading-relaxed">{faq.a}</p>
+                <div className="px-4 pb-4 sm:px-6 sm:pb-6">
+                  <p className="text-sm leading-relaxed text-slate-700 sm:text-base">{faq.a}</p>
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        {!showAll && FAQ_DATA.length > visibleFaqs.length && (
+          <div className="mt-5 text-center">
+            <button
+              type="button"
+              onClick={() => setShowAll(true)}
+              className="inline-flex min-h-[44px] items-center justify-center rounded-xl border border-slate-300 bg-white px-5 text-sm font-bold text-slate-800 transition-all hover:border-orange-300 hover:text-orange-700"
+            >
+              Xem thêm {FAQ_DATA.length - visibleFaqs.length} câu hỏi
+            </button>
+          </div>
+        )}
+
+        <div className="text-center mt-8 sm:mt-12">
           <p className="text-slate-600 mb-4">Vẫn còn thắc mắc?</p>
           <a
             href="tel:0988446113"

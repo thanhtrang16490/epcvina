@@ -9,6 +9,7 @@ import BackToTop from '../ui/BackToTop';
 interface DashboardLayoutProps {
   children: React.ReactNode;
   showFooter?: boolean; // Control footer visibility
+  showChrome?: boolean;
 }
 
 // Scroll context for header visibility
@@ -22,7 +23,7 @@ const ScrollContext = createContext<{
 
 export const useScrollContext = () => useContext(ScrollContext);
 
-export default function DashboardLayout({ children, showFooter = true }: DashboardLayoutProps) {
+export default function DashboardLayout({ children, showFooter = true, showChrome = true }: DashboardLayoutProps) {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -56,15 +57,17 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
       <div className="min-h-screen bg-[#f8f9fa] overflow-x-hidden">
         <div className="flex min-w-0">
           {/* Sidebar - always visible on desktop, mobile drawer */}
-          <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+          {showChrome ? <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} /> : null}
 
           {/* Main content - full width, accounting for sidebar */}
-          <div className="flex-1 flex flex-col min-w-0 md:ml-16">
+          <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'md:ml-16' : ''}`}>
             {/* Header: mobile-only hamburger toggle */}
-            <Header
-              onMenuClick={() => setIsSidebarOpen(true)}
-              isHidden={!isHeaderVisible}
-            />
+            {showChrome ? (
+              <Header
+                onMenuClick={() => setIsSidebarOpen(true)}
+                isHidden={!isHeaderVisible}
+              />
+            ) : null}
             
             {/* Page content */}
             <main ref={mainRef} className="flex-1 w-full">
@@ -74,14 +77,18 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
         </div>
         
         {/* Floating Contact Buttons */}
-        <CallBoxButton />
-        <ZaloChatButton />
+        {showChrome ? (
+          <>
+            <CallBoxButton />
+            <ZaloChatButton />
+          </>
+        ) : null}
         
         {/* Footer - visible on equipment pages, hidden on homepage (SolarFullPage has its own footer) */}
         {showFooter && <FooterSection />}
         
         {/* Back to Top Button */}
-        <BackToTop />
+        {showChrome ? <BackToTop /> : null}
       </div>
     </ScrollContext.Provider>
   );
