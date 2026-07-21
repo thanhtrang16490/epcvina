@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 interface Props {
   title: string;
@@ -16,25 +16,25 @@ export default function CalculatorPageShell({
   children,
 }: Props) {
   return (
-    <div className="min-h-screen bg-[#FBF3E8] px-0 py-0 text-[#201A12]">
-      <div className="mx-auto min-h-screen w-full max-w-md overflow-x-hidden px-0">
+    <div className="min-h-screen bg-[#F4F5F7] px-0 py-0 text-[#414042] lg:bg-[radial-gradient(circle_at_12%_10%,rgba(245,130,32,.12),transparent_30%),radial-gradient(circle_at_88%_18%,rgba(229,37,42,.08),transparent_28%),#F4F5F7]">
+      <div className="mx-auto min-h-screen w-full max-w-md overflow-x-hidden px-0 lg:max-w-6xl lg:px-8">
         <div
-          className="mx-0 min-h-screen rounded-none px-5 py-5"
+          className="mx-0 min-h-screen rounded-none px-5 py-5 pt-4 md:pt-5 lg:px-0 lg:py-8"
           style={{
-            '--bg-page': '#FBF3E8',
-            '--bg-card': '#FFFDF8',
-            '--ink': '#201A12',
-            '--ink-soft': '#433827',
-            '--muted': '#756B5D',
-            '--border': '#EADFCC',
-            '--border-strong': '#E5D8C2',
-            '--primary': '#F59E0B',
-            '--primary-bright': '#FBBF24',
-            '--primary-ink': '#7C4A03',
-            '--primary-soft': '#FFF2D6',
-            '--danger': '#EF4444',
-            '--navy': '#111827',
-            '--navy-2': '#0F172A',
+            '--bg-page': '#F4F5F7',
+            '--bg-card': '#FFFFFF',
+            '--ink': '#414042',
+            '--ink-soft': '#52525B',
+            '--muted': '#71717A',
+            '--border': '#E5E7EB',
+            '--border-strong': '#D4D4D8',
+            '--primary': '#F58220',
+            '--primary-bright': '#FFB020',
+            '--primary-ink': '#9A3412',
+            '--primary-soft': '#FFF3E6',
+            '--danger': '#E5252A',
+            '--navy': '#414042',
+            '--navy-2': '#2F3035',
             '--success': '#15803D',
             '--success-bright': '#34D399',
             '--success-bg': '#ECFDF3',

@@ -141,7 +141,7 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-white/60 text-white font-semibold text-sm hover:bg-white/10 hover:border-white active:scale-[0.98] transition-all duration-200"
             >
               <Lightning className="w-4 h-4" weight="bold" />
-              Tính chi phí & sản lượng
+              Tính chi phí điện
             </a>
           </motion.div>
 

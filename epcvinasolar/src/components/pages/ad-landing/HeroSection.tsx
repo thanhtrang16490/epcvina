@@ -53,13 +53,13 @@ export default function HeroSection() {
             </ul>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
-                href="#calculator"
-                className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold px-7 py-3.5 rounded-xl text-base transition-colors shadow-lg shadow-orange-500/20"
-              >
-                <Calculator className="w-5 h-5" weight="bold" />
-                Thiết kế sơ bộ trong 5 phút
-              </a>
+            <a
+              href="/calculator"
+              className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold px-7 py-3.5 rounded-xl text-base transition-colors shadow-lg shadow-orange-500/20"
+            >
+              <Calculator className="w-5 h-5" weight="bold" />
+              Tính chi phí điện
+            </a>
               <a
                 href="tel:0988446113"
                 onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'hotline_click', { event_category: 'conversion' })}
@@ -100,10 +100,10 @@ export default function HeroSection() {
                 <p className="text-2xl font-bold">5.1 năm</p>
               </div>
               <a
-                href="#calculator"
+                href="/calculator"
                 className="block w-full bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold py-3.5 rounded-xl text-center transition-colors"
               >
-                Tính cho nhà bạn
+                Mở máy tính
               </a>
             </div>
           </motion.div>

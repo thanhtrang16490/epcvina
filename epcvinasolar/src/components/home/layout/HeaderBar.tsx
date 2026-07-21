@@ -5,6 +5,7 @@ import { useScrollContext } from '../../layout/DashboardShell';
 const navItems = [
   { label: 'Trang chủ', href: '/' },
   { label: 'Solar House', href: '/solar-home' },
+  { label: 'Công cụ tính', href: '/calculator' },
   { label: 'Hybrid & BESS', href: '/hybrid-bess' },
   { label: 'Sạc EV', href: '/sac-ev' },
   { label: 'Solar C&I', href: '/solar-cong-nghiep' },
@@ -24,7 +25,7 @@ export default function HeaderBar() {
 
   return (
     <header
-      className={`hidden md:block fixed left-0 right-0 z-50 top-2 transition-transform duration-300 ${
+      className={`hidden md:block fixed left-0 right-0 z-[80] top-2 transition-transform duration-300 ${
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
@@ -87,7 +88,7 @@ export default function HeaderBar() {
 
       {/* Mobile menu dropdown */}
       {mobileOpen && (
-        <div className="md:hidden mt-2 mx-4 rounded-2xl bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 overflow-hidden relative">
+        <div className="md:hidden mt-2 mx-4 rounded-2xl bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 overflow-hidden relative z-[81]">
           {/* Mirror reflection gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none" />
           <nav className="flex flex-col py-2 relative">

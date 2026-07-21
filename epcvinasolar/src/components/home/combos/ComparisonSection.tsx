@@ -177,14 +177,14 @@ export default function ComparisonSection() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
               <Lightning className="h-4 w-4" weight="bold" />
-              Tính chi phí hệ Hybrid
+              Tính Hybrid
             </a>
             <a
               href="/calculator"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
               <Sun className="h-4 w-4" weight="bold" />
-              Tính chi phí hệ On-Grid
+              Tính On-Grid
             </a>
           </motion.div>
         </div>

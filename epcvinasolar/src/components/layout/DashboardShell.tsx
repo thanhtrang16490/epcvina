@@ -51,9 +51,6 @@ export default function DashboardLayout({ children, showFooter = true }: Dashboa
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Check if current page is homepage
-  const isHomePage = pathname === '/';
-
   return (
     <ScrollContext.Provider value={{ isHeaderVisible, scrollY }}>
       <div className="min-h-screen bg-[#f8f9fa] overflow-x-hidden">

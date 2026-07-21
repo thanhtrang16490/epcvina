@@ -48,6 +48,12 @@ export default function FAQSection() {
           >
             Gọi Tư Vấn Ngay: 0988 446 113
           </a>
+          <a
+            href="/calculator"
+            className="ml-3 inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-8 py-3 rounded-lg transition-all"
+          >
+            Mở máy tính
+          </a>
         </div>
       </div>
     </section>

@@ -33,6 +33,9 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    esbuild: {
+      jsxDev: false,
+    },
     build: {
       cssCodeSplit: true,
       rollupOptions: {

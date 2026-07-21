@@ -33,7 +33,7 @@ export default function CallBoxButton() {
       className="call-container right"
       style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none', transition: 'opacity 0.3s ease' }}
     >
-      <a id="call-btn" href={`tel:${phoneNumber}`} rel="noopener nofollow">
+      <a id="call-btn" href={`tel:${phoneNumber}`} rel="noopener nofollow" aria-label="Gọi hotline EPCVINA">
         <div className="animated_call infinite zoomIn_call cmoz-alo-circle"></div>
         <div className="animated_call infinite pulse_call cmoz-alo-circle-fill"></div>
         <span className="flex items-center justify-center">
@@ -45,8 +45,8 @@ export default function CallBoxButton() {
         __html: `
           .call-container {
             position: fixed;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             bottom: 240px;
             z-index: 9999999;
           }
@@ -60,11 +60,12 @@ export default function CallBoxButton() {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: #e53e3e;
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
             position: relative;
+            box-shadow: 0 18px 30px -16px rgba(220, 38, 38, 0.85);
           }
           .zoomIn_call {
             animation-name: zoomIn_call;
@@ -77,28 +78,28 @@ export default function CallBoxButton() {
             animation-iteration-count: infinite;
           }
           .call-container .cmoz-alo-circle {
-            width: 50px;
-            height: 50px;
-            top: -5px;
-            right: -5px;
+            width: 58px;
+            height: 58px;
+            top: -7px;
+            right: -7px;
             position: absolute;
             background-color: transparent;
             border-radius: 100%;
-            border: 2px solid rgba(229, 62, 62, .8);
-            border-color: #e53e3e;
-            opacity: .5;
+            border: 2px solid rgba(220, 38, 38, .75);
+            border-color: #dc2626;
+            opacity: .55;
           }
           .call-container .cmoz-alo-circle-fill {
-            width: 60px;
-            height: 60px;
-            top: -10px;
-            right: -10px;
+            width: 68px;
+            height: 68px;
+            top: -12px;
+            right: -12px;
             position: absolute;
             transition: all 0.5s;
             border-radius: 100%;
             border: 2px solid transparent;
-            background-color: rgba(229, 62, 62, .45);
-            opacity: .75;
+            background-color: rgba(220, 38, 38, .38);
+            opacity: .8;
           }
           .pulse_call {
             animation-name: pulse_call;
@@ -133,7 +134,7 @@ export default function CallBoxButton() {
 
           @media (max-width: 768px) {
             .call-container {
-              bottom: 105px;
+              bottom: 34px;
             }
           }
         `

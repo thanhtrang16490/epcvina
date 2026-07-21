@@ -12,7 +12,7 @@ export default function Header({ onMenuClick, isHidden }: HeaderProps) {
   const isHome = pathname === '/';
   const isDetailPage = pathname.includes('/combos/') && pathname !== '/combos';
   const iconColor = isHome ? 'text-white' : 'text-gray-800';
-  const logoSrc = isHome ? '/logo-epcvina-solar-white.png' : '/logo-epcvina-solar.png';
+  const logoSrc = '/logo-epcvina-solar.png';
 
   return (
     <>
@@ -44,7 +44,13 @@ export default function Header({ onMenuClick, isHidden }: HeaderProps) {
 
           {/* Logo */}
           <a href="/" className="flex items-center">
-            <img src={logoSrc} alt="EPC Solar" className="h-7 w-auto" />
+            <img
+              src={logoSrc}
+              alt="EPCVINA Solar"
+              width={164}
+              height={42}
+              className="h-7 w-auto"
+            />
           </a>
         </div>
       </header>
