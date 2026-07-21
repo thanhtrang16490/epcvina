@@ -6,7 +6,6 @@ import HeroSection from './HeroSection';
 import CalculatorSection from './CalculatorSection';
 import VideoShowcaseSection from './VideoShowcaseSection';
 import SocialProofSection from './SocialProofSection';
-import ProjectsSection from './ProjectsSection';
 import BeforeAfterBillsSection from './BeforeAfterBillsSection';
 import TestimonialsSection from './TestimonialsSection';
 import PaymentOptionsSection from './PaymentOptionsSection';
@@ -14,10 +13,16 @@ import FAQSection from './FAQSection';
 import ExitIntentPopup from './ExitIntentPopup';
 
 const whyEpcvina = [
-  { icon: Shield, title: 'Bảo hành 10 năm', desc: 'Toàn bộ hệ thống' },
-  { icon: Medal, title: '13+ dự án', desc: 'Đã triển khai thành công' },
-  { icon: Users, title: '150+ kWp', desc: 'Công suất lắp đặt' },
-  { icon: CheckCircle, title: 'Thiết bị chính hãng', desc: 'Longi, Aiko, Deye' },
+  { icon: Shield, title: 'Bảo hành rõ điều kiện', desc: 'Thiết bị chính hãng, hồ sơ bàn giao minh bạch' },
+  { icon: Medal, title: '13+ công trình nhà dân', desc: 'Có ảnh thực tế và hóa đơn đối chiếu sau lắp' },
+  { icon: Users, title: '15 năm kinh nghiệm cơ điện', desc: 'Tư vấn theo phụ tải thật, không ép cấu hình' },
+  { icon: CheckCircle, title: 'Khảo sát trước khi báo giá', desc: 'Kiểm tra mái, hướng nắng và nhu cầu dùng đêm' },
+];
+
+const surveyFlow = [
+  'Kiểm tra hóa đơn và thói quen dùng điện ngày / đêm',
+  'Xem mái, hướng nắng, bóng che và vị trí đặt inverter',
+  'Đề xuất On-Grid hoặc Hybrid theo nhu cầu thật',
 ];
 
 const brands = [
@@ -46,6 +51,11 @@ export default function DienMatTroiGiaDinh() {
     message: '',
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const formFields = [
+    { label: 'Họ tên', name: 'name', type: 'text', required: true, placeholder: 'VD: Anh Minh...', autoComplete: 'name' },
+    { label: 'Số điện thoại', name: 'phone', type: 'tel', required: true, placeholder: 'VD: 0988 446 113...', autoComplete: 'tel', inputMode: 'tel' },
+    { label: 'Địa chỉ', name: 'address', type: 'text', required: false, placeholder: 'VD: Hà Đông, Hà Nội...', autoComplete: 'street-address' },
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,7 +87,6 @@ export default function DienMatTroiGiaDinh() {
         <VideoShowcaseSection />
       </div>
       <BeforeAfterBillsSection />
-      <ProjectsSection />
       <div className="hidden md:block">
         <TestimonialsSection />
       </div>
@@ -86,34 +95,87 @@ export default function DienMatTroiGiaDinh() {
       </div>
 
       {/* Why EPCVINA */}
-      <section id="bao-hanh" className="py-16 sm:py-20 bg-slate-950 text-white">
+      <section id="bao-hanh" className="scroll-mt-24 bg-slate-50 py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-12"
+            className="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-[0_24px_70px_-48px_rgba(15,23,42,.55)]"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Tại Sao Chọn EPCVINA</h2>
-          </motion.div>
+            <div className="grid gap-0 lg:grid-cols-[0.86fr_1.14fr]">
+              <div className="bg-[radial-gradient(circle_at_20%_10%,rgba(245,130,32,.28),transparent_34%),linear-gradient(135deg,#14532D_0%,#166534_55%,#F58220_150%)] p-5 text-white sm:p-7 lg:p-8">
+                <p className="mb-2 text-[11px] font-black uppercase tracking-[.12em] text-orange-100">Bảo hành & năng lực</p>
+                <h2 className="text-[26px] font-extrabold leading-tight tracking-tight sm:text-4xl">
+                  Tại sao nên để EPCVINA khảo sát trước?
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-white/82 sm:text-base">
+                  Điện mặt trời gia đình cần đúng mái, đúng tải và đúng thói quen dùng điện. EPCVINA kiểm tra thực tế trước khi chốt chi phí.
+                </p>
+                <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+                  {[
+                    { value: '10 năm', label: 'Bảo hành' },
+                    { value: '13+', label: 'Dự án' },
+                    { value: '150+ kWp', label: 'Đã lắp' },
+                  ].map((item) => (
+                    <div key={item.label} className="rounded-2xl border border-white/15 bg-white/10 px-2 py-3 backdrop-blur">
+                      <p className="text-[15px] font-black sm:text-lg">{item.value}</p>
+                      <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[.08em] text-white/70">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {whyEpcvina.map((item, i) => (
-              <motion.div
-                key={i}
-                className="text-center space-y-2.5"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.4 }}
-              >
-                <item.icon className="w-10 h-10 mx-auto text-amber-300" weight="duotone" />
-                <h3 className="text-lg font-bold">{item.title}</h3>
-                <p className="text-sm text-slate-400">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+              <div className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {whyEpcvina.map((item, i) => (
+                    <div
+                      key={i}
+                      className="flex gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3.5 sm:p-4"
+                    >
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white text-emerald-700 shadow-sm">
+                        <item.icon className="h-5 w-5" weight="duotone" />
+                      </div>
+                      <div>
+                        <h3 className="text-[14px] font-black leading-snug text-slate-950 sm:text-base">{item.title}</h3>
+                        <p className="mt-1 text-[12px] leading-relaxed text-slate-600 sm:text-sm">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 rounded-2xl border border-orange-100 bg-orange-50 p-4">
+                  <p className="text-sm font-black text-slate-950">Sau khi anh/chị gửi thông tin, EPCVINA sẽ làm 3 việc</p>
+                  <div className="mt-3 grid gap-2">
+                    {surveyFlow.map((item, i) => (
+                      <div key={item} className="flex items-start gap-2.5 rounded-xl bg-white px-3 py-2.5 text-sm text-slate-700">
+                        <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-orange-500 text-[11px] font-black text-white">{i + 1}</span>
+                        <span className="leading-relaxed">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  <a
+                    href="#contact"
+                    onClick={() => trackEvent('why_epcvina_survey_click', { source: 'family_landing' })}
+	                    className="inline-flex min-h-[46px] items-center justify-center rounded-xl bg-orange-500 px-4 text-sm font-black text-white shadow-lg shadow-orange-500/20 transition-colors hover:bg-orange-600 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                  >
+                    Nhận khảo sát miễn phí
+                  </a>
+                  <a
+                    href="tel:0988446113"
+                    onClick={() => trackEvent('why_epcvina_call_click', { source: 'family_landing' })}
+	                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-emerald-50 px-4 text-sm font-black text-emerald-800 transition-colors hover:bg-emerald-100 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
+                    aria-label="Gọi EPCVINA 0988 446 113"
+                  >
+                    <Phone className="h-4 w-4" weight="bold" />
+                    Gọi 0988 446 113
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -165,8 +227,8 @@ export default function DienMatTroiGiaDinh() {
               <div className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] font-black uppercase tracking-[.1em] text-orange-100">
                 Khảo sát 0đ
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Nhận phương án solar phù hợp cho nhà anh/chị</h2>
-              <p className="text-lg text-white/85">Gửi thông tin, EPCVINA gọi lại để kiểm tra hóa đơn, mái nhà và nhu cầu dùng điện ban đêm.</p>
+              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Nhận lịch kỹ sư gọi lại và sàng lọc phương án</h2>
+              <p className="text-lg text-white/85">Gửi thông tin để EPCVINA kiểm tra sơ bộ hóa đơn, khu vực lắp đặt và nhu cầu dùng điện trước khi hẹn khảo sát mái.</p>
               <div className="space-y-2.5">
                 {['Không thu phí khảo sát ban đầu', 'Tư vấn On-Grid hay Hybrid theo nhu cầu thật', 'Báo giá theo từng hạng mục thiết bị', 'Không ép lắp đặt khi phương án chưa phù hợp'].map((item, i) => (
                   <div key={i} className="flex items-center gap-2.5">
@@ -177,22 +239,42 @@ export default function DienMatTroiGiaDinh() {
               </div>
               <a
                 href="tel:0988446113"
-                className="inline-flex items-center gap-2 bg-white text-[#C2410C] font-bold px-7 py-3.5 rounded-xl text-base hover:bg-slate-50 active:scale-[0.98] transition-all min-h-[44px]"
+	                className="inline-flex items-center gap-2 bg-white text-[#C2410C] font-bold px-7 py-3.5 rounded-xl text-base hover:bg-slate-50 active:scale-[0.98] transition-colors min-h-[44px] focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#414042]"
               >
                 <Phone className="w-5 h-5" weight="bold" />
                 Gọi Ngay: 0988 446 113
               </a>
+              <div className="grid gap-2 rounded-2xl border border-white/10 bg-white/[0.08] p-4 text-sm text-white/82 sm:grid-cols-3">
+                <span><strong className="text-white">Bước 1:</strong> gọi xác nhận nhu cầu</span>
+                <span><strong className="text-white">Bước 2:</strong> kiểm hóa đơn và mái</span>
+                <span><strong className="text-white">Bước 3:</strong> gửi cấu hình sơ bộ</span>
+              </div>
             </motion.div>
 
-            <motion.form
-              onSubmit={handleSubmit}
-              className="bg-white rounded-2xl p-7 space-y-4 text-slate-900 shadow-xl shadow-black/10"
+	            <motion.form
+	              onSubmit={handleSubmit}
+	              className="bg-white rounded-2xl p-7 space-y-4 text-slate-900 shadow-xl shadow-black/10"
               initial={{ opacity: 0, x: 16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45 }}
             >
-              <h3 className="text-xl font-bold mb-1">Gửi thông tin khảo sát miễn phí</h3>
+	              <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-3.5">
+	                <div className="mb-2 flex items-center gap-2 text-emerald-800">
+	                  <CheckCircle className="h-5 w-5" weight="fill" />
+	                  <p className="text-sm font-black">Dữ liệu tính toán bởi EPCVINA Solar</p>
+	                </div>
+	                <div className="grid gap-2 text-[12px] leading-relaxed text-slate-700 sm:grid-cols-3">
+	                  <span>15 năm kinh nghiệm cơ điện</span>
+	                  <span>13+ công trình nhà dân</span>
+	                  <span>Bảo hành thiết bị rõ điều kiện</span>
+	                </div>
+	                <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[12px] font-semibold">
+	                  <a href="#calculator" className="text-orange-700 underline-offset-2 hover:underline">Phương pháp tính ở phần kết quả</a>
+	                  <a href="/chinh-sach-bao-mat" className="text-emerald-800 underline-offset-2 hover:underline">Chính sách bảo mật</a>
+	                </div>
+	              </div>
+	              <h3 className="text-xl font-bold mb-1">Gửi thông tin khảo sát miễn phí</h3>
               <p className="mb-4 text-sm leading-relaxed text-slate-500">Chỉ cần tên và số điện thoại. Địa chỉ giúp kỹ sư kiểm tra vùng nắng nhanh hơn.</p>
               {formSubmitted && (
                 <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-4">
@@ -200,36 +282,37 @@ export default function DienMatTroiGiaDinh() {
                   <p className="text-emerald-700 text-xs mt-1">Chúng tôi sẽ gọi lại tư vấn trong 24h.</p>
                 </div>
               )}
-              {[
-                { label: 'Họ tên', name: 'name', type: 'text', required: true, placeholder: 'VD: Anh Minh' },
-                { label: 'Số điện thoại', name: 'phone', type: 'tel', required: true, placeholder: 'VD: 0988 446 113' },
-                { label: 'Địa chỉ', name: 'address', type: 'text', required: false, placeholder: 'VD: Hà Đông, Hà Nội' },
-              ].map(({ label, name, type, required, placeholder }) => (
-                <div key={name}>
-                  <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                    {label} {required && <span className="text-red-500">*</span>}
-                  </label>
-                  <input
-                    type={type}
-                    name={name}
-                    required={required}
-                    value={formData[name as keyof typeof formData]}
-                    onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base"
-                    placeholder={placeholder}
-                  />
-                </div>
-              ))}
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">Nhu cầu / Ghi chú</label>
-                <textarea
-                  name="message"
-                  rows={3}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base"
-                  placeholder="VD: Hóa đơn khoảng 3 triệu/tháng, muốn dùng điện khi mất điện"
-                />
+	              {formFields.map(({ label, name, type, required, placeholder, autoComplete, inputMode }) => (
+	                <div key={name}>
+	                  <label htmlFor={`contact-${name}`} className="block text-sm font-medium text-slate-700 mb-1.5">
+	                    {label} {required && <span className="text-red-500">*</span>}
+	                  </label>
+	                  <input
+	                    id={`contact-${name}`}
+	                    type={type}
+	                    name={name}
+	                    required={required}
+	                    autoComplete={autoComplete}
+	                    inputMode={inputMode as React.HTMLAttributes<HTMLInputElement>['inputMode']}
+	                    value={formData[name as keyof typeof formData]}
+	                    onChange={(e) => setFormData({ ...formData, [name]: e.target.value })}
+	                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base"
+	                    placeholder={placeholder}
+	                  />
+	                </div>
+	              ))}
+	              <div>
+	                <label htmlFor="contact-message" className="block text-sm font-medium text-slate-700 mb-1.5">Nhu cầu / Ghi chú</label>
+	                <textarea
+	                  id="contact-message"
+	                  name="message"
+	                  rows={3}
+	                  autoComplete="off"
+	                  value={formData.message}
+	                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+	                  className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base"
+	                  placeholder="VD: Hóa đơn khoảng 3 triệu/tháng, muốn dùng điện khi mất điện..."
+	                />
               </div>
               <button
                 type="submit"
@@ -247,12 +330,12 @@ export default function DienMatTroiGiaDinh() {
 
       <ExitIntentPopup />
 
-      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-3 py-2 shadow-[0_-18px_44px_-30px_rgba(15,23,42,.45)] backdrop-blur md:hidden">
+	      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white/95 px-3 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] pt-2 shadow-[0_-18px_44px_-30px_rgba(15,23,42,.45)] backdrop-blur md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
           <a
             href="#calculator"
             onClick={() => trackEvent('mobile_sticky_calculator_click', { source: 'family_landing' })}
-            className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-3 text-[13px] font-black text-white active:scale-[0.98]"
+	            className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-3 text-[13px] font-black text-white transition-colors hover:bg-orange-600 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
             aria-label="Tính chi phí điện mặt trời"
           >
             <Calculator className="h-4 w-4" weight="bold" />
@@ -261,7 +344,7 @@ export default function DienMatTroiGiaDinh() {
           <a
             href="tel:0988446113"
             onClick={() => trackEvent('mobile_sticky_call_click', { source: 'family_landing' })}
-            className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-xl bg-[#15803D] px-3 text-[13px] font-black text-white active:scale-[0.98]"
+	            className="inline-flex min-h-[46px] items-center justify-center gap-1.5 rounded-xl bg-[#15803D] px-3 text-[13px] font-black text-white transition-colors hover:bg-emerald-700 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2"
             aria-label="Gọi hotline 0988 446 113"
           >
             <Phone className="h-4 w-4" weight="bold" />

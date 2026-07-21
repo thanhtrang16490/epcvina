@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Calculator, Lightning, TrendDown, CheckCircle, CurrencyCircleDollar, Shield, Car, ArrowRight } from '@phosphor-icons/react';
+import { Calculator, Lightning, TrendDown, CheckCircle, CurrencyCircleDollar, Shield, Car, Ruler, ClipboardText } from '@phosphor-icons/react';
 import { POPULAR_COMBOS } from './data';
 
 const trackEvent = (eventName: string, params: Record<string, string | number> = {}) => {
@@ -17,7 +17,7 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
     needs: [] as string[],
   });
   const [hasCalculated, setHasCalculated] = useState(false);
-  const [showSystemComparison, setShowSystemComparison] = useState(false);
+  const [showMethod, setShowMethod] = useState(false);
   const [results, setResults] = useState<any>(null);
   const [quickLead, setQuickLead] = useState({ name: '', phone: '' });
   const [quickLeadSubmitted, setQuickLeadSubmitted] = useState(false);
@@ -86,14 +86,11 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
     { label: '5 triệu', value: '5000000' },
     { label: '8 triệu', value: '8000000' },
   ];
-  const detailCalculatorHref = `/calculator?${new URLSearchParams({
-    source: 'family-landing',
-    type: 'family',
-    bill: calc.billAmount || '3000000',
-    roof: calc.roofArea || '60',
-    day: calc.needs.includes('backup') || calc.needs.includes('independent') ? '60' : '70',
-    province: 'Hà Nội',
-  }).toString()}`;
+  const calculatorSteps = [
+    { icon: CurrencyCircleDollar, title: 'Hóa đơn', desc: 'Nhập mức tiền điện trung bình' },
+    { icon: Ruler, title: 'Mái nhà', desc: 'Ước lượng diện tích có thể lắp' },
+    { icon: ClipboardText, title: 'Kết quả', desc: 'Nhận cấu hình trước khảo sát' },
+  ];
   const quickLeadValid = quickLead.name.trim().length >= 2 && quickLead.phone.replace(/\D/g, '').length >= 9;
 
   const submitQuickLead = () => {
@@ -117,7 +114,7 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
     <section id="calculator" className="scroll-mt-24 py-10 sm:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-6 sm:mb-12"
+          className="mx-auto mb-6 max-w-3xl text-center sm:mb-10"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -126,8 +123,23 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
           <h2 className="text-[26px] sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-2 sm:mb-3 leading-tight">
             Tính nhanh hệ điện mặt trời cho gia đình
           </h2>
-          <p className="text-[14px] sm:text-lg text-slate-600 leading-relaxed">Nhập hóa đơn điện và diện tích mái để nhận cấu hình tham chiếu trước khảo sát</p>
+          <p className="text-[14px] sm:text-lg text-slate-600 leading-relaxed">Chỉ cần 2 thông tin chính để EPCVINA ước tính cấu hình tham chiếu trước khi kỹ sư kiểm tra thực tế.</p>
         </motion.div>
+
+        <div className="mb-5 grid gap-2 sm:mb-7 sm:grid-cols-3">
+          {calculatorSteps.map(({ icon: Icon, title, desc }, i) => (
+            <div key={title} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+              <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-white text-orange-600 shadow-sm">
+                <Icon className="h-5 w-5" weight="duotone" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[11px] font-black uppercase tracking-[.1em] text-slate-400">Bước {i + 1}</p>
+                <p className="text-sm font-black text-slate-900">{title}</p>
+                <p className="text-xs leading-snug text-slate-500">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-4 sm:gap-8">
           {/* Input form */}
@@ -141,17 +153,22 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
             <div>
               <p className="text-xs font-black uppercase tracking-[.12em] text-orange-600">Máy tính sơ bộ</p>
               <h3 className="mt-1 text-[18px] sm:text-xl font-black text-slate-900 leading-tight">Nhà anh/chị đang trả bao nhiêu tiền điện?</h3>
+              <p className="mt-1 text-xs leading-relaxed text-slate-500">Nếu chưa nhớ chính xác, chọn nhanh một mức gần đúng. EPCVINA sẽ đối chiếu hóa đơn khi khảo sát.</p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Tiền điện trung bình / tháng</label>
+              <label htmlFor="landing-bill-amount" className="block text-sm font-medium text-slate-700 mb-1.5">Tiền điện trung bình / tháng</label>
               <div className="relative">
                 <input
+                  id="landing-bill-amount"
+                  name="monthly_bill"
                   type="number"
+                  inputMode="numeric"
+                  autoComplete="off"
                   value={calc.billAmount}
                   onChange={(e) => setCalc({ ...calc, billAmount: e.target.value })}
                   className="w-full px-4 py-3.5 pr-14 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white text-base"
-                  placeholder="VD: 3000000"
+                  placeholder="VD: 3000000..."
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">VNĐ</span>
               </div>
@@ -174,14 +191,18 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">Diện tích mái có thể sử dụng</label>
+              <label htmlFor="landing-roof-area" className="block text-sm font-medium text-slate-700 mb-1.5">Diện tích mái có thể sử dụng</label>
               <div className="relative">
                 <input
+                  id="landing-roof-area"
+                  name="usable_roof_area"
                   type="number"
+                  inputMode="numeric"
+                  autoComplete="off"
                   value={calc.roofArea}
                   onChange={(e) => setCalc({ ...calc, roofArea: e.target.value })}
                   className="w-full px-4 py-3.5 pr-12 border border-slate-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white text-base"
-                  placeholder="VD: 50"
+                  placeholder="VD: 50..."
                 />
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-slate-400">m²</span>
               </div>
@@ -189,17 +210,17 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Nhu cầu đặc biệt</label>
-              <div className="grid grid-cols-2 gap-2 sm:block sm:space-y-2">
-                {needOptions.map(({ id, label, icon: Icon }) => (
+                <div className="grid gap-2 min-[420px]:grid-cols-2 sm:block sm:space-y-2">
+                  {needOptions.map(({ id, label, icon: Icon }) => (
                   <label
                     key={id}
-                    className={`flex min-h-[72px] items-center gap-2.5 p-3 rounded-xl border cursor-pointer transition-all active:scale-[0.99] sm:min-h-0 sm:gap-3 ${
+	                    className={`flex min-h-[60px] items-center gap-2.5 p-3 rounded-xl border cursor-pointer transition-colors active:scale-[0.99] sm:min-h-0 sm:gap-3 ${
                       calc.needs.includes(id)
                         ? 'border-orange-500 bg-orange-50'
                         : 'border-slate-200 hover:border-orange-300 bg-white'
                     }`}
                   >
-                    <input type="checkbox" checked={calc.needs.includes(id)} onChange={() => toggleNeed(id)} className="hidden" />
+                    <input type="checkbox" name="special_needs" value={id} checked={calc.needs.includes(id)} onChange={() => toggleNeed(id)} className="sr-only" />
                     <Icon className={`w-5 h-5 shrink-0 ${calc.needs.includes(id) ? 'text-orange-500' : 'text-slate-400'}`} weight={calc.needs.includes(id) ? 'fill' : 'regular'} />
                     <span className="text-[12px] sm:text-sm font-medium leading-tight text-slate-700">{label}</span>
                   </label>
@@ -208,8 +229,9 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
             </div>
 
             <button
+              type="button"
               onClick={calculate}
-              className="w-full min-h-[50px] bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold py-3.5 rounded-xl text-base transition-colors"
+              className="w-full min-h-[50px] bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold py-3.5 rounded-xl text-base transition-colors focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
             >
               Xem cấu hình tham chiếu
             </button>
@@ -228,10 +250,14 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
             transition={{ duration: 0.45 }}
           >
             {!hasCalculated ? (
-              <div className="bg-slate-50 rounded-[22px] p-6 sm:p-8 flex items-center justify-center h-full border border-slate-200/60 border-dashed">
-                <div className="text-center">
-                  <Calculator className="w-12 h-12 text-slate-300 mx-auto mb-3" weight="duotone" />
-                  <p className="text-slate-500 text-sm">Bấm “Xem cấu hình tham chiếu” để nhận phương án sơ bộ</p>
+              <div className="flex h-full min-h-[360px] items-center justify-center rounded-[22px] border border-dashed border-slate-200 bg-[radial-gradient(circle_at_50%_0%,rgba(245,130,32,.12),transparent_35%),#f8fafc] p-6 sm:p-8">
+                <div className="max-w-sm text-center">
+                  <Calculator className="w-12 h-12 text-orange-300 mx-auto mb-3" weight="duotone" />
+                  <p className="text-base font-black text-slate-900">Kết quả sẽ hiện ngay tại đây</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-500">Sau khi bấm tính, anh/chị sẽ thấy công suất, mức đầu tư, tiết kiệm dự kiến và câu hỏi có nên dùng Hybrid/pin lưu trữ hay không.</p>
+                  <div className="mt-4 rounded-2xl border border-orange-100 bg-white p-3 text-left text-xs leading-relaxed text-slate-600">
+                    <strong className="text-slate-900">Gợi ý:</strong> gia đình dùng nhiều ban đêm nên ưu tiên Hybrid để sẵn sàng lắp pin sau.
+                  </div>
                 </div>
               </div>
             ) : results?.combo ? (
@@ -282,32 +308,34 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
                     Số tiền tiết kiệm và thời gian hoàn vốn là ước tính theo hóa đơn, sản lượng trung bình và mức tự dùng điện. Kết quả cuối cùng cần đối chiếu mái, hướng nắng, biểu giá điện và phụ tải thực tế.
                   </p>
 
-                  {/* On-Grid vs Hybrid */}
+                  {/* Method and assumptions */}
                   <button
-                    onClick={() => setShowSystemComparison(!showSystemComparison)}
-                    className="w-full mb-3 sm:mb-4 bg-slate-100 hover:bg-slate-200 active:scale-[0.99] text-slate-900 font-semibold py-2.5 rounded-xl transition-all text-sm"
+                    type="button"
+                    onClick={() => setShowMethod(!showMethod)}
+                    className="w-full mb-3 sm:mb-4 bg-slate-100 hover:bg-slate-200 active:scale-[0.99] text-slate-900 font-semibold py-2.5 rounded-xl transition-colors text-sm focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+                    aria-expanded={showMethod}
                   >
-                    {showSystemComparison ? 'Ẩn' : 'Xem'} so sánh On-Grid và Hybrid
+                    {showMethod ? 'Ẩn' : 'Xem'} phương pháp tính & điều kiện ước tính
                   </button>
 
-                  {showSystemComparison && (
-                    <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-4 sm:mb-5">
+                  {showMethod && (
+                    <div className="mb-4 grid gap-2 sm:mb-5 sm:grid-cols-2 sm:gap-3">
                       <div className="bg-orange-50 border border-orange-200 rounded-xl p-3.5">
-                        <p className="font-bold text-orange-900 text-sm mb-2">On-Grid</p>
+                        <p className="font-bold text-orange-900 text-sm mb-2">Cách tính sơ bộ</p>
                         <ul className="text-xs space-y-1 text-slate-700">
-                          <li>Giá rẻ hơn 40-50%</li>
-                          <li>Tiết kiệm tối đa</li>
-                          <li className="text-slate-400">Mất điện = ngừng</li>
-                          <li>Hoàn vốn nhanh</li>
+                          <li>Dựa trên hóa đơn trung bình / tháng</li>
+                          <li>Đối chiếu diện tích mái có thể lắp</li>
+                          <li>Ước sản lượng theo combo EPCVINA</li>
+                          <li>Tính tiết kiệm theo mức tự dùng điện</li>
                         </ul>
                       </div>
                       <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
-                        <p className="font-bold text-slate-900 text-sm mb-2">Hybrid</p>
+                        <p className="font-bold text-slate-900 text-sm mb-2">Điều kiện cần khảo sát</p>
                         <ul className="text-xs space-y-1 text-slate-700">
-                          <li>Có pin lưu trữ</li>
-                          <li>Dùng khi mất điện</li>
-                          <li>Độc lập lưới điện</li>
-                          <li className="text-slate-400">Đầu tư cao hơn</li>
+                          <li>Hướng mái, bóng che và kết cấu mái</li>
+                          <li>Biểu giá điện, phụ tải ngày / đêm</li>
+                          <li>On-Grid hay Hybrid theo nhu cầu thật</li>
+                          <li>Pin lưu trữ chỉ chốt sau khi kiểm tải</li>
                         </ul>
                       </div>
                     </div>
@@ -333,21 +361,23 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
                           system_size: results.combo.power_kw,
                         });
                       }}
-                      className="flex min-h-[48px] items-center justify-center rounded-xl bg-emerald-600 px-4 py-3 text-center font-bold text-white transition-colors hover:bg-emerald-500 active:scale-[0.98]"
+                      className="flex min-h-[48px] items-center justify-center rounded-xl bg-orange-500 px-4 py-3 text-center font-bold text-white transition-colors hover:bg-orange-600 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
                     >
                       Nhận khảo sát miễn phí
                     </a>
-                    <a
-                      href={detailCalculatorHref}
-                      onClick={() => trackEvent('detail_calculator_clicked', { source: 'family_landing' })}
-                      className="flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-orange-200 bg-white px-4 py-3 text-center font-bold text-orange-700 transition-colors hover:border-orange-300 hover:bg-orange-50 active:scale-[0.98]"
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowMethod(true);
+                        trackEvent('landing_method_opened', { source: 'family_landing_result' });
+                      }}
+                      className="flex min-h-[48px] items-center justify-center rounded-xl border border-emerald-200 bg-white px-4 py-3 text-center font-bold text-emerald-800 transition-colors hover:border-emerald-300 hover:bg-emerald-50 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
                     >
-                      Xem bản tính chi tiết
-                      <ArrowRight className="h-4 w-4" weight="bold" />
-                    </a>
+                      Xem cách EPCVINA tính
+                    </button>
                   </div>
                   <p className="mt-2 text-center text-[11.5px] leading-relaxed text-emerald-800/75">
-                    Bản chi tiết sẽ tự điền hóa đơn và diện tích mái anh/chị vừa nhập.
+                    Toàn bộ giải thích nằm ngay trên landing page, không chuyển anh/chị sang trang khác.
                   </p>
                   <div className="mt-4 rounded-2xl border border-emerald-200 bg-white p-3.5 sm:p-4">
                     <div className="flex items-start gap-2.5">
@@ -366,24 +396,33 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
                     ) : (
                       <div className="mt-3 grid gap-2 sm:grid-cols-[1fr_1fr_auto]">
                         <input
+                          id="quick-lead-name"
+                          name="quick_lead_name"
                           type="text"
+                          autoComplete="name"
+                          aria-label="Tên anh/chị"
                           value={quickLead.name}
                           onChange={(e) => setQuickLead(prev => ({ ...prev, name: e.target.value }))}
                           className="min-h-[44px] rounded-xl border border-slate-300 px-3 text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500"
-                          placeholder="Tên anh/chị"
+                          placeholder="Tên anh/chị..."
                         />
                         <input
+                          id="quick-lead-phone"
+                          name="quick_lead_phone"
                           type="tel"
+                          inputMode="tel"
+                          autoComplete="tel"
+                          aria-label="Số điện thoại"
                           value={quickLead.phone}
                           onChange={(e) => setQuickLead(prev => ({ ...prev, phone: e.target.value }))}
                           className="min-h-[44px] rounded-xl border border-slate-300 px-3 text-sm focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500"
-                          placeholder="Số điện thoại"
+                          placeholder="Số điện thoại..."
                         />
                         <button
                           type="button"
                           onClick={submitQuickLead}
                           disabled={!quickLeadValid}
-                          className={`min-h-[44px] rounded-xl px-4 text-sm font-black transition-all ${
+	                          className={`min-h-[44px] rounded-xl px-4 text-sm font-black transition-colors ${
                             quickLeadValid
                               ? 'bg-emerald-600 text-white hover:bg-emerald-500 active:scale-[0.98]'
                               : 'cursor-not-allowed bg-slate-100 text-slate-400'

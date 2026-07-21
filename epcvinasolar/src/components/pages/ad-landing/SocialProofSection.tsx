@@ -1,72 +1,73 @@
 import { motion } from 'motion/react';
-import { Users, Trophy, TrendDown, Leaf, Star, Medal, Certificate } from '@phosphor-icons/react';
+import { Users, TrendDown, Star, Medal, Certificate, HouseLine, ShieldCheck } from '@phosphor-icons/react';
 
 const stats = [
-  { icon: Users, number: '500+', label: 'Gia đình đã tư vấn', desc: 'Tin tưởng lựa chọn EPCVINA' },
-  { icon: Medal, number: '13+', label: 'Dự án triển khai', desc: '100% hoàn thành đúng hạn' },
-  { icon: TrendDown, number: '98%', label: 'Khách hàng hài lòng', desc: 'Đánh giá 4.8 đến 5 sao' },
-  { icon: Leaf, number: '45+', label: 'Tấn CO₂ giảm/năm', desc: 'Góp phần bảo vệ môi trường' },
+  { icon: Users, number: '500+', label: 'Gia đình đã tư vấn', desc: 'Sàng lọc nhu cầu theo hóa đơn và mái nhà' },
+  { icon: HouseLine, number: '13+', label: 'Công trình nhà dân', desc: 'Có ảnh thực tế và thông tin lắp đặt' },
+  { icon: TrendDown, number: '87-90%', label: 'Mức giảm hóa đơn mẫu', desc: 'Từ các case đã đối chiếu sau lắp' },
+  { icon: ShieldCheck, number: '10 năm', label: 'Bảo hành thiết bị', desc: 'Điều kiện bảo hành thể hiện trong hồ sơ' },
 ];
 
 const trustIndicators = [
   { icon: Star, value: '4.9/5.0', label: 'Đánh giá trung bình', fill: true },
-  { icon: Trophy, value: 'TOP 10', label: 'Nhà thầu uy tín miền Bắc', fill: false },
-  { icon: Certificate, value: 'Chứng chỉ', label: 'Năng lực xây dựng & điện mặt trời', fill: false },
+  { icon: Medal, value: '15 năm', label: 'Kinh nghiệm cơ điện', fill: false },
+  { icon: Certificate, value: 'Hồ sơ', label: 'Thiết kế, nghiệm thu, bảo hành rõ ràng', fill: false },
 ];
 
 export default function SocialProofSection() {
   return (
-    <section className="relative py-10 sm:py-20 bg-gradient-to-r from-orange-600 via-orange-500 to-amber-500 text-white overflow-hidden">
+    <section className="relative overflow-hidden bg-[linear-gradient(180deg,#fff7ed_0%,#ffffff_78%)] py-10 text-slate-950 sm:py-16">
       {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      <div className="absolute inset-0 opacity-[0.32]" style={{ backgroundImage: 'radial-gradient(circle, rgba(245,130,32,.22) 1px, transparent 1px)', backgroundSize: '26px 26px' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-7 sm:mb-12"
+          className="mx-auto mb-7 max-w-3xl text-center sm:mb-10"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
         >
+          <p className="mb-2 text-xs font-black uppercase tracking-[.14em] text-orange-600">Bằng chứng trước khi tư vấn</p>
           <h2 className="text-[26px] sm:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 leading-tight">
-            EPCVINA Trong Những Con Số
+            Không chỉ tính thử, EPCVINA có dữ liệu thực tế để đối chiếu
           </h2>
-          <p className="text-[14px] sm:text-lg text-white/80">Kết quả thực tế, không phải lời hứa</p>
+          <p className="text-[14px] sm:text-lg text-slate-600">Các con số bên dưới giúp anh/chị hiểu vì sao kết quả chỉ là bước đầu, còn phương án cuối cùng cần khảo sát mái và hóa đơn.</p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
-              className="text-center space-y-2"
+              className="rounded-3xl border border-orange-100 bg-white p-4 shadow-[0_18px_50px_-40px_rgba(15,23,42,.45)] sm:p-5"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ delay: i * 0.08, duration: 0.4 }}
             >
-              <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-white/15 flex items-center justify-center mx-auto mb-2 sm:mb-3">
-                <stat.icon className="w-6 h-6 sm:w-7 sm:h-7" weight="duotone" />
+              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-50 text-orange-600 sm:h-12 sm:w-12">
+                <stat.icon className="w-6 h-6" weight="duotone" />
               </div>
-              <p className="text-3xl sm:text-5xl font-extrabold tracking-tight">{stat.number}</p>
-              <h3 className="text-[13px] sm:text-lg font-bold leading-tight">{stat.label}</h3>
-              <p className="hidden sm:block text-sm text-white/75">{stat.desc}</p>
+              <p className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">{stat.number}</p>
+              <h3 className="mt-1 text-[13px] sm:text-base font-black leading-tight text-slate-900">{stat.label}</h3>
+              <p className="mt-2 text-[12px] leading-relaxed text-slate-500 sm:text-sm">{stat.desc}</p>
             </motion.div>
           ))}
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-8 sm:mt-14 pt-5 sm:pt-8 border-t border-white/20">
-          <div className="grid md:grid-cols-3 gap-4">
+        <div className="mt-5 sm:mt-8">
+          <div className="grid gap-3 rounded-3xl border border-slate-200 bg-slate-950 p-3 text-white sm:grid-cols-3 sm:p-4">
             {trustIndicators.map((item, i) => (
               <div
                 key={i}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-5 text-center border border-white/10"
+                className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 text-center"
               >
                 <div className="flex items-center justify-center gap-2 mb-1.5">
                   <item.icon className="w-6 h-6 text-amber-200" weight={item.fill ? 'fill' : 'bold'} />
                   <p className="text-2xl font-bold">{item.value}</p>
                 </div>
-                <p className="text-sm text-white/80">{item.label}</p>
+                <p className="text-sm text-white/78">{item.label}</p>
               </div>
             ))}
           </div>

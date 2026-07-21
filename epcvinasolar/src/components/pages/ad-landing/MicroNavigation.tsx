@@ -3,10 +3,14 @@ import { Phone, ChatCircle } from '@phosphor-icons/react';
 export default function MicroNavigation() {
   const navItems = [
     { label: 'Tính chi phí', href: '#calculator' },
-    { label: 'Hóa đơn thực tế', href: '#hoa-don' },
-    { label: 'Dự án nhà dân', href: '#du-an' },
+    { label: 'Case thực tế', href: '#hoa-don' },
     { label: 'Bảo hành', href: '#bao-hanh' },
     { label: 'Nhận khảo sát', href: '#contact' },
+  ];
+  const mobileNavItems = [
+    { label: 'Tính chi phí', href: '#calculator' },
+    { label: 'Case thực tế', href: '#hoa-don' },
+    { label: 'Khảo sát 0đ', href: '#contact' },
   ];
 
   return (
@@ -41,7 +45,7 @@ export default function MicroNavigation() {
             <a
               href="tel:0988446113"
               onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_hotline_click', { event_category: 'conversion' })}
-              className="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-all cursor-pointer min-h-[44px]"
+	              className="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors cursor-pointer min-h-[44px] focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
               aria-label="Gọi hotline 0988 446 113"
             >
               <Phone className="w-4 h-4" />
@@ -54,7 +58,7 @@ export default function MicroNavigation() {
               target="_blank" rel="noopener noreferrer"
 
               onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_zalo_click', { event_category: 'conversion' })}
-              className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-all cursor-pointer min-h-[44px]"
+	              className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors cursor-pointer min-h-[44px] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               aria-label="Chat Zalo với EPCVINA"
             >
               <ChatCircle className="w-4 h-4" weight="bold" />
@@ -65,7 +69,7 @@ export default function MicroNavigation() {
             <a
               href="#contact"
               onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_cta_click', { event_category: 'conversion' })}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-3 py-2 rounded-lg transition-all shadow-md hover:shadow-lg cursor-pointer min-h-[40px] text-[13px] md:min-h-[44px] md:px-5 md:text-sm"
+	              className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-3 py-2 rounded-lg transition-[background-color,box-shadow] shadow-md hover:shadow-lg cursor-pointer min-h-[40px] text-[13px] md:min-h-[44px] md:px-5 md:text-sm focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
               aria-label="Nhận tư vấn miễn phí"
             >
               <span className="md:hidden">Khảo sát</span>
@@ -75,13 +79,13 @@ export default function MicroNavigation() {
         </div>
 
         {/* Mobile Navigation - Scrollable */}
-        <div className="md:hidden overflow-x-auto -mx-3 px-3 py-1.5 border-t border-slate-200 scrollbar-hide">
-          <div className="flex gap-2 min-w-max">
-            {navItems.map((item, i) => (
+        <div className="md:hidden -mx-3 border-t border-slate-200 px-3 py-1.5">
+          <div className="grid grid-cols-3 gap-1.5">
+            {mobileNavItems.map((item, i) => (
               <a
                 key={i}
                 href={item.href}
-                className="flex min-h-[34px] items-center whitespace-nowrap rounded-full bg-slate-50 px-3 text-[12px] font-bold text-slate-700 transition-colors hover:text-orange-600"
+                className="flex min-h-[34px] items-center justify-center whitespace-nowrap rounded-full bg-slate-50 px-2 text-[12px] font-bold text-slate-700 transition-colors hover:text-orange-600 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
               >
                 {item.label}
               </a>
