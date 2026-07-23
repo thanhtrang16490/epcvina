@@ -97,7 +97,7 @@ export default function PublicProductDetailScreen() {
     return (
       <View style={styles.centered}>
         <Ionicons name="alert-circle-outline" size={56} color="#d1d5db" />
-        <Text style={styles.notFoundText}>Không tìm thấy sản phẩm</Text>
+        <Text style={styles.notFoundText}>Không tìm thấy thiết bị</Text>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Text style={styles.backButtonText}>Quay lại</Text>
         </TouchableOpacity>
@@ -140,11 +140,11 @@ export default function PublicProductDetailScreen() {
           {/* Description */}
           {product.description ? (
             <>
-              <Text style={styles.sectionTitle}>Mô tả sản phẩm</Text>
+              <Text style={styles.sectionTitle}>Mô tả thiết bị</Text>
               <Text style={styles.description}>{product.description}</Text>
             </>
           ) : (
-            <Text style={styles.noDescription}>Chưa có mô tả sản phẩm.</Text>
+            <Text style={styles.noDescription}>Chưa có mô tả thiết bị.</Text>
           )}
 
           {/* Info Notice */}

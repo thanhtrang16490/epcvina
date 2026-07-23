@@ -69,7 +69,7 @@ export default function PublicProductsScreen() {
 
       if (error) {
         if (__DEV__) console.error('[PublicProducts] loadProducts error:', error.message)
-        return { data: null, error: error.message || 'Không thể tải sản phẩm' }
+        return { data: null, error: error.message || 'Không thể tải thiết bị' }
       }
 
       return { data: data as Product[] || [], error: null }
@@ -190,7 +190,7 @@ export default function PublicProductsScreen() {
       return (
         <View style={styles.centered}>
           <Ionicons name="alert-circle-outline" size={56} color="#fca5a5" />
-          <Text style={styles.emptyTitle}>Không thể tải sản phẩm</Text>
+          <Text style={styles.emptyTitle}>Không thể tải thiết bị</Text>
           <Text style={styles.emptySubtitle}>{error}</Text>
           <TouchableOpacity
             style={styles.retryButton}
@@ -204,11 +204,11 @@ export default function PublicProductsScreen() {
     return (
       <View style={styles.centered}>
         <Ionicons name="cube-outline" size={56} color="#d1d5db" />
-        <Text style={styles.emptyTitle}>Không tìm thấy sản phẩm</Text>
+        <Text style={styles.emptyTitle}>Không tìm thấy thiết bị</Text>
         <Text style={styles.emptySubtitle}>
           {searchQuery || activeCategory !== 'all'
             ? 'Thử thay đổi bộ lọc hoặc từ khoá tìm kiếm'
-            : 'Danh sách sản phẩm đang trống'}
+            : 'Danh sách thiết bị đang trống'}
         </Text>
       </View>
     )
@@ -221,7 +221,7 @@ export default function PublicProductsScreen() {
         <Ionicons name="search" size={18} color="#9ca3af" style={styles.searchIcon} />
         <TextInput
           style={styles.searchInput}
-          placeholder="Tìm sản phẩm theo tên, mã..."
+          placeholder="Tìm thiết bị theo tên, mã..."
           value={searchQuery}
           onChangeText={setSearchQuery}
           placeholderTextColor="#9ca3af"
@@ -260,7 +260,7 @@ export default function PublicProductsScreen() {
       {loading ? (
         <View style={styles.centered}>
           <ActivityIndicator size="large" color="#175ead" />
-          <Text style={styles.loadingText}>Đang tải sản phẩm...</Text>
+          <Text style={styles.loadingText}>Đang tải thiết bị...</Text>
         </View>
       ) : (
         <FlatList
@@ -283,27 +283,6 @@ export default function PublicProductsScreen() {
         />
       )}
 
-      {/* Sticky CTA Banner */}
-      <View style={styles.ctaBanner}>
-        <Text style={styles.ctaText}>Muốn đặt hàng?</Text>
-        <View style={styles.ctaActions}>
-          <TouchableOpacity
-            style={styles.secondaryCtaButton}
-            onPress={() => router.push('/(public)/system-advisor')}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.secondaryCtaButtonText}>Tư vấn hệ thống</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.ctaButton}
-            onPress={() => router.push('/(auth)/login')}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.ctaButtonText}>Đăng nhập ngay</Text>
-            <Ionicons name="arrow-forward" size={16} color="#fff" />
-          </TouchableOpacity>
-        </View>
-      </View>
     </View>
   )
 }
@@ -320,24 +299,6 @@ const styles = StyleSheet.create({
   categoryTextActive: { color: '#fff' },
   centered: { alignItems: 'center', flex: 1, gap: 12, justifyContent: 'center', paddingVertical: 60 },
   container: { backgroundColor: '#f9fafb', flex: 1 },
-  ctaActions: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 8,
-  },
-  ctaBanner: {
-    alignItems: 'center', backgroundColor: '#fff', borderTopColor: '#e5e7eb', borderTopWidth: 1,
-    bottom: 0, elevation: 8, flexDirection: 'row',
-    justifyContent: 'space-between', left: 0, paddingHorizontal: 16,
-    paddingVertical: 12, position: 'absolute',
-    right: 0, shadowColor: '#000', shadowOffset: { width: 0, height: -2 }, shadowOpacity: 0.08, shadowRadius: 8,
-  },
-  ctaButton: {
-    alignItems: 'center', backgroundColor: '#175ead', borderRadius: 20,
-    flexDirection: 'row', gap: 6, paddingHorizontal: 16, paddingVertical: 10,
-  },
-  ctaButtonText: { color: '#fff', fontSize: 14, fontWeight: '600' },
-  ctaText: { color: '#374151', fontSize: 14, fontWeight: '500' },
   emptySubtitle: { color: '#9ca3af', fontSize: 13, paddingHorizontal: 32, textAlign: 'center' },
   emptyTitle: { color: '#374151', fontSize: 16, fontWeight: '600', marginTop: 8 },
   loadingMore: { alignItems: 'center', paddingVertical: 20 },
@@ -365,12 +326,4 @@ const styles = StyleSheet.create({
   },
   searchIcon: { marginRight: 8 },
   searchInput: { color: '#111827', flex: 1, fontSize: 15, height: 44 },
-  secondaryCtaButton: {
-    borderColor: '#175ead',
-    borderRadius: 20,
-    borderWidth: 1,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-  },
-  secondaryCtaButtonText: { color: '#175ead', fontSize: 14, fontWeight: '600' },
 })

@@ -57,6 +57,7 @@ function AppContent() {
       <StatusBar style="dark" />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
+        <Stack.Screen name="system-advisor" />
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="(public)" options={{ headerShown: false }} />
         <Stack.Screen name="(admin)" />

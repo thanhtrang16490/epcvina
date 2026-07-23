@@ -17,7 +17,7 @@ export default function Index() {
   }
 
   if (!user) {
-    return <Redirect href="/(public)/products" />
+    return <Redirect href={'/(public)/calculator' as any} />
   }
 
   // Redirect based on user role

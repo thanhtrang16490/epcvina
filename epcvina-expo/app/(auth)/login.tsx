@@ -198,11 +198,11 @@ export default function LoginScreen() {
               </View>
               <TouchableOpacity
                 style={styles.guestButton}
-                onPress={() => router.replace('/(public)/products' as any)}
+                onPress={() => router.replace('/(public)/calculator' as any)}
                 activeOpacity={0.8}
               >
-                <Ionicons name="eye-outline" size={18} color="#6b7280" />
-                <Text style={styles.guestButtonText}>Xem sản phẩm không cần đăng nhập</Text>
+                <Ionicons name="calculator-outline" size={18} color="#6b7280" />
+                <Text style={styles.guestButtonText}>Tính điện mặt trời không cần đăng nhập</Text>
               </TouchableOpacity>
             </View>
 
@@ -220,60 +220,106 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#175ead',
+    borderRadius: 8,
+    paddingVertical: 16,
+  },
+  buttonDisabled: {
+    opacity: 0.5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  checkbox: {
+    alignItems: 'center',
+    borderColor: '#d1d5db',
+    borderRadius: 4,
+    borderWidth: 2,
+    height: 20,
+    justifyContent: 'center',
+    marginRight: 8,
+    width: 20,
+  },
+  checkboxChecked: {
+    backgroundColor: '#175ead',
+    borderColor: '#175ead',
+  },
+  clearButton: {
+    position: 'absolute',
+    right: 12,
+    top: 12,
+  },
   container: {
-    flex: 1,
     backgroundColor: 'white',
-  },
-  keyboardView: {
     flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
   },
   content: {
     flex: 1,
-    paddingHorizontal: 24,
     justifyContent: 'center',
+    paddingHorizontal: 24,
   },
-  logoContainer: {
+  dividerLine: {
+    backgroundColor: '#e5e7eb',
+    flex: 1,
+    height: 1,
+  },
+  dividerRow: {
     alignItems: 'center',
-    marginBottom: 32,
+    flexDirection: 'row',
+    marginBottom: 12,
   },
-  logo: {
-    width: 96,
-    height: 96,
-    marginBottom: 16,
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#175ead',
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
+  dividerText: {
+    color: '#9ca3af',
+    fontSize: 13,
+    marginHorizontal: 10,
   },
   form: {
     gap: 16,
   },
-  inputGroup: {
-    marginBottom: 16,
+  guestButton: {
+    alignItems: 'center',
+    backgroundColor: '#f9fafb',
+    borderColor: '#e5e7eb',
+    borderRadius: 8,
+    borderWidth: 1,
+    flexDirection: 'row',
+    gap: 8,
+    justifyContent: 'center',
+    paddingVertical: 13,
   },
-  label: {
+  guestButtonText: {
+    color: '#6b7280',
     fontSize: 14,
     fontWeight: '500',
-    color: '#374151',
-    marginBottom: 8,
+  },
+  guestContainer: {
+    marginTop: 8,
+  },
+  infoContainer: {
+    borderTopColor: '#e5e7eb',
+    borderTopWidth: 1,
+    marginTop: 32,
+    paddingTop: 24,
+  },
+  infoText: {
+    color: '#6b7280',
+    fontSize: 13,
+    textAlign: 'center',
   },
   input: {
-    borderWidth: 1,
     borderColor: '#d1d5db',
     borderRadius: 8,
+    borderWidth: 1,
+    fontSize: 16,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    fontSize: 16,
+  },
+  inputGroup: {
+    marginBottom: 16,
   },
   inputWithButton: {
     position: 'relative',
@@ -281,104 +327,58 @@ const styles = StyleSheet.create({
   inputWithClear: {
     paddingRight: 40,
   },
-  clearButton: {
-    position: 'absolute',
-    right: 12,
-    top: 12,
+  keyboardView: {
+    flex: 1,
   },
-  rememberedText: {
-    fontSize: 12,
-    color: '#10b981',
-    marginTop: 4,
-  },
-  rememberMeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderWidth: 2,
-    borderColor: '#d1d5db',
-    borderRadius: 4,
-    marginRight: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  checkboxChecked: {
-    backgroundColor: '#175ead',
-    borderColor: '#175ead',
-  },
-  rememberMeText: {
-    fontSize: 14,
+  label: {
     color: '#374151',
-  },
-  button: {
-    backgroundColor: '#175ead',
-    borderRadius: 8,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-  buttonDisabled: {
-    opacity: 0.5,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: '600',
-    fontSize: 16,
+    fontSize: 14,
+    fontWeight: '500',
+    marginBottom: 8,
   },
   linkButton: {
     paddingVertical: 8,
   },
   linkText: {
     color: '#175ead',
+    fontSize: 14,
     textAlign: 'center',
+  },
+  logo: {
+    height: 96,
+    marginBottom: 16,
+    width: 96,
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  rememberMeContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 8,
+  },
+  rememberMeText: {
+    color: '#374151',
     fontSize: 14,
   },
-  infoContainer: {
-    marginTop: 32,
-    paddingTop: 24,
-    borderTopWidth: 1,
-    borderTopColor: '#e5e7eb',
+  rememberedText: {
+    color: '#10b981',
+    fontSize: 12,
+    marginTop: 4,
   },
-  infoText: {
+  scrollContent: {
+    flexGrow: 1,
+  },
+  subtitle: {
+    color: '#666',
+    fontSize: 16,
     textAlign: 'center',
-    color: '#6b7280',
-    fontSize: 13,
   },
-  guestContainer: {
-    marginTop: 8,
-  },
-  dividerRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#e5e7eb',
-  },
-  dividerText: {
-    fontSize: 13,
-    color: '#9ca3af',
-    marginHorizontal: 10,
-  },
-  guestButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingVertical: 13,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
-    backgroundColor: '#f9fafb',
-  },
-  guestButtonText: {
-    fontSize: 14,
-    color: '#6b7280',
-    fontWeight: '500',
+  title: {
+    color: '#175ead',
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 8,
   },
 })
