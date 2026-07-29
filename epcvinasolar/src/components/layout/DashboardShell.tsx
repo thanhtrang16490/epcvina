@@ -25,6 +25,7 @@ export const useScrollContext = () => useContext(ScrollContext);
 
 export default function DashboardLayout({ children, showFooter = true, showChrome = true }: DashboardLayoutProps) {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const needsMobileTopOffset = pathname.startsWith('/solar-home/he-thong');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [scrollY, setScrollY] = useState(0);
@@ -63,7 +64,7 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
           {showChrome ? <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} /> : null}
 
           {/* Main content - full width, accounting for sidebar */}
-          <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'lg:ml-16' : ''}`}>
+          <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'lg:ml-16' : ''} ${needsMobileTopOffset ? 'pt-14' : ''}`}>
             {/* Header: mobile-only hamburger toggle */}
             {showChrome ? (
               <Header

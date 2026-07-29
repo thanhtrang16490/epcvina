@@ -77,7 +77,11 @@ export default function HybridListingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="relative min-h-screen bg-white pt-14 md:pt-0">
+      <div
+        className="absolute inset-x-0 top-0 h-14 md:hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800"
+        aria-hidden="true"
+      />
       {/* Hero Section with Header - PC only */}
       <div className="relative hidden md:block">
         <HeaderBar />
@@ -149,7 +153,7 @@ export default function HybridListingPage() {
       </div>
 
       {/* Content */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
+      <div className="relative z-[1] max-w-6xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
         {/* Mobile Page Header */}
         <div className="md:hidden mb-8">
           <div className="flex items-center gap-3 mb-3">

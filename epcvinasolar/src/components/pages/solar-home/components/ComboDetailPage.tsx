@@ -32,7 +32,11 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
   const systemLabel = isHybrid ? 'Hybrid' : 'On-Grid';
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="relative min-h-screen bg-gray-50 pt-14 md:pt-0">
+      <div
+        className="absolute inset-x-0 top-0 h-14 md:hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800"
+        aria-hidden="true"
+      />
       {/* Sticky Header */}
       <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

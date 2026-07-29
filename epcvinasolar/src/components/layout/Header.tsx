@@ -57,6 +57,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
               className={`h-7 w-auto ${isDarkTheme ? 'drop-shadow-sm' : ''}`}
             />
           </a>
+
         </div>
       </header>
     </>

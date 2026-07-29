@@ -140,7 +140,11 @@ export default function ComboCatalogPage() {
   const activeCatMeta = COMBO_CATEGORIES.find(c => c.id === activeCategory);
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="relative flex-1 flex flex-col pt-14 md:pt-0">
+      <div
+        className="absolute inset-x-0 top-0 h-14 md:hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800"
+        aria-hidden="true"
+      />
       <HeaderBar />
 
       {/* Hero Section */}
@@ -177,7 +181,7 @@ export default function ComboCatalogPage() {
       </section>
 
       {/* Mobile */}
-      <div className="md:hidden px-4 py-6">
+      <div className="md:hidden px-4 pt-6 pb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">Combo Hệ Thống Điện</h1>
         <div className="grid grid-cols-2 gap-3">
           {filteredCombos.map(combo => (

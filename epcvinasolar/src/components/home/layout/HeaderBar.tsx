@@ -185,10 +185,19 @@ export default function HeaderBar() {
 
         {/* Right side */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          {/* Phone CTA - hidden on mobile */}
+          {/* Quote CTA - icon only on mobile */}
           <a
             href="/bao-gia"
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-3 lg:px-4 xl:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
+            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-md transition-colors active:scale-[0.98]"
+            aria-label="Nhận báo giá"
+          >
+            <FileText className="h-4 w-4" weight="bold" />
+          </a>
+
+          {/* Quote CTA - text on desktop/tablet */}
+          <a
+            href="/bao-gia"
+            className="hidden md:flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-3 lg:px-4 xl:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
           >
             <FileText className="h-4 w-4" weight="bold" />
             <span className="hidden xl:inline">Nhận Báo Giá</span>

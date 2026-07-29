@@ -90,7 +90,11 @@ export default function MaiNgoiPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen pt-20 md:pt-20">
+    <div className="relative min-h-screen pt-14 md:pt-20">
+      <div
+        className="absolute inset-x-0 top-0 h-14 md:hidden bg-gradient-to-b from-amber-950 via-orange-900 to-red-900"
+        aria-hidden="true"
+      />
       <HeaderBar />
       {/* Hero */}
       <section className="bg-gradient-to-br from-amber-900 via-orange-800 to-red-900 text-white py-16 sm:py-20">

@@ -140,7 +140,11 @@ export default function MaiBangPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen pt-20 md:pt-20">
+    <div className="relative min-h-screen pt-14 md:pt-20">
+      <div
+        className="absolute inset-x-0 top-0 h-14 md:hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800"
+        aria-hidden="true"
+      />
       <HeaderBar />
       {/* Hero */}
       <section className="bg-gradient-to-br from-slate-900 via-emerald-900 to-slate-900 text-white py-16 sm:py-20">
