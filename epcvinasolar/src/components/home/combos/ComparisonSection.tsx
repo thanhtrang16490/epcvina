@@ -13,7 +13,7 @@ const ORANGE = '#ea580c';
 
 export default function ComparisonSection() {
   return (
-    <section className="bg-white">
+    <section className="bg-white" data-header-theme="dark">
       {/* Visual hero cards — inherits hero background */}
       <div className="relative py-12 sm:py-16 overflow-hidden">
         <div

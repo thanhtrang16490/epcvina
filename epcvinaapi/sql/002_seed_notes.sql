@@ -1,0 +1,1 @@
+-- Dữ liệu seed mẫu sẽ thêm sau, file này giữ chỗ cho giai đoạn nối admin.

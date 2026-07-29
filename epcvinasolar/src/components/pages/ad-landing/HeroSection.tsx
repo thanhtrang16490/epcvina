@@ -16,7 +16,7 @@ const sampleStats = [
 
 export default function HeroSection() {
   return (
-    <section id="top" className="relative overflow-hidden bg-[#202124] text-white">
+    <section id="top" data-header-theme="dark" className="relative overflow-hidden bg-[#202124] text-white">
       {/* Background image with subtle overlay */}
       <div className="absolute inset-0 opacity-[0.22]">
         <img

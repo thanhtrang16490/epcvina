@@ -48,6 +48,7 @@ export default function CTASection() {
   return (
     <section
       id="tu-van"
+      data-header-theme="dark"
       className="py-14 sm:py-20 bg-gradient-to-br from-[#7F1D1D] via-[#991B1B] to-[#DC2626]"
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

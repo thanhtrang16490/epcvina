@@ -264,7 +264,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       {/* Mobile Overlay - only on < md (phones) */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/50 z-50 md:hidden"
+          className="fixed inset-0 bg-black/50 z-50 lg:hidden"
           onClick={onClose}
         />
       )}
@@ -278,7 +278,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           border-r border-white/40
           shadow-[4px_0_32px_rgba(0,0,0,0.10)]
           transform transition-transform duration-300 ease-in-out
-          md:hidden
+          lg:hidden
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         `}
       >
@@ -375,7 +375,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Desktop/Tablet Sidebar - persistent, expand on hover (desktop) or tap (tablet) */}
       <aside 
-        className="hidden md:block fixed top-0 left-0 h-screen z-[55] transition-all duration-300 ease-in-out overflow-hidden"
+        className="hidden lg:block fixed top-0 left-0 h-screen z-[55] transition-all duration-300 ease-in-out overflow-hidden"
         style={{
           width: isExpanded ? '280px' : '64px',
           background: 'rgba(255,255,255,0.72)',

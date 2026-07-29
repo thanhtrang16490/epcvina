@@ -8,7 +8,7 @@ interface MidPageCTAProps {
 export default function MidPageCTA({ variant }: MidPageCTAProps) {
   if (variant === 'benefits') {
     return (
-      <section className="bg-gradient-to-r from-[#1a365d] to-[#0f2444] py-8 sm:py-10">
+      <section className="bg-gradient-to-r from-[#1a365d] to-[#0f2444] py-8 sm:py-10" data-header-theme="dark">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-between gap-5"
@@ -42,7 +42,7 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
 
   // Reviews variant — pricing teaser + social proof CTA
   return (
-    <section className="bg-gradient-to-r from-orange-600 to-red-600 py-8 sm:py-10">
+    <section className="bg-gradient-to-r from-orange-600 to-red-600 py-8 sm:py-10" data-header-theme="dark">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-between gap-5"

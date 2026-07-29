@@ -120,7 +120,7 @@ export default function SolarCIPage() {
       <div className="relative">
         <HeaderBar />
         {/* ═══════════════════ Hero Section ═══════════════════ */}
-        <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
+        <section data-header-theme="dark" className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
           <img
             src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80"
@@ -419,7 +419,7 @@ export default function SolarCIPage() {
         </section>
 
         {/* ═══════════════════ Stats ═══════════════════ */}
-        <section className="py-12 sm:py-16 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 text-white" aria-labelledby="stats-heading">
+        <section data-header-theme="dark" className="py-12 sm:py-16 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 text-white" aria-labelledby="stats-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <h2 id="stats-heading" className="text-2xl sm:text-3xl font-bold">

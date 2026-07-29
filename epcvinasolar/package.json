@@ -8,8 +8,8 @@
     "start": "node ./dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint src/ --ext .ts,.tsx,.astro --fix",
-    "lint:check": "eslint src/ --ext .ts,.tsx,.astro",
+    "lint": "astro check",
+    "lint:check": "astro check",
     "format": "prettier --write \"src/**/*.{ts,tsx,astro,css,json}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,astro,css,json}\"",
     "quality": "npm run format && npm run lint"

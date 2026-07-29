@@ -5,6 +5,8 @@ interface Props {
   eyebrow?: string;
   description?: string;
   showHeader?: boolean;
+  stats?: Array<{ label: string; value: string }>;
+  sidebar?: ReactNode;
   children: ReactNode;
 }
 
@@ -13,6 +15,8 @@ export default function CalculatorPageShell({
   eyebrow,
   description,
   showHeader = true,
+  stats,
+  sidebar,
   children,
 }: Props) {
   return (
@@ -75,6 +79,21 @@ export default function CalculatorPageShell({
                   {description}
                 </p>
               ) : null}
+              {stats ? (
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {stats.map((item) => (
+                    <div key={item.label} className="rounded-[18px] border border-[var(--border)] bg-white px-4 py-3 shadow-[0_10px_24px_rgba(15,23,42,0.04)]">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: 'var(--muted)' }}>
+                        {item.label}
+                      </p>
+                      <p className="mt-1 text-[18px] font-black" style={{ color: 'var(--ink)' }}>
+                        {item.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+              {sidebar ? <div className="mt-4">{sidebar}</div> : null}
               {children}
             </div>
           ) : (

@@ -146,7 +146,8 @@ export default function ZaloChatButton() {
 
           @media (max-width: 768px) {
             .zalo-container {
-              bottom: 35px;
+              bottom: 92px;
+              right: 16px;
             }
           }
         `

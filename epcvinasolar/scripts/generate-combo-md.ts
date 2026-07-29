@@ -10,22 +10,22 @@ const __dirname = path.dirname(__filename);
 async function run() {
   const { localCombos } = await import('../src/data/combos.js');
 
-// Create combos directory
-const combosDir = path.join(process.cwd(), 'src/content/combos');
-const hybridDir = path.join(combosDir, 'hybrid');
-const onGridDir = path.join(combosDir, 'on-grid');
+  // Create combos directory
+  const combosDir = path.join(process.cwd(), 'src/content/combos');
+  const hybridDir = path.join(combosDir, 'hybrid');
+  const onGridDir = path.join(combosDir, 'on-grid');
 
-// Create directories
-fs.mkdirSync(hybridDir, { recursive: true });
-fs.mkdirSync(onGridDir, { recursive: true });
+  // Create directories
+  fs.mkdirSync(hybridDir, { recursive: true });
+  fs.mkdirSync(onGridDir, { recursive: true });
 
-function generateComboMarkdown(combo: any) {
-  const isHybrid = combo.system_type === 'hybrid';
-  const phaseLabel = combo.phase === '1-phase' ? '1 Pha' : '3 Pha';
-  const voltageLabel = combo.voltage === 'low' ? 'Áp Thấp' : combo.voltage === 'high' ? 'Áp Cao' : '';
-  const systemLabel = isHybrid ? 'Hybrid' : 'On-Grid';
-  
-  const frontmatter = `---
+  function generateComboMarkdown(combo: any) {
+    const isHybrid = combo.system_type === 'hybrid';
+    const phaseLabel = combo.phase === '1-phase' ? '1 Pha' : '3 Pha';
+    const voltageLabel = combo.voltage === 'low' ? 'Áp Thấp' : combo.voltage === 'high' ? 'Áp Cao' : '';
+    const systemLabel = isHybrid ? 'Hybrid' : 'On-Grid';
+
+    const frontmatter = `---
 title: "${combo.name}"
 slug: "${combo.slug}"
 system_type: "${combo.system_type}"
@@ -45,7 +45,7 @@ display_order: ${combo.display_order}
 
 `;
 
-  const body = `# ${combo.name}
+    const body = `# ${combo.name}
 
 ## Thông tin tổng quan
 
@@ -147,21 +147,27 @@ ${isHybrid && combo.battery_kwh ? `| Pin lưu trữ | ${combo.battery_kwh} kWh |
 *Lưu ý: Chi phí đầu tư có thể thay đổi tùy theo điều kiện thực tế và vị trí lắp đặt.*
 `;
 
-  return frontmatter + body;
+    return frontmatter + body;
+  }
+
+  // Generate markdown files
+  localCombos.forEach((combo) => {
+    const dir = combo.system_type === 'hybrid' ? hybridDir : onGridDir;
+    const filename = `${combo.slug}.md`;
+    const filepath = path.join(dir, filename);
+
+    const markdown = generateComboMarkdown(combo);
+    fs.writeFileSync(filepath, markdown, 'utf-8');
+
+    console.log(`✓ Created: ${filepath}`);
+  });
+
+  console.log(`\n✅ Generated ${localCombos.length} combo markdown files`);
+  console.log(`   - Hybrid: ${localCombos.filter((c) => c.system_type === 'hybrid').length} combos`);
+  console.log(`   - On-Grid: ${localCombos.filter((c) => c.system_type === 'on-grid').length} combos`);
 }
 
-// Generate markdown files
-localCombos.forEach(combo => {
-  const dir = combo.system_type === 'hybrid' ? hybridDir : onGridDir;
-  const filename = `${combo.slug}.md`;
-  const filepath = path.join(dir, filename);
-  
-  const markdown = generateComboMarkdown(combo);
-  fs.writeFileSync(filepath, markdown, 'utf-8');
-  
-  console.log(`✓ Created: ${filepath}`);
+run().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
 });
-
-console.log(`\n✅ Generated ${localCombos.length} combo markdown files`);
-console.log(`   - Hybrid: ${localCombos.filter(c => c.system_type === 'hybrid').length} combos`);
-console.log(`   - On-Grid: ${localCombos.filter(c => c.system_type === 'on-grid').length} combos`);

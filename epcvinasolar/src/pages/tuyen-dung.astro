@@ -50,8 +50,8 @@ const structuredData = {
         <div class="max-w-3xl">
           <p class="text-orange-200 text-sm font-semibold uppercase tracking-wider mb-3">EPCVINA Solar – Tuyển Dụng</p>
           <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
-            Gia Nhập Đội Ngũ<br/>
-            <span class="text-orange-200">Điện Mặt Trời Hàng Đầu</span>
+            <span class="block">Gia Nhập Đội Ngũ</span>
+            <span class="block text-orange-200">Điện Mặt Trời Hàng Đầu</span>
           </h1>
           <p class="text-lg text-white/90 mb-8 max-w-2xl">
             Hơn 500 dự án thành công trên toàn quốc. Chúng tôi tìm kiếm những nhân tài 
@@ -497,15 +497,23 @@ const structuredData = {
   document.head.appendChild(structuredDataEl);
 
   // Form handler
-  document.getElementById('apply-form')?.addEventListener('submit', function(e) {
+  const applyForm = document.getElementById('apply-form');
+  const applySuccess = document.getElementById('apply-success');
+
+  applyForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const form = e.target;
-    const name = form.querySelector('[name="name"]').value;
-    const phone = form.querySelector('[name="phone"]').value;
-    const email = form.querySelector('[name="email"]').value;
-    const position = form.querySelector('[name="position"]').value;
-    const experience = form.querySelector('[name="experience"]').value;
-    const cv = form.querySelector('[name="cv"]').value;
+    const form = e.currentTarget as HTMLFormElement | null;
+    if (!form) return;
+
+    const getValue = (selector: string) =>
+      (form.querySelector(selector) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null)?.value ?? '';
+
+    const name = getValue('[name="name"]');
+    const phone = getValue('[name="phone"]');
+    const email = getValue('[name="email"]');
+    const position = getValue('[name="position"]');
+    const experience = getValue('[name="experience"]');
+    const cv = getValue('[name="cv"]');
 
     const lines = [
       'Ứng tuyển từ website EPCVINA Solar:',
@@ -521,6 +529,6 @@ const structuredData = {
     window.open(`https://zalo.me/0988446113?msg=${msg}`, '_blank');
 
     form.classList.add('hidden');
-    document.getElementById('apply-success').classList.remove('hidden');
+    applySuccess?.classList.remove('hidden');
   });
 </script>

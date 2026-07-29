@@ -833,7 +833,7 @@ export default function CalculatorMainPage() {
               <p className="truncate text-[13.5px] font-semibold leading-tight text-[#414042] sm:text-[15px]">Tư vấn nhanh điện mặt trời</p>
               <p className="hidden truncate text-[12px] leading-tight text-[#71717A] min-[390px]:block sm:text-[13px]">Ước lượng chi phí & hoàn vốn</p>
             </div>
-            {activeScreen === 'region' || activeScreen === 'bill' || activeScreen === 'roof' || activeScreen === 'usage' || activeScreen === 'survey' ? (
+            {activeScreen === 'region' || activeScreen === 'bill' || activeScreen === 'roof' || activeScreen === 'usage' ? (
               <span className="shrink-0 rounded-full bg-[#FFF3E6] px-2.5 py-1.5 text-[10.5px] font-bold text-[#C2410C] sm:px-3 sm:text-[11.5px]">Miễn phí</span>
             ) : activeScreen === 'result' ? (
               <span className="shrink-0 rounded-full bg-white px-2.5 py-1.5 text-[10.5px] font-bold text-[#71717A] ring-1 ring-[#E5E7EB] sm:px-3 sm:text-[11.5px]">3/3</span>
@@ -1876,7 +1876,7 @@ export default function CalculatorMainPage() {
                 <p className="hidden truncate text-[12px] leading-tight text-[#71717A] min-[390px]:block sm:text-[13px]">Kỹ sư EPCVINA liên hệ miễn phí</p>
               </div>
               <a
-                href={`tel:${epcvinaHotline}`}
+                href={epcvinaHotlineHref}
                 className="shrink-0 rounded-full bg-[#FFF3E6] px-2.5 py-1.5 text-[10.5px] font-bold text-[#C2410C] sm:px-3 sm:text-[11.5px]"
                 aria-label={`Gọi hotline EPCVINA ${epcvinaHotlineLabel}`}
               >

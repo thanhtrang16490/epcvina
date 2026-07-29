@@ -69,9 +69,6 @@
     },
     "extra": {
       "router": {},
-      "eas": {
-        "projectId": "fb7ac0b7-7211-43d3-8cc3-62120fb0919d"
-      },
       "GOOGLE_CLIENT_ID": "",
       "GOOGLE_IOS_CLIENT_ID": "",
       "GOOGLE_ANDROID_CLIENT_ID": "",
@@ -80,7 +77,10 @@
       "FACEBOOK_REDIRECT_URI": "",
       "ZALO_APP_ID": "",
       "ZALO_APP_SECRET": "",
-      "ZALO_REDIRECT_URI": ""
+      "ZALO_REDIRECT_URI": "",
+      "eas": {
+        "projectId": "661a28ea-ffb9-4f49-b8c7-04f118c1abd3"
+      }
     },
     "owner": "rmsurv024"
   }

@@ -1,0 +1,17 @@
+#!/usr/bin/expect -f
+# Auto-answer EAS keystore generation prompt for Android production build
+set timeout -1
+spawn npx eas-cli build --platform android --profile production --auto-submit
+expect {
+  -re {Generate a new Android Keystore\?.*} {
+    send "y\r"
+    exp_continue
+  }
+  -re {Would you like to.*\?} {
+    send "y\r"
+    exp_continue
+  }
+  eof
+}
+catch wait result
+exit [lindex $result 3]

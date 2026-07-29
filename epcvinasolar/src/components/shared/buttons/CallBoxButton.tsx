@@ -37,7 +37,7 @@ export default function CallBoxButton() {
         <div className="animated_call infinite zoomIn_call cmoz-alo-circle"></div>
         <div className="animated_call infinite pulse_call cmoz-alo-circle-fill"></div>
         <span className="flex items-center justify-center">
-          <Phone weight="fill" className="size-5 text-white" />
+          <Phone weight="fill" className="size-4 text-white" />
         </span>
       </a>
 
@@ -45,8 +45,8 @@ export default function CallBoxButton() {
         __html: `
           .call-container {
             position: fixed;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             bottom: 240px;
             z-index: 9999999;
           }
@@ -60,8 +60,8 @@ export default function CallBoxButton() {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
             position: relative;
@@ -78,10 +78,10 @@ export default function CallBoxButton() {
             animation-iteration-count: infinite;
           }
           .call-container .cmoz-alo-circle {
-            width: 58px;
-            height: 58px;
-            top: -7px;
-            right: -7px;
+            width: 50px;
+            height: 50px;
+            top: -5px;
+            right: -5px;
             position: absolute;
             background-color: transparent;
             border-radius: 100%;
@@ -90,10 +90,10 @@ export default function CallBoxButton() {
             opacity: .55;
           }
           .call-container .cmoz-alo-circle-fill {
-            width: 68px;
-            height: 68px;
-            top: -12px;
-            right: -12px;
+            width: 60px;
+            height: 60px;
+            top: -10px;
+            right: -10px;
             position: absolute;
             transition: all 0.5s;
             border-radius: 100%;
@@ -134,7 +134,8 @@ export default function CallBoxButton() {
 
           @media (max-width: 768px) {
             .call-container {
-              bottom: 34px;
+              bottom: 32px;
+              right: 16px;
             }
           }
         `

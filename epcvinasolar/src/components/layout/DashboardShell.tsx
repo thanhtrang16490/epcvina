@@ -34,16 +34,19 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // Only show header when at the very top (within 10px)
-      if (currentScrollY <= 10) {
+
+      const scrollingDown = currentScrollY > lastScrollY.current;
+      const scrollingUp = currentScrollY < lastScrollY.current;
+      const nearTop = currentScrollY <= 10;
+
+      if (nearTop) {
         setIsHeaderVisible(true);
-      } else if (currentScrollY > lastScrollY.current && currentScrollY > 60) {
-        // Hide when scrolling down past 60px
+      } else if (scrollingDown && currentScrollY > 72) {
         setIsHeaderVisible(false);
+      } else if (scrollingUp && lastScrollY.current - currentScrollY > 8) {
+        setIsHeaderVisible(true);
       }
-      // Don't show on scroll up - only show at top
-      
+
       lastScrollY.current = currentScrollY;
       setScrollY(currentScrollY);
     };
@@ -60,12 +63,13 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
           {showChrome ? <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} /> : null}
 
           {/* Main content - full width, accounting for sidebar */}
-          <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'md:ml-16' : ''}`}>
+          <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'lg:ml-16' : ''}`}>
             {/* Header: mobile-only hamburger toggle */}
             {showChrome ? (
               <Header
                 onMenuClick={() => setIsSidebarOpen(true)}
                 isHidden={!isHeaderVisible}
+                isMenuOpen={isSidebarOpen}
               />
             ) : null}
             
