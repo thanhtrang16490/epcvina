@@ -72,7 +72,7 @@
   --color-charcoal: var(--color-charcoal);
   --color-eco: var(--color-secondary);
   --color-eco-light: var(--color-secondary-light);
-  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
 }
 
@@ -84,7 +84,7 @@ html {
 body {
   background: linear-gradient(to bottom right, #FEF2F2, #ffffff, #ECFDF5);
   color: var(--foreground);
-  font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
   max-width: 100vw;
@@ -94,7 +94,7 @@ h1,
 h2,
 h3,
 .font-display {
-  font-family: 'Sora', 'Be Vietnam Pro', sans-serif;
+  font-family: 'Roboto Flex', sans-serif;
 }
 
 /* Custom scrollbar */

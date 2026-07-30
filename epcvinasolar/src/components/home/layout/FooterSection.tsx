@@ -157,7 +157,6 @@ export default function FooterSection() {
           <div className="text-center sm:text-left leading-relaxed text-gray-500/80">
             <p>CÔNG TY CỔ PHẦN XÂY LẮP EPC VIỆT NAM (EPC VINA.,JSC)</p>
             <p>Giấy chứng nhận đăng ký doanh nghiệp số 0105313377 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 17/05/2011.</p>
-            <p>Người đại diện theo pháp luật: Ông Lương Thanh Đỉnh.</p>
           </div>
         </div>
       </div>

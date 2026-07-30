@@ -1,7 +1,6 @@
 import {
   Building,
   Calendar,
-  User,
   FileText,
   MapPin,
   Wrench,
@@ -121,17 +120,6 @@ export default function AboutPage() {
 
               {/* Right - Key Facts */}
               <div className="lg:col-span-2 space-y-4">
-                <div className="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
-                      <User className="h-5 w-5 text-amber-500" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500">Giám đốc</p>
-                      <p className="font-semibold text-gray-900">Ông Lương Thanh Đỉnh</p>
-                    </div>
-                  </div>
-                </div>
                 <div className="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">

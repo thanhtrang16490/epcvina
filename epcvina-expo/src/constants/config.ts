@@ -24,7 +24,7 @@ export const APP_CONFIG = {
 
 export const API_CONFIG = {
   /** Base URL for Go backend */
-  baseUrl: process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8081/api/v1',
+  baseUrl: process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080/api',
 
   /** Request timeout in milliseconds */
   timeout: 30_000,

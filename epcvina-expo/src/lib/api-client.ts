@@ -3,7 +3,7 @@
  * Handles all HTTP requests to epcvina-api
  */
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8081/api/v1'
+const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8080/api'
 const API_TIMEOUT = 30000
 
 export interface ApiResponse<T> {

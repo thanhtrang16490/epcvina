@@ -47,6 +47,7 @@ func New(cfg config.Config, db *pgxpool.Pool) *fiber.App {
 	api.Get("/search/customers", handlers.SearchCustomers(db))
 	api.Get("/search/projects", handlers.SearchProjects(db))
 	api.Get("/customers/slug-exists", handlers.CustomerSlugExists(db))
+	api.Post("/uploads/images", handlers.UploadImage(cfg))
 	api.Get("/customers", handlers.CustomersList(db))
 	api.Post("/customers", handlers.CustomersCreate(db))
 	api.Get("/customers/:id", handlers.CustomerDetail(db))

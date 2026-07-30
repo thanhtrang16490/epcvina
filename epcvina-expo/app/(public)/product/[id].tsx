@@ -13,7 +13,7 @@ import {
 import { router, useLocalSearchParams } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
 import { Product } from '../../../src/types'
-import { supabasePublic } from '../../../src/lib/supabase-public'
+import { apiClient } from '../../../src/lib/api-client'
 
 
 const PLACEHOLDER_IMAGE = 'https://via.placeholder.com/400/e5e7eb/9ca3af?text=No+Image'
@@ -35,34 +35,53 @@ export default function PublicProductDetailScreen() {
 
   const fetchProduct = async () => {
     try {
-      const { data, error } = await supabasePublic
-        .from('products')
-        .select('id,name,code,description,price,stock,category_id,image_url,created_at,unit,specifications')
-        .eq('id', id)
-        .is('deleted_at', null) // Only get non-deleted products
-        .single()
+      const response = await apiClient.get<{
+        data?: {
+          products?: Array<{
+            id: string
+            slug?: string
+            name?: string
+            category?: string
+            brand?: string
+            unit?: string
+            sale_price_vat?: number
+            description?: string
+            cover_image_url?: string
+            image_urls?: string[]
+            is_active?: boolean
+          }>
+        }
+      }>('/catalog')
 
-      if (error) {
-        if (__DEV__) console.error('[PublicProductDetail] error:', error)
-        setLoading(false)
+      if (response.error) {
+        if (__DEV__) console.error('[PublicProductDetail] error:', response.error)
         return
       }
 
-      const product = data as Product
-      setProduct(product)
+      const rows = response.data?.data?.products ?? []
+      const row = rows.find((item) => String(item.id) === String(id))
 
-      // Fetch category name if exists
-      if (product.category_id) {
-        const { data: categoryData } = await supabasePublic
-          .from('categories')
-          .select('name')
-          .eq('id', product.category_id)
-          .single()
-
-        if (categoryData) {
-          setCategoryName(categoryData.name || '')
-        }
+      if (!row || row.is_active === false) {
+        return
       }
+
+      const mappedProduct: Product = {
+        id: String(row.id),
+        name: String(row.name ?? ''),
+        code: String(row.slug ?? ''),
+        description: String(row.description ?? ''),
+        price: Number(row.sale_price_vat ?? 0),
+        stock: 999,
+        category: String(row.category ?? ''),
+        image_url: row.cover_image_url || row.image_urls?.[0] || '',
+        unit: String(row.unit ?? ''),
+        specifications: '',
+        created_at: new Date().toISOString(),
+        deleted_at: null,
+      }
+
+      setProduct(mappedProduct)
+      setCategoryName(mappedProduct.category || '')
     } catch (e) {
       if (__DEV__) console.error('[PublicProductDetail] catch:', e)
     } finally {

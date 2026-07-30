@@ -17,6 +17,38 @@ services:
       timeout: 3s
       retries: 10
 
+  minio:
+    image: minio/minio:latest
+    container_name: epcvina-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: epcvina
+      MINIO_ROOT_PASSWORD: epcvina123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - epcvina_minio_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: epcvina-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set local http://minio:9000 epcvina epcvina123 &&
+      mc mb -p local/epcvina-images || true &&
+      mc anonymous set download local/epcvina-images || true &&
+      exit 0
+      "
+
   api:
     build:
       context: .
@@ -25,14 +57,23 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+      minio:
+        condition: service_healthy
     environment:
       APP_ENV: development
       PORT: 8080
       DATABASE_URL: postgres://epcvina:epcvina@postgres:5432/epcvina?sslmode=disable
       ALLOWED_ORIGIN: "*"
+      STORAGE_PROVIDER: minio
+      MINIO_ENDPOINT: http://minio:9000
+      MINIO_ACCESS_KEY: epcvina
+      MINIO_SECRET_KEY: epcvina123
+      MINIO_BUCKET: epcvina-images
+      MINIO_PUBLIC_URL: http://localhost:9000
     ports:
       - "8080:8080"
     command: ["./epcvinaapi"]
 
 volumes:
   epcvina_pgdata:
+  epcvina_minio_data:

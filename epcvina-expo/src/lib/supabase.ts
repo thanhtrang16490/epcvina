@@ -30,6 +30,8 @@ const mockSession = {
   user: mockUser,
 }
 
+let currentSession: typeof mockSession | null = mockSession
+
 // ─── Load data from db.json (generated from epcvinasolar) ────────────────────
 
 import dbData from '../data/db.json'
@@ -288,20 +290,21 @@ let authChangeCallbacks: AuthChangeCallback[] = []
 
 const mockAuth = {
   getSession: async () => ({
-    data: { session: mockSession },
+    data: { session: currentSession },
     error: null,
   }),
 
   getUser: async () => ({
-    data: { user: mockUser },
+    data: { user: currentSession?.user ?? null },
     error: null,
   }),
 
   signInWithPassword: async ({ email, password }: { email?: string; password?: string; phone?: string }) => {
     // Accept any credentials in mock mode
     if (__DEV__) console.log('[MockAuth] Sign in:', email || 'phone login')
+    currentSession = mockSession
     return {
-      data: { user: mockUser, session: mockSession },
+      data: { user: mockUser, session: currentSession },
       error: null,
     }
   },
@@ -316,6 +319,7 @@ const mockAuth = {
 
   signOut: async () => {
     if (__DEV__) console.log('[MockAuth] Sign out')
+    currentSession = null
     authChangeCallbacks.forEach(cb => cb('SIGNED_OUT', null))
     return { error: null }
   },
@@ -323,7 +327,7 @@ const mockAuth = {
   onAuthStateChange: (callback: AuthChangeCallback) => {
     authChangeCallbacks.push(callback)
     // Immediately fire current state
-    setTimeout(() => callback('INITIAL_SESSION', mockSession), 0)
+    setTimeout(() => callback('INITIAL_SESSION', currentSession), 0)
     return {
       data: {
         subscription: {

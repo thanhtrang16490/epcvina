@@ -204,6 +204,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     errorTracker.clearUser()
     Analytics.clearUserProperties()
     await supabase.auth.signOut()
+    if (mountedRef.current) {
+      setSession(null)
+      setUser(null)
+      setLoading(false)
+    }
   }
 
   const refreshUser = async () => {

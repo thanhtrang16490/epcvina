@@ -15,7 +15,7 @@ import { Ionicons } from '@expo/vector-icons'
 import { useDebounce } from '../../src/hooks/useDebounce'
 import { Product, Category } from '../../src/types'
 import { UI_CONFIG, PAGINATION_CONFIG } from '../../src/constants/config'
-import { supabasePublic } from '../../src/lib/supabase-public'
+import { apiClient } from '../../src/lib/api-client'
 
 
 const PLACEHOLDER_IMAGE = 'https://via.placeholder.com/150/e5e7eb/9ca3af?text=No+Image'
@@ -24,7 +24,7 @@ const PAGE_SIZE = PAGINATION_CONFIG.defaultPageSize
 /**
  * Public Products Screen
  * Khách chưa đăng nhập xem danh sách sản phẩm và giá.
- * Query trực tiếp qua Supabase REST API với anon key (không qua JS client).
+ * Nguồn dữ liệu lấy từ epcvinaapi `/api/catalog`.
  */
 export default function PublicProductsScreen() {
   const [products, setProducts] = useState<Product[]>([])
@@ -47,32 +47,48 @@ export default function PublicProductsScreen() {
       const from = (page - 1) * PAGE_SIZE
       const to = from + PAGE_SIZE - 1
 
-      let query = supabasePublic
-        .from('products')
-        .select('id,name,code,description,price,stock,category_id,image_url,created_at,unit,specifications')
-        .is('deleted_at', null) // Only get non-deleted products
-        .order('name', { ascending: true })
-        .range(from, to)
+      const response = await apiClient.get<{
+        data?: { products?: Array<{ id: string; slug?: string; name?: string; category?: string; brand?: string; unit?: string; sale_price_vat?: number; description?: string; cover_image_url?: string; image_urls?: string[]; is_active?: boolean; sort_order?: number }> }
+      }>('/catalog')
 
-      // Add search filter
+      if (response.error) {
+        return { data: null, error: response.error || 'Không thể tải thiết bị' }
+      }
+
+      const rows = response.data?.data?.products ?? []
+      const normalized = rows
+        .filter((row) => row.is_active !== false)
+        .map((row) => ({
+          id: String(row.id),
+          name: String(row.name ?? ''),
+          code: String(row.slug ?? ''),
+          description: String(row.description ?? ''),
+          price: Number(row.sale_price_vat ?? 0),
+          stock: 999,
+          category: String(row.category ?? ''),
+          image_url: row.cover_image_url || row.image_urls?.[0] || '',
+          unit: String(row.unit ?? ''),
+          specifications: '',
+          created_at: new Date().toISOString(),
+          deleted_at: null,
+          sort_order: Number(row.sort_order ?? 0),
+        })) as Product[]
+
+      let filtered = normalized
+
       if (search.trim().length >= UI_CONFIG.searchMinChars) {
-        const searchTerm = search.trim()
-        query = query.or(`name.ilike.%${searchTerm}%,code.ilike.%${searchTerm}%`)
+        const searchTerm = search.trim().toLowerCase()
+        filtered = filtered.filter((row) =>
+          [row.name, row.code, row.category].some((value) => String(value ?? '').toLowerCase().includes(searchTerm))
+        )
       }
 
-      // Add category filter
       if (category !== 'all') {
-        query = query.eq('category_id', category)
+        filtered = filtered.filter((row) => row.category === category)
       }
 
-      const { data, error } = await query
-
-      if (error) {
-        if (__DEV__) console.error('[PublicProducts] loadProducts error:', error.message)
-        return { data: null, error: error.message || 'Không thể tải thiết bị' }
-      }
-
-      return { data: data as Product[] || [], error: null }
+      filtered.sort((a, b) => String(a.name).localeCompare(String(b.name), 'vi'))
+      return { data: filtered.slice(from, to + 1), error: null }
     } catch (e) {
       const err = e instanceof Error ? e.message : String(e)
       if (__DEV__) console.error('[PublicProducts] loadProducts catch:', err)
@@ -82,16 +98,19 @@ export default function PublicProductsScreen() {
 
   const fetchCategories = async () => {
     try {
-      const { data, error } = await supabasePublic
-        .from('categories')
-        .select('id,name,description,created_at')
-        .order('name', { ascending: true })
-
-      if (error) {
-        if (__DEV__) console.warn('[PublicProducts] categories error:', error.message)
-      } else {
-        setCategories(data as Category[] || [])
-      }
+      const response = await apiClient.get<{ data?: { products?: Array<{ category?: string }> } }>('/catalog')
+      const productRows = response.data?.data?.products ?? []
+      const uniqueCategories = Array.from(
+        new Set(productRows.map((row) => String(row.category ?? '').trim()).filter(Boolean))
+      )
+      setCategories(
+        uniqueCategories.map((name, index) => ({
+          id: index + 1,
+          name,
+          description: undefined,
+          created_at: new Date().toISOString(),
+        }))
+      )
     } catch (e) {
       if (__DEV__) console.warn('[PublicProducts] categories catch:', e)
     }

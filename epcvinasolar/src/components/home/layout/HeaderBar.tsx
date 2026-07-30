@@ -6,7 +6,6 @@ import { useHeaderTheme } from '../../layout/useHeaderTheme';
 const navItems = [
   { label: 'Trang chủ', href: '/' },
   { label: 'Solar House', href: '/solar-home' },
-  { label: 'Công cụ tính', href: '/calculator' },
   { label: 'Hybrid & BESS', href: '/hybrid-bess' },
   { label: 'Sạc EV', href: '/sac-ev' },
   { label: 'Solar C&I', href: '/solar-cong-nghiep' },
