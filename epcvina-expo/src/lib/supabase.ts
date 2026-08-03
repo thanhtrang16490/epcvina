@@ -11,6 +11,7 @@ type AuthCallback = (event: string, session: Session | null) => void
 let currentSession: Session | null = null
 let sessionLoaded = false
 const authCallbacks = new Set<AuthCallback>()
+const uploadedPublicUrls = new Map<string, string>()
 
 async function request<T>(path: string, body: unknown, accessToken?: string): Promise<T> {
   const response = await fetch(`${MOBILE_API_URL}${path}`, {
@@ -24,6 +25,29 @@ async function request<T>(path: string, body: unknown, accessToken?: string): Pr
   const result = await response.json().catch(() => ({}))
   if (!response.ok) throw new Error(result.error || result.message || `HTTP ${response.status}`)
   return result
+}
+
+async function uploadFile(bucket: string, path: string, file: Blob, options?: { upsert?: boolean; contentType?: string }) {
+  try {
+    const session = await getValidSession()
+    if (!session) throw new Error('Chưa đăng nhập.')
+    const form = new FormData()
+    form.append('bucket', bucket)
+    form.append('path', path)
+    form.append('upsert', options?.upsert ? 'true' : 'false')
+    form.append('file', file)
+    const response = await fetch(`${MOBILE_API_URL}/storage`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${session.access_token}` },
+      body: form,
+    })
+    const result = await response.json().catch(() => ({}))
+    if (!response.ok) throw new Error(result.error || `HTTP ${response.status}`)
+    uploadedPublicUrls.set(`${bucket}:${path}`, result.data.publicUrl)
+    return { data: { path }, error: null }
+  } catch (error) {
+    return { data: null, error: { message: error instanceof Error ? error.message : 'Không tải được ảnh.' } }
+  }
 }
 
 async function loadSession() {
@@ -191,9 +215,9 @@ export const supabase = {
     },
   },
   storage: {
-    from: (_bucket?: string) => ({
-      upload: async (_path?: string, _file?: unknown, _options?: unknown) => ({ data: null, error: { message: 'Upload ảnh qua API mobile chưa được cấu hình.' } }),
-      getPublicUrl: (_path?: string) => ({ data: { publicUrl: '' } }),
+    from: (bucket = '') => ({
+      upload: (path = '', file: Blob, options?: { upsert?: boolean; contentType?: string }) => uploadFile(bucket, path, file, options),
+      getPublicUrl: (path = '') => ({ data: { publicUrl: uploadedPublicUrls.get(`${bucket}:${path}`) || '' } }),
     }),
   },
   channel: (_name?: string) => ({
