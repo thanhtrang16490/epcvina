@@ -18,9 +18,21 @@ const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "
 const DEFAULT_CRM_LEAD_ENDPOINT = "https://app.epcvina.com/api/public/leads";
 const FORM_SESSION_STARTED_AT = Date.now();
 
+export function normalizeVietnamPhone(value: string) {
+  const raw = value.trim();
+  if (!raw || !/^[+\d\s().-]+$/.test(raw)) return "";
+  let digits = raw.replace(/\D/g, "");
+  if (digits.startsWith("84")) digits = `0${digits.slice(2)}`;
+  const isMobile = /^0(?:3[2-9]|5[25689]|7[06-9]|8[1-9]|9[0-46-9])\d{7}$/.test(digits);
+  const isLandline = /^02\d{9}$/.test(digits);
+  return isMobile || isLandline ? digits : "";
+}
+
 export async function submitCrmLead(input: CrmLeadInput) {
   if (typeof window === "undefined") throw new Error("Chỉ gửi lead từ trình duyệt.");
   const endpoint = import.meta.env.PUBLIC_CRM_LEAD_ENDPOINT || DEFAULT_CRM_LEAD_ENDPOINT;
+  const phone = normalizeVietnamPhone(input.phone);
+  if (!phone) throw new Error("Số điện thoại chưa đúng. Vui lòng nhập ví dụ 0988446113 hoặc +84988446113.");
 
   const params = new URLSearchParams(window.location.search);
   const tracking = Object.fromEntries(TRACKING_KEYS.map((key) => [key, params.get(key) || undefined]));
@@ -29,6 +41,7 @@ export async function submitCrmLead(input: CrmLeadInput) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...input,
+      phone,
       ...tracking,
       source: "epcvinasolar",
       form_elapsed_ms: Date.now() - FORM_SESSION_STARTED_AT,

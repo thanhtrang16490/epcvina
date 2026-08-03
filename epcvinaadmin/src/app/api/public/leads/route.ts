@@ -42,8 +42,12 @@ function text(value: unknown, max = 500) {
 
 function normalizedPhone(value: unknown) {
   const raw = text(value, 30);
-  const digits = raw.replace(/\D/g, "");
-  return digits.length >= 9 && digits.length <= 15 ? raw : "";
+  if (!raw || !/^[+\d\s().-]+$/.test(raw)) return "";
+  let digits = raw.replace(/\D/g, "");
+  if (digits.startsWith("84")) digits = `0${digits.slice(2)}`;
+  const isMobile = /^0(?:3[2-9]|5[25689]|7[06-9]|8[1-9]|9[0-46-9])\d{7}$/.test(digits);
+  const isLandline = /^02\d{9}$/.test(digits);
+  return isMobile || isLandline ? digits : "";
 }
 
 export async function OPTIONS(request: NextRequest) {
@@ -82,7 +86,7 @@ export async function POST(request: NextRequest) {
 
     const phone = normalizedPhone(body.phone);
     if (!phone) {
-      return NextResponse.json({ success: false, message: "Số điện thoại không hợp lệ." }, { status: 400, headers });
+      return NextResponse.json({ success: false, message: "Số điện thoại chưa đúng. Vui lòng nhập số Việt Nam, ví dụ 0988446113 hoặc +84988446113." }, { status: 400, headers });
     }
 
     const supabase = createSupabaseAdminClient();

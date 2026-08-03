@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import CalculatorPageShell from './CalculatorPageShell';
-import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
+import { normalizeVietnamPhone, redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 
 const calculatorScreens = ['region', 'bill', 'roof', 'usage', 'result', 'survey'] as const;
 const epcvinaHotlineHref = 'tel:0988446113';
@@ -288,10 +288,6 @@ const normalizeVietnamese = (value: string) =>
     .replace(/đ/g, 'd')
     .replace(/Đ/g, 'D')
     .toLowerCase();
-const isLikelyVietnamPhone = (value: string) => {
-  const digits = value.replace(/\D/g, '');
-  return /^(0|\+?84)?[1-9]\d{8,9}$/.test(digits);
-};
 
 function OptionIcon({ type }: { type: string }) {
   const common = "h-5 w-5";
@@ -569,7 +565,7 @@ export default function CalculatorMainPage() {
   const canContinueBill = billValue > 0;
   const canContinueRoof = Boolean(roofType) && roofValue > 0;
   const customerNameError = customerName.trim().length > 1 ? '' : 'Vui lòng nhập họ tên để kỹ thuật viên tiện xưng hô.';
-  const customerPhoneError = isLikelyVietnamPhone(customerPhone) ? '' : 'Vui lòng nhập số điện thoại/Zalo hợp lệ tại Việt Nam.';
+  const customerPhoneError = normalizeVietnamPhone(customerPhone) ? '' : 'Vui lòng nhập số điện thoại/Zalo hợp lệ tại Việt Nam.';
   const canSubmitSurvey = !customerNameError && !customerPhoneError;
   const roofPotentialKwp = Math.round((roofValue / 6.5) * 10) / 10;
   const shouldAskLoadProfile = billType !== 'factory';
