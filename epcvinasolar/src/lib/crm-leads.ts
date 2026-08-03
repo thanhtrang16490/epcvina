@@ -17,6 +17,23 @@ export type CrmLeadInput = {
 const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid", "fbclid"] as const;
 const DEFAULT_CRM_LEAD_ENDPOINT = "https://app.epcvina.com/api/public/leads";
 const FORM_SESSION_STARTED_AT = Date.now();
+const ATTRIBUTION_STORAGE_KEY = "epcvina_attribution_v1";
+
+type Touchpoint = Partial<Record<(typeof TRACKING_KEYS)[number], string>> & {
+  landing_page?: string;
+  referrer?: string;
+  captured_at?: string;
+};
+
+type Attribution = { first_touch?: Touchpoint; last_touch?: Touchpoint };
+
+function readAttribution(): Attribution {
+  try {
+    return JSON.parse(window.localStorage.getItem(ATTRIBUTION_STORAGE_KEY) || "{}") as Attribution;
+  } catch {
+    return {};
+  }
+}
 
 export function normalizeVietnamPhone(value: string) {
   const raw = value.trim();
@@ -34,14 +51,19 @@ export async function submitCrmLead(input: CrmLeadInput) {
   const phone = normalizeVietnamPhone(input.phone);
   if (!phone) throw new Error("Số điện thoại chưa đúng. Vui lòng nhập ví dụ 0988446113 hoặc +84988446113.");
 
+  const attribution = readAttribution();
   const params = new URLSearchParams(window.location.search);
-  const tracking = Object.fromEntries(TRACKING_KEYS.map((key) => [key, params.get(key) || undefined]));
+  const tracking = Object.fromEntries(TRACKING_KEYS.map((key) => [
+    key,
+    params.get(key) || attribution.last_touch?.[key] || attribution.first_touch?.[key] || undefined,
+  ]));
   const response = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...input,
       phone,
+      metadata: { ...input.metadata, attribution },
       ...tracking,
       source: "epcvinasolar",
       form_elapsed_ms: Date.now() - FORM_SESSION_STARTED_AT,
@@ -51,7 +73,16 @@ export async function submitCrmLead(input: CrmLeadInput) {
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok || !result.success) throw new Error(result.message || "Không gửi được thông tin.");
-  return result as { success: true; lead_id: string };
+  if (result.accepted && result.lead_id) {
+    window.gtag?.("event", "generate_lead", {
+      event_category: "conversion",
+      source_form: input.source_form,
+      event_id: result.lead_id,
+    });
+    window.fbq?.("track", "Lead", { source_form: input.source_form }, { eventID: result.lead_id });
+  }
+  if (result.filtered) throw new Error("Yêu cầu chưa được ghi nhận. Vui lòng kiểm tra thông tin và thử lại.");
+  return result as { success: true; accepted: boolean; lead_id?: string; duplicate?: boolean };
 }
 
 export function redirectToThankYou(sourceForm: string) {

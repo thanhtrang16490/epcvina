@@ -2053,13 +2053,6 @@ export default function CalculatorMainPage() {
                   });
                   window.localStorage.setItem('epcvina-calculator-lead', JSON.stringify(leadPayload));
                   setSurveySubmitted(true);
-                  if (window.gtag) {
-                    window.gtag('event', 'calculator_lead_submit', {
-                      event_category: 'conversion',
-                      system_size_kw: estimatedKwp,
-                      bill_type: billType,
-                    });
-                  }
                   redirectToThankYou('calculator_full_result');
                 } catch (error) {
                   setSurveyError(error instanceof Error ? error.message : 'Chưa gửi được kết quả. Vui lòng thử lại.');

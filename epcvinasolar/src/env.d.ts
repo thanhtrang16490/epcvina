@@ -18,4 +18,5 @@ interface ImportMeta {
 // Google Analytics gtag type declaration
 interface Window {
   gtag?: (...args: any[]) => void;
+  fbq?: (...args: any[]) => void;
 }

@@ -156,6 +156,28 @@ const structuredData = {
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
+    <!-- Persist ad attribution across internal navigation before a lead is submitted -->
+    <script is:inline>
+      (function () {
+        try {
+          var keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'];
+          var params = new URLSearchParams(window.location.search);
+          var touch = {};
+          keys.forEach(function (key) { var value = params.get(key); if (value) touch[key] = value; });
+          if (!Object.keys(touch).length) return;
+          touch.landing_page = window.location.href;
+          touch.referrer = document.referrer || undefined;
+          touch.captured_at = new Date().toISOString();
+          var storageKey = 'epcvina_attribution_v1';
+          var stored = {};
+          try { stored = JSON.parse(window.localStorage.getItem(storageKey) || '{}'); } catch (_) {}
+          if (!stored.first_touch) stored.first_touch = touch;
+          stored.last_touch = touch;
+          window.localStorage.setItem(storageKey, JSON.stringify(stored));
+        } catch (_) {}
+      })();
+    </script>
+
     <!-- Google Analytics - Deferred for Mobile Performance -->
     <script 
       async 

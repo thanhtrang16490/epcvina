@@ -41,7 +41,6 @@ export default function ExitIntentPopup() {
     setSubmitError('');
     try {
       await submitCrmLead({ phone: formData.phone, source_form: 'family_exit_popup', message: 'Khách yêu cầu nhận báo giá qua popup thoát trang.' });
-      if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'exit_popup_submit', { event_category: 'conversion' });
       redirectToThankYou('family_exit_popup');
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');

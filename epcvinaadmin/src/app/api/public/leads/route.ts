@@ -78,11 +78,11 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     if (text(body.website, 200)) {
-      return NextResponse.json({ success: true }, { status: 202, headers });
+      return NextResponse.json({ success: true, accepted: false, filtered: true }, { status: 202, headers });
     }
     const elapsedMs = Number(body.form_elapsed_ms);
     if (Number.isFinite(elapsedMs) && elapsedMs >= 0 && elapsedMs < 900) {
-      return NextResponse.json({ success: true }, { status: 202, headers });
+      return NextResponse.json({ success: true, accepted: false, filtered: true }, { status: 202, headers });
     }
 
     const phone = normalizedPhone(body.phone);
@@ -116,13 +116,13 @@ export async function POST(request: NextRequest) {
       .gte("created_at", duplicateCutoff);
     if (duplicateError) throw duplicateError;
     if ((duplicateCount ?? 0) > 0) {
-      return NextResponse.json({ success: true, duplicate: true }, { status: 202, headers });
+      return NextResponse.json({ success: true, accepted: false, duplicate: true }, { status: 202, headers });
     }
 
     const suspiciousText = [text(body.name, 160), text(body.address, 500), text(body.message, 3000)].join(" ");
     const linkCount = (suspiciousText.match(/https?:\/\/|www\./gi) ?? []).length;
     if (linkCount >= 3) {
-      return NextResponse.json({ success: true }, { status: 202, headers });
+      return NextResponse.json({ success: true, accepted: false, filtered: true }, { status: 202, headers });
     }
 
     const numberOrNull = (value: unknown) => {
@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
 
     const telegramStatus = await notifyTelegramAboutLead({ id: data.id, ...payload });
 
-    return NextResponse.json({ success: true, lead_id: data.id, telegram_status: telegramStatus }, { status: 201, headers });
+    return NextResponse.json({ success: true, accepted: true, lead_id: data.id, telegram_status: telegramStatus }, { status: 201, headers });
   } catch (error) {
     console.error("CRM lead intake failed", error);
     return NextResponse.json({ success: false, message: "Chưa thể ghi nhận thông tin. Vui lòng thử lại." }, { status: 500, headers });

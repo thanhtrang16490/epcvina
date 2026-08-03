@@ -667,7 +667,13 @@ Việc cần làm:
   - 7:00 - 9:00
   - 11:00 - 13:00
   - 19:00 - 22:00
-- Nếu ngân sách thiếu dữ liệu, giữ 65-70% cho Google Search và 30-35% cho Facebook/Remarketing trong 2 tuần đầu.
+- Phân bổ 2-3 tuần đầu sau khi CRM hoạt động:
+  - 15 triệu: Google Search nhu cầu lắp đặt nóng.
+  - 6 triệu: Google Search nhóm giá/chi phí/hoàn vốn, dẫn về `/calculator`.
+  - 1,5 triệu: Google Brand Search.
+  - 4,5 triệu: Meta Remarketing.
+  - 3 triệu: ngân sách thử nghiệm và dự phòng.
+- Chỉ tăng Meta Remarketing khi tệp đủ lớn và CRM cho thấy cost/qualified lead cạnh tranh với Search.
 
 ---
 
@@ -679,7 +685,7 @@ Việc cần làm:
 - Google Ads conversion tracking.
 - Meta Pixel.
 - Event cho:
-  - submit form,
+  - `generate_lead` sau khi CRM trả `lead_id`,
   - click call,
   - click Zalo,
   - click CTA.
@@ -706,11 +712,13 @@ Việc cần làm:
   - [ ] click nút nhắn tin nếu có
 
 #### C. Gắn chuyển đổi theo hành vi
-- [ ] Tạo conversion cho `lead_submit`.
-- [ ] Tạo conversion cho `hotline_click`.
+- [ ] Tạo Primary conversion cho `generate_lead`.
+- [ ] Đặt `hotline_click` là Secondary cho tới khi có call tracking.
 - [ ] Tạo conversion cho `click_zalo`.
 - [ ] Tạo conversion cho `landing_inline_lead_submitted`.
 - [ ] Nếu có, tạo thêm conversion cho `exit_popup_submit` hoặc `exit_popup_hotline`.
+- [ ] Không tính lead `duplicate`, `filtered` hoặc spam là conversion.
+- [ ] Chuẩn bị offline conversion cho `qualified`, `survey_scheduled`, `quoted`, `won`.
 
 #### D. Kiểm tra dữ liệu
 - [ ] Test form gửi được và có ghi nhận conversion.
@@ -796,6 +804,7 @@ Việc cần làm:
 5. Tập trung phản hồi lead nhanh để không mất khách vào đối thủ.
 6. Chỉ tối ưu cho Hà Nội và các tỉnh lân cận để giữ chất lượng lead và giảm lãng phí ngân sách.
 7. Tạm thời không đưa Zalo vào cấu trúc chiến dịch để giữ vận hành đơn giản.
+8. Tối ưu theo cost/qualified lead và cost/survey, không tối ưu theo CPL tổng khi đã có đủ dữ liệu CRM.
 
 ---
 

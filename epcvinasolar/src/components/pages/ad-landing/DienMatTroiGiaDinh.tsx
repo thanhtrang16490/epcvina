@@ -66,7 +66,6 @@ export default function DienMatTroiGiaDinh() {
     setFormError('');
     try {
       await submitCrmLead({ ...formData, source_form: 'family_landing_contact' });
-      trackEvent('lead_submit', { event_category: 'conversion' });
       redirectToThankYou('family_landing_contact');
     } catch (error) {
       setFormError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');

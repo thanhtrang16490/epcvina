@@ -102,7 +102,6 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
     setQuickLeadError('');
     try {
       await onSubmit({ system_size: results.combo.power_kw, combo_index: results.comboIndex, name: quickLead.name.trim(), phone: quickLead.phone.trim(), source: 'inline_calculator_lead' });
-      trackEvent('landing_inline_lead_submitted', { source: 'family_landing_calculator_result', system_size: results.combo.power_kw });
       setQuickLeadSubmitted(true);
       redirectToThankYou('family_inline_calculator');
     } catch (error) {

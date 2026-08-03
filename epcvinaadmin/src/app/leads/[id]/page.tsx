@@ -1,6 +1,7 @@
 import { AdminShell } from "@/components/AdminShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
+import { sendLeadQualityConversion } from "@/lib/conversion-webhook";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
@@ -24,10 +25,18 @@ async function updateLead(formData: FormData) {
     updated_at: now,
   };
   if (status !== "new") values.last_contacted_at = now;
-  const { data: current } = await supabase.from("crm_leads").select("first_contacted_at").eq("id", id).single();
+  const { data: current } = await supabase.from("crm_leads").select("first_contacted_at,status").eq("id", id).single();
   if (status !== "new" && !current?.first_contacted_at) values.first_contacted_at = now;
   const { error } = await supabase.from("crm_leads").update(values).eq("id", id);
   if (error) throw error;
+  if (current?.status !== status && ["qualified", "survey_scheduled", "quoted", "won"].includes(status)) {
+    const { data: conversionLead } = await supabase
+      .from("crm_leads")
+      .select("id,status,source_form,phone,email,gclid,gbraid,wbraid,fbclid,utm_source,utm_campaign,created_at")
+      .eq("id", id)
+      .single();
+    if (conversionLead) await sendLeadQualityConversion(conversionLead);
+  }
   revalidatePath(`/leads/${id}`);
   revalidatePath("/leads");
   redirect(`/admin/leads/${id}?saved=1`);
