@@ -1,4 +1,5 @@
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { notifyTelegramAboutLead } from "@/lib/telegram-leads";
 import { createHmac } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -161,6 +162,8 @@ export async function POST(request: NextRequest) {
 
     const { data, error } = await supabase.from("crm_leads").insert(payload).select("id").single();
     if (error) throw error;
+
+    await notifyTelegramAboutLead({ id: data.id, ...payload });
 
     return NextResponse.json({ success: true, lead_id: data.id }, { status: 201, headers });
   } catch (error) {
