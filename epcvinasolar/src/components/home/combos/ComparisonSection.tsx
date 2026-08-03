@@ -56,54 +56,51 @@ export default function ComparisonSection() {
           >
             {/* HYBRID Card */}
             <div
-              className="flex-1 rounded-2xl sm:rounded-r-none p-4 sm:p-6 border border-white/10 text-white flex flex-col"
-              style={{ backgroundColor: 'rgba(26, 54, 93, 0.90)', backdropFilter: 'blur(12px)' }}
+              className="flex-1 overflow-hidden rounded-2xl sm:rounded-r-none border border-blue-300/20 text-white flex flex-col shadow-2xl"
+              style={{ backgroundColor: 'rgba(10, 29, 58, 0.96)', backdropFilter: 'blur(12px)' }}
             >
-              <h3 className="text-lg sm:text-xl font-extrabold mb-4 text-center tracking-wide text-blue-300">
-                HYBRID
-              </h3>
-              <ul className="space-y-2 flex-1">
-                <li className="flex items-start gap-2">
-                  <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                  <span className="text-xs sm:text-sm">Có lưu trữ (BatteryHigh)</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                  <span className="text-xs sm:text-sm">Hoạt động khi mất điện</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <TrendUp className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                  <span className="text-xs sm:text-sm">Tiết kiệm tối đa</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                  <span className="text-xs sm:text-sm">Chi phí đầu tư cao hơn</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                  <span className="text-xs sm:text-sm">Hoàn vốn 5–7 năm</span>
-                </li>
-              </ul>
-              {/* Device SVGs */}
-              <div className="mt-5 flex items-end justify-center gap-2">
-                <svg width="52" height="72" viewBox="0 0 52 72" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
-                  <rect x="2" y="2" width="48" height="68" rx="5" fill="white" fillOpacity="0.95" stroke="#cbd5e1" strokeWidth="1"/>
-                  <rect x="8" y="8" width="36" height="20" rx="3" fill="#dbeafe"/>
-                  <text x="26" y="22" textAnchor="middle" fontSize="8" fontWeight="bold" fill="#1d4ed8">HYBRID</text>
-                  <rect x="8" y="32" width="36" height="4" rx="2" fill="#bfdbfe"/>
-                  <rect x="8" y="40" width="36" height="4" rx="2" fill="#bfdbfe"/>
-                  <rect x="8" y="48" width="36" height="4" rx="2" fill="#bfdbfe"/>
-                  <circle cx="26" cy="62" r="4" fill="#3b82f6"/>
-                </svg>
-                <svg width="38" height="60" viewBox="0 0 38 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
-                  <rect x="2" y="8" width="34" height="50" rx="4" fill="white" fillOpacity="0.95" stroke="#cbd5e1" strokeWidth="1"/>
-                  <rect x="13" y="2" width="12" height="8" rx="2" fill="white" stroke="#cbd5e1" strokeWidth="1"/>
-                  <rect x="6" y="14" width="26" height="6" rx="2" fill="#bbf7d0"/>
-                  <rect x="6" y="24" width="26" height="6" rx="2" fill="#bbf7d0"/>
-                  <rect x="6" y="34" width="26" height="6" rx="2" fill="#86efac"/>
-                  <rect x="6" y="44" width="26" height="6" rx="2" fill="#4ade80"/>
-                  <text x="19" y="57" textAnchor="middle" fontSize="7" fill="#15803d" fontWeight="bold">BAT</text>
-                </svg>
+              {/* Real SAJ inverter + GENIXGREEN battery */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#071a36]">
+                <img
+                  src="/images/home/he-thong-hybrid-saj-genixgreen.webp"
+                  alt="Hệ thống Hybrid gồm biến tần SAJ và pin lưu trữ GENIXGREEN"
+                  width={1536}
+                  height={1152}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0a1d3a] to-transparent" />
+                <span className="absolute left-4 top-4 rounded-full border border-blue-300/30 bg-blue-950/75 px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-blue-200 backdrop-blur-sm">
+                  CÓ PIN LƯU TRỮ
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-blue-300">
+                  HYBRID
+                </h3>
+                <p className="mb-4 text-xs text-blue-100/70">SAJ Hybrid + GENIXGREEN Battery</p>
+                <ul className="space-y-2.5 flex-1">
+                  <li className="flex items-start gap-2">
+                    <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
+                    <span className="text-xs sm:text-sm">Tích trữ điện để sử dụng khi cần</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
+                    <span className="text-xs sm:text-sm">Duy trì nguồn điện khi mất lưới</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <TrendUp className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
+                    <span className="text-xs sm:text-sm">Tối ưu tỷ lệ điện tự dùng</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
+                    <span className="text-xs sm:text-sm">Đầu tư ban đầu cao hơn</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
+                    <span className="text-xs sm:text-sm">Hoàn vốn dự kiến 5–7 năm</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -119,47 +116,51 @@ export default function ComparisonSection() {
 
             {/* ON-GRID Card */}
             <div
-              className="flex-1 rounded-2xl sm:rounded-l-none p-4 sm:p-6 border border-white/10 text-white flex flex-col"
-              style={{ backgroundColor: 'rgba(154, 52, 18, 0.90)', backdropFilter: 'blur(12px)' }}
+              className="flex-1 overflow-hidden rounded-2xl sm:rounded-l-none border border-orange-300/20 text-white flex flex-col shadow-2xl"
+              style={{ backgroundColor: 'rgba(124, 45, 18, 0.96)', backdropFilter: 'blur(12px)' }}
             >
-              <h3 className="text-lg sm:text-xl font-extrabold mb-4 text-center tracking-wide text-orange-300">
-                ON-GRID
-              </h3>
-              <ul className="space-y-2 flex-1">
-                <li className="flex items-start gap-2">
-                  <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                  <span className="text-xs sm:text-sm">Không lưu trữ điện</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                  <span className="text-xs sm:text-sm">Phụ thuộc vào lưới điện</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                  <span className="text-xs sm:text-sm">Chi phí đầu tư thấp hơn</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                  <span className="text-xs sm:text-sm">Hoàn vốn nhanh hơn</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                  <span className="text-xs sm:text-sm">Hoàn vốn 3–4 năm</span>
-                </li>
-              </ul>
-              {/* Device SVG */}
-              <div className="mt-5 flex items-end justify-center">
-                <svg width="56" height="76" viewBox="0 0 56 76" fill="none" xmlns="http://www.w3.org/2000/svg" className="drop-shadow-lg">
-                  <rect x="2" y="2" width="52" height="72" rx="5" fill="white" fillOpacity="0.95" stroke="#fed7aa" strokeWidth="1"/>
-                  <rect x="8" y="8" width="40" height="22" rx="3" fill="#ffedd5"/>
-                  <text x="28" y="20" textAnchor="middle" fontSize="7" fontWeight="bold" fill="#c2410c">ON-GRID</text>
-                  <text x="28" y="28" textAnchor="middle" fontSize="6" fill="#ea580c">INVERTER</text>
-                  <rect x="8" y="34" width="40" height="4" rx="2" fill="#fed7aa"/>
-                  <rect x="8" y="42" width="40" height="4" rx="2" fill="#fed7aa"/>
-                  <rect x="8" y="50" width="40" height="4" rx="2" fill="#fed7aa"/>
-                  <circle cx="20" cy="66" r="4" fill="#f97316"/>
-                  <circle cx="36" cy="66" r="4" fill="#fb923c"/>
-                </svg>
+              {/* Real SAJ inverter */}
+              <div className="relative aspect-[4/3] overflow-hidden bg-[#b94708]">
+                <img
+                  src="/images/home/he-thong-on-grid-saj.webp"
+                  alt="Biến tần hòa lưới SAJ cho hệ thống On-Grid"
+                  width={1536}
+                  height={1152}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#7c2d12] to-transparent" />
+                <span className="absolute left-4 top-4 rounded-full border border-orange-200/30 bg-orange-950/70 px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-orange-100 backdrop-blur-sm">
+                  HÒA LƯỚI TRỰC TIẾP
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
+                <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-orange-300">
+                  ON-GRID
+                </h3>
+                <p className="mb-4 text-xs text-orange-100/70">SAJ On-Grid Inverter</p>
+                <ul className="space-y-2.5 flex-1">
+                  <li className="flex items-start gap-2">
+                    <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
+                    <span className="text-xs sm:text-sm">Không sử dụng pin lưu trữ</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
+                    <span className="text-xs sm:text-sm">Vận hành đồng bộ với điện lưới</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
+                    <span className="text-xs sm:text-sm">Chi phí đầu tư thấp hơn</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
+                    <span className="text-xs sm:text-sm">Hiệu quả kinh tế, hoàn vốn nhanh</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
+                    <span className="text-xs sm:text-sm">Hoàn vốn dự kiến 3–4 năm</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </motion.div>
