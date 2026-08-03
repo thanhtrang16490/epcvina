@@ -15,12 +15,9 @@ testimonial:
   quote: "Chất lượng thi công tuyệt vời, sơn tĩnh điện rất đẹp và bền. Hệ thống hoạt động ổn định, tiết kiệm được nhiều điện. Rất hài lòng!"
   rating: 5
   aspect: "Chất lượng thi công & Thẩm mỹ"
-image: "/du-an/DU-AN-LOTTE-MART-DONG-DA.jpg"
+image: "/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png"
 gallery:
-  - "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80"
-  - "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
-  - "https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=800&q=80"
-  - "https://images.unsplash.com/photo-1548337138-e87d889cc369?w=800&q=80"
+  - "/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png"
 is_featured: true
 ---
 

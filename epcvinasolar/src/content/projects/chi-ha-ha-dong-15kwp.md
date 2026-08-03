@@ -42,12 +42,7 @@ testimonial:
   aspect: "Tiết kiệm chi phí & Dịch vụ tốt"
 image: "/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png"
 gallery:
-  - "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
-  - "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80"
-  - "https://images.unsplash.com/photo-1611365892117-00d741f29fc0?w=800&q=80"
-  - "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?w=800&q=80"
-  - "https://images.unsplash.com/photo-1548337138-e87d889cc369?w=800&q=80"
-  - "https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=800&q=80"
+  - "/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png"
 is_featured: true
 ---
 

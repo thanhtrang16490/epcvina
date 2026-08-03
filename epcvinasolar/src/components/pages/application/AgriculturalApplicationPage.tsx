@@ -8,7 +8,7 @@ export default function AgriculturalApplicationPage() {
       {/* Hero Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#065f46] via-[#047857] to-[#059669]">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=1920&q=80')] bg-cover bg-center opacity-25" />
+          <div className="absolute inset-0 bg-[url('/images/generated/solar-agriculture-hero.webp')] bg-cover bg-center opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
@@ -219,13 +219,10 @@ export default function AgriculturalApplicationPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
             <div className="aspect-video bg-gray-200 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=800&q=80"
+                src="/images/generated/solar-greenhouse.webp"
                 alt="Nhà kính công nghệ cao"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
-                }}
               />
             </div>
             <div className="p-6">
@@ -247,13 +244,10 @@ export default function AgriculturalApplicationPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
             <div className="aspect-video bg-gray-200 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=800&q=80"
+                src="/images/generated/solar-livestock.webp"
                 alt="Trang trại chăn nuôi"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
-                }}
               />
             </div>
             <div className="p-6">
@@ -275,13 +269,10 @@ export default function AgriculturalApplicationPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
             <div className="aspect-video bg-gray-200 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80"
+                src="/images/generated/solar-aquaculture.webp"
                 alt="Nuôi trồng thủy sản"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
-                }}
               />
             </div>
             <div className="p-6">
@@ -303,13 +294,10 @@ export default function AgriculturalApplicationPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
             <div className="aspect-video bg-gray-200 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80"
+                src="/images/generated/solar-agriculture-hero.webp"
                 alt="Mô hình nông nghiệp kết hợp điện mặt trời"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
-                }}
               />
             </div>
             <div className="p-6">
@@ -341,13 +329,10 @@ export default function AgriculturalApplicationPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
             <div className="aspect-video bg-gray-200 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80"
+                src="/images/generated/solar-greenhouse.webp"
                 alt="Trang trại rau thủy canh"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
-                }}
               />
             </div>
             <div className="p-6">
@@ -364,13 +349,10 @@ export default function AgriculturalApplicationPage() {
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
             <div className="aspect-video bg-gray-200 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
+                src="/images/generated/solar-logistics.webp"
                 alt="Kho lạnh trái cây"
                 className="w-full h-full object-cover"
                 loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1508514170780-25e970e0094a?w=800&q=80';
-                }}
               />
             </div>
             <div className="p-6">

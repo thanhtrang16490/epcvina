@@ -41,7 +41,7 @@ const featuredChargers = [
     name: 'DC Fast Charger',
     power: '60–300kW',
     desc: 'Sạc siêu nhanh cho mọi dòng xe điện',
-    image: 'https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?w=400&q=80',
+    image: '/images/sac-ev/dc-fast-charger.webp',
     alt: 'Trụ sạc nhanh DC cho xe điện',
     tag: 'Siêu nhanh',
     tagColor: 'bg-red-100 text-red-700',
@@ -50,7 +50,7 @@ const featuredChargers = [
     name: 'AC Charger Station',
     power: '7–22kW',
     desc: 'Sạc tiêu chuẩn cho khu thương mại, nhà ở',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=80',
+    image: '/images/sac-ev/ac-charger-station.webp',
     alt: 'Trạm sạc AC tiêu chuẩn',
     tag: 'Chuẩn',
     tagColor: 'bg-sky-100 text-sky-700',
@@ -59,7 +59,7 @@ const featuredChargers = [
     name: 'Super Charging Station',
     power: '150–300kW',
     desc: 'Siêu trạm sạc phục vụ cao tốc, trạm trọng điểm',
-    image: 'https://images.unsplash.com/photo-1680535948052-d04c8abab5a0?w=400&q=80',
+    image: '/images/sac-ev/super-charging-station.webp',
     alt: 'Siêu trạm sạc công suất lớn',
     tag: 'Siêu trạm',
     tagColor: 'bg-violet-100 text-violet-700',
@@ -68,7 +68,7 @@ const featuredChargers = [
     name: 'House Charger',
     power: '7–22kW',
     desc: 'Giải pháp sạc tại nhà tiện lợi, an toàn',
-    image: 'https://images.unsplash.com/photo-1616361264896-2f4e35dab75a?w=400&q=80',
+    image: '/images/sac-ev/house-charger.webp',
     alt: 'Sạc xe điện tại nhà',
     tag: 'Gia đình',
     tagColor: 'bg-teal-100 text-teal-700',
@@ -77,7 +77,7 @@ const featuredChargers = [
     name: 'EV Charging Network',
     power: 'Toàn quốc',
     desc: 'Mạng lưới phủ sóng 63 tỉnh thành trên cả nước',
-    image: 'https://images.unsplash.com/photo-1697891437122-ac2f7f9b0a23?w=400&q=80',
+    image: '/images/sac-ev/mang-luoi-tram-sac.webp',
     alt: 'Mạng lưới trạm sạc xe điện EPCVINA',
     tag: 'Phủ sóng',
     tagColor: 'bg-cyan-100 text-cyan-700',
@@ -115,12 +115,12 @@ const pricingItems = [
 /* ─── Application images ─── */
 const applicationCards = [
   {
-    image: 'https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?w=400&q=80',
+    image: '/images/sac-ev/bai-do-xe-trung-tam-thuong-mai.webp',
     alt: 'Bãi đỗ xe có trạm sạc điện',
     title: 'Bãi đỗ xe & TTTM',
   },
   {
-    image: 'https://images.unsplash.com/photo-1636906569583-950b5b1d1e7a?w=400&q=80',
+    image: '/images/sac-ev/tram-dung-cao-toc.webp',
     alt: 'Trạm sạc xe điện trên cao tốc',
     title: 'Trạm dừng cao tốc',
   },
@@ -171,7 +171,7 @@ export default function EVChargerPage() {
         <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
           <img
-            src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=80"
+            src="/images/sac-ev/hero-tram-sac-nang-luong-mat-troi.webp"
             alt="Trạm sạc xe điện năng lượng mặt trời"
             loading="eager"
             width={1200}

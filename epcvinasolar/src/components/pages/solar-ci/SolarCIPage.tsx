@@ -34,12 +34,12 @@ import HeaderBar from '../../home/layout/HeaderBar';
 
 /* ─── Client Types (with images) ─── */
 const clientTypes = [
-  { icon: <Factory className="h-6 w-6" aria-hidden="true" />, label: 'Nhà máy & Xưởng sản xuất', desc: '2000–10000 m²', image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&q=80', alt: 'Nhà máy sản xuất với hệ thống điện mặt trời trên mái' },
-  { icon: <ShoppingBag className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm thương mại & Siêu thị', desc: 'Diện tích mái lớn', image: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=80', alt: 'Trung tâm thương mại lắp điện mặt trời' },
-  { icon: <Buildings className="h-6 w-6" aria-hidden="true" />, label: 'Tòa nhà văn phòng & Khách sạn', desc: 'Tiết kiệm vận hành', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80', alt: 'Tòa nhà văn phòng với hệ thống điện mặt trời' },
-  { icon: <Warehouse className="h-6 w-6" aria-hidden="true" />, label: 'Kho bãi & Trung tâm logistics', desc: 'Mái rộng, tối ưu lắp đặt', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80', alt: 'Kho bãi logistics lắp điện mặt trời mái' },
-  { icon: <HardDrives className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm dữ liệu & HardDrives farm', desc: 'Nhu cầu điện liên tục', image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=80', alt: 'Trung tâm dữ liệu sử dụng điện mặt trời' },
-  { icon: <Heartbeat className="h-6 w-6" aria-hidden="true" />, label: 'Cơ sở y tế & Bệnh viện', desc: 'An ninh năng lượng', image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80', alt: 'Bệnh viện với hệ thống điện mặt trời an toàn' },
+  { icon: <Factory className="h-6 w-6" aria-hidden="true" />, label: 'Nhà máy & Xưởng sản xuất', desc: '2000–10000 m²', image: '/images/solar-cong-nghiep/nha-may-xuong-san-xuat.webp', alt: 'Nhà máy sản xuất với hệ thống điện mặt trời trên mái' },
+  { icon: <ShoppingBag className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm thương mại & Siêu thị', desc: 'Diện tích mái lớn', image: '/images/solar-cong-nghiep/trung-tam-thuong-mai.webp', alt: 'Trung tâm thương mại lắp điện mặt trời' },
+  { icon: <Buildings className="h-6 w-6" aria-hidden="true" />, label: 'Tòa nhà văn phòng & Khách sạn', desc: 'Tiết kiệm vận hành', image: '/images/solar-cong-nghiep/van-phong-khach-san.webp', alt: 'Tòa nhà văn phòng với hệ thống điện mặt trời' },
+  { icon: <Warehouse className="h-6 w-6" aria-hidden="true" />, label: 'Kho bãi & Trung tâm logistics', desc: 'Mái rộng, tối ưu lắp đặt', image: '/images/solar-cong-nghiep/kho-bai-logistics.webp', alt: 'Kho bãi logistics lắp điện mặt trời mái' },
+  { icon: <HardDrives className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm dữ liệu & HardDrives farm', desc: 'Nhu cầu điện liên tục', image: '/images/solar-cong-nghiep/trung-tam-du-lieu.webp', alt: 'Trung tâm dữ liệu sử dụng điện mặt trời' },
+  { icon: <Heartbeat className="h-6 w-6" aria-hidden="true" />, label: 'Cơ sở y tế & Bệnh viện', desc: 'An ninh năng lượng', image: '/images/solar-cong-nghiep/benh-vien-co-so-y-te.webp', alt: 'Bệnh viện với hệ thống điện mặt trời an toàn' },
 ];
 
 const benefits = [
@@ -123,7 +123,7 @@ export default function SolarCIPage() {
         <section data-header-theme="dark" className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
           <img
-            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80"
+            src="/images/solar-cong-nghiep/hero-khu-cong-nghiep.webp"
             alt="Hệ thống điện mặt trời công nghiệp trên mái nhà xưởng"
             loading="eager"
             width={1200}

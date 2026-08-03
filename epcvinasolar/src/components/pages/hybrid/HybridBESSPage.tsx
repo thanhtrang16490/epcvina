@@ -502,7 +502,7 @@ export default function HybridBESSPage() {
           {/* Background image */}
           <div className="absolute inset-0" aria-hidden="true">
             <img
-              src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=1200&q=80"
+              src="/images/generated/solar-hybrid-bess-hero.webp"
               alt="Hệ thống lưu trữ năng lượng pin BESS"
               className="w-full h-full object-cover"
               loading="eager"

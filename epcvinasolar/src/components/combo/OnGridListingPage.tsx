@@ -89,7 +89,7 @@ export default function OnGridListingPage() {
           {/* Background image */}
           <div className="absolute inset-0" aria-hidden="true">
             <img
-              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80"
+              src="/images/generated/solar-residential-hero.webp"
               alt="Hệ thống điện mặt trời On-Grid hòa lưới"
               className="w-full h-full object-cover"
               loading="eager"

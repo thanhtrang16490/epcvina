@@ -367,7 +367,7 @@ export default function ProjectsPage() {
         <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
           <img
-            src="https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=1200&q=80"
+            src="/images/generated/solar-industrial-hero.webp"
             alt="Trang trại điện mặt trời quy mô lớn của EPC Solar"
             loading="eager"
             width={1200}

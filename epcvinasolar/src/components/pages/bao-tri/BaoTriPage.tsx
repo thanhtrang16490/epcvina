@@ -43,7 +43,7 @@ const whyOMItems = [
     label: 'Sản lượng giảm nếu không vệ sinh tấm pin',
     color: 'text-red-500',
     bg: 'bg-red-50',
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
+    image: '/images/bao-tri/tam-pin-bam-bui.webp',
     alt: 'Tấm pin mặt trời bám bụi giảm hiệu suất',
   },
   {
@@ -52,7 +52,7 @@ const whyOMItems = [
     label: 'Tuổi thọ inverter — cần kiểm tra định kỳ',
     color: 'text-amber-500',
     bg: 'bg-amber-50',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=80',
+    image: '/images/bao-tri/kiem-tra-inverter.webp',
     alt: 'Kiểm tra bảo dưỡng inverter điện mặt trời',
   },
   {
@@ -61,7 +61,7 @@ const whyOMItems = [
     label: 'O&M định kỳ vs 10–50 triệu/lần sửa chữa khẩn cấp',
     color: 'text-emerald-500',
     bg: 'bg-emerald-50',
-    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
+    image: '/images/bao-tri/bao-tri-phong-ngua.webp',
     alt: 'Kỹ thuật viên bảo trì hệ thống điện mặt trời',
   },
   {
@@ -70,7 +70,7 @@ const whyOMItems = [
     label: 'Trung bình tăng sản lượng khi có O&M chuyên nghiệp',
     color: 'text-teal-500',
     bg: 'bg-teal-50',
-    image: 'https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=400&q=80',
+    image: '/images/bao-tri/he-thong-hieu-suat-cao.webp',
     alt: 'Hệ thống điện mặt trời hoạt động tối ưu',
   },
 ];
@@ -87,7 +87,7 @@ const services = [
       'Cảnh báo lỗi tức thì',
       'Chỉ số: công suất, nhiệt độ, dòng/áp, năng lượng tích lũy',
     ],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80',
+    image: '/images/bao-tri/giam-sat-tu-xa.webp',
     alt: 'Bảng giám sát hệ thống điện mặt trời từ xa',
     tag: 'Real-time',
     tagColor: 'bg-emerald-100 text-emerald-700',
@@ -102,7 +102,7 @@ const services = [
       'Tăng sản lượng 15–36%',
       'Chi phí: 200K–500K/lần',
     ],
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=80',
+    image: '/images/bao-tri/ve-sinh-tam-pin.webp',
     alt: 'Vệ sinh tấm pin mặt trời chuyên nghiệp',
     tag: 'Tăng 36%',
     tagColor: 'bg-sky-100 text-sky-700',
@@ -118,7 +118,7 @@ const services = [
       'Hàng năm: test inverter, thay lọc',
       '10 năm: xem xét thay inverter',
     ],
-    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80',
+    image: '/images/bao-tri/kiem-tra-dinh-ky.webp',
     alt: 'Kỹ thuật viên bảo dưỡng hệ thống điện mặt trời',
     tag: 'Định kỳ',
     tagColor: 'bg-amber-100 text-amber-700',
@@ -132,7 +132,7 @@ const services = [
       'Thay dây cáp, sửa mạch, thay quạt tản nhiệt',
       'Khắc phục trong vòng 24 giờ',
     ],
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=400&q=80',
+    image: '/images/bao-tri/sua-chua-khan-cap.webp',
     alt: 'Sửa chữa hệ thống điện mặt trời trên mái',
     tag: '24 giờ',
     tagColor: 'bg-red-100 text-red-700',
@@ -147,7 +147,7 @@ const services = [
       'So sánh dự báo vs thực tế',
       'Đề xuất nâng cấp hệ thống',
     ],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80',
+    image: '/images/bao-tri/phan-tich-hieu-suat.webp',
     alt: 'Phân tích dữ liệu hiệu suất điện mặt trời',
     tag: 'Analytics',
     tagColor: 'bg-violet-100 text-violet-700',
@@ -240,7 +240,7 @@ export default function BaoTriPage() {
         <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
           <img
-            src="https://images.unsplash.com/photo-1509391366360-70e75625e0a0?w=1200&q=80"
+            src="/images/bao-tri/hero-van-hanh-bao-tri.webp"
             alt="Hệ thống điện mặt trời được vận hành và bảo trì chuyên nghiệp"
             loading="eager"
             width={1200}

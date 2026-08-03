@@ -8,7 +8,7 @@ export default function ResidentialApplicationPage() {
       {/* Hero Banner */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0f766e] via-[#0d9488] to-[#14b8a6]">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80')] bg-cover bg-center opacity-25" />
+          <div className="absolute inset-0 bg-[url('/images/generated/solar-residential-hero.webp')] bg-cover bg-center opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-32">
@@ -457,17 +457,17 @@ export default function ResidentialApplicationPage() {
             {
               name: 'Gia đình Anh Hùng, TP. HCM',
               title: 'Hệ thống 5kWp - Tiết kiệm 2.5tr/tháng',
-              image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+              image: '/du-an/solar-nha-dan/du-an-anh-tho-uong-bi.png',
             },
             {
               name: 'Chị Lan, Đà Nẵng',
               title: 'Hệ thống 3kWp - Tự chủ 100% điện sinh hoạt',
-              image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80',
+              image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png',
             },
             {
               name: 'Biệt thự Vinhome, Hà Nội',
               title: 'Hệ thống 10kWp - Giải pháp năng lượng sang trọng',
-              image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
+              image: '/images/generated/solar-residential-hero.webp',
             },
           ].map((project, idx) => (
             <div key={idx} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
@@ -477,9 +477,6 @@ export default function ResidentialApplicationPage() {
                   alt={project.title}
                   className="w-full h-full object-cover"
                   loading="lazy"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80';
-                  }}
                 />
               </div>
               <div className="p-6">

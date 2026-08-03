@@ -91,14 +91,16 @@ export default function SolutionsLandingPage() {
           {/* Background image */}
           <div className="absolute inset-0" aria-hidden="true">
             <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1200&q=80"
+              src="/images/solar-home/epcvinasolar-solar-home-hero.webp"
               alt="Ngôi nhà với hệ thống điện mặt trời trên mái"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
               loading="eager"
-              width={1200}
-              height={675}
+              fetchPriority="high"
+              width={1774}
+              height={887}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-slate-900/90" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/75 to-slate-900/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-900/20" />
           </div>
 
           {/* Decorative glow */}
