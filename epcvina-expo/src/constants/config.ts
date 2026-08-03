@@ -23,8 +23,8 @@ export const APP_CONFIG = {
 // ─── API ─────────────────────────────────────────────────────────────────────
 
 export const API_CONFIG = {
-  /** Base URL for Go backend */
-  baseUrl: process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080/api',
+  /** Base URL for the epcvinaadmin mobile API */
+  baseUrl: process.env.EXPO_PUBLIC_API_URL ?? 'https://app.epcvina.com/api/mobile',
 
   /** Request timeout in milliseconds */
   timeout: 30_000,

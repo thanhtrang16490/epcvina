@@ -1,9 +1,8 @@
 /**
- * API Client for Go Backend
- * Handles all HTTP requests to epcvina-api
+ * API Client for the epcvinaadmin mobile API.
  */
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8080/api'
+const API_URL = process.env.EXPO_PUBLIC_API_URL || 'https://app.epcvina.com/api/mobile'
 const API_TIMEOUT = 30000
 
 export interface ApiResponse<T> {

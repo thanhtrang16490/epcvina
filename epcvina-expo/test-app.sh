@@ -10,7 +10,6 @@ echo "   - Expo Go app installed on your phone"
 echo "   - Phone and computer on same WiFi network"
 echo ""
 echo "🔧 Environment:"
-echo "   - Supabase URL: ${EXPO_PUBLIC_SUPABASE_URL}"
 echo "   - API URL: ${EXPO_PUBLIC_API_URL}"
 echo ""
 
