@@ -36,6 +36,7 @@ const navGroups: NavGroup[] = [
     icon: "orders",
     description: "Khách hàng, dự án và đơn hàng",
     items: [
+      { href: "/admin/leads", label: "Lead từ website", icon: "customer", badge: "CRM" },
       { href: "/orders", label: "Đơn hàng", icon: "orders" },
       { href: "/admin/projects", label: "Dự án", icon: "project" },
       { href: "/admin/customers", label: "Khách hàng", icon: "customer" },

@@ -13,6 +13,7 @@ import {
   Sun,
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
+import { submitCrmLead } from '../../../lib/crm-leads';
 
 /* ─── Contact Info Cards ─── */
 const contactCards = [
@@ -62,6 +63,8 @@ const contactCards = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -70,8 +73,18 @@ export default function ContactPage() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      await submitCrmLead({ name: formData.name, phone: formData.phone, email: formData.email, system_type: formData.systemType, message: formData.message, source_form: 'contact_page' });
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
+      setSubmitting(false);
+      return;
+    }
     // Build Zalo message with form data
     const lines = [
       'Yêu cầu tư vấn từ website:',
@@ -83,7 +96,7 @@ export default function ContactPage() {
     ].filter(Boolean);
     const zaloMsg = encodeURIComponent(lines.join('\n'));
     window.open(`https://zalo.me/0988446113?msg=${zaloMsg}`, '_blank');
-    setSubmitted(true);
+    setSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -249,6 +262,7 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
+                    {submitError && <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-700">{submitError}</div>}
                     {/* Name */}
                     <div>
                       <label htmlFor="contact-name" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -343,10 +357,11 @@ export default function ContactPage() {
                     {/* Submit */}
                     <button
                       type="submit"
-                      className="cursor-pointer w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 text-white font-semibold rounded-xl transition-all duration-200 ease-in-out shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
+                      disabled={submitting}
+                      className="cursor-pointer w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 disabled:opacity-60 text-white font-semibold rounded-xl transition-all duration-200 ease-in-out shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                     >
                       <PaperPlaneRight className="h-4 w-4" aria-hidden="true" />
-                      Gửi yêu cầu tư vấn
+                      {submitting ? 'Đang gửi...' : 'Gửi yêu cầu tư vấn'}
                     </button>
                   </form>
                 )}

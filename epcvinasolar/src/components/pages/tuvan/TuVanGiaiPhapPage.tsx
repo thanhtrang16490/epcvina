@@ -1,11 +1,25 @@
 import { useState } from 'react';
 import { Phone, CheckCircle, MapPin, House } from '@phosphor-icons/react';
+import { submitCrmLead } from '../../../lib/crm-leads';
 
 export default function TuVanGiaiPhapPage() {
   const [formData, setFormData] = useState({ name: '', phone: '', address: '', roofArea: '', monthlyBill: '', systemType: '', message: '' });
-  const handleSubmit = (e: React.FormEvent) => {
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Đã nhận thông tin! EPCVINA sẽ gọi lại trong 24h.');
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      await submitCrmLead({ name: formData.name, phone: formData.phone, address: formData.address, roof_area: formData.roofArea, monthly_bill: formData.monthlyBill, system_type: formData.systemType, message: formData.message, source_form: 'solution_consultation' });
+      setSubmitted(true);
+      setFormData({ name: '', phone: '', address: '', roofArea: '', monthlyBill: '', systemType: '', message: '' });
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -42,6 +56,8 @@ export default function TuVanGiaiPhapPage() {
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
               <h2 className="text-2xl font-bold mb-6">Gửi Thông Tin Tư Vấn</h2>
+              {submitted && <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm font-medium text-emerald-700">Đã nhận thông tin. EPCVINA sẽ liên hệ lại sớm.</div>}
+              {submitError && <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-700">{submitError}</div>}
               {[
                 { label: 'Họ tên', name: 'name', type: 'text' },
                 { label: 'Số điện thoại', name: 'phone', type: 'tel' },
@@ -71,7 +87,7 @@ export default function TuVanGiaiPhapPage() {
                   <option value="ev">Kết hợp sạc xe điện</option>
                 </select>
               </div>
-              <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg text-lg">Gửi Yêu Cầu Tư Vấn</button>
+              <button type="submit" disabled={submitting} className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white font-bold py-4 rounded-lg text-lg">{submitting ? 'Đang gửi...' : 'Gửi Yêu Cầu Tư Vấn'}</button>
             </form>
           </div>
         </div>

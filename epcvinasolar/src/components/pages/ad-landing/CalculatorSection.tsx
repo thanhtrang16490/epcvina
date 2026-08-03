@@ -9,7 +9,7 @@ const trackEvent = (eventName: string, params: Record<string, string | number> =
   }
 };
 
-export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) => void }) {
+export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) => void | Promise<unknown> }) {
   const resultRef = useRef<HTMLDivElement | null>(null);
   const [calc, setCalc] = useState({
     billAmount: '3000000',
@@ -21,6 +21,8 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
   const [results, setResults] = useState<any>(null);
   const [quickLead, setQuickLead] = useState({ name: '', phone: '' });
   const [quickLeadSubmitted, setQuickLeadSubmitted] = useState(false);
+  const [quickLeadError, setQuickLeadError] = useState('');
+  const [quickLeadSending, setQuickLeadSending] = useState(false);
 
   const toggleNeed = (need: string) => {
     setCalc(prev => ({
@@ -93,21 +95,19 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
   ];
   const quickLeadValid = quickLead.name.trim().length >= 2 && quickLead.phone.replace(/\D/g, '').length >= 9;
 
-  const submitQuickLead = () => {
+  const submitQuickLead = async () => {
     if (!results?.combo || !quickLeadValid) return;
-
-    onSubmit({
-      system_size: results.combo.power_kw,
-      combo_index: results.comboIndex,
-      name: quickLead.name.trim(),
-      phone: quickLead.phone.trim(),
-      source: 'inline_calculator_lead',
-    });
-    trackEvent('landing_inline_lead_submitted', {
-      source: 'family_landing_calculator_result',
-      system_size: results.combo.power_kw,
-    });
-    setQuickLeadSubmitted(true);
+    setQuickLeadSending(true);
+    setQuickLeadError('');
+    try {
+      await onSubmit({ system_size: results.combo.power_kw, combo_index: results.comboIndex, name: quickLead.name.trim(), phone: quickLead.phone.trim(), source: 'inline_calculator_lead' });
+      trackEvent('landing_inline_lead_submitted', { source: 'family_landing_calculator_result', system_size: results.combo.power_kw });
+      setQuickLeadSubmitted(true);
+    } catch (error) {
+      setQuickLeadError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
+    } finally {
+      setQuickLeadSending(false);
+    }
   };
 
   return (
@@ -355,7 +355,6 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
                     <a
                       href="#contact"
                       onClick={() => {
-                        onSubmit({ system_size: results.combo.power_kw, combo_index: results.comboIndex });
                         trackEvent('landing_result_survey_click', {
                           source: 'family_landing_calculator_result',
                           system_size: results.combo.power_kw,
@@ -421,17 +420,18 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
                         <button
                           type="button"
                           onClick={submitQuickLead}
-                          disabled={!quickLeadValid}
+                          disabled={!quickLeadValid || quickLeadSending}
 	                          className={`min-h-[44px] rounded-xl px-4 text-sm font-black transition-colors ${
                             quickLeadValid
                               ? 'bg-emerald-600 text-white hover:bg-emerald-500 active:scale-[0.98]'
                               : 'cursor-not-allowed bg-slate-100 text-slate-400'
                           }`}
                         >
-                          Gửi nhanh
+                          {quickLeadSending ? 'Đang gửi...' : 'Gửi nhanh'}
                         </button>
                       </div>
                     )}
+                    {quickLeadError && <p className="mt-2 text-xs font-medium text-red-600">{quickLeadError}</p>}
                     <p className="mt-2 text-[11px] leading-relaxed text-slate-400">
                       Thông tin chỉ dùng để EPCVINA tư vấn phương án điện mặt trời phù hợp cho gia đình anh/chị.
                     </p>

@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { X, Phone, Gift } from '@phosphor-icons/react';
+import { submitCrmLead } from '../../../lib/crm-leads';
 
 export default function ExitIntentPopup() {
   const [show, setShow] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({ phone: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     // Check if already shown in this session
@@ -32,16 +35,19 @@ export default function ExitIntentPopup() {
     };
   }, [hasShown]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'exit_popup_submit', {
-        event_category: 'conversion',
-        event_label: formData.phone,
-      });
+    setSubmitting(true);
+    setSubmitError('');
+    try {
+      await submitCrmLead({ phone: formData.phone, source_form: 'family_exit_popup', message: 'Khách yêu cầu nhận báo giá qua popup thoát trang.' });
+      if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'exit_popup_submit', { event_category: 'conversion' });
+      setShow(false);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
+    } finally {
+      setSubmitting(false);
     }
-    alert('Đã nhận số điện thoại! Chúng tôi sẽ gọi tư vấn trong 30 phút.');
-    setShow(false);
   };
 
   if (!show) return null;
@@ -104,10 +110,12 @@ export default function ExitIntentPopup() {
 
             <button
               type="submit"
+              disabled={submitting}
               className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-bold py-4 rounded-lg text-lg transition-all shadow-lg"
             >
-              Nhận Báo Giá Ngay
+              {submitting ? 'Đang gửi...' : 'Nhận Báo Giá Ngay'}
             </button>
+            {submitError && <p className="text-center text-xs font-medium text-red-600">{submitError}</p>}
 
             <p className="text-xs text-center text-slate-500">
               Bảo mật tuyệt đối, không spam

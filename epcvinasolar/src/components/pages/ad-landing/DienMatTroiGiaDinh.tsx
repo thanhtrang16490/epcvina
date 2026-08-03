@@ -11,6 +11,7 @@ import TestimonialsSection from './TestimonialsSection';
 import PaymentOptionsSection from './PaymentOptionsSection';
 import FAQSection from './FAQSection';
 import ExitIntentPopup from './ExitIntentPopup';
+import { submitCrmLead } from '../../../lib/crm-leads';
 
 const whyEpcvina = [
   { icon: Shield, title: 'Bảo hành rõ điều kiện', desc: 'Thiết bị chính hãng, hồ sơ bàn giao minh bạch' },
@@ -51,23 +52,29 @@ export default function DienMatTroiGiaDinh() {
     message: '',
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formError, setFormError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const formFields = [
     { label: 'Họ tên', name: 'name', type: 'text', required: true, placeholder: 'VD: Anh Minh...', autoComplete: 'name' },
     { label: 'Số điện thoại', name: 'phone', type: 'tel', required: true, placeholder: 'VD: 0988 446 113...', autoComplete: 'tel', inputMode: 'tel' },
     { label: 'Địa chỉ', name: 'address', type: 'text', required: false, placeholder: 'VD: Hà Đông, Hà Nội...', autoComplete: 'street-address' },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'lead_submit', {
-        event_category: 'conversion',
-        event_label: formData.phone,
-      });
+    setSubmitting(true);
+    setFormError('');
+    try {
+      await submitCrmLead({ ...formData, source_form: 'family_landing_contact' });
+      trackEvent('lead_submit', { event_category: 'conversion' });
+      setFormData({ name: '', phone: '', address: '', message: '' });
+      setFormSubmitted(true);
+      setTimeout(() => setFormSubmitted(false), 5000);
+    } catch (error) {
+      setFormError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
+    } finally {
+      setSubmitting(false);
     }
-    setFormData({ name: '', phone: '', address: '', message: '' });
-    setFormSubmitted(true);
-    setTimeout(() => setFormSubmitted(false), 5000);
   };
 
   return (
@@ -76,12 +83,14 @@ export default function DienMatTroiGiaDinh() {
       <HeroSection />
       <SocialProofSection />
       <CalculatorSection
-        onSubmit={(data) => setFormData(prev => ({
-          ...prev,
-          name: data.name || prev.name,
-          phone: data.phone || prev.phone,
+        onSubmit={async (data) => submitCrmLead({
+          name: data.name,
+          phone: data.phone,
           message: `Hộ gia đình cần lắp điện mặt trời. Hệ đề xuất: ${data.system_size} kWp`,
-        }))}
+          source_form: 'family_inline_calculator',
+          system_size_kw: Number(data.system_size),
+          calculator_result: { combo_index: data.combo_index },
+        })}
       />
       <div className="hidden md:block">
         <VideoShowcaseSection />
@@ -282,6 +291,7 @@ export default function DienMatTroiGiaDinh() {
                   <p className="text-emerald-700 text-xs mt-1">Chúng tôi sẽ gọi lại tư vấn trong 24h.</p>
                 </div>
               )}
+              {formError && <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm font-medium text-red-700">{formError}</div>}
 	              {formFields.map(({ label, name, type, required, placeholder, autoComplete, inputMode }) => (
 	                <div key={name}>
 	                  <label htmlFor={`contact-${name}`} className="block text-sm font-medium text-slate-700 mb-1.5">
@@ -316,9 +326,10 @@ export default function DienMatTroiGiaDinh() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-400 active:scale-[0.98] text-white font-bold py-3.5 rounded-xl text-base transition-colors min-h-[44px]"
+                disabled={submitting}
+                className="w-full bg-orange-500 hover:bg-orange-400 active:scale-[0.98] disabled:opacity-60 text-white font-bold py-3.5 rounded-xl text-base transition-colors min-h-[44px]"
               >
-                Nhận lịch khảo sát miễn phí
+                {submitting ? 'Đang gửi...' : 'Nhận lịch khảo sát miễn phí'}
               </button>
               <p className="text-[11.5px] leading-relaxed text-slate-500">
                 Thông tin chỉ dùng để tư vấn điện mặt trời EPCVINA. Anh/chị có thể yêu cầu không liên hệ lại bất cứ lúc nào.
