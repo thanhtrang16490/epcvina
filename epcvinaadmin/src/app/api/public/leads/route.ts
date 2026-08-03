@@ -163,9 +163,9 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase.from("crm_leads").insert(payload).select("id").single();
     if (error) throw error;
 
-    await notifyTelegramAboutLead({ id: data.id, ...payload });
+    const telegramStatus = await notifyTelegramAboutLead({ id: data.id, ...payload });
 
-    return NextResponse.json({ success: true, lead_id: data.id }, { status: 201, headers });
+    return NextResponse.json({ success: true, lead_id: data.id, telegram_status: telegramStatus }, { status: 201, headers });
   } catch (error) {
     console.error("CRM lead intake failed", error);
     return NextResponse.json({ success: false, message: "Chưa thể ghi nhận thông tin. Vui lòng thử lại." }, { status: 500, headers });

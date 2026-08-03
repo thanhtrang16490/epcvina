@@ -30,7 +30,7 @@ function line(label: string, value: unknown) {
 export async function notifyTelegramAboutLead(lead: TelegramLead) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_LEAD_CHAT_ID;
-  if (!token || !chatId) return;
+  if (!token || !chatId) return "not_configured" as const;
 
   const text = [
     "🔔 <b>LEAD MỚI TỪ EPCVINA.COM</b>",
@@ -69,9 +69,14 @@ export async function notifyTelegramAboutLead(lead: TelegramLead) {
       signal: controller.signal,
       cache: "no-store",
     });
-    if (!response.ok) console.warn("Telegram lead notification failed with status", response.status);
-  } catch {
+    if (!response.ok) {
+      console.warn("Telegram lead notification failed with status", response.status);
+      return `telegram_${response.status}` as const;
+    }
+    return "sent" as const;
+  } catch (error) {
     console.warn("Telegram lead notification could not be delivered");
+    return error instanceof Error && error.name === "AbortError" ? "timeout" as const : "network_error" as const;
   } finally {
     clearTimeout(timeout);
   }
