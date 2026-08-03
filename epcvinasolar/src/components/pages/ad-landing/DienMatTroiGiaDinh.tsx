@@ -11,7 +11,7 @@ import TestimonialsSection from './TestimonialsSection';
 import PaymentOptionsSection from './PaymentOptionsSection';
 import FAQSection from './FAQSection';
 import ExitIntentPopup from './ExitIntentPopup';
-import { submitCrmLead } from '../../../lib/crm-leads';
+import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 
 const whyEpcvina = [
   { icon: Shield, title: 'Bảo hành rõ điều kiện', desc: 'Thiết bị chính hãng, hồ sơ bàn giao minh bạch' },
@@ -67,9 +67,7 @@ export default function DienMatTroiGiaDinh() {
     try {
       await submitCrmLead({ ...formData, source_form: 'family_landing_contact' });
       trackEvent('lead_submit', { event_category: 'conversion' });
-      setFormData({ name: '', phone: '', address: '', message: '' });
-      setFormSubmitted(true);
-      setTimeout(() => setFormSubmitted(false), 5000);
+      redirectToThankYou('family_landing_contact');
     } catch (error) {
       setFormError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
     } finally {

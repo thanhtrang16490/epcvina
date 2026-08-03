@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Calculator, Lightning, TrendDown, CheckCircle, CurrencyCircleDollar, Shield, Car, Ruler, ClipboardText } from '@phosphor-icons/react';
 import { POPULAR_COMBOS } from './data';
+import { redirectToThankYou } from '../../../lib/crm-leads';
 
 const trackEvent = (eventName: string, params: Record<string, string | number> = {}) => {
   if (typeof window !== 'undefined' && window.gtag) {
@@ -103,6 +104,7 @@ export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) 
       await onSubmit({ system_size: results.combo.power_kw, combo_index: results.comboIndex, name: quickLead.name.trim(), phone: quickLead.phone.trim(), source: 'inline_calculator_lead' });
       trackEvent('landing_inline_lead_submitted', { source: 'family_landing_calculator_result', system_size: results.combo.power_kw });
       setQuickLeadSubmitted(true);
+      redirectToThankYou('family_inline_calculator');
     } catch (error) {
       setQuickLeadError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
     } finally {

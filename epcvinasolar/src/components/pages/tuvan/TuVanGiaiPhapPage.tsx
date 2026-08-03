@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Phone, CheckCircle, MapPin, House } from '@phosphor-icons/react';
-import { submitCrmLead } from '../../../lib/crm-leads';
+import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 
 export default function TuVanGiaiPhapPage() {
   const [formData, setFormData] = useState({ name: '', phone: '', address: '', roofArea: '', monthlyBill: '', systemType: '', message: '' });
@@ -15,6 +15,7 @@ export default function TuVanGiaiPhapPage() {
       await submitCrmLead({ name: formData.name, phone: formData.phone, address: formData.address, roof_area: formData.roofArea, monthly_bill: formData.monthlyBill, system_type: formData.systemType, message: formData.message, source_form: 'solution_consultation' });
       setSubmitted(true);
       setFormData({ name: '', phone: '', address: '', roofArea: '', monthlyBill: '', systemType: '', message: '' });
+      redirectToThankYou('solution_consultation');
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
     } finally {

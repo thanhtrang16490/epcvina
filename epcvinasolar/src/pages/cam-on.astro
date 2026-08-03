@@ -1,0 +1,17 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import ThankYouPage from '../components/pages/thank-you/ThankYouPage';
+
+export const prerender = true;
+---
+
+<DashboardLayout
+  title="Cảm Ơn Anh/Chị | EPCVINA Solar"
+  description="EPCVINA Solar đã nhận được yêu cầu tư vấn của anh/chị."
+  noindex={true}
+>
+  <DashboardShell client:load>
+    <ThankYouPage />
+  </DashboardShell>
+</DashboardLayout>

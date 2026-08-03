@@ -13,7 +13,7 @@ import {
   Sun,
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
-import { submitCrmLead } from '../../../lib/crm-leads';
+import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 
 /* ─── Contact Info Cards ─── */
 const contactCards = [
@@ -79,23 +79,12 @@ export default function ContactPage() {
     setSubmitError('');
     try {
       await submitCrmLead({ name: formData.name, phone: formData.phone, email: formData.email, system_type: formData.systemType, message: formData.message, source_form: 'contact_page' });
-      setSubmitted(true);
+      redirectToThankYou('contact_page');
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
       setSubmitting(false);
       return;
     }
-    // Build Zalo message with form data
-    const lines = [
-      'Yêu cầu tư vấn từ website:',
-      `Họ tên: ${formData.name}`,
-      `SĐT: ${formData.phone}`,
-      formData.email ? `Email: ${formData.email}` : '',
-      formData.systemType ? `Loại HT: ${formData.systemType}` : '',
-      formData.message ? `Nội dung: ${formData.message}` : '',
-    ].filter(Boolean);
-    const zaloMsg = encodeURIComponent(lines.join('\n'));
-    window.open(`https://zalo.me/0988446113?msg=${zaloMsg}`, '_blank');
     setSubmitting(false);
   };
 

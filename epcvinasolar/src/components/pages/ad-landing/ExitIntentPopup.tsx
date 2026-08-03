@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, Phone, Gift } from '@phosphor-icons/react';
-import { submitCrmLead } from '../../../lib/crm-leads';
+import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 
 export default function ExitIntentPopup() {
   const [show, setShow] = useState(false);
@@ -42,7 +42,7 @@ export default function ExitIntentPopup() {
     try {
       await submitCrmLead({ phone: formData.phone, source_form: 'family_exit_popup', message: 'Khách yêu cầu nhận báo giá qua popup thoát trang.' });
       if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'exit_popup_submit', { event_category: 'conversion' });
-      setShow(false);
+      redirectToThankYou('family_exit_popup');
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
     } finally {

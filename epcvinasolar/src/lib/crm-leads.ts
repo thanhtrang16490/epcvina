@@ -15,11 +15,11 @@ export type CrmLeadInput = {
 };
 
 const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid", "fbclid"] as const;
+const DEFAULT_CRM_LEAD_ENDPOINT = "https://app.epcvina.com/api/public/leads";
 
 export async function submitCrmLead(input: CrmLeadInput) {
   if (typeof window === "undefined") throw new Error("Chỉ gửi lead từ trình duyệt.");
-  const endpoint = import.meta.env.PUBLIC_CRM_LEAD_ENDPOINT;
-  if (!endpoint) throw new Error("Thiếu PUBLIC_CRM_LEAD_ENDPOINT.");
+  const endpoint = import.meta.env.PUBLIC_CRM_LEAD_ENDPOINT || DEFAULT_CRM_LEAD_ENDPOINT;
 
   const params = new URLSearchParams(window.location.search);
   const tracking = Object.fromEntries(TRACKING_KEYS.map((key) => [key, params.get(key) || undefined]));
@@ -37,4 +37,9 @@ export async function submitCrmLead(input: CrmLeadInput) {
   const result = await response.json().catch(() => ({}));
   if (!response.ok || !result.success) throw new Error(result.message || "Không gửi được thông tin.");
   return result as { success: true; lead_id: string };
+}
+
+export function redirectToThankYou(sourceForm: string) {
+  if (typeof window === "undefined") return;
+  window.location.assign(`/cam-on?nguon=${encodeURIComponent(sourceForm)}`);
 }
