@@ -16,6 +16,7 @@ export type CrmLeadInput = {
 
 const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid", "fbclid"] as const;
 const DEFAULT_CRM_LEAD_ENDPOINT = "https://app.epcvina.com/api/public/leads";
+const FORM_SESSION_STARTED_AT = Date.now();
 
 export async function submitCrmLead(input: CrmLeadInput) {
   if (typeof window === "undefined") throw new Error("Chỉ gửi lead từ trình duyệt.");
@@ -30,6 +31,7 @@ export async function submitCrmLead(input: CrmLeadInput) {
       ...input,
       ...tracking,
       source: "epcvinasolar",
+      form_elapsed_ms: Date.now() - FORM_SESSION_STARTED_AT,
       landing_page: window.location.href,
       referrer: document.referrer || undefined,
     }),
