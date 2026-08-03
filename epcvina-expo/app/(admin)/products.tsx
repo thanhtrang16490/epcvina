@@ -122,7 +122,7 @@ export default function ProductsScreen() {
         code: form.code.trim() || null,
         price: parseFloat(form.price) || 0,
         unit: form.unit.trim() || null,
-        category_id: form.category_id ? parseInt(form.category_id) : null,
+        category_id: form.category_id || null,
         description: form.description.trim() || null,
         is_active: form.is_active,
       }

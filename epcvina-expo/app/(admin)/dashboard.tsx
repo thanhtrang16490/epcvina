@@ -51,13 +51,13 @@ export default function AdminDashboard() {
       const { count: pendingCount } = await supabase
         .from('orders')
         .select('*', { count: 'exact', head: true })
-        .eq('status', 'pending')
+        .eq('status', 'inactive')
 
       // Fetch total revenue (completed orders)
       const { data: revenueData } = await supabase
         .from('orders')
         .select('total')
-        .eq('status', 'completed')
+        .eq('status', 'public')
 
       const totalRevenue = revenueData?.reduce((sum, order) => sum + (order.total || 0), 0) || 0
 

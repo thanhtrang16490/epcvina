@@ -28,7 +28,7 @@ export interface Customer {
 // ─── Product ─────────────────────────────────────────────────────────────────
 
 export interface Category {
-  id: number
+  id: string
   name: string
   description?: string
   created_at: string
@@ -41,7 +41,7 @@ export interface Product {
   description?: string
   price: number
   stock: number
-  category_id?: number
+  category_id?: string
   category?: string
   image_url?: string
   unit?: string

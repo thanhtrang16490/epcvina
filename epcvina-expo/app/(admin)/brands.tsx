@@ -20,7 +20,7 @@ import { useRouter } from 'expo-router'
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 interface Brand {
-  id: number
+  id: string
   code: string | null
   name: string
   description: string | null

@@ -24,39 +24,65 @@ const PRODUCT_COLUMNS: Record<string, string> = {
   stock: "quantity",
   image_url: "cover_image_url",
 };
+const BRAND_COLUMNS: Record<string, string> = { code: "slug" };
+
+function columnMap(table: string) {
+  if (table === "products") return PRODUCT_COLUMNS;
+  if (table === "brands") return BRAND_COLUMNS;
+  return {};
+}
 
 function databaseColumn(table: string, column: unknown) {
   if (typeof column !== "string") return column;
-  return table === "products" ? PRODUCT_COLUMNS[column] ?? column : column;
+  return columnMap(table)[column] ?? column;
 }
 
 function databaseColumns(table: string, columns: string) {
-  if (table !== "products" || columns === "*") return columns;
-  return columns
-    .split(",")
-    .map((column) => databaseColumn(table, column.trim()))
-    .join(",");
+  if (columns === "*") return columns;
+  let result = columns;
+  for (const [mobile, database] of Object.entries(columnMap(table))) {
+    result = result.replace(new RegExp(`\\b${mobile}\\b`, "g"), database);
+  }
+  if (table === "products") result = result.replace(/\bcategories\s*\(/g, "product_categories(");
+  return result;
 }
 
-function databasePayload(table: string, payload: unknown) {
-  if (table !== "products" || !payload || typeof payload !== "object") return payload;
-  const convert = (value: Record<string, unknown>) => Object.fromEntries(
-    Object.entries(value)
-      .filter(([key]) => key !== "deleted_at")
-      .map(([key, item]) => [databaseColumn(table, key) as string, item]),
-  );
+function slugify(value: unknown) {
+  return String(value ?? "item")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "item";
+}
+
+function databasePayload(table: string, payload: unknown, action: string) {
+  if (!payload || typeof payload !== "object") return payload;
+  const convert = (value: Record<string, unknown>) => {
+    const converted = Object.fromEntries(
+      Object.entries(value)
+        .filter(([key]) => key !== "deleted_at")
+        .map(([key, item]) => [databaseColumn(table, key) as string, item]),
+    );
+    if (table === "products" && "deleted_at" in value) converted.is_active = false;
+    if (["products", "brands", "categories"].includes(table) && action === "insert" && !converted.slug) {
+      converted.slug = `${slugify(converted.name)}-${Date.now().toString(36)}`;
+    }
+    return converted;
+  };
   return Array.isArray(payload) ? payload.map((item) => convert(item)) : convert(payload as Record<string, unknown>);
 }
 
 function mobileRows(table: string, data: unknown) {
-  if (table !== "products" || data == null) return data;
+  if (data == null) return data;
   const convert = (row: Record<string, unknown>) => ({
     ...row,
-    code: row.code ?? row.slug,
-    price: row.price ?? row.sale_price_vat,
-    stock: row.stock ?? row.quantity,
-    image_url: row.image_url ?? row.cover_image_url,
-    deleted_at: null,
+    ...(table === "products" ? {
+      code: row.code ?? row.slug,
+      price: row.price ?? row.sale_price_vat,
+      stock: row.stock ?? row.quantity,
+      image_url: row.image_url ?? row.cover_image_url,
+      categories: row.categories ?? row.product_categories,
+      deleted_at: null,
+    } : {}),
+    ...(table === "brands" ? { code: row.code ?? row.slug } : {}),
   });
   return Array.isArray(data) ? data.map(convert) : convert(data as Record<string, unknown>);
 }
@@ -102,7 +128,11 @@ export async function POST(request: Request) {
       const profile = authenticatedUserId
         ? { id: authenticatedUserId, role: isAdmin ? "admin" : "customer", full_name: null }
         : null;
-      return NextResponse.json({ data: body.single ? profile : profile ? [profile] : [], error: null });
+      return NextResponse.json({
+        data: body.selectOptions?.head ? null : body.single ? profile : profile ? [profile] : [],
+        count: profile ? 1 : 0,
+        error: null,
+      });
     }
 
     const queryClient = (isAdmin || (action === "select" && PUBLIC_READ_TABLES.has(table))) && adminClient
@@ -112,13 +142,17 @@ export async function POST(request: Request) {
 
     let query: any = queryClient.from(databaseTable);
     if (action === "select") query = query.select(databaseColumns(table, body.columns || "*"), body.selectOptions);
-    if (action === "insert") query = query.insert(databasePayload(table, body.payload));
-    if (action === "update") query = query.update(databasePayload(table, body.payload));
+    if (action === "insert") query = query.insert(databasePayload(table, body.payload, action));
+    if (action === "update") query = query.update(databasePayload(table, body.payload, action));
     if (action === "delete") query = query.delete();
     if (action !== "select" && body.returning) query = query.select(databaseColumns(table, body.returning));
 
     for (const filter of (body.filters ?? []) as Filter[]) {
       if (!FILTERS.has(filter.method) || !Array.isArray(filter.args)) continue;
+      if (table === "products" && filter.args[0] === "deleted_at") {
+        query = query.eq("is_active", true);
+        continue;
+      }
       const args = [...filter.args];
       if (!["or"].includes(filter.method)) args[0] = databaseColumn(table, args[0]);
       query = query[filter.method](...args);
