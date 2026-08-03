@@ -7,10 +7,10 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 const WINDOW_MS = 60_000;
-const MAX_REQUESTS = 10;
+const MAX_REQUESTS = 100;
 const MAX_BODY_BYTES = 24_000;
 const DURABLE_WINDOW_MINUTES = 15;
-const MAX_DURABLE_REQUESTS = 5;
+const MAX_DURABLE_REQUESTS = 100;
 const DUPLICATE_WINDOW_MINUTES = 10;
 const buckets = new Map<string, { count: number; resetAt: number }>();
 
