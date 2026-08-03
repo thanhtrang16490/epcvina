@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import CalculatorPageShell from './CalculatorPageShell';
+import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 
 const calculatorScreens = ['region', 'bill', 'roof', 'usage', 'result', 'survey'] as const;
 const epcvinaHotlineHref = 'tel:0988446113';
@@ -523,6 +524,8 @@ export default function CalculatorMainPage() {
   const [installTiming, setInstallTiming] = useState('30days');
   const [surveySubmitted, setSurveySubmitted] = useState(false);
   const [surveyAttempted, setSurveyAttempted] = useState(false);
+  const [surveySubmitting, setSurveySubmitting] = useState(false);
+  const [surveyError, setSurveyError] = useState('');
 
   useEffect(() => {
     if (!calculatorScreens.includes(screen)) {
@@ -780,6 +783,64 @@ export default function CalculatorMainPage() {
     payback: formatYears(paybackAverage),
     annualSaving: annualKeepLabel,
     roofLimited: isRoofLimited,
+  };
+  const calculatorResult = {
+    inputs: {
+      province,
+      region: selectedRegionId,
+      region_solar_factor: selectedRegionProfile.factor,
+      bill_type: billType,
+      monthly_bill_vnd: billValue,
+      roof_type: roofType,
+      roof_area_m2: roofValue,
+      day_usage_percent: dayUsage,
+      night_usage_percent: nightUsage,
+      load_profile: loadProfile,
+      phase_type: phaseType,
+      install_timing: installTiming,
+      install_timing_label: installTimingOptions.find((item) => item.id === installTiming)?.label ?? installTiming,
+    },
+    recommendation: {
+      system_title: recommendedSystem.title,
+      system_label: recommendedSystem.label,
+      estimated_kwp: estimatedKwp,
+      estimated_panels: estimatedPanels,
+      inverter_kw: inverterKw,
+      estimated_storage_kwh: estimatedStorageKwh,
+      estimated_storage_label: estimatedStorageLabel,
+      required_roof_area_m2: requiredRoofArea,
+      roof_potential_kwp: roofPotentialKwp,
+      roof_limited: isRoofLimited,
+      defer_storage_for_payback: shouldDeferStorageForPayback,
+      storage_decision: storageDecisionMessage,
+    },
+    production_and_saving: {
+      monthly_production_kwh: monthlyProductionKwh,
+      annual_production_kwh: annualProductionKwh,
+      bill_offset_percent: Math.round(billOffsetRatio * 1000) / 10,
+      monthly_saving_vnd: Math.round(monthlySaving),
+      annual_saving_vnd: Math.round(annualSaving),
+      bill_after_solar_vnd: Math.round(afterBill),
+      lifetime_saving_25_years_vnd: Math.round(lifetimeSaving),
+    },
+    finance: {
+      cost_min_million_vnd: costMin,
+      cost_max_million_vnd: costMax,
+      average_investment_million_vnd: Math.round(averageInvestmentMillion * 10) / 10,
+      payback_min_years: paybackMin,
+      payback_max_years: paybackMax,
+      payback_average_years: paybackAverage,
+      conservative_payback_years: conservativePayback,
+      optimistic_payback_years: optimisticPayback,
+      net_gain_25_years_million_vnd: netGain25Million,
+    },
+    environment: {
+      co2_reduction_ton_per_year: co2Ton,
+      tree_equivalent: treeEquivalent,
+      flight_equivalent: flightEquivalent,
+      motorbike_km_equivalent: motorbikeKm,
+      carbon_value_million_vnd: carbonValueMillion,
+    },
   };
   const financialHighlightCards = [
     { value: `~${annualKeepLabel}`, label: 'giá trị tiết kiệm/năm' },
@@ -1971,13 +2032,44 @@ export default function CalculatorMainPage() {
               data-reveal
               style={{ '--delay': '80ms' } as React.CSSProperties}
               className="rounded-[24px] border border-[#E5E7EB] bg-white px-4 pb-5 pt-5 shadow-[0_12px_30px_-22px_rgba(65,64,66,.35)]"
-              onSubmit={(event) => {
+              onSubmit={async (event) => {
                 event.preventDefault();
                 setSurveyAttempted(true);
                 if (!canSubmitSurvey) return;
-
-                window.localStorage.setItem('epcvina-calculator-lead', JSON.stringify(leadPayload));
-                setSurveySubmitted(true);
+                setSurveySubmitting(true);
+                setSurveyError('');
+                try {
+                  await submitCrmLead({
+                    name: customerName.trim(),
+                    phone: customerPhone.trim(),
+                    address: province || undefined,
+                    message: `Khách nhận kết quả tính Solar: ${estimatedKwp} kWp, ngân sách ${formatMillionRange(costMin, costMax)}, hoàn vốn khoảng ${formatYears(paybackAverage)}.`,
+                    source_form: 'calculator_full_result',
+                    system_type: recommendedSystem.label,
+                    roof_area: `${roofValue} m²`,
+                    monthly_bill: `${billValue} VND`,
+                    system_size_kw: estimatedKwp,
+                    calculator_result: calculatorResult,
+                    metadata: {
+                      calculator_version: 'full_solar_v1',
+                      install_timing: installTiming,
+                    },
+                  });
+                  window.localStorage.setItem('epcvina-calculator-lead', JSON.stringify(leadPayload));
+                  setSurveySubmitted(true);
+                  if (window.gtag) {
+                    window.gtag('event', 'calculator_lead_submit', {
+                      event_category: 'conversion',
+                      system_size_kw: estimatedKwp,
+                      bill_type: billType,
+                    });
+                  }
+                  redirectToThankYou('calculator_full_result');
+                } catch (error) {
+                  setSurveyError(error instanceof Error ? error.message : 'Chưa gửi được kết quả. Vui lòng thử lại.');
+                } finally {
+                  setSurveySubmitting(false);
+                }
               }}
             >
               <div className="relative overflow-hidden rounded-[18px] shadow-[0_18px_38px_-24px_rgba(65,64,66,.55)]">
@@ -2142,6 +2234,7 @@ export default function CalculatorMainPage() {
 
               <button
                 type="submit"
+                disabled={surveySubmitting}
                 data-press
                 className={`mt-5 flex min-h-[78px] w-full items-center justify-between rounded-[14px] px-4 py-4 text-left text-[16px] font-black leading-[1.15] text-white transition-all active:scale-[.99] disabled:cursor-not-allowed disabled:opacity-100 ${
                   canSubmitSurvey
@@ -2155,12 +2248,17 @@ export default function CalculatorMainPage() {
                   </svg>
                 </span>
                 <span className="min-w-0 flex-1 px-3">
-                  Nhận tư vấn<br />miễn phí
+                  {surveySubmitting ? <>Đang gửi<br />kết quả…</> : <>Nhận tư vấn<br />miễn phí</>}
                 </span>
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/35 text-white">
                   →
                 </span>
               </button>
+              {surveyError ? (
+                <p className="mt-3 rounded-[14px] border border-red-200 bg-red-50 px-3 py-2 text-center text-[12.5px] font-semibold text-red-700">
+                  {surveyError}
+                </p>
+              ) : null}
               <div className="mt-4 flex items-start justify-center gap-2 text-center text-[12.5px] leading-5 text-[#5F6673]">
                 <span className="mt-0.5 text-[#F58220]">
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

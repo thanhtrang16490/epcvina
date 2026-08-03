@@ -37,6 +37,38 @@ function Field({ label, value }: { label: string; value: unknown }) {
   return <div><div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">{label}</div><div className="mt-1 break-words text-[color:var(--text)]">{String(value || "—")}</div></div>;
 }
 
+const resultSectionLabels: Record<string, string> = {
+  inputs: "Dữ liệu khách nhập",
+  recommendation: "Cấu hình đề xuất",
+  production_and_saving: "Sản lượng & tiết kiệm",
+  finance: "Tài chính & hoàn vốn",
+  environment: "Hiệu quả môi trường",
+};
+
+const resultFieldLabels: Record<string, string> = {
+  province: "Tỉnh/thành", region: "Vùng", region_solar_factor: "Hệ số bức xạ",
+  bill_type: "Loại khách hàng", monthly_bill_vnd: "Hóa đơn tháng (VNĐ)", roof_type: "Loại mái",
+  roof_area_m2: "Diện tích mái (m²)", day_usage_percent: "Dùng điện ban ngày (%)", night_usage_percent: "Dùng điện ban đêm (%)",
+  load_profile: "Loại tải", phase_type: "Nguồn điện", install_timing_label: "Dự kiến triển khai",
+  system_title: "Hệ thống", system_label: "Phương án", estimated_kwp: "Công suất đề xuất (kWp)",
+  estimated_panels: "Số tấm pin", inverter_kw: "Công suất inverter (kW)", estimated_storage_kwh: "Pin lưu trữ (kWh)",
+  required_roof_area_m2: "Diện tích mái cần dùng (m²)", roof_potential_kwp: "Tiềm năng mái (kWp)", roof_limited: "Bị giới hạn bởi mái",
+  storage_decision: "Khuyến nghị pin lưu trữ", monthly_production_kwh: "Sản lượng tháng (kWh)", annual_production_kwh: "Sản lượng năm (kWh)",
+  bill_offset_percent: "Tỷ lệ giảm hóa đơn (%)", monthly_saving_vnd: "Tiết kiệm tháng (VNĐ)", annual_saving_vnd: "Tiết kiệm năm (VNĐ)",
+  bill_after_solar_vnd: "Hóa đơn sau Solar (VNĐ)", lifetime_saving_25_years_vnd: "Tiết kiệm 25 năm (VNĐ)",
+  cost_min_million_vnd: "Đầu tư tối thiểu (triệu)", cost_max_million_vnd: "Đầu tư tối đa (triệu)",
+  average_investment_million_vnd: "Đầu tư trung bình (triệu)", payback_min_years: "Hoàn vốn sớm nhất (năm)",
+  payback_max_years: "Hoàn vốn dài nhất (năm)", payback_average_years: "Hoàn vốn dự kiến (năm)",
+  net_gain_25_years_million_vnd: "Lợi ích ròng 25 năm (triệu)", co2_reduction_ton_per_year: "Giảm CO₂/năm (tấn)",
+  tree_equivalent: "Tương đương số cây", motorbike_km_equivalent: "Tương đương km xe máy",
+};
+
+function ResultValue({ value }: { value: unknown }) {
+  if (typeof value === "boolean") return <>{value ? "Có" : "Không"}</>;
+  if (typeof value === "number") return <>{value.toLocaleString("vi-VN")}</>;
+  return <>{String(value ?? "—")}</>;
+}
+
 export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const supabase = createSupabaseAdminClient();
@@ -64,6 +96,31 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
               <Field label="UTM source / medium" value={[lead.utm_source, lead.utm_medium].filter(Boolean).join(" / ")} /><Field label="UTM campaign" value={lead.utm_campaign} />
               <Field label="UTM term" value={lead.utm_term} /><Field label="GCLID / FBCLID" value={lead.gclid || lead.fbclid} />
             </ThemeCard>
+            {lead.calculator_result && Object.keys(lead.calculator_result).length ? (
+              <ThemeCard className="p-6">
+                <h2 className="text-xl font-semibold text-[color:var(--text)]">Kết quả tính toán gửi kèm</h2>
+                <div className="mt-5 space-y-6">
+                  {Object.entries(lead.calculator_result as Record<string, unknown>).map(([sectionKey, sectionValue]) => {
+                    if (!sectionValue || typeof sectionValue !== "object" || Array.isArray(sectionValue)) return null;
+                    return (
+                      <section key={sectionKey}>
+                        <h3 className="text-sm font-semibold text-cyan-500">{resultSectionLabels[sectionKey] || sectionKey}</h3>
+                        <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                          {Object.entries(sectionValue as Record<string, unknown>)
+                            .filter(([key]) => !["region", "install_timing", "estimated_storage_label", "defer_storage_for_payback", "flight_equivalent", "carbon_value_million_vnd", "conservative_payback_years", "optimistic_payback_years"].includes(key))
+                            .map(([key, value]) => (
+                              <div key={key} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                                <div className="text-xs text-[color:var(--muted)]">{resultFieldLabels[key] || key.replaceAll("_", " ")}</div>
+                                <div className="mt-1 break-words font-medium text-[color:var(--text)]"><ResultValue value={value} /></div>
+                              </div>
+                            ))}
+                        </div>
+                      </section>
+                    );
+                  })}
+                </div>
+              </ThemeCard>
+            ) : null}
           </div>
           <ThemeCard className="h-fit p-6">
             <h2 className="text-xl font-semibold text-[color:var(--text)]">Cập nhật xử lý</h2>
