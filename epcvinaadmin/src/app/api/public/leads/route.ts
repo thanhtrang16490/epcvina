@@ -1,5 +1,6 @@
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { notifyTelegramAboutLead } from "@/lib/telegram-leads";
+import { sendMetaLeadEvent } from "@/lib/meta-capi";
 import { createHmac } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -163,9 +164,29 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase.from("crm_leads").insert(payload).select("id").single();
     if (error) throw error;
 
-    const telegramStatus = await notifyTelegramAboutLead({ id: data.id, ...payload });
+    const [telegramStatus, metaCapiStatus] = await Promise.all([
+      notifyTelegramAboutLead({ id: data.id, ...payload }),
+      sendMetaLeadEvent({
+        eventId: data.id,
+        eventSourceUrl: payload.landing_page,
+        phone,
+        email: payload.email,
+        clientIpAddress: clientKey !== "unknown" ? clientKey : null,
+        clientUserAgent: request.headers.get("user-agent"),
+        fbclid: payload.fbclid,
+      }),
+    ]);
 
-    return NextResponse.json({ success: true, accepted: true, lead_id: data.id, telegram_status: telegramStatus }, { status: 201, headers });
+    return NextResponse.json(
+      {
+        success: true,
+        accepted: true,
+        lead_id: data.id,
+        telegram_status: telegramStatus,
+        meta_capi_status: metaCapiStatus,
+      },
+      { status: 201, headers },
+    );
   } catch (error) {
     console.error("CRM lead intake failed", error);
     return NextResponse.json({ success: false, message: "Chưa thể ghi nhận thông tin. Vui lòng thử lại." }, { status: 500, headers });
