@@ -1,4 +1,5 @@
 import { ArrowRight, CalendarCheck, CheckCircle, MapPin, TrendDown } from '@phosphor-icons/react';
+import { trackConversionEvent } from '../../../lib/tracking';
 
 export default function BeforeAfterBillsSection() {
   const bills = [
@@ -166,7 +167,7 @@ export default function BeforeAfterBillsSection() {
           </div>
           <a 
             href="#calculator" 
-            onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'bill_case_calculator_click', { event_category: 'engagement', event_label: 'family_landing' })}
+            onClick={() => trackConversionEvent('bill_case_calculator_click', { event_label: 'family_landing', conversion_action: 'bill_case_calculator_click' })}
             className="inline-flex min-h-[48px] w-full flex-shrink-0 items-center justify-center gap-2 rounded-xl bg-orange-500 px-5 py-3 text-[15px] font-black text-white shadow-lg shadow-orange-500/20 transition-[background-color,box-shadow] hover:bg-orange-600 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 sm:w-auto sm:px-6"
           >
             Tính cho nhà tôi

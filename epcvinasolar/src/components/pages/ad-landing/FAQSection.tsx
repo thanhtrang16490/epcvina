@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CaretDown, CaretUp } from '@phosphor-icons/react';
 import { FAQ_DATA } from './data';
+import { trackConversionEvent } from '../../../lib/tracking';
 
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -57,16 +58,16 @@ export default function FAQSection() {
         <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-4 text-center shadow-[0_18px_50px_-42px_rgba(15,23,42,.45)] sm:mt-10 sm:p-5">
           <p className="mb-4 text-sm leading-relaxed text-slate-600">Vẫn còn thắc mắc về mái nhà, pin lưu trữ hoặc hoàn vốn?</p>
           <div className="grid gap-2 sm:grid-cols-2">
-            <a
-              href="#contact"
-              onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'faq_survey_click', { event_category: 'conversion' })}
-              className="inline-flex min-h-[46px] items-center justify-center rounded-xl bg-orange-500 px-5 text-sm font-black text-white transition-colors hover:bg-orange-600 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-            >
-              Nhận khảo sát miễn phí
-            </a>
+          <a
+            href="#contact"
+            onClick={() => trackConversionEvent('faq_survey_click', { event_label: 'faq_section', conversion_action: 'faq_survey_click' })}
+            className="inline-flex min-h-[46px] items-center justify-center rounded-xl bg-orange-500 px-5 text-sm font-black text-white transition-colors hover:bg-orange-600 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
+          >
+            Nhận khảo sát miễn phí
+          </a>
           <a
             href="tel:0988446113"
-            onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'faq_hotline_click', { event_category: 'conversion' })}
+            onClick={() => trackConversionEvent('hotline_click', { event_label: 'faq_section', conversion_action: 'hotline_click_faq_section' })}
             className="inline-flex min-h-[46px] items-center justify-center rounded-xl bg-green-600 px-5 text-sm font-black text-white transition-colors hover:bg-green-700 focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
           >
             Gọi 0988 446 113

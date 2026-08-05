@@ -3,12 +3,7 @@ import { motion } from 'motion/react';
 import { Calculator, Lightning, TrendDown, CheckCircle, CurrencyCircleDollar, Shield, Car, Ruler, ClipboardText } from '@phosphor-icons/react';
 import { POPULAR_COMBOS } from './data';
 import { redirectToThankYou } from '../../../lib/crm-leads';
-
-const trackEvent = (eventName: string, params: Record<string, string | number> = {}) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', eventName, params);
-  }
-};
+import { trackEvent } from '../../../lib/tracking';
 
 export default function CalculatorSection({ onSubmit }: { onSubmit: (data: any) => void | Promise<unknown> }) {
   const resultRef = useRef<HTMLDivElement | null>(null);

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Phone, CheckCircle, Calculator, ShieldCheck, TrendDown, HouseLine } from '@phosphor-icons/react';
+import { trackConversionEvent } from '../../../lib/tracking';
 
 const proofPoints = [
   '15 năm kinh nghiệm cơ điện',
@@ -71,7 +72,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1 sm:pt-2">
               <a
                 href="#calculator"
-                onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'hero_calculator_click', { event_category: 'conversion' })}
+                onClick={() => trackConversionEvent('hero_calculator_click', { event_label: 'hero_section', conversion_action: 'hero_calculator_click' })}
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-3 text-[15px] font-black text-white shadow-lg shadow-orange-500/25 transition-colors hover:bg-orange-400 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#202124] sm:text-base"
               >
                 <Calculator className="w-5 h-5" weight="bold" />
@@ -79,7 +80,7 @@ export default function HeroSection() {
               </a>
               <a
                 href="tel:0988446113"
-                onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'hotline_click', { event_category: 'conversion' })}
+                onClick={() => trackConversionEvent('hotline_click', { event_label: 'hero_section', conversion_action: 'hotline_click_hero_section' })}
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-emerald-300/30 bg-emerald-600 px-6 py-3 text-[15px] font-bold text-white transition-colors hover:bg-emerald-500 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#202124] sm:text-base"
               >
                 <Phone className="w-5 h-5" weight="bold" />
@@ -138,7 +139,7 @@ export default function HeroSection() {
 
               <a
                 href="#calculator"
-                onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'hero_sample_calculator_click', { event_category: 'conversion' })}
+                onClick={() => trackConversionEvent('hero_sample_calculator_click', { event_label: 'hero_section', conversion_action: 'hero_sample_calculator_click' })}
                 className="mt-3 flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-4 py-3.5 text-center font-black text-white transition-colors hover:bg-orange-400 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-orange-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#202124] sm:mt-4"
               >
                 Tự tính theo hóa đơn của tôi

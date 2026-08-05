@@ -1,4 +1,6 @@
 ---
+import GoogleAdsTracking from "../components/analytics/GoogleAdsTracking.astro";
+
 interface Props {
   title?: string;
   description?: string;
@@ -206,6 +208,8 @@ const structuredData = {
         });
       }
     </script>
+
+    <GoogleAdsTracking />
 
     {gtmId && (
       <script is:inline define:vars={{ gtmId }}>

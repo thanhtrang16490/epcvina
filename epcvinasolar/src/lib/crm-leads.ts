@@ -1,3 +1,5 @@
+import { trackEvent } from "./tracking";
+
 export type CrmLeadInput = {
   name?: string;
   phone: string;
@@ -74,8 +76,7 @@ export async function submitCrmLead(input: CrmLeadInput) {
   const result = await response.json().catch(() => ({}));
   if (!response.ok || !result.success) throw new Error(result.message || "Không gửi được thông tin.");
   if (result.accepted && result.lead_id) {
-    window.gtag?.("event", "generate_lead", {
-      event_category: "conversion",
+    trackEvent("generate_lead", {
       source_form: input.source_form,
       event_id: result.lead_id,
     });

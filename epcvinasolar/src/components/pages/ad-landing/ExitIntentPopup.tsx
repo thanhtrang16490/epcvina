@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { X, Phone, Gift } from '@phosphor-icons/react';
 import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
+import { trackConversionEvent } from '../../../lib/tracking';
 
 export default function ExitIntentPopup() {
   const [show, setShow] = useState(false);
@@ -41,6 +42,7 @@ export default function ExitIntentPopup() {
     setSubmitError('');
     try {
       await submitCrmLead({ phone: formData.phone, source_form: 'family_exit_popup', message: 'Khách yêu cầu nhận báo giá qua popup thoát trang.' });
+      trackConversionEvent('lead_submit', { event_label: 'family_exit_popup', conversion_action: 'lead_submit_exit_popup' });
       redirectToThankYou('family_exit_popup');
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
@@ -126,13 +128,7 @@ export default function ExitIntentPopup() {
             <p className="text-sm text-slate-600 mb-2">Hoặc gọi ngay:</p>
             <a
               href="tel:0988446113"
-              onClick={() => {
-                if (typeof window !== 'undefined' && window.gtag) {
-                  window.gtag('event', 'exit_popup_hotline', {
-                    event_category: 'conversion',
-                  });
-                }
-              }}
+              onClick={() => trackConversionEvent('hotline_click', { event_label: 'exit_popup', conversion_action: 'hotline_click_exit_popup' })}
               className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-lg transition-all"
             >
               <Phone className="w-5 h-5" />

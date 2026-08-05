@@ -1,4 +1,5 @@
 import { Phone, ChatCircle } from '@phosphor-icons/react';
+import { trackConversionEvent } from '../../../lib/tracking';
 
 export default function MicroNavigation() {
   const navItems = [
@@ -44,7 +45,7 @@ export default function MicroNavigation() {
             {/* Hotline - Desktop */}
             <a
               href="tel:0988446113"
-              onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_hotline_click', { event_category: 'conversion' })}
+              onClick={() => trackConversionEvent('hotline_click', { event_label: 'nav_hotline', conversion_action: 'hotline_click_nav_hotline' })}
 	              className="hidden md:flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors cursor-pointer min-h-[44px] focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
               aria-label="Gọi hotline 0988 446 113"
             >
@@ -57,7 +58,7 @@ export default function MicroNavigation() {
               href="https://zalo.me/0988446113"
               target="_blank" rel="noopener noreferrer"
 
-              onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_zalo_click', { event_category: 'conversion' })}
+              onClick={() => trackConversionEvent('zalo_click', { event_label: 'nav_zalo', conversion_action: 'zalo_click_nav_zalo' })}
 	              className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors cursor-pointer min-h-[44px] focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
               aria-label="Chat Zalo với EPCVINA"
             >
@@ -68,7 +69,7 @@ export default function MicroNavigation() {
             {/* CTA Button */}
             <a
               href="#contact"
-              onClick={() => typeof window !== 'undefined' && window.gtag && window.gtag('event', 'nav_cta_click', { event_category: 'conversion' })}
+              onClick={() => trackConversionEvent('nav_cta_click', { event_label: 'nav_cta', conversion_action: 'nav_cta_click' })}
 	              className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-3 py-2 rounded-lg transition-[background-color,box-shadow] shadow-md hover:shadow-lg cursor-pointer min-h-[40px] text-[13px] md:min-h-[44px] md:px-5 md:text-sm focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
               aria-label="Nhận tư vấn miễn phí"
             >

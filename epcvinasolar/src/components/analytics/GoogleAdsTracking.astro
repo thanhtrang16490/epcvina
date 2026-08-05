@@ -1,0 +1,26 @@
+---
+const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
+---
+
+{googleAdsId && (
+  <>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}></script>
+    <script is:inline define:vars={{ googleAdsId }}>
+      window.dataLayer = window.dataLayer || [];
+      window.epcConversionLabels = window.epcConversionLabels || {
+        lead_submit: 'epcvina_lead_submit',
+        hotline_click: 'epcvina_hotline_click',
+        zalo_click: 'epcvina_zalo_click',
+      };
+      window.epcTrackConversion = window.epcTrackConversion || function(eventName, params) {
+        if (window.gtag) {
+          const defaultLabel = window.epcConversionLabels[eventName] || eventName;
+          window.gtag('event', eventName, Object.assign({ event_category: 'conversion', conversion_label: defaultLabel }, params || {}));
+        }
+      };
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', googleAdsId);
+    </script>
+  </>
+)}

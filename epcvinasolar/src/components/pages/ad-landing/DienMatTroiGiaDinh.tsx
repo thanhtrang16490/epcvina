@@ -12,6 +12,7 @@ import PaymentOptionsSection from './PaymentOptionsSection';
 import FAQSection from './FAQSection';
 import ExitIntentPopup from './ExitIntentPopup';
 import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
+import { trackEvent } from '../../../lib/tracking';
 
 const whyEpcvina = [
   { icon: Shield, title: 'Bảo hành rõ điều kiện', desc: 'Thiết bị chính hãng, hồ sơ bàn giao minh bạch' },
@@ -38,12 +39,6 @@ const brands = [
   { name: 'CFE', desc: 'Pin lưu trữ năng lượng', bg: 'bg-lime-50', border: 'border-lime-100' },
 ];
 
-const trackEvent = (eventName: string, params: Record<string, string | number> = {}) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', eventName, params);
-  }
-};
-
 export default function DienMatTroiGiaDinh() {
   const [formData, setFormData] = useState({
     name: '',
@@ -66,6 +61,7 @@ export default function DienMatTroiGiaDinh() {
     setFormError('');
     try {
       await submitCrmLead({ ...formData, source_form: 'family_landing_contact' });
+      trackEvent('lead_submit', { event_label: 'family_landing_contact', conversion_action: 'lead_submit_family_landing_contact' });
       redirectToThankYou('family_landing_contact');
     } catch (error) {
       setFormError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
@@ -80,14 +76,17 @@ export default function DienMatTroiGiaDinh() {
       <HeroSection />
       <SocialProofSection />
       <CalculatorSection
-        onSubmit={async (data) => submitCrmLead({
-          name: data.name,
-          phone: data.phone,
-          message: `Hộ gia đình cần lắp điện mặt trời. Hệ đề xuất: ${data.system_size} kWp`,
-          source_form: 'family_inline_calculator',
-          system_size_kw: Number(data.system_size),
-          calculator_result: { combo_index: data.combo_index },
-        })}
+        onSubmit={async (data) => {
+          await submitCrmLead({
+            name: data.name,
+            phone: data.phone,
+            message: `Hộ gia đình cần lắp điện mặt trời. Hệ đề xuất: ${data.system_size} kWp`,
+            source_form: 'family_inline_calculator',
+            system_size_kw: Number(data.system_size),
+            calculator_result: { combo_index: data.combo_index },
+          });
+          trackEvent('lead_submit', { event_label: 'family_inline_calculator', conversion_action: 'lead_submit_family_inline_calculator' });
+        }}
       />
       <div className="hidden md:block">
         <VideoShowcaseSection />

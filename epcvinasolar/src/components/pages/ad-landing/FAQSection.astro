@@ -182,7 +182,7 @@
       <p class="text-slate-600 mb-4">Vẫn còn thắc mắc?</p>
       <a
         href="tel:0988446113"
-        onclick="if (typeof window !== 'undefined' && window.gtag) { window.gtag('event', 'faq_hotline_click', { event_category: 'conversion' }); }"
+        onclick={`window.epcTrackConversion && window.epcTrackConversion('hotline_click', { event_label: 'faq_section', conversion_action: 'hotline_click_faq_section' })`}
         class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-lg transition-all cursor-pointer min-h-[44px]"
         aria-label="Gọi tư vấn 0988 446 113"
       >
