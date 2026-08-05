@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
-const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '1716110676297295';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
