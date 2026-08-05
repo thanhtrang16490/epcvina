@@ -1,6 +1,4 @@
 ---
-import GoogleAdsTracking from "../components/analytics/GoogleAdsTracking.astro";
-
 interface Props {
   title?: string;
   description?: string;
@@ -180,36 +178,32 @@ const structuredData = {
       })();
     </script>
 
-    <!-- Google Analytics - Deferred for Mobile Performance -->
+    <!-- Google tag (Google Analytics + Google Ads) -->
     <script 
       async 
-      src="https://www.googletagmanager.com/gtag/js?id=G-2VLQ1GQBQL"
+      src="https://www.googletagmanager.com/gtag/js?id=AW-18369898149"
       onload="window.gtagLoaded=true"
     ></script>
     <script is:inline>
-      // Defer GA initialization until after page load on mobile
-      function initGA() {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-2VLQ1GQBQL', {
-          'send_page_view': false, // Manual control
-          'transport_type': 'beacon' // Better for mobile
-        });
-        gtag('event', 'page_view');
-      }
-      
-      // Initialize after page load to not block rendering
-      if (document.readyState === 'complete') {
-        setTimeout(initGA, 100);
-      } else {
-        window.addEventListener('load', function() {
-          setTimeout(initGA, 100);
-        });
-      }
-    </script>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-2VLQ1GQBQL');
+      window.gtag('config', 'AW-18369898149');
 
-    <GoogleAdsTracking />
+      window.epcConversionLabels = window.epcConversionLabels || {
+        lead_submit: 'epcvina_lead_submit',
+        hotline_click: 'epcvina_hotline_click',
+        zalo_click: 'epcvina_zalo_click',
+      };
+      window.epcTrackConversion = window.epcTrackConversion || function(eventName, params) {
+        var defaultLabel = window.epcConversionLabels[eventName] || eventName;
+        window.gtag('event', eventName, Object.assign({
+          event_category: 'conversion',
+          conversion_label: defaultLabel
+        }, params || {}));
+      };
+    </script>
 
     {gtmId && (
       <script is:inline define:vars={{ gtmId }}>
