@@ -3,7 +3,7 @@ name: "Pin lưu trữ C&I CFE 250H-PV-STS"
 brand: "CFE"
 category: "hv-battery"
 model: "C&I 250H-PV-STS"
-description: "⭐ Model: CFE 250H-PV-STS ⭐ Công suất định mức: 250 kW ⭐ Dung lượng hệ thống: 522,48 kWh ⭐ Điện áp hoạt động: 728 – 949 V ⭐ Dòng xả tối đa: 360 A ⭐ Dòng sạc/xả chuyển đổi: ⭐ MPPT: 4 bộ × 63 kW (tổng 252 kW), hiệu suất 99% ⭐ Hiệu suất hệ thống: >88% ⭐ Kích thước: 2.365 × 1.975 × 1.373 mm ⭐ Khối lượng: 5 tấn ⭐ Chu kỳ vòng đời: ≥8.000 chu kỳ (cell LFP 3,2 V – 314 Ah) ⭐ Nhiệt độ vận hành: -20°C đến +55°C ⭐ Cấp bảo vệ: IP54, chống ăn mòn C4 ⭐ Phương thức làm mát: Làm mát bằng chất lỏng ⭐ Hệ thống chữa cháy: Aerosol ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản (JGP) là nhà phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay 098 5533 498 để được tư vấn & hỗ trợ bảo hành miễn phí!"
+description: "⭐ Model: CFE 250H-PV-STS ⭐ Công suất định mức: 250 kW ⭐ Dung lượng hệ thống: 522,48 kWh ⭐ Điện áp hoạt động: 728 – 949 V ⭐ Dòng xả tối đa: 360 A ⭐ Dòng sạc/xả chuyển đổi: ⭐ MPPT: 4 bộ × 63 kW (tổng 252 kW), hiệu suất 99% ⭐ Hiệu suất hệ thống: >88% ⭐ Kích thước: 2.365 × 1.975 × 1.373 mm ⭐ Khối lượng: 5 tấn ⭐ Chu kỳ vòng đời: ≥8.000 chu kỳ (cell LFP 3,2 V – 314 Ah) ⭐ Nhiệt độ vận hành: -20°C đến +55°C ⭐ Cấp bảo vệ: IP54, chống ăn mòn C4 ⭐ Phương thức làm mát: Làm mát bằng chất lỏng ⭐ Hệ thống chữa cháy: Aerosol ⭐ Bảo hành: 5 năm EPCVINA Solar là nhà phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay 0988 446 113 để được tư vấn & hỗ trợ bảo hành miễn phí!"
 main_image: "/images/products/pin-luu-tru-c-i-cfe-250h-pv-sts/pin-luu-tru-c-i-cfe-250h-pv-sts.png"
 is_available: true
 show_on_homepage: false
@@ -42,7 +42,7 @@ features:
 
 ## Mô tả
 
-⭐ Model: CFE 250H-PV-STS ⭐ Công suất định mức: 250 kW ⭐ Dung lượng hệ thống: 522,48 kWh ⭐ Điện áp hoạt động: 728 – 949 V ⭐ Dòng xả tối đa: 360 A ⭐ Dòng sạc/xả chuyển đổi: ⭐ MPPT: 4 bộ × 63 kW (tổng 252 kW), hiệu suất 99% ⭐ Hiệu suất hệ thống: >88% ⭐ Kích thước: 2.365 × 1.975 × 1.373 mm ⭐ Khối lượng: 5 tấn ⭐ Chu kỳ vòng đời: ≥8.000 chu kỳ (cell LFP 3,2 V – 314 Ah) ⭐ Nhiệt độ vận hành: -20°C đến +55°C ⭐ Cấp bảo vệ: IP54, chống ăn mòn C4 ⭐ Phương thức làm mát: Làm mát bằng chất lỏng ⭐ Hệ thống chữa cháy: Aerosol ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản (JGP) là nhà phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay 098 5533 498 để được tư vấn & hỗ trợ bảo hành miễn phí!
+⭐ Model: CFE 250H-PV-STS ⭐ Công suất định mức: 250 kW ⭐ Dung lượng hệ thống: 522,48 kWh ⭐ Điện áp hoạt động: 728 – 949 V ⭐ Dòng xả tối đa: 360 A ⭐ Dòng sạc/xả chuyển đổi: ⭐ MPPT: 4 bộ × 63 kW (tổng 252 kW), hiệu suất 99% ⭐ Hiệu suất hệ thống: >88% ⭐ Kích thước: 2.365 × 1.975 × 1.373 mm ⭐ Khối lượng: 5 tấn ⭐ Chu kỳ vòng đời: ≥8.000 chu kỳ (cell LFP 3,2 V – 314 Ah) ⭐ Nhiệt độ vận hành: -20°C đến +55°C ⭐ Cấp bảo vệ: IP54, chống ăn mòn C4 ⭐ Phương thức làm mát: Làm mát bằng chất lỏng ⭐ Hệ thống chữa cháy: Aerosol ⭐ Bảo hành: 5 năm EPCVINA Solar là nhà phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay 0988 446 113 để được tư vấn & hỗ trợ bảo hành miễn phí!
 
 ## Thông số kỹ thuật
 

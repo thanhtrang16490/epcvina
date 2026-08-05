@@ -281,7 +281,7 @@ function SolutionDetailModal({ sol, onClose, isClosing }: { sol: SolutionCard; o
         {/* Action buttons — always visible at bottom */}
         <div className="flex gap-2.5 mx-4 my-3 flex-shrink-0">
           <a
-            href="/lien-he"
+            href="/calculator"
             className="btn-scale flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
             style={{ background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' }}
           >
@@ -950,7 +950,7 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
 
       <div className="flex gap-2.5 mx-4 mb-4">
         <a
-          href="/lien-he"
+          href="/calculator"
           className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm"
           style={{ background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' }}
         >

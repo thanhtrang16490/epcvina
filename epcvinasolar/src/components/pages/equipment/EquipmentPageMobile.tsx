@@ -353,9 +353,9 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
       }`}>
         {/* Title Row */}
         <div className="px-4 py-3 border-b border-gray-100">
-          <h1 className="text-xl font-bold text-gray-900">
+          <h2 className="text-xl font-bold text-gray-900">
             {meta?.label || 'Thiết bị'}
-          </h1>
+          </h2>
           <p className="text-xs text-gray-500 mt-0.5">
             {allDevices.length} sản phẩm
           </p>
@@ -419,9 +419,9 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-gray-900">
                 {meta?.label || 'Thiết bị'}
-              </h1>
+              </h2>
               <p className="text-sm text-gray-500 mt-0.5">
                 {allDevices.length} sản phẩm từ {brands.length} thương hiệu
               </p>

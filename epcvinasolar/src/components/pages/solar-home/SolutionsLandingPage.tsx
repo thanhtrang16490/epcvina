@@ -147,7 +147,7 @@ export default function SolutionsLandingPage() {
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <a
-                  href="/lien-he"
+                  href="/calculator"
                   className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 shadow-lg shadow-orange-500/25 min-h-[44px]"
                 >
                   Nhận Thiết Kế Sơ Bộ Miễn Phí
@@ -361,7 +361,7 @@ export default function SolutionsLandingPage() {
             <div className="mt-10 text-center">
               <p className="text-gray-600 mb-4">Không chắc giải pháp nào phù hợp?</p>
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors shadow-lg hover:shadow-xl"
               >
                 <Phone className="h-4 w-4" />
@@ -400,7 +400,7 @@ export default function SolutionsLandingPage() {
             <div className="text-center mt-10">
               <p className="text-gray-500 text-sm mb-4">Không tìm thấy cấu hình phù hợp?</p>
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors min-h-[44px] cursor-pointer focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
@@ -613,7 +613,7 @@ export default function SolutionsLandingPage() {
           <AnimateIn delay={200}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 shadow-lg shadow-orange-500/25 min-h-[44px]"
               >
                 Nhận Thiết Kế Sơ Bộ Miễn Phí

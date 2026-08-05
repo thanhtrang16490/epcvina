@@ -140,7 +140,7 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             <a href="tel:0988446113" className="bg-white text-orange-600 font-bold px-8 py-3 rounded-lg hover:bg-orange-50 transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> 0988 446 113
             </a>
-            <a href="/lien-he" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+            <a href="/calculator" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
               Yêu Cầu Báo Giá
             </a>
           </div>

@@ -75,7 +75,7 @@ export default function SacXeDienLandingPage() {
                   <li><strong>Tốc độ:</strong> {item.range}</li>
                   <li><strong>Phù hợp:</strong> {item.suitable}</li>
                 </ul>
-                <a href="/lien-he" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-green-600 hover:bg-slate-100' : 'bg-green-600 text-white hover:bg-green-700'}`}>
+                <a href="/calculator" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-green-600 hover:bg-slate-100' : 'bg-green-600 text-white hover:bg-green-700'}`}>
                   Tư Vấn Lắp Đặt
                 </a>
               </div>

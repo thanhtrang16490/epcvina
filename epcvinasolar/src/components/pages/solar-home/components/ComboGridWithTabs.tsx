@@ -467,7 +467,7 @@ function SystemRow({
       ) : (
         <div className="text-center py-8 text-gray-500">
           <p className="text-sm">Chưa có combo cho cấu hình này</p>
-          <a href="/lien-he" className="text-emerald-600 hover:text-emerald-700 font-medium text-sm mt-2 inline-block">
+          <a href="/calculator" className="text-emerald-600 hover:text-emerald-700 font-medium text-sm mt-2 inline-block">
             Liên hệ để được tư vấn →
           </a>
         </div>

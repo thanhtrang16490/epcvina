@@ -3,7 +3,7 @@ name: "Inverter Hybrid Sungrow MG10RL 10kW"
 brand: "Sungrow"
 category: "hybrid-inverter"
 model: "MG10RL 10kW"
-description: "⭐ Mã sản phẩm: Inverter Sungrow MG10RL ⭐ Công suất: 10 kW – 1 pha ⭐ Số string/MPPT: 3 MPPT – 3 string (1/1/1) ⭐ Trọng lượng: ≤ 25 kg ⭐ Kích thước: 552 × 448 × 250 mm ⭐ Làm mát: Quạt làm mát ⭐ Chứng từ: CO, CQ, VAT ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Sungrow Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+description: "⭐ Mã sản phẩm: Inverter Sungrow MG10RL ⭐ Công suất: 10 kW – 1 pha ⭐ Số string/MPPT: 3 MPPT – 3 string (1/1/1) ⭐ Trọng lượng: ≤ 25 kg ⭐ Kích thước: 552 × 448 × 250 mm ⭐ Làm mát: Quạt làm mát ⭐ Chứng từ: CO, CQ, VAT ⭐ Bảo hành: 5 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của Sungrow Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!"
 main_image: "/images/products/bien-tan-hybrid-sungrow-mg10rl-10kw/bien-tan-hybrid-sungrow-mg10rl-10kw.png"
 is_available: true
 show_on_homepage: false
@@ -55,7 +55,7 @@ specifications:
 
 ## Mô tả
 
-⭐ Mã sản phẩm: Inverter Sungrow MG10RL ⭐ Công suất: 10 kW – 1 pha ⭐ Số string/MPPT: 3 MPPT – 3 string (1/1/1) ⭐ Trọng lượng: ≤ 25 kg ⭐ Kích thước: 552 × 448 × 250 mm ⭐ Làm mát: Quạt làm mát ⭐ Chứng từ: CO, CQ, VAT ⭐ Bảo hành: 5 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của Sungrow Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+⭐ Mã sản phẩm: Inverter Sungrow MG10RL ⭐ Công suất: 10 kW – 1 pha ⭐ Số string/MPPT: 3 MPPT – 3 string (1/1/1) ⭐ Trọng lượng: ≤ 25 kg ⭐ Kích thước: 552 × 448 × 250 mm ⭐ Làm mát: Quạt làm mát ⭐ Chứng từ: CO, CQ, VAT ⭐ Bảo hành: 5 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của Sungrow Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!
 
 ## Thông số kỹ thuật
 

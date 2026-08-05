@@ -76,7 +76,7 @@ export default function BESSLandingPage() {
                     </li>
                   ))}
                 </ul>
-                <a href="/lien-he" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
+                <a href="/calculator" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
                   Tư Vấn Miễn Phí
                 </a>
               </div>

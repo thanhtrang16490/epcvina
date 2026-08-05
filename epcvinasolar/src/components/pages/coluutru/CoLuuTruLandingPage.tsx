@@ -120,7 +120,7 @@ export default function CoLuuTruLandingPage() {
                   <li><strong>Diện tích mái:</strong> {item.area}</li>
                   <li><strong>Phù hợp:</strong> {item.suitable}</li>
                 </ul>
-                <a href="/lien-he" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-blue-600 hover:bg-slate-100' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
+                <a href="/calculator" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-blue-600 hover:bg-slate-100' : 'bg-blue-600 text-white hover:bg-blue-700'}`}>
                   Nhận Tư Vấn
                 </a>
               </div>

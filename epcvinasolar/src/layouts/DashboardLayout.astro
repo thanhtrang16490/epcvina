@@ -23,11 +23,22 @@ const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
 
+const cleanMeta = (value: string) => value.replace(/\s+/g, ' ').trim();
+const truncateMeta = (value: string, maxLength: number) => {
+  const cleanValue = cleanMeta(value);
+  if (cleanValue.length <= maxLength) return cleanValue;
+  const shortened = cleanValue.slice(0, maxLength + 1);
+  const lastSpace = shortened.lastIndexOf(' ');
+  return `${shortened.slice(0, lastSpace > maxLength * 0.7 ? lastSpace : maxLength).trim()}…`;
+};
+const seoTitle = truncateMeta(title, 58);
+const seoDescription = truncateMeta(description, 150);
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "EPC Solar - Công ty Cổ phần Xây lắp EPC Việt Nam",
-  "description": description,
+  "description": seoDescription,
   "url": "https://epcvina.com",
   "logo": "https://epcvina.com/favicon.svg",
   "image": "https://epcvina.com/favicon.svg",
@@ -93,24 +104,29 @@ const structuredData = {
 
 
     <!-- SEO Meta -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalURL.href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <script is:inline>
+      if (window.location.hostname === 'www.epcvina.com') {
+        window.location.replace(`https://epcvina.com${window.location.pathname}${window.location.search}${window.location.hash}`);
+      }
+    </script>
 
     <!-- Open Graph / Facebook / Zalo -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
     <meta property="og:image" content={ogImageURL.href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:alt" content={seoTitle} />
     <meta property="og:locale" content="vi_VN" />
     <meta property="og:site_name" content="EPCVINA Solar" />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:type" content={ogImage.endsWith('.png') ? 'image/png' : 'image/jpeg'} />
     
     <!-- Zalo / Vietnamese Social Networks -->
     <meta property="og:updated_time" content={new Date().toISOString()} />
@@ -119,10 +135,10 @@ const structuredData = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@epcvina" />
     <meta name="twitter:creator" content="@epcvina" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDescription} />
     <meta name="twitter:image" content={ogImageURL.href} />
-    <meta name="twitter:image:alt" content={title} />
+    <meta name="twitter:image:alt" content={seoTitle} />
     
     <!-- Pinterest Rich Pin -->
     <meta name="pinterest-rich-pin" content="true" />
@@ -148,10 +164,18 @@ const structuredData = {
     <!-- Fonts - Match calculator reference -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400..900&display=swap" rel="stylesheet" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400..900&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400..900&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Preload hero image (LCP element) - WebP format for performance -->
-    <link rel="preload" as="image" href="/hero-bg-1920.webp" imagesrcset="/hero-bg-768.webp 768w, /hero-bg-1280.webp 1280w, /hero-bg-1920.webp 1920w" />
+    {Astro.url.pathname === '/' && (
+      <link rel="preload" as="image" href="/hero-bg-1920.webp" imagesrcset="/hero-bg-768.webp 768w, /hero-bg-1280.webp 1280w, /hero-bg-1920.webp 1920w" imagesizes="100vw" fetchpriority="high" />
+    )}
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
@@ -179,11 +203,7 @@ const structuredData = {
     </script>
 
     <!-- Google tag (Google Analytics + Google Ads) -->
-    <script 
-      async 
-      src="https://www.googletagmanager.com/gtag/js?id=AW-18369898149"
-      onload="window.gtagLoaded=true"
-    ></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18369898149"></script>
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
@@ -203,6 +223,7 @@ const structuredData = {
           conversion_label: defaultLabel
         }, params || {}));
       };
+
     </script>
 
     {gtmId && (

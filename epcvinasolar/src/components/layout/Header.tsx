@@ -35,6 +35,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
             <button 
               onClick={() => navigateTo('/')}
               className={`p-2 -ml-2 ${iconColor}`}
+              aria-label="Quay lại trang chủ"
             >
               <CaretLeft className="h-6 w-6" />
             </button>
@@ -42,6 +43,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
             <button 
               onClick={onMenuClick}
               className={`p-2 -ml-2 ${iconColor}`}
+              aria-label="Mở menu"
             >
               <List className="h-6 w-6" />
             </button>
@@ -52,8 +54,8 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
             <img
               src={logoSrc}
               alt="EPCVINA Solar"
-              width={164}
-              height={42}
+              width={1024}
+              height={159}
               className={`h-7 w-auto ${isDarkTheme ? 'drop-shadow-sm' : ''}`}
             />
           </a>

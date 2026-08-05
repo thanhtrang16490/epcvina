@@ -225,7 +225,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
               </div>
               <div>
                 <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
-                <h1 className="text-3xl font-bold">{CATEGORY_NAMES[product.category] || product.category}</h1>
+                <p className="text-3xl font-bold">{CATEGORY_NAMES[product.category] || product.category}</p>
               </div>
             </div>
             <p className="text-gray-300 max-w-2xl text-base leading-relaxed">

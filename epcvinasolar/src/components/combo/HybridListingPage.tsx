@@ -17,8 +17,8 @@ const FALLBACK_COMBOS: ComboCardData[] = [
 ];
 
 export default function HybridListingPage() {
-  const [combos, setCombos] = useState<ComboCardData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [combos, setCombos] = useState<ComboCardData[]>(FALLBACK_COMBOS);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchCombos() {
@@ -160,7 +160,7 @@ export default function HybridListingPage() {
             <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
               <BatteryHigh className="h-5 w-5 text-blue-600" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo Hybrid</h1>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo Hybrid</h2>
           </div>
           <p className="text-gray-500 text-sm sm:text-base max-w-3xl">
             Hệ thống điện mặt trời Hybrid có pin lưu trữ, đảm bảo nguồn điện liên tục 24/7, 

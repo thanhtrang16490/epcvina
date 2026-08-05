@@ -92,7 +92,7 @@ export default function CTASection() {
               {/* Row 1: Họ tên + SĐT */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">
+                  <label htmlFor="consultation-need" className="block text-xs font-semibold text-gray-600 mb-1.5 uppercase tracking-wide">
                     Họ và tên <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -157,6 +157,7 @@ export default function CTASection() {
                     Nhu cầu <span className="text-red-500">*</span>
                   </label>
                   <select
+                    id="consultation-need"
                     name="need"
                     value={form.need}
                     onChange={handleChange}

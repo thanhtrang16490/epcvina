@@ -43,7 +43,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 min-w-0">
               <a
-                href={isHybrid ? '/solar-home/hybrid' : '/solar-home/on-grid'}
+                href={isHybrid ? '/solar-home/hybrid' : '/on-grid'}
                 className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors flex-shrink-0"
               >
                 <ArrowLeft className="h-5 w-5" />
@@ -64,7 +64,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
               </div>
             </div>
             <a
-              href="/lien-he"
+              href="/calculator"
               className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors flex-shrink-0"
             >
               <Phone className="h-4 w-4" />
@@ -374,7 +374,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                 Liên hệ với chúng tôi để được khảo sát miễn phí và nhận báo giá chi tiết trong 24 giờ.
               </p>
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-emerald-600 font-semibold rounded-full hover:bg-emerald-50 transition-colors"
               >
                 <Phone className="h-5 w-5" />
@@ -391,7 +391,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
       {/* Mobile Fixed CTA */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-20">
         <a
-          href="/lien-he"
+          href="/calculator"
           className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 text-white font-semibold rounded-full"
         >
           <Phone className="h-5 w-5" />

@@ -39,7 +39,7 @@ const menuItems: MenuItem[] = [
     icon: Package,
     children: [
       { name: 'Tất cả Combo', href: '/solar-home/he-thong' },
-      { name: 'Combo On-Grid', href: '/solar-home/on-grid' },
+      { name: 'Combo On-Grid', href: '/on-grid' },
       { name: 'Combo Hybrid', href: '/solar-home/hybrid' },
     ],
   },
@@ -290,7 +290,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <a href="/" className="flex items-center gap-3">
             <img src="/logo-epcvina-solar.png" alt="EPC Solar" className="h-8 w-auto" loading="lazy" />
           </a>
-          <button onClick={onClose} className="p-2 -mr-2 text-gray-600 hover:text-gray-900">
+          <button onClick={onClose} className="p-2 -mr-2 text-gray-600 hover:text-gray-900" aria-label="Đóng menu">
             <X className="h-5 w-5" />
           </button>
         </div>

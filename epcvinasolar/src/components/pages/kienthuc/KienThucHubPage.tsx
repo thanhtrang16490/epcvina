@@ -188,7 +188,7 @@ export default function KienThucHubPage() {
             <a href="tel:0988446113" className="bg-white text-orange-600 font-bold px-8 py-3 rounded-lg hover:bg-orange-50 transition-all">
               Gọi: 0988 446 113
             </a>
-            <a href="/lien-he" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+            <a href="/calculator" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
               Gửi Yêu Cầu Tư Vấn
             </a>
           </div>

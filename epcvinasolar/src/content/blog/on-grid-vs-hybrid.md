@@ -6,7 +6,7 @@ author: "EPC Solar"
 tags: ["on-grid", "hybrid", "so-sanh", "huong-dan"]
 ---
 
-# On-Grid vs Hybrid Solar: Nên Chọn Cái Nào?
+## On-Grid vs Hybrid Solar: Nên Chọn Cái Nào?
 
 Khi quyết định lắp đặt hệ thống điện mặt trời, câu hỏi đầu tiên mà hầu hết gia chủ đều gặp phải là: **nên chọn hệ thống On-Grid hay Hybrid?** Đây là một quyết định quan trọng, ảnh hưởng trực tiếp đến chi phí đầu tư ban đầu, khoản tiết kiệm hàng tháng, và trải nghiệm sử dụng điện trong những năm tiếp theo.
 
@@ -218,4 +218,4 @@ Cả hai giải pháp đều là khoản đầu tư sinh lời — câu hỏi ch
 
 **Bước tiếp theo**: Liên hệ EPC Solar để được khảo sát mái nhà miễn phí và nhận báo giá chi tiết trong vòng 24 giờ. Đội ngũ kỹ thuật của chúng tôi sẽ tư vấn giải pháp tối ưu nhất dựa trên thực tế mái nhà, thói quen tiêu thụ điện và ngân sách của gia đình bạn.
 
-👉 [Xem chi tiết hệ thống On-Grid](/solar-home/on-grid) | [Xem chi tiết hệ thống Hybrid](/solar-home/hybrid) | [Liên hệ tư vấn](/lien-he)
+👉 [Xem chi tiết hệ thống On-Grid](/on-grid) | [Xem chi tiết hệ thống Hybrid](/solar-home/hybrid) | [Liên hệ tư vấn](/lien-he)

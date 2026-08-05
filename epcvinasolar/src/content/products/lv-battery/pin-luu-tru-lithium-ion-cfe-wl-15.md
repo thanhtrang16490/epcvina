@@ -3,7 +3,7 @@ name: "Pin lưu trữ lithium-ion CFE-WL-15"
 brand: "CFE"
 category: "lv-battery"
 model: "CFE-WL-15"
-description: "⭐ Model: CFE-WL-15 ⭐ Điện áp danh định: 51.2V ⭐ Dung lượng danh định: 15.36kWh (dung lượng khả dụng: 13.82kWh) ⭐ Công suất xả tối đa: 10kW ⭐ Kích thước: 564 × 157 × 974 mm ⭐ Bảo hành: 10 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!"
+description: "⭐ Model: CFE-WL-15 ⭐ Điện áp danh định: 51.2V ⭐ Dung lượng danh định: 15.36kWh (dung lượng khả dụng: 13.82kWh) ⭐ Công suất xả tối đa: 10kW ⭐ Kích thước: 564 × 157 × 974 mm ⭐ Bảo hành: 10 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!"
 main_image: "/images/products/pin-luu-tru-lithium-ion-cfe-wl-15/pin-luu-tru-lithium-ion-cfe-wl-15.png"
 is_available: true
 show_on_homepage: false
@@ -40,7 +40,7 @@ specifications:
 
 ## Mô tả
 
-⭐ Model: CFE-WL-15 ⭐ Điện áp danh định: 51.2V ⭐ Dung lượng danh định: 15.36kWh (dung lượng khả dụng: 13.82kWh) ⭐ Công suất xả tối đa: 10kW ⭐ Kích thước: 564 × 157 × 974 mm ⭐ Bảo hành: 10 năm Năng Lượng Xanh Nhật Bản là đơn vị phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE Liên hệ ngay với số 098 5533 498 để được tư vấn, bảo hành miễn phí!
+⭐ Model: CFE-WL-15 ⭐ Điện áp danh định: 51.2V ⭐ Dung lượng danh định: 15.36kWh (dung lượng khả dụng: 13.82kWh) ⭐ Công suất xả tối đa: 10kW ⭐ Kích thước: 564 × 157 × 974 mm ⭐ Bảo hành: 10 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!
 
 ## Thông số kỹ thuật
 

@@ -108,7 +108,7 @@ export default function KetHopSacXeLandingPage() {
                   <li><strong>Phù hợp:</strong> {item.suitable}</li>
                   <li><strong>Diện tích mái:</strong> {item.area}</li>
                 </ul>
-                <a href="/lien-he" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-green-600 hover:bg-slate-100' : 'bg-green-600 text-white hover:bg-green-700'}`}>
+                <a href="/calculator" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-green-600 hover:bg-slate-100' : 'bg-green-600 text-white hover:bg-green-700'}`}>
                   Nhận Tư Vấn
                 </a>
               </div>

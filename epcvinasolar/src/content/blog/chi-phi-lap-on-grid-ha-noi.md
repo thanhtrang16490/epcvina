@@ -8,7 +8,7 @@ tags: ["on-grid", "chi-phi", "ha-noi", "5kw", "huong-dan"]
 image: "/images/blog/chi-phi-on-grid-ha-noi.webp"
 ---
 
-# Chi Phí Lắp Đặt Điện Mặt Trời On-Grid 5kW Tại Hà Nội 2026
+## Chi Phí Lắp Đặt Điện Mặt Trời On-Grid 5kW Tại Hà Nội 2026
 
 Điện mặt trời On-Grid đang ngày càng trở nên phổ biến tại Hà Nội và các tỉnh phía Bắc nhờ chi phí đầu tư hợp lý và thời gian hoàn vốn ngắn. Tuy nhiên, nhiều gia chủ vẫn băn khoăn: **chi phí thực tế lắp đặt điện mặt trời On-Grid tại Hà Nội là bao nhiêu?**
 

@@ -50,7 +50,7 @@ export default function BaoGiaLandingPage() {
                   <li className="flex justify-between"><span className="text-slate-600">Diện tích mái:</span><span className="font-semibold">{item.area}</span></li>
                   <li className="flex justify-between"><span className="text-slate-600">Tiết kiệm/tháng:</span><span className="font-semibold text-green-600">1.8-2.2 triệu</span></li>
                 </ul>
-                <a href="/lien-he" className="block text-center mt-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-all">
+                <a href="/calculator" className="block text-center mt-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-all">
                   Nhận Báo Giá Chi Tiết
                 </a>
               </div>
@@ -79,7 +79,7 @@ export default function BaoGiaLandingPage() {
                   <li className="flex justify-between"><span>Dự phòng:</span><span className="font-semibold">{item.backup}</span></li>
                   <li className="flex justify-between"><span>Tiết kiệm/tháng:</span><span className="font-semibold">2-4 triệu</span></li>
                 </ul>
-                <a href="/lien-he" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
+                <a href="/calculator" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
                   Nhận Báo Giá Chi Tiết
                 </a>
               </div>

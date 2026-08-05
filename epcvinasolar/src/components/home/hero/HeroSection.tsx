@@ -7,7 +7,7 @@ const RED = '#DC2626';
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded] = useState(true);
   const [statsVisible, setStatsVisible] = useState(false);
 
   // Parallax scroll
@@ -18,12 +18,6 @@ export default function HeroSection() {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Entrance animation trigger
-  useEffect(() => {
-    const timer = setTimeout(() => setLoaded(true), 100);
-    return () => clearTimeout(timer);
   }, []);
 
   // Stats counter animation
@@ -51,6 +45,8 @@ export default function HeroSection() {
           loading="eager"
           fetchPriority="high"
           decoding="async"
+          width="1920"
+          height="1080"
         />
       </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
@@ -64,7 +60,7 @@ export default function HeroSection() {
           {/* Tagline pill */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 backdrop-blur-sm mb-5"
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={false}
             animate={loaded ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -76,21 +72,23 @@ export default function HeroSection() {
 
           {/* Brand logo */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <img
               src="/logo-epcvina-solar-white.png"
               alt="EPCVINA Solar - Chuyên lắp đặt điện mặt trời Hybrid & On-Grid"
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto mx-auto drop-shadow-2xl"
+              className="w-full max-w-[410px] sm:max-w-[514px] md:max-w-[616px] lg:max-w-[719px] h-auto mx-auto drop-shadow-2xl"
+              width="1024"
+              height="159"
             />
           </motion.div>
 
           {/* H1 - Main heading for SEO */}
           <motion.h1
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 max-w-4xl leading-tight tracking-tight"
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -101,7 +99,7 @@ export default function HeroSection() {
           {/* Primary descriptor */}
           <motion.p
             className="text-lg sm:text-xl md:text-2xl font-semibold text-white/90 mb-3 max-w-2xl leading-snug"
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -113,7 +111,7 @@ export default function HeroSection() {
           {/* Short description */}
           <motion.p
             className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto mb-8 leading-relaxed"
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -124,7 +122,7 @@ export default function HeroSection() {
           {/* CTA Buttons */}
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-3"
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >

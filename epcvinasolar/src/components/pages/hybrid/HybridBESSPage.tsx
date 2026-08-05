@@ -400,7 +400,7 @@ function HybridComboCard({ combo }: { combo: typeof FALLBACK_HYBRID_COMBOS[0] })
       {/* Action buttons */}
       <div className="flex gap-2.5 mx-4 mb-4 flex-shrink-0">
         <a
-          href="/lien-he"
+          href="/calculator"
           className="flex-1 h-11 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition-all hover:opacity-90 shadow-sm focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
           style={{ background: 'linear-gradient(135deg, #4f46e5 0%, #6366f1 100%)' }}
         >
@@ -549,7 +549,7 @@ export default function HybridBESSPage() {
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <a
-                  href="/lien-he"
+                  href="/calculator"
                   className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-lg shadow-indigo-500/25 min-h-[44px]"
                 >
                   Nhận tư vấn giải pháp
@@ -941,7 +941,7 @@ export default function HybridBESSPage() {
                 Không tìm thấy cấu hình phù hợp?
               </p>
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full cursor-pointer transition-colors min-h-[44px] focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
@@ -1078,14 +1078,14 @@ export default function HybridBESSPage() {
           <AnimateIn delay={200}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 shadow-lg shadow-indigo-500/25 min-h-[44px]"
               >
                 Tư Vấn Hybrid & BESS
                 <ArrowRight className="h-5 w-5" />
               </a>
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/25 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 min-h-[44px]"
               >
                 Đăng Ký Khảo Sát Miễn Phí

@@ -97,7 +97,7 @@ export function OnGridComboCard({ combo }: { combo: OnGridCombo }) {
       {/* Action buttons */}
       <div className="flex gap-2.5 mx-4 mb-4 flex-shrink-0">
         <a
-          href="/lien-he"
+          href="/calculator"
           className="flex-1 h-11 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition-all hover:opacity-90 shadow-sm focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
           style={{ background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)' }}
         >

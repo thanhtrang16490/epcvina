@@ -160,7 +160,7 @@ export default function ComboCatalogPage() {
             </div>
             <div>
               <p className="text-sm text-gray-400">Giải pháp điện mặt trời trọn gói</p>
-              <h1 className="text-3xl font-bold">Combo Hệ Thống Điện</h1>
+              <p className="text-3xl font-bold">Combo Hệ Thống Điện</p>
             </div>
           </div>
           <p className="text-gray-300 max-w-2xl">

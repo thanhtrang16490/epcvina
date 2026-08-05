@@ -95,7 +95,7 @@ const breadcrumbSchema = {
 
 <DashboardLayout
   title={product.data.name}
-  description={product.data.description || `Chi tiết sản phẩm ${product.data.name} - EPCVINA Solar`}
+  description={`${product.data.name}. ${product.data.description || 'Thiết bị điện mặt trời chính hãng, tư vấn và bảo hành bởi EPCVINA Solar.'}`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

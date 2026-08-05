@@ -208,7 +208,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="/lien-he"
+              href="/calculator"
               className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-orange-700 font-semibold px-8 py-3.5 rounded-xl cursor-pointer transition-all duration-200 focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 shadow-lg"
             >
               <Phone className="h-5 w-5" />

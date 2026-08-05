@@ -75,7 +75,7 @@ export default function NhaPhoLandingPage() {
                   <li><strong>Diện tích:</strong> {item.area}</li>
                   <li><strong>Phù hợp:</strong> {item.suitable}</li>
                 </ul>
-                <a href="/lien-he" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
+                <a href="/calculator" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
                   Nhận Tư Vấn
                 </a>
               </div>

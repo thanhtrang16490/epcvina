@@ -164,7 +164,7 @@ export default function EquipmentPageDesktop({
               </div>
               <div>
                 <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
-                <h1 className="text-3xl font-bold">{meta.label}</h1>
+                <h2 className="text-3xl font-bold">{meta.label}</h2>
               </div>
             </div>
             <p className="text-gray-300 max-w-2xl">{meta?.description}</p>

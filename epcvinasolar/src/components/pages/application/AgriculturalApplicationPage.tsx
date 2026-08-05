@@ -26,7 +26,7 @@ export default function AgriculturalApplicationPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-emerald-700 font-semibold px-8 py-3.5 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 <Phone className="h-5 w-5" />
@@ -377,7 +377,7 @@ export default function AgriculturalApplicationPage() {
             Tối ưu chi phí vận hành – Gia tăng hiệu quả sản xuất – Chủ động nguồn năng lượng cho nông trại của bạn ngay từ hôm nay.
           </p>
           <a
-            href="/lien-he"
+            href="/calculator"
             className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-emerald-700 font-semibold px-8 py-3.5 rounded-lg cursor-pointer transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             <Phone className="h-5 w-5" />

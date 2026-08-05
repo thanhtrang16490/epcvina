@@ -1,7 +1,7 @@
 // EPCVINA Solar — Progressive Web App Service Worker
 // Caching strategies: Cache-first (static), Stale-while-revalidate (pages), Network-first (API)
 
-const CACHE_VERSION = 'epcvina-sw-v2';
+const CACHE_VERSION = 'epcvina-sw-v3';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;

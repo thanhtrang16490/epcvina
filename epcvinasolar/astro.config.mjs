@@ -7,6 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://epcvina.com',
   output: 'static',
+  redirects: {
+    '/projects': '/du-an',
+    '/solar-home/on-grid': '/on-grid',
+  },
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',
@@ -21,6 +25,10 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      filter: (page) => ![
+        'https://epcvina.com/projects/',
+        'https://epcvina.com/solar-home/on-grid/',
+      ].includes(page),
       i18n: {
         defaultLocale: 'vi',
         locales: { vi: 'vi-VN' },

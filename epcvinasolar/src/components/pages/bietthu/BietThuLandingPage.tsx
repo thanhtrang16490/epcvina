@@ -75,7 +75,7 @@ export default function BietThuLandingPage() {
                   <li><strong>Dự phòng:</strong> {item.backup}</li>
                   <li><strong>Hoàn vốn:</strong> 4-6 năm</li>
                 </ul>
-                <a href="/lien-he" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-purple-600 hover:bg-slate-100' : 'bg-purple-600 text-white hover:bg-purple-700'}`}>
+                <a href="/calculator" className={`block text-center mt-6 py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-purple-600 hover:bg-slate-100' : 'bg-purple-600 text-white hover:bg-purple-700'}`}>
                   Tư Vấn Riêng
                 </a>
               </div>

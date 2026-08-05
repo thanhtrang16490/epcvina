@@ -66,9 +66,9 @@ export default function CalculatorPageShell({
         >
           {showHeader ? (
             <div className="mb-3">
-              <h1 className="text-[15px] font-semibold leading-tight" style={{ color: 'var(--ink)' }}>
+              <p className="text-[15px] font-semibold leading-tight" style={{ color: 'var(--ink)' }}>
                 {title}
-              </h1>
+              </p>
               {eyebrow ? (
                 <p className="mt-0.5 text-[13px] leading-tight" style={{ color: 'var(--muted)' }}>
                   {eyebrow}

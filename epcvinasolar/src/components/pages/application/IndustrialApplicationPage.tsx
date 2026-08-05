@@ -346,7 +346,7 @@ export default function IndustrialApplicationPage() {
               Yêu Cầu Tư Vấn Giải Pháp
             </a>
             <a
-              href="/lien-he"
+              href="/calculator"
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white border border-white/30 font-semibold px-8 py-3.5 rounded-xl hover:bg-white/20 transition-colors"
             >
               Liên hệ ngay

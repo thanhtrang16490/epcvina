@@ -117,8 +117,8 @@ export default function HeaderBar() {
           <img
             src={logoSrc}
             alt="EPCVINA Solar"
-            width={160}
-            height={40}
+            width={1024}
+            height={159}
             className={`h-8 md:h-10 w-auto ${isDarkTheme ? 'drop-shadow-sm' : ''}`}
           />
         </a>

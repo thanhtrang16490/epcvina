@@ -11,12 +11,12 @@ export default function FooterSection() {
           {/* Company Info */}
           <div className="sm:col-span-2 lg:col-span-1 pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <div className="mb-4">
-              <img src="/logo-epcvina-solar-white.png" alt="EPCVINA Solar" width={160} height={48} className="h-9 sm:h-12 w-auto" loading="lazy" />
+              <img src="/logo-epcvina-solar-white.png" alt="EPCVINA Solar" width={1024} height={159} className="h-9 sm:h-12 w-auto" loading="lazy" />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-1">
               Điện mặt trời an toàn từ chuyên gia cơ điện.
             </p>
-            <p className="text-xs text-gray-500 leading-relaxed mb-5">
+            <p className="text-xs text-gray-400 leading-relaxed mb-5">
               Tư vấn &middot; Thiết kế &middot; Lắp đặt &middot; Bảo trì
             </p>
 
@@ -72,7 +72,7 @@ export default function FooterSection() {
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Sản phẩm</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/solar-home/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Combo On-Grid</a></li>
+              <li><a href="/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Combo On-Grid</a></li>
               <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Combo Hybrid</a></li>
               <li><a href="/thiet-bi/danh-sach/panel" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Tấm quang năng</a></li>
               <li><a href="/thiet-bi/danh-sach/hybrid-inverter" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Biến tần Hybrid</a></li>
@@ -121,7 +121,7 @@ export default function FooterSection() {
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
                 <a href="tel:0988446113" className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]">
-                  0988 446 113 <span className="text-gray-500">(Mrs. Giang)</span>
+                  0988 446 113 <span className="text-gray-400">(Mrs. Giang)</span>
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -146,7 +146,7 @@ export default function FooterSection() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 space-y-3 text-xs text-gray-500">
+        <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 space-y-3 text-xs text-gray-400">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
             <p>&copy; {new Date().getFullYear()} EPCVINA Solar — Công ty CP Xây Lắp EPC Việt Nam. All rights reserved.</p>
             <div className="flex items-center gap-4">
@@ -154,7 +154,7 @@ export default function FooterSection() {
               <a href="/dieu-khoan" className="hover:text-gray-300 transition-colors cursor-pointer py-1">Điều khoản sử dụng</a>
             </div>
           </div>
-          <div className="text-center sm:text-left leading-relaxed text-gray-500/80">
+          <div className="text-center sm:text-left leading-relaxed text-gray-400">
             <p>CÔNG TY CỔ PHẦN XÂY LẮP EPC VIỆT NAM (EPC VINA.,JSC)</p>
             <p>Giấy chứng nhận đăng ký doanh nghiệp số 0105313377 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 17/05/2011.</p>
           </div>

@@ -77,7 +77,7 @@ export default function ReviewsSection() {
         </motion.div>
 
         {/* Horizontal scroll carousel */}
-        <p className="sm:hidden text-xs text-gray-400 text-center mb-2 animate-pulse">&larr; Vuốt để xem thêm &rarr;</p>
+        <p className="sm:hidden text-xs text-gray-600 text-center mb-2 animate-pulse">&larr; Vuốt để xem thêm &rarr;</p>
         <div className="relative">
           {/* Left fade */}
           <div className="absolute left-0 top-0 bottom-4 w-6 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10 sm:hidden" aria-hidden="true" />

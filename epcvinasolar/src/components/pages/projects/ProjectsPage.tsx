@@ -411,7 +411,7 @@ export default function ProjectsPage() {
             </div>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <a
-                href="/lien-he"
+                href="/calculator"
                 className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
@@ -681,7 +681,7 @@ export default function ProjectsPage() {
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
-                    href="/lien-he"
+                    href="/calculator"
                     className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors duration-200 ease-in-out hover:shadow-xl focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                   >
                     <Phone className="h-5 w-5" aria-hidden="true" />

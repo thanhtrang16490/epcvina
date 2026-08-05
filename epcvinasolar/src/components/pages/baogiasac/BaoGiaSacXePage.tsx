@@ -55,7 +55,7 @@ export default function BaoGiaSacXePage() {
                   <div className="flex items-center gap-2"><Clock className="w-4 h-4" /> Thời gian sạc: <strong>{item.time}</strong></div>
                   <div className="flex items-center gap-2"><Lightning className="w-4 h-4" /> Tốc độ: <strong>{item.range}</strong></div>
                 </div>
-                <a href="/lien-he" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-green-600 hover:bg-slate-100' : 'bg-green-600 text-white hover:bg-green-700'}`}>
+                <a href="/calculator" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-green-600 hover:bg-slate-100' : 'bg-green-600 text-white hover:bg-green-700'}`}>
                   Nhận Báo Giá Chi Tiết
                 </a>
               </div>

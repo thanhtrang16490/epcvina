@@ -19,7 +19,7 @@ export default function BaoGiaPinLuuTruPage() {
               <a href="tel:0988446113" className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all">
                 <Phone className="w-5 h-5" /> Nhận Báo Giá Chi Tiết
               </a>
-              <a href="/lien-he" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20">
+              <a href="/calculator" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20">
                 Tư Vấn Miễn Phí
               </a>
             </div>
@@ -54,7 +54,7 @@ export default function BaoGiaPinLuuTruPage() {
                 <div className={`text-center text-sm mb-6 py-2 rounded-lg ${item.popular ? 'bg-white/20' : 'bg-slate-50'}`}>
                   <Clock className="w-4 h-4 inline mr-1" /> Dự phòng: <strong>{item.backup}</strong>
                 </div>
-                <a href="/lien-he" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
+                <a href="/calculator" className={`block text-center py-3 rounded-lg font-semibold transition-all ${item.popular ? 'bg-white text-orange-500 hover:bg-slate-100' : 'bg-orange-500 text-white hover:bg-orange-600'}`}>
                   Nhận Báo Giá Chi Tiết
                 </a>
               </div>

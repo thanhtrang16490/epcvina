@@ -17,8 +17,8 @@ const FALLBACK_COMBOS: ComboCardData[] = [
 ];
 
 export default function OnGridListingPage() {
-  const [combos, setCombos] = useState<ComboCardData[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [combos, setCombos] = useState<ComboCardData[]>(FALLBACK_COMBOS);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchCombos() {
@@ -160,7 +160,7 @@ export default function OnGridListingPage() {
             <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
               <Sun className="h-5 w-5 text-orange-600" />
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo On-Grid</h1>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Combo On-Grid</h2>
           </div>
           <p className="text-gray-500 text-sm sm:text-base max-w-3xl">
             Hệ thống điện mặt trời On-Grid (Không Pin lưu trữ), là hệ thống vận hành kết hợp giữa 
