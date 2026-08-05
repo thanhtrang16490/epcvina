@@ -224,6 +224,55 @@ const structuredData = {
         }, params || {}));
       };
 
+      // Record every website hotline/Zalo click against its dedicated
+      // Google Ads conversion action. Delegation covers static Astro links
+      // as well as links rendered later by hydrated React components.
+      var adsClickDestinations = {
+        hotline_click: 'AW-18369898149/LJZKCK7ut9wcEKXNubdE',
+        zalo_click: 'AW-18369898149/90_ECKvut9wcEKXNubdE',
+      };
+
+      document.addEventListener('click', function (event) {
+        if (event.defaultPrevented || event.button !== 0) return;
+
+        var target = event.target;
+        if (!(target instanceof Element)) return;
+
+        var link = target.closest('a[href]');
+        if (!link) return;
+
+        var href = link.getAttribute('href') || '';
+        var eventName = href.indexOf('tel:') === 0
+          ? 'hotline_click'
+          : href.indexOf('zalo.me/') !== -1
+            ? 'zalo_click'
+            : '';
+        if (!eventName) return;
+
+        var destination = adsClickDestinations[eventName];
+        var opensNewContext = link.target === '_blank' || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+        var navigated = false;
+        var continueNavigation = function () {
+          if (navigated || opensNewContext) return;
+          navigated = true;
+          window.location.href = link.href;
+        };
+
+        if (!opensNewContext) event.preventDefault();
+
+        window.gtag('event', 'conversion', {
+          send_to: destination,
+          value: 1.0,
+          currency: 'VND',
+          event_callback: continueNavigation,
+          event_timeout: 800,
+        });
+
+        // Preserve navigation if an ad blocker or network issue prevents the
+        // Google callback from running.
+        if (!opensNewContext) window.setTimeout(continueNavigation, 850);
+      }, true);
+
     </script>
 
     {gtmId && (
