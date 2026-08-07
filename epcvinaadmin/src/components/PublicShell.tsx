@@ -1,5 +1,6 @@
 "use client";
 
+import { supabaseBrowserClient } from "@/lib/supabase/browser";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
@@ -11,8 +12,16 @@ const PUBLIC_UNLOCK_STORAGE_KEY = "epcvina_public_unlock_v1";
 export function PublicShell({ children }: { children: ReactNode }) {
   const [passcode, setPasscode] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [accountLabel, setAccountLabel] = useState<string | null>(null);
+  const [accountAvatar, setAccountAvatar] = useState<string | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const digits = useMemo(() => Array.from({ length: 4 }, (_, index) => passcode[index] ?? "•"), [passcode]);
+
+  const accountInitial = useMemo(() => {
+    const source = accountLabel?.trim() || "A";
+    return source[0]?.toUpperCase() || "A";
+  }, [accountLabel]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -20,13 +29,68 @@ export function PublicShell({ children }: { children: ReactNode }) {
     const previousColorScheme = root.style.colorScheme;
     root.dataset.theme = "light";
     root.style.colorScheme = "light";
-    setIsUnlocked(window.localStorage.getItem(PUBLIC_UNLOCK_STORAGE_KEY) === "1");
+
+    const restoreUnlockState = async () => {
+      const storedUnlock = window.localStorage.getItem(PUBLIC_UNLOCK_STORAGE_KEY) === "1";
+      const sessionResult = await supabaseBrowserClient?.auth.getSession();
+      const session = sessionResult?.data.session;
+      const isLoggedIn = Boolean(session);
+      const metadata = session?.user.user_metadata as Record<string, unknown> | undefined;
+      const displayName =
+        (typeof metadata?.full_name === "string" && metadata.full_name) ||
+        (typeof metadata?.name === "string" && metadata.name) ||
+        (typeof metadata?.username === "string" && metadata.username) ||
+        session?.user.email ||
+        session?.user.phone ||
+        "User";
+      setAccountLabel(displayName);
+      setAccountAvatar(
+        (typeof metadata?.avatar_url === "string" && metadata.avatar_url) ||
+          (typeof metadata?.picture === "string" && metadata.picture) ||
+          null,
+      );
+      setIsUnlocked(isLoggedIn || storedUnlock);
+    };
+
+    void restoreUnlockState();
     return () => {
       if (previousTheme) root.dataset.theme = previousTheme;
       else delete root.dataset.theme;
       root.style.colorScheme = previousColorScheme;
     };
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (target?.closest("[data-account-menu]")) return;
+      setMenuOpen(false);
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [menuOpen]);
+
+  const handleLogout = async () => {
+    await supabaseBrowserClient?.auth.signOut();
+    window.localStorage.removeItem(PUBLIC_UNLOCK_STORAGE_KEY);
+    setMenuOpen(false);
+    setIsUnlocked(false);
+    setAccountLabel(null);
+    setAccountAvatar(null);
+    window.location.href = "/login";
+  };
 
   const submitPasscode = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -135,9 +199,53 @@ export function PublicShell({ children }: { children: ReactNode }) {
             <ThemeLinkButton href="/products/public" tone="secondary">
               Sản phẩm
             </ThemeLinkButton>
-            <ThemeLinkButton href="/login" tone="primary">
-              Đăng nhập
-            </ThemeLinkButton>
+            {accountLabel ? (
+              <div className="relative" data-account-menu>
+                <button
+                  type="button"
+                  onClick={() => setMenuOpen((current) => !current)}
+                  className="inline-flex items-center gap-3 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2.5 text-left text-sm font-medium text-[color:var(--text)] shadow-sm transition hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-[color:var(--accent)]/10 text-sm font-semibold text-[color:var(--accent)]">
+                    {accountAvatar ? (
+                      <img src={accountAvatar} alt={accountLabel} className="h-full w-full object-cover" />
+                    ) : (
+                      accountInitial
+                    )}
+                  </span>
+                  <span className="max-w-40 truncate">{accountLabel}</span>
+                  <span className="text-[10px] uppercase tracking-[0.24em] text-[color:var(--muted)]">▾</span>
+                </button>
+
+                {menuOpen ? (
+                  <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 w-64 rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--panel)] p-2 shadow-2xl">
+                    <div className="px-3 py-3">
+                      <div className="text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">Tên user</div>
+                      <div className="mt-1 truncate text-sm font-semibold text-[color:var(--text)]">{accountLabel}</div>
+                    </div>
+                    <div className="h-px bg-[color:var(--border)]" />
+                    <Link
+                      href="/admin"
+                      onClick={() => setMenuOpen(false)}
+                      className="flex rounded-xl px-3 py-2.5 text-sm text-[color:var(--text)] transition hover:bg-[color:var(--bg-elevated)]"
+                    >
+                      Vào dashboard admin
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={handleLogout}
+                      className="mt-1 flex w-full rounded-xl px-3 py-2.5 text-left text-sm text-red-500 transition hover:bg-red-500/10"
+                    >
+                      Đăng xuất
+                    </button>
+                  </div>
+                ) : null}
+              </div>
+            ) : (
+              <ThemeLinkButton href="/login" tone="primary">
+                Đăng nhập
+              </ThemeLinkButton>
+            )}
           </div>
         </div>
       </header>

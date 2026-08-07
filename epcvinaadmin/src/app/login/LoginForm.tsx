@@ -1,12 +1,13 @@
 "use client";
 
 import { supabaseBrowserClient } from "@/lib/supabase/browser";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import type { FormEvent } from "react";
 import { useMemo, useState } from "react";
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,6 +15,7 @@ export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
 
   const isReady = useMemo(() => Boolean(supabaseBrowserClient), []);
+  const redirectTo = searchParams.get("redirectTo") || "/admin";
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -39,7 +41,7 @@ export function LoginForm() {
       }
 
       setMessage("Đăng nhập thành công, đang chuyển vào trang quản trị...");
-      router.replace("/");
+      router.replace(redirectTo);
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Đăng nhập thất bại.");

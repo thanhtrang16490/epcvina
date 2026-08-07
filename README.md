@@ -1,39 +1,47 @@
-# EPC SOLAR - epcvina.com
+# EPCVINA
 
-Website for **EPC SOLAR**, a division of CÔNG TY CỔ PHẦN XÂY LẮP EPC VIỆT NAM, specializing in solar energy solutions including on-grid and hybrid solar power systems.
+Monorepo cho hệ sinh thái EPCVINA, gồm website doanh nghiệp, website điện mặt trời, hệ thống quản trị, API và các ứng dụng di động.
 
-## Tech Stack
+## Ứng dụng chính
 
-- **Framework:** [Astro](https://astro.build/)
-- **UI:** React (islands architecture) + Tailwind CSS v4
-- **Backend:** Supabase
-- **Language:** TypeScript
+| Thư mục | Vai trò | Công nghệ |
+| --- | --- | --- |
+| `epcvinahome/` | Website doanh nghiệp `epcvina.com` | Astro |
+| `epcvinasolar/` | Website điện mặt trời và trang báo giá | Astro, React |
+| `epcvinaadmin/` | CRM và trang quản trị | Next.js, Supabase |
+| `epcvinaapi/` | API dịch vụ | Go |
+| `epcvina-expo/` | Ứng dụng di động | Expo, React Native |
+| `epcvinaminiapp/` | Zalo Mini App | ZMP, React |
+| `solargiare24h/` | Website `solargiare24h.com` | Astro |
+| `epcvinamarketing/` | Tài liệu và tài sản marketing | Markdown, PDF |
 
-## Getting Started
+## Chạy website chính
+
+Yêu cầu Node.js 22.12 trở lên.
 
 ```bash
-cd astro-solar
 npm install
-npm run dev
+npm run dev:home
+# hoặc
+npm run dev:solar
 ```
 
-The dev server runs at `http://localhost:4321`.
+Mỗi ứng dụng độc lập có `package.json` và hướng dẫn/script riêng. Cài dependency trong đúng thư mục ứng dụng trước khi chạy.
 
-## Project Structure
+## Build triển khai kết hợp
 
+```bash
+npm run build
+npm start
 ```
-epcvina.com/
-├── astro-solar/          # Main Astro application
-│   ├── src/
-│   │   ├── components/   # React components (home, combo, layout, pages, ui)
-│   │   ├── hooks/        # Custom React hooks
-│   │   ├── layouts/      # Astro layouts
-│   │   ├── lib/          # Utilities, types, API helpers
-│   │   ├── pages/        # Astro pages & API routes
-│   │   └── styles/       # Global CSS
-│   └── public/           # Static assets
-└── data/                 # Brand assets & documents
-```
+
+Lệnh build tạo `epcvinahome/dist`, tạo bản SSR của `epcvinasolar`, rồi ghép website tĩnh vào client output của Solar. Xem [DEPLOYMENT.md](./DEPLOYMENT.md) để biết cấu hình triển khai.
+
+## Quy ước repository
+
+- Không commit `.env`, cache, `node_modules`, `dist`, `.next`, `.astro`, `.expo` hoặc `*.tsbuildinfo`.
+- `output/` và `tmp/` dành cho báo cáo/tệp sinh tự động và không được đưa vào Git.
+- Migration Supabase nằm tại `epcvinaadmin/supabase/migrations/`; không xóa migration chỉ vì chưa được commit.
 
 ## Contact
 

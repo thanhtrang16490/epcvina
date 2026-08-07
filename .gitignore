@@ -4,6 +4,15 @@ node_modules/
 # Build output
 dist/
 .astro/
+.next/
+.expo/
+build/
+.cache/
+*.tsbuildinfo
+
+# Generated reports and temporary working files
+output/
+tmp/
 
 # Environment variables
 .env
@@ -20,3 +29,4 @@ Thumbs.db
 
 # Python cache
 __pycache__/
+*.py[cod]

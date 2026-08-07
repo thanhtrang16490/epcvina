@@ -1,3 +1,4 @@
+import React from "react";
 import Document, { Head, Html, Main, NextScript, type DocumentContext, type DocumentInitialProps } from "next/document";
 
 export default class CustomDocument extends Document {
@@ -6,14 +7,16 @@ export default class CustomDocument extends Document {
   }
 
   render() {
-    return (
-      <Html lang="vi">
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
+    return React.createElement(
+      Html,
+      { lang: "vi" },
+      React.createElement(Head, null),
+      React.createElement(
+        "body",
+        null,
+        React.createElement(Main, null),
+        React.createElement(NextScript, null),
+      ),
     );
   }
 }

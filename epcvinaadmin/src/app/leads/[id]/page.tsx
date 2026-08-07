@@ -1,4 +1,5 @@
 import { AdminShell } from "@/components/AdminShell";
+import { LeadActivityComposer } from "@/components/LeadActivityComposer";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { sendLeadQualityConversion } from "@/lib/conversion-webhook";
@@ -9,27 +10,56 @@ import { notFound, redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
+type LeadActivityItem = {
+  at?: string | null;
+  note?: string | null;
+  author?: string | null;
+  type?: string | null;
+};
+
 async function updateLead(formData: FormData) {
   "use server";
   const id = String(formData.get("id") ?? "");
   const status = String(formData.get("status") ?? "new");
+  const activityNote = String(formData.get("activity_note") ?? "").trim();
+  const activityType = String(formData.get("activity_type") ?? "note").trim();
+  const ownerName = String(formData.get("owner_name") ?? "").trim();
   const supabase = createSupabaseAdminClient();
   if (!supabase || !id) return;
   const now = new Date().toISOString();
+  const { data: current } = await supabase.from("crm_leads").select("first_contacted_at,status,metadata").eq("id", id).single();
+  const currentMetadata = (current?.metadata && typeof current.metadata === "object" && !Array.isArray(current.metadata) ? current.metadata : {}) as Record<string, unknown>;
+  const activityLog = Array.isArray(currentMetadata.activity_log) ? (currentMetadata.activity_log as LeadActivityItem[]) : [];
+  const nextActivityLog = activityNote
+    ? [
+        {
+          at: now,
+          note: activityNote,
+          author: ownerName || null,
+          type: activityType || "note",
+        },
+        ...activityLog,
+      ].slice(0, 20)
+    : activityLog;
   const values: Record<string, unknown> = {
     status,
     priority: String(formData.get("priority") ?? "normal"),
     follow_up_at: String(formData.get("follow_up_at") ?? "") || null,
     lost_reason: String(formData.get("lost_reason") ?? "").trim() || null,
     internal_note: String(formData.get("internal_note") ?? "").trim() || null,
+    metadata: {
+      ...currentMetadata,
+      owner_name: ownerName || currentMetadata.owner_name || null,
+      activity_log: nextActivityLog,
+      last_activity_at: activityNote ? now : currentMetadata.last_activity_at || now,
+    },
     updated_at: now,
   };
   if (status !== "new") values.last_contacted_at = now;
-  const { data: current } = await supabase.from("crm_leads").select("first_contacted_at,status").eq("id", id).single();
   if (status !== "new" && !current?.first_contacted_at) values.first_contacted_at = now;
   const { error } = await supabase.from("crm_leads").update(values).eq("id", id);
   if (error) throw error;
-  if (current?.status !== status && ["qualified", "survey_scheduled", "quoted", "won"].includes(status)) {
+  if (current?.status !== status && ["qualified", "survey_scheduled", "survey_done", "proposal_sent", "negotiation", "won"].includes(status)) {
     const { data: conversionLead } = await supabase
       .from("crm_leads")
       .select("id,status,source_form,phone,email,gclid,gbraid,wbraid,fbclid,utm_source,utm_campaign,created_at")
@@ -78,12 +108,60 @@ function ResultValue({ value }: { value: unknown }) {
   return <>{String(value ?? "—")}</>;
 }
 
+function formatDateTime(value: string | null | undefined) {
+  if (!value) return "—";
+  return new Intl.DateTimeFormat("vi-VN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+}
+
+function getLeadAge(value: string | null | undefined) {
+  if (!value) return null;
+  const diff = Date.now() - new Date(value).getTime();
+  if (!Number.isFinite(diff) || diff < 0) return null;
+  return Math.floor(diff / (1000 * 60 * 60 * 24));
+}
+
+function getNextAction(lead: any) {
+  if (lead.follow_up_at) return { label: "Nhắc liên hệ", value: formatDateTime(lead.follow_up_at) };
+  if (lead.last_contacted_at) return { label: "Đã liên hệ gần nhất", value: formatDateTime(lead.last_contacted_at) };
+  return { label: "Cần liên hệ", value: "Chưa có hoạt động" };
+}
+
+function getMetadata(lead: any) {
+  return lead?.metadata && typeof lead.metadata === "object" && !Array.isArray(lead.metadata) ? (lead.metadata as Record<string, unknown>) : {};
+}
+
+const activityTypeLabels: Record<string, string> = {
+  note: "Ghi chú",
+  call: "Cuộc gọi",
+  email: "Email",
+  meeting: "Hẹn gặp",
+  survey: "Khảo sát",
+  quote: "Báo giá",
+  handover: "Bàn giao",
+};
+
+const activityTypeTones: Record<string, string> = {
+  note: "bg-slate-400/15 text-slate-300",
+  call: "bg-cyan-400/15 text-cyan-300",
+  email: "bg-blue-400/15 text-blue-300",
+  meeting: "bg-violet-400/15 text-violet-300",
+  survey: "bg-amber-400/15 text-amber-300",
+  quote: "bg-emerald-400/15 text-emerald-300",
+  handover: "bg-green-400/15 text-green-300",
+};
+
 export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const supabase = createSupabaseAdminClient();
   const result = supabase ? await supabase.from("crm_leads").select("*").eq("id", id).maybeSingle() : { data: null };
   const lead: any = result.data;
   if (!lead) notFound();
+  const metadata = getMetadata(lead);
+  const ownerName = typeof metadata.owner_name === "string" ? metadata.owner_name : "";
+  const activityLog = Array.isArray(metadata.activity_log) ? (metadata.activity_log as LeadActivityItem[]) : [];
+  const activityFeed = [...activityLog].sort((left, right) => new Date(String(right.at ?? 0)).getTime() - new Date(String(left.at ?? 0)).getTime());
+  const leadAge = getLeadAge(lead.created_at);
+  const nextAction = getNextAction(lead);
   return (
     <AdminShell>
       <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
@@ -93,6 +171,51 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
         </div>
         <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.82fr]">
           <div className="space-y-6">
+            <ThemeCard className="p-6">
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">Tổng quan CRM</div>
+                  <h2 className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{lead.name || lead.phone}</h2>
+                  <div className="mt-2 flex flex-wrap gap-2 text-sm text-[color:var(--muted)]">
+                    <span>Trạng thái: {lead.status}</span>
+                    <span>•</span>
+                    <span>Ưu tiên: {lead.priority || "normal"}</span>
+                    {leadAge !== null ? <>
+                      <span>•</span>
+                      <span>{leadAge} ngày kể từ khi nhận</span>
+                    </> : null}
+                  </div>
+                </div>
+                <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">{nextAction.label}</div>
+                  <div className="mt-1 font-semibold text-[color:var(--text)]">{nextAction.value}</div>
+                </div>
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">Lần liên hệ đầu</div>
+                  <div className="mt-1 font-medium text-[color:var(--text)]">{formatDateTime(lead.first_contacted_at)}</div>
+                </div>
+                <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">Lần liên hệ gần nhất</div>
+                  <div className="mt-1 font-medium text-[color:var(--text)]">{formatDateTime(lead.last_contacted_at)}</div>
+                </div>
+                <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">Hẹn tiếp theo</div>
+                  <div className="mt-1 font-medium text-[color:var(--text)]">{formatDateTime(lead.follow_up_at)}</div>
+                </div>
+              </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">Chủ phụ trách</div>
+                  <div className="mt-1 font-medium text-[color:var(--text)]">{ownerName || "Chưa phân công"}</div>
+                </div>
+                <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                  <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">Số hoạt động</div>
+                  <div className="mt-1 font-medium text-[color:var(--text)]">{activityLog.length}</div>
+                </div>
+              </div>
+            </ThemeCard>
             <ThemeCard className="grid gap-5 p-6 sm:grid-cols-2">
               <Field label="Họ tên" value={lead.name} /><Field label="Điện thoại" value={lead.phone} />
               <Field label="Email" value={lead.email} /><Field label="Địa chỉ" value={lead.address} />
@@ -131,17 +254,50 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
               </ThemeCard>
             ) : null}
           </div>
-          <ThemeCard className="h-fit p-6">
-            <h2 className="text-xl font-semibold text-[color:var(--text)]">Cập nhật xử lý</h2>
-            <form action={updateLead} className="mt-5 grid gap-4">
-              <input type="hidden" name="id" value={lead.id} />
-              <label className="grid gap-2 text-sm text-[color:var(--muted)]">Trạng thái<select name="status" defaultValue={lead.status} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">{[["new","Mới"],["contacted","Đã liên hệ"],["qualified","Đủ điều kiện"],["survey_scheduled","Hẹn khảo sát"],["quoted","Đã báo giá"],["won","Thành công"],["lost","Thất bại"],["spam","Spam"]].map(([value,label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-              <label className="grid gap-2 text-sm text-[color:var(--muted)]">Ưu tiên<select name="priority" defaultValue={lead.priority} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]"><option value="low">Thấp</option><option value="normal">Bình thường</option><option value="high">Cao</option><option value="urgent">Khẩn cấp</option></select></label>
-              <label className="grid gap-2 text-sm text-[color:var(--muted)]">Nhắc liên hệ<input type="datetime-local" name="follow_up_at" defaultValue={lead.follow_up_at ? new Date(lead.follow_up_at).toISOString().slice(0,16) : ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" /></label>
-              <label className="grid gap-2 text-sm text-[color:var(--muted)]">Lý do thất bại<input name="lost_reason" defaultValue={lead.lost_reason || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" /></label>
-              <label className="grid gap-2 text-sm text-[color:var(--muted)]">Ghi chú nội bộ<textarea name="internal_note" rows={6} defaultValue={lead.internal_note || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" /></label>
-              <button className="rounded-2xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950">Lưu cập nhật</button>
-            </form>
+            <ThemeCard className="h-fit p-6">
+              <h2 className="text-xl font-semibold text-[color:var(--text)]">Cập nhật xử lý</h2>
+              <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
+                Cập nhật lead theo mô hình CRM: trạng thái, ưu tiên, hẹn hoạt động tiếp theo và ghi chú nội bộ.
+              </p>
+            <LeadActivityComposer
+              action={updateLead}
+              leadId={lead.id}
+              ownerName={ownerName}
+              status={lead.status}
+              priority={lead.priority || "normal"}
+              followUpAt={lead.follow_up_at ? new Date(lead.follow_up_at).toISOString().slice(0, 16) : ""}
+              lostReason={lead.lost_reason || ""}
+              internalNote={lead.internal_note || ""}
+            />
+          </ThemeCard>
+          <ThemeCard className="p-6 lg:col-span-2">
+            <h2 className="text-xl font-semibold text-[color:var(--text)]">Lịch sử hoạt động</h2>
+            <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">Tương tự chatter trong CRM: ghi nhận các lần cập nhật để không mất ngữ cảnh.</p>
+            <div className="mt-5 space-y-3">
+              {activityFeed.length ? activityFeed.map((item, index) => {
+                const typeKey = String(item.type ?? "note");
+                const typeLabel = activityTypeLabels[typeKey] ?? typeKey;
+                const typeTone = activityTypeTones[typeKey] ?? activityTypeTones.note;
+                return (
+                  <div key={`${String(item.at ?? index)}-${index}`} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="font-medium text-[color:var(--text)]">{String(item.note ?? "—")}</div>
+                        <div className="mt-2 text-sm text-[color:var(--muted)]">
+                          {formatDateTime(String(item.at ?? null))}
+                          {item.author ? ` · ${String(item.author)}` : ""}
+                        </div>
+                      </div>
+                      <span className={`rounded-full px-2.5 py-1 text-[11px] font-medium ${typeTone}`}>{typeLabel}</span>
+                    </div>
+                  </div>
+                );
+              }) : (
+                <div className="rounded-2xl border border-dashed border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 text-sm text-[color:var(--muted)]">
+                  Chưa có hoạt động nào.
+                </div>
+              )}
+            </div>
           </ThemeCard>
         </div>
       </main>
