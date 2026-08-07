@@ -1,39 +1,102 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
-
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "EPCVINA Solar tuyển dụng những vị trí nào?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "EPCVINA Solar thường xuyên tuyển dụng: Kỹ sư điện – năng lượng mặt trời, Kỹ thuật viên lắp đặt, Nhân viên kinh doanh, Thiết kế hệ thống điện, và Thực tập sinh các ngành kỹ thuật."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Quyền lợi khi làm việc tại EPCVINA Solar?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Lương cạnh tranh, thưởng theo dự án, bảo hiểm sức khỏe PVI, đào tạo chuyên sâu về điện mặt trời, cơ hội thăng tiến, môi trường làm việc năng động và nhiều chế độ phúc lợi khác."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Nộp hồ sơ ứng tuyển qua kênh nào?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Bạn có thể nộp hồ sơ qua email: epcvinasolar@gmail.com, liên hệ Zalo: 0988 446 113, hoặc điền form trực tiếp trên trang này."
-      }
-    }
-  ]
-};
 ---
 
+<script type="module">
+  import { redirectToThankYou, submitCrmLead } from '../lib/crm-leads';
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "EPCVINA Solar tuyển dụng những vị trí nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EPCVINA Solar thường xuyên tuyển dụng: Kỹ sư điện – năng lượng mặt trời, Kỹ thuật viên lắp đặt, Nhân viên kinh doanh, Thiết kế hệ thống điện, và Thực tập sinh các ngành kỹ thuật."
+        }
+      }
+      ,
+      {
+        "@type": "Question",
+        "name": "Quyền lợi khi làm việc tại EPCVINA Solar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Lương cạnh tranh, thưởng theo dự án, bảo hiểm sức khỏe PVI, đào tạo chuyên sâu về điện mặt trời, cơ hội thăng tiến, môi trường làm việc năng động và nhiều chế độ phúc lợi khác."
+        }
+      }
+      ,
+      {
+        "@type": "Question",
+        "name": "Nộp hồ sơ ứng tuyển qua kênh nào?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bạn có thể nộp hồ sơ qua email: epcvinasolar@gmail.com, liên hệ Zalo: 0988 446 113, hoặc điền form trực tiếp trên trang này."
+        }
+      }
+    ]
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const structuredDataEl = document.createElement('script');
+    structuredDataEl.type = 'application/ld+json';
+    structuredDataEl.text = JSON.stringify(structuredData);
+    document.head.appendChild(structuredDataEl);
+
+    const applyForm = document.getElementById('apply-form');
+    const applySuccess = document.getElementById('apply-success');
+
+    applyForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      if (!(form instanceof HTMLFormElement)) return;
+
+      const getValue = (selector) => {
+        const element = form.querySelector(selector);
+        return element && 'value' in element ? element.value : '';
+      };
+
+      const name = getValue('[name="name"]');
+      const phone = getValue('[name="phone"]');
+      const email = getValue('[name="email"]');
+      const position = getValue('[name="position"]');
+      const experience = getValue('[name="experience"]');
+      const cv = getValue('[name="cv"]');
+
+      const lines = [
+        'Ứng tuyển từ website EPCVINA Solar:',
+        `Họ tên: ${name}`,
+        `SĐT: ${phone}`,
+        email ? `Email: ${email}` : '',
+        `Vị trí: ${position}`,
+        experience ? `Kinh nghiệm: ${experience}` : '',
+        cv ? `CV: ${cv}` : '',
+      ].filter(Boolean);
+
+      try {
+        await submitCrmLead({
+          name,
+          phone,
+          email: email || undefined,
+          message: lines.join('\n'),
+          source_form: 'recruitment_application',
+          metadata: {
+            position,
+            experience: experience || undefined,
+            cv: cv || undefined,
+          },
+        });
+        redirectToThankYou('recruitment_application');
+      } catch {
+        window.open(`https://zalo.me/0988446113?msg=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+        form.classList.add('hidden');
+        applySuccess?.classList.remove('hidden');
+      }
+    });
+  });
+</script>
 <DashboardLayout
   title="Tuyển Dụng EPCVINA Solar - Gia Nhập Đội Ngũ Điện Mặt Trời Hàng Đầu"
   description="EPCVINA Solar tuyển dụng kỹ sư điện, kỹ thuật viên lắp đặt, nhân viên kinh doanh. Môi trường năng động, lương cạnh tranh, đào tạo chuyên sâu về điện mặt trời."
@@ -460,75 +523,3 @@ const structuredData = {
 
   </DashboardShell>
 </DashboardLayout>
-
-<script>
-  const structuredDataEl = document.createElement('script');
-  structuredDataEl.type = 'application/ld+json';
-  structuredDataEl.text = JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "EPCVINA Solar tuyển dụng những vị trí nào?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "EPCVINA Solar thường xuyên tuyển dụng: Kỹ sư điện – năng lượng mặt trời, Kỹ thuật viên lắp đặt, Nhân viên kinh doanh, Thiết kế hệ thống điện, và Thực tập sinh các ngành kỹ thuật."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quyền lợi khi làm việc tại EPCVINA Solar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Lương cạnh tranh, thưởng theo dự án, bảo hiểm sức khỏe PVI, đào tạo chuyên sâu về điện mặt trời, cơ hội thăng tiến, môi trường làm việc năng động và nhiều chế độ phúc lợi khác."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Nộp hồ sơ ứng tuyển qua kênh nào?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bạn có thể nộp hồ sơ qua email: epcvinasolar@gmail.com, liên hệ Zalo: 0988 446 113, hoặc điền form trực tiếp trên trang này."
-        }
-      }
-    ]
-  });
-  document.head.appendChild(structuredDataEl);
-
-  // Form handler
-  const applyForm = document.getElementById('apply-form');
-  const applySuccess = document.getElementById('apply-success');
-
-  applyForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const form = e.currentTarget as HTMLFormElement | null;
-    if (!form) return;
-
-    const getValue = (selector: string) =>
-      (form.querySelector(selector) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null)?.value ?? '';
-
-    const name = getValue('[name="name"]');
-    const phone = getValue('[name="phone"]');
-    const email = getValue('[name="email"]');
-    const position = getValue('[name="position"]');
-    const experience = getValue('[name="experience"]');
-    const cv = getValue('[name="cv"]');
-
-    const lines = [
-      'Ứng tuyển từ website EPCVINA Solar:',
-      `Họ tên: ${name}`,
-      `SĐT: ${phone}`,
-      email ? `Email: ${email}` : '',
-      `Vị trí: ${position}`,
-      experience ? `Kinh nghiệm: ${experience}` : '',
-      cv ? `CV: ${cv}` : '',
-    ].filter(Boolean);
-
-    const msg = encodeURIComponent(lines.join('\n'));
-    window.open(`https://zalo.me/0988446113?msg=${msg}`, '_blank');
-
-    form.classList.add('hidden');
-    applySuccess?.classList.remove('hidden');
-  });
-</script>

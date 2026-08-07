@@ -204,7 +204,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
           {/* Price at Bottom */}
           <div className="absolute bottom-3 left-3 right-3 pt-3 border-t border-gray-200">
             <div className="text-xs font-bold text-[#1a73e8]">
-              {device.price ? `${(device.price / 1000000).toLocaleString('vi-VN')} triệu` : 'Liên hệ'}
+              Liên hệ
             </div>
           </div>
         </div>

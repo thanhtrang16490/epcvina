@@ -22,6 +22,7 @@ const contactCards = [
     title: 'Điện thoại',
     details: [
       { label: 'Hotline', value: '0988 446 113', href: 'tel:0988446113', note: '(Mrs. Giang)' },
+      { label: 'Kỹ thuật', value: '0368 927 332', href: 'tel:0368927332', note: '' },
       { label: 'Cố định', value: '024 7308 1868', href: 'tel:02473081868', note: '' },
     ],
     image: '/anh-van-phong-epcvina.png',

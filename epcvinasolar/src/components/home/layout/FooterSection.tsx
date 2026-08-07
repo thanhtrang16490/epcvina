@@ -125,6 +125,12 @@ export default function FooterSection() {
                 </a>
               </li>
               <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
+                <a href="tel:0368927332" className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]">
+                  0368 927 332 <span className="text-gray-400">(Kỹ thuật)</span>
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
                 <ChatCircle className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
                 <a
                   href="https://zalo.me/0988446113"

@@ -1,12 +1,11 @@
 
 
 import { useMemo, useState, useRef, useEffect, useCallback } from 'react';
-import { Shield, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, ShoppingCart, Check, CaretLeft } from '@phosphor-icons/react';
+import { Shield, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, Check, CaretLeft } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 import { useScrollContext } from '../../layout/DashboardShell';
-import { useCart } from '../../../hooks/useCart';
 import { formatCurrency, CATEGORY_META } from './shared-equipment';
 function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -108,7 +107,6 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
   const [pcPage, setPcPage] = useState(1);
   const ITEMS_PER_PAGE = 12;
   const { isHeaderVisible } = useScrollContext();
-  const { addItem } = useCart();
   const [isFirstCardVisible, setIsFirstCardVisible] = useState(true);
   const [allDevices, setAllDevices] = useState<Device[]>([]);
   const [loading, setLoading] = useState(true);
@@ -624,39 +622,13 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
                         ))}
                     </div>
 
-                    {/* Price + CTA */}
+                    {/* CTA */}
                     <div className="pt-4 border-t border-gray-100 space-y-2">
-                      {device.price ? (
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-xs text-gray-500">Đơn giá</p>
-                            <p className="text-lg font-bold text-[#F97316]">{formatCurrency(device.price)}</p>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="mb-2">
-                          <p className="text-xs text-gray-500">Liên hệ</p>
-                          <p className="text-sm font-medium text-gray-700">Giá tốt nhất</p>
-                        </div>
-                      )}
+                      <div className="mb-2">
+                        <p className="text-xs text-gray-500">Báo giá</p>
+                        <p className="text-sm font-medium text-gray-700">Liên hệ để nhận báo giá tốt nhất</p>
+                      </div>
                       <div className="flex gap-2">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            addItem({
-                              id: device.id,
-                              name: device.name,
-                              brand: device.brand,
-                              price: device.price || 0,
-                              image: device.images?.[0] || device.image_url,
-                              category: device.category,
-                            });
-                          }}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
-                        >
-                          <ShoppingCart className="w-3.5 h-3.5" />
-                          Thêm
-                        </button>
                         <a
                           href={`/thiet-bi/${device.id}`}
                           className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-[#F97316] text-white rounded-lg text-sm font-medium hover:bg-[#C2410C] transition-colors"
@@ -762,18 +734,11 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
                     <span className="px-3 py-1 text-xs font-medium rounded-full bg-blue-50 text-blue-700">
                       ×{selectedDevice.quantity} {selectedDevice.unit}
                     </span>
-                    {selectedDevice.price && (
-                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-[#F97316]/10 text-[#F97316]">
-                        {formatCurrency(selectedDevice.price)}/{selectedDevice.unit}
-                      </span>
-                    )}
                   </div>
-                  {selectedDevice.price && (
-                    <div className="mt-3 p-3 bg-green-50 rounded-xl">
-                      <p className="text-xs text-gray-500">Thành tiền</p>
-                      <p className="text-xl font-bold text-green-600">{formatCurrency(selectedDevice.price * selectedDevice.quantity)} VNĐ</p>
-                    </div>
-                  )}
+                  <div className="mt-3 p-3 bg-orange-50 rounded-xl">
+                    <p className="text-xs text-gray-500">Báo giá</p>
+                    <p className="text-base font-semibold text-orange-700">Liên hệ để nhận báo giá tốt nhất</p>
+                  </div>
                 </div>
 
                 {/* Technical Specs */}

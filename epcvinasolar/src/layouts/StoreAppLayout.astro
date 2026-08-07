@@ -1,0 +1,53 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  variant: 'app-store' | 'chplay';
+}
+
+const { title, description, variant } = Astro.props;
+
+const isAppStore = variant === 'app-store';
+const brand = isAppStore
+  ? { name: 'App Store', mark: '', accent: '#111111', tint: '#f5f5f7', heroBg: '#ffffff' }
+  : { name: 'CH Play', mark: '▶', accent: '#34A853', tint: '#f8f9fa', heroBg: '#ffffff' };
+---
+
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="min-h-screen text-slate-900 antialiased" style={`background:${brand.tint};`}>
+    <div style="min-height:100vh;background:linear-gradient(180deg,rgba(255,255,255,0.78),rgba(255,255,255,0.2));">
+      <header class="sticky top-0 z-30 border-b border-black/5 bg-white/75 backdrop-blur-xl">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          <a href="/" class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900">
+            <span
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full text-white"
+              style={`background:${brand.accent}`}
+            >
+              {brand.mark}
+            </span>
+            <span>EPCVINA</span>
+          </a>
+          <nav class="flex items-center gap-2 text-sm">
+            <a href="/ung-dung/app-store" class={`rounded-full px-4 py-2 font-medium transition-colors ${isAppStore ? 'bg-black text-white' : 'text-slate-600 hover:bg-black/5'}`}>
+              App Store
+            </a>
+            <a href="/ung-dung/chplay" class={`rounded-full px-4 py-2 font-medium transition-colors ${!isAppStore ? 'bg-[#34A853] text-white' : 'text-slate-600 hover:bg-black/5'}`}>
+              CH Play
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

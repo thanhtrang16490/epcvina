@@ -1,6 +1,7 @@
 import { CheckCircle, House, Lightning, Phone } from '@phosphor-icons/react';
 import SocialProofSection from '../ad-landing/SocialProofSection';
 import CalculatorSection from '../ad-landing/CalculatorSection';
+import { submitCrmLead } from '../../../lib/crm-leads';
 
 export default function NhaPhoLandingPage() {
   return (
@@ -84,7 +85,18 @@ export default function NhaPhoLandingPage() {
         </div>
       </section>
 
-      <CalculatorSection onSubmit={() => {}} />
+      <CalculatorSection
+        onSubmit={async (data) => {
+          await submitCrmLead({
+            name: data.name,
+            phone: data.phone,
+            message: `Khách nhà phố nhận phương án sơ bộ: ${data.system_size} kWp`,
+            source_form: 'townhouse_inline_calculator',
+            system_size_kw: Number(data.system_size),
+            calculator_result: { combo_index: data.combo_index },
+          });
+        }}
+      />
 
       {/* Benefits */}
       <section className="py-16 bg-white">

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { PaperPlaneRight, CheckCircle } from '@phosphor-icons/react';
+import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 
 const NEEDS = [
   { value: 'solar', label: 'Solar House' },
@@ -39,10 +40,25 @@ export default function CTASection() {
       `• Nhu cầu: ${form.need || 'N/A'}`,
     ].join('\n');
     const zaloUrl = `https://zalo.me/0988446113?text=${encodeURIComponent(msg)}`;
-    await new Promise((r) => setTimeout(r, 400));
-    setLoading(false);
-    setSubmitted(true);
-    window.open(zaloUrl, '_blank', 'noopener,noreferrer');
+    try {
+      await submitCrmLead({
+        name: form.name,
+        phone: form.phone,
+        address: form.address,
+        monthly_bill: form.bill,
+        system_type: form.need,
+        message: msg,
+        source_form: 'home_cta',
+      });
+      setSubmitted(true);
+      redirectToThankYou('home_cta');
+    } catch {
+      await new Promise((r) => setTimeout(r, 400));
+      setSubmitted(true);
+      window.open(zaloUrl, '_blank', 'noopener,noreferrer');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (

@@ -2,10 +2,7 @@ import EquipmentPageMobile from './EquipmentPageMobile';
 import EquipmentPageDesktop from './EquipmentPageDesktop';
 import HeaderBar from '../../home/layout/HeaderBar';
 import EquipmentSidebar from './EquipmentSidebar';
-import CartSidebar from './CartSidebar';
-import { CartProvider, useCart } from '../../../hooks/useCart';
 import { useMemo, useState, useEffect } from 'react';
-import { ShoppingCart } from '@phosphor-icons/react';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 
 interface PageProps {
@@ -33,25 +30,6 @@ function apiProductToDevice(product: any, categoryOverride?: string): Device {
     images: product.main_image ? [product.main_image] : [],
     image_url: product.main_image,
   };
-}
-
-// Cart floating button with badge
-function CartButton() {
-  const { totalItems, toggleCart } = useCart();
-  return (
-    <button
-      onClick={toggleCart}
-      className="fixed bottom-6 left-6 md:right-6 z-40 w-14 h-14 bg-[#F97316] text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#C2410C] transition-all hover:scale-110 active:scale-95"
-      aria-label={`Giỏ hàng ${totalItems > 0 ? `(${totalItems})` : ''}`}
-    >
-      <ShoppingCart className="w-6 h-6" />
-      {totalItems > 0 && (
-        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full animate-bounce">
-          {totalItems > 9 ? '9+' : totalItems}
-        </span>
-      )}
-    </button>
-  );
 }
 
 export default function EquipmentPage({ category }: PageProps) {
@@ -104,66 +82,62 @@ export default function EquipmentPage({ category }: PageProps) {
   }, [category]);
 
   return (
-    <CartProvider>
-      <div className="flex-1 flex flex-col">
-        <HeaderBar />
-        {/* Phone: Render full mobile component (< md) */}
-        <div className="md:hidden">
-          <EquipmentPageMobile category={category} />
-        </div>
+    <div className="flex-1 flex flex-col">
+      <HeaderBar />
+      {/* Phone: Render full mobile component (< md) */}
+      <div className="md:hidden">
+        <EquipmentPageMobile category={category} />
+      </div>
 
-        {/* Tablet + Desktop: Hero + Sidebar + Content (≥ md) */}
-        <div className="hidden md:flex md:flex-col md:flex-1">
-          {/* Section 1: Hero full-width only */}
-          <EquipmentPageDesktop 
-            category={category} 
-            devices={categoryDevices}
-            loading={loading}
+      {/* Tablet + Desktop: Hero + Sidebar + Content (≥ md) */}
+      <div className="hidden md:flex md:flex-col md:flex-1">
+        {/* Section 1: Hero full-width only */}
+        <EquipmentPageDesktop 
+          category={category} 
+          devices={categoryDevices}
+          loading={loading}
+          searchQuery={searchQuery}
+          sortBy={sortBy}
+          onSearchChange={setSearchQuery}
+          onSortChange={setSortBy}
+          showHero={true}
+          showContent={false}
+        />
+
+        {/* Section 2: Sidebar + Content only */}
+        <div className="flex flex-1 px-4 sm:px-6 lg:px-8 py-4 gap-4">
+          <EquipmentSidebar
+            category={category}
+            devices={allDevices}
+            categoryDevices={categoryDevices}
+            selectedBrand={selectedBrand}
             searchQuery={searchQuery}
             sortBy={sortBy}
+            onSelectBrand={setSelectedBrand}
+            onSelectDevice={setSelectedDeviceId}
+            onShowDevice={(id) => {
+              setSelectedDeviceId(id);
+            }}
             onSearchChange={setSearchQuery}
             onSortChange={setSortBy}
-            showHero={true}
-            showContent={false}
           />
-
-          {/* Section 2: Sidebar + Content only */}
-          <div className="flex flex-1 px-4 sm:px-6 lg:px-8 py-4 gap-4">
-            <EquipmentSidebar
-              category={category}
-              devices={allDevices}
-              categoryDevices={categoryDevices}
-              selectedBrand={selectedBrand}
+          <div className="flex-1 flex flex-col">
+            <EquipmentPageDesktop 
+              category={category} 
+              devices={categoryDevices}
+              loading={loading}
               searchQuery={searchQuery}
               sortBy={sortBy}
-              onSelectBrand={setSelectedBrand}
-              onSelectDevice={setSelectedDeviceId}
-              onShowDevice={(id) => {
-                setSelectedDeviceId(id);
-              }}
+              gridColumns={gridColumns}
               onSearchChange={setSearchQuery}
               onSortChange={setSortBy}
+              onGridColumnsChange={setGridColumns}
+              showHero={false}
+              showContent={true}
             />
-            <div className="flex-1 flex flex-col">
-              <EquipmentPageDesktop 
-                category={category} 
-                devices={categoryDevices}
-                loading={loading}
-                searchQuery={searchQuery}
-                sortBy={sortBy}
-                gridColumns={gridColumns}
-                onSearchChange={setSearchQuery}
-                onSortChange={setSortBy}
-                onGridColumnsChange={setGridColumns}
-                showHero={false}
-                showContent={true}
-              />
-            </div>
           </div>
         </div>
       </div>
-      <CartButton />
-      <CartSidebar />
-    </CartProvider>
+    </div>
   );
 }

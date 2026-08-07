@@ -1,9 +1,8 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Shield, X, Eye, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown, ShoppingCart, CaretLeft } from '@phosphor-icons/react';
+import { Shield, X, Eye, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown, CaretLeft } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
-import { useCart } from '../../../hooks/useCart';
 import { formatCurrency, CATEGORY_META } from './shared-equipment';
 
 interface PageProps {
@@ -53,8 +52,6 @@ export default function EquipmentPageDesktop({
   const [showSearch, setShowSearch] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const searchRef = useRef<HTMLDivElement>(null);
-  const { addItem } = useCart();
-
   // Auto-collapse search when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -443,36 +440,12 @@ export default function EquipmentPageDesktop({
                       ))}
                   </div>
 
-                  {/* Price + Add to Cart */}
+                  {/* CTA */}
                   <div className="pt-4 border-t border-gray-100 space-y-3">
-                    {device.price ? (
-                      <div>
-                        <p className="text-xs text-gray-500 mb-0.5">Đơn giá</p>
-                        <p className="text-lg font-bold text-orange-600">{formatCurrency(device.price)}</p>
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="text-xs text-gray-500 mb-0.5">Liên hệ</p>
-                        <p className="text-sm font-semibold text-orange-600">Giá tốt nhất</p>
-                      </div>
-                    )}
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addItem({
-                          id: device.id,
-                          name: device.name,
-                          brand: device.brand,
-                          price: device.price || 0,
-                          image: device.images?.[0] || device.image_url,
-                          category: device.category,
-                        });
-                      }}
-                      className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors"
-                    >
-                      <ShoppingCart className="w-4 h-4" />
-                      Thêm vào giỏ
-                    </button>
+                    <div>
+                      <p className="text-xs text-gray-500 mb-0.5">Báo giá</p>
+                      <p className="text-sm font-semibold text-orange-600">Liên hệ để nhận báo giá tốt nhất</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -587,14 +560,12 @@ export default function EquipmentPageDesktop({
                             Bảo hành {selectedDevice.warranty} năm
                           </span>
                         </div>
-                        {selectedDevice.price && (
-                          <div className="mt-3 p-3 bg-green-50 rounded-xl">
-                            <p className="text-xs text-gray-500">Thành tiền</p>
-                            <p className="text-xl font-bold text-green-600">
-                              {formatCurrency(selectedDevice.price * selectedDevice.quantity)} VNĐ
-                            </p>
-                          </div>
-                        )}
+                        <div className="mt-3 p-3 bg-orange-50 rounded-xl">
+                          <p className="text-xs text-gray-500">Báo giá</p>
+                          <p className="text-base font-semibold text-orange-700">
+                            Liên hệ để nhận báo giá tốt nhất
+                          </p>
+                        </div>
                       </div>
 
                       {/* Specs */}

@@ -207,14 +207,7 @@ function CardTitle({
         {description ? <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{description}</p> : null}
       </div>
       <ModalShell
-        trigger={
-          <button
-            type="button"
-            className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-xs font-medium text-[color:var(--text)] transition hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]"
-          >
-            Sửa
-          </button>
-        }
+        trigger={<span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-xs font-medium text-[color:var(--text)] transition hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]">Sửa</span>}
         title={editLabel}
         description="Chỉnh trực tiếp trên từng card."
       >

@@ -517,6 +517,10 @@ export default function CalculatorMainPage() {
   const [resultSlide, setResultSlide] = useState<'estimate' | 'saving' | 'environment'>('saving');
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
+  const [quickContactPhone, setQuickContactPhone] = useState('');
+  const [quickContactSubmitting, setQuickContactSubmitting] = useState(false);
+  const [quickContactSubmitted, setQuickContactSubmitted] = useState(false);
+  const [quickContactError, setQuickContactError] = useState('');
   const [installTiming, setInstallTiming] = useState('30days');
   const [surveySubmitted, setSurveySubmitted] = useState(false);
   const [surveyAttempted, setSurveyAttempted] = useState(false);
@@ -567,6 +571,7 @@ export default function CalculatorMainPage() {
   const customerNameError = customerName.trim().length > 1 ? '' : 'Vui lòng nhập họ tên để kỹ thuật viên tiện xưng hô.';
   const customerPhoneError = normalizeVietnamPhone(customerPhone) ? '' : 'Vui lòng nhập số điện thoại/Zalo hợp lệ tại Việt Nam.';
   const canSubmitSurvey = !customerNameError && !customerPhoneError;
+  const quickContactValid = Boolean(normalizeVietnamPhone(quickContactPhone));
   const roofPotentialKwp = Math.round((roofValue / 6.5) * 10) / 10;
   const shouldAskLoadProfile = billType !== 'factory';
   const shouldPreferHybridReady = billType !== 'factory';
@@ -868,6 +873,10 @@ export default function CalculatorMainPage() {
     setResultSlide('saving');
     setCustomerName('');
     setCustomerPhone('');
+    setQuickContactPhone('');
+    setQuickContactSubmitting(false);
+    setQuickContactSubmitted(false);
+    setQuickContactError('');
     setInstallTiming('30days');
     setSurveySubmitted(false);
     setSurveyAttempted(false);
@@ -1952,7 +1961,81 @@ export default function CalculatorMainPage() {
 
             <section
               data-reveal
-              style={{ '--delay': '50ms' } as React.CSSProperties}
+              style={{ '--delay': '20ms' } as React.CSSProperties}
+              className="overflow-hidden rounded-[24px] border border-[#FECACA] bg-[#FFF7ED] shadow-[0_12px_30px_-22px_rgba(65,64,66,.28)]"
+            >
+              <div className="bg-gradient-to-r from-[#C2410C] to-[#F58220] px-4 py-4 text-white">
+                <p className="text-[11px] font-black uppercase tracking-[.13em] text-white/80">Gửi kết quả ngay</p>
+                <h2 className="mt-1 text-[20px] font-black leading-tight">Nhận ngay bản tính toán và để kỹ sư gọi lại sau</h2>
+                <p className="mt-1 text-[13px] leading-relaxed text-white/85">
+                  Chỉ cần để lại số điện thoại, EPCVINA sẽ gửi lại kết quả vừa tính, lưu phương án của anh/chị và chủ động liên hệ khi thuận tiện.
+                </p>
+              </div>
+              <div className="space-y-3 px-4 py-4">
+                <label className="block">
+                  <span className="mb-1.5 block text-[13px] font-semibold text-[#414042]">Số điện thoại / Zalo để nhận kết quả</span>
+                  <input
+                    type="tel"
+                    value={quickContactPhone}
+                    onChange={(event) => {
+                      setQuickContactPhone(event.target.value);
+                      if (quickContactError) setQuickContactError('');
+                    }}
+                    placeholder="Nhập số để nhận file tính toán"
+                    className="h-12 w-full rounded-[14px] border border-[#E5E7EB] bg-white px-4 text-[15px] text-[#414042] outline-none transition placeholder:text-[#9AA0A9] focus:border-[#F58220] focus:ring-2 focus:ring-orange-100"
+                    inputMode="tel"
+                    autoComplete="tel"
+                  />
+                </label>
+                <button
+                  type="button"
+                  disabled={quickContactSubmitting}
+                  onClick={async () => {
+                    const normalizedPhone = normalizeVietnamPhone(quickContactPhone);
+                    if (!normalizedPhone) {
+                      setQuickContactError('Vui lòng nhập số điện thoại hợp lệ để EPCVINA gửi kết quả.');
+                      return;
+                    }
+                    setQuickContactSubmitting(true);
+                    setQuickContactError('');
+                    try {
+                      await submitCrmLead({
+                        phone: normalizedPhone,
+                        source_form: 'calculator_quick_result',
+                        message: `Khách muốn nhận kết quả tính Solar ngay. Công suất ${estimatedKwp} kWp, ngân sách ${formatMillionRange(costMin, costMax)}, hoàn vốn ${formatYears(paybackAverage)}.`,
+                        system_size_kw: estimatedKwp,
+                        calculator_result: calculatorResult,
+                        metadata: {
+                          calculator_version: 'full_solar_v1',
+                          entry_point: 'quick_result',
+                        },
+                      });
+                      setQuickContactSubmitted(true);
+                      redirectToThankYou('calculator_quick_result');
+                    } catch (error) {
+                      setQuickContactError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
+                    } finally {
+                      setQuickContactSubmitting(false);
+                    }
+                  }}
+                  className="flex min-h-[54px] w-full items-center justify-center rounded-[14px] bg-[#F58220] px-4 py-3 text-[15px] font-black text-white shadow-[0_16px_32px_-20px_rgba(245,130,32,.8)] transition-all active:scale-[.99] disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {quickContactSubmitting ? 'Đang gửi...' : quickContactSubmitted ? 'Đã gửi xong' : 'Gửi cho tôi kết quả'}
+                </button>
+                {quickContactError ? (
+                  <p className="rounded-[14px] border border-red-200 bg-red-50 px-3 py-2 text-center text-[12.5px] font-semibold text-red-700">
+                    {quickContactError}
+                  </p>
+                ) : null}
+                <p className="text-center text-[11.5px] leading-relaxed text-[#71717A]">
+                  Không cần nhập tên ngay. Muốn tư vấn sâu hơn, anh/chị có thể đi tiếp xuống form chi tiết bên dưới.
+                </p>
+              </div>
+            </section>
+
+            <section
+              data-reveal
+              style={{ '--delay': '45ms' } as React.CSSProperties}
               className="overflow-hidden rounded-[24px] border border-[#E5E7EB] bg-white shadow-[0_12px_30px_-22px_rgba(65,64,66,.35)]"
               aria-label="Thông tin tin cậy EPCVINA Solar"
             >
@@ -2026,7 +2109,7 @@ export default function CalculatorMainPage() {
 
             <form
               data-reveal
-              style={{ '--delay': '80ms' } as React.CSSProperties}
+              style={{ '--delay': '75ms' } as React.CSSProperties}
               className="rounded-[24px] border border-[#E5E7EB] bg-white px-4 pb-5 pt-5 shadow-[0_12px_30px_-22px_rgba(65,64,66,.35)]"
               onSubmit={async (event) => {
                 event.preventDefault();
@@ -2136,10 +2219,10 @@ export default function CalculatorMainPage() {
               ) : (
                 <>
               <h2 className="mt-5 text-[23px] font-black leading-[1.18] tracking-[-.025em] text-[#414042]">
-                Nhận tư vấn solar theo công trình của anh/chị
+                Muốn kỹ sư rà lại phương án theo công trình của anh/chị?
               </h2>
               <p className="mt-3 text-[14px] leading-[1.75] text-[#5F6673]">
-                Để lại số điện thoại/Zalo, EPCVINA sẽ rà lại kết quả tính toán và gợi ý phương án đầu tư phù hợp hơn.
+                Nếu cần bản tư vấn chi tiết hơn, để lại tên và số điện thoại. EPCVINA sẽ rà lại kết quả tính toán và gợi ý phương án đầu tư phù hợp hơn.
               </p>
 
               <div className="mt-5 grid gap-3">
@@ -2159,7 +2242,7 @@ export default function CalculatorMainPage() {
                       if (surveyAttempted) setSurveyAttempted(false);
                     }}
                     className="h-[54px] rounded-[14px] border border-[#E5E7EB] bg-white pl-12 pr-4 text-[15px] font-medium text-[#414042] shadow-[0_10px_24px_rgba(65,64,66,0.06)] outline-none transition placeholder:text-[#9AA0A9] focus:border-[#F58220] focus:ring-2 focus:ring-orange-100"
-                    placeholder="Họ và tên *"
+                    placeholder="Họ và tên để EPCVINA tiện xưng hô *"
                     autoComplete="name"
                   />
                   {surveyAttempted && customerNameError ? (
@@ -2182,7 +2265,7 @@ export default function CalculatorMainPage() {
                       if (surveyAttempted) setSurveyAttempted(false);
                     }}
                     className="h-[54px] rounded-[14px] border border-[#E5E7EB] bg-white pl-12 pr-4 text-[15px] font-medium text-[#414042] shadow-[0_10px_24px_rgba(65,64,66,0.06)] outline-none transition placeholder:text-[#9AA0A9] focus:border-[#F58220] focus:ring-2 focus:ring-orange-100"
-                    placeholder="Số điện thoại / Zalo *"
+                    placeholder="Số điện thoại để EPCVINA gọi lại *"
                     inputMode="tel"
                     autoComplete="tel"
                   />
@@ -2237,7 +2320,7 @@ export default function CalculatorMainPage() {
                   </svg>
                 </span>
                 <span className="min-w-0 flex-1 px-3">
-                  {surveySubmitting ? <>Đang gửi<br />kết quả…</> : <>Nhận tư vấn<br />miễn phí</>}
+                  {surveySubmitting ? <>Đang gửi<br />kết quả…</> : <>Nhận tư vấn<br />và báo giá</>}
                 </span>
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/35 text-white">
                   →
