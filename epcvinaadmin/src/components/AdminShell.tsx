@@ -214,6 +214,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { mutate: logout } = useLogout();
   const [identityName, setIdentityName] = useState("Admin");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [crmCounts, setCrmCounts] = useState({ customers: 0, projects: 0, orders: 0 });
   const [collapsed, setCollapsed] = useState(true);
   const [hovered, setHovered] = useState(false);
@@ -253,6 +254,29 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const sidebarExpanded = isMobile ? true : desktopSidebarExpanded;
 
   useEffect(() => {
+    const syncSession = async () => {
+      const sessionResult = await supabaseBrowserClient?.auth.getSession();
+      const session = sessionResult?.data.session;
+      if (!session) {
+        setIsAuthenticated(false);
+        setIdentityName("Guest");
+        return;
+      }
+
+      const metadata = session.user.user_metadata as Record<string, unknown> | undefined;
+      const displayName =
+        (typeof metadata?.full_name === "string" && metadata.full_name) ||
+        (typeof metadata?.name === "string" && metadata.name) ||
+        (typeof metadata?.username === "string" && metadata.username) ||
+        session.user.email ||
+        session.user.phone ||
+        "Admin";
+      setIsAuthenticated(true);
+      setIdentityName(displayName);
+    };
+
+    void syncSession();
+
     const stored = window.localStorage.getItem("epcvina-theme");
     const bootstrapped = document.documentElement.dataset.theme;
     const prefersLight = window.matchMedia?.("(prefers-color-scheme: light)").matches;
@@ -492,19 +516,29 @@ export function AdminShell({ children }: { children: ReactNode }) {
               </nav>
 
               <div className="mt-4 lg:mt-5">
-                <button
-                  type="button"
-                  onClick={() => logout()}
-                  className={`flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10 lg:w-full lg:px-3 lg:py-2.5 lg:text-sm ${isMobile ? "touch-manipulation active:scale-[0.98]" : ""}`}
-                >
-                  <NavIcon kind="logout" />
-                  <span className={sidebarExpanded ? "ml-2" : "sr-only"}>Đăng xuất</span>
-                </button>
+                {isAuthenticated ? (
+                  <button
+                    type="button"
+                    onClick={() => logout()}
+                    className={`flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10 lg:w-full lg:px-3 lg:py-2.5 lg:text-sm ${isMobile ? "touch-manipulation active:scale-[0.98]" : ""}`}
+                  >
+                    <NavIcon kind="logout" />
+                    <span className={sidebarExpanded ? "ml-2" : "sr-only"}>Đăng xuất</span>
+                  </button>
+                ) : (
+                  <Link
+                    href="/login"
+                    className={`flex h-10 items-center justify-center rounded-2xl border border-[color:var(--border)] bg-[color:var(--accent)] px-3 text-sm font-medium text-white transition hover:brightness-110 lg:w-full ${isMobile ? "touch-manipulation active:scale-[0.98]" : ""}`}
+                  >
+                    <span className={sidebarExpanded ? "" : "sr-only"}>Đăng nhập</span>
+                    <span className={sidebarExpanded ? "hidden" : ""}>Đăng nhập</span>
+                  </Link>
+                )}
               </div>
 
               <div className="mt-4 lg:mt-5">
                 <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-sm">
-                  <div className={sidebarExpanded ? mutedText : "sr-only"}>Đang đăng nhập</div>
+                  <div className={sidebarExpanded ? mutedText : "sr-only"}>{isAuthenticated ? "Đang đăng nhập" : "Chưa đăng nhập"}</div>
                   <div className={`mt-0.5 truncate font-medium ${theme === "light" ? "text-slate-900" : "text-white"} ${sidebarExpanded ? "" : "sr-only"}`}>{identityName}</div>
                 </div>
               </div>
@@ -558,6 +592,22 @@ export function AdminShell({ children }: { children: ReactNode }) {
                 <div className="truncate text-[12px] font-semibold tracking-[0.14em] text-[color:var(--text)]">EPCVINA ADMIN</div>
                 <div className="mt-0.5 truncate text-xs text-[color:var(--muted)]">Điều khiển hệ thống</div>
               </div>
+              {isAuthenticated ? (
+                <button
+                  type="button"
+                  onClick={() => logout()}
+                  className="inline-flex h-10 items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 text-sm text-[color:var(--text)] shadow-sm transition active:scale-[0.98]"
+                >
+                  Đăng xuất
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  className="inline-flex h-10 items-center justify-center rounded-full bg-[color:var(--accent)] px-4 text-sm font-medium text-white shadow-sm transition hover:brightness-110 active:scale-[0.98]"
+                >
+                  Đăng nhập
+                </Link>
+              )}
             </div>
           </div>
           {children}

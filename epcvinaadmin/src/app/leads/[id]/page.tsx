@@ -1,5 +1,6 @@
 import { AdminShell } from "@/components/AdminShell";
 import { LeadActivityComposer } from "@/components/LeadActivityComposer";
+import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { sendLeadQualityConversion } from "@/lib/conversion-webhook";
@@ -7,6 +8,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
+import type { ReactNode } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -72,6 +74,63 @@ async function updateLead(formData: FormData) {
   redirect(`/admin/leads/${id}?saved=1`);
 }
 
+async function updateLeadCard(formData: FormData) {
+  "use server";
+  const id = String(formData.get("id") ?? "");
+  const section = String(formData.get("section") ?? "");
+  const supabase = createSupabaseAdminClient();
+  if (!supabase || !id || !section) return;
+
+  const now = new Date().toISOString();
+  const { data: current } = await supabase.from("crm_leads").select("metadata").eq("id", id).single();
+  const currentMetadata = (current?.metadata && typeof current.metadata === "object" && !Array.isArray(current.metadata) ? current.metadata : {}) as Record<string, unknown>;
+  const values: Record<string, unknown> = { updated_at: now };
+
+  if (section === "overview") {
+    values.status = String(formData.get("status") ?? "new");
+    values.priority = String(formData.get("priority") ?? "normal");
+    values.follow_up_at = String(formData.get("follow_up_at") ?? "") || null;
+    values.internal_note = String(formData.get("internal_note") ?? "").trim() || null;
+    values.metadata = {
+      ...currentMetadata,
+      owner_name: String(formData.get("owner_name") ?? "").trim() || currentMetadata.owner_name || null,
+    };
+  }
+
+  if (section === "contact") {
+    values.name = String(formData.get("name") ?? "").trim() || null;
+    values.phone = String(formData.get("phone") ?? "").trim() || null;
+    values.email = String(formData.get("email") ?? "").trim() || null;
+    values.address = String(formData.get("address") ?? "").trim() || null;
+    values.system_type = String(formData.get("system_type") ?? "").trim() || null;
+    values.roof_area = String(formData.get("roof_area") ?? "").trim() || null;
+    values.monthly_bill = String(formData.get("monthly_bill") ?? "").trim() || null;
+    values.system_size_kw = String(formData.get("system_size_kw") ?? "").trim() || null;
+    values.message = String(formData.get("message") ?? "").trim() || null;
+  }
+
+  if (section === "source") {
+    values.source_form = String(formData.get("source_form") ?? "").trim() || null;
+    values.landing_page = String(formData.get("landing_page") ?? "").trim() || null;
+    values.utm_source = String(formData.get("utm_source") ?? "").trim() || null;
+    values.utm_medium = String(formData.get("utm_medium") ?? "").trim() || null;
+    values.utm_campaign = String(formData.get("utm_campaign") ?? "").trim() || null;
+    values.utm_term = String(formData.get("utm_term") ?? "").trim() || null;
+    values.gclid = String(formData.get("gclid") ?? "").trim() || null;
+    values.fbclid = String(formData.get("fbclid") ?? "").trim() || null;
+    values.metadata = {
+      ...currentMetadata,
+      source_tag: String(formData.get("source_tag") ?? "").trim() || currentMetadata.source_tag || null,
+    };
+  }
+
+  const { error } = await supabase.from("crm_leads").update(values).eq("id", id);
+  if (error) throw error;
+  revalidatePath(`/leads/${id}`);
+  revalidatePath("/leads");
+  redirect(`/admin/leads/${id}?saved=1`);
+}
+
 function Field({ label, value }: { label: string; value: unknown }) {
   return <div><div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">{label}</div><div className="mt-1 break-words text-[color:var(--text)]">{String(value || "—")}</div></div>;
 }
@@ -130,6 +189,41 @@ function getMetadata(lead: any) {
   return lead?.metadata && typeof lead.metadata === "object" && !Array.isArray(lead.metadata) ? (lead.metadata as Record<string, unknown>) : {};
 }
 
+function CardTitle({
+  title,
+  description,
+  editLabel,
+  editContent,
+}: {
+  title: string;
+  description?: string;
+  editLabel: string;
+  editContent: ReactNode;
+}) {
+  return (
+    <div className="flex items-start justify-between gap-4">
+      <div>
+        <h2 className="text-xl font-semibold text-[color:var(--text)]">{title}</h2>
+        {description ? <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{description}</p> : null}
+      </div>
+      <ModalShell
+        trigger={
+          <button
+            type="button"
+            className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-xs font-medium text-[color:var(--text)] transition hover:border-[color:var(--accent)]/30 hover:text-[color:var(--accent)]"
+          >
+            Sửa
+          </button>
+        }
+        title={editLabel}
+        description="Chỉnh trực tiếp trên từng card."
+      >
+        {editContent}
+      </ModalShell>
+    </div>
+  );
+}
+
 const activityTypeLabels: Record<string, string> = {
   note: "Ghi chú",
   call: "Cuộc gọi",
@@ -150,6 +244,81 @@ const activityTypeTones: Record<string, string> = {
   handover: "bg-green-400/15 text-green-300",
 };
 
+const leadStages = [
+  { key: "new", label: "Mới", group: "incoming" },
+  { key: "contacted", label: "Đã liên hệ", group: "progress" },
+  { key: "qualified", label: "Đủ điều kiện", group: "progress" },
+  { key: "survey_scheduled", label: "Đặt lịch", group: "survey" },
+  { key: "survey_done", label: "Khảo sát xong", group: "survey" },
+  { key: "proposal_sent", label: "Đã gửi báo giá", group: "proposal" },
+  { key: "negotiation", label: "Đàm phán", group: "proposal" },
+  { key: "won", label: "Chốt thành công", group: "closed" },
+  { key: "lost", label: "Thất bại", group: "closed" },
+  { key: "spam", label: "Spam", group: "blocked" },
+] as const;
+
+function getLeadStageIndex(status: string) {
+  const index = leadStages.findIndex((stage) => stage.key === status);
+  return index >= 0 ? index : 0;
+}
+
+function LeadProgressBar({ status }: { status: string }) {
+  const currentIndex = getLeadStageIndex(status);
+  const completed = currentIndex + 1;
+  const progressPercent = (completed / leadStages.length) * 100;
+  return (
+    <div className="rounded-[1.75rem] border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4 sm:p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <div className="text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">Thanh tiến trình bán hàng</div>
+          <div className="mt-1 text-sm font-medium text-[color:var(--text)]">
+            Hiện tại: <span className="text-[color:var(--accent)]">{leadStages[currentIndex]?.label ?? "Mới"}</span>
+          </div>
+        </div>
+        <div className="text-sm text-[color:var(--muted)]">
+          {completed}/{leadStages.length} bước
+        </div>
+      </div>
+
+      <div className="mt-4 h-3 overflow-hidden rounded-full bg-[color:var(--panel)]">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-cyan-400 via-orange-400 to-emerald-400 transition-all"
+          style={{ width: `${progressPercent}%` }}
+        />
+      </div>
+
+      <div className="mt-4 grid gap-2 sm:grid-cols-2 xl:grid-cols-5">
+        {leadStages.map((stage, index) => {
+          const isDone = index < currentIndex;
+          const isCurrent = index === currentIndex;
+          return (
+            <div
+              key={stage.key}
+              className={`rounded-2xl border px-3 py-2 text-sm transition ${
+                isCurrent
+                  ? "border-[color:var(--accent)]/40 bg-[color:var(--accent)]/10 text-[color:var(--text)]"
+                  : isDone
+                    ? "border-emerald-400/25 bg-emerald-400/10 text-[color:var(--text)]"
+                    : "border-[color:var(--border)] bg-[color:var(--panel)] text-[color:var(--muted)]"
+              }`}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="font-medium">{stage.label}</span>
+                <span className="text-[10px] uppercase tracking-[0.18em]">
+                  {isCurrent ? "Hiện tại" : isDone ? "Đã qua" : "Sắp tới"}
+                </span>
+              </div>
+              <div className="mt-1 text-xs opacity-75">
+                {stage.group === "survey" ? "Giai đoạn khảo sát" : stage.group === "proposal" ? "Giai đoạn báo giá" : stage.group === "closed" ? "Kết thúc" : "Đầu phễu"}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default async function LeadDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const supabase = createSupabaseAdminClient();
@@ -164,15 +333,72 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   const nextAction = getNextAction(lead);
   return (
     <AdminShell>
-      <main className="mx-auto max-w-6xl px-4 py-4 md:px-0">
+      <main className="mx-auto w-full max-w-[1600px] px-4 py-4 md:px-6 lg:px-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <SectionTitle eyebrow="CRM · Chi tiết lead" title={lead.name || lead.phone} description={`Nhận lúc ${new Intl.DateTimeFormat("vi-VN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(lead.created_at))}`} />
           <Link href="/admin/leads" className="rounded-full border border-[color:var(--border)] px-4 py-2 text-sm text-[color:var(--text)]">← Danh sách lead</Link>
         </div>
-        <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.82fr]">
+        <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)]">
           <div className="space-y-6">
+            <LeadProgressBar status={lead.status} />
             <ThemeCard className="p-6">
-              <div className="flex flex-wrap items-start justify-between gap-4">
+              <CardTitle
+                title="Tổng quan CRM"
+                description={`Nhận lúc ${new Intl.DateTimeFormat("vi-VN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(lead.created_at))}`}
+                editLabel={`Sửa tổng quan: ${lead.name || lead.phone}`}
+                editContent={
+                  <form action={updateLeadCard} className="grid gap-4">
+                    <input type="hidden" name="id" value={lead.id} />
+                    <input type="hidden" name="section" value="overview" />
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Trạng thái
+                        <select name="status" defaultValue={lead.status || "new"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
+                          <option value="new">Mới tiếp nhận</option>
+                          <option value="contacted">Đã liên hệ</option>
+                          <option value="qualified">Đủ điều kiện</option>
+                          <option value="survey_scheduled">Đặt lịch khảo sát</option>
+                          <option value="survey_done">Khảo sát xong</option>
+                          <option value="proposal_sent">Đã gửi giải pháp</option>
+                          <option value="negotiation">Đàm phán / chốt</option>
+                          <option value="won">Chốt thành công</option>
+                          <option value="lost">Thất bại</option>
+                          <option value="spam">Spam</option>
+                        </select>
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Ưu tiên
+                        <select name="priority" defaultValue={lead.priority || "normal"} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
+                          <option value="low">Thấp</option>
+                          <option value="normal">Bình thường</option>
+                          <option value="high">Cao</option>
+                          <option value="urgent">Khẩn</option>
+                        </select>
+                      </label>
+                    </div>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Chủ phụ trách
+                        <input name="owner_name" defaultValue={ownerName} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Hẹn tiếp theo
+                        <input type="datetime-local" name="follow_up_at" defaultValue={lead.follow_up_at ? new Date(lead.follow_up_at).toISOString().slice(0, 16) : ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                    </div>
+                    <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                      Ghi chú nội bộ
+                      <textarea name="internal_note" rows={4} defaultValue={lead.internal_note || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                    </label>
+                    <div className="flex justify-end gap-3">
+                      <button type="submit" className="rounded-full bg-[color:var(--accent)] px-5 py-2.5 text-sm font-medium text-white">
+                        Lưu tổng quan
+                      </button>
+                    </div>
+                  </form>
+                }
+              />
+              <div className="mt-5">
                 <div>
                   <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">Tổng quan CRM</div>
                   <h2 className="mt-2 text-2xl font-semibold text-[color:var(--text)]">{lead.name || lead.phone}</h2>
@@ -217,6 +443,60 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
               </div>
             </ThemeCard>
             <ThemeCard className="grid gap-5 p-6 sm:grid-cols-2">
+              <CardTitle
+                title="Thông tin lead"
+                description="Sửa trực tiếp các trường liên hệ và nhu cầu."
+                editLabel={`Sửa thông tin lead: ${lead.name || lead.phone}`}
+                editContent={
+                  <form action={updateLeadCard} className="grid gap-4">
+                    <input type="hidden" name="id" value={lead.id} />
+                    <input type="hidden" name="section" value="contact" />
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Họ tên
+                        <input name="name" defaultValue={lead.name || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Điện thoại
+                        <input name="phone" defaultValue={lead.phone || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Email
+                        <input name="email" defaultValue={lead.email || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Địa chỉ
+                        <input name="address" defaultValue={lead.address || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Loại hệ thống
+                        <input name="system_type" defaultValue={lead.system_type || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Diện tích mái
+                        <input name="roof_area" defaultValue={lead.roof_area || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Hóa đơn/tháng
+                        <input name="monthly_bill" defaultValue={lead.monthly_bill || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Công suất đề xuất
+                        <input name="system_size_kw" defaultValue={lead.system_size_kw || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                    </div>
+                    <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                      Nhu cầu / nội dung
+                      <textarea name="message" rows={4} defaultValue={lead.message || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                    </label>
+                    <div className="flex justify-end gap-3">
+                      <button type="submit" className="rounded-full bg-[color:var(--accent)] px-5 py-2.5 text-sm font-medium text-white">
+                        Lưu thông tin
+                      </button>
+                    </div>
+                  </form>
+                }
+              />
               <Field label="Họ tên" value={lead.name} /><Field label="Điện thoại" value={lead.phone} />
               <Field label="Email" value={lead.email} /><Field label="Địa chỉ" value={lead.address} />
               <Field label="Loại hệ thống" value={lead.system_type} /><Field label="Diện tích mái" value={lead.roof_area} />
@@ -224,6 +504,56 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
               <div className="sm:col-span-2"><Field label="Nhu cầu / nội dung" value={lead.message} /></div>
             </ThemeCard>
             <ThemeCard className="grid gap-5 p-6 sm:grid-cols-2">
+              <CardTitle
+                title="Nguồn lead"
+                description="Chỉnh thông tin tracking và nguồn vào."
+                editLabel={`Sửa nguồn lead: ${lead.name || lead.phone}`}
+                editContent={
+                  <form action={updateLeadCard} className="grid gap-4">
+                    <input type="hidden" name="id" value={lead.id} />
+                    <input type="hidden" name="section" value="source" />
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Form nguồn
+                        <input name="source_form" defaultValue={lead.source_form || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Landing page
+                        <input name="landing_page" defaultValue={lead.landing_page || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        UTM source
+                        <input name="utm_source" defaultValue={lead.utm_source || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        UTM medium
+                        <input name="utm_medium" defaultValue={lead.utm_medium || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        UTM campaign
+                        <input name="utm_campaign" defaultValue={lead.utm_campaign || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        UTM term
+                        <input name="utm_term" defaultValue={lead.utm_term || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        GCLID
+                        <input name="gclid" defaultValue={lead.gclid || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        FBCLID
+                        <input name="fbclid" defaultValue={lead.fbclid || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                    </div>
+                    <div className="flex justify-end gap-3">
+                      <button type="submit" className="rounded-full bg-[color:var(--accent)] px-5 py-2.5 text-sm font-medium text-white">
+                        Lưu nguồn
+                      </button>
+                    </div>
+                  </form>
+                }
+              />
               <Field label="Form nguồn" value={lead.source_form} /><Field label="Landing page" value={lead.landing_page} />
               <Field label="UTM source / medium" value={[lead.utm_source, lead.utm_medium].filter(Boolean).join(" / ")} /><Field label="UTM campaign" value={lead.utm_campaign} />
               <Field label="UTM term" value={lead.utm_term} /><Field label="GCLID / FBCLID" value={lead.gclid || lead.fbclid} />
@@ -254,7 +584,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
               </ThemeCard>
             ) : null}
           </div>
-            <ThemeCard className="h-fit p-6">
+          <ThemeCard className="h-fit p-6 xl:sticky xl:top-6">
               <h2 className="text-xl font-semibold text-[color:var(--text)]">Cập nhật xử lý</h2>
               <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">
                 Cập nhật lead theo mô hình CRM: trạng thái, ưu tiên, hẹn hoạt động tiếp theo và ghi chú nội bộ.

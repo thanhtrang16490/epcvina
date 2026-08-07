@@ -35,20 +35,25 @@ export function PublicShell({ children }: { children: ReactNode }) {
       const sessionResult = await supabaseBrowserClient?.auth.getSession();
       const session = sessionResult?.data.session;
       const isLoggedIn = Boolean(session);
-      const metadata = session?.user.user_metadata as Record<string, unknown> | undefined;
-      const displayName =
-        (typeof metadata?.full_name === "string" && metadata.full_name) ||
-        (typeof metadata?.name === "string" && metadata.name) ||
-        (typeof metadata?.username === "string" && metadata.username) ||
-        session?.user.email ||
-        session?.user.phone ||
-        "User";
-      setAccountLabel(displayName);
-      setAccountAvatar(
-        (typeof metadata?.avatar_url === "string" && metadata.avatar_url) ||
-          (typeof metadata?.picture === "string" && metadata.picture) ||
-          null,
-      );
+      if (isLoggedIn) {
+        const metadata = session.user.user_metadata as Record<string, unknown> | undefined;
+        const displayName =
+          (typeof metadata?.full_name === "string" && metadata.full_name) ||
+          (typeof metadata?.name === "string" && metadata.name) ||
+          (typeof metadata?.username === "string" && metadata.username) ||
+          session.user.email ||
+          session.user.phone ||
+          "User";
+        setAccountLabel(displayName);
+        setAccountAvatar(
+          (typeof metadata?.avatar_url === "string" && metadata.avatar_url) ||
+            (typeof metadata?.picture === "string" && metadata.picture) ||
+            null,
+        );
+      } else {
+        setAccountLabel(null);
+        setAccountAvatar(null);
+      }
       setIsUnlocked(isLoggedIn || storedUnlock);
     };
 
