@@ -59,8 +59,8 @@ export default function BeforeAfterBillsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6 grid gap-4 sm:mb-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="mb-2 text-xs font-black uppercase tracking-[.14em] text-orange-600">Hóa đơn thực tế</p>
-            <h2 className="text-[26px] font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl">
+            <p className="mb-2 text-xs font-black uppercase tracking-[.14em] text-orange-600 font-display">Hóa đơn thực tế</p>
+            <h2 className="text-[26px] font-extrabold leading-tight tracking-tight text-slate-950 sm:text-4xl font-display">
               Case nhà dân đã lắp: hóa đơn giảm bao nhiêu?
             </h2>
           </div>
@@ -101,7 +101,7 @@ export default function BeforeAfterBillsSection() {
                     <div className="mb-2 inline-flex rounded-full bg-orange-50 px-2.5 py-1 text-[11px] font-black text-orange-700">
                       {bill.capacity}
                     </div>
-                    <h3 className="text-[16px] font-black leading-tight text-slate-950 sm:text-lg">{bill.customer}</h3>
+                    <h3 className="text-[16px] font-black leading-tight text-slate-950 sm:text-lg font-display">{bill.customer}</h3>
                     <p className="mt-1 text-[10px] font-semibold uppercase tracking-[.08em] text-emerald-700 sm:text-[11px]">Đã đối chiếu hóa đơn</p>
                   </div>
                   <div className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-black text-emerald-700">
@@ -143,7 +143,7 @@ export default function BeforeAfterBillsSection() {
                         <TrendDown className="h-4 w-4" weight="duotone" />
                         <span className="text-xs font-bold">Tiết kiệm/tháng</span>
                       </div>
-                      <p className="text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">
+                      <p className="text-2xl font-black tracking-tight text-slate-950 sm:text-3xl font-display">
                         {(bill.savings / 1000000).toFixed(1)} triệu
                       </p>
                     </div>

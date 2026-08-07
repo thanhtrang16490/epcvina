@@ -78,7 +78,7 @@ export default function FAQSection() {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Hỏi đáp</h2>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-display">Hỏi đáp</h2>
             <p className="text-gray-500 mt-2">Những câu hỏi thường gặp về điện mặt trời</p>
           </div>
           <a href="/hoi-dap" className="text-[#DC2626] hover:text-[#B01A22] font-medium text-sm active:scale-[0.98]">

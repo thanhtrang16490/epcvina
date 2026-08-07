@@ -59,7 +59,7 @@ export default function PaymentOptionsSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-3 font-display">
             Phương Án Thanh Toán Linh Hoạt
           </h2>
           <p className="text-lg text-slate-600">An toàn tài chính 100%, không cần vay ngân hàng</p>
@@ -77,7 +77,7 @@ export default function PaymentOptionsSection() {
             >
               <div className="p-6 pb-4">
                 <option.icon className="w-10 h-10 text-orange-500 mb-3" weight="duotone" />
-                <h3 className="text-xl font-bold text-slate-900 mb-1">{option.title}</h3>
+                <h3 className="text-xl font-bold text-slate-900 mb-1 font-display">{option.title}</h3>
                 <p className="text-sm text-slate-500">{option.subtitle}</p>
               </div>
 
@@ -108,7 +108,7 @@ export default function PaymentOptionsSection() {
           transition={{ duration: 0.5 }}
         >
           <div className="bg-slate-900 text-white p-5 text-center">
-            <h3 className="text-xl font-bold">So Sánh Với Vay Ngân Hàng</h3>
+            <h3 className="text-xl font-bold font-display">So Sánh Với Vay Ngân Hàng</h3>
           </div>
 
           <div className="overflow-x-auto">

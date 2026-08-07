@@ -31,10 +31,10 @@ export default function ComparisonSection() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-amber-400 mb-3">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-amber-400 mb-3 font-display">
               CHỌN HỆ THỐNG PHÙ HỢP
             </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight font-display">
               <span style={{ color: '#60a5fa' }}>Hybrid</span>{' '}
               <span className="text-white/60">hay</span>{' '}
               <span style={{ color: ORANGE }}>On-Grid</span>
@@ -75,7 +75,7 @@ export default function ComparisonSection() {
                 </span>
               </div>
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-blue-300">
+                <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-blue-300 font-display">
                   HYBRID
                 </h3>
                 <p className="mb-4 text-xs text-blue-100/70">SAJ Hybrid + GENIXGREEN Battery</p>
@@ -135,7 +135,7 @@ export default function ComparisonSection() {
                 </span>
               </div>
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-orange-300">
+                <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-orange-300 font-display">
                   ON-GRID
                 </h3>
                 <p className="mb-4 text-xs text-orange-100/70">SAJ On-Grid Inverter</p>

@@ -28,8 +28,8 @@ export default function SocialProofSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
         >
-          <p className="mb-2 text-xs font-black uppercase tracking-[.14em] text-orange-600">Bằng chứng trước khi tư vấn</p>
-          <h2 className="text-[26px] sm:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 leading-tight">
+          <p className="mb-2 text-xs font-black uppercase tracking-[.14em] text-orange-600 font-display">Bằng chứng trước khi tư vấn</p>
+          <h2 className="text-[26px] sm:text-4xl font-extrabold tracking-tight mb-2 sm:mb-3 leading-tight font-display">
             Không chỉ tính thử, EPCVINA có dữ liệu thực tế để đối chiếu
           </h2>
           <p className="text-[14px] sm:text-lg text-slate-600">Các con số bên dưới giúp anh/chị hiểu vì sao kết quả chỉ là bước đầu, còn phương án cuối cùng cần khảo sát mái và hóa đơn.</p>
@@ -48,8 +48,8 @@ export default function SocialProofSection() {
               <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-orange-50 text-orange-600 sm:h-12 sm:w-12">
                 <stat.icon className="w-6 h-6" weight="duotone" />
               </div>
-              <p className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">{stat.number}</p>
-              <h3 className="mt-1 text-[13px] sm:text-base font-black leading-tight text-slate-900">{stat.label}</h3>
+              <p className="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl font-display">{stat.number}</p>
+              <h3 className="mt-1 text-[13px] sm:text-base font-black leading-tight text-slate-900 font-display">{stat.label}</h3>
               <p className="mt-2 text-[12px] leading-relaxed text-slate-500 sm:text-sm">{stat.desc}</p>
             </motion.div>
           ))}
@@ -65,7 +65,7 @@ export default function SocialProofSection() {
               >
                 <div className="flex items-center justify-center gap-2 mb-1.5">
                   <item.icon className="w-6 h-6 text-amber-200" weight={item.fill ? 'fill' : 'bold'} />
-                  <p className="text-2xl font-bold">{item.value}</p>
+                  <p className="text-2xl font-bold font-display">{item.value}</p>
                 </div>
                 <p className="text-sm text-white/78">{item.label}</p>
               </div>

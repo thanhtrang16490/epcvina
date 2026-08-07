@@ -97,7 +97,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
               <IconComponent className="h-10 w-10 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 font-display">
                 {data.title}
               </h1>
               <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
@@ -115,7 +115,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500">
               <Wrench className="h-5 w-5 text-white" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 font-display">
               Phương pháp lắp đặt
             </h2>
           </div>
@@ -139,7 +139,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500">
               <Lightning className="h-5 w-5 text-white" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 font-display">
               Ưu điểm
             </h2>
           </div>
@@ -170,7 +170,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gray-300">
               <Lightning className="h-5 w-5 text-gray-700" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 font-display">
               Hệ thống phù hợp
             </h2>
           </div>
@@ -187,7 +187,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
             <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-amber-400">
               <Warning className="h-5 w-5 text-amber-900" />
             </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-amber-900">
+            <h2 className="text-2xl sm:text-3xl font-bold text-amber-900 font-display">
               Lưu ý quan trọng
             </h2>
           </div>
@@ -200,7 +200,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
         <div className="bg-gradient-to-br from-orange-600 to-orange-500 rounded-2xl p-8 sm:p-12 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-display">
             Cần tư vấn giải pháp lắp đặt?
           </h2>
           <p className="text-white/80 text-base sm:text-lg mb-8 max-w-xl mx-auto">

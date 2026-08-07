@@ -61,10 +61,10 @@ export default function ProjectsPreviewSection() {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#DC2626] mb-2">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#DC2626] mb-2 font-display">
               CÔNG TRÌNH ĐÃ TRIỂN KHAI
             </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight font-display">
               Dự Án <span className="text-[#DC2626]">Thực Tế</span>
             </h2>
             <p className="mt-2 text-gray-500 text-sm max-w-lg">

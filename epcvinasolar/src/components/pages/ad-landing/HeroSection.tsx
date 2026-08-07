@@ -42,11 +42,11 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-[12px] font-bold text-orange-100 backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-[12px] font-bold text-orange-100 backdrop-blur font-display">
               <ShieldCheck className="h-4 w-4 text-orange-300" weight="fill" />
               EPCVINA Solar khảo sát 0đ tại Hà Nội và miền Bắc
             </div>
-            <h1 className="max-w-[780px] text-[33px] sm:text-5xl lg:text-[64px] font-black tracking-[-.05em] leading-[1.03]">
+            <h1 className="max-w-[780px] text-[33px] sm:text-5xl lg:text-[64px] font-black tracking-[-.05em] leading-[1.03] font-display">
               Biết nhà mình lắp solar bao nhiêu kWp trước khi gọi thợ khảo sát
             </h1>
 
@@ -95,7 +95,7 @@ export default function HeroSection() {
                 { value: '24h', label: 'gọi lại tư vấn' },
               ].map((item) => (
                 <div key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.05] px-2.5 py-2.5">
-                  <p className="text-[17px] font-black text-white sm:text-xl">{item.value}</p>
+                  <p className="text-[17px] font-black text-white sm:text-xl font-display">{item.value}</p>
                   <p className="mt-0.5 text-[10px] font-medium leading-tight text-slate-300 sm:text-[11px]">{item.label}</p>
                 </div>
               ))}

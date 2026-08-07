@@ -26,7 +26,7 @@ export default function ThoiGianHoanVonPage() {
               <SunDim className="h-10 w-10" weight="duotone" />
             </div>
             <div>
-              <h1 className="text-[1.55rem] font-extrabold tracking-tight text-[#2b211b] sm:text-[1.8rem]">Máy tính Điện Mặt Trời</h1>
+              <h1 className="text-[1.55rem] font-extrabold tracking-tight text-[#2b211b] sm:text-[1.8rem] font-display">Máy tính Điện Mặt Trời</h1>
               <p className="mt-1 text-[0.9rem] leading-tight text-[#7d7168] sm:text-[1rem]">Ước tính theo hoá đơn thực tế</p>
             </div>
           </div>
@@ -38,8 +38,8 @@ export default function ThoiGianHoanVonPage() {
         <section className="rounded-[36px] bg-[radial-gradient(circle_at_top_right,rgba(255,206,105,0.18),transparent_24%),linear-gradient(180deg,#0c1326_0%,#11192e_100%)] px-6 py-7 text-white shadow-[0_24px_80px_rgba(29,19,8,0.26)] sm:px-8 sm:py-9">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="text-[0.82rem] font-black uppercase tracking-[0.24em] text-[#ffbf27] sm:text-[0.95rem]">TỐT CHO GIA ĐÌNH & MÔI TRƯỜNG</p>
-              <h2 className="mt-5 text-[3.15rem] font-black leading-[0.92] tracking-tight text-white sm:text-[4rem]">
+              <p className="text-[0.82rem] font-black uppercase tracking-[0.24em] text-[#ffbf27] sm:text-[0.95rem] font-display">TỐT CHO GIA ĐÌNH & MÔI TRƯỜNG</p>
+              <h2 className="mt-5 text-[3.15rem] font-black leading-[0.92] tracking-tight text-white sm:text-[4rem] font-display">
                 ~2.7 tấn CO₂/năm
               </h2>
             </div>
@@ -57,7 +57,7 @@ export default function ThoiGianHoanVonPage() {
               <div key={item.label} className="flex items-center gap-4 rounded-[22px] bg-[rgba(255,255,255,0.08)] px-4 py-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#22304f] text-[1.25rem]">{item.icon}</div>
                 <div>
-                  <p className="text-[1.05rem] font-extrabold text-white sm:text-[1.15rem]">{item.value}</p>
+                  <p className="text-[1.05rem] font-extrabold text-white sm:text-[1.15rem] font-display">{item.value}</p>
                   <p className="text-[0.95rem] leading-6 text-slate-300 sm:text-[1rem]">{item.label}</p>
                 </div>
               </div>
@@ -100,13 +100,13 @@ export default function ThoiGianHoanVonPage() {
           </div>
 
           <div className="mt-3 rounded-[24px] border border-[#eadcc8] bg-white px-4 py-5 shadow-[0_10px_22px_rgba(45,31,20,0.06)]">
-            <h3 className="text-[1.2rem] font-black text-[#231b16] sm:text-[1.35rem]">Thời gian hoàn vốn</h3>
+            <h3 className="text-[1.2rem] font-black text-[#231b16] sm:text-[1.35rem] font-display">Thời gian hoàn vốn</h3>
             <div className="mt-6 h-48 rounded-[20px] bg-[linear-gradient(180deg,#fffaf4_0%,#fff4e2_100%)] p-4">
               <div className="flex h-full items-end">
                 <div className="relative w-full">
                   <div className="absolute left-0 top-16 right-0 border-t-2 border-dashed border-[#c9b7a2]" />
                   <div className="absolute left-0 bottom-10 text-[1rem] font-medium text-[#8d7a66]">0</div>
-                  <div className="absolute left-[31%] bottom-10 text-[1rem] font-black text-[#1f8b45]">~{paybackYears} năm</div>
+                  <div className="absolute left-[31%] bottom-10 text-[1rem] font-black text-[#1f8b45] font-display">~{paybackYears} năm</div>
                   <div className="absolute right-0 bottom-10 text-[1rem] font-medium text-[#8d7a66]">12</div>
                   <div className="absolute left-10 top-16 text-[0.95rem] font-semibold text-[#8d7a66]">Vốn đầu tư</div>
                   <div className="absolute left-0 right-0 bottom-12 h-[2px] bg-[#e8d7c1]" />
@@ -134,8 +134,8 @@ export default function ThoiGianHoanVonPage() {
           </p>
 
           <div className="mt-5 rounded-[26px] border border-[#eadcc8] bg-white px-5 py-6 shadow-[0_12px_28px_rgba(45,31,20,0.06)]">
-            <p className="text-center text-[0.88rem] font-black tracking-[0.2em] text-[#1f8b45] sm:text-[0.95rem]">MIỄN PHÍ - NHÀ THẦU UY TÍN GẦN BẠN</p>
-            <h4 className="mt-3 text-center text-[1.35rem] font-black leading-[1.1] text-[#231b16] sm:text-[1.55rem]">
+            <p className="text-center text-[0.88rem] font-black tracking-[0.2em] text-[#1f8b45] sm:text-[0.95rem] font-display">MIỄN PHÍ - NHÀ THẦU UY TÍN GẦN BẠN</p>
+            <h4 className="mt-3 text-center text-[1.35rem] font-black leading-[1.1] text-[#231b16] sm:text-[1.55rem] font-display">
               Để lại thông tin để được khảo sát & lên thiết kế miễn phí
             </h4>
             <p className="mt-4 text-center text-[0.95rem] leading-7 text-[#7d7168] sm:text-[1rem]">

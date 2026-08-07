@@ -58,8 +58,8 @@ export default function CalculatorPageShell({
             '--sh-card': '0 12px 30px -22px rgba(67,56,39,.42)',
             '--sh-btn': '0 16px 32px -20px rgba(245,158,11,.8)',
             '--sh-hero': '0 26px 60px -34px rgba(17,24,39,.85)',
-            fontFamily: '"Roboto Flex", system-ui, sans-serif',
-            '--font-display': '"Roboto Flex", system-ui, sans-serif',
+            fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            '--font-display': '"SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
             background: 'var(--bg-page)',
             color: 'var(--ink)',
           } as React.CSSProperties}

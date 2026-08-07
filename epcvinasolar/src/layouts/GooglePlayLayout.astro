@@ -1,0 +1,78 @@
+---
+import '../styles/globals.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="min-h-screen bg-[#f8f9fa] text-slate-900 antialiased">
+    <div class="google-play-shell">
+      <header class="google-play-shell__header">
+        <div class="mx-auto flex max-w-7xl items-center gap-4 px-4 py-3 sm:px-6 lg:px-8">
+          <a href="/" class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-slate-900">
+            <span class="inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-[#34A853] text-white text-base leading-none shadow-[0_10px_24px_rgba(52,168,83,0.22)]">▶</span>
+            <span>EPCVINA</span>
+          </a>
+          <div class="hidden md:flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <span>Trò chơi</span>
+            <span>Ứng dụng</span>
+            <span>Sách</span>
+            <span>Trẻ em</span>
+          </div>
+          <div class="ml-auto flex items-center gap-2 text-slate-500">
+            <span class="hidden sm:inline text-xs uppercase tracking-[0.24em]">search</span>
+            <span class="hidden sm:inline text-xs uppercase tracking-[0.24em]">help_outline</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="google-play-shell__main">
+        <slot />
+      </main>
+    </div>
+
+    <style>
+      .google-play-shell {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .google-play-shell::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at top right, rgba(52, 168, 83, 0.14), transparent 24%),
+          radial-gradient(circle at 0% 18%, rgba(255, 255, 255, 0.9), transparent 22%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(248, 249, 250, 0.92));
+        pointer-events: none;
+      }
+
+      .google-play-shell__header {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+        background: rgba(248, 249, 250, 0.82);
+        backdrop-filter: blur(20px);
+      }
+
+      .google-play-shell__main {
+        position: relative;
+      }
+    </style>
+  </body>
+</html>

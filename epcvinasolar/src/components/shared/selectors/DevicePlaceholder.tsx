@@ -124,7 +124,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
   const keySpecs = getKeySpecs();
 
   return (
-    <div className="relative w-full aspect-square bg-gradient-to-br from-gray-100 via-gray-50 to-white overflow-hidden font-['Roboto_Flex',sans-serif]">
+    <div className="relative w-full aspect-square bg-gradient-to-br from-gray-100 via-gray-50 to-white overflow-hidden font-sans">
       {/* Split Layout Container */}
       <div className="absolute inset-0 flex">
         

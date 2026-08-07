@@ -574,7 +574,7 @@ export default function SolarSolutionFinder() {
       <div className="max-w-[1440px] mx-auto">
 
         {/* ─── Header ─── */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <p
             className={`text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-3  `}
           >
@@ -587,15 +587,10 @@ export default function SolarSolutionFinder() {
             Hệ Thống Nào{' '}
             <span style={{ color: '#f59e0b' }}>Phù Hợp Với Bạn?</span>
           </h2>
-          <p
-            className={`text-gray-500 text-sm sm:text-base max-w-xl mx-auto  `}
-            
-          >
+          <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
             Chỉ cần nhập thông tin cơ bản, EPCVINA Solar sẽ đề xuất giải pháp phù hợp nhất
             dựa trên nhu cầu sử dụng thực tế của bạn.
           </p>
-
-       
         </div>
 
         {/* ─── MOBILE: Detail panel only ─── */}
@@ -619,9 +614,7 @@ export default function SolarSolutionFinder() {
         <div className="hidden lg:grid lg:grid-cols-[1fr_1fr_1fr] gap-4 md:gap-5" style={{ height: '720px' }}>
 
           {/* ── LEFT: Calculator Card ── */}
-          <div
-            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full  `}
-          >
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
             {/* Card header */}
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex items-center gap-2">
@@ -701,10 +694,7 @@ export default function SolarSolutionFinder() {
           </div>
 
           {/* ── CENTER: Recommendations ── */}
-          <div
-            className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full  `}
-            
-          >
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden flex flex-col h-full">
             <div className="px-5 pt-5 pb-4 border-b border-gray-100 flex-shrink-0">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-full bg-[#F5831F] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
@@ -713,26 +703,26 @@ export default function SolarSolutionFinder() {
                 <div>
                   <p className="font-bold text-gray-900 text-sm">Giải Pháp Phù Hợp Với Bạn</p>
                   <p className="text-[11px] text-gray-500 hidden md:block">Chọn một để xem chi tiết ở cột bên phải</p>
-                              <p className="text-[11px] text-gray-500 md:hidden">Chọn một để xem chi tiết bên dưới</p>
+                  <p className="text-[11px] text-gray-500 md:hidden">Chọn một để xem chi tiết bên dưới</p>
                 </div>
               </div>
             </div>
 
             <div className="p-4 space-y-3 flex-1 overflow-y-auto">
               {displaySolutions.map((sol: SolutionCard, i: number) => (
-                  <RecommendationCard
-                    key={sol.name + i}
-                    sol={sol}
-                    index={i}
-                    isSelected={selectedIndex === i}
-                    onSelect={() => {
-                      setSelectedIndex(i);
-                      if (window.innerWidth < 1024 && detailRef.current) {
-                        setTimeout(() => detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-                      }
-                    }}
-                  />
-                ))}
+                <RecommendationCard
+                  key={sol.name + i}
+                  sol={sol}
+                  index={i}
+                  isSelected={selectedIndex === i}
+                  onSelect={() => {
+                    setSelectedIndex(i);
+                    if (window.innerWidth < 1024 && detailRef.current) {
+                      setTimeout(() => detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+                    }
+                  }}
+                />
+              ))}
               {solutions.length > VISIBLE_LIMIT && (
                 <button
                   type="button"

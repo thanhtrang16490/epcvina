@@ -1,16 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Sun, Lightning, Shield, Factory, ClipboardText } from '@phosphor-icons/react';
-import { useCountUp } from '../../../hooks/useScrollAnimation';
+import { ClipboardText } from '@phosphor-icons/react';
 
 const RED = '#DC2626';
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
   const [loaded] = useState(true);
-  const [statsVisible, setStatsVisible] = useState(false);
 
-  // Parallax scroll
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.innerWidth < 768;
@@ -20,19 +17,12 @@ export default function HeroSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Stats counter animation
-  const count10 = useCountUp(10, 800, statsVisible);
-  const count200 = useCountUp(200, 800, statsVisible);
-  const count5 = useCountUp(5, 800, statsVisible);
-  const count25 = useCountUp(25, 800, statsVisible);
-
   return (
     <section
       data-header-theme="dark"
       className="relative w-full overflow-hidden flex flex-col"
       style={{ height: '100dvh', minHeight: '600px' }}
     >
-      {/* Background Image - Responsive with WebP */}
       <picture>
         <source media="(max-width: 768px)" srcSet="/hero-bg-768.webp" />
         <source media="(max-width: 1280px)" srcSet="/hero-bg-1280.webp" />
@@ -51,13 +41,8 @@ export default function HeroSection() {
       </picture>
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" />
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col flex-1">
-
-        {/* Main content — vertically centered */}
         <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 text-center">
-
-          {/* Tagline pill */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-400/40 bg-amber-400/10 backdrop-blur-sm mb-5"
             initial={false}
@@ -70,7 +55,6 @@ export default function HeroSection() {
             </span>
           </motion.div>
 
-          {/* Brand logo */}
           <motion.div
             initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
@@ -85,9 +69,8 @@ export default function HeroSection() {
             />
           </motion.div>
 
-          {/* H1 - Main heading for SEO */}
           <motion.h1
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 max-w-4xl leading-tight tracking-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-4 max-w-4xl leading-tight tracking-tight text-balance"
             initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -96,9 +79,8 @@ export default function HeroSection() {
             <span className="block text-amber-400">Tiết Kiệm 70–90% Hóa Đơn Điện</span>
           </motion.h1>
 
-          {/* Primary descriptor */}
           <motion.p
-            className="text-lg sm:text-xl md:text-2xl font-semibold text-white/90 mb-3 max-w-2xl leading-snug"
+            className="text-lg sm:text-xl md:text-2xl font-semibold text-white/90 mb-3 max-w-2xl leading-snug text-pretty"
             initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -108,9 +90,8 @@ export default function HeroSection() {
             cho gia đình, biệt thự và doanh nghiệp
           </motion.p>
 
-          {/* Short description */}
           <motion.p
-            className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto mb-8 leading-relaxed"
+            className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto mb-6 leading-relaxed"
             initial={false}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -119,7 +100,28 @@ export default function HeroSection() {
             mặt trời mái nhà, pin lưu trữ BESS và sạc xe điện theo tiêu chuẩn an toàn, bền vững.
           </motion.p>
 
-          {/* CTA Buttons */}
+          <motion.div
+            className="mb-6 grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-4xl mx-auto"
+            initial={false}
+            animate={loaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.66, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {[
+              ['10+', 'Năm kinh nghiệm'],
+              ['200+', 'Công trình đã thi công'],
+              ['5 MWp+', 'Công suất lắp đặt'],
+              ['25 năm', 'Bảo hành tấm pin'],
+            ].map(([value, label]) => (
+              <div
+                key={label}
+                className="rounded-2xl border border-white/10 bg-white/10 backdrop-blur-sm px-4 py-3 text-left"
+              >
+                <p className="text-base sm:text-lg font-extrabold text-white leading-none">{value}</p>
+                <p className="mt-1 text-[11px] sm:text-xs text-white/70 leading-tight">{label}</p>
+              </div>
+            ))}
+          </motion.div>
+
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-3"
             initial={false}
@@ -136,50 +138,12 @@ export default function HeroSection() {
             </a>
             <a
               href="/calculator"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-white/60 text-white font-semibold text-sm hover:bg-white/10 hover:border-white active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white/85 hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-white/70"
             >
-              <Lightning className="w-4 h-4" weight="bold" />
               Tính chi phí điện
             </a>
           </motion.div>
-
-          {/* Slogan */}
-          <p className="mt-6 text-xs text-white tracking-widest uppercase">
-            Điện mặt trời an toàn từ chuyên gia cơ điện
-          </p>
         </div>
-
-        {/* Stats bar — pinned at bottom */}
-        <motion.div
-          className="flex-shrink-0 px-3 sm:px-6 pb-4 md:pb-5"
-          onViewportEnter={() => setStatsVisible(true)}
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          <div
-            className="max-w-5xl mx-auto rounded-2xl shadow-2xl"
-            style={{ backgroundColor: 'rgba(255,255,255,0.97)', backdropFilter: 'blur(12px)' }}
-          >
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-              {[
-                { icon: <Sun className="w-7 h-7 md:w-9 md:h-9 text-[#DC2626]" weight="duotone" />, value: `${count10}+`, label: 'Năm kinh nghiệm' },
-                { icon: <Lightning className="w-7 h-7 md:w-9 md:h-9 text-[#DC2626]" weight="duotone" />, value: `${count200}+`, label: 'Công trình đã thi công' },
-                { icon: <Factory className="w-7 h-7 md:w-9 md:h-9 text-[#1a365d]" weight="duotone" />, value: `${count5} MWp+`, label: 'Công suất lắp đặt' },
-                { icon: <Shield className="w-7 h-7 md:w-9 md:h-9 text-[#1a365d]" weight="duotone" />, value: `${count25} năm`, label: 'Bảo hành tấm pin' },
-              ].map((stat, i) => (
-                <div
-                  key={i}
-                  className="flex items-center justify-center gap-2 md:gap-3 py-3 md:py-4 px-2 md:px-4"
-                >
-                  <div className="flex-shrink-0">{stat.icon}</div>
-                  <div>
-                    <p className="text-sm md:text-xl font-extrabold text-gray-900 leading-none mb-0.5">{stat.value}</p>
-                    <p className="text-[10px] md:text-xs text-gray-500 leading-tight">{stat.label}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

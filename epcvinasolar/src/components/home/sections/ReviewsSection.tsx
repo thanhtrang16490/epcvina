@@ -61,7 +61,7 @@ export default function ReviewsSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-display">
             Khách hàng nói gì về chúng tôi?
           </h2>
           <p className="text-gray-500 mt-2">

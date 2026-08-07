@@ -47,10 +47,10 @@ export default function BenefitsSection() {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.5 }}
         >
-          <p className="text-xs font-bold tracking-[0.2em] uppercase text-red-600 mb-3">
+          <p className="text-xs font-bold tracking-[0.2em] uppercase text-red-600 mb-3 font-display">
             TẠI SAO CHỌN EPCVINA SOLAR
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight font-display">
             Lợi Thế <span className="text-red-600">EPCVINA Solar</span>
           </h2>
           <p className="mt-4 text-gray-600 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
