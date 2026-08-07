@@ -6,7 +6,7 @@ description: |
   Canadian Solar là một trong những nhà sản xuất tấm pin năng lượng mặt trời lớn nhất thế giới, có trụ sở tại Canada.
   Canadian Solar cung cấp đa dạng sản phẩm từ dòng CS6W Mono PERC đến CS7N N-Type TOPCon công suất cao.
   Sản phẩm Canadian Solar được bảo hiểm PICC toàn cầu, bảo hành hiệu suất 30 năm tuyến tính.
-logo: ""
+logo: /brands/canadian-solar.png
 country: Canada
 founded_year: 2001
 brand_type: Tấm pin mặt trời

@@ -6,7 +6,7 @@ description: |
   Sungrow Power Supply Co., Ltd. là nhà sản xuất biến tần năng lượng mặt trời và hệ thống lưu trữ năng lượng hàng đầu thế giới, thành lập năm 1997 tại Hợp Phì, Trung Quốc.
   Sungrow cung cấp giải pháp năng lượng mặt trời toàn diện bao gồm biến tần on-grid, hybrid, hệ thống lưu trữ pin và giải pháp điện mặt trời cho dân dụng, thương mại và công nghiệp.
   Với hơn 25 năm kinh nghiệm, Sungrow đã lắp đặt hơn 405GW biến tần trên toàn cầu, chiếm thị phần lớn tại Trung Quốc, châu Á và châu Âu.
-logo: /brands/sungrow.png
+logo: /brands/sungrow.svg
 website: https://www.sungrowpower.com
 country: China
 founded_year: 1997

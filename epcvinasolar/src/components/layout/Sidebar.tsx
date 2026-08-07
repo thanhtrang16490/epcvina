@@ -113,13 +113,17 @@ const menuItems: MenuItem[] = [
 function MenuGroup({ 
   item, 
   isExpanded, 
+  isSidebarExpanded,
   onToggle, 
+  onHover,
   isActive,
   onClose 
 }: { 
   item: MenuItem; 
   isExpanded: boolean; 
+  isSidebarExpanded: boolean;
   onToggle: () => void;
+  onHover: () => void;
   isActive: (href: string) => boolean;
   onClose: () => void;
 }) {
@@ -152,7 +156,8 @@ function MenuGroup({
     <div>
       <button
         onClick={onToggle}
-        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
+        onMouseEnter={isSidebarExpanded ? onHover : undefined}
+        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ease-out ${
           hasActiveChild
             ? 'text-gray-900'
             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
@@ -168,8 +173,12 @@ function MenuGroup({
           <CaretRight className="h-4 w-4 text-gray-400" />
         )}
       </button>
-      {isExpanded && item.children && (
-        <div className="ml-4 mt-1 space-y-0.5 border-l border-gray-200 pl-4">
+      {item.children && (
+        <div
+          className={`ml-4 mt-1 space-y-0.5 border-l border-gray-200 pl-4 overflow-hidden transition-all duration-300 ease-out ${
+            isExpanded ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-1 pointer-events-none'
+          }`}
+        >
           {item.children.map((child) => {
             const active = isActive(child.href);
             if (child.soon) {
@@ -194,10 +203,10 @@ function MenuGroup({
                 key={child.href}
                 href={child.href}
                 onClick={onClose}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors duration-150 ${
-                  active
-                    ? 'bg-[#FEF2F2] text-[#DC2626] font-medium'
-                    : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
+                          className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-300 ease-out ${
+                            active
+                              ? 'bg-[#FEF2F2] text-[#DC2626] font-medium'
+                              : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
                 }`}
               >
                 <div className={`w-1.5 h-1.5 rounded-full ${active ? 'bg-[#DC2626]' : 'bg-gray-300'}`} />
@@ -259,6 +268,10 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     });
   };
 
+  const openGroup = (name: string) => {
+    setExpandedGroups(new Set([name]));
+  };
+
   return (
     <>
       {/* Mobile Overlay - only on < md (phones) */}
@@ -303,7 +316,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               key={item.name}
               item={item}
               isExpanded={expandedGroups.has(item.name) || (item.children?.some(c => isActive(c.href)) ?? false)}
+              isSidebarExpanded={isExpanded}
               onToggle={() => toggleGroup(item.name)}
+              onHover={() => openGroup(item.name)}
               isActive={isActive}
               onClose={onClose}
             />
@@ -356,14 +371,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       <SignOut className="h-4 w-4" />
                     </button>
                   </div>
-                ) : (
-                  <a href="/dang-nhap" onClick={onClose}
-                    className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
-                  >
-                    <SignIn className="h-4 w-4" />
-                    <span>Đăng nhập</span>
-                  </a>
-                )}
+                ) : null}
               </div>
             </>
           )}
@@ -384,7 +392,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         }}
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
-        onClick={() => setIsExpanded(prev => !prev)}
       >
         {/* Mirror reflection gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none z-0" />
@@ -442,7 +449,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               <div key={item.name}>
                 <button
                   onClick={() => toggleGroup(item.name)}
-                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  onMouseEnter={isExpanded ? () => openGroup(item.name) : undefined}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ease-out ${
                     isExpanded
                       ? hasActiveChild
                         ? 'text-gray-900'
@@ -465,8 +473,12 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     </>
                   )}
                 </button>
-                {isExpanded && expandedGroups.has(item.name) && item.children && (
-                  <div className="ml-4 mt-1 space-y-0.5 border-l border-gray-200 pl-4">
+                {item.children && (
+                  <div
+                    className={`ml-4 mt-1 space-y-0.5 border-l border-gray-200 pl-4 overflow-hidden transition-all duration-300 ease-out ${
+                      isExpanded && expandedGroups.has(item.name) ? 'max-h-96 opacity-100 translate-y-0' : 'max-h-0 opacity-0 -translate-y-1 pointer-events-none'
+                    }`}
+                  >
                     {item.children.map((child) => {
                       const active = isActive(child.href);
                       if (child.soon) {
@@ -491,7 +503,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           key={child.href}
                           href={child.href}
                           onClick={onClose}
-                          className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
+                          className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all duration-300 ease-out ${
                             active
                               ? 'bg-[#FEF2F2] text-[#DC2626] font-medium'
                               : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
@@ -583,19 +595,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 </button>
               )
             ) : (
-              isExpanded ? (
-                <a href="/dang-nhap"
-                  className="flex items-center justify-center gap-2 bg-[#DC2626] text-white rounded-xl py-2.5 px-4 text-sm font-semibold hover:bg-[#B01A22] transition-colors"
-                >
-                  <SignIn className="h-4 w-4 flex-shrink-0" />
-                  <span>Đăng nhập</span>
-                </a>
-              ) : (
-                <a href="/login" title="Đăng nhập"
-                  className="w-full flex justify-center py-2 text-gray-500 hover:text-[#DC2626] transition-colors">
-                  <SignIn className="h-5 w-5" />
-                </a>
-              )
+              null
             )}
           </div>
         </nav>

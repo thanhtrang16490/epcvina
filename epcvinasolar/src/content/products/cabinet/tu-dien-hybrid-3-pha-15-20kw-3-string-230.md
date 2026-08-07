@@ -1,6 +1,6 @@
 ---
 name: "Tủ điện Hybrid 3 pha 18-22kW 3 String"
-brand: "GPG SOLAR"
+brand: "EPCVINA"
 category: "cabinet"
 model: "18-22 KW 3 Pha"
 description: "Tủ Điện năng lượng mặt trời hòa lưới có lưu trữ (Hybrid) 3 pha 3 Strings cho hệ thống Điện mặt trời 15kW – 20kW"

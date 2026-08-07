@@ -1,6 +1,6 @@
 ---
 name: "Tủ điện Hybrid 3 pha 12-16kW 2 String"
-brand: "GPG SOLAR"
+brand: "EPCVINA"
 category: "cabinet"
 model: "12-16 KW 3 Pha"
 description: "Tủ Điện năng lượng mặt trời hòa lưới có lưu trữ (Hybrid) 3 pha 2 Strings cho hệ thống Điện mặt trời 12kW – 15kW"

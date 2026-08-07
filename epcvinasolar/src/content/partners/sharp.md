@@ -6,7 +6,7 @@ description: |
   Sharp là thương hiệu điện tử nổi tiếng của Nhật Bản, với mảng năng lượng mặt trời cung cấp các tấm pin chất lượng cao.
   Sharp áp dụng công nghệ N-Type TOPCon tiên tiến, sản xuất theo tiêu chuẩn Nhật Bản khắt khe.
   Sản phẩm Sharp được đánh giá cao về độ bền, hiệu suất ổn định và phù hợp khí hậu Việt Nam.
-logo: ""
+logo: /brands/sharp.png
 country: Japan
 founded_year: 1912
 brand_type: Tấm pin mặt trời

@@ -6,7 +6,7 @@ description: |
   Huawei là tập đoàn công nghệ hàng đầu thế giới, cung cấp giải pháp năng lượng mặt trời thông minh với công nghệ biến tần tiên tiến.
   Dòng biến tần Huawei FusionSolar tích hợp AI, giúp tối ưu hóa hiệu suất hệ thống và giám sát từ xa.
   Sản phẩm Huawei được tin dùng tại hơn 170 quốc gia với độ tin cậy và hiệu suất vượt trội.
-logo: /brands/huawei.png
+logo: /brands/huawei.jpg
 country: China
 founded_year: 1987
 brand_type: Biến tần & Giải pháp thông minh

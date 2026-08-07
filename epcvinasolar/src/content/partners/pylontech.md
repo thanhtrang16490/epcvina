@@ -6,7 +6,7 @@ description: |
   Pylontech là nhà sản xuất pin lithium hàng đầu chuyên cung cấp giải pháp lưu trữ năng lượng cho hệ thống điện mặt trời.
   Với hơn 10 năm kinh nghiệm, Pylontech đã triển khai hơn 5GWh pin lưu trữ trên toàn cầu.
   Sản phẩm Pylontech nổi bật với công nghệ LFP an toàn, tuổi thọ dài và hiệu suất cao.
-logo: /brands/pylontech.png
+logo: /brands/pylontech.svg
 country: China
 founded_year: 2009
 brand_type: Pin lưu trữ năng lượng

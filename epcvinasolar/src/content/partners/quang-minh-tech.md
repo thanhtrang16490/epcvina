@@ -6,7 +6,7 @@ description: |
   QUANG MINH TECH là nhà sản xuất phụ kiện lắp đặt hệ thống điện mặt trời, chuyên cung cấp thanh ray nhôm, kẹp biên, kẹp giữa và các phụ kiện mounting khác.
   Sản phẩm QUANG MINH TECH được sản xuất tại Việt Nam với chất lượng nhôm AL6005-T5 tiêu chuẩn quốc tế.
   Đáp ứng đầy đủ tiêu chuẩn JIS C 4401 và AS/NZS 1170.2.
-logo: /brands/qm-solar.png
+logo: /brands/quang-minh-tech.svg
 country: Vietnam
 brand_type: Phụ kiện lắp đặt
 products:

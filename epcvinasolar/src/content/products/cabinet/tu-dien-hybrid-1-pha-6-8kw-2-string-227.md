@@ -1,6 +1,6 @@
 ---
 name: "Tủ điện Hybrid 1 pha 6-8kW 2 String"
-brand: "GPG SOLAR"
+brand: "EPCVINA"
 category: "cabinet"
 model: "6-8 KW 1 Pha"
 description: "Tủ Điện năng lượng mặt trời hòa lưới có lưu trữ (Hybrid) 1 pha 2 Strings cho hệ thống Điện mặt trời 6kW – 8kW"

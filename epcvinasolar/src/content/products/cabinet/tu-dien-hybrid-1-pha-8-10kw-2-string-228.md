@@ -1,6 +1,6 @@
 ---
 name: "Tủ điện Hybrid 1 pha 8-10kW 2 String"
-brand: "null"
+brand: "EPCVINA"
 category: "cabinet"
 model: "8-10 KW 1 Pha"
 description: "Tủ Điện năng lượng mặt trời hòa lưới có lưu trữ (Hybrid) 1 pha 2 Strings cho hệ thống Điện mặt trời 6kW – 8kW"
