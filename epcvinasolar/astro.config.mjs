@@ -9,7 +9,7 @@ export default defineConfig({
   output: 'static',
   redirects: {
     '/projects': '/du-an',
-    '/solar-home/on-grid': '/on-grid',
+    '/on-grid': '/solar-home/on-grid',
   },
   compressHTML: true,
   build: {
@@ -27,7 +27,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => ![
         'https://epcvina.com/projects/',
-        'https://epcvina.com/solar-home/on-grid/',
+        'https://epcvina.com/on-grid/',
       ].includes(page),
       i18n: {
         defaultLocale: 'vi',

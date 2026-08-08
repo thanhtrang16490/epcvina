@@ -14,7 +14,7 @@ image: "/images/blog/chi-phi-on-grid-ha-noi.webp"
 
 Bài viết này cung cấp thông tin chi tiết và minh bạch nhất về chi phí lắp đặt điện mặt trời On-Grid năm 2026, giúp bạn đưa ra quyết định đầu tư thông minh.
 
-👉 **Xem nhanh:** [Combo On-Grid 5kW](/on-grid/on-grid-5kw-1pha) | [Báo giáinstant](/bao-gia) | [Tư vấn miễn phí](/lien-he)
+👉 **Xem nhanh:** [Combo On-Grid 5kW](/solar-home/he-thong/on-grid-5kw-1pha) | [Báo giáinstant](/bao-gia) | [Tư vấn miễn phí](/lien-he)
 
 ---
 
@@ -117,7 +117,7 @@ EPC Solar hỗ trợ toàn bộ hồ sơ thủ tục đấu nối EVN miễn ph�
 
 💡 **Tip:** So sánh giá từ 3 nhà thầu khác nhau trước khi quyết định. Đừng chọn giá rẻ nhất — hãy chọn giá hợp lý với chất lượng tốt nhất.
 
-👉 [Xem combo On-Grid 5kW trọn gói](/on-grid/on-grid-5kw-1pha)
+👉 [Xem combo On-Grid 5kW trọn gói](/solar-home/he-thong/on-grid-5kw-1pha)
 
 ---
 
@@ -136,7 +136,7 @@ EPC Solar hỗ trợ toàn bộ hồ sơ thủ tục đấu nối EVN miễn ph�
 
 **Tiết kiệm ước tính**: 2–3,5 triệu VNĐ/tháng
 
-👉 [Xem combo On-Grid 10kW](/on-grid/on-grid-10kw-1pha) | [Xem combo On-Grid 15kW](/on-grid/on-grid-15kw-3pha)
+👉 [Xem combo On-Grid 10kW](/solar-home/he-thong/on-grid-10kw-1pha) | [Xem combo On-Grid 15kW](/solar-home/he-thong/on-grid-15kw-3pha)
 
 ### Hệ 15kW On-Grid
 
@@ -153,7 +153,7 @@ Phù hợp cho nhà biệt thự, cơ sở kinh doanh, xưởng sản xuất nh�
 
 **Tiết kiệm ước tính**: 3–5 triệu VNĐ/tháng
 
-👉 [Xem tất cả combo On-Grid](/on-grid)
+👉 [Xem tất cả combo On-Grid](/solar-home/on-grid)
 
 ---
 
@@ -224,7 +224,7 @@ Kể từ năm 2025, Việt Nam áp dụng cơ chế **bù trừ điện năng**
 - Hệ thống ≤ 6kW: Thủ tục đơn giản, chỉ cần thông báo cho điện lực địa phương
 - Hệ thống > 6kW: Cần xin phép xây dựng và phê duyệt kết nối lưới
 
-EPC Solar đồng hành cùng bạn trong toàn bộ thủ tục đấu nối. Xem thêm tại trang [điện mặt trời On-Grid](/on-grid) của chúng tôi.
+EPC Solar đồng hành cùng bạn trong toàn bộ thủ tục đấu nối. Xem thêm tại trang [điện mặt trời On-Grid](/solar-home/on-grid) của chúng tôi.
 
 📖 **Đọc thêm:** [Quy trình lắp đặt solar từ A-Z](/tin-tuc/quy-trinh-lap-dat-solar)
 
@@ -311,7 +311,7 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 
 👉 **Hành động ngay:**
 - [Yêu cầu khảo sát miễn phí](/lien-he)
-- [Xem combo On-Grid](/on-grid)
+- [Xem combo On-Grid](/solar-home/on-grid)
 - [Tính toán ROI của bạn](/bao-gia)
 - [Đọc thêm về Hybrid](/tin-tuc/on-grid-vs-hybrid)
 

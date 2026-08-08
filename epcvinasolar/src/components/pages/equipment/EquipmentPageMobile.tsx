@@ -624,10 +624,12 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
 
                     {/* CTA */}
                     <div className="pt-4 border-t border-gray-100 space-y-2">
-                      <div className="mb-2">
-                        <p className="text-xs text-gray-500">Báo giá</p>
-                        <p className="text-sm font-medium text-gray-700">Liên hệ để nhận báo giá tốt nhất</p>
-                      </div>
+                      {device.price > 0 && (
+                        <div className="mb-2">
+                          <p className="text-xs text-gray-500">Báo giá</p>
+                          <p className="text-base font-semibold text-[#F97316]">{formatCurrency(device.price)}</p>
+                        </div>
+                      )}
                       <div className="flex gap-2">
                         <a
                           href={`/thiet-bi/${device.id}`}

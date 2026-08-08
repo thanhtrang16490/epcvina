@@ -14,7 +14,7 @@ brand_type: Biến tần & Hệ thống lưu trữ
 products:
   - hybrid-inverter
   - on-grid-inverter
-is_active: true
+is_active: false
 display_order: 14
 ---
 

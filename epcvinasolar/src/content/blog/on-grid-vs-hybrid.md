@@ -30,7 +30,7 @@ Hệ thống điện mặt trời **On-Grid** (còn gọi là hệ thống hoà 
 - **Mất điện lưới = mất điện hoàn toàn** (do bảo vệ an toàn anti-islanding)
 - Chi phí đầu tư thấp hơn Hybrid từ 30–50%
 
-Xem thêm chi tiết về giải pháp [điện mặt trời On-Grid tại EPC Solar](/on-grid) hoặc [xem bảng giá combo On-Grid](/on-grid).
+Xem thêm chi tiết về giải pháp [điện mặt trời On-Grid tại EPC Solar](/solar-home/on-grid) hoặc [xem bảng giá combo On-Grid](/solar-home/on-grid).
 
 ---
 
@@ -175,7 +175,7 @@ Sau hơn 10 năm lắp đặt hàng trăm hệ thống điện mặt trời tạ
 
 ### Với ngân sách 50–70 triệu VNĐ → Chọn On-Grid
 
-Đầu tư vào hệ thống [On-Grid chất lượng cao](/on-grid) với inverter tốt (Huawei, Growatt, Solis) và tấm pin hiệu suất cao (Jinko, LONGi, Canadian Solar). Hoàn vốn nhanh, bền bỉ, phù hợp với đại đa số gia đình.
+Đầu tư vào hệ thống [On-Grid chất lượng cao](/solar-home/on-grid) với inverter tốt (Huawei, Growatt, Solis) và tấm pin hiệu suất cao (Jinko, LONGi, Canadian Solar). Hoàn vốn nhanh, bền bỉ, phù hợp với đại đa số gia đình.
 
 ### Với ngân sách 90–130 triệu VNĐ → Chọn Hybrid
 
@@ -218,4 +218,4 @@ Cả hai giải pháp đều là khoản đầu tư sinh lời — câu hỏi ch
 
 **Bước tiếp theo**: Liên hệ EPC Solar để được khảo sát mái nhà miễn phí và nhận báo giá chi tiết trong vòng 24 giờ. Đội ngũ kỹ thuật của chúng tôi sẽ tư vấn giải pháp tối ưu nhất dựa trên thực tế mái nhà, thói quen tiêu thụ điện và ngân sách của gia đình bạn.
 
-👉 [Xem chi tiết hệ thống On-Grid](/on-grid) | [Xem chi tiết hệ thống Hybrid](/solar-home/hybrid) | [Liên hệ tư vấn](/lien-he)
+👉 [Xem chi tiết hệ thống On-Grid](/solar-home/on-grid) | [Xem chi tiết hệ thống Hybrid](/solar-home/hybrid) | [Liên hệ tư vấn](/lien-he)

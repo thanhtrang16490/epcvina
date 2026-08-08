@@ -9,9 +9,9 @@ const activePartners = partners
   .filter(p => p.data.is_active)
   .sort((a, b) => a.data.display_order - b.data.display_order);
 
-const seoTitle = 'Đối Tác Chính Hãng - Thiết Bị Điện Mặt Trời AIKO, Sungrow, Growatt, Pylontech, CFE | EPCVINA Solar';
-const seoDescription = 'Danh sách đối tác chính hãng của EPCVINA Solar: AIKO, JA Solar, Canadian Solar, Sharp, Huawei, Growatt, Pylontech, SAJ, Deye, Sungrow, CFE, Longi. Cam kết hàng chính hãng, bảo hành đầy đủ.';
-const seoKeywords = 'đối tác điện mặt trời, thương hiệu solar chính hãng, AIKO Solar, JA Solar, Canadian Solar, Sharp Solar, Huawei Solar, Growatt, Pylontech, Sungrow, CFE, EPCVINA đối tác';
+const seoTitle = 'Đối Tác EPCVINA Solar - EPCVINA và QUANG MINH Tech';
+const seoDescription = 'Hai đối tác chính thức của EPCVINA Solar là EPCVINA và QUANG MINH Tech, tập trung vào thiết bị điện mặt trời và phụ kiện lắp đặt chính hãng.';
+const seoKeywords = 'đối tác EPCVINA, QUANG MINH Tech, EPCVINA Solar, đối tác điện mặt trời';
 ---
 
 <DashboardLayout
@@ -24,7 +24,7 @@ const seoKeywords = 'đối tác điện mặt trời, thương hiệu solar ch�
     { name: 'Đối Tác', url: 'https://epcvina.com/doi-tac' }
   ]}
 >
-  <DashboardShell client:load>
-    <PartnersList client:idle partners={activePartners} />
-  </DashboardShell>
+    <DashboardShell client:load>
+      <PartnersList client:idle partners={activePartners} />
+    </DashboardShell>
 </DashboardLayout>

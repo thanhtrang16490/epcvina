@@ -90,7 +90,11 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
         ) : null}
         
         {/* Footer - visible on equipment pages, hidden on homepage (SolarFullPage has its own footer) */}
-        {showFooter && <FooterSection />}
+        {showFooter && (
+          <div className={showChrome ? 'lg:ml-16' : ''}>
+            <FooterSection />
+          </div>
+        )}
         
         {/* Back to Top Button */}
         {showChrome ? <BackToTop /> : null}

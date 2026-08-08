@@ -6,11 +6,13 @@ import HeaderBar from '../../components/home/layout/HeaderBar';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ứng dụng EPCVINA</title>
+    <title>Ứng dụng EPCVINA nội bộ</title>
     <meta
       name="description"
       content="Trang giới thiệu ứng dụng EPCVINA dành cho khách hàng theo dõi dự án, nhận hỗ trợ kỹ thuật và truy cập nhanh các tính năng nội bộ."
     />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
+    <meta name="robots" content="noindex, nofollow" />
   </head>
   <body class="bg-slate-950 text-white">
     <HeaderBar />

@@ -1,15 +1,7 @@
 ---
 export const prerender = false;
 
-import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
-import OnGridPage from '../../components/pages/on-grid/OnGridPage';
-
 const { slug } = Astro.params;
----
 
-<DashboardLayout title={`${slug} - Combo On-Grid - EPC Solar`} description={`Combo điện mặt trời On-Grid ${slug} - Đấu nối lưới trực tiếp, không cần pin lưu trữ. Tiết kiệm 70-90% hóa đơn điện, hoàn vốn 3-5 năm. EPC Solar lắp đặt trọn gói.`}>
-  <DashboardShell client:load>
-    <OnGridPage comboSlug={slug} client:idle />
-  </DashboardShell>
-</DashboardLayout>
+return Astro.redirect(`/solar-home/he-thong/${slug}`, 301);
+---

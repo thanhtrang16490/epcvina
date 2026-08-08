@@ -209,7 +209,7 @@ export default function EquipmentSidebar({
                 const brandDevices = devicesByBrand[brandName] || [];
                 const isSelected = selectedBrand === brandName;
                 const slug = brandSlugMap[brandName.toLowerCase()];
-                const href = slug ? `/doi-tac/${slug}` : undefined;
+                const href = slug ? `/nhan-hang/${slug}` : undefined;
                 return (
                   <a
                     key={brandName}

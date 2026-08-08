@@ -12,7 +12,7 @@ founded_year: 2000
 brand_type: Tấm pin mặt trời
 products:
   - panel
-is_active: true
+is_active: false
 display_order: 8
 ---
 

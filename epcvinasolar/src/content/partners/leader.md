@@ -11,7 +11,7 @@ country: Vietnam
 brand_type: Dây điện & Phụ kiện
 products:
   - wiring
-is_active: true
+is_active: false
 display_order: 11
 ---
 

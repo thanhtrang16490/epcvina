@@ -19,6 +19,7 @@ interface PartnerData {
     is_active: boolean;
     display_order: number;
     hotline?: string;
+    email?: string;
   };
   body?: string;
 }
@@ -257,6 +258,18 @@ export default function PartnerPage({ partner }: PartnerPageProps) {
                     <div className="flex items-center gap-3 text-sm">
                       <Shield className="w-4 h-4 text-gray-400" />
                       <span className="text-gray-600">{partner.data.brand_type}</span>
+                    </div>
+                  )}
+                  {partner.data.email && (
+                    <div className="flex items-center gap-3 text-sm">
+                      <span className="w-4 h-4 flex-shrink-0 text-gray-400">@</span>
+                      <span className="text-gray-600">{partner.data.email}</span>
+                    </div>
+                  )}
+                  {partner.data.website && (
+                    <div className="flex items-center gap-3 text-sm">
+                      <Globe className="w-4 h-4 text-gray-400" />
+                      <span className="text-gray-600">{partner.data.website}</span>
                     </div>
                   )}
                 </div>

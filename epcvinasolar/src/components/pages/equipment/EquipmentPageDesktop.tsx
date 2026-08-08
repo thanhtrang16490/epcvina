@@ -442,10 +442,14 @@ export default function EquipmentPageDesktop({
 
                   {/* CTA */}
                   <div className="pt-4 border-t border-gray-100 space-y-3">
-                    <div>
-                      <p className="text-xs text-gray-500 mb-0.5">Báo giá</p>
-                      <p className="text-sm font-semibold text-orange-600">Liên hệ để nhận báo giá tốt nhất</p>
-                    </div>
+                    {device.price > 0 && (
+                      <div>
+                        <p className="text-xs text-gray-500 mb-0.5">Báo giá</p>
+                        <p className="text-sm font-semibold text-[#F97316]">
+                          {formatCurrency(device.price)}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

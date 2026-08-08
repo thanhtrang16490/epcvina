@@ -12,7 +12,7 @@ founded_year: 2003
 brand_type: Biến tần năng lượng mặt trời
 products:
   - on-grid-inverter
-is_active: true
+is_active: false
 display_order: 5
 ---
 

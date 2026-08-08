@@ -11,7 +11,7 @@ brand_type: Thiết bị điện mặt trời
 products:
   - panel
   - on-grid-inverter
-is_active: true
+is_active: false
 display_order: 12
 ---
 

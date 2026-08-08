@@ -5,9 +5,11 @@ interface Props {
   title: string;
   description: string;
   variant: 'app-store' | 'chplay';
+  noindex?: boolean;
 }
 
-const { title, description, variant } = Astro.props;
+const { title, description, variant, noindex = true } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const isAppStore = variant === 'app-store';
 const brand = isAppStore
@@ -22,6 +24,8 @@ const brand = isAppStore
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
   </head>
   <body class="min-h-screen text-slate-900 antialiased" style={`background:${brand.tint};`}>
     <div class={`store-app store-app--${variant}`}>

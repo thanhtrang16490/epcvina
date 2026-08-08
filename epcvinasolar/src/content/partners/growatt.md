@@ -13,7 +13,7 @@ brand_type: Biến tần năng lượng mặt trời
 products:
   - on-grid-inverter
   - hybrid-inverter
-is_active: true
+is_active: false
 display_order: 3
 ---
 

@@ -37,7 +37,7 @@ Quá trình bắt đầu bằng một cuộc gọi tư vấn hoặc cuộc hẹn
 
 - **Lắng nghe nhu cầu** của bạn: Mục tiêu tiết kiệm điện, ngân sách dự kiến, kỳ vọng về hệ thống
 - **Thu thập thông tin cơ bản**: Hóa đơn điện 3–6 tháng gần nhất, loại nhà, diện tích mái, hướng nhà
-- **Giải thích các lựa chọn**: [On-Grid vs Hybrid](/on-grid), công suất phù hợp, thương hiệu thiết bị
+- **Giải thích các lựa chọn**: [On-Grid vs Hybrid](/solar-home/on-grid), công suất phù hợp, thương hiệu thiết bị
 
 ### Khảo sát thực địa (Miễn phí)
 
@@ -211,7 +211,7 @@ Trước khi bàn giao, kỹ sư giám sát của EPC Solar thực hiện kiểm
 
 **Tổng thời gian thủ tục EVN**: Thường 2–4 tuần tại Hà Nội.
 
-EPC Solar hỗ trợ toàn bộ thủ tục này — khách hàng chỉ cần cung cấp giấy tờ nhà đất. Xem thêm dịch vụ [On-Grid trọn gói](/on-grid) của chúng tôi.
+EPC Solar hỗ trợ toàn bộ thủ tục này — khách hàng chỉ cần cung cấp giấy tờ nhà đất. Xem thêm dịch vụ [On-Grid trọn gói](/solar-home/on-grid) của chúng tôi.
 
 ---
 
@@ -296,4 +296,4 @@ Quy trình lắp đặt điện mặt trời tại EPC Solar được chuẩn h�
 
 **Bắt đầu hành trình tiết kiệm điện ngay hôm nay**: [Liên hệ EPC Solar](/lien-he) để đặt lịch khảo sát miễn phí.
 
-👉 [Xem giải pháp On-Grid](/on-grid) | [Liên hệ tư vấn ngay](/lien-he)
+👉 [Xem giải pháp On-Grid](/solar-home/on-grid) | [Liên hệ tư vấn ngay](/lien-he)

@@ -11,7 +11,7 @@ country: China
 brand_type: Pin lưu trữ năng lượng cao áp
 products:
   - hv-battery
-is_active: true
+is_active: false
 display_order: 15
 ---
 

@@ -13,7 +13,7 @@ brand_type: Pin lưu trữ năng lượng
 products:
   - lv-battery
   - hv-battery
-is_active: true
+is_active: false
 display_order: 4
 ---
 

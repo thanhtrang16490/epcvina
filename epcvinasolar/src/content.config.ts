@@ -113,6 +113,7 @@ const partnersCollection = defineCollection({
     is_active: z.boolean().default(true),
     display_order: z.number().default(0),
     hotline: z.string().optional(),
+    email: z.string().optional(),
   }),
 });
 

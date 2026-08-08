@@ -43,7 +43,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 min-w-0">
               <a
-                href={isHybrid ? '/solar-home/hybrid' : '/on-grid'}
+                href={isHybrid ? '/solar-home/hybrid' : '/solar-home/on-grid'}
                 className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors flex-shrink-0"
               >
                 <ArrowLeft className="h-5 w-5" />

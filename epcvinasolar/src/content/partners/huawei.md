@@ -13,7 +13,7 @@ brand_type: Biến tần & Giải pháp thông minh
 products:
   - on-grid-inverter
   - hybrid-inverter
-is_active: true
+is_active: false
 display_order: 2
 ---
 
