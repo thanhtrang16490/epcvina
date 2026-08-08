@@ -48,3 +48,22 @@ Nhiều người trì hoãn đầu tư vì muốn chờ thiết bị rẻ hơn. 
 
 Nếu điều kiện mái và nhu cầu đã rõ, lắp sớm thường có lợi hơn chờ đợi. Điện mặt trời là bài toán dòng tiền dài hạn, không phải cuộc đua chờ giảm giá ngắn hạn.
 
+## FAQ
+
+### Có nên đợi giá thiết bị giảm thêm không?
+
+Nếu mái và nhu cầu đã sẵn sàng, lắp sớm thường có lợi hơn chờ đợi.
+
+### Khi nào thì chưa nên lắp?
+
+Khi mái còn cần sửa, chưa rõ nhu cầu điện hoặc còn bóng che nặng chưa xử lý.
+
+### Lắp sớm có lợi gì?
+
+Bạn sớm nhận được sản lượng tiết kiệm điện thay vì tiếp tục trả hóa đơn cao.
+
+## Bài Viết Liên Quan
+
+- [bao gia dien mat troi 5kw 2026](/tin-tuc/bao-gia-dien-mat-troi-5kw-2026)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)
+- [chuong trinh ho tro dau tu dien mat troi](/tin-tuc/chuong-trinh-ho-tro-dau-tu-dien-mat-troi)

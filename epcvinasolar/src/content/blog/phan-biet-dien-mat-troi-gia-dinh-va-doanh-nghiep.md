@@ -54,3 +54,22 @@ Tùy mô hình sử dụng điện, cách thiết kế sẽ khác rất nhiều 
 
 Không có một cấu hình “đúng cho tất cả”. Điều cần làm là thiết kế theo mục tiêu sử dụng thực tế để tối ưu hiệu quả của từng đồng đầu tư.
 
+## FAQ
+
+### Thiết kế cho doanh nghiệp khác gì gia đình?
+
+Doanh nghiệp thường ưu tiên quy mô lớn, độ ổn định và kiểm soát chi phí vận hành.
+
+### Hệ gia đình có cần bảo trì nhiều không?
+
+Không nhiều, nhưng vẫn nên theo dõi sản lượng và vệ sinh định kỳ.
+
+### Có thể dùng cùng một cách tư vấn cho cả hai không?
+
+Không nên, vì mục tiêu và cách dùng điện khác nhau rất nhiều.
+
+## Bài Viết Liên Quan
+
+- [chon he on grid hay hybrid](/tin-tuc/chon-he-on-grid-hay-hybrid)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)
+- [huong dan chon inverter hybrid](/tin-tuc/huong-dan-chon-inverter-hybrid)

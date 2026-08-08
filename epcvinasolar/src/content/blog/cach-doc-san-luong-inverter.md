@@ -62,3 +62,22 @@ Nhiều chủ nhà chỉ nhìn vào con số “Today” rồi kết luận hệ
 
 Đọc sản lượng đúng cách giúp bạn phân biệt lỗi thật với dao động bình thường. Đây là kỹ năng cơ bản nhưng rất hữu ích để vận hành hệ thống hiệu quả.
 
+## FAQ
+
+### Chỉ số nào quan trọng nhất trên inverter?
+
+Nhìn cả Today, Month và Total để đánh giá xu hướng, không chỉ một con số đơn lẻ.
+
+### Sản lượng thấp buổi sáng có bình thường không?
+
+Có, vì cường độ nắng và góc chiếu còn thấp trong đầu ngày.
+
+### Khi nào cần gọi kỹ thuật?
+
+Khi sản lượng giảm kéo dài nhiều ngày hoặc inverter báo lỗi lặp lại.
+
+## Bài Viết Liên Quan
+
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)
+- [lam sao de tang hieu suat pin mat troi](/tin-tuc/lam-sao-de-tang-hieu-suat-pin-mat-troi)
+- [bao duong he thong dien mat troi 6 thang](/tin-tuc/bao-duong-he-thong-dien-mat-troi-6-thang)

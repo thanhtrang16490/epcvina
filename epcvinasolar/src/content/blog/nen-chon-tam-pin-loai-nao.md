@@ -52,3 +52,22 @@ Tấm pin trên thị trường rất đa dạng, nhưng lựa chọn tốt nh�
 
 Đừng chọn chỉ vì giá rẻ. Tấm pin là phần chịu nắng lâu nhất trong hệ thống, nên chất lượng phải được đặt lên hàng đầu.
 
+## FAQ
+
+### Pin công suất cao có luôn tốt hơn không?
+
+Không hẳn; phải xét đến diện tích mái, ngân sách và cấu hình toàn hệ thống.
+
+### Nên chọn theo hãng hay theo thông số?
+
+Nên chọn theo cả hai: thông số phù hợp và thương hiệu có bảo hành rõ ràng.
+
+### Nhà phố nên ưu tiên gì?
+
+Thường ưu tiên hiệu suất tốt, kích thước hợp mái và độ bền lâu dài.
+
+## Bài Viết Liên Quan
+
+- [bao gia dien mat troi 5kw 2026](/tin-tuc/bao-gia-dien-mat-troi-5kw-2026)
+- [cach tinh so tam pin cho nha pho](/tin-tuc/cach-tinh-so-tam-pin-cho-nha-pho)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)

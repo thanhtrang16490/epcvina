@@ -52,3 +52,22 @@ Mốc 6 tháng là khuyến nghị thực dụng, nhưng không phải công tr�
 
 Bảo dưỡng định kỳ không phải chi phí phụ, mà là cách giữ ROI của hệ thống. Một hệ được chăm đúng cách sẽ ổn định hơn, ít lỗi hơn và giữ sản lượng tốt hơn trong suốt vòng đời.
 
+## FAQ
+
+### Bao lâu nên bảo dưỡng một lần?
+
+Phổ biến nhất là 6 tháng một lần, nhưng môi trường nhiều bụi hoặc nhiều bão có thể cần sớm hơn.
+
+### Có cần tắt hệ thống khi vệ sinh pin không?
+
+Có, nên tắt theo đúng quy trình an toàn của inverter và hệ thống điện trước khi thao tác.
+
+### Bảo dưỡng có làm tăng sản lượng không?
+
+Có, nhất là khi hệ thống bám bụi, bị lỏng đầu nối hoặc phát sinh lỗi nhỏ chưa phát hiện.
+
+## Bài Viết Liên Quan
+
+- [cach doc san luong inverter](/tin-tuc/cach-doc-san-luong-inverter)
+- [kiem tra an toan dien truoc thi cong](/tin-tuc/kiem-tra-an-toan-dien-truoc-thi-cong)
+- [loi thuong gap khi lap dat dien mat troi](/tin-tuc/loi-thuong-gap-khi-lap-dat-dien-mat-troi)

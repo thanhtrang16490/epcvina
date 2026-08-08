@@ -54,3 +54,22 @@ Hai báo giá cùng ghi “5kW” nhưng mức giá có thể khác nhau khá nh
 
 Báo giá hợp lý là báo giá minh bạch. Nếu bạn hiểu rõ cấu hình, việc so sánh giữa các đơn vị sẽ dễ hơn và tránh được chi phí ẩn.
 
+## FAQ
+
+### Giá 5kW năm 2026 phụ thuộc vào gì?
+
+Phụ thuộc vào thương hiệu tấm pin, inverter, khung mái, độ dài dây và mức độ phức tạp của công trình.
+
+### Có nên chọn báo giá rẻ nhất không?
+
+Không nên. Hãy so cấu hình, bảo hành và hạng mục bảo vệ điện thay vì chỉ nhìn tổng giá.
+
+### Hệ 5kW phù hợp với ai?
+
+Phù hợp nhiều nhà phố có mức tiêu thụ điện trung bình và muốn tối ưu hóa hóa đơn.
+
+## Bài Viết Liên Quan
+
+- [chi phi lap on grid ha noi](/tin-tuc/chi-phi-lap-on-grid-ha-noi)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)
+- [chon he on grid hay hybrid](/tin-tuc/chon-he-on-grid-hay-hybrid)

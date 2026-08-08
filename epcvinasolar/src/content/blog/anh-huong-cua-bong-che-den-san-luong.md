@@ -51,3 +51,22 @@ Bóng che không chỉ là chuyện “mất chút nắng”. Với hệ thống
 
 Bóng che là một trong những nguyên nhân khó chịu nhất vì nhìn bên ngoài có vẻ nhỏ nhưng tác động lên sản lượng rất lớn. Khảo sát kỹ ngay từ đầu sẽ tiết kiệm nhiều chi phí sửa về sau.
 
+## FAQ
+
+### Bóng che nhỏ có đáng lo không?
+
+Có. Chỉ một vùng che nhỏ cũng có thể làm giảm sản lượng của cả chuỗi nếu thiết kế không tối ưu.
+
+### Làm sao phát hiện bóng che?
+
+Hãy khảo sát mái theo nhiều khung giờ trong ngày, đặc biệt buổi sáng sớm và chiều muộn.
+
+### Có thể xử lý bóng che bằng phần mềm không?
+
+Phần mềm chỉ hỗ trợ mô phỏng, còn cách xử lý thật vẫn là tối ưu vị trí lắp, chia chuỗi và loại bỏ vật cản.
+
+## Bài Viết Liên Quan
+
+- [chuan bi mai nha truoc khi lap pin](/tin-tuc/chuan-bi-mai-nha-truoc-khi-lap-pin)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)
+- [lam sao de tang hieu suat pin mat troi](/tin-tuc/lam-sao-de-tang-hieu-suat-pin-mat-troi)

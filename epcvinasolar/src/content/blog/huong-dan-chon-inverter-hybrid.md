@@ -62,3 +62,22 @@ Hybrid không chỉ là inverter có pin. Đây là giải pháp có thêm lớp
 
 Hybrid phù hợp nhất khi bạn có nhu cầu dự phòng thật sự. Nếu mục tiêu chỉ là tiết kiệm hóa đơn, On-Grid vẫn là phương án kinh tế hơn.
 
+## FAQ
+
+### Hybrid cần bao nhiêu MPPT?
+
+Tùy mái, nhưng mái nhiều hướng nên ưu tiên nhiều MPPT hơn để tối ưu sản lượng.
+
+### Có thể dùng pin nào cũng được không?
+
+Không, cần kiểm tra danh sách pin tương thích của hãng và cấu hình hệ thống.
+
+### Hybrid có phù hợp cho nhà ít mất điện không?
+
+Có thể không cần thiết nếu mục tiêu chỉ là tiết kiệm điện.
+
+## Bài Viết Liên Quan
+
+- [so sanh huawei growatt deye](/tin-tuc/so-sanh-huawei-growatt-deye)
+- [co nen dung pin luu tru cho nha pho khong](/tin-tuc/co-nen-dung-pin-luu-tru-cho-nha-pho-khong)
+- [phan biet dien mat troi gia dinh va doanh nghiep](/tin-tuc/phan-biet-dien-mat-troi-gia-dinh-va-doanh-nghiep)

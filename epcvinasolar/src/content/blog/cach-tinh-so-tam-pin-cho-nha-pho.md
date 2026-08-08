@@ -47,3 +47,22 @@ Nếu bạn muốn một hệ khoảng 5kW, số tấm pin thường rơi vào k
 
 Số tấm pin tối ưu là số tấm phù hợp với cả mái nhà lẫn lịch sử dùng điện. Thiết kế tốt luôn là sự cân bằng giữa công suất, chi phí và khả năng vận hành lâu dài.
 
+## FAQ
+
+### Nên tính số tấm pin theo gì?
+
+Nên kết hợp hóa đơn điện, diện tích mái và công suất inverter, không chỉ dựa vào mái trống.
+
+### Mái nhỏ có lắp được nhiều pin không?
+
+Có thể, nhưng nên ưu tiên tấm pin hiệu suất cao để tối ưu diện tích.
+
+### Có nên chừa khoảng trống trên mái?
+
+Có, để dễ bảo trì, giảm nhiệt và hỗ trợ an toàn thi công.
+
+## Bài Viết Liên Quan
+
+- [bao gia dien mat troi 5kw 2026](/tin-tuc/bao-gia-dien-mat-troi-5kw-2026)
+- [chon he on grid hay hybrid](/tin-tuc/chon-he-on-grid-hay-hybrid)
+- [phan biet dien mat troi gia dinh va doanh nghiep](/tin-tuc/phan-biet-dien-mat-troi-gia-dinh-va-doanh-nghiep)

@@ -297,3 +297,23 @@ Quy trình lắp đặt điện mặt trời tại EPC Solar được chuẩn h�
 **Bắt đầu hành trình tiết kiệm điện ngay hôm nay**: [Liên hệ EPC Solar](/lien-he) để đặt lịch khảo sát miễn phí.
 
 👉 [Xem giải pháp On-Grid](/solar-home/on-grid) | [Liên hệ tư vấn ngay](/lien-he)
+
+## FAQ
+
+### Quy trình lắp đặt gồm mấy bước?
+
+Tùy công trình, nhưng thường gồm tư vấn, khảo sát, thiết kế, thi công, nghiệm thu và bàn giao.
+
+### Bước nào quan trọng nhất?
+
+Khảo sát và thiết kế là hai bước quyết định chất lượng tổng thể của hệ thống.
+
+### Có cần chuẩn bị giấy tờ gì không?
+
+Tùy dự án, nhưng phần thông tin mái nhà và hóa đơn điện sẽ rất hữu ích cho khảo sát.
+
+## Bài Viết Liên Quan
+
+- [kiem tra an toan dien truoc thi cong](/tin-tuc/kiem-tra-an-toan-dien-truoc-thi-cong)
+- [thoi gian thi cong he 5kw](/tin-tuc/thoi-gian-thi-cong-he-5kw)
+- [chuan bi mai nha truoc khi lap pin](/tin-tuc/chuan-bi-mai-nha-truoc-khi-lap-pin)

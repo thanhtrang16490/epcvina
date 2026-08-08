@@ -318,3 +318,23 @@ Chi phí lắp đặt điện mặt trời On-Grid 5kW tại Hà Nội năm 2026
 ---
 
 *Bài viết được cập nhật ngày 23/06/2026. Giá cả có thể thay đổi tùy thời điểm. Liên hệ EPCVINA để nhận báo giá mới nhất.*
+
+## FAQ
+
+### Chi phí 5kW tại Hà Nội gồm những gì?
+
+Gồm tấm pin, inverter, khung, dây, tủ điện, nhân công và các hạng mục phát sinh nếu có.
+
+### Nên so sánh báo giá thế nào?
+
+Hãy so cấu hình chi tiết, chất lượng thiết bị và bảo hành thay vì chỉ so tổng tiền.
+
+### On-Grid có dễ hoàn vốn không?
+
+Thường khá tốt nếu bạn dùng điện ban ngày và thiết kế hệ phù hợp.
+
+## Bài Viết Liên Quan
+
+- [bao gia dien mat troi 5kw 2026](/tin-tuc/bao-gia-dien-mat-troi-5kw-2026)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)
+- [chon he on grid hay hybrid](/tin-tuc/chon-he-on-grid-hay-hybrid)

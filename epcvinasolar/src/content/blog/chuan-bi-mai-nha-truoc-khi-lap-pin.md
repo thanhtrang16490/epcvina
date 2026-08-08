@@ -50,3 +50,22 @@ Nếu mái ngói hoặc mái tôn có dấu hiệu xuống cấp, nên gia cố 
 
 Chuẩn bị mái nhà kỹ càng giúp tối ưu toàn bộ quy trình. Đây là bước nhỏ nhưng quyết định rất lớn đến độ bền và tính thẩm mỹ của hệ thống.
 
+## FAQ
+
+### Mái nhà cần sửa trước hay sau khi lắp?
+
+Nên sửa hoặc gia cố trước nếu mái có dấu hiệu thấm, yếu hoặc xuống cấp.
+
+### Có cần dọn hết đồ trên mái không?
+
+Nên dọn các vật cản và thống nhất đường đi vật tư để thi công thuận lợi hơn.
+
+### Chuẩn bị tốt có rút ngắn thời gian không?
+
+Có, vì đội thi công ít phát sinh và bàn giao nhanh hơn.
+
+## Bài Viết Liên Quan
+
+- [thiet ke he thong dien mat troi cho mai ngoi](/tin-tuc/thiet-ke-he-thong-dien-mat-troi-cho-mai-ngoi)
+- [kiem tra an toan dien truoc thi cong](/tin-tuc/kiem-tra-an-toan-dien-truoc-thi-cong)
+- [thoi gian thi cong he 5kw](/tin-tuc/thoi-gian-thi-cong-he-5kw)

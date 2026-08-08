@@ -55,3 +55,22 @@ Với điều kiện mái ổn định và vật tư đã sẵn sàng, hệ 5kW 
 
 Nếu làm đúng quy trình, hệ 5kW có thể triển khai khá nhanh. Phần quan trọng nhất vẫn là chuẩn bị kỹ trước thi công để tránh phải quay lại sửa lỗi.
 
+## FAQ
+
+### Thi công 5kW thường mất bao lâu?
+
+Nếu mái đơn giản và vật tư sẵn sàng, phần lắp đặt thực tế thường khá nhanh.
+
+### Vì sao tiến độ có thể kéo dài?
+
+Do mái phức tạp, thời tiết xấu hoặc cần xử lý thêm phần điện hiện hữu.
+
+### Có cần chuẩn bị trước không?
+
+Có, chuẩn bị mái và đường đi vật tư tốt sẽ giúp rút ngắn tiến độ.
+
+## Bài Viết Liên Quan
+
+- [chuan bi mai nha truoc khi lap pin](/tin-tuc/chuan-bi-mai-nha-truoc-khi-lap-pin)
+- [kiem tra an toan dien truoc thi cong](/tin-tuc/kiem-tra-an-toan-dien-truoc-thi-cong)
+- [bao gia dien mat troi 5kw 2026](/tin-tuc/bao-gia-dien-mat-troi-5kw-2026)

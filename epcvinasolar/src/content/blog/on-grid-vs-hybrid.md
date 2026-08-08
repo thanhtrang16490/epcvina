@@ -219,3 +219,23 @@ Cả hai giải pháp đều là khoản đầu tư sinh lời — câu hỏi ch
 **Bước tiếp theo**: Liên hệ EPC Solar để được khảo sát mái nhà miễn phí và nhận báo giá chi tiết trong vòng 24 giờ. Đội ngũ kỹ thuật của chúng tôi sẽ tư vấn giải pháp tối ưu nhất dựa trên thực tế mái nhà, thói quen tiêu thụ điện và ngân sách của gia đình bạn.
 
 👉 [Xem chi tiết hệ thống On-Grid](/solar-home/on-grid) | [Xem chi tiết hệ thống Hybrid](/solar-home/hybrid) | [Liên hệ tư vấn](/lien-he)
+
+## FAQ
+
+### On-Grid và Hybrid khác gì?
+
+On-Grid chạy trực tiếp với lưới điện, còn Hybrid có thể kết hợp pin lưu trữ và backup.
+
+### Nhà nào nên ưu tiên On-Grid?
+
+Nhà muốn tối ưu chi phí đầu tư và hoàn vốn nhanh thường phù hợp On-Grid hơn.
+
+### Hybrid có luôn tốt hơn không?
+
+Không, vì chi phí cao hơn và chỉ đáng giá khi bạn thật sự cần dự phòng.
+
+## Bài Viết Liên Quan
+
+- [chon he on grid hay hybrid](/tin-tuc/chon-he-on-grid-hay-hybrid)
+- [huong dan chon inverter hybrid](/tin-tuc/huong-dan-chon-inverter-hybrid)
+- [co nen dung pin luu tru cho nha pho khong](/tin-tuc/co-nen-dung-pin-luu-tru-cho-nha-pho-khong)

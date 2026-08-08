@@ -51,3 +51,22 @@ Hiệu suất hệ thống không chỉ do chất lượng pin mà còn do mái 
 
 Tăng hiệu suất không nhất thiết phải thay thiết bị. Nhiều khi chỉ cần tối ưu lắp đặt, vệ sinh đúng lúc và xử lý bóng che là hệ thống đã cải thiện rõ rệt.
 
+## FAQ
+
+### Rửa pin thường xuyên có tốt không?
+
+Không nên quá thường xuyên; chỉ vệ sinh khi có bụi bẩn rõ rệt hoặc bám bẩn lâu ngày.
+
+### Nhiệt độ cao ảnh hưởng thế nào?
+
+Nhiệt độ cao làm điện áp giảm, nên khoảng thoáng và thông gió rất quan trọng.
+
+### Có cần thay thiết bị để tăng hiệu suất không?
+
+Không nhất thiết, nhiều trường hợp chỉ cần tối ưu vị trí và vệ sinh đúng lúc.
+
+## Bài Viết Liên Quan
+
+- [anh huong cua bong che den san luong](/tin-tuc/anh-huong-cua-bong-che-den-san-luong)
+- [bao duong he thong dien mat troi 6 thang](/tin-tuc/bao-duong-he-thong-dien-mat-troi-6-thang)
+- [cach doc san luong inverter](/tin-tuc/cach-doc-san-luong-inverter)

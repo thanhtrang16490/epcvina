@@ -50,3 +50,22 @@ Mái ngói đẹp nhưng dễ phát sinh rủi ro nếu kỹ thuật thi công k
 
 Mái ngói vẫn là bề mặt rất tốt để lắp điện mặt trời, miễn là khảo sát và thi công đúng kỹ thuật. Đầu tư cẩn thận ban đầu sẽ giúp công trình bền, đẹp và dễ bảo trì hơn.
 
+## FAQ
+
+### Mái ngói có khó lắp hơn mái tôn không?
+
+Có, vì cần kiểm soát tốt hơn về neo, chống thấm và bước đi trên mái.
+
+### Mái ngói cũ có lắp được không?
+
+Có thể, nhưng cần khảo sát và gia cố kỹ trước khi thi công.
+
+### Điểm nào quan trọng nhất?
+
+Chống thấm và chọn vị trí neo đúng kết cấu là hai điểm quan trọng nhất.
+
+## Bài Viết Liên Quan
+
+- [chuan bi mai nha truoc khi lap pin](/tin-tuc/chuan-bi-mai-nha-truoc-khi-lap-pin)
+- [loi thuong gap khi lap dat dien mat troi](/tin-tuc/loi-thuong-gap-khi-lap-dat-dien-mat-troi)
+- [kiem tra an toan dien truoc thi cong](/tin-tuc/kiem-tra-an-toan-dien-truoc-thi-cong)

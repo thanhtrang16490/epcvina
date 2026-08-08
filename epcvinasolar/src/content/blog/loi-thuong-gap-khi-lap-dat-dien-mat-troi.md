@@ -56,3 +56,22 @@ Một hệ thống điện mặt trời có thể trông “đúng” ở bên n
 
 Thi công đúng kỹ thuật ngay từ đầu luôn rẻ hơn sửa chữa về sau. Đó là lý do quy trình khảo sát và nghiệm thu không nên bị rút gọn.
 
+## FAQ
+
+### Lỗi nào hay bị bỏ qua nhất?
+
+Đó thường là lỗi dây, đầu nối hoặc khoảng thoáng tản nhiệt.
+
+### Có thể phát hiện lỗi sớm không?
+
+Có, nếu nghiệm thu bằng số đo thực tế và theo dõi sản lượng sau bàn giao.
+
+### Thi công sai có sửa được không?
+
+Được, nhưng chi phí và thời gian sửa sẽ cao hơn rất nhiều so với làm đúng ngay từ đầu.
+
+## Bài Viết Liên Quan
+
+- [kiem tra an toan dien truoc thi cong](/tin-tuc/kiem-tra-an-toan-dien-truoc-thi-cong)
+- [chuan bi mai nha truoc khi lap pin](/tin-tuc/chuan-bi-mai-nha-truoc-khi-lap-pin)
+- [anh huong cua bong che den san luong](/tin-tuc/anh-huong-cua-bong-che-den-san-luong)

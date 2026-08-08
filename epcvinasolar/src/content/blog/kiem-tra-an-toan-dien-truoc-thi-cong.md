@@ -22,3 +22,23 @@ Trước khi lắp điện mặt trời, hệ thống điện hiện hữu của
 ### Vì sao quan trọng?
 
 Nếu bỏ qua bước này, hệ mới có thể gặp lỗi do nền hạ tầng điện cũ không phù hợp. Kiểm tra trước giúp công trình vận hành ổn định hơn ngay từ ngày đầu.
+
+## FAQ
+
+### Bước kiểm tra điện có bắt buộc không?
+
+Rất nên làm, vì đây là nền tảng để hệ mới vận hành an toàn và ổn định.
+
+### Ai nên kiểm tra phần này?
+
+Kỹ sư hoặc đội thi công có chuyên môn về điện và năng lượng mặt trời.
+
+### Không kiểm tra có rủi ro gì?
+
+Có thể gặp sự cố chập, lỗi nối đất, quá nhiệt hoặc vận hành thiếu ổn định.
+
+## Bài Viết Liên Quan
+
+- [loi thuong gap khi lap dat dien mat troi](/tin-tuc/loi-thuong-gap-khi-lap-dat-dien-mat-troi)
+- [chuan bi mai nha truoc khi lap pin](/tin-tuc/chuan-bi-mai-nha-truoc-khi-lap-pin)
+- [thoi gian thi cong he 5kw](/tin-tuc/thoi-gian-thi-cong-he-5kw)

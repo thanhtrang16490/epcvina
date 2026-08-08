@@ -47,3 +47,22 @@ On-Grid và Hybrid phục vụ hai nhu cầu khác nhau. On-Grid tối ưu cho t
 
 Chọn hệ đúng không phải chọn hệ đắt hơn, mà là chọn hệ phù hợp với cách bạn dùng điện mỗi ngày.
 
+## FAQ
+
+### On-Grid khác Hybrid thế nào?
+
+On-Grid tối ưu tiết kiệm chi phí, còn Hybrid có thêm pin lưu trữ và backup khi mất điện.
+
+### Nhà ít mất điện nên chọn gì?
+
+Thường On-Grid sẽ kinh tế hơn nếu mục tiêu chính là hoàn vốn nhanh.
+
+### Hybrid có đáng mua nếu chỉ muốn tiết kiệm điện?
+
+Có thể không cần, trừ khi bạn thật sự cần dự phòng hoặc dùng điện buổi tối nhiều.
+
+## Bài Viết Liên Quan
+
+- [huong dan chon inverter hybrid](/tin-tuc/huong-dan-chon-inverter-hybrid)
+- [co nen dung pin luu tru cho nha pho khong](/tin-tuc/co-nen-dung-pin-luu-tru-cho-nha-pho-khong)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)

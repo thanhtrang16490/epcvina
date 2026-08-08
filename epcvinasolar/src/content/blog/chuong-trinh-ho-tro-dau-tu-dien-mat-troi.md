@@ -48,3 +48,22 @@ Một chương trình tốt phải giúp bạn giảm chi phí thật, không l�
 
 Hỗ trợ tài chính là công cụ tốt nếu dùng đúng. Hãy tính lại tổng đầu tư sau ưu đãi và so sánh với phương án thông thường trước khi quyết định.
 
+## FAQ
+
+### Ưu đãi tài chính có luôn giúp giảm chi phí không?
+
+Không phải lúc nào cũng vậy, cần tính tổng chi phí sau ưu đãi và các điều kiện đi kèm.
+
+### Cần chú ý gì trong điều khoản?
+
+Hãy xem kỹ đối tượng áp dụng, phí ẩn, thời hạn và điều kiện thiết bị.
+
+### Có nên quyết định chỉ vì ưu đãi?
+
+Không, nên xét cả kỹ thuật, bảo hành và hiệu quả vận hành lâu dài.
+
+## Bài Viết Liên Quan
+
+- [bao gia dien mat troi 5kw 2026](/tin-tuc/bao-gia-dien-mat-troi-5kw-2026)
+- [roi dien mat troi 5kw la bao lau](/tin-tuc/roi-dien-mat-troi-5kw-la-bao-lau)
+- [phan biet dien mat troi gia dinh va doanh nghiep](/tin-tuc/phan-biet-dien-mat-troi-gia-dinh-va-doanh-nghiep)

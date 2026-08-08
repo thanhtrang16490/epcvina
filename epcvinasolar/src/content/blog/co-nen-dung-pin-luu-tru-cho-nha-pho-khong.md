@@ -50,3 +50,22 @@ Pin lưu trữ rất hữu ích khi bạn cần điện vào buổi tối hoặc
 
 Với nhà phố, pin lưu trữ chỉ thật sự đáng tiền khi bạn có nhu cầu dự phòng rõ ràng. Nếu chỉ muốn tiết kiệm điện, On-Grid thường hiệu quả kinh tế hơn.
 
+## FAQ
+
+### Pin lưu trữ có làm tăng tiền điện không?
+
+Không trực tiếp, nhưng nó làm tăng vốn đầu tư ban đầu nên cần cân nhắc ROI tổng thể.
+
+### Khi nào nên mua pin?
+
+Khi bạn cần backup hoặc muốn dùng điện mặt trời vào buổi tối hiệu quả hơn.
+
+### Có thể nâng cấp pin sau không?
+
+Có, nếu inverter và thiết kế ban đầu cho phép mở rộng.
+
+## Bài Viết Liên Quan
+
+- [huong dan chon inverter hybrid](/tin-tuc/huong-dan-chon-inverter-hybrid)
+- [chon he on grid hay hybrid](/tin-tuc/chon-he-on-grid-hay-hybrid)
+- [bao duong he thong dien mat troi 6 thang](/tin-tuc/bao-duong-he-thong-dien-mat-troi-6-thang)

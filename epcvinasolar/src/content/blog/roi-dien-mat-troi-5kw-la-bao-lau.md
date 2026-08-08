@@ -48,3 +48,22 @@ Hệ 5kW thường được chọn vì đủ lớn để thấy rõ hiệu quả
 
 Đừng nhìn ROI như một con số quảng cáo. Hãy xem đó là kết quả của nhu cầu dùng điện, chất lượng thi công và mức độ tận dụng sản lượng thực tế.
 
+## FAQ
+
+### ROI 5kW thường bao lâu?
+
+Tùy cách dùng điện và chất lượng lắp đặt, nhưng nhà dùng điện ban ngày tốt thường hoàn vốn nhanh hơn.
+
+### Yếu tố nào ảnh hưởng nhất?
+
+Mức tự dùng điện mặt trời và giá điện bạn đang phải trả là hai yếu tố rất lớn.
+
+### Có thể tính ROI chính xác ngay từ đầu không?
+
+Chỉ có thể ước tính trong một khoảng hợp lý, rồi điều chỉnh theo khảo sát thực tế.
+
+## Bài Viết Liên Quan
+
+- [bao gia dien mat troi 5kw 2026](/tin-tuc/bao-gia-dien-mat-troi-5kw-2026)
+- [chon he on grid hay hybrid](/tin-tuc/chon-he-on-grid-hay-hybrid)
+- [cach doc san luong inverter](/tin-tuc/cach-doc-san-luong-inverter)
