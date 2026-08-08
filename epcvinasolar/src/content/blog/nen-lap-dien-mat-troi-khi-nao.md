@@ -25,3 +25,26 @@ Nhiều gia đình chờ quá lâu rồi mới đầu tư điện mặt trời. 
 - Chưa xác định rõ nhu cầu dùng điện ngày hay ban đêm
 
 Nếu đã có mái phù hợp và hóa đơn đủ cao, lắp sớm thường có lợi hơn chờ giá giảm thêm vài triệu nhưng mất nhiều tháng sản lượng.
+
+
+## Nên Chờ Giá Giảm Hay Lắp Ngay?
+
+Nhiều người trì hoãn đầu tư vì muốn chờ thiết bị rẻ hơn. Nhưng thực tế, lợi ích kinh tế của điện mặt trời đến từ sản lượng tạo ra mỗi ngày. Càng chậm lắp, bạn càng mất đi những tháng tiết kiệm đáng ra đã có thể nhận được.
+
+### Khi nào nên lắp sớm
+
+- Hóa đơn điện đã tăng đều trong nhiều tháng
+- Mái đang trống và chưa có kế hoạch dùng cho mục đích khác
+- Bạn đã xác định được nhu cầu dùng điện ngày và tối
+- Có nhu cầu kiểm soát chi phí lâu dài
+
+### Khi nào nên hoãn
+
+- Mái còn cần sửa chữa hoặc chống thấm
+- Chưa biết rõ nhu cầu tải và giờ dùng điện chính
+- Khu vực có bóng che nặng chưa xử lý được
+
+### Kết luận
+
+Nếu điều kiện mái và nhu cầu đã rõ, lắp sớm thường có lợi hơn chờ đợi. Điện mặt trời là bài toán dòng tiền dài hạn, không phải cuộc đua chờ giảm giá ngắn hạn.
+

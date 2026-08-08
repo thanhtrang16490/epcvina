@@ -26,3 +26,25 @@ Không phải hỗ trợ nào cũng làm tổng chi phí giảm ngay. Có gói c
 ### Lời khuyên
 
 Đọc kỹ điều khoản và tính lại tổng chi phí thực phải trả trước khi quyết định.
+
+
+## Cần Kiểm Tra Gì Trước Khi Tin Vào Chương Trình Hỗ Trợ?
+
+Các chương trình hỗ trợ nghe rất hấp dẫn, nhưng điều quan trọng là phải hiểu rõ điều kiện đi kèm. Có chương trình chỉ hỗ trợ một phần lãi suất, có chương trình yêu cầu thiết bị đúng chuẩn, và cũng có chương trình chỉ áp dụng trong một giai đoạn ngắn.
+
+### Hãy kiểm tra
+
+- Đối tượng áp dụng là ai
+- Mức hỗ trợ thực tế là bao nhiêu
+- Có phí ẩn hay yêu cầu mua kèm không
+- Điều kiện về thiết bị và hồ sơ
+- Thời gian giải ngân hoặc hoàn tất
+
+### Cách đánh giá nhanh
+
+Một chương trình tốt phải giúp bạn giảm chi phí thật, không làm phức tạp dự án. Nếu thủ tục quá rườm rà hoặc làm đội tổng chi phí, ưu đãi có thể không đáng kể.
+
+### Kết luận
+
+Hỗ trợ tài chính là công cụ tốt nếu dùng đúng. Hãy tính lại tổng đầu tư sau ưu đãi và so sánh với phương án thông thường trước khi quyết định.
+

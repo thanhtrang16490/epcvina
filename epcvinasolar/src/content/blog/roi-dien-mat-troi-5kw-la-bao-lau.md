@@ -26,3 +26,25 @@ Với nhà dùng điện ban ngày tốt, ROI thường khả quan hơn nhiều 
 ### Kết luận
 
 Không nên nhìn ROI như một con số quảng cáo. Hãy xem đó là một khoảng hợp lý sau khi khảo sát và mô phỏng sản lượng.
+
+
+## ROI 5kW Phụ Thuộc Rất Nhiều Vào Cách Dùng Điện
+
+ROI không phải là con số cố định. Cùng một hệ 5kW nhưng thời gian hoàn vốn có thể khác nhau khá nhiều giữa các hộ gia đình. Nhà dùng điện ban ngày hiệu quả sẽ hoàn vốn nhanh hơn nhà chỉ dùng nhiều vào buổi tối.
+
+### Những yếu tố ảnh hưởng
+
+- Mức tiêu thụ điện ban ngày
+- Chất lượng thiết bị
+- Điều kiện mái nhà và bóng che
+- Mức giá điện bạn đang trả
+- Tỷ lệ tự dùng so với bán ngược
+
+### Kỳ vọng thực tế
+
+Hệ 5kW thường được chọn vì đủ lớn để thấy rõ hiệu quả nhưng vẫn còn trong ngưỡng đầu tư hợp lý của nhà phố. Nếu thiết kế tốt, đây là mức công suất dễ cân bằng giữa chi phí và lợi ích.
+
+### Kết luận
+
+Đừng nhìn ROI như một con số quảng cáo. Hãy xem đó là kết quả của nhu cầu dùng điện, chất lượng thi công và mức độ tận dụng sản lượng thực tế.
+

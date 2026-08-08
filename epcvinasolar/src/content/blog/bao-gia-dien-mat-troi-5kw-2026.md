@@ -29,3 +29,28 @@ Hệ 5kW vẫn là cấu hình phổ biến nhất cho nhà phố vì vừa đ�
 ### Mẹo khi nhận báo giá
 
 Hãy yêu cầu ghi rõ model thiết bị, số lượng vật tư và phạm vi bảo hành. Một báo giá minh bạch sẽ giúp bạn so sánh dễ hơn giữa các nhà thầu.
+
+
+## Điều Gì Làm Báo Giá 5kW Chênh Lệch?
+
+Hai báo giá cùng ghi “5kW” nhưng mức giá có thể khác nhau khá nhiều. Lý do nằm ở chất lượng tấm pin, inverter, khung giá, chiều dài dây, điều kiện mái và cam kết bảo hành. Vì vậy, đừng so giá theo tổng tiền בלבד; hãy so theo cấu hình thực tế.
+
+### Checklist nên hỏi nhà thầu
+
+- Model tấm pin và inverter cụ thể
+- Tổng số mét dây DC/AC và phụ kiện đi kèm
+- Có chống sét, tiếp địa, tủ điện riêng không
+- Thời gian bảo hành từng hạng mục
+- Phạm vi thi công và bàn giao hồ sơ
+
+### Khi nào báo giá rẻ là rủi ro?
+
+- Thiếu hạng mục bảo vệ điện
+- Thiết bị không ghi rõ model
+- Không có bản vẽ hoặc mô phỏng sơ bộ
+- Không nói rõ điều kiện mái phát sinh
+
+### Kết luận
+
+Báo giá hợp lý là báo giá minh bạch. Nếu bạn hiểu rõ cấu hình, việc so sánh giữa các đơn vị sẽ dễ hơn và tránh được chi phí ẩn.
+

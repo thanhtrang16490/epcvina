@@ -27,3 +27,26 @@ Pin lưu trữ giúp hệ thống điện mặt trời hoạt động linh hoạ
 ### Kết luận nhanh
 
 Nếu bạn chỉ cần hoàn vốn nhanh, ưu tiên On-Grid trước. Nếu bạn cần tính ổn định và dự phòng, Hybrid kèm pin lưu trữ là hướng phù hợp hơn.
+
+
+## Pin Lưu Trữ Có Thực Sự Cần Cho Nhà Phố?
+
+Pin lưu trữ rất hữu ích khi bạn cần điện vào buổi tối hoặc cần dự phòng lúc mất điện. Tuy nhiên, với nhiều gia đình, mục tiêu chính chỉ là giảm hóa đơn, nên đầu tư pin lớn ngay từ đầu có thể làm kéo dài thời gian hoàn vốn.
+
+### Nên dùng pin lưu trữ khi
+
+- Khu vực hay mất điện
+- Có thiết bị quan trọng cần chạy liên tục
+- Muốn tận dụng điện mặt trời buổi tối
+- Cần hệ backup cho an ninh, wifi, tủ lạnh
+
+### Chưa nên vội khi
+
+- Ngân sách đầu tư còn hạn chế
+- Nhu cầu điện ban ngày đã đủ để tiêu thụ trực tiếp
+- Mục tiêu là hoàn vốn nhanh
+
+### Kết luận
+
+Với nhà phố, pin lưu trữ chỉ thật sự đáng tiền khi bạn có nhu cầu dự phòng rõ ràng. Nếu chỉ muốn tiết kiệm điện, On-Grid thường hiệu quả kinh tế hơn.
+

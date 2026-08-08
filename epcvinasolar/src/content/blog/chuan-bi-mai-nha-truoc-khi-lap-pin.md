@@ -29,3 +29,24 @@ Nếu mái ngói hoặc mái tôn đã xuống cấp, nên xử lý chống th�
 - Ít rủi ro thấm dột
 - Dễ nghiệm thu
 - Tối ưu tuổi thọ hệ thống
+
+
+## Mái Nhà Cần Chuẩn Bị Những Gì Trước Khi Thi Công?
+
+Một mái nhà được chuẩn bị tốt giúp đội thi công làm nhanh, ít rủi ro và ít phát sinh. Nhiều công trình chậm tiến độ không phải vì lắp khó, mà vì mái nhà chưa sẵn sàng: còn dột, còn vật cản, hoặc chưa thống nhất đường đi vật tư.
+
+### Việc nên làm trước
+
+- Kiểm tra thấm dột và sửa trước nếu cần
+- Dọn các vật dụng, cây cảnh, đường đi lên mái
+- Xác định vị trí inverter, tủ điện và đường dây
+- Thống nhất thời gian thi công với gia chủ
+
+### Nếu mái đã cũ
+
+Nếu mái ngói hoặc mái tôn có dấu hiệu xuống cấp, nên gia cố hoặc thay thế một phần trước khi lắp. Làm như vậy giúp tránh phải tháo dỡ lại sau khi đã gắn khung và pin.
+
+### Kết luận
+
+Chuẩn bị mái nhà kỹ càng giúp tối ưu toàn bộ quy trình. Đây là bước nhỏ nhưng quyết định rất lớn đến độ bền và tính thẩm mỹ của hệ thống.
+

@@ -27,3 +27,27 @@ Pin mặt trời vẫn nhận nắng nhưng nhiệt độ bề mặt tăng cao s
 Không nên rửa quá dày nếu khu vực ít bụi. Chỉ nên làm sạch khi có lớp bụi rõ rệt, phân chim, lá cây hoặc bám bẩn lâu ngày.
 
 Thiết kế đúng từ đầu luôn là cách tăng hiệu suất bền vững nhất.
+
+
+## Những Yếu Tố Làm Giảm Hiệu Suất Mà Chủ Nhà Thường Bỏ Qua
+
+Hiệu suất hệ thống không chỉ do chất lượng pin mà còn do mái nhà, cách đi dây và nhiệt độ vận hành. Ở Việt Nam, nắng nóng kéo dài, bụi mịn và che bóng cục bộ là ba nguyên nhân phổ biến nhất làm sản lượng giảm dần theo thời gian.
+
+### Cách cải thiện hiệu suất
+
+- Tăng khoảng thoáng phía dưới tấm pin để tản nhiệt
+- Giữ bề mặt sạch, nhất là sau mùa khô hoặc sau gió bụi
+- Tránh để vật cản mới tạo bóng lên một phần pin
+- Kiểm tra connector, dây và điểm tiếp xúc định kỳ
+
+### Dấu hiệu hệ đang bị mất hiệu suất
+
+- Công suất đỉnh thấp hơn đáng kể so với lúc mới vận hành
+- Biểu đồ có rãnh tụt bất thường trong khung giờ nắng
+- Cùng một ngày nắng nhưng sản lượng khác nhau quá lớn
+- Inverter nóng bất thường dù tải không cao
+
+### Kết luận
+
+Tăng hiệu suất không nhất thiết phải thay thiết bị. Nhiều khi chỉ cần tối ưu lắp đặt, vệ sinh đúng lúc và xử lý bóng che là hệ thống đã cải thiện rõ rệt.
+

@@ -33,3 +33,32 @@ Phần lớn hệ thống hiện nay đều có app giám sát riêng. Chủ nh�
 4. Đối chiếu với thời tiết và độ che bóng trên mái
 
 Chỉ cần hiểu 4 chỉ số này, bạn đã theo dõi được 80% tình trạng vận hành của hệ thống.
+
+
+## Hiểu Đúng Sản Lượng Để Không Đánh Giá Sai Hệ Thống
+
+Nhiều chủ nhà chỉ nhìn vào con số “Today” rồi kết luận hệ thống tốt hay kém. Cách đánh giá này chưa đủ, vì sản lượng còn phụ thuộc vào thời tiết, giờ nắng, bụi bẩn và độ che bóng từng thời điểm. Điều quan trọng hơn là xem xu hướng trong nhiều ngày và so sánh với mặt bằng thời tiết cùng giai đoạn.
+
+### Cách đọc đúng hơn
+
+- So sánh cùng khung giờ giữa các ngày nắng tương tự
+- Chú ý thời gian hệ bắt đầu phát điện buổi sáng
+- Kiểm tra xem công suất có đạt đỉnh ổn định vào giữa trưa không
+- Xem biểu đồ có bị tụt đột ngột nhiều lần trong ngày không
+
+### Một số lỗi hay bị hiểu nhầm
+
+- Sản lượng thấp buổi sáng không đồng nghĩa là hỏng
+- Mây che tạm thời làm biểu đồ dao động là bình thường
+- App hiển thị thấp hơn kỳ vọng có thể do wifi hoặc đồng bộ dữ liệu chậm
+
+### Khi nào nên gọi kỹ thuật?
+
+- Sản lượng giảm liên tục nhiều ngày không rõ nguyên nhân
+- Inverter báo lỗi grid, insulation hoặc communication
+- Mỗi khi nắng tốt nhưng sản lượng vẫn thấp hơn đáng kể so với bình thường
+
+### Kết luận
+
+Đọc sản lượng đúng cách giúp bạn phân biệt lỗi thật với dao động bình thường. Đây là kỹ năng cơ bản nhưng rất hữu ích để vận hành hệ thống hiệu quả.
+

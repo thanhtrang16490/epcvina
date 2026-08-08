@@ -25,3 +25,25 @@ tags: ["on-grid", "hybrid", "so-sanh"]
 - Chọn **Hybrid** nếu gia đình thường xuyên mất điện hoặc có tải quan trọng
 
 Lựa chọn tốt nhất không phải là hệ đắt nhất, mà là hệ phù hợp nhất với lịch dùng điện của bạn.
+
+
+## Cấu Hình Nào Hợp Với Mục Tiêu Của Bạn?
+
+On-Grid và Hybrid phục vụ hai nhu cầu khác nhau. On-Grid tối ưu cho tiết kiệm chi phí và hoàn vốn nhanh. Hybrid phù hợp hơn khi bạn cần điện dự phòng, muốn lưu trữ năng lượng hoặc muốn hệ thống linh hoạt hơn trong tương lai.
+
+### Gợi ý chọn nhanh
+
+- Chọn **On-Grid** nếu ưu tiên ROI và điện ban ngày dùng trực tiếp
+- Chọn **Hybrid** nếu có nhu cầu backup hoặc tối ưu buổi tối
+
+### Yếu tố cần cân nhắc
+
+- Ngân sách đầu tư ban đầu
+- Thói quen sử dụng điện
+- Tình trạng mất điện trong khu vực
+- Kế hoạch mở rộng sau này
+
+### Kết luận
+
+Chọn hệ đúng không phải chọn hệ đắt hơn, mà là chọn hệ phù hợp với cách bạn dùng điện mỗi ngày.
+
