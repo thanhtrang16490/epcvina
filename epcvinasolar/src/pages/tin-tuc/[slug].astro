@@ -64,6 +64,21 @@ const relatedPosts = allPosts
 const readingWords = post.body?.split(/\s+/).filter(Boolean).length ?? 0;
 const readingMinutes = Math.max(1, Math.round(readingWords / 220));
 const topTags = post.data.tags.slice(0, 3);
+const tocItems = (post.body ?? '')
+  .split('\n')
+  .filter(line => /^#{2,3}\s+/.test(line))
+  .map((line) => {
+    const level = line.startsWith('###') ? 3 : 2;
+    const title = line.replace(/^#{2,3}\s+/, '').trim();
+    const slug = title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+    return { level, title, slug };
+  });
 ---
 
 <DashboardLayout
@@ -172,7 +187,7 @@ const topTags = post.data.tags.slice(0, 3);
                 prose-code:text-orange-700 prose-code:bg-orange-50 prose-code:px-1 prose-code:rounded
                 prose-li:text-gray-700 prose-li:leading-8 prose-li:my-1
                 prose-blockquote:border-l-4 prose-blockquote:border-orange-400 prose-blockquote:bg-orange-50 prose-blockquote:rounded-2xl prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic
-                prose-hr:border-gray-200 prose-hr:my-12">
+                prose-hr:border-gray-200 prose-hr:my-12 prose-img:rounded-[1.5rem] prose-img:shadow-sm">
                 <Content />
               </div>
             </div>
@@ -180,6 +195,24 @@ const topTags = post.data.tags.slice(0, 3);
         </div>
 
         <aside class="lg:sticky lg:top-24 space-y-6">
+          {tocItems.length > 0 && (
+            <div class="rounded-[2rem] border border-gray-100 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+              <p class="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold">Mục lục</p>
+              <h2 class="mt-2 text-xl font-semibold text-gray-950 leading-tight">Nội dung bài viết</h2>
+              <nav class="mt-5 space-y-3 text-sm leading-6 text-gray-700">
+                {tocItems.slice(0, 10).map((item) => (
+                  <a
+                    href={`#${item.slug}`}
+                    class={`block rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 hover:border-orange-300 hover:bg-orange-50 transition-colors ${item.level === 3 ? 'pl-6' : ''}`}
+                  >
+                    <span class="mr-2 text-orange-500">•</span>
+                    <span class="font-medium text-gray-800">{item.title}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
+          )}
+
           <div class="rounded-[2rem] border border-gray-100 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
             <p class="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold">Bài viết này</p>
             <h2 class="mt-2 text-xl font-semibold text-gray-950 leading-tight">Điểm chính cần nhớ</h2>
