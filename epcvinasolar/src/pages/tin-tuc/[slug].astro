@@ -2,7 +2,6 @@
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import DashboardShell from '../../components/layout/DashboardShell';
 import HeaderBar from '../../components/home/layout/HeaderBar';
-import BlogHero from '../../components/blog/BlogHero';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -61,6 +60,10 @@ const relatedPosts = allPosts
   .filter(p => p.id !== post.id && !p.data.draft)
   .filter(p => p.data.tags.some(tag => post.data.tags.includes(tag)))
   .slice(0, 3);
+
+const readingWords = post.body?.split(/\s+/).filter(Boolean).length ?? 0;
+const readingMinutes = Math.max(1, Math.round(readingWords / 220));
+const topTags = post.data.tags.slice(0, 3);
 ---
 
 <DashboardLayout
@@ -72,82 +75,169 @@ const relatedPosts = allPosts
 
   <DashboardShell client:load>
   <HeaderBar client:idle />
-  <main class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50 md:pt-16">
-    <!-- Blog Hero with post title -->
-    <BlogHero client:idle
-      title={post.data.title}
-      subtitle={post.data.description}
-    />
+  <main class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(249,115,22,0.08),_transparent_35%),linear-gradient(to_bottom,_#fff7ed_0%,_#ffffff_22%,_#ffffff_100%)] md:pt-16">
+    <section class="relative overflow-hidden border-b border-orange-100/70">
+      <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.96))]" />
+      <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-14 md:pb-16">
+        <div class="max-w-4xl">
+          <nav class="flex items-center gap-2 text-xs sm:text-sm text-gray-500 mb-5" aria-label="Breadcrumb">
+            <a href="/" class="hover:text-orange-600 transition-colors duration-200 cursor-pointer">Trang Chủ</a>
+            <span>›</span>
+            <a href="/tin-tuc" class="hover:text-orange-600 transition-colors duration-200 cursor-pointer">Tin Tức</a>
+            <span>›</span>
+            <span class="text-gray-700 truncate max-w-xs">{post.data.title}</span>
+          </nav>
 
-    <!-- Breadcrumb -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-      <nav class="flex items-center gap-2 text-sm text-gray-500" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-orange-600 transition-colors duration-200 cursor-pointer">Trang Chủ</a>
-        <span>›</span>
-        <a href="/tin-tuc" class="hover:text-orange-600 transition-colors duration-200 cursor-pointer">Blog</a>
-        <span>›</span>
-        <span class="text-gray-700 truncate max-w-xs">{post.data.title}</span>
-      </nav>
-    </div>
-
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <!-- Article Meta -->
-      <div class="flex flex-wrap items-center gap-4 mb-8 pb-6 border-b border-gray-200">
-        <div class="flex flex-wrap gap-2">
-          {post.data.tags.map(tag => (
-            <span class="text-xs bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1 rounded-full font-medium">
-              #{tag}
-            </span>
-          ))}
-        </div>
-        <div class="flex items-center gap-3 ml-auto">
-          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center text-white font-bold text-xs">
-            E
+          <div class="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-orange-700 shadow-sm shadow-orange-100">
+            <span class="h-1.5 w-1.5 rounded-full bg-orange-500"></span>
+            Solar Magazine
           </div>
-          <div>
-            <p class="font-semibold text-gray-800 text-sm">{post.data.author}</p>
-            <div class="flex items-center gap-2 text-xs text-gray-500">
-              <span>{post.data.publishDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-              {post.data.updatedDate && (
-                <>
-                  <span>•</span>
-                  <span>Cập nhật: {post.data.updatedDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                </>
-              )}
+
+          <h1 class="mt-4 max-w-4xl text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-950 leading-[1.04]">
+            {post.data.title}
+          </h1>
+
+          <p class="mt-5 max-w-3xl text-lg md:text-xl leading-relaxed text-gray-600">
+            {post.data.description}
+          </p>
+
+          <div class="mt-7 flex flex-wrap items-center gap-3 text-sm text-gray-600">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 border border-gray-200 shadow-sm">
+              <div class="w-7 h-7 rounded-full bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center text-white font-bold text-[11px]">E</div>
+              <span class="font-semibold text-gray-800">{post.data.author}</span>
+            </div>
+            <div class="rounded-full bg-white px-4 py-2 border border-gray-200 shadow-sm">
+              {post.data.publishDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </div>
+            <div class="rounded-full bg-white px-4 py-2 border border-gray-200 shadow-sm">
+              {readingMinutes} phút đọc
+            </div>
+            {post.data.updatedDate && (
+              <div class="rounded-full bg-white px-4 py-2 border border-gray-200 shadow-sm">
+                Cập nhật {post.data.updatedDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </div>
+            )}
+          </div>
+
+          <div class="mt-7 flex flex-wrap gap-2">
+            {topTags.map(tag => (
+              <span class="text-xs bg-orange-50 text-orange-700 border border-orange-200 px-3 py-1 rounded-full font-medium">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <article class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+      <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-10 lg:gap-12 items-start">
+        <div>
+          {post.data.image && (
+            <figure class="mb-8 overflow-hidden rounded-[2rem] shadow-[0_24px_70px_rgba(251,146,60,0.16)] border border-orange-100 bg-white">
+              <img
+                src={post.data.image}
+                alt={post.data.title}
+                class="w-full aspect-[16/9] object-cover"
+                loading="eager"
+              />
+            </figure>
+          )}
+
+          <div class="rounded-[2rem] bg-white border border-gray-100 shadow-[0_18px_50px_rgba(15,23,42,0.05)] p-6 sm:p-8 md:p-10">
+            <div class="max-w-[72ch] mx-auto">
+              <div class="mb-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="rounded-2xl bg-orange-50 border border-orange-100 px-4 py-4">
+                  <p class="text-[11px] uppercase tracking-[0.18em] text-orange-700 font-semibold mb-1">Đọc nhanh</p>
+                  <p class="text-sm text-gray-700">Khoảng {readingMinutes} phút</p>
+                </div>
+                <div class="rounded-2xl bg-gray-50 border border-gray-200 px-4 py-4">
+                  <p class="text-[11px] uppercase tracking-[0.18em] text-gray-500 font-semibold mb-1">Chủ đề</p>
+                  <p class="text-sm text-gray-700">{post.data.tags[0] ? `#${post.data.tags[0]}` : 'Solar'}</p>
+                </div>
+                <div class="rounded-2xl bg-emerald-50 border border-emerald-100 px-4 py-4">
+                  <p class="text-[11px] uppercase tracking-[0.18em] text-emerald-700 font-semibold mb-1">Trọng tâm</p>
+                  <p class="text-sm text-gray-700">Điện mặt trời thực tế</p>
+                </div>
+              </div>
+
+              <div class="prose prose-lg prose-orange max-w-none
+                prose-headings:font-bold prose-headings:text-gray-950 prose-headings:tracking-tight
+                prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h2:mt-12 prose-h3:mt-8
+                prose-p:text-gray-700 prose-p:leading-8 prose-p:my-5
+                prose-p:first-of-type:text-lg prose-p:first-of-type:text-gray-800 prose-p:first-of-type:leading-8 prose-p:first-of-type:first-letter:float-left prose-p:first-of-type:first-letter:text-6xl prose-p:first-of-type:first-letter:leading-none prose-p:first-of-type:first-letter:font-semibold prose-p:first-of-type:first-letter:text-orange-600 prose-p:first-of-type:first-letter:mr-3 prose-p:first-of-type:first-letter:mt-1
+                prose-a:text-orange-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-gray-950
+                prose-table:text-sm prose-th:bg-gray-50 prose-th:font-semibold prose-th:text-gray-700 prose-th:px-4 prose-th:py-3 prose-td:px-4 prose-td:py-3
+                prose-code:text-orange-700 prose-code:bg-orange-50 prose-code:px-1 prose-code:rounded
+                prose-li:text-gray-700 prose-li:leading-8 prose-li:my-1
+                prose-blockquote:border-l-4 prose-blockquote:border-orange-400 prose-blockquote:bg-orange-50 prose-blockquote:rounded-2xl prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:not-italic
+                prose-hr:border-gray-200 prose-hr:my-12">
+                <Content />
+              </div>
             </div>
           </div>
         </div>
+
+        <aside class="lg:sticky lg:top-24 space-y-6">
+          <div class="rounded-[2rem] border border-gray-100 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-gray-500 font-semibold">Bài viết này</p>
+            <h2 class="mt-2 text-xl font-semibold text-gray-950 leading-tight">Điểm chính cần nhớ</h2>
+            <ul class="mt-5 space-y-3 text-sm leading-6 text-gray-700">
+              {topTags.map((tag) => (
+                <li class="flex gap-3">
+                  <span class="mt-1 h-2 w-2 rounded-full bg-orange-500 shrink-0"></span>
+                  <span>Chủ đề #{tag} và các gợi ý thực tế cho công trình EPCVina.</span>
+                </li>
+              ))}
+              <li class="flex gap-3">
+                <span class="mt-1 h-2 w-2 rounded-full bg-orange-500 shrink-0"></span>
+                <span>Bạn có thể áp dụng như checklist trước khi khảo sát hoặc tối ưu hệ đang vận hành.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="rounded-[2rem] border border-orange-100 bg-gradient-to-br from-orange-50 to-white p-6 shadow-[0_18px_50px_rgba(251,146,60,0.08)]">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-orange-700 font-semibold">Mở rộng</p>
+            <h2 class="mt-2 text-xl font-semibold text-gray-950 leading-tight">Bài liên quan đáng đọc</h2>
+            <div class="mt-5 space-y-4">
+              {relatedPosts.slice(0, 3).map(related => (
+                <a
+                  href={`/tin-tuc/${related.id}`}
+                  class="group block rounded-2xl bg-white border border-gray-200 p-4 hover:border-orange-300 hover:shadow-md transition-all duration-200 ease-in-out cursor-pointer"
+                >
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="h-1.5 w-1.5 rounded-full bg-orange-500"></span>
+                    <span class="text-[11px] uppercase tracking-[0.18em] text-gray-500 font-semibold">Xem thêm</span>
+                  </div>
+                  <h3 class="text-sm font-semibold text-gray-950 leading-snug group-hover:text-orange-700 transition-colors line-clamp-2">
+                    {related.data.title}
+                  </h3>
+                  <p class="mt-2 text-xs text-gray-500">
+                    {related.data.publishDate.toLocaleDateString('vi-VN')}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-gray-950 text-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.18)]">
+            <p class="text-[11px] uppercase tracking-[0.2em] text-orange-300 font-semibold">Tư vấn nhanh</p>
+            <h2 class="mt-2 text-xl font-semibold leading-tight">Cần EPC Solar tư vấn theo mái nhà thực tế?</h2>
+            <p class="mt-3 text-sm leading-6 text-gray-300">
+              Gửi cấu hình công trình, đội ngũ sẽ giúp bạn chọn phương án phù hợp hơn với chi phí và sản lượng.
+            </p>
+            <a
+              href="/calculator"
+              class="mt-5 inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-gray-950 hover:bg-orange-50 transition-colors cursor-pointer"
+            >
+              Tư vấn ngay
+            </a>
+          </div>
+        </aside>
       </div>
 
-      {post.data.image && (
-        <div class="mb-8 overflow-hidden rounded-2xl shadow-sm border border-gray-100 bg-white">
-          <img
-            src={post.data.image}
-            alt={post.data.title}
-            class="w-full aspect-[16/9] object-cover"
-            loading="eager"
-          />
-        </div>
-      )}
-
-      <!-- Article Content -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-10 mb-10">
-        <div class="prose prose-lg prose-orange max-w-none
-          prose-headings:font-bold prose-headings:text-gray-900
-          prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
-          prose-p:text-gray-700 prose-p:leading-relaxed
-          prose-a:text-orange-600 prose-a:font-medium prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-gray-900
-          prose-table:text-sm prose-th:bg-gray-50 prose-th:font-semibold
-          prose-code:text-orange-700 prose-code:bg-orange-50 prose-code:px-1 prose-code:rounded
-          prose-li:text-gray-700 prose-li:leading-relaxed
-          prose-blockquote:border-orange-400 prose-blockquote:bg-orange-50 prose-blockquote:rounded-r-lg">
-          <Content />
-        </div>
-      </div>
-
-      <!-- CTA Banner -->
-      <div class="bg-gradient-to-r from-orange-600 to-red-700 rounded-2xl p-8 md:p-10 text-center text-white mb-10">
+      <div class="mt-12 bg-gradient-to-r from-orange-600 to-red-700 rounded-[2rem] p-8 md:p-10 text-center text-white mb-10 shadow-[0_24px_70px_rgba(194,65,12,0.22)]">
         <h3 class="text-2xl font-bold mb-2">Bạn cần tư vấn lắp đặt điện mặt trời?</h3>
         <p class="text-orange-100 mb-6 text-base max-w-lg mx-auto">
           Liên hệ EPC Solar để được tư vấn miễn phí và nhận báo giá cụ thể trong vòng 24 giờ.
@@ -160,30 +250,42 @@ const relatedPosts = allPosts
         </a>
       </div>
 
-      <!-- Related Posts -->
       {relatedPosts.length > 0 && (
-        <section>
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">Bài Viết Liên Quan</h2>
+        <section class="mt-12">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-950 mb-6 tracking-tight">Bài Viết Liên Quan</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
             {relatedPosts.map(related => (
               <a
                 href={`/tin-tuc/${related.id}`}
-                class="block p-5 bg-white rounded-xl border border-gray-200 hover:border-orange-400 hover:shadow-md transition-all duration-200 ease-in-out cursor-pointer focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
+                class="group block overflow-hidden rounded-[1.75rem] border border-gray-200 bg-white hover:border-orange-300 hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)] transition-all duration-200 ease-in-out cursor-pointer focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
               >
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                  {related.data.tags.slice(0, 2).map(tag => (
-                    <span class="text-xs bg-orange-50 text-orange-600 px-2 py-0.5 rounded-full">#{tag}</span>
-                  ))}
+                <div class="h-1.5 bg-gradient-to-r from-orange-500 to-red-600"></div>
+                {related.data.image && (
+                  <div class="aspect-[16/10] overflow-hidden bg-orange-50">
+                    <img
+                      src={related.data.image}
+                      alt={related.data.title}
+                      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="p-5">
+                  <div class="flex flex-wrap gap-1.5 mb-3">
+                    {related.data.tags.slice(0, 2).map(tag => (
+                      <span class="text-xs bg-orange-50 text-orange-600 px-2 py-0.5 rounded-full">#{tag}</span>
+                    ))}
+                  </div>
+                  <h3 class="font-bold text-gray-950 mb-2 line-clamp-2 text-base leading-snug group-hover:text-orange-700 transition-colors">{related.data.title}</h3>
+                  <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed">{related.data.description}</p>
+                  <p class="mt-4 text-xs text-gray-400">{related.data.publishDate.toLocaleDateString('vi-VN')}</p>
                 </div>
-                <h3 class="font-bold text-gray-900 mb-2 line-clamp-2 text-sm leading-snug">{related.data.title}</h3>
-                <p class="text-xs text-gray-400">{related.data.publishDate.toLocaleDateString('vi-VN')}</p>
               </a>
             ))}
           </div>
         </section>
       )}
 
-      <!-- Back to Blog -->
       <div class="mt-10 pt-6 border-t border-gray-200">
         <a
           href="/tin-tuc"
