@@ -1,8 +1,9 @@
 ---
 title: "So Sánh Huawei, Growatt Và Deye: Nên Chọn Hãng Nào?"
-description: "So sánh nhanh ba thương hiệu inverter phổ biến về hệ sinh thái giám sát, bảo hành, độ linh hoạt và phù hợp với các loại công trình."
+description: "So sánh nhanh 3 hãng inverter phổ biến theo giám sát, bảo hành và tính linh hoạt."
 publishDate: 2026-07-21
 author: "EPC Solar"
+image: "/images/blog/hybrid.svg"
 tags: ["huawei", "growatt", "deye", "inverter"]
 ---
 

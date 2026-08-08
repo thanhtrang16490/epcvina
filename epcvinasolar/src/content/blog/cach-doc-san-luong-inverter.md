@@ -1,8 +1,9 @@
 ---
 title: "Cách Đọc Sản Lượng Inverter Để Biết Hệ Thống Đang Hoạt Động Tốt"
-description: "Hướng dẫn đọc app giám sát inverter, hiểu chỉ số sản lượng ngày, tháng, tổng, công suất tức thời và các dấu hiệu bất thường cần lưu ý."
+description: "Hướng dẫn đọc app inverter, nhận biết sản lượng và phát hiện lỗi vận hành sớm."
 publishDate: 2026-08-07
 author: "EPC Solar"
+image: "/images/blog/analysis.svg"
 tags: ["inverter", "giam-sat", "huong-dan"]
 ---
 

@@ -1,8 +1,9 @@
 ---
 title: "Bóng Che Ảnh Hưởng Đến Sản Lượng Điện Mặt Trời Như Thế Nào?"
-description: "Giải thích vì sao bóng che từ cây, bồn nước, cột anten hay nhà bên cạnh có thể làm giảm sản lượng toàn chuỗi pin."
+description: "Vì sao bóng che làm giảm sản lượng và cách xử lý khi thiết kế hệ thống."
 publishDate: 2026-07-26
 author: "EPC Solar"
+image: "/images/blog/roof.svg"
 tags: ["bong-che", "san-luong", "thiet-ke"]
 ---
 

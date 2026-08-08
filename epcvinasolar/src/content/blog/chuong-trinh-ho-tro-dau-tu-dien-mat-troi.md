@@ -1,8 +1,9 @@
 ---
 title: "Những Điều Cần Biết Trước Khi Tham Gia Chương Trình Hỗ Trợ Đầu Tư Điện Mặt Trời"
-description: "Tổng hợp các lưu ý khi làm việc với ưu đãi, hỗ trợ tài chính hoặc chương trình khuyến khích đầu tư điện mặt trời cho hộ gia đình và doanh nghiệp."
+description: "Lưu ý quan trọng khi đọc điều kiện ưu đãi, hỗ trợ tài chính và chi phí đi kèm."
 publishDate: 2026-07-28
 author: "EPC Solar"
+image: "/images/blog/economics.svg"
 tags: ["dau-tu", "tai-chinh", "uu-dai"]
 ---
 

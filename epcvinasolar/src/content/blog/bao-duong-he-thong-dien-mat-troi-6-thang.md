@@ -1,8 +1,9 @@
 ---
 title: "Bảo Dưỡng Hệ Thống Điện Mặt Trời 6 Tháng Một Lần Có Thực Sự Cần Thiết?"
-description: "Phân tích lịch bảo dưỡng hợp lý cho hệ thống điện mặt trời gia đình và doanh nghiệp: khi nào cần vệ sinh tấm pin, kiểm tra inverter, siết lại khung giá và đo điện."
+description: "Cách kiểm tra, vệ sinh và bảo dưỡng hệ thống điện mặt trời định kỳ để giữ sản lượng ổn định."
 publishDate: 2026-08-08
 author: "EPC Solar"
+image: "/images/blog/solar-guide.svg"
 tags: ["bao-duong", "van-hanh", "tiet-kiem"]
 ---
 

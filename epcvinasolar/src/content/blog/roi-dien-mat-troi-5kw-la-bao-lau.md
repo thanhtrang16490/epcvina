@@ -1,8 +1,9 @@
 ---
 title: "ROI Điện Mặt Trời 5kW Là Bao Lâu Trong Thực Tế?"
-description: "Phân tích đơn giản về hoàn vốn của hệ 5kW: phụ thuộc hóa đơn điện, mức tự dùng, giá thiết bị, thời tiết và thói quen tiêu thụ."
+description: "Phân tích thời gian hoàn vốn của hệ 5kW theo hóa đơn điện, mái và thói quen dùng điện."
 publishDate: 2026-07-23
 author: "EPC Solar"
+image: "/images/blog/economics.svg"
 tags: ["roi", "5kw", "hoan-von"]
 ---
 

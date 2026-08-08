@@ -1,8 +1,9 @@
 ---
 title: "Kiểm Tra An Toàn Điện Trước Thi Công: Đừng Bỏ Qua Bước Này"
-description: "Những điểm cần kiểm tra trước khi thi công hệ thống điện mặt trời: đường điện hiện hữu, tủ điện chính, tiếp địa, chống sét và phụ tải."
+description: "Các bước kiểm tra tủ điện, tiếp địa, phụ tải và chống sét trước khi thi công."
 publishDate: 2026-07-22
 author: "EPC Solar"
+image: "/images/blog/installation.svg"
 tags: ["an-toan-dien", "thi-cong", "kiem-tra"]
 ---
 

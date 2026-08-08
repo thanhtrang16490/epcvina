@@ -1,8 +1,9 @@
 ---
 title: "Nên Lắp Điện Mặt Trời Khi Nào Để Tối Ưu Chi Phí Đầu Tư?"
-description: "Phân tích thời điểm phù hợp để lắp điện mặt trời: khi hóa đơn điện tăng, khi mái đang sửa, khi doanh nghiệp mở rộng tải và khi chính sách thiết bị thuận lợi."
+description: "Những thời điểm phù hợp để đầu tư điện mặt trời nhằm tối ưu chi phí và hoàn vốn."
 publishDate: 2026-08-04
 author: "EPC Solar"
+image: "/images/blog/economics.svg"
 tags: ["dau-tu", "thoi-diem", "chi-phi"]
 ---
 

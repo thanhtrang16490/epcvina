@@ -1,8 +1,9 @@
 ---
 title: "Chuẩn Bị Mái Nhà Trước Khi Lắp Pin Mặt Trời: Checklist Ngắn Gọn"
-description: "Danh sách việc cần làm trước thi công điện mặt trời: kiểm tra mái, dọn vật cản, xử lý chống thấm, đường đi vật tư và vị trí inverter."
+description: "Những việc cần làm trước thi công để giảm phát sinh, chống thấm và tối ưu tiến độ."
 publishDate: 2026-07-30
 author: "EPC Solar"
+image: "/images/blog/roof.svg"
 tags: ["mai-nha", "thi-cong", "chuan-bi"]
 ---
 

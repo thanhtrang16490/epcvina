@@ -1,8 +1,9 @@
 ---
 title: "Báo Giá Điện Mặt Trời 5kW Năm 2026: Cần Chuẩn Bị Những Gì?"
-description: "Checklist chi phí cơ bản cho một hệ 5kW năm 2026: tấm pin, inverter, khung, dây, thi công và các hạng mục phát sinh thường gặp."
+description: "Checklist chi phí hệ 5kW năm 2026 gồm pin, inverter, khung, thi công và hồ sơ."
 publishDate: 2026-08-01
 author: "EPC Solar"
+image: "/images/blog/economics.svg"
 tags: ["bao-gia", "5kw", "chi-phi"]
 ---
 

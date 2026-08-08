@@ -1,8 +1,9 @@
 ---
 title: "7 Lỗi Thường Gặp Khi Lắp Đặt Điện Mặt Trời Và Cách Tránh"
-description: "Tổng hợp các lỗi thi công phổ biến như che bóng, đi dây thiếu gọn, chọn inverter sai công suất, lắp khung kém chắc và thiếu bảo vệ điện."
+description: "Tổng hợp lỗi thi công phổ biến và cách phòng tránh để hệ thống bền và an toàn hơn."
 publishDate: 2026-07-31
 author: "EPC Solar"
+image: "/images/blog/installation.svg"
 tags: ["thi-cong", "loi-thuong-gap", "an-toan"]
 ---
 

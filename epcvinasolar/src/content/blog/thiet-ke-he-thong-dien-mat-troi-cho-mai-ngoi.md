@@ -1,8 +1,9 @@
 ---
 title: "Thiết Kế Hệ Thống Điện Mặt Trời Cho Mái Ngói Cần Lưu Ý Gì?"
-description: "Các lưu ý quan trọng khi lắp điện mặt trời trên mái ngói: chống thấm, tải trọng, vị trí neo, độ dốc và quy trình tháo lắp ngói."
+description: "Lưu ý về chống thấm, tải trọng, điểm neo và kỹ thuật thi công mái ngói."
 publishDate: 2026-07-24
 author: "EPC Solar"
+image: "/images/blog/roof.svg"
 tags: ["mai-ngoi", "thiet-ke", "thi-cong"]
 ---
 

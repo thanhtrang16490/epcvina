@@ -1,8 +1,9 @@
 ---
 title: "Phân Biệt Điện Mặt Trời Gia Đình Và Doanh Nghiệp"
-description: "Điểm khác nhau giữa hệ dân dụng và hệ cho doanh nghiệp: mục tiêu đầu tư, đặc điểm tải, quy mô hệ thống, tiêu chí hoàn vốn và bảo trì."
+description: "So sánh nhu cầu, quy mô và tiêu chí thiết kế giữa hệ dân dụng và công trình doanh nghiệp."
 publishDate: 2026-07-29
 author: "EPC Solar"
+image: "/images/blog/analysis.svg"
 tags: ["gia-dinh", "doanh-nghiep", "phan-biet"]
 ---
 

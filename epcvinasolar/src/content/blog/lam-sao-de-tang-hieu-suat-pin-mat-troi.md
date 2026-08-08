@@ -1,8 +1,9 @@
 ---
 title: "Làm Sao Để Tăng Hiệu Suất Pin Mặt Trời Khi Trời Nóng Hoặc Có Bụi?"
-description: "Các nguyên tắc thực tế để giữ hiệu suất hệ thống tốt hơn: vệ sinh đúng lúc, khoảng cách thoáng gió, góc nghiêng, chống che bóng và chọn thiết bị phù hợp."
+description: "Mẹo giữ hiệu suất hệ thống tốt hơn bằng vệ sinh, thông gió và hạn chế che bóng."
 publishDate: 2026-08-05
 author: "EPC Solar"
+image: "/images/blog/solar-guide.svg"
 tags: ["hieu-suat", "pin-mat-troi", "van-hanh"]
 ---
 

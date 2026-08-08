@@ -58,6 +58,16 @@ const breadcrumbSchema = {
             <article class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-200 ease-in-out cursor-pointer focus-within:ring-2 focus-within:ring-orange-500 focus-within:ring-offset-2 motion-reduce:transition-none">
               <!-- Category color bar -->
               <div class="h-1 bg-gradient-to-r from-orange-500 to-red-600"></div>
+              {post.data.image && (
+                <a href={`/tin-tuc/${post.id}`} class="block aspect-[16/9] overflow-hidden bg-orange-50">
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+                    loading="lazy"
+                  />
+                </a>
+              )}
               <div class="p-6">
                 <!-- Tags -->
                 <div class="flex flex-wrap gap-2 mb-4">

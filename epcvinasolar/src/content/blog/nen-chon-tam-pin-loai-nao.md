@@ -1,8 +1,9 @@
 ---
 title: "Nên Chọn Tấm Pin Mặt Trời Loại Nào Cho Công Trình Dân Dụng?"
-description: "So sánh nhanh giữa các lựa chọn tấm pin phổ biến cho nhà ở: hiệu suất, độ bền, diện tích mái, bảo hành và giá trị sử dụng lâu dài."
+description: "Cách chọn tấm pin theo hiệu suất, thương hiệu, kích thước mái và ngân sách."
 publishDate: 2026-07-25
 author: "EPC Solar"
+image: "/images/blog/solar-guide.svg"
 tags: ["tam-pin", "lua-chon", "dau-tu"]
 ---
 

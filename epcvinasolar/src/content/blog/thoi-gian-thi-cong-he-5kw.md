@@ -1,8 +1,9 @@
 ---
 title: "Thi Công Hệ 5kW Mất Bao Lâu Và Bao Gồm Những Gì?"
-description: "Mô tả nhanh tiến độ thi công một hệ thống 5kW: khảo sát, vật tư, lắp đặt, đấu nối, kiểm tra và bàn giao."
+description: "Tiến độ thi công hệ 5kW từ khảo sát, lắp đặt đến nghiệm thu và bàn giao."
 publishDate: 2026-07-20
 author: "EPC Solar"
+image: "/images/blog/installation.svg"
 tags: ["thi-cong", "5kw", "tien-do"]
 ---
 

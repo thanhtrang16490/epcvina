@@ -1,8 +1,9 @@
 ---
 title: "Hướng Dẫn Chọn Inverter Hybrid Cho Nhà Phố Và Biệt Thự"
-description: "So sánh các tiêu chí khi chọn inverter hybrid: công suất, số MPPT, khả năng lưu trữ, chuyển mạch UPS, tương thích pin và khả năng mở rộng."
+description: "Tiêu chí chọn inverter hybrid theo công suất, MPPT, pin lưu trữ và khả năng backup."
 publishDate: 2026-08-06
 author: "EPC Solar"
+image: "/images/blog/hybrid.svg"
 tags: ["hybrid", "inverter", "luu-tru"]
 ---
 

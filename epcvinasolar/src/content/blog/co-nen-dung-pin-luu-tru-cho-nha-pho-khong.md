@@ -1,8 +1,9 @@
 ---
 title: "Có Nên Dùng Pin Lưu Trữ Cho Nhà Phố Không?"
-description: "Bài viết phân tích trường hợp nên hoặc chưa nên đầu tư pin lưu trữ: chi phí, độ bền, lợi ích khi mất điện và hiệu quả kinh tế."
+description: "Khi nào nên đầu tư pin lưu trữ, khi nào chỉ cần On-Grid để hoàn vốn nhanh."
 publishDate: 2026-08-02
 author: "EPC Solar"
+image: "/images/blog/hybrid.svg"
 tags: ["pin-luu-tru", "hybrid", "nha-pho"]
 ---
 
