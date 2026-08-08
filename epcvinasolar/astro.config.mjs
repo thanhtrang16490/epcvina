@@ -10,6 +10,7 @@ export default defineConfig({
   redirects: {
     '/projects': '/du-an',
     '/on-grid': '/solar-home/on-grid',
+    '/blog': '/tin-tuc',
   },
   compressHTML: true,
   build: {
