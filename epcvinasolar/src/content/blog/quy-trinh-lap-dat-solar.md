@@ -4,6 +4,7 @@ description: "Hướng dẫn chi tiết quy trình lắp đặt điện mặt tr
 publishDate: 2026-06-08
 author: "EPC Solar"
 tags: ["quy-trinh", "lap-dat", "huong-dan"]
+image: "/images/blog/installation.svg"
 ---
 
 ## Quy Trình Lắp Đặt Điện Mặt Trời Từ A-Z Tại EPC Solar

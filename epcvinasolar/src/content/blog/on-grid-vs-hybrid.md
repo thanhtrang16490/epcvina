@@ -4,6 +4,7 @@ description: "So sánh toàn diện giữa hệ thống điện mặt trời On-
 publishDate: 2026-06-12
 author: "EPC Solar"
 tags: ["on-grid", "hybrid", "so-sanh", "huong-dan"]
+image: "/images/blog/hybrid.svg"
 ---
 
 ## On-Grid vs Hybrid Solar: Nên Chọn Cái Nào?
