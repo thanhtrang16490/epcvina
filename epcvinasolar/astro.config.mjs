@@ -11,6 +11,7 @@ export default defineConfig({
     '/projects': '/du-an',
     '/on-grid': '/solar-home/on-grid',
     '/blog': '/tin-tuc',
+    '/thiet-bi/danh-sach': '/thiet-bi',
   },
   compressHTML: true,
   build: {

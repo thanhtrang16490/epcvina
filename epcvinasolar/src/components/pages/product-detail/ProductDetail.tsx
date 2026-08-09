@@ -211,12 +211,12 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
         <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
           <div className="max-w-7xl mx-auto">
             <nav className="flex items-center space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
-              <a href="/thiet-bi/danh-sach/panel" className="hover:text-orange-600 transition-colors cursor-pointer">
+              <a href="/thiet-bi/panel" className="hover:text-orange-600 transition-colors cursor-pointer">
                 Thiết bị
               </a>
               <span aria-hidden="true">/</span>
               <a 
-                href={`/thiet-bi/danh-sach/${product.category}`} 
+                href={`/thiet-bi/${product.category}`} 
                 className="hover:text-orange-600 transition-colors cursor-pointer"
               >
                 {CATEGORY_NAMES[product.category] || product.category}

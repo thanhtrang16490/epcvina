@@ -243,7 +243,7 @@ export default function MaiTonPage() {
             ))}
           </div>
           <div className="mt-8 text-center">
-            <a href="/thiet-bi/danh-sach/mounting" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-all">
+            <a href="/thiet-bi/mounting" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-all">
               Xem chi tiết hệ khung nhôm nhôm AL6005-T5 <ArrowRight className="w-4 h-4" />
             </a>
           </div>

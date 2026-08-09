@@ -109,12 +109,6 @@ const structuredData = {
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalURL.href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <script is:inline>
-      if (window.location.hostname === 'www.epcvina.com') {
-        window.location.replace(`https://epcvina.com${window.location.pathname}${window.location.search}${window.location.hash}`);
-      }
-    </script>
-
     <!-- Open Graph / Facebook / Zalo -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL.href} />

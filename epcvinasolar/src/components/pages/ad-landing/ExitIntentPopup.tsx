@@ -4,6 +4,7 @@ import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 import { trackConversionEvent } from '../../../lib/tracking';
 
 export default function ExitIntentPopup() {
+  const isEnabled = import.meta.env.PUBLIC_ENABLE_EXIT_INTENT_POPUP === 'true';
   const [show, setShow] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({ phone: '' });
@@ -11,6 +12,8 @@ export default function ExitIntentPopup() {
   const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
+    if (!isEnabled) return;
+
     // Check if already shown in this session
     if (sessionStorage.getItem('exitPopupShown')) return;
 
@@ -34,7 +37,7 @@ export default function ExitIntentPopup() {
       document.removeEventListener('mouseout', handleMouseLeave);
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [hasShown]);
+  }, [hasShown, isEnabled]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +54,7 @@ export default function ExitIntentPopup() {
     }
   };
 
-  if (!show) return null;
+  if (!isEnabled || !show) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

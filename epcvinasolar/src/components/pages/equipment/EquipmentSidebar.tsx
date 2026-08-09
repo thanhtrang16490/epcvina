@@ -149,7 +149,7 @@ export default function EquipmentSidebar({
               return (
                 <a
                   key={key}
-                  href={`/thiet-bi/danh-sach/${key}`}
+                  href={`/thiet-bi/${key}`}
                   className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
                     isActive
                       ? 'bg-[#F97316] text-white'
@@ -190,7 +190,7 @@ export default function EquipmentSidebar({
             <div className="p-3 max-h-96 overflow-y-auto">
               {/* All brands - clear filter */}
               <a
-                href={`/thiet-bi/danh-sach/${category}`}
+                href={`/thiet-bi/${category}`}
                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition-all mb-1 ${
                   !selectedBrand ? 'bg-orange-50 text-[#F97316]' : 'hover:bg-gray-50'
                 }`}
