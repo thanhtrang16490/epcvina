@@ -421,7 +421,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <a href="/" className="flex items-center">
             {/* Collapsed: show logo favicon */}
             {!isExpanded && (
-              <img src="/logo-epcvina-solar.png" alt="EPCVINA Solar" className="h-8 w-auto flex-shrink-0" loading="lazy" />
+              <img src="/logo-favicon.svg" alt="EPC Solar" className="w-7 h-7 flex-shrink-0" loading="lazy" />
             )}
             {/* Expanded: show full logo */}
             {isExpanded && (
