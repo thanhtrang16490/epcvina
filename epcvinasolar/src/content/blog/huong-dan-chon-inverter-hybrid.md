@@ -1,5 +1,5 @@
 ---
-title: "Hướng Dẫn Chọn Inverter Hybrid Cho Nhà Phố Và Biệt Thự"
+title: "Chọn Inverter Hybrid: 5 Tiêu Chí Cần Xem Trước Khi Mua"
 description: "Tiêu chí chọn inverter hybrid theo công suất, MPPT, pin lưu trữ và khả năng backup để tránh mua sai cấu hình."
 publishDate: 2026-08-06
 updatedDate: 2026-08-10

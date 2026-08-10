@@ -1,6 +1,6 @@
 ---
-title: "Báo Giá Điện Mặt Trời 5kW 2026: Chi Phí, Checklist Và Lưu Ý"
-description: "Tổng hợp chi phí hệ 5kW 2026 gồm pin, inverter, khung, thi công và hồ sơ để bạn chuẩn bị báo giá sát thực tế hơn."
+title: "Báo Giá Điện Mặt Trời 5kW 2026: Chi Phí Thực Tế Là Bao Nhiêu?"
+description: "Xem chi phí hệ 5kW 2026 gồm pin, inverter, khung, thi công và hồ sơ để ước lượng báo giá sát thực tế hơn."
 publishDate: 2026-08-01
 updatedDate: 2026-08-10
 author: "EPC Solar"

@@ -1,5 +1,5 @@
 ---
-title: "Có Nên Dùng Pin Lưu Trữ Cho Nhà Phố Không?"
+title: "Có Nên Dùng Pin Lưu Trữ Cho Nhà Phố?"
 description: "Khi nào nên đầu tư pin lưu trữ, khi nào chỉ cần On-Grid để hoàn vốn nhanh hơn và tránh mua dư dung lượng."
 publishDate: 2026-08-02
 updatedDate: 2026-08-10

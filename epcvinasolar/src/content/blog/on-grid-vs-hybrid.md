@@ -1,5 +1,5 @@
 ---
-title: "On-Grid Hay Hybrid: Nên Chọn Hệ Nào Cho Ngôi Nhà?"
+title: "On-Grid Hay Hybrid: Hệ Nào Phù Hợp Hơn Với Gia Đình?"
 description: "So sánh On-Grid và Hybrid theo ưu nhược điểm, chi phí, ROI và tình huống sử dụng để chọn đúng giải pháp cho gia đình."
 publishDate: 2026-06-12
 updatedDate: 2026-08-10

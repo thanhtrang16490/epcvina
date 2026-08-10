@@ -1,6 +1,6 @@
 ---
-title: "Chọn Hệ On-Grid Hay Hybrid: Bảng So Sánh Dễ Hiểu Cho Gia Đình"
-description: "So sánh On-Grid và Hybrid để chọn hệ phù hợp với hóa đơn điện và nhu cầu dự phòng."
+title: "Chọn Hệ On-Grid Hay Hybrid: Nên Mua Loại Nào?"
+description: "So sánh On-Grid và Hybrid để chọn hệ phù hợp với hóa đơn điện, nhu cầu dự phòng và bài toán hoàn vốn."
 publishDate: 2026-08-03
 author: "EPC Solar"
 image: "/images/blog/hybrid.svg"

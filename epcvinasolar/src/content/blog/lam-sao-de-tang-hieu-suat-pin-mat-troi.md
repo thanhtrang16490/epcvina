@@ -1,5 +1,5 @@
 ---
-title: "Làm Sao Để Tăng Hiệu Suất Pin Mặt Trời Khi Trời Nóng Hoặc Có Bụi?"
+title: "Cách Tăng Hiệu Suất Pin Mặt Trời Khi Trời Nóng Hoặc Có Bụi"
 description: "Mẹo giữ hiệu suất hệ thống tốt hơn bằng vệ sinh, thông gió và hạn chế che bóng."
 publishDate: 2026-08-05
 author: "EPC Solar"

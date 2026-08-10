@@ -1,6 +1,6 @@
 ---
-title: "7 Lỗi Thường Gặp Khi Lắp Đặt Điện Mặt Trời Và Cách Tránh"
-description: "Tổng hợp lỗi thi công phổ biến và cách phòng tránh để hệ thống bền và an toàn hơn."
+title: "7 Lỗi Thường Gặp Khi Lắp Điện Mặt Trời Và Cách Tránh"
+description: "Tổng hợp lỗi thi công phổ biến và cách phòng tránh để hệ thống bền, an toàn và vận hành hiệu quả hơn."
 publishDate: 2026-07-31
 author: "EPC Solar"
 image: "/images/blog/installation.svg"
