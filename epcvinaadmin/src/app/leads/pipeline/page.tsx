@@ -3,6 +3,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { LeadsKanbanBoard } from "@/components/LeadsKanbanBoard";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { getPage, getPageRange, getPageSize } from "@/lib/pagination";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,12 @@ const statuses: Record<string, { label: string; className: string }> = {
   spam: { label: "Spam", className: "bg-slate-400/15 text-slate-300" },
 };
 const pipelineStatuses = ["new", "contacted", "qualified", "survey_scheduled", "survey_done", "proposal_sent", "negotiation", "won", "lost", "spam"];
+
+function tabClass(active: boolean) {
+  return active
+    ? "border-[color:var(--accent)]/40 bg-[color:var(--accent)]/10 text-[color:var(--accent)]"
+    : "border-[color:var(--border)] bg-[color:var(--panel)] text-[color:var(--text)] hover:bg-white/10";
+}
 
 export default async function LeadPipelinePage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const params = (await searchParams) ?? {};
@@ -52,6 +59,14 @@ export default async function LeadPipelinePage({ searchParams }: { searchParams?
           title="Kanban lead"
           description="Trang riêng để kéo thả lead theo stage, tập trung cho đội sales xử lý pipeline."
         />
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link href="/admin/leads" className={`rounded-full border px-4 py-2 text-sm font-medium transition ${tabClass(false)}`}>
+            Bảng lead
+          </Link>
+          <Link href="/admin/leads/pipeline" className={`rounded-full border px-4 py-2 text-sm font-medium transition ${tabClass(true)}`}>
+            CRM Pipeline
+          </Link>
+        </div>
         <LeadsKanbanBoard columns={boardColumns} statusLabels={Object.fromEntries(pipelineStatuses.map((key) => [key, statuses[key]?.label ?? key]))} />
       </main>
     </AdminShell>

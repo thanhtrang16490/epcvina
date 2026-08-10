@@ -274,6 +274,29 @@ function getMetadata(lead: any) {
   return lead?.metadata && typeof lead.metadata === "object" && !Array.isArray(lead.metadata) ? (lead.metadata as Record<string, unknown>) : {};
 }
 
+function getLeadHeatScore(lead: any) {
+  const priority = String(lead.priority ?? "normal").toLowerCase();
+  const rank = ({ low: 1, normal: 2, high: 3, urgent: 4 } as Record<string, number>)[priority] ?? 2;
+  let score = 25 + rank * 8;
+  if (lead.follow_up_at && new Date(lead.follow_up_at).getTime() < Date.now()) score += 18;
+  if (lead.status === "new") score += 6;
+  if (lead.status === "contacted") score += 12;
+  if (lead.status === "qualified") score += 8;
+  if (lead.last_contacted_at) {
+    const daysSince = getLeadAge(lead.last_contacted_at) ?? 0;
+    score += Math.max(0, 14 - daysSince);
+  } else {
+    score += 10;
+  }
+  return Math.min(100, score);
+}
+
+function tabClass(active: boolean) {
+  return active
+    ? "border-[color:var(--accent)]/40 bg-[color:var(--accent)]/10 text-[color:var(--accent)]"
+    : "border-[color:var(--border)] bg-[color:var(--panel)] text-[color:var(--text)] hover:bg-white/10";
+}
+
 function CardTitle({
   title,
   description,
@@ -429,6 +452,14 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
             </ModalShell>
           </div>
         </div>
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link href="/admin/leads" className={`rounded-full border px-4 py-2 text-sm font-medium transition ${tabClass(false)}`}>
+            Bảng lead
+          </Link>
+          <Link href="/admin/leads/pipeline" className={`rounded-full border px-4 py-2 text-sm font-medium transition ${tabClass(false)}`}>
+            CRM Pipeline
+          </Link>
+        </div>
         <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)]">
           <div className="space-y-6">
             <LeadProgressBar status={lead.status} />
@@ -506,6 +537,10 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                 <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3">
                   <div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">{nextAction.label}</div>
                   <div className="mt-1 font-semibold text-[color:var(--text)]">{nextAction.value}</div>
+                </div>
+                <div className="rounded-2xl border border-amber-400/20 bg-amber-400/10 px-4 py-3">
+                  <div className="text-xs uppercase tracking-[0.16em] text-amber-200">Độ nóng lead</div>
+                  <div className="mt-1 font-semibold text-amber-100">{getLeadHeatScore(lead)}/100</div>
                 </div>
               </div>
               <div className="mt-5 grid gap-3 sm:grid-cols-3">

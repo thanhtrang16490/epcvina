@@ -320,7 +320,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Header with logo */}
         <div className="relative z-10 flex items-center justify-between px-4 h-14 border-b border-white/30">
           <a href="/" className="flex items-center gap-3">
-            <img src="/logo-epcvina-solar.png" alt="EPC Solar" className="h-8 w-auto" loading="lazy" />
+            <img src="/logo-epcvina-solar.png" alt="EPCVINA Solar" className="h-8 w-auto" loading="lazy" />
           </a>
           <button onClick={onClose} className="p-2 -mr-2 text-gray-600 hover:text-gray-900" aria-label="Đóng menu">
             <X className="h-5 w-5" />
@@ -421,11 +421,11 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <a href="/" className="flex items-center">
             {/* Collapsed: show logo favicon */}
             {!isExpanded && (
-              <img src="/logo-favicon.svg" alt="EPC Solar" className="w-7 h-7 flex-shrink-0" loading="lazy" />
+              <img src="/logo-epcvina-solar.png" alt="EPCVINA Solar" className="h-8 w-auto flex-shrink-0" loading="lazy" />
             )}
             {/* Expanded: show full logo */}
             {isExpanded && (
-              <img src="/logo-epcvina-solar.png" alt="EPC Solar" className="h-8 w-auto flex-shrink-0" loading="lazy" />
+              <img src="/logo-epcvina-solar.png" alt="EPCVINA Solar" className="h-8 w-auto flex-shrink-0" loading="lazy" />
             )}
           </a>
         </div>

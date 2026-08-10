@@ -1,4 +1,5 @@
 ---
+import { buildFaqSchema } from '../lib/schema';
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import BietThuLandingPage from '../components/pages/bietthu/BietThuLandingPage';
@@ -9,36 +10,11 @@ const seoTitle = 'Điện Mặt Trời Biệt Thự 2026 - Sang Trọng & Tiết
 const seoDescription = 'Lắp điện mặt trời cho biệt thự, villa. Hệ Hybrid cao cấp, thẩm mỹ, có điện khi mất điện. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113';
 const seoKeywords = 'điện mặt trời biệt thự, điện mặt trời villa, điện mặt trời cao cấp, hybrid biệt thự, EPCVINA Solar';
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Biệt thự có nên lắp điện mặt trời?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Có. Biệt thự có mái rộng 100-300m2, hóa đơn điện 5-20 triệu/tháng. Hệ Hybrid 10-20kWp giảm 70-90% tiền điện, tăng giá trị bất động sản."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Hệ thống có thẩm mỹ không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Có. EPCVINA sử dụng pin all-black thẩm mỹ cao, lắp đặt chuyên nghiệp, đảm bảo kiến trúc biệt thự. Có thể lắp hidden hoặc flush-mount."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Chi phí lắp cho biệt thự bao nhiêu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Từ 150-500 triệu tùy công suất. Hệ Hybrid 10kWp + pin 15kWh từ 250 triệu. Hoàn vốn 4-6 năm, sau đó tiết kiệm 3-5 triệu/tháng."
-      }
-    }
-  ]
-};
+const faqSchema = buildFaqSchema([
+  { q: "Biệt thự có nên lắp điện mặt trời?", a: "Có. Biệt thự có mái rộng 100-300m2, hóa đơn điện 5-20 triệu/tháng. Hệ Hybrid 10-20kWp giảm 70-90% tiền điện, tăng giá trị bất động sản." },
+  { q: "Hệ thống có thẩm mỹ không?", a: "Có. EPCVINA sử dụng pin all-black thẩm mỹ cao, lắp đặt chuyên nghiệp, đảm bảo kiến trúc biệt thự. Có thể lắp hidden hoặc flush-mount." },
+  { q: "Chi phí lắp cho biệt thự bao nhiêu?", a: "Từ 150-500 triệu tùy công suất. Hệ Hybrid 10kWp + pin 15kWh từ 250 triệu. Hoàn vốn 4-6 năm, sau đó tiết kiệm 3-5 triệu/tháng." },
+]);
 ---
 
 <DashboardLayout
@@ -51,7 +27,7 @@ const faqSchema = {
     { name: 'Điện Mặt Trời Biệt Thự', url: 'https://epcvina.com/dien-mat-troi-biet-thu' }
   ]}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <DashboardShell client:load>
       <BietThuLandingPage client:visible />
     </DashboardShell>

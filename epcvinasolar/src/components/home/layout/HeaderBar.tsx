@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { CaretDown, FileText, List, X } from '@phosphor-icons/react';
 import { useScrollContext } from '../../layout/DashboardShell';
-import { useHeaderTheme } from '../../layout/useHeaderTheme';
 
 const navItems = [
   { label: 'Trang chủ', href: '/' },
@@ -26,9 +25,7 @@ export default function HeaderBar() {
   const moreButtonRef = useRef<HTMLButtonElement>(null);
   const moreMenuRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-  const theme = useHeaderTheme(activePath === '/' ? 'dark' : 'light');
-  const isDarkTheme = theme === 'dark';
-  const logoSrc = isDarkTheme ? '/logo-epcvina-solar-white.png' : '/logo-epcvina-solar.png';
+  const logoSrc = '/logo-epcvina-solar.png';
 
   useEffect(() => {
     setActivePath(window.location.pathname);
@@ -111,110 +108,96 @@ export default function HeaderBar() {
         isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      <div className="px-4 sm:px-6 lg:px-8 flex items-center gap-3 max-w-7xl mx-auto">
-        {/* Logo - left */}
-        <a href="/" className="flex-shrink-0">
-          <img
-            src={logoSrc}
-            alt="EPCVINA Solar"
-            width={1024}
-            height={159}
-            className={`h-8 md:h-10 w-auto ${isDarkTheme ? 'drop-shadow-sm' : ''}`}
-          />
-        </a>
+      <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="flex items-center gap-3 rounded-full border border-white/50 bg-white/75 backdrop-blur-2xl shadow-[0_12px_40px_rgba(15,23,42,0.10)] px-3 py-2">
+          <a href="/" className="flex-shrink-0">
+            <img
+              src={logoSrc}
+              alt="EPCVINA Solar"
+              width={1024}
+              height={159}
+              className="h-8 md:h-9 w-auto"
+            />
+          </a>
 
-        {/* Nav pill - center (tablet+ desktop) */}
-        <nav ref={navRef} className="hidden lg:flex flex-1 min-w-0 items-center justify-center gap-0.5 bg-white/60 backdrop-blur-2xl rounded-full px-1.5 md:px-2 py-1.5 md:py-2 shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 relative overflow-hidden">
-          {/* Mirror reflection gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none rounded-full" />
-          {navItems.slice(0, visibleNavCount).map((item, index) => {
-            const isActive = activePath === item.href;
-            return (
-              <a
-                key={item.href}
-                href={item.href}
-                ref={(el) => {
-                  navItemRefs.current[index] = el;
-                }}
-                className={`relative flex-shrink-0 px-2 md:px-2.5 py-1 md:py-1.5 rounded-full text-[10px] lg:text-[12px] xl:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
-                  isActive
-                    ? 'bg-gray-900 text-white shadow-md'
-                    : 'text-gray-700 hover:text-gray-900 hover:bg-white/60'
-                }`}
-              >
-                {item.label}
-              </a>
-            );
-          })}
-          {visibleNavCount < navItems.length && (
-            <div ref={moreMenuRef} className="relative flex-shrink-0">
-            <button
-              ref={moreButtonRef}
-              type="button"
-              onClick={() => setMoreOpen((open) => !open)}
-              className="relative flex items-center gap-1 px-2 md:px-2.5 py-1 md:py-1.5 rounded-full text-[10px] lg:text-[12px] xl:text-[13px] font-medium text-gray-700 hover:text-gray-900 hover:bg-white/60 transition-all duration-200 whitespace-nowrap active:scale-[0.97]"
-              aria-expanded={moreOpen}
-            >
-              Khác
-              <CaretDown className={`h-3.5 w-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} weight="bold" />
-            </button>
-            {moreOpen && (
-              <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-48 overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-[0_18px_40px_rgba(0,0,0,0.14)] backdrop-blur-xl">
-                {secondaryNavItems.map((item) => {
-                  const isActive = activePath === item.href;
-                  return (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className={`block px-4 py-3 text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                    >
-                      {item.label}
-                    </a>
-                  );
-                })}
+          <nav ref={navRef} className="hidden lg:flex flex-1 min-w-0 items-center gap-0.5 overflow-hidden">
+            {navItems.slice(0, visibleNavCount).map((item, index) => {
+              const isActive = activePath === item.href;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  ref={(el) => {
+                    navItemRefs.current[index] = el;
+                  }}
+                  className={`relative flex-shrink-0 px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
+                    isActive
+                      ? 'bg-gray-900 text-white shadow-md'
+                      : 'text-gray-700 hover:text-gray-900 hover:bg-white/70'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+            {visibleNavCount < navItems.length && (
+              <div ref={moreMenuRef} className="relative flex-shrink-0">
+                <button
+                  ref={moreButtonRef}
+                  type="button"
+                  onClick={() => setMoreOpen((open) => !open)}
+                  className="relative flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 whitespace-nowrap active:scale-[0.97]"
+                  aria-expanded={moreOpen}
+                >
+                  Khác
+                  <CaretDown className={`h-3.5 w-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} weight="bold" />
+                </button>
+                {moreOpen && (
+                  <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-48 overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-[0_18px_40px_rgba(0,0,0,0.14)] backdrop-blur-xl">
+                    {secondaryNavItems.map((item) => {
+                      const isActive = activePath === item.href;
+                      return (
+                        <a
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-3 text-sm font-medium transition-colors ${
+                            isActive
+                              ? 'bg-gray-900 text-white'
+                              : 'text-gray-700 hover:bg-gray-100'
+                          }`}
+                        >
+                          {item.label}
+                        </a>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
             )}
-            </div>
-          )}
-        </nav>
+          </nav>
 
-        {/* Right side */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          {/* Quote CTA - icon only on mobile */}
-          <a
-            href="/bao-gia"
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-md transition-colors active:scale-[0.98]"
-            aria-label="Nhận báo giá"
-          >
-            <FileText className="h-4 w-4" weight="bold" />
-          </a>
+          <div className="ml-auto flex items-center gap-2 flex-shrink-0">
+            <a
+              href="/bao-gia"
+              className="hidden md:flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-3 lg:px-4 py-2 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
+            >
+              <FileText className="h-4 w-4" weight="bold" />
+              <span className="hidden xl:inline">Nhận Báo Giá</span>
+              <span className="hidden lg:inline xl:hidden">Báo giá</span>
+            </a>
 
-          {/* Quote CTA - text on desktop/tablet */}
-          <a
-            href="/bao-gia"
-            className="hidden md:flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-3 lg:px-4 xl:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
-          >
-            <FileText className="h-4 w-4" weight="bold" />
-            <span className="hidden xl:inline">Nhận Báo Giá</span>
-            <span className="hidden lg:inline xl:hidden">Báo giá</span>
-          </a>
-
-          {/* Hamburger - mobile only */}
-          <button
-            onClick={() => {
-              setMoreOpen(false);
-              setMobileOpen(!mobileOpen);
-            }}
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 text-gray-700 active:scale-[0.97]"
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="h-5 w-5" weight="bold" /> : <List className="h-5 w-5" weight="bold" />}
-          </button>
+            <button
+              onClick={() => {
+                setMoreOpen(false);
+                setMobileOpen(!mobileOpen);
+              }}
+              className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/70 shadow-[0_8px_24px_rgba(15,23,42,0.08)] border border-white/50 text-gray-700 active:scale-[0.97]"
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X className="h-5 w-5" weight="bold" /> : <List className="h-5 w-5" weight="bold" />}
+            </button>
+          </div>
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 ---
+import { buildFaqSchema, buildLocalBusinessSchema } from '../lib/schema';
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
@@ -31,30 +32,15 @@ const province = {
   ]
 };
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": province.faqs.map(f => ({
-    "@type": "Question",
-    "name": f.q,
-    "acceptedAnswer": { "@type": "Answer", "text": f.a }
-  }))
-};
-
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "EPCVINA Solar - Điện Mặt Trời Hà Nội",
-  "description": "Lắp đặt điện mặt trời tại Hà Nội. EPCVINA - Đơn vị thi công uy tín với 200+ công trình.",
-  "url": "https://epcvina.com/dien-mat-troi-ha-noi",
-  "telephone": "0988446113",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Hà Nội",
-    "addressCountry": "VN"
-  },
-  "areaServed": "Hà Nội"
-};
+const faqSchema = buildFaqSchema(province.faqs);
+const localBusinessSchema = buildLocalBusinessSchema({
+  name: "EPCVINA Solar - Điện Mặt Trời Hà Nội",
+  description: "Lắp đặt điện mặt trời tại Hà Nội. EPCVINA - Đơn vị thi công uy tín với 200+ công trình.",
+  url: "https://epcvina.com/dien-mat-troi-ha-noi",
+  telephone: "0988446113",
+  addressLocality: "Hà Nội",
+  addressCountry: "VN",
+});
 ---
 
 <DashboardLayout
@@ -67,7 +53,7 @@ const localBusinessSchema = {
     { name: 'Điện Mặt Trời Hà Nội', url: 'https://epcvina.com/dien-mat-troi-ha-noi' }
   ]}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   <DashboardShell client:load>
       <ProvinceLandingPage client:visible province={province} />

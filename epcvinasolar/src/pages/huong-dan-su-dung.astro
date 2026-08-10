@@ -1,45 +1,14 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
+import { buildFaqSchema } from '../lib/schema';
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Có cần tắt hệ thống điện mặt trời vào ban đêm không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Không cần. Inverter tự động chuyển sang chế độ chờ khi không có ánh nắng. Việc tắt/bật thủ công không cần thiết và có thể làm giảm sản lượng ngày hôm sau."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Pin lưu trữ có cần thay thế không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Pin LFP có tuổi thọ 6000+ chu kỳ (~10-15 năm). Sau thời gian này dung lượng giảm còn ~70%. EPCVINA hỗ trợ kiểm tra và tư vấn thay thế khi cần."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Mưa bão có nên tắt hệ thống không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hệ thống có chống sét cơ bản. Với bão cấp 12 trở lên, nên tắt aptomat DC để bảo vệ an toàn. Sau bão, kiểm tra tấm pin trước khi bật lại."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Có thể mở rộng hệ thống sau này không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Có thể. Cần khảo sát lại inverter, khung giàn và giấy phép đấu nối. Liên hệ EPCVINA để được tư vấn miễn phí."
-      }
-    }
-  ]
-};
+const faqSchema = buildFaqSchema([
+  { q: 'Có cần tắt hệ thống điện mặt trời vào ban đêm không?', a: 'Không cần. Inverter tự động chuyển sang chế độ chờ khi không có ánh nắng. Việc tắt/bật thủ công không cần thiết và có thể làm giảm sản lượng ngày hôm sau.' },
+  { q: 'Pin lưu trữ có cần thay thế không?', a: 'Pin LFP có tuổi thọ 6000+ chu kỳ (~10-15 năm). Sau thời gian này dung lượng giảm còn ~70%. EPCVINA hỗ trợ kiểm tra và tư vấn thay thế khi cần.' },
+  { q: 'Mưa bão có nên tắt hệ thống không?', a: 'Hệ thống có chống sét cơ bản. Với bão cấp 12 trở lên, nên tắt aptomat DC để bảo vệ an toàn. Sau bão, kiểm tra tấm pin trước khi bật lại.' },
+  { q: 'Có thể mở rộng hệ thống sau này không?', a: 'Có thể. Cần khảo sát lại inverter, khung giàn và giấy phép đấu nối. Liên hệ EPCVINA để được tư vấn miễn phí.' },
+]);
 ---
 
 <DashboardLayout

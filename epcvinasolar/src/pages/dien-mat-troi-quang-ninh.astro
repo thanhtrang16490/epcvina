@@ -2,6 +2,7 @@
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
+import { buildFaqSchema, buildLocalBusinessSchema } from '../lib/schema';
 
 export const prerender = true;
 
@@ -29,30 +30,15 @@ const province = {
   ]
 };
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": province.faqs.map(f => ({
-    "@type": "Question",
-    "name": f.q,
-    "acceptedAnswer": { "@type": "Answer", "text": f.a }
-  }))
-};
-
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": `EPCVINA Solar - Điện Mặt Trời ${province.name}`,
-  "description": `Lắp đặt điện mặt trời tại ${province.name}. ${province.description}`,
-  "url": `https://epcvina.com/dien-mat-troi-${province.slug}`,
-  "telephone": "0988446113",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": province.name,
-    "addressCountry": "VN"
-  },
-  "areaServed": province.name
-};
+const faqSchema = buildFaqSchema(province.faqs);
+const localBusinessSchema = buildLocalBusinessSchema({
+  name: `EPCVINA Solar - Điện Mặt Trời ${province.name}`,
+  description: `Lắp đặt điện mặt trời tại ${province.name}. ${province.description}`,
+  url: `https://epcvina.com/dien-mat-troi-${province.slug}`,
+  telephone: '0988446113',
+  addressLocality: province.name,
+  addressCountry: 'VN',
+});
 ---
 
 <DashboardLayout

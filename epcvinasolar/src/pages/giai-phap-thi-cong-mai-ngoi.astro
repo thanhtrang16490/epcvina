@@ -2,6 +2,7 @@
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import MaiNgoiPage from '../components/pages/solar-home/MaiNgoiPage';
+import { buildFaqSchema } from '../lib/schema';
 
 export const prerender = true;
 
@@ -9,44 +10,12 @@ const seoTitle = 'Giải Pháp Thi Công Điện Mặt Trời Mái Ngói 2026 | 
 const seoDescription = 'Lắp điện mặt trời trên mái ngói ✓ Chống thấm tuyệt đối ✓ Móc ngói Inox 304 ✓ Giữ nguyên thẩm mỹ ✓ Bảo hành 5 năm ✓ Phù hợp nhà phố, biệt thự. LH: 0988 446 113';
 const seoKeywords = 'điện mặt trời mái ngói, lắp pin mặt trời mái ngói, thi công mái ngói, móc ngói solar, điện mặt trời biệt thự, EPCVINA mái ngói';
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Mái ngói nào lắp được điện mặt trời?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hầu hết các loại ngói đều lắp được: ngói sóng, ngói phẳng, ngói xi măng, ngói đất nung. Quan trọng là chất lượng ngói và xà gồ còn tốt."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Lắp điện mặt trời mái ngói có bị dột không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Không, nếu thi công đúng kỹ thuật. EPCVINA sử dụng móc ngói Inox 304, chống thấm kép (silicon + foam). Bảo hành chống thấm 5 năm."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Chi phí lắp điện mặt trời mái ngói bao nhiêu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Từ 50-200 triệu tùy công suất. Hệ 5kWp từ 55 triệu, 10kWp từ 110 triệu. Cao hơn mái tôn 10-15% do cần móc ngói chuyên dụng."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Thời gian lắp đặt mái ngói bao lâu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "3-5 ngày cho hệ gia đình 3-10kWp. Bao gồm khảo sát, thi công, kiểm tra và bàn giao."
-      }
-    }
-  ]
-};
+const faqSchema = buildFaqSchema([
+  { q: 'Mái ngói nào lắp được điện mặt trời?', a: 'Hầu hết các loại ngói đều lắp được: ngói sóng, ngói phẳng, ngói xi măng, ngói đất nung. Quan trọng là chất lượng ngói và xà gồ còn tốt.' },
+  { q: 'Lắp điện mặt trời mái ngói có bị dột không?', a: 'Không, nếu thi công đúng kỹ thuật. EPCVINA sử dụng móc ngói Inox 304, chống thấm kép (silicon + foam). Bảo hành chống thấm 5 năm.' },
+  { q: 'Chi phí lắp điện mặt trời mái ngói bao nhiêu?', a: 'Từ 50-200 triệu tùy công suất. Hệ 5kWp từ 55 triệu, 10kWp từ 110 triệu. Cao hơn mái tôn 10-15% do cần móc ngói chuyên dụng.' },
+  { q: 'Thời gian lắp đặt mái ngói bao lâu?', a: '3-5 ngày cho hệ gia đình 3-10kWp. Bao gồm khảo sát, thi công, kiểm tra và bàn giao.' },
+]);
 
 const serviceSchema = {
   "@context": "https://schema.org",

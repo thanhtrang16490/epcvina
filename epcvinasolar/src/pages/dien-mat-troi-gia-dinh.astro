@@ -1,4 +1,6 @@
 ---
+import { buildFaqSchema, buildProductSchema } from '../lib/schema';
+
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import FamilyLandingPage from '../components/pages/ad-landing/DienMatTroiGiaDinh';
@@ -11,47 +13,33 @@ const seoDescription = 'Lắp điện mặt trời gia đình từ 60 triệu. G
 const seoKeywords = 'điện mặt trời gia đình, điện mặt trời hybrid, điện mặt trời on-grid, lắp điện mặt trời hà nội, giá điện mặt trời 2026, pin lưu trữ điện, EPCVINA Solar, giảm tiền điện';
 
 // FAQ Schema for rich snippets - must match FAQ_DATA in data.ts exactly
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "Điện mặt trời có hiệu quả không?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Trung bình giảm 70-85% hóa đơn điện. Hệ thống hoạt động 25-30 năm, hoàn vốn trong 3-5 năm." } },
-    { "@type": "Question", "name": "Nhà tôi có phù hợp không?", "acceptedAnswer": { "@type": "Answer", "text": "Hầu hết các mái nhà đều lắp được. Chúng tôi khảo sát miễn phí để đánh giá chính xác." } },
-    { "@type": "Question", "name": "Bao lâu hoàn vốn?", "acceptedAnswer": { "@type": "Answer", "text": "Trung bình 3-5 năm cho On-Grid, 5-7 năm cho Hybrid. Sau đó sử dụng điện miễn phí 20+ năm." } },
-    { "@type": "Question", "name": "Mất điện có dùng được không?", "acceptedAnswer": { "@type": "Answer", "text": "Hệ On-Grid sẽ ngắt khi mất điện (an toàn). Hệ Hybrid có pin lưu trữ nên vẫn dùng được." } },
-    { "@type": "Question", "name": "Có thể sạc xe điện không?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Chúng tôi tích hợp EV Charger vào hệ Hybrid, sạc miễn phí từ năng lượng mặt trời." } },
-    { "@type": "Question", "name": "Mưa nhiều có đủ điện không?", "acceptedAnswer": { "@type": "Answer", "text": "Tấm pin vẫn sản xuất điện khi mưa (giảm 10-20%). Hệ thống được thiết kế dựa trên dữ liệu thời tiết địa phương." } },
-    { "@type": "Question", "name": "Có phải bảo trì thường xuyên không?", "acceptedAnswer": { "@type": "Answer", "text": "Không. Chỉ cần vệ sinh tấm pin 2-4 lần/năm. Chúng tôi bảo hành 10 năm toàn bộ hệ thống." } },
-    { "@type": "Question", "name": "15 kWp phù hợp với đối tượng nào?", "acceptedAnswer": { "@type": "Answer", "text": "Phù hợp gia đình sử dụng điện 3-5 triệu/tháng, diện tích mái 80-100m2, muốn tiết kiệm 70-90% hóa đơn điện." } },
-    { "@type": "Question", "name": "Pin lưu trữ có cần thiết không?", "acceptedAnswer": { "@type": "Answer", "text": "Pin lưu trữ giúp dự phòng khi mất điện và sử dụng điện vào buổi tối. Đặc biệt hữu ích cho khu vực hay mất điện." } },
-    { "@type": "Question", "name": "Bảo hành các thiết bị bao lâu?", "acceptedAnswer": { "@type": "Answer", "text": "Tấm pin bảo hành 10 năm, biến tần 5-10 năm, pin lưu trữ 5 năm. EPCVINA hỗ trợ kỹ thuật trọn đời." } },
-    { "@type": "Question", "name": "Thi công có ảnh hưởng sinh hoạt không?", "acceptedAnswer": { "@type": "Answer", "text": "Không. Thi công nhanh 1-2 ngày, không ảnh hưởng đến sinh hoạt hàng ngày." } },
-    { "@type": "Question", "name": "Có được hỗ trợ vay ngân hàng không?", "acceptedAnswer": { "@type": "Answer", "text": "Hiện tại chúng tôi không hỗ trợ trả góp. Khách hàng thanh toán theo tiến độ hợp đồng." } },
-    { "@type": "Question", "name": "Hệ thống có tự động ngắt khi sự cố?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Hệ thống có nhiều lớp bảo vệ: chống quá tải, chống đoản mạch, chống sét, tiếp địa an toàn." } },
-    { "@type": "Question", "name": "Có thể mở rộng hệ thống sau này không?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Hệ Hybrid cho phép thêm pin lưu trữ hoặc mở rộng tấm pin sau này." } },
-    { "@type": "Question", "name": "Quy trình thanh toán như thế nào?", "acceptedAnswer": { "@type": "Answer", "text": "30% đặt cọc khi ký hợp đồng, 60% khi giao thiết bị, 10% sau nghiệm thu. Minh bạch từng hạng mục." } }
-  ]
-};
+const faqSchema = buildFaqSchema([
+  { q: "Điện mặt trời có hiệu quả không?", a: "Có. Trung bình giảm 70-85% hóa đơn điện. Hệ thống hoạt động 25-30 năm, hoàn vốn trong 3-5 năm." },
+  { q: "Nhà tôi có phù hợp không?", a: "Hầu hết các mái nhà đều lắp được. Chúng tôi khảo sát miễn phí để đánh giá chính xác." },
+  { q: "Bao lâu hoàn vốn?", a: "Trung bình 3-5 năm cho On-Grid, 5-7 năm cho Hybrid. Sau đó sử dụng điện miễn phí 20+ năm." },
+  { q: "Mất điện có dùng được không?", a: "Hệ On-Grid sẽ ngắt khi mất điện (an toàn). Hệ Hybrid có pin lưu trữ nên vẫn dùng được." },
+  { q: "Có thể sạc xe điện không?", a: "Có. Chúng tôi tích hợp EV Charger vào hệ Hybrid, sạc miễn phí từ năng lượng mặt trời." },
+  { q: "Mưa nhiều có đủ điện không?", a: "Tấm pin vẫn sản xuất điện khi mưa (giảm 10-20%). Hệ thống được thiết kế dựa trên dữ liệu thời tiết địa phương." },
+  { q: "Có phải bảo trì thường xuyên không?", a: "Không. Chỉ cần vệ sinh tấm pin 2-4 lần/năm. Chúng tôi bảo hành 10 năm toàn bộ hệ thống." },
+  { q: "15 kWp phù hợp với đối tượng nào?", a: "Phù hợp gia đình sử dụng điện 3-5 triệu/tháng, diện tích mái 80-100m2, muốn tiết kiệm 70-90% hóa đơn điện." },
+  { q: "Pin lưu trữ có cần thiết không?", a: "Pin lưu trữ giúp dự phòng khi mất điện và sử dụng điện vào buổi tối. Đặc biệt hữu ích cho khu vực hay mất điện." },
+  { q: "Bảo hành các thiết bị bao lâu?", a: "Tấm pin bảo hành 10 năm, biến tần 5-10 năm, pin lưu trữ 5 năm. EPCVINA hỗ trợ kỹ thuật trọn đời." },
+  { q: "Thi công có ảnh hưởng sinh hoạt không?", a: "Không. Thi công nhanh 1-2 ngày, không ảnh hưởng đến sinh hoạt hàng ngày." },
+  { q: "Có được hỗ trợ vay ngân hàng không?", a: "Hiện tại chúng tôi không hỗ trợ trả góp. Khách hàng thanh toán theo tiến độ hợp đồng." },
+  { q: "Hệ thống có tự động ngắt khi sự cố?", a: "Có. Hệ thống có nhiều lớp bảo vệ: chống quá tải, chống đoản mạch, chống sét, tiếp địa an toàn." },
+  { q: "Có thể mở rộng hệ thống sau này không?", a: "Có. Hệ Hybrid cho phép thêm pin lưu trữ hoặc mở rộng tấm pin sau này." },
+  { q: "Quy trình thanh toán như thế nào?", a: "30% đặt cọc khi ký hợp đồng, 60% khi giao thiết bị, 10% sau nghiệm thu. Minh bạch từng hạng mục." },
+]);
 
 // Product Schema for combos
-const productSchema = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Gói Điện Mặt Trời Gia Đình EPCVINA",
-  "description": "Hệ thống điện mặt trời trọn gói cho gia đình: On-Grid và Hybrid với pin lưu trữ",
-  "brand": {
-    "@type": "Brand",
-    "name": "EPCVINA Solar"
-  },
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": "VND",
-    "lowPrice": "60000000",
-    "highPrice": "219000000",
-    "offerCount": "5",
-    "availability": "https://schema.org/InStock"
-  },
-};
+const productSchema = buildProductSchema({
+  name: "Gói Điện Mặt Trời Gia Đình EPCVINA",
+  description: "Hệ thống điện mặt trời trọn gói cho gia đình: On-Grid và Hybrid với pin lưu trữ",
+  brandName: "EPCVINA Solar",
+  lowPrice: 60000000,
+  highPrice: 219000000,
+  offerCount: 5,
+});
 
 // Service Schema
 const serviceSchema = {
@@ -77,7 +65,7 @@ const serviceSchema = {
           "@type": "Service",
           "name": "Điện mặt trời On-Grid 5kWp"
         },
-        "price": "60000000",
+        "price": 60000000,
         "priceCurrency": "VND"
       },
       {
@@ -86,7 +74,7 @@ const serviceSchema = {
           "@type": "Service",
           "name": "Điện mặt trời Hybrid 8.8kWp"
         },
-        "price": "148300000",
+        "price": 148300000,
         "priceCurrency": "VND"
       }
     ]

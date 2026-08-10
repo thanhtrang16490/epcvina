@@ -1,4 +1,5 @@
 ---
+import { buildFaqSchema } from '../lib/schema';
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import MaiBangPage from '../components/pages/solar-home/MaiBangPage';
@@ -9,17 +10,13 @@ const seoTitle = 'Giải Pháp Thi Công Điện Mặt Trời Mái Bằng 2026 |
 const seoDescription = 'Lắp pin năng lượng mặt trời trên mái bằng/sàn bê tông: 2 phương án (khoan bắt hoặc dằn tải), góc nghiêng tối ưu 5-15°, chịu gió bão cấp 12. Liên hệ 0988 446 113.';
 const seoKeywords = 'lắp điện mặt trời mái bằng, pin mặt trời sân bê tông, điện mặt trời mái phẳng, lắp pin trên sân thượng, hệ dằn tải ballast, chi phí lắp mái bằng';
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    { "@type": "Question", "name": "Mái bằng (sàn bê tông) có lắp được điện mặt trời không?", "acceptedAnswer": { "@type": "Answer", "text": "Hoàn toàn có thể. Mái bằng là nền tảng vững chắc nhất cho điện mặt trời. Cho phép chủ động thiết kế góc nghiêng 5-15° và hướng đón nắng tối ưu." } },
-    { "@type": "Question", "name": "Lắp pin trên mái bằng có bị thấm dột không?", "acceptedAnswer": { "@type": "Answer", "text": "Không, nếu thi công đúng kỹ thuật. EPCVINA sử dụng keo chống thấm chuyên dụng tại mọi điểm khoan. Hoặc chọn hệ dằn tải (ballast) không cần khoan đục." } },
-    { "@type": "Question", "name": "Tại sao không nên lắp phẳng 0° trên mái bằng?", "acceptedAnswer": { "@type": "Answer", "text": "Lắp phẳng 0° gây tổn thất năng lượng và tích tụ bụi bẩn giảm 10-30% sản lượng. Góc nghiêng tối thiểu 5-10° giúp nước mưa tự rửa sạch pin và tăng hiệu suất." } },
-    { "@type": "Question", "name": "Hệ dằn tải (ballast) có chịu được gió bão không?", "acceptedAnswer": { "@type": "Answer", "text": "Có. Hệ dằn tải sử dụng khối bê tông đối trọng được tính toán theo TCVN, chịu được gió cấp 12. Thiết kế riêng cho từng vị trí và hình học công trình." } },
-    { "@type": "Question", "name": "Nhà dân dụng sân thượng bình thường có lắp được không?", "acceptedAnswer": { "@type": "Answer", "text": "Có, nhưng cần khảo sát kết cấu. Sàn bê tông cần đủ độ dày và khả năng chịu lực. EPCVINA khảo sát miễn phí và tư vấn phương án phù hợp." } }
-  ]
-};
+const faqSchema = buildFaqSchema([
+  { q: "Mái bằng (sàn bê tông) có lắp được điện mặt trời không?", a: "Hoàn toàn có thể. Mái bằng là nền tảng vững chắc nhất cho điện mặt trời. Cho phép chủ động thiết kế góc nghiêng 5-15° và hướng đón nắng tối ưu." },
+  { q: "Lắp pin trên mái bằng có bị thấm dột không?", a: "Không, nếu thi công đúng kỹ thuật. EPCVINA sử dụng keo chống thấm chuyên dụng tại mọi điểm khoan. Hoặc chọn hệ dằn tải (ballast) không cần khoan đục." },
+  { q: "Tại sao không nên lắp phẳng 0° trên mái bằng?", a: "Lắp phẳng 0° gây tổn thất năng lượng và tích tụ bụi bẩn giảm 10-30% sản lượng. Góc nghiêng tối thiểu 5-10° giúp nước mưa tự rửa sạch pin và tăng hiệu suất." },
+  { q: "Hệ dằn tải (ballast) có chịu được gió bão không?", a: "Có. Hệ dằn tải sử dụng khối bê tông đối trọng được tính toán theo TCVN, chịu được gió cấp 12. Thiết kế riêng cho từng vị trí và hình học công trình." },
+  { q: "Nhà dân dụng sân thượng bình thường có lắp được không?", a: "Có, nhưng cần khảo sát kết cấu. Sàn bê tông cần đủ độ dày và khả năng chịu lực. EPCVINA khảo sát miễn phí và tư vấn phương án phù hợp." },
+]);
 
 const serviceSchema = {
   "@context": "https://schema.org",
@@ -28,12 +25,12 @@ const serviceSchema = {
   "provider": { "@type": "Organization", "name": "EPCVINA Solar", "url": "https://epcvina.com" },
   "areaServed": { "@type": "Country", "name": "Việt Nam" },
   "description": "Dịch vụ lắp đặt điện mặt trời trên mái bằng/sàn bê tông chuyên nghiệp. 2 phương án: khoan bắt hoặc dằn tải. Góc nghiêng tối ưu 5-15°, chịu gió bão cấp 12, tuổi thọ 30+ năm.",
-  "offers": { "@type": "Offer", "priceCurrency": "VND", "price": "45000000" }
+  "offers": { "@type": "Offer", "priceCurrency": "VND", "price": 45000000 }
 };
 ---
 
 <DashboardLayout title={seoTitle} description={seoDescription} keywords={seoKeywords}>
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
   <DashboardShell client:load>
     <MaiBangPage client:visible />

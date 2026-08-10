@@ -2,6 +2,7 @@
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import KetHopSacXeLandingPage from '../components/pages/kethop/KetHopSacXeLandingPage';
+import { buildFaqSchema } from '../lib/schema';
 
 export const prerender = true;
 
@@ -9,28 +10,10 @@ const seoTitle = 'Điện Mặt Trời Kết Hợp Sạc Xe Điện 2026 | EPCVI
 const seoDescription = 'Giải pháp điện mặt trời kết hợp trạm sạc xe điện. Giảm 70% chi phí sạc, xe chạy bằng năng lượng sạch. Tư vấn miễn phí: 0988 446 113';
 const seoKeywords = 'điện mặt trời kết hợp sạc xe, solar car charger, sạc xe điện bằng năng lượng mặt trời, EPCVINA';
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Có thể kết hợp điện mặt trời với sạc xe không?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Có. Kết hợp giúp giảm 50-70% chi phí sạc. Xe chạy hoàn toàn bằng năng lượng sạch."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Chi phí hệ kết hợp bao nhiêu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Từ 80-200 triệu tùy cấu hình. Hệ 5kWp + trạm sạc 7kW từ 80 triệu."
-      }
-    }
-  ]
-};
+const faqSchema = buildFaqSchema([
+  { q: 'Có thể kết hợp điện mặt trời với sạc xe không?', a: 'Có. Kết hợp giúp giảm 50-70% chi phí sạc. Xe chạy hoàn toàn bằng năng lượng sạch.' },
+  { q: 'Chi phí hệ kết hợp bao nhiêu?', a: 'Từ 80-200 triệu tùy cấu hình. Hệ 5kWp + trạm sạc 7kW từ 80 triệu.' },
+]);
 ---
 
 <DashboardLayout

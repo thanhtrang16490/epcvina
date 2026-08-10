@@ -2,6 +2,7 @@
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
 import CoLuuTruLandingPage from '../components/pages/coluutru/CoLuuTruLandingPage';
+import { buildFaqSchema } from '../lib/schema';
 
 export const prerender = true;
 
@@ -9,36 +10,11 @@ const seoTitle = 'Điện Mặt Trời Có Lưu Trữ 2026 - Hybrid Solar | EPCV
 const seoDescription = 'Hệ thống điện mặt trời Hybrid có pin lưu trữ. Giảm 70-90% tiền điện, có điện khi mất điện. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113';
 const seoKeywords = 'điện mặt trời có lưu trữ, hybrid solar, điện mặt trời hybrid, pin lưu trữ, EPCVINA Solar, mất điện vẫn có điện';
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Điện mặt trời có lưu trữ là gì?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Hệ Hybrid kết hợp pin mặt trời với pin lưu trữ. Lưu điện dư ban ngày, dùng ban đêm hoặc khi mất điện."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Chi phí hệ có lưu trữ bao nhiêu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Từ 120-300 triệu tùy công suất. Hệ 5kWp+pin 5kWh từ 120 triệu. Hoàn vốn 5-7 năm."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Pin lưu trữ dùng được bao lâu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Pin lithium 10-15 năm, bảo hành 5 năm. Sau 10 năm vẫn đạt 80% dung lượng."
-      }
-    }
-  ]
-};
+const faqSchema = buildFaqSchema([
+  { q: 'Điện mặt trời có lưu trữ là gì?', a: 'Hệ Hybrid kết hợp pin mặt trời với pin lưu trữ. Lưu điện dư ban ngày, dùng ban đêm hoặc khi mất điện.' },
+  { q: 'Chi phí hệ có lưu trữ bao nhiêu?', a: 'Từ 120-300 triệu tùy công suất. Hệ 5kWp+pin 5kWh từ 120 triệu. Hoàn vốn 5-7 năm.' },
+  { q: 'Pin lưu trữ dùng được bao lâu?', a: 'Pin lithium 10-15 năm, bảo hành 5 năm. Sau 10 năm vẫn đạt 80% dung lượng.' },
+]);
 ---
 
 <DashboardLayout

@@ -1,43 +1,17 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
+import { buildFaqSchema } from '../lib/schema';
 ---
 
 <script type="module">
   import { redirectToThankYou, submitCrmLead } from '../lib/crm-leads';
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "EPCVINA Solar tuyển dụng những vị trí nào?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "EPCVINA Solar thường xuyên tuyển dụng: Kỹ sư điện – năng lượng mặt trời, Kỹ thuật viên lắp đặt, Nhân viên kinh doanh, Thiết kế hệ thống điện, và Thực tập sinh các ngành kỹ thuật."
-        }
-      }
-      ,
-      {
-        "@type": "Question",
-        "name": "Quyền lợi khi làm việc tại EPCVINA Solar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Lương cạnh tranh, thưởng theo dự án, bảo hiểm sức khỏe PVI, đào tạo chuyên sâu về điện mặt trời, cơ hội thăng tiến, môi trường làm việc năng động và nhiều chế độ phúc lợi khác."
-        }
-      }
-      ,
-      {
-        "@type": "Question",
-        "name": "Nộp hồ sơ ứng tuyển qua kênh nào?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Bạn có thể nộp hồ sơ qua email: epcvinasolar@gmail.com, liên hệ Zalo: 0988 446 113, hoặc điền form trực tiếp trên trang này."
-        }
-      }
-    ]
-  };
+  const structuredData = buildFaqSchema([
+    { q: 'EPCVINA Solar tuyển dụng những vị trí nào?', a: 'EPCVINA Solar thường xuyên tuyển dụng: Kỹ sư điện – năng lượng mặt trời, Kỹ thuật viên lắp đặt, Nhân viên kinh doanh, Thiết kế hệ thống điện, và Thực tập sinh các ngành kỹ thuật.' },
+    { q: 'Quyền lợi khi làm việc tại EPCVINA Solar?', a: 'Lương cạnh tranh, thưởng theo dự án, bảo hiểm sức khỏe PVI, đào tạo chuyên sâu về điện mặt trời, cơ hội thăng tiến, môi trường làm việc năng động và nhiều chế độ phúc lợi khác.' },
+    { q: 'Nộp hồ sơ ứng tuyển qua kênh nào?', a: 'Bạn có thể nộp hồ sơ qua email: epcvinasolar@gmail.com, liên hệ Zalo: 0988 446 113, hoặc điền form trực tiếp trên trang này.' },
+  ]);
 
   document.addEventListener('DOMContentLoaded', () => {
     const structuredDataEl = document.createElement('script');

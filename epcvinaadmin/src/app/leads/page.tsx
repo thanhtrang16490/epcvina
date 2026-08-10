@@ -1,5 +1,7 @@
 import { AdminShell } from "@/components/AdminShell";
+import { LeadCreateModal } from "@/components/LeadCreateModal";
 import { LeadDeleteConfirm } from "@/components/LeadDeleteConfirm";
+import { PageToast } from "@/components/PageToast";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ModalShell } from "@/components/ModalShell";
 import { ThemeCard } from "@/components/ui/ThemeCard";
@@ -7,6 +9,7 @@ import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
 import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -56,6 +59,75 @@ function getFollowUpState(lead: any) {
   return { label: "Sắp tới", className: "bg-emerald-400/15 text-emerald-300" };
 }
 
+function getLeadPriorityRank(priority: string | null | undefined) {
+  const value = String(priority ?? "normal").toLowerCase();
+  return ({ low: 1, normal: 2, high: 3, urgent: 4 } as Record<string, number>)[value] ?? 2;
+}
+
+function getLeadHeatScore(lead: any) {
+  let score = 25;
+  score += getLeadPriorityRank(lead.priority) * 8;
+  if (lead.follow_up_at && new Date(lead.follow_up_at).getTime() < Date.now()) score += 18;
+  if (lead.status === "new") score += 6;
+  if (lead.status === "contacted") score += 12;
+  if (lead.status === "qualified") score += 8;
+  if (lead.last_contacted_at) {
+    const daysSinceContact = getDaysSince(lead.last_contacted_at) ?? 0;
+    score += Math.max(0, 14 - daysSinceContact);
+  } else {
+    score += 10;
+  }
+  return Math.min(100, score);
+}
+
+function getLeadTabClass(active: boolean) {
+  return active
+    ? "border-[color:var(--accent)]/40 bg-[color:var(--accent)]/10 text-[color:var(--accent)]"
+    : "border-[color:var(--border)] bg-[color:var(--panel)] text-[color:var(--text)] hover:bg-white/10";
+}
+
+function ActionIcon({ type }: { type: "process" | "call" | "email" | "remind" | "delete" }) {
+  if (type === "process") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M4 7h16M4 12h10M4 17h16" />
+      </svg>
+    );
+  }
+  if (type === "call") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M4.5 6.5c0 7.2 5.8 13 13 13l2-2.8c.2-.3.1-.7-.2-.9l-3-1.9c-.3-.2-.7-.2-1 0l-1.2 1c-2.2-1-4-2.8-5-5l1-1.2c.2-.3.2-.7 0-1l-1.9-3c-.2-.3-.6-.4-.9-.2l-2.8 2z" />
+      </svg>
+    );
+  }
+  if (type === "email") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m4 7 8 6 8-6" />
+      </svg>
+    );
+  }
+  if (type === "remind") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M8 3v3M16 3v3M4 8h16" />
+        <rect x="4" y="5" width="16" height="16" rx="2" />
+        <path d="M12 11v4l3 2" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M3 6h18" />
+      <path d="M8 6V4h8v2" />
+      <path d="M6 6l1 14h10l1-14" />
+      <path d="M10 11v5M14 11v5" />
+    </svg>
+  );
+}
+
 function getLeadOwner(lead: any) {
   return typeof lead?.metadata?.owner_name === "string" ? lead.metadata.owner_name : "";
 }
@@ -92,6 +164,7 @@ async function createManualLead(formData: FormData) {
   });
   if (error) throw error;
   revalidatePath("/leads");
+  redirect("/admin/leads?created=1");
 }
 
 async function updateLeadStage(formData: FormData) {
@@ -151,6 +224,7 @@ async function addLeadQuickActivity(formData: FormData) {
   await supabase.from("crm_leads").update(values).eq("id", id);
   revalidatePath("/leads");
   revalidatePath(`/leads/${id}`);
+  redirect("/admin/leads?updated=1");
 }
 
 async function deleteLead(formData: FormData) {
@@ -163,6 +237,7 @@ async function deleteLead(formData: FormData) {
   if (error) throw error;
   revalidatePath("/leads");
   revalidatePath(`/leads/${id}`);
+  redirect("/admin/leads?deleted=1");
 }
 
 export default async function LeadsPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
@@ -172,6 +247,10 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
   const { start, end } = getPageRange(page, pageSize);
   const status = queryValue(params.status);
   const owner = queryValue(params.owner);
+  const overdue = queryValue(params.overdue) === "1";
+  const created = queryValue(params.created) === "1";
+  const deleted = queryValue(params.deleted) === "1";
+  const updated = queryValue(params.updated) === "1";
   const search = queryValue(params.q).replace(/[%_,()]/g, " ").trim();
   const supabase = createSupabaseAdminClient();
   let query = supabase
@@ -183,7 +262,10 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
   if (query && search) query = query.or(`name.ilike.%${search}%,phone.ilike.%${search}%,email.ilike.%${search}%`);
   if (query && owner) query = query.contains("metadata", { owner_name: owner });
   const result = query ? await query.range(start, end) : { data: [], count: 0, error: { message: "Thiếu Supabase admin env" } };
-  const rows = result.data ?? [];
+  const rows = (result.data ?? []).filter((lead: any) => {
+    if (!overdue) return true;
+    return lead.follow_up_at && new Date(lead.follow_up_at).getTime() < Date.now();
+  });
 
   const countsResult = supabase ? await supabase.from("crm_leads").select("status") : { data: [] };
   const counts = (countsResult.data ?? []).reduce<Record<string, number>>((acc, row: any) => {
@@ -204,14 +286,46 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
     { label: "Đủ điều kiện", value: counts.qualified ?? 0 },
     { label: "Quá hạn follow-up", value: rows.filter((lead: any) => lead.follow_up_at && new Date(lead.follow_up_at).getTime() < Date.now()).length },
   ];
+  const activeFilters = [
+    search ? { label: "Từ khóa", value: search } : null,
+    status ? { label: "Trạng thái", value: statuses[status]?.label ?? status } : null,
+    owner ? { label: "Owner", value: owner } : null,
+    overdue ? { label: "Hẹn", value: "Quá hạn follow-up" } : null,
+  ].filter(Boolean) as Array<{ label: string; value: string }>;
+  const resetHref = "/admin/leads";
+  const quickFilterLinks = [
+    { label: "Tất cả", href: "/admin/leads", active: !status && !owner && !overdue && !search },
+    { label: "Mới", href: "/admin/leads?status=new", active: status === "new" },
+    { label: "Đã liên hệ", href: "/admin/leads?status=contacted", active: status === "contacted" },
+    { label: "Đang quá hạn", href: "/admin/leads?overdue=1", active: overdue },
+    { label: "Chưa có owner", href: "/admin/leads?owner=", active: false },
+  ];
+  const ownerQuickLinks = ownerOptions.slice(0, 8).map((name) => ({
+    label: name,
+    href: `/admin/leads?${new URLSearchParams({ ...(search ? { q: search } : {}), ...(status ? { status } : {}), owner: name, ...(overdue ? { overdue: "1" } : {}) })}`,
+    active: owner === name,
+  }));
+  const hotLeadCount = rows.filter((lead: any) => getLeadHeatScore(lead) >= 65).length;
   return (
     <AdminShell>
+      {created ? <PageToast title="Tạo lead thành công" description="Lead mới đã được lưu vào CRM." tone="success" /> : null}
+      {deleted ? <PageToast title="Đã xoá lead" description="Lead đã được xoá khỏi danh sách." tone="info" /> : null}
+      {updated ? <PageToast title="Đã lưu cập nhật" description="Trạng thái hoặc ghi chú lead đã được cập nhật." tone="success" /> : null}
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
         <SectionTitle
           eyebrow="CRM"
           title="Bảng lead chung"
           description="Bảng tổng hợp lead chung, gồm lead từ website và lead nhập thủ công trong admin."
         />
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          <Link href="/admin/leads" className={`rounded-full border px-4 py-2 text-sm font-medium transition ${getLeadTabClass(true)}`}>
+            Bảng lead
+          </Link>
+          <Link href="/admin/leads/pipeline" className={`rounded-full border px-4 py-2 text-sm font-medium transition ${getLeadTabClass(false)}`}>
+            CRM Pipeline
+          </Link>
+        </div>
 
         <ThemeCard className="mt-6 p-5">
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -220,51 +334,119 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
               <h2 className="mt-2 text-xl font-semibold text-[color:var(--text)]">Tạo lead ngay trong admin</h2>
               <p className="mt-2 text-sm text-[color:var(--muted)]">Bấm nút để mở popup thêm lead nhanh.</p>
             </div>
-            <ModalShell
+            <LeadCreateModal
               trigger={<span className="rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950">Thêm lead</span>}
               title="Tạo lead thủ công"
               description="Nhập nhanh lead ngoài website, Facebook, gọi điện hoặc nguồn khác."
+              onSubmit={createManualLead}
             >
-              <form action={createManualLead} className="grid gap-4">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="grid gap-2">
-                    <label className="text-sm text-[color:var(--muted)]">Tên khách hàng</label>
-                    <input name="name" placeholder="Tên khách hàng" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                  </div>
-                  <div className="grid gap-2">
-                    <label className="text-sm text-[color:var(--muted)]">Số điện thoại</label>
-                    <input name="phone" placeholder="Số điện thoại" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                  </div>
-                  <div className="grid gap-2">
-                    <label className="text-sm text-[color:var(--muted)]">Email</label>
-                    <input name="email" placeholder="Email" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                  </div>
-                  <div className="grid gap-2">
-                    <label className="text-sm text-[color:var(--muted)]">Owner</label>
-                    <input name="owner_name" list="lead-owner-options" placeholder="Owner" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-                    <datalist id="lead-owner-options">
-                      {ownerOptions.map((name) => <option key={name} value={name} />)}
-                    </datalist>
-                  </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-2">
+                  <label className="text-sm text-[color:var(--muted)]">Tên khách hàng</label>
+                  <input name="name" placeholder="Tên khách hàng" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                 </div>
                 <div className="grid gap-2">
-                  <label className="text-sm text-[color:var(--muted)]">Nguồn lead</label>
-                  <select name="source_tag" defaultValue="manual" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
-                    {leadSourceTags.map((tag) => <option key={tag.value} value={tag.value}>{tag.label}</option>)}
-                  </select>
-                  <div className="flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
-                    {leadSourceTags.slice(0, 5).map((tag) => (
-                      <span key={tag.value} className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2.5 py-1">{tag.label}</span>
-                    ))}
-                  </div>
+                  <label className="text-sm text-[color:var(--muted)]">Số điện thoại</label>
+                  <input name="phone" placeholder="Số điện thoại" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                 </div>
-                <div className="flex justify-end gap-3">
-                  <button type="submit" className="rounded-full bg-cyan-400 px-5 py-3 font-semibold text-slate-950">Tạo lead</button>
+                <div className="grid gap-2">
+                  <label className="text-sm text-[color:var(--muted)]">Email</label>
+                  <input name="email" placeholder="Email" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
                 </div>
-              </form>
-            </ModalShell>
+                <div className="grid gap-2">
+                  <label className="text-sm text-[color:var(--muted)]">Owner</label>
+                  <input name="owner_name" list="lead-owner-options" placeholder="Owner" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                  <datalist id="lead-owner-options">
+                    {ownerOptions.map((name) => <option key={name} value={name} />)}
+                  </datalist>
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <label className="text-sm text-[color:var(--muted)]">Nguồn lead</label>
+                <select name="source_tag" defaultValue="manual" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
+                  {leadSourceTags.map((tag) => <option key={tag.value} value={tag.value}>{tag.label}</option>)}
+                </select>
+                <div className="flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+                  {leadSourceTags.slice(0, 5).map((tag) => (
+                    <span key={tag.value} className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2.5 py-1">{tag.label}</span>
+                  ))}
+                </div>
+              </div>
+              <div className="flex justify-end gap-3">
+                <button type="submit" className="rounded-full bg-cyan-400 px-5 py-3 font-semibold text-slate-950">Tạo lead</button>
+              </div>
+            </LeadCreateModal>
           </div>
         </ThemeCard>
+
+        <ThemeCard className="mt-4 p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">Tổng quan danh sách</div>
+              <div className="mt-1 text-sm text-[color:var(--text)]">
+                Đang hiển thị <span className="font-semibold">{rows.length}</span> lead trên tổng <span className="font-semibold">{Number(result.count ?? 0)}</span> lead.
+              </div>
+              <div className="mt-2 text-xs text-[color:var(--muted)]">
+                {hotLeadCount ? (
+                  <span className="rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-1 text-amber-200">
+                    {hotLeadCount} lead nóng
+                  </span>
+                ) : (
+                  <span>Chưa có lead nóng nổi bật.</span>
+                )}
+              </div>
+            </div>
+            {activeFilters.length ? (
+              <a href={resetHref} className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10">
+                Xoá bộ lọc
+              </a>
+            ) : null}
+          </div>
+          {activeFilters.length ? (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {activeFilters.map((filter) => (
+                <span key={`${filter.label}-${filter.value}`} className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-1 text-xs text-[color:var(--muted)]">
+                  {filter.label}: {filter.value}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-3 text-xs text-[color:var(--muted)]">Chưa áp dụng bộ lọc nào.</div>
+          )}
+        </ThemeCard>
+
+        <div className="mt-4 flex flex-wrap gap-2">
+          {quickFilterLinks.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+                item.active
+                  ? "border-[color:var(--accent)]/40 bg-[color:var(--accent)]/10 text-[color:var(--accent)]"
+                  : "border-[color:var(--border)] bg-[color:var(--panel)] text-[color:var(--text)] hover:bg-white/10"
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+
+        {ownerQuickLinks.length ? (
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-3 py-1.5 text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">
+              Owner
+            </span>
+            {ownerQuickLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className={`rounded-full border px-3 py-1.5 text-xs font-medium transition ${getLeadTabClass(item.active)}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        ) : null}
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {kpiCards.map((card) => (
@@ -309,6 +491,7 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
                         <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
                           <span className={`rounded-full px-2.5 py-1 ${followUp.className}`}>{followUp.label}</span>
                           <span className="rounded-full bg-white/5 px-2.5 py-1 text-[color:var(--muted)]">{daysSince ?? 0} ngày</span>
+                          <span className="rounded-full bg-amber-400/10 px-2.5 py-1 text-amber-200">Score {getLeadHeatScore(lead)}</span>
                         </div>
                       </td>
                       <td className="px-5 py-4 text-[color:var(--muted)]">
@@ -332,10 +515,58 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
                         <div className="mt-1 text-xs">{lead.follow_up_at ? `Hẹn: ${new Intl.DateTimeFormat("vi-VN", { dateStyle: "short", timeStyle: "short" }).format(new Date(lead.follow_up_at))}` : "Chưa có hẹn"}</div>
                       </td>
                       <td className="px-5 py-4">
-                        <div className="flex flex-wrap gap-2">
-                          <Link href={`/admin/leads/${lead.id}`} className="font-medium text-cyan-500 hover:underline">Xử lý</Link>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Link
+                            href={`/admin/leads/${lead.id}`}
+                            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 text-xs font-semibold text-cyan-300 transition hover:border-cyan-400/40 hover:bg-cyan-400/15"
+                            aria-label={`Xử lý lead ${lead.name || lead.phone || lead.id}`}
+                          >
+                            <ActionIcon type="process" />
+                            Xử lý
+                          </Link>
+                          <form action={addLeadQuickActivity}>
+                            <input type="hidden" name="id" value={lead.id} />
+                            <input type="hidden" name="activity_type" value="call" />
+                            <input type="hidden" name="note" value="Đã gọi nhanh từ danh sách lead." />
+                            <button
+                              type="submit"
+                              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-sky-400/20 bg-sky-400/10 px-3 text-xs font-semibold text-sky-300 transition hover:border-sky-400/40 hover:bg-sky-400/15"
+                              aria-label={`Gọi lead ${lead.name || lead.phone || lead.id}`}
+                            >
+                              <ActionIcon type="call" />
+                            </button>
+                          </form>
+                          <form action={addLeadQuickActivity}>
+                            <input type="hidden" name="id" value={lead.id} />
+                            <input type="hidden" name="activity_type" value="email" />
+                            <input type="hidden" name="note" value="Đã gửi email nhanh từ danh sách lead." />
+                            <button
+                              type="submit"
+                              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-violet-400/20 bg-violet-400/10 px-3 text-xs font-semibold text-violet-300 transition hover:border-violet-400/40 hover:bg-violet-400/15"
+                              aria-label={`Gửi email cho lead ${lead.name || lead.phone || lead.id}`}
+                            >
+                              <ActionIcon type="email" />
+                            </button>
+                          </form>
+                          <form action={addLeadQuickActivity}>
+                            <input type="hidden" name="id" value={lead.id} />
+                            <input type="hidden" name="activity_type" value="meeting" />
+                            <input type="hidden" name="note" value="Đã tạo nhắc hẹn nhanh từ danh sách lead." />
+                            <button
+                              type="submit"
+                              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 text-xs font-semibold text-emerald-300 transition hover:border-emerald-400/40 hover:bg-emerald-400/15"
+                              aria-label={`Tạo nhắc hẹn cho lead ${lead.name || lead.phone || lead.id}`}
+                            >
+                              <ActionIcon type="remind" />
+                            </button>
+                          </form>
                           <ModalShell
-                            trigger={<span className="font-medium text-rose-400 hover:underline">Xoá</span>}
+                            trigger={
+                              <span className="inline-flex h-9 items-center gap-1.5 rounded-full border border-rose-400/20 bg-rose-400/10 px-3 text-xs font-semibold text-rose-300 transition hover:border-rose-400/40 hover:bg-rose-400/15">
+                                <ActionIcon type="delete" />
+                                Xoá
+                              </span>
+                            }
                             title="Xác nhận xoá lead"
                             description={`Bạn có chắc muốn xoá lead "${lead.name || lead.phone || lead.id}"? Hành động này không thể hoàn tác.`}
                           >
@@ -353,19 +584,23 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
               </tbody>
             </table>
           </div>
-          {!rows.length ? <div className="p-10 text-center text-[color:var(--muted)]">Chưa có lead phù hợp.</div> : null}
+          {!rows.length ? (
+            <div className="p-10 text-center text-[color:var(--muted)]">
+              <div className="mx-auto max-w-md">
+                <div className="text-lg font-semibold text-[color:var(--text)]">Chưa có lead phù hợp</div>
+                <p className="mt-2 text-sm leading-6">Thử bỏ bớt bộ lọc hoặc tạo thêm lead mới để danh sách có dữ liệu hiển thị.</p>
+                <div className="mt-5 flex flex-wrap justify-center gap-3">
+                  <a href={resetHref} className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-4 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10">
+                    Xoá bộ lọc
+                  </a>
+                  <span className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--muted)]">
+                    Dùng nút Thêm lead ở đầu trang
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </ThemeCard>
-
-        <div className="mt-8 flex items-center justify-between gap-4 rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] px-5 py-4">
-          <div>
-            <div className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">CRM Pipeline</div>
-            <div className="mt-1 text-lg font-semibold text-[color:var(--text)]">Kanban lead</div>
-            <div className="mt-1 text-sm text-[color:var(--muted)]">Đã tách sang trang riêng để kéo thả theo stage.</div>
-          </div>
-          <Link href="/admin/leads/pipeline" className="rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950">
-            Mở CRM Pipeline
-          </Link>
-        </div>
 
         <div className="mt-5 flex items-center justify-between text-sm text-[color:var(--muted)]">
           <span>Trang {page} / {getPageCount(Number(result.count ?? 0), pageSize)}</span>
