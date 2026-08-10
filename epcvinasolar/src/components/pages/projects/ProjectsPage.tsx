@@ -651,16 +651,16 @@ export default function ProjectsPage() {
                   className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none text-center flex flex-col items-center justify-center gap-3 min-h-[120px]"
                 >
                   {partnerLogos[name] ? (
-                    <div className="w-14 h-14 rounded-xl bg-white border border-gray-100 flex items-center justify-center p-2">
+                    <div className="h-10 sm:h-12 flex items-center justify-center">
                       <img
                         src={partnerLogos[name].src}
                         alt={partnerLogos[name].alt}
-                        className="max-h-full max-w-full object-contain"
+                        className="h-full w-auto object-contain"
                         loading="lazy"
                       />
                     </div>
                   ) : (
-                    <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">
+                    <div className="h-10 sm:h-12 flex items-center justify-center text-emerald-600">
                       {clientIcons[name]}
                     </div>
                   )}
