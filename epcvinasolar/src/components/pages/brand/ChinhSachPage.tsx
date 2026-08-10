@@ -20,9 +20,8 @@ const policies = [
     href: '/chinh-sach-thanh-toan',
     content: [
       'Đặt cọc 30% khi ký hợp đồng để xác nhận đơn hàng và đặt thiết bị.',
-      'Thanh toán 40% khi thiết bị được giao đến công trình.',
-      'Thanh toán 30% còn lại khi nghiệm thu và bàn giao hệ thống.',
-      'Hỗ trợ trả góp qua ngân hàng liên kết, lãi suất 0% trong 6-12 tháng.',
+      'Thanh toán 60% khi vật tư, thiết bị được tập kết tại công trình.',
+      'Thanh toán 10% còn lại khi nghiệm thu và bàn giao hệ thống.',
       'Chấp nhận chuyển khoản, tiền mặt, thẻ tín dụng.',
     ],
   },

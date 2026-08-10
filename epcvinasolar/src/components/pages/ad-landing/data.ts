@@ -174,5 +174,5 @@ export const FAQ_DATA = [
   { q: 'Có được hỗ trợ vay ngân hàng không?', a: 'Hiện tại chúng tôi không hỗ trợ trả góp. Khách hàng thanh toán theo tiến độ hợp đồng.' },
   { q: 'Hệ thống có tự động ngắt khi sự cố?', a: 'Có. Hệ thống có nhiều lớp bảo vệ: chống quá tải, chống đoản mạch, chống sét, tiếp địa an toàn.' },
   { q: 'Có thể mở rộng hệ thống sau này không?', a: 'Có. Hệ Hybrid cho phép thêm pin lưu trữ hoặc mở rộng tấm pin sau này.' },
-  { q: 'Quy trình thanh toán như thế nào?', a: '30% đặt cọc khi ký hợp đồng, 60% khi giao thiết bị, 10% sau nghiệm thu. Minh bạch từng hạng mục.' },
+  { q: 'Quy trình thanh toán như thế nào?', a: '30% đặt cọc khi ký hợp đồng, 60% khi tập kết vật tư tại công trình, 10% sau nghiệm thu. Minh bạch từng hạng mục.' },
 ];
