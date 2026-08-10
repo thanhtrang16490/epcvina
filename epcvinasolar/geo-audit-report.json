@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T12:06:15.690Z",
+  "generatedAt": "2026-08-10T12:09:41.669Z",
   "summary": {
     "pages": 85,
     "dynamicPages": 12,
@@ -271,7 +271,7 @@
     {
       "file": "src/pages/dien-mat-troi-biet-thu.astro",
       "title": "Điện Mặt Trời Biệt Thự | EPCVINA Solar",
-      "description": "Lắp điện mặt trời cho biệt thự, villa. Hệ Hybrid cao cấp, thẩm mỹ, có điện khi mất điện. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113",
+      "description": "Lắp điện mặt trời cho biệt thự, villa. Hệ Hybrid cao cấp, thẩm mỹ, có pin lưu trữ để dự phòng, tối ưu cho mái lớn và phụ tải cao. Tư vấn miễn phí: 0988 446 113",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -291,7 +291,7 @@
     {
       "file": "src/pages/dien-mat-troi-gia-dinh.astro",
       "title": "Điện Mặt Trời Gia Đình | EPCVINA",
-      "description": "Lắp điện mặt trời gia đình từ 60 triệu. Giảm 50-90% hóa đơn điện, có điện khi mất điện. Bảo hành 10 năm, 500+ gia đình tin dùng. Tư vấn miễn phí: 0988 446 113",
+      "description": "Lắp điện mặt trời gia đình từ 60 triệu. Giảm 50-90% hóa đơn điện, có điện khi mất điện. Chọn On-Grid hoặc Hybrid theo nhu cầu thực tế. Tư vấn: 0988 446 113",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -371,7 +371,7 @@
     {
       "file": "src/pages/dien-mat-troi-nha-pho.astro",
       "title": "Điện Mặt Trời Nhà Phố | EPCVINA",
-      "description": "Lắp điện mặt trời cho nhà phố, nhà ống. Giảm 70-90% hóa đơn điện. Thi công nhanh 1-2 ngày. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113",
+      "description": "Lắp điện mặt trời cho nhà phố, nhà ống từ 3-8kWp. Giảm 70-90% hóa đơn điện, thi công nhanh 1-2 ngày. Phù hợp mái nhỏ và nhu cầu gia đình. Tư vấn: 0988 446 113",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -541,7 +541,7 @@
     {
       "file": "src/pages/index.astro",
       "title": "Lắp Đặt Điện Mặt Trời Trọn Gói | EPCVINA Solar",
-      "description": "EPCVINA Solar - Chuyên lắp đặt hệ thống điện mặt trời on-grid, hybrid & BESS trọn gói tại Hà Nội. Tiết kiệm 70-90% tiền điện. Bảo hành 25 năm. Tư vấn miễn phí!",
+      "description": "Hub chính của EPCVINA Solar cho gia đình, công nghiệp, hybrid, EV và báo giá. Khảo sát 0đ, thiết kế theo nhu cầu thật, tối ưu tiết kiệm 70-90% điện.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -691,7 +691,7 @@
     {
       "file": "src/pages/solar-home/index.astro",
       "title": "Điện Mặt Trời Gia Đình | EPCVINA Solar",
-      "description": "Giải pháp điện mặt trời cho hộ gia đình tại Hà Nội. Combo on-grid & hybrid phù hợp mọi nhu cầu.",
+      "description": "Hub giải pháp điện mặt trời cho hộ gia đình tại Hà Nội: On-Grid tiết kiệm chi phí, Hybrid có pin lưu trữ, combo phù hợp nhà phố và biệt thự.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,

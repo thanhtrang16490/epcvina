@@ -53,7 +53,7 @@ export default function HeroSection() {
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
                 <span className="text-xs font-bold tracking-widest uppercase text-amber-300">
-                  Hybrid &middot; BESS &middot; EV Charger
+                  Solar Home &middot; Hybrid BESS &middot; EV Charger
                 </span>
               </motion.div>
 
@@ -64,8 +64,8 @@ export default function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
               >
                 <span className="block">Điện Mặt Trời Trọn Gói</span>
-                <span className="block">Cho Nhà Ở &amp; Doanh Nghiệp</span>
-                <span className="block text-amber-400">Tiết Kiệm 70–90% Chi Phí</span>
+                <span className="block">Cho Gia Đình, Công Nghiệp &amp; EV</span>
+                <span className="block text-amber-400">Khảo Sát 0đ, Báo Giá Trong 24h</span>
               </motion.h1>
 
               <motion.p
@@ -74,7 +74,7 @@ export default function HeroSection() {
                 animate={loaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.36, ease: [0.22, 1, 0.36, 1] }}
               >
-                Giải pháp Hybrid, lưu trữ năng lượng và trạm sạc cho nhà ở, biệt thự, doanh nghiệp.
+                Trang chủ EPCVINA Solar dẫn vào Solar Home, Solar C&I, Hybrid BESS và sạc EV với lộ trình rõ ràng cho từng nhu cầu.
               </motion.p>
 
               <motion.p
@@ -83,7 +83,7 @@ export default function HeroSection() {
                 animate={loaded ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.44, ease: [0.22, 1, 0.36, 1] }}
               >
-                EPCVINA thiết kế, thi công và bảo trì trọn gói theo tiêu chuẩn an toàn, bền vững.
+                EPCVINA thiết kế, thi công và bảo trì trọn gói theo tiêu chuẩn an toàn, bền vững, có báo giá ngay sau khảo sát.
               </motion.p>
 
               <motion.div
@@ -93,7 +93,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
                 {[
-                  ['Khảo sát 0đ', 'Tư vấn nhanh trong 24h'],
+                  ['Khảo sát 0đ', 'Tư vấn đúng cụm giải pháp'],
                   ['Thi công chuẩn', 'Đội ngũ kỹ sư EPCVINA'],
                   ['Bảo hành dài hạn', 'Hỗ trợ vận hành trọn vòng đời'],
                 ].map(([value, label]) => (
@@ -119,18 +119,18 @@ export default function HeroSection() {
                 transition={{ duration: 0.5, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
               >
                 <a
-                  href="#tu-van"
+                  href="/calculator"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-white font-bold text-sm sm:text-[15px] shadow-lg hover:shadow-xl hover:brightness-110 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
                   style={{ backgroundColor: RED }}
                 >
                   <ClipboardText className="w-4 h-4" weight="bold" />
-                  Đăng ký khảo sát miễn phí
+                  Tính nhanh hiệu quả đầu tư
                 </a>
                 <a
-                  href="/calculator"
+                  href="/bao-gia"
                   className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-white/85 hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-white/70 w-full sm:w-auto py-1.5"
                 >
-                  Tính chi phí điện
+                  Xem báo giá trọn gói
                 </a>
               </motion.div>
 
@@ -165,19 +165,19 @@ export default function HeroSection() {
 
                   <div className="grid gap-3 sm:grid-cols-2">
                     <div className="rounded-3xl border border-white/10 bg-black/20 p-4">
-                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Hệ Thống</p>
-                      <p className="mt-2 text-lg font-bold text-white">Hybrid &amp; BESS</p>
-                      <p className="mt-1 text-sm text-white/70 leading-relaxed">Tối ưu tự dùng, lưu trữ điện và giảm phụ thuộc lưới.</p>
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Hub</p>
+                      <p className="mt-2 text-lg font-bold text-white">Solar Home</p>
+                      <p className="mt-1 text-sm text-white/70 leading-relaxed">Gia đình, nhà phố, biệt thự.</p>
                     </div>
                     <div className="rounded-3xl border border-white/10 bg-black/20 p-4">
-                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Đối Tượng</p>
-                      <p className="mt-2 text-lg font-bold text-white">Nhà ở &amp; Doanh nghiệp</p>
-                      <p className="mt-1 text-sm text-white/70 leading-relaxed">Phù hợp biệt thự, nhà xưởng, văn phòng và showroom.</p>
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Hub</p>
+                      <p className="mt-2 text-lg font-bold text-white">Solar C&I</p>
+                      <p className="mt-1 text-sm text-white/70 leading-relaxed">Nhà xưởng, văn phòng, doanh nghiệp.</p>
                     </div>
                     <div className="rounded-3xl border border-white/10 bg-black/20 p-4 sm:col-span-2">
-                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Quy Trình</p>
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Điểm chốt</p>
                       <div className="mt-3 grid grid-cols-3 gap-3">
-                        {['Khảo sát', 'Thiết kế', 'Thi công'].map((step) => (
+                        {['Calculator', 'Báo giá', 'Liên hệ'].map((step) => (
                           <div
                             key={step}
                             className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-center"
