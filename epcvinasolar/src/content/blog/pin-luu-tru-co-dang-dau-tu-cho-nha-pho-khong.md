@@ -53,3 +53,8 @@ Pin lưu trữ đáng đầu tư khi nó giải quyết đúng vấn đề của
 
 Nếu muốn, hãy bắt đầu từ calculator để xem pin có thật sự phù hợp với hóa đơn và mái nhà của mình không.
 
+### Bước tiếp theo nên xem
+
+- [Tính nhanh chi phí và ROI](/calculator)
+- [Xem báo giá chi tiết](/bao-gia)
+- [Tham khảo các dự án thực tế](/du-an)

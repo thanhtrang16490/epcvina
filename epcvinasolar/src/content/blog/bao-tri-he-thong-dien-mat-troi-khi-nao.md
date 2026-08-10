@@ -47,3 +47,8 @@ Bảo trì không phải chi phí thừa. Nó là cách bảo vệ sản lượn
 
 Nếu bạn đã lắp hệ thống, việc tiếp theo nên làm là lên lịch kiểm tra định kỳ thay vì chờ đến khi có sự cố.
 
+### Bước tiếp theo nên xem
+
+- [Xem bài về ROI và hiệu quả đầu tư](/calculator)
+- [Xem báo giá để chuẩn bị kế hoạch bảo trì](/bao-gia)
+- [Đọc thêm các dự án thực tế](/du-an)
