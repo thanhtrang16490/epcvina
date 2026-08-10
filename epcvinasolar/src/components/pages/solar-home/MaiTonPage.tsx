@@ -146,8 +146,8 @@ export default function MaiTonPage() {
             <a href="tel:0988446113" className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-8 py-3 rounded-lg transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> Tư Vấn: 0988 446 113
             </a>
-            <a href="/bao-gia-dien-mat-troi" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
-              Nhận Báo Giá Miễn Phí
+            <a href="/calculator" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
+              Tính Chi Phí Nhanh
             </a>
           </div>
         </div>
@@ -368,7 +368,7 @@ export default function MaiTonPage() {
             <a href="tel:0988446113" className="bg-white text-blue-700 font-bold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> 0988 446 113
             </a>
-            <a href="/bao-gia-dien-mat-troi" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all flex items-center gap-2">
+            <a href="/bao-gia" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all flex items-center gap-2">
               Nhận Báo Giá <ArrowRight className="w-5 h-5" />
             </a>
           </div>

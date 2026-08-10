@@ -25,8 +25,8 @@ export default function NhaPhoLandingPage() {
                 <Phone className="w-5 h-5" />
                 Tư Vấn Miễn Phí
               </a>
-              <a href="/bao-gia-dien-mat-troi" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20">
-                Xem Báo Giá
+              <a href="/calculator" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20">
+                Tính Chi Phí Nhanh
               </a>
             </div>
           </div>
@@ -151,9 +151,9 @@ export default function NhaPhoLandingPage() {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-4">Khảo Sát Miễn Phí Cho Nhà Bạn</h2>
           <p className="text-xl mb-8 opacity-90">EPCVINA đánh giá miễn phí mái nhà, tư vấn giải pháp tối ưu nhất</p>
-          <a href="tel:0988446113" className="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-8 py-4 rounded-xl text-lg hover:bg-slate-100 transition-all">
+          <a href="/bao-gia" className="inline-flex items-center gap-2 bg-white text-orange-600 font-bold px-8 py-4 rounded-xl text-lg hover:bg-slate-100 transition-all">
             <Phone className="w-5 h-5" />
-            Gọi Ngay: 0988 446 113
+            Nhận Báo Giá
           </a>
         </div>
       </section>
