@@ -263,6 +263,13 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
+              href="/bao-gia"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-emerald-600 font-bold rounded-xl hover:bg-emerald-50 transition-colors shadow-lg"
+            >
+              <FileText className="w-6 h-6" />
+              <span>Nhận báo giá</span>
+            </a>
+            <a
               href="tel:0988446113"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-emerald-600 font-bold rounded-xl hover:bg-emerald-50 transition-colors shadow-lg"
             >

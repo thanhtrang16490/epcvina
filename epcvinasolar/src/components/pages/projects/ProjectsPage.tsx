@@ -16,6 +16,7 @@ import {
   TrendUp,
   Globe,
   Eye,
+  FileText,
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
@@ -680,18 +681,25 @@ export default function ProjectsPage() {
                   Đội ngũ EPCVINA sẵn sàng hỗ trợ từ khảo sát đến vận hành.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <a
-                    href="/calculator"
-                    className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors duration-200 ease-in-out hover:shadow-xl focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
-                  >
-                    <Phone className="h-5 w-5" aria-hidden="true" />
-                    Liên Hệ Tư Vấn
-                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                  </a>
-                  <a
-                    href="tel:0988446113"
-                    className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base border border-white/20 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
-                  >
+                <a
+                  href="/calculator"
+                  className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors duration-200 ease-in-out hover:shadow-xl focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
+                >
+                  <Phone className="h-5 w-5" aria-hidden="true" />
+                  Liên Hệ Tư Vấn
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                </a>
+                <a
+                  href="/bao-gia"
+                  className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base border border-white/20 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
+                >
+                  <FileText className="h-5 w-5" aria-hidden="true" />
+                  Xem báo giá
+                </a>
+                <a
+                  href="tel:0988446113"
+                  className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base border border-white/20 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
+                >
                     <Phone className="h-5 w-5" aria-hidden="true" />
                     0988 446 113
                   </a>

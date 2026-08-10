@@ -320,7 +320,7 @@ export default function AboutPage() {
                 className="inline-flex items-center gap-2 bg-white text-orange-700 font-bold px-8 py-3.5 rounded-xl hover:bg-orange-50 transition-colors shadow-lg"
               >
                 <FileText className="h-5 w-5" />
-                Nhận báo giá miễn phí
+                Xem báo giá chi tiết
               </a>
               <a
                 href="tel:0988446113"

@@ -1,4 +1,4 @@
-import { BookOpen, Sun, BatteryHigh, Lightning, Calculator, Shield, Wrench, CaretRight, Phone, ArrowRight } from '@phosphor-icons/react';
+import { BookOpen, Sun, BatteryHigh, Lightning, Calculator, Shield, Wrench, CaretRight, Phone, ArrowRight, FileText } from '@phosphor-icons/react';
 
 const contentHubs = [
   {
@@ -128,6 +128,9 @@ export default function KienThucHubPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#danh-muc" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
               Khám Phá Ngay
+            </a>
+            <a href="/bao-gia" className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-all flex items-center gap-2">
+              <FileText className="w-5 h-5" /> Nhận báo giá
             </a>
             <a href="tel:0988446113" className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> Tư Vấn Miễn Phí
@@ -284,6 +287,9 @@ export default function KienThucHubPage() {
           <div className="flex flex-wrap justify-center gap-4">
             <a href="tel:0988446113" className="bg-white text-orange-600 font-bold px-8 py-3 rounded-lg hover:bg-orange-50 transition-all">
               Gọi: 0988 446 113
+            </a>
+            <a href="/bao-gia" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+              Xem báo giá
             </a>
             <a href="/calculator" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
               Gửi Yêu Cầu Tư Vấn
