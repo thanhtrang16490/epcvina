@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   keywords?: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
   noindex?: boolean;
   breadcrumbs?: Array<{name: string, url: string}>;
   updatedTime?: string;
@@ -16,6 +17,7 @@ const {
   description = 'EPC Solar - Chuyên lắp đặt hệ thống điện mặt trời trọn gói cho hộ gia đình và doanh nghiệp. Giải pháp On-Grid & Hybrid tiết kiệm điện đến 90%. Hotline: 0988 446 113.',
   keywords = 'điện mặt trời, lắp đặt điện mặt trời, solar panel, EPC Solar, điện mặt trời Hà Nội, hệ thống điện mặt trời, combo điện mặt trời, on-grid, hybrid',
   ogImage = '/opengraph-epcvina-medium.jpeg',
+  ogType = 'website',
   noindex = false,
   breadcrumbs = [],
   updatedTime,
@@ -82,7 +84,7 @@ const structuredData = buildLocalBusinessSchema({
     <link rel="canonical" href={canonicalURL.href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <!-- Open Graph / Facebook / Zalo -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:title" content={seoTitle} />
     <meta property="og:description" content={seoDescription} />

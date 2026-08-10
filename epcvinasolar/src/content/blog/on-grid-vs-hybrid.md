@@ -1,7 +1,8 @@
 ---
-title: "On-Grid vs Hybrid Solar: Nên Chọn Cái Nào?"
-description: "So sánh toàn diện giữa hệ thống điện mặt trời On-Grid và Hybrid: ưu nhược điểm, chi phí, ROI, và khuyến nghị từ EPC Solar giúp bạn lựa chọn đúng giải pháp cho ngôi nhà."
+title: "On-Grid Hay Hybrid: Nên Chọn Hệ Nào Cho Ngôi Nhà?"
+description: "So sánh On-Grid và Hybrid theo ưu nhược điểm, chi phí, ROI và tình huống sử dụng để chọn đúng giải pháp cho gia đình."
 publishDate: 2026-06-12
+updatedDate: 2026-08-10
 author: "EPC Solar"
 tags: ["on-grid", "hybrid", "so-sanh", "huong-dan"]
 image: "/images/blog/hybrid.svg"

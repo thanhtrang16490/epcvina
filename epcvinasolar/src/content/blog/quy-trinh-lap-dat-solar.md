@@ -1,7 +1,8 @@
 ---
 title: "Quy Trình Lắp Đặt Điện Mặt Trời Từ A-Z Tại EPC Solar"
-description: "Hướng dẫn chi tiết quy trình lắp đặt điện mặt trời từ A đến Z: từ tư vấn, khảo sát, thiết kế, thi công, nghiệm thu đến đấu nối lưới điện EVN. Minh bạch, chuyên nghiệp, đúng tiến độ."
+description: "Quy trình lắp đặt điện mặt trời từ A đến Z: tư vấn, khảo sát, thiết kế, thi công, nghiệm thu và đấu nối EVN."
 publishDate: 2026-06-08
+updatedDate: 2026-08-10
 author: "EPC Solar"
 tags: ["quy-trinh", "lap-dat", "huong-dan"]
 image: "/images/blog/installation.svg"

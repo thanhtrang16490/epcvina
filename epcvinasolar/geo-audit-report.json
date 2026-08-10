@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T12:50:27.841Z",
+  "generatedAt": "2026-08-10T12:54:48.253Z",
   "summary": {
     "pages": 85,
     "dynamicPages": 12,
@@ -760,8 +760,8 @@
     },
     {
       "file": "src/pages/tin-tuc/index.astro",
-      "title": "Tin Tức Điện Mặt Trời | EPCVINA Solar",
-      "description": "Tin tức, kiến thức về điện mặt trời: hướng dẫn lắp đặt, so sánh hệ thống, chi phí và ROI, chính sách EVN. Cập nhật mới nhất từ EPCVINA Solar.",
+      "title": "Tin Tức Điện Mặt Trời, Chi Phí & ROI | EPCVINA Solar",
+      "description": "Tin tức và kiến thức điện mặt trời từ EPCVINA Solar: hướng dẫn lắp đặt, so sánh On-Grid/Hybrid, chi phí, ROI và chính sách EVN.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,

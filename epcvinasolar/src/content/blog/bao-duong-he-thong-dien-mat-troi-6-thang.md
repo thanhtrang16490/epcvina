@@ -1,7 +1,8 @@
 ---
 title: "Bảo Dưỡng Hệ Thống Điện Mặt Trời 6 Tháng Một Lần Có Thực Sự Cần Thiết?"
-description: "Cách kiểm tra, vệ sinh và bảo dưỡng hệ thống điện mặt trời định kỳ để giữ sản lượng ổn định."
+description: "Cách kiểm tra, vệ sinh và bảo dưỡng điện mặt trời định kỳ để giữ sản lượng ổn định và kéo dài tuổi thọ."
 publishDate: 2026-08-08
+updatedDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/solar-guide.svg"
 tags: ["bao-duong", "van-hanh", "tiet-kiem"]

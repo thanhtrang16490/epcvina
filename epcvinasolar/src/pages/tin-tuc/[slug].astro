@@ -84,6 +84,9 @@ const tocItems = (post.body ?? '')
 <DashboardLayout
   title={`${post.data.title} | EPCVINA Solar Blog`}
   description={post.data.description}
+  ogImage={post.data.image || '/opengraph-epcvina-medium.jpeg'}
+  ogType="article"
+  updatedTime={(post.data.updatedDate || post.data.publishDate).toISOString()}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />

@@ -1,7 +1,8 @@
 ---
 title: "Cách Tính Số Tấm Pin Phù Hợp Cho Nhà Phố"
-description: "Cách ước tính số tấm pin theo nhu cầu điện, diện tích mái và công suất inverter."
+description: "Cách ước tính số tấm pin theo nhu cầu điện, diện tích mái và công suất inverter để chọn cấu hình sát thực tế."
 publishDate: 2026-07-27
+updatedDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/analysis.svg"
 tags: ["tinh-toan", "so-tam-pin", "nha-pho"]
