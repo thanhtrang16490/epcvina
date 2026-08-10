@@ -566,11 +566,22 @@ export default function QuotationPage() {
             <div className="text-center mb-8">
               <p className="text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-2">BÁO GIÁ & TƯ VẤN</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-2 leading-tight">
-                Nhận Báo Giá <span style={{ color: '#f59e0b' }}>Miễn Phí</span>
+                Nhận Báo Giá <span style={{ color: '#f59e0b' }}>Chi Tiết</span>
               </h2>
               <p className="text-gray-500 text-sm sm:text-base max-w-lg mx-auto">
-                Điền thông tin và chọn thông số để nhận đề xuất hệ thống phù hợp nhất.
+                Điền thông tin và chọn thông số để nhận đề xuất, dự toán và phương án tối ưu trước khi chốt đầu tư.
               </p>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
+                <a href="/solar-home" className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
+                  Từ Solar Home
+                </a>
+                <a href="/solar-cong-nghiep" className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
+                  Từ Solar C&I
+                </a>
+                <a href="/calculator" className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
+                  Từ Calculator
+                </a>
+              </div>
             </div>
 
             {/* 2-column grid: Customer Info + Filter */}
@@ -753,7 +764,7 @@ export default function QuotationPage() {
                     ) : (
                       <>
                         <Sparkle className="w-5 h-5" />
-                        Nhận Báo Giá
+                        Xem Đề Xuất & Báo Giá
                       </>
                     )}
                   </button>
@@ -793,8 +804,8 @@ export default function QuotationPage() {
                         {solutions.length > 0 ? `${solutions.length} giải pháp phù hợp — click để xem chi tiết` : 'Không có combo phù hợp với bộ lọc hiện tại'}
                       </p>
                     </div>
-                    <a href="/solar-home" className="flex items-center gap-1 text-xs text-gray-500 hover:text-[#DC2626] font-medium transition-colors">
-                      Xem tất cả <ArrowRight className="w-3.5 h-3.5" />
+                    <a href="/solar-cong-nghiep" className="flex items-center gap-1 text-xs text-gray-500 hover:text-[#DC2626] font-medium transition-colors">
+                      Về hub Solar C&I <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
@@ -950,11 +961,11 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
 
       <div className="flex gap-2.5 mx-4 mb-4">
         <a
-          href="/calculator"
+          href="/bao-gia"
           className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm"
           style={{ background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' }}
         >
-          <Phone className="w-4 h-4" /> Xem chi tiết
+          <Phone className="w-4 h-4" /> Nhận báo giá
         </a>
       </div>
     </div>
