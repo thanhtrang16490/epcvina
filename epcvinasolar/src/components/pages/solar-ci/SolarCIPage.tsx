@@ -169,6 +169,15 @@ export default function SolarCIPage() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-cyan-100/80">
+              <a href="/ung-dung/dien-cong-nghiep" className="underline underline-offset-4 decoration-cyan-300/40 hover:text-white">
+                Xem trang ứng dụng công nghiệp
+              </a>
+              <span className="hidden sm:inline text-cyan-300/40">•</span>
+              <a href="/dien-mat-troi-bac-ninh" className="underline underline-offset-4 decoration-cyan-300/40 hover:text-white">
+                Xem landing tỉnh
+              </a>
+            </div>
           </div>
         </section>
       </div>

@@ -39,6 +39,9 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             <a href="/solar-cong-nghiep" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
               Xem giải pháp doanh nghiệp
             </a>
+            <a href="/calculator" className="bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/20 transition-all">
+              Tính chi phí nhanh
+            </a>
           </div>
         </div>
       </section>
@@ -142,6 +145,9 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             </a>
             <a href="/solar-cong-nghiep" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
               Xem hub Solar C&I
+            </a>
+            <a href="/bao-gia" className="border-2 border-white/40 text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+              Nhận báo giá
             </a>
           </div>
         </div>

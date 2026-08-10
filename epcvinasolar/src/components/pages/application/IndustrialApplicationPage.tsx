@@ -40,6 +40,15 @@ export default function IndustrialApplicationPage() {
                 <Phone className="h-5 w-5" />
               </a>
             </div>
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-gray-300">
+              <a href="/calculator" className="underline underline-offset-4 decoration-white/30 hover:text-white">
+                Tính nhanh chi phí
+              </a>
+              <span className="hidden sm:inline text-white/20">•</span>
+              <a href="/dien-mat-troi-bac-ninh" className="underline underline-offset-4 decoration-white/30 hover:text-white">
+                Xem landing tỉnh
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -355,6 +364,9 @@ export default function IndustrialApplicationPage() {
               Tính nhanh hiệu quả đầu tư
               <ArrowRight className="h-5 w-5" />
             </a>
+          </div>
+          <div className="mt-4 text-sm text-gray-500">
+            Trang này là cluster hỗ trợ cho hub <a href="/solar-cong-nghiep" className="font-semibold text-orange-600 hover:text-orange-700">Solar C&I</a>.
           </div>
         </div>
       </section>
