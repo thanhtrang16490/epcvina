@@ -15,28 +15,29 @@ export default function IndustrialApplicationPage() {
           <div className="text-center">
             <div className="inline-block mb-6">
               <span className="text-emerald-400 text-sm sm:text-base font-medium tracking-wide">
-                Năng lượng xanh - Tương lai bền vững
+                Ứng dụng công nghiệp - Tương lai bền vững
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight">
-              Giải Pháp Điện Mặt Trời<br className="hidden sm:block" /> Cho Doanh Nghiệp
+              Điện Mặt Trời Cho<br className="hidden sm:block" /> Các Mô Hình Công Nghiệp
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
-              Trong bối cảnh chi phí điện ngày càng gia tăng, điện mặt trời giúp doanh nghiệp chủ động nguồn năng lượng, giảm phụ thuộc vào lưới điện và tối ưu chi phí vận hành dài hạn. Đồng thời, đây còn là bước đi chiến lược để xây dựng hình ảnh thương hiệu xanh, đáp ứng các tiêu chuẩn ESG và nâng cao năng lực cạnh tranh trên thị trường quốc tế.
+              Trang này giải thích các use case điện mặt trời cho nhà xưởng, kho vận, văn phòng và công trình thương mại.
+              Nếu bạn cần cấu hình tổng thể, hãy xem hub Solar C&I; còn nếu muốn ước tính nhanh, hãy dùng calculator.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="/solar-cong-nghiep"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                Khám phá Solar C&I
+                Về hub Solar C&I
                 <ArrowRight className="h-5 w-5" />
               </a>
               <a
-                href="/bao-gia"
+                href="/calculator"
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-3.5 rounded-lg transition-all duration-200"
               >
-                Xem báo giá dự kiến
+                Tính nhanh chi phí
                 <Phone className="h-5 w-5" />
               </a>
             </div>
@@ -354,7 +355,7 @@ export default function IndustrialApplicationPage() {
               className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-orange-700 font-semibold px-8 py-3.5 rounded-xl cursor-pointer transition-all duration-200 shadow-lg"
             >
               <ArrowRight className="h-5 w-5" />
-              Xem toàn bộ giải pháp
+              Quay về hub Solar C&I
             </a>
             <a
               href="/calculator"
@@ -366,7 +367,7 @@ export default function IndustrialApplicationPage() {
             </a>
           </div>
           <div className="mt-4 text-sm text-gray-500">
-            Trang này là cluster hỗ trợ cho hub <a href="/solar-cong-nghiep" className="font-semibold text-orange-600 hover:text-orange-700">Solar C&I</a>.
+            Trang này là cluster hỗ trợ cho hub <a href="/solar-cong-nghiep" className="font-semibold text-orange-600 hover:text-orange-700">Solar C&I</a> và không thay thế hub chính.
           </div>
         </div>
       </section>
