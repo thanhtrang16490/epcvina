@@ -204,7 +204,7 @@ export default function SolutionPage({ roofType }: SolutionPageProps) {
             Cần tư vấn giải pháp lắp đặt?
           </h2>
           <p className="text-white/80 text-base sm:text-lg mb-8 max-w-xl mx-auto">
-            Liên hệ ngay để chuyên gia EPC Solar khảo sát và tư vấn giải pháp tối ưu cho mái nhà bạn.
+            Liên hệ ngay để chuyên gia EPCVINA Solar khảo sát và tư vấn giải pháp tối ưu cho mái nhà bạn.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a

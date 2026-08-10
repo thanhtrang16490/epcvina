@@ -1,6 +1,6 @@
 # EPCVINA GEO Audit Report
 
-Generated: 2026-08-10T11:30:45.498Z
+Generated: 2026-08-10T12:00:50.222Z
 
 ## Summary
 - Pages scanned: 85
@@ -13,7 +13,7 @@ Generated: 2026-08-10T11:30:45.498Z
 - Sitemap referenced: yes
 
 ## Scores
-- Title quality: 96/100
+- Title quality: 97/100
 - Description quality: 96/100
 - Technical foundation: 100/100
 

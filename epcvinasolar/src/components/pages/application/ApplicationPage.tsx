@@ -369,7 +369,7 @@ export default function ApplicationPage({ applicationType }: ApplicationPageProp
             Sẵn sàng tiết kiệm điện?
           </h2>
           <p className="text-white/80 text-base sm:text-lg mb-8 max-w-xl mx-auto">
-            Liên hệ ngay để nhận tư vấn và báo giá miễn phí từ đội ngũ chuyên gia EPC Solar.
+            Liên hệ ngay để nhận tư vấn và báo giá miễn phí từ đội ngũ chuyên gia EPCVINA Solar.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a

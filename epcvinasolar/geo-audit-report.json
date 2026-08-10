@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T11:30:45.498Z",
+  "generatedAt": "2026-08-10T12:00:50.222Z",
   "summary": {
     "pages": 85,
     "dynamicPages": 12,
@@ -12,7 +12,7 @@
     "sitemapReferenced": true
   },
   "scores": {
-    "titleQuality": 96,
+    "titleQuality": 97,
     "descriptionQuality": 96,
     "technicalFoundation": 100
   },
@@ -20,8 +20,8 @@
   "pages": [
     {
       "file": "src/pages/404.astro",
-      "title": "Trang không tìm thấy - EPC Solar",
-      "description": "Trang bạn tìm không tồn tại. Quay lại trang chủ EPC Solar để khám phá giải pháp điện mặt trời.",
+      "title": "Trang Không Tìm Thấy - EPCVINA Solar",
+      "description": "Trang bạn tìm không tồn tại. Quay lại trang chủ EPCVINA Solar để khám phá giải pháp điện mặt trời.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -60,7 +60,7 @@
     },
     {
       "file": "src/pages/bao-gia.astro",
-      "title": "Báo Giá Lắp Đặt Điện Mặt Trời | EPC Solar Hà Nội",
+      "title": "Báo Giá Lắp Đặt Điện Mặt Trời | EPCVINA Solar",
       "description": "Nhận báo giá miễn phí lắp đặt điện mặt trời on-grid, hybrid. Đề xuất combo phù hợp với nhu cầu sử dụng điện của bạn. Tư vấn trong 24h.",
       "titlePresent": true,
       "descriptionPresent": true,
@@ -250,8 +250,8 @@
     },
     {
       "file": "src/pages/dang-nhap.astro",
-      "title": "Đăng nhập - EPC Solar",
-      "description": "Đăng nhập hệ thống EPC Solar - Quản lý đơn hàng, theo dõi hệ thống điện mặt trời.",
+      "title": "Đăng nhập - EPCVINA Solar",
+      "description": "Đăng nhập hệ thống EPCVINA Solar - Quản lý đơn hàng, theo dõi hệ thống điện mặt trời.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": true,
@@ -441,7 +441,7 @@
     {
       "file": "src/pages/du-an.astro",
       "title": "Dự Án Điện Mặt Trời Tiêu Biểu | EPCVINA Solar",
-      "description": "Xem các dự án điện mặt trời đã thi công bởi EPC Solar. Hơn 500 công trình tại Hà Nội và các tỉnh phía Bắc. Chất lượng đảm bảo, khách hàng hài lòng.",
+      "description": "Xem các dự án điện mặt trời đã thi công bởi EPCVINA Solar. Hơn 500 công trình tại Hà Nội và các tỉnh phía Bắc. Chất lượng đảm bảo, khách hàng hài lòng.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -520,8 +520,8 @@
     },
     {
       "file": "src/pages/hybrid-bess/[slug].astro",
-      "title": "${readableTitle} - EPC Solar",
-      "description": "Combo điện mặt trời ${readableTitle} - Lưu trữ pin BESS, backup toàn bộ tải. Tiết kiệm 90% điện, hoạt động độc lập khi mất điện. EPC Solar báo giá miễn phí.",
+      "title": "Hybrid BESS ${readableTitle} | EPCVINA Solar",
+      "description": "Combo điện mặt trời ${readableTitle} - Lưu trữ pin BESS, backup toàn bộ tải. Tiết kiệm 90% điện, hoạt động độc lập khi mất điện. EPCVINA Solar báo giá miễn phí.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -541,7 +541,7 @@
     {
       "file": "src/pages/index.astro",
       "title": "Lắp Đặt Điện Mặt Trời Trọn Gói | EPCVINA Solar",
-      "description": "EPC Solar - Chuyên lắp đặt hệ thống điện mặt trời on-grid, hybrid & BESS trọn gói tại Hà Nội. Tiết kiệm 70-90% tiền điện. Bảo hành 25 năm. Tư vấn miễn phí!",
+      "description": "EPCVINA Solar - Chuyên lắp đặt hệ thống điện mặt trời on-grid, hybrid & BESS trọn gói tại Hà Nội. Tiết kiệm 70-90% tiền điện. Bảo hành 25 năm. Tư vấn miễn phí!",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -610,8 +610,8 @@
     },
     {
       "file": "src/pages/projects.astro",
-      "title": "Dự Án Tiêu Biểu - Thi Công Điện Mặt Trời | EPC SOLAR",
-      "description": "Xem các dự án điện mặt trời đã thi công bởi EPC Solar. Hơn 500 công trình tại Hà Nội và các tỉnh phía Bắc. Chất lượng đảm bảo, khách hàng hài lòng.",
+      "title": "Dự Án Tiêu Biểu - Thi Công Điện Mặt Trời | EPCVINA Solar",
+      "description": "Xem các dự án điện mặt trời đã thi công bởi EPCVINA Solar. Hơn 500 công trình tại Hà Nội và các tỉnh phía Bắc. Chất lượng đảm bảo, khách hàng hài lòng.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": true,
@@ -660,8 +660,8 @@
     },
     {
       "file": "src/pages/solar-home/he-thong/[slug].astro",
-      "title": "${readableTitle} | EPCVINA Solar",
-      "description": "${readableTitle} - Hệ thống điện mặt trời trọn gói từ EPC Solar. Tiết kiệm 70-90% chi phí điện, hoàn vốn 3-5 năm. Bảo hành 25 năm tấm pin.",
+      "title": "Combo ${readableTitle} | EPCVINA Solar",
+      "description": "${readableTitle} - Hệ thống điện mặt trời trọn gói từ EPCVINA Solar. Tiết kiệm 70-90% chi phí điện, hoàn vốn 3-5 năm. Bảo hành 25 năm tấm pin.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -700,7 +700,7 @@
     },
     {
       "file": "src/pages/solar-home/on-grid/index.astro",
-      "title": "On-Grid Solar - Giải Pháp Tiết Kiệm Điện 70-90% | EPC Solar",
+      "title": "On-Grid Solar | EPCVINA Solar",
       "description": "Hệ thống điện mặt trời On-Grid hòa lưới - tiết kiệm 70-90% hóa đơn điện. Combo trọn gói từ 5kW-50kW. Hoàn vốn 3-5 năm. Lắp đặt chuyên nghiệp tại Hà Nội.",
       "titlePresent": true,
       "descriptionPresent": true,
@@ -790,7 +790,7 @@
     },
     {
       "file": "src/pages/ung-dung/[slug].astro",
-      "title": "Ứng dụng ${appLabel} - Điện Mặt Trời EPC Solar",
+      "title": "Ứng dụng ${appLabel} - Điện Mặt Trời EPCVINA Solar",
       "description": "Giải pháp điện mặt trời cho ${appLabel.toLowerCase()}. Lắp đặt trọn gói, tiết kiệm đến 90% hóa đơn điện.",
       "titlePresent": true,
       "descriptionPresent": true,

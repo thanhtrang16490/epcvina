@@ -24,12 +24,12 @@ const articleSchema = {
   "description": post.data.description,
   "author": {
     "@type": "Organization",
-    "name": post.data.author || "EPC Solar",
+    "name": post.data.author || "EPCVINA Solar",
     "url": "https://epcvina.com"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "EPC Solar",
+    "name": "EPCVINA Solar",
     "url": "https://epcvina.com",
     "logo": {
       "@type": "ImageObject",
@@ -82,7 +82,7 @@ const tocItems = (post.body ?? '')
 ---
 
 <DashboardLayout
-  title={`${post.data.title} | EPC Solar Blog`}
+  title={`${post.data.title} | EPCVINA Solar Blog`}
   description={post.data.description}
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
@@ -256,7 +256,7 @@ const tocItems = (post.body ?? '')
 
           <div class="rounded-[2rem] bg-gray-950 text-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.18)]">
             <p class="text-[11px] uppercase tracking-[0.2em] text-orange-300 font-semibold">Tư vấn nhanh</p>
-            <h2 class="mt-2 text-xl font-semibold leading-tight">Cần EPC Solar tư vấn theo mái nhà thực tế?</h2>
+            <h2 class="mt-2 text-xl font-semibold leading-tight">Cần EPCVINA Solar tư vấn theo mái nhà thực tế?</h2>
             <p class="mt-3 text-sm leading-6 text-gray-300">
               Gửi cấu hình công trình, đội ngũ sẽ giúp bạn chọn phương án phù hợp hơn với chi phí và sản lượng.
             </p>
@@ -273,7 +273,7 @@ const tocItems = (post.body ?? '')
       <div class="mt-12 bg-gradient-to-r from-orange-600 to-red-700 rounded-[2rem] p-8 md:p-10 text-center text-white mb-10 shadow-[0_24px_70px_rgba(194,65,12,0.22)]">
         <h3 class="text-2xl font-bold mb-2">Bạn cần tư vấn lắp đặt điện mặt trời?</h3>
         <p class="text-orange-100 mb-6 text-base max-w-lg mx-auto">
-          Liên hệ EPC Solar để được tư vấn miễn phí và nhận báo giá cụ thể trong vòng 24 giờ.
+          Liên hệ EPCVINA Solar để được tư vấn miễn phí và nhận báo giá cụ thể trong vòng 24 giờ.
         </p>
         <a
           href="/calculator"

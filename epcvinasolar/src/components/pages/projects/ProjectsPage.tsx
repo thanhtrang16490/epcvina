@@ -368,7 +368,7 @@ export default function ProjectsPage() {
           {/* Background image */}
           <img
             src="/images/generated/solar-industrial-hero.webp"
-            alt="Trang trại điện mặt trời quy mô lớn của EPC Solar"
+            alt="Trang trại điện mặt trời quy mô lớn của EPCVINA Solar"
             loading="eager"
             width={1200}
             height={675}
@@ -608,7 +608,7 @@ export default function ProjectsPage() {
                 Đối Tác <span className="text-emerald-600">Tiên Phong</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Các tập đoàn đa quốc gia và doanh nghiệp hàng đầu tin tưởng lựa chọn EPC Solar
+                Các tập đoàn đa quốc gia và doanh nghiệp hàng đầu tin tưởng lựa chọn EPCVINA Solar
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">

@@ -456,7 +456,7 @@ export default function ContactPage() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="EPC Solar văn phòng"
+              title="EPCVINA Solar văn phòng"
             />
           </div>
         </div>
