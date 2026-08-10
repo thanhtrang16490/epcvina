@@ -1813,7 +1813,7 @@ export default function CalculatorMainPage() {
                 data-press
                 className="mt-3 flex w-full flex-col items-center justify-center gap-1 rounded-[14px] bg-[#F58220] px-4 py-3.5 text-center text-white shadow-[0_16px_32px_-20px_rgba(245,130,32,.8)]"
               >
-                <span className="text-[14px] font-black leading-tight">Nhận tư vấn kỹ thuật miễn phí</span>
+                <span className="text-[14px] font-black leading-tight">Xem kết quả & phương án</span>
                 <span className="text-[11.5px] font-medium leading-snug text-white/85">EPCVINA kiểm tra mái và tối ưu cấu hình</span>
               </button>
             </div>
@@ -2320,7 +2320,7 @@ export default function CalculatorMainPage() {
                   </svg>
                 </span>
                 <span className="min-w-0 flex-1 px-3">
-                  {surveySubmitting ? <>Đang gửi<br />kết quả…</> : <>Nhận tư vấn<br />và báo giá</>}
+                  {surveySubmitting ? <>Đang gửi<br />kết quả…</> : <>Chốt<br />báo giá</>}
                 </span>
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/35 text-white">
                   →
@@ -2338,10 +2338,10 @@ export default function CalculatorMainPage() {
                     <path d="m9 12 2 2 4-4" />
                   </svg>
                 </span>
-                <span>Tư vấn miễn phí, không ràng buộc mua hàng.</span>
+                <span>Tư vấn miễn phí, chuyển tiếp sang báo giá chi tiết khi cần.</span>
               </div>
               <p className="mt-1 text-center text-[12.5px] leading-5 text-[#5F6673]">
-                EPCVINA ưu tiên phương án phù hợp hóa đơn, mái và ngân sách thực tế.
+                EPCVINA ưu tiên phương án phù hợp hóa đơn, mái và ngân sách thực tế trước khi báo giá.
               </p>
               <p className="mt-2 rounded-[14px] bg-[#F4F5F7] px-3 py-2 text-center text-[11.5px] leading-relaxed text-[#71717A]">
                 Thông tin chỉ dùng cho mục đích tư vấn điện mặt trời EPCVINA và không chia sẻ cho bên thứ ba nếu chưa được anh/chị đồng ý.
