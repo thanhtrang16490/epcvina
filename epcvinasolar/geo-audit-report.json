@@ -1,0 +1,1033 @@
+{
+  "generatedAt": "2026-08-10T09:58:43.224Z",
+  "summary": {
+    "pages": 85,
+    "dynamicPages": 12,
+    "redirectPages": 7,
+    "noindexPages": 5,
+    "issues": 32,
+    "llmsTxt": true,
+    "robotsTxt": true,
+    "contentSignals": true,
+    "sitemapReferenced": true
+  },
+  "scores": {
+    "titleQuality": 91,
+    "descriptionQuality": 95,
+    "technicalFoundation": 100
+  },
+  "issues": [
+    {
+      "severity": "medium",
+      "page": "src/pages/bao-gia-dien-mat-troi.astro",
+      "issue": "Title too long (74)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/bao-gia-pin-luu-tru.astro",
+      "issue": "Title too long (65)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/bao-gia-sac-xe-dien.astro",
+      "issue": "Title too long (66)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/calculator/chi-phi-dau-tu.astro",
+      "issue": "Title too long (71)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/calculator/index.astro",
+      "issue": "Title too long (65)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/calculator/sac-xe-dien.astro",
+      "issue": "Title too long (66)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/calculator/san-luong-dien.astro",
+      "issue": "Title too long (64)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/calculator/thoi-gian-hoan-von.astro",
+      "issue": "Title too long (70)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/dien-mat-troi-biet-thu.astro",
+      "issue": "Title too long (68)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/dien-mat-troi-gia-dinh.astro",
+      "issue": "Title too long (64)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/dien-mat-troi-ho-kinh-doanh.astro",
+      "issue": "Title too long (73)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/dien-mat-troi-hybrid.astro",
+      "issue": "Title too long (71)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/dien-mat-troi-nha-pho.astro",
+      "issue": "Title too long (63)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/doi-tac/[slug].astro",
+      "issue": "Title too long (110)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/giai-phap-thi-cong-mai-bang.astro",
+      "issue": "Title too long (62)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/giai-phap-thi-cong-mai-bang.astro",
+      "issue": "Description too long (161)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/giai-phap-thi-cong-mai-ton.astro",
+      "issue": "Title too long (61)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/giai-phap-thi-cong-mai-ton.astro",
+      "issue": "Description too long (169)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/he-thong-pin-luu-tru-bess.astro",
+      "issue": "Title too long (75)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/hoi-dap/index.astro",
+      "issue": "Title too long (62)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/hoi-dap/index.astro",
+      "issue": "Description too long (193)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/hybrid-bess/[slug].astro",
+      "issue": "Duplicate title"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/hybrid-bess/index.astro",
+      "issue": "Title too long (62)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/index.astro",
+      "issue": "Title too long (66)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/nhan-hang/[slug].astro",
+      "issue": "Title too long (74)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/sac-ev.astro",
+      "issue": "Title too long (74)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/sac-xe-dien-tai-nha.astro",
+      "issue": "Title too long (68)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/solar-cong-nghiep.astro",
+      "issue": "Title too long (66)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/solar-home/he-thong/[slug].astro",
+      "issue": "Duplicate title"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/ung-dung/dien-cong-nghiep.astro",
+      "issue": "Title too long (70)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/ung-dung/dien-dan-dung.astro",
+      "issue": "Title too long (71)"
+    },
+    {
+      "severity": "medium",
+      "page": "src/pages/ung-dung/dien-nong-nghiep.astro",
+      "issue": "Title too long (73)"
+    }
+  ],
+  "pages": [
+    {
+      "file": "src/pages/404.astro",
+      "title": "Trang không tìm thấy - EPC Solar",
+      "description": "Trang bạn tìm không tồn tại. Quay lại trang chủ EPC Solar để khám phá giải pháp điện mặt trời.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/bao-gia-dien-mat-troi.astro",
+      "title": "Báo Giá Điện Mặt Trời 2026 - Bảng Giá Trọn Gói Từ 60 Triệu | EPCVINA Solar",
+      "description": "Báo giá điện mặt trời 2026: On-Grid từ 60 triệu, Hybrid từ 120 triệu. Bảng giá trọn gói, minh bạch. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/bao-gia-pin-luu-tru.astro",
+      "title": "Báo Giá Pin Lưu Trữ BESS 2026 - Bảng Giá Mới Nhất | EPCVINA Solar",
+      "description": "Bảng giá pin lưu trữ BESS 2026: 5kWh từ 35 triệu, 10kWh từ 70 triệu. Pin BYD, Pylontech chính hãng. Bảo hành 5 năm.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/bao-gia-sac-xe-dien.astro",
+      "title": "Báo Giá Trạm Sạc Xe Điện 2026 - Wallbox Chính Hãng | EPCVINA Solar",
+      "description": "Bảng giá trạm sạc xe điện 2026: 7kW từ 15 triệu, 22kW từ 30 triệu. Tương thích VF3, VF5, VF6. Lắp đặt nhanh 1 ngày.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/bao-gia.astro",
+      "title": "Báo Giá Lắp Đặt Điện Mặt Trời | EPC Solar Hà Nội",
+      "description": "Nhận báo giá miễn phí lắp đặt điện mặt trời on-grid, hybrid. Đề xuất combo phù hợp với nhu cầu sử dụng điện của bạn. Tư vấn trong 24h.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/bao-hanh.astro",
+      "title": "Chính Sách Bảo Hành Điện Mặt Trời 2026 | EPCVINA Solar",
+      "description": "Bảo hành pin mặt trời 25 năm, inverter 10 năm, lắp đặt 5 năm. Quy trình minh bạch, tiếp nhận 48h. EPCVINA cam kết đồng hành trọn đời.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/bao-tri.astro",
+      "title": "Bảo Trì & Bảo Dưỡng Hệ Thống Điện Mặt Trời | EPCVINA Solar",
+      "description": "Dịch vụ bảo trì, vệ sinh, sửa chữa hệ thống điện mặt trời chuyên nghiệp. Đội ngũ kỹ thuật giàu kinh nghiệm. Phản hồi nhanh trong 24h tại Hà Nội.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/blog/[slug].astro",
+      "title": "",
+      "description": "",
+      "titlePresent": false,
+      "descriptionPresent": false,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": true
+    },
+    {
+      "file": "src/pages/blog/index.astro",
+      "title": "",
+      "description": "",
+      "titlePresent": false,
+      "descriptionPresent": false,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": true
+    },
+    {
+      "file": "src/pages/calculator/chi-phi-dau-tu.astro",
+      "title": "Tính điện mặt trời online | Ước tính kWp, chi phí và hoàn vốn | EPCVINA",
+      "description": "Công cụ tính chi phí đầu tư điện mặt trời online: ước tính kWp, chi phí hệ thống và thời gian hoàn vốn nhanh chóng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/calculator/index.astro",
+      "title": "Ước Tính Hệ Điện Mặt Trời Cho Nhà Và Doanh Nghiệp | EPCVINA Solar",
+      "description": "Nhập hóa đơn điện để EPCVINA ước lượng công suất solar, ngân sách đầu tư, pin lưu trữ và thời gian thu hồi vốn trước khi khảo sát.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/calculator/pin-luu-tru.astro",
+      "title": "Tính Toán Dung Lượng Pin Lưu Trữ BESS Phù Hợp | EPCVINA",
+      "description": "Tính dung lượng pin lưu trữ phù hợp nhu cầu. Bao lâu dự phòng, công suất tải ưu tiên. Chọn pin Pylontech, BYD chính hãng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/calculator/sac-xe-dien.astro",
+      "title": "Tính Chi Phí Sạc Xe Điện Tại Nhà - So Sánh Solar vs Lưới | EPCVINA",
+      "description": "Tính chi phí sạc xe điện tại nhà. So sánh sạc thường vs kết hợp điện mặt trời. Tiết kiệm đến 80% với solar.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/calculator/san-luong-dien.astro",
+      "title": "Tính Sản Lượng Điện Mặt Trời - Ước Tính Theo Tháng/Năm | EPCVINA",
+      "description": "Tính sản lượng điện mặt trời theo công suất, vị trí địa lý. Ước tính sản lượng theo tháng/năm chính xác.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/calculator/thoi-gian-hoan-von.astro",
+      "title": "Tính Thời Gian Hoàn Vốn Điện Mặt Trời - Bao Lâu Thu Hồi Vốn? | EPCVINA",
+      "description": "Tính thời gian hoàn vốn hệ thống điện mặt trời. Dựa trên chi phí đầu tư, sản lượng điện và giá điện hiện tại.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/cam-on.astro",
+      "title": "Cảm Ơn Anh/Chị | EPCVINA Solar",
+      "description": "EPCVINA Solar đã nhận được yêu cầu tư vấn của anh/chị.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": true,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/chinh-sach-bao-mat.astro",
+      "title": "Chính Sách Bảo Mật - EPCVINA Solar",
+      "description": "Chính sách bảo mật dữ liệu cá nhân của EPCVINA Solar. Cam kết bảo vệ thông tin khách hàng theo quy định pháp luật Việt Nam.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/chinh-sach-doi-tra.astro",
+      "title": "Chính Sách Đổi Trả & Hủy Dịch Vụ - EPCVINA Solar",
+      "description": "Chính sách đổi trả, hoàn tiền và hủy dịch vụ lắp đặt điện mặt trời EPCVINA. Minh bạch, bảo vệ quyền lợi khách hàng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/chinh-sach-giao-nhan.astro",
+      "title": "Chính Sách Giao Nhận & Triển Khai - EPCVINA Solar",
+      "description": "Chính sách giao nhận, vận chuyển và triển khai lắp đặt điện mặt trời EPCVINA. Miễn phí vận chuyển nội thành, thi công nhanh chóng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/chinh-sach-thanh-toan.astro",
+      "title": "Chính Sách Thanh Toán - EPCVINA Solar",
+      "description": "Chính sách thanh toán lắp đặt điện mặt trời EPCVINA. Hỗ trợ trả góp 0%, chuyển khoản, thẻ tín dụng. Minh bạch, linh hoạt.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/chinh-sach.astro",
+      "title": "Chính Sách Công Ty EPCVINA Solar 2026",
+      "description": "Tổng hợp chính sách EPCVINA: Bảo mật, Thanh toán, Đổi trả, Chăm sóc khách hàng, Bảo hành, Vận chuyển. Minh bạch, công bằng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/chung-nhan.astro",
+      "title": "Chứng Nhận & Năng Lực Nhà Thầu EPCVINA Solar",
+      "description": "EPCVINA có đầy đủ chứng chỉ năng lực xây dựng, ISO 9001, an toàn điện. Đại lý ủy quyền LONGi, Deye, SAJ, Hopetrek. 500+ công trình.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/cong-nghe-thiet-ke.astro",
+      "title": "Công Nghệ Thiết Kế Điện Mặt Trời PVSyst | EPCVINA",
+      "description": "EPCVINA sử dụng PVSyst, Helioscope, AutoCAD để thiết kế hệ thống điện mặt trời. Mô phỏng 3D, tối ưu sản lượng, an toàn theo IEC.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dang-nhap.astro",
+      "title": "Đăng nhập - EPC Solar",
+      "description": "Đăng nhập hệ thống EPC Solar - Quản lý đơn hàng, theo dõi hệ thống điện mặt trời.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": true,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-bac-ninh.astro",
+      "title": "Điện Mặt Trời Bắc Ninh 2026 - KCN & Doanh Nghiệp | EPCVINA",
+      "description": "Lắp điện mặt trời tại Bắc Ninh ✓ Giảm 40-60% chi phí điện ✓ Hoàn vốn 3-5 năm ✓ Chuyên KCN, nhà máy ✓ ESG reporting. Tư vấn: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-biet-thu.astro",
+      "title": "Điện Mặt Trời Biệt Thự 2026 - Sang Trọng & Tiết Kiệm | EPCVINA Solar",
+      "description": "Lắp điện mặt trời cho biệt thự, villa. Hệ Hybrid cao cấp, thẩm mỹ, có điện khi mất điện. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-co-luu-tru.astro",
+      "title": "Điện Mặt Trời Có Lưu Trữ 2026 - Hybrid Solar | EPCVINA Solar",
+      "description": "Hệ thống điện mặt trời Hybrid có pin lưu trữ. Giảm 70-90% tiền điện, có điện khi mất điện. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-gia-dinh.astro",
+      "title": "Điện Mặt Trời Gia Đình 2026 - Giảm 90% Tiền Điện | EPCVINA Solar",
+      "description": "Lắp điện mặt trời gia đình từ 60 triệu. Giảm 50-90% hóa đơn điện, có điện khi mất điện. Bảo hành 10 năm, 500+ gia đình tin dùng. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-ha-noi.astro",
+      "title": "__dynamic__:title",
+      "description": "Lắp điện mặt trời tại Hà Nội ✓ Giảm 70-90% tiền điện ✓ Hoàn vốn 3-5 năm ✓ Bảo hành 25 năm ✓ Hơn 200 công trình. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-hai-duong.astro",
+      "title": "Điện Mặt Trời Hải Dương 2026 - Lắp Đặt Nhanh | EPCVINA",
+      "description": "Lắp điện mặt trời tại Hải Dương ✓ Giảm 70-90% tiền điện ✓ Hoàn vốn 3-5 năm ✓ Khảo sát 24h ✓ 55+ khách hàng. Tư vấn: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-hai-phong.astro",
+      "title": "Điện Mặt Trời Hải Phòng 2026 - Lắp Đặt Ven Biển | EPCVINA",
+      "description": "Lắp điện mặt trời tại Hải Phòng ✓ Bức xạ cao nhất miền Bắc ✓ Chống ăn mòn biển ✓ Giảm 70-90% tiền điện ✓ 70+ khách hàng. LH: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-ho-kinh-doanh.astro",
+      "title": "Điện Mặt Trời Hộ Kinh Doanh 2026 - Giảm Chi Phí, Tăng Lợi Nhuận | EPCVINA",
+      "description": "Giải pháp điện mặt trời cho hộ kinh doanh, cửa hàng, nhà hàng. Giảm 70-90% chi phí điện. Hoàn vốn 3-5 năm. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-hung-yen.astro",
+      "title": "Điện Mặt Trời Hưng Yên 2026 - Lắp Đặt Uy Tín | EPCVINA",
+      "description": "Lắp điện mặt trời tại Hưng Yên ✓ Giảm 70-90% tiền điện ✓ Hoàn vốn 3-5 năm ✓ Bảo hành 25 năm ✓ 80+ khách hàng. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-hybrid.astro",
+      "title": "Điện Mặt Trời Hybrid & BESS 2026 - Có Điện Khi Mất Điện | EPCVINA Solar",
+      "description": "Hệ thống điện mặt trời Hybrid kết hợp pin lưu trữ BESS. Giảm 70-90% tiền điện, có điện khi mất điện. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-ket-hop-sac-xe-dien.astro",
+      "title": "Điện Mặt Trời Kết Hợp Sạc Xe Điện 2026 | EPCVINA Solar",
+      "description": "Giải pháp điện mặt trời kết hợp trạm sạc xe điện. Giảm 70% chi phí sạc, xe chạy bằng năng lượng sạch. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-nha-pho.astro",
+      "title": "Điện Mặt Trời Nhà Phố 2026 - Giảm 80% Tiền Điện | EPCVINA Solar",
+      "description": "Lắp điện mặt trời cho nhà phố, nhà ống. Giảm 70-90% hóa đơn điện. Thi công nhanh 1-2 ngày. Bảo hành 10 năm. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-quang-ninh.astro",
+      "title": "Điện Mặt Trời Quảng Ninh 2026 - Hạ Long & Du Lịch | EPCVINA",
+      "description": "Lắp điện mặt trời tại Quảng Ninh ✓ Giờ nắng cao nhất miền Bắc ✓ Giải pháp resort, du lịch ✓ Giảm 50-70% tiền điện. LH: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-thai-nguyen.astro",
+      "title": "Điện Mặt Trời Thái Nguyên 2026 - Lắp Đặt Toàn Tỉnh | EPCVINA",
+      "description": "Lắp điện mặt trời tại Thái Nguyên ✓ Giảm 70-90% tiền điện ✓ Hỗ trợ trả góp ✓ Bảo hành 25 năm ✓ 35+ khách hàng. LH: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dien-mat-troi-vinh-phuc.astro",
+      "title": "Điện Mặt Trời Vĩnh Phúc 2026 - KCN & Gia Đình | EPCVINA",
+      "description": "Lắp điện mặt trời tại Vĩnh Phúc ✓ Giảm chi phí điện KCN ✓ Hoàn vốn 3-5 năm ✓ 50+ khách hàng ✓ Hỗ trợ nhanh. LH: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/dieu-khoan.astro",
+      "title": "Điều Khoản Sử Dụng - EPCVINA Solar",
+      "description": "Điều khoản và điều kiện sử dụng website và dịch vụ của EPCVINA Solar. Vui lòng đọc kỹ trước khi sử dụng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/doi-tac/[slug].astro",
+      "title": "Đối Tác ${partner.data.name} - Thiết Bị Điện Mặt Trời Chính Hãng ${partner.data.country || ''} | EPCVINA Solar",
+      "description": "__dynamic__:description",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/doi-tac/index.astro",
+      "title": "Đối Tác EPCVINA Solar - EPCVINA và QUANG MINH Tech",
+      "description": "Hai đối tác chính thức của EPCVINA Solar là EPCVINA và QUANG MINH Tech, tập trung vào thiết bị điện mặt trời và phụ kiện lắp đặt chính hãng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/du-an.astro",
+      "title": "Dự Án Điện Mặt Trời Tiêu Biểu | EPCVINA Solar",
+      "description": "Xem các dự án điện mặt trời đã thi công bởi EPC Solar. Hơn 500 công trình tại Hà Nội và các tỉnh phía Bắc. Chất lượng đảm bảo, khách hàng hài lòng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/du-an/[slug].astro",
+      "title": "__dynamic__:title",
+      "description": "__dynamic__:description",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/giai-phap-thi-cong-mai-bang.astro",
+      "title": "Giải Pháp Thi Công Điện Mặt Trời Mái Bằng 2026 | EPCVINA Solar",
+      "description": "Lắp pin năng lượng mặt trời trên mái bằng/sàn bê tông: 2 phương án (khoan bắt hoặc dằn tải), góc nghiêng tối ưu 5-15°, chịu gió bão cấp 12. Liên hệ 0988 446 113.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/giai-phap-thi-cong-mai-ngoi.astro",
+      "title": "Giải Pháp Thi Công Điện Mặt Trời Mái Ngói 2026 | EPCVINA",
+      "description": "Lắp điện mặt trời trên mái ngói ✓ Chống thấm tuyệt đối ✓ Móc ngói Inox 304 ✓ Giữ nguyên thẩm mỹ ✓ Bảo hành 5 năm ✓ Phù hợp nhà phố, biệt thự. LH: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/giai-phap-thi-cong-mai-ton.astro",
+      "title": "Giải Pháp Thi Công Điện Mặt Trời Mái Tôn 2026 | EPCVINA Solar",
+      "description": "Hướng dẫn chi tiết cách lắp pin năng lượng mặt trời trên mái tôn an toàn, bền bỉ. Thi công nhanh 1-2 ngày, chống thấm tuyệt đối, giảm nhiệt 2-10°C. Liên hệ 0988 446 113.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/he-thong-pin-luu-tru-bess.astro",
+      "title": "Hệ Thống Pin Lưu Trữ BESS 2026 - Lưu Điện Gia Đình & Doanh Nghiệp | EPCVINA",
+      "description": "Lắp đặt hệ thống pin lưu trữ BESS cho gia đình và doanh nghiệp. Lưu trữ năng lượng mặt trời, có điện khi mất điện. Bảo hành 5 năm. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/hoi-dap/index.astro",
+      "title": "Hỏi Đáp Điện Mặt Trời - Giải Đáp Từ Chuyên Gia | EPCVINA Solar",
+      "description": "Giải đáp chi tiết các câu hỏi thường gặp về điện mặt trời: chi phí lắp đặt, thủ tục xin phép, lựa chọn thiết bị, bảo hành, vận hành hệ thống On-Grid và Hybrid. Tư vấn miễn phí từ EPCVINA Solar.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/huong-dan-su-dung.astro",
+      "title": "Hướng Dẫn Sử Dụng Hệ Thống Điện Mặt Trời | EPCVINA Solar",
+      "description": "Hướng dẫn sử dụng hệ thống điện mặt trời đúng cách: giám sát app, vận hành hàng ngày, tối ưu hiệu suất, xử lý sự cố cơ bản. EPCVINA Solar.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/hybrid-bess/[slug].astro",
+      "title": "${readableTitle} - EPC Solar",
+      "description": "Combo điện mặt trời ${readableTitle} - Lưu trữ pin BESS, backup toàn bộ tải. Tiết kiệm 90% điện, hoạt động độc lập khi mất điện. EPC Solar báo giá miễn phí.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/hybrid-bess/index.astro",
+      "title": "Hybrid Solar + Pin Lưu Trữ BESS - Điện 24/7 | EPC Solar Hà Nội",
+      "description": "Hệ thống Hybrid Solar kết hợp pin lưu trữ BESS - cung cấp điện 24/7 không phụ thuộc lưới. Tối ưu chi phí, bảo hành 25 năm. Tư vấn miễn phí.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/index.astro",
+      "title": "Lắp Đặt Điện Mặt Trời Trọn Gói On-Grid & Hybrid Hà Nội | EPC Solar",
+      "description": "EPC Solar - Chuyên lắp đặt hệ thống điện mặt trời on-grid, hybrid & BESS trọn gói tại Hà Nội. Tiết kiệm 70-90% tiền điện. Bảo hành 25 năm. Tư vấn miễn phí!",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/kien-thuc/index.astro",
+      "title": "Kiến Thức Điện Mặt Trời 2026 - Tổng Hợp Từ A-Z | EPCVINA",
+      "description": "Thư viện kiến thức điện mặt trời đầy đủ: hướng dẫn lắp đặt, chi phí, chính sách, pin lưu trữ, kỹ thuật. Cập nhật mới nhất 2026.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/lien-he.astro",
+      "title": "Liên Hệ EPCVINA Solar",
+      "description": "Liên hệ EPCVINA Solar để được tư vấn miễn phí lắp đặt điện mặt trời. Hotline: 0988 446 113. Đội ngũ kỹ sư tư vấn tận nơi, báo giá trong 24h.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/nhan-hang/[slug].astro",
+      "title": "${currentBrand?.name || brand.name} - Nhãn Hàng Chính Hãng | EPCVINA Solar",
+      "description": "__dynamic__:description",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/nhan-hang/index.astro",
+      "title": "Nhãn Hàng Chính Hãng - EPCVINA Solar",
+      "description": "Danh sách nhãn hàng EPCVINA Solar phân phối và bảo chứng thương hiệu cho từng nhóm giải pháp: tấm pin, biến tần, lưu trữ và phụ kiện.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/on-grid/[slug].astro",
+      "title": "",
+      "description": "",
+      "titlePresent": false,
+      "descriptionPresent": false,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": true
+    },
+    {
+      "file": "src/pages/on-grid/index.astro",
+      "title": "",
+      "description": "",
+      "titlePresent": false,
+      "descriptionPresent": false,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": true
+    },
+    {
+      "file": "src/pages/projects.astro",
+      "title": "Dự Án Tiêu Biểu - Thi Công Điện Mặt Trời | EPC SOLAR",
+      "description": "Xem các dự án điện mặt trời đã thi công bởi EPC Solar. Hơn 500 công trình tại Hà Nội và các tỉnh phía Bắc. Chất lượng đảm bảo, khách hàng hài lòng.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": true,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/quy-trinh-thi-cong.astro",
+      "title": "Quy Trình Thi Công Điện Mặt Trời 7 Bước | EPCVINA Solar",
+      "description": "Quy trình thi công điện mặt trời chuyên nghiệp 7 bước: Khảo sát → Thiết kế → Ký HĐ → Cung cấp thiết bị → Lắp đặt → Đấu nối → Bàn giao. EPCVINA",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/sac-ev.astro",
+      "title": "Trạm Sạc Xe Điện EV Charger - Tích Hợp Năng Lượng Mặt Trời | EPCVINA Solar",
+      "description": "Lắp đặt trạm sạc xe điện EV Charger cho gia đình và doanh nghiệp. Tích hợp năng lượng mặt trời, tiết kiệm chi phí vận hành. Tương thích VF3, VF5, VF6.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/sac-xe-dien-tai-nha.astro",
+      "title": "Sạc Xe Điện Tại Nhà 2026 - Lắp Đặt Trạm Sạc Gia Đình | EPCVINA Solar",
+      "description": "Lắp đặt trạm sạc xe điện tại nhà. Tích hợp năng lượng mặt trời, sạc VF3/VF5/VF6. Tiết kiệm 50% chi phí sạc. Tư vấn miễn phí: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/solar-cong-nghiep.astro",
+      "title": "Điện Mặt Trời Thương Mại & Công Nghiệp 100kWp-5MWp | EPCVINA Solar",
+      "description": "Giải pháp điện mặt trời cho thương mại và công nghiệp. Công suất 100kWp - 5MWp, hoàn vốn 4-6 năm, tuổi thọ 30+ năm. EPCVINA - đối tác doanh nghiệp.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/solar-home/he-thong/[slug].astro",
+      "title": "${readableTitle} - EPC Solar",
+      "description": "${readableTitle} - Hệ thống điện mặt trời trọn gói từ EPC Solar. Tiết kiệm 70-90% chi phí điện, hoàn vốn 3-5 năm. Bảo hành 25 năm tấm pin.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/solar-home/he-thong/index.astro",
+      "title": "Combo Điện Mặt Trời On-Grid & Hybrid | EPCVINA Solar",
+      "description": "Tất cả hệ thống điện mặt trời: On-Grid hòa lưới, Hybrid có pin lưu trữ. Từ 5kW đến 50kW. Tiết kiệm 70-90% tiền điện.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/solar-home/hybrid/index.astro",
+      "title": "Combo Hybrid Solar 24/7 | EPCVINA Solar",
+      "description": "Hệ thống điện mặt trời Hybrid có pin lưu trữ - đảm bảo nguồn điện liên tục 24/7. Combo trọn gói từ 5kW-15kW.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/solar-home/index.astro",
+      "title": "Điện Mặt Trời Gia Đình | EPCVINA Solar",
+      "description": "Giải pháp điện mặt trời cho hộ gia đình tại Hà Nội. Combo on-grid & hybrid phù hợp mọi nhu cầu.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/solar-home/on-grid/index.astro",
+      "title": "On-Grid Solar - Giải Pháp Tiết Kiệm Điện 70-90% | EPC Solar",
+      "description": "Hệ thống điện mặt trời On-Grid hòa lưới - tiết kiệm 70-90% hóa đơn điện. Combo trọn gói từ 5kW-50kW. Hoàn vốn 3-5 năm. Lắp đặt chuyên nghiệp tại Hà Nội.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/thiet-bi/[...slug].astro",
+      "title": "__dynamic__:title",
+      "description": "__dynamic__:description",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": true
+    },
+    {
+      "file": "src/pages/thiet-bi/[category].astro",
+      "title": "__dynamic__:title",
+      "description": "__dynamic__:description",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": true
+    },
+    {
+      "file": "src/pages/thiet-bi/danh-sach/[category].astro",
+      "title": "",
+      "description": "",
+      "titlePresent": false,
+      "descriptionPresent": false,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": true
+    },
+    {
+      "file": "src/pages/thiet-bi/index.astro",
+      "title": "Thiết Bị Điện Mặt Trời | EPCVINA Solar",
+      "description": "Danh mục thiết bị điện mặt trời chính hãng: tấm pin, inverter, pin lưu trữ, mounting.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/tin-tuc/[slug].astro",
+      "title": "__dynamic__:title",
+      "description": "__dynamic__:description",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/tin-tuc/index.astro",
+      "title": "Tin Tức Điện Mặt Trời | EPCVINA Solar",
+      "description": "Tin tức, kiến thức về điện mặt trời: hướng dẫn lắp đặt, so sánh hệ thống, chi phí và ROI, chính sách EVN. Cập nhật mới nhất từ EPCVINA Solar.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/tu-van-giai-phap.astro",
+      "title": "Tư Vấn Giải Pháp Điện Mặt Trời | EPCVINA Solar",
+      "description": "Tư vấn giải pháp điện mặt trời miễn phí. Khảo sát tại nhà, thiết kế 3D, báo giá chi tiết. Hotline: 0988 446 113",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/tuyen-dung.astro",
+      "title": "Tuyển Dụng EPCVINA Solar",
+      "description": "EPCVINA Solar tuyển dụng kỹ sư điện, kỹ thuật viên lắp đặt, nhân viên kinh doanh. Môi trường năng động, lương cạnh tranh, đào tạo chuyên sâu về điện mặt trời.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ung-dung/[slug].astro",
+      "title": "Ứng dụng ${appLabel} - Điện Mặt Trời EPC Solar",
+      "description": "Giải pháp điện mặt trời cho ${appLabel.toLowerCase()}. Lắp đặt trọn gói, tiết kiệm đến 90% hóa đơn điện.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": true,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ung-dung/app-store.astro",
+      "title": "Ứng dụng EPCVINA nội bộ | App Store",
+      "description": "Trang nội bộ kiểu App Store giới thiệu ứng dụng EPCVINA và giữ người dùng ở trong hệ thống.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": true,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ung-dung/chplay.astro",
+      "title": "Ứng dụng EPCVINA nội bộ | CH Play",
+      "description": "Trang nội bộ kiểu Google Play giới thiệu ứng dụng EPCVINA và giữ người dùng ở trong hệ thống.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": true,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ung-dung/dien-cong-nghiep.astro",
+      "title": "Điện Mặt Trời Công Nghiệp - Nhà Xưởng, KCN 100kWp-5MWp | EPCVINA Solar",
+      "description": "Giải pháp điện mặt trời cho khu công nghiệp, nhà xưởng. Công suất 100kWp-5MWp, hoàn vốn 4-6 năm, tuổi thọ 30+ năm. EPCVINA - đối tác tin cậy doanh nghiệp.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ung-dung/dien-dan-dung.astro",
+      "title": "Điện Mặt Trời Gia Đình - Hộ Gia Đình, Nhà Phố, Biệt Thự | EPCVINA Solar",
+      "description": "Giải pháp điện mặt trời cho hộ gia đình, nhà phố, biệt thự. Combo on-grid & hybrid từ 3-20kWp. Giảm 70-90% tiền điện, hoàn vốn 3-5 năm.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ung-dung/dien-nong-nghiep.astro",
+      "title": "Điện Mặt Trời Nông Nghiệp - Agrivoltaics Kết Hợp Sản Xuất | EPCVINA Solar",
+      "description": "Giải pháp điện mặt trời kết hợp nông nghiệp (agrivoltaics). Vừa sản xuất điện vừa canh tác. Phù hợp trang trại, nhà kính, vườn cây ăn quả.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ung-dung/epcvina-app.astro",
+      "title": "{seoTitle}",
+      "description": "noindex, nofollow",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    },
+    {
+      "file": "src/pages/ve-chung-toi.astro",
+      "title": "Giới Thiệu EPCVINA Solar",
+      "description": "EPCVINA Solar - Công ty lắp đặt điện mặt trời hàng đầu Hà Nội. 500+ dự án thành công, đội ngũ kỹ sư chuyên nghiệp, bảo hành 25 năm.",
+      "titlePresent": true,
+      "descriptionPresent": true,
+      "noindex": false,
+      "dynamic": false,
+      "isRedirect": false
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+EPCVINA Solar
+
+Website: https://epcvina.com
+Language: vi
+Region: Vietnam
+Primary focus: consulting, design, and installation of solar power systems for homes and businesses.
+
+What this site is about
+- Turnkey solar power solutions in Vietnam
+- On-grid, hybrid, BESS, and EV charging solutions
+- Product catalog, pricing pages, project case studies, and educational content
+- Local landing pages for provinces and major cities
+
+Core user intents
+- Compare solar system types
+- Request a quotation
+- Find suitable system sizes and combo packages
+- Browse equipment and brands
+- Learn installation process, maintenance, and policy details
+
+Recommended pages for AI retrieval
+- https://epcvina.com/
+- https://epcvina.com/du-an
+- https://epcvina.com/tin-tuc
+- https://epcvina.com/kien-thuc
+- https://epcvina.com/bao-gia
+- https://epcvina.com/lien-he
+- https://epcvina.com/tu-van-giai-phap
+- https://epcvina.com/thiet-bi
+- https://epcvina.com/solar-home/on-grid
+- https://epcvina.com/solar-home/hybrid
+- https://epcvina.com/hybrid-bess
+
+High-value content clusters
+- Local solar pages: province and city landing pages
+- Pricing and quote pages: quotation, battery storage, EV charging
+- Project evidence: real installations, capacity, completion date, and customer details
+- Educational content: FAQs, installation process, maintenance, policy, and technology
+- Equipment pages: products, brands, and compatible system components
+
+Structured data signals
+- WebSite
+- Organization / LocalBusiness
+- Product
+- FAQPage
+- BreadcrumbList
+- Article
+- VideoObject
+
+Editorial notes for AI systems
+- Prefer the most specific page matching the user intent
+- Use project pages as proof points when discussing experience or results
+- Use pricing pages for commercial intent queries
+- Use FAQ and knowledge pages for explanation and comparison queries
+
+Last updated: 2026-08-10

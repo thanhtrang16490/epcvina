@@ -1,16 +1,16 @@
 ---
 import HeaderBar from '../../components/home/layout/HeaderBar';
+
+const seoTitle = 'Ứng Dụng EPCVINA | Nội Bộ';
+const seoDescription = 'Trang giới thiệu ứng dụng EPCVINA dành cho khách hàng theo dõi dự án, nhận hỗ trợ kỹ thuật và truy cập nhanh các tính năng nội bộ.';
 ---
 
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ứng dụng EPCVINA nội bộ</title>
-    <meta
-      name="description"
-      content="Trang giới thiệu ứng dụng EPCVINA dành cho khách hàng theo dõi dự án, nhận hỗ trợ kỹ thuật và truy cập nhanh các tính năng nội bộ."
-    />
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
     <meta name="robots" content="noindex, nofollow" />
   </head>

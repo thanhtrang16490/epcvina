@@ -12,7 +12,11 @@
     "lint:check": "astro check",
     "format": "prettier --write \"src/**/*.{ts,tsx,astro,css,json}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,astro,css,json}\"",
-    "quality": "npm run format && npm run lint"
+    "quality": "npm run format && npm run lint",
+    "geo:audit": "node ./scripts/geo-audit.mjs",
+    "geo:audit:md": "node ./scripts/geo-audit.mjs --md",
+    "geo:audit:json": "node ./scripts/geo-audit.mjs --json",
+    "geo:audit:ci": "node ./scripts/geo-audit.mjs --fail-on-high"
   },
   "keywords": [],
   "author": "",

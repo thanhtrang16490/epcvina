@@ -1,4 +1,31 @@
-import { BookOpen, Sun, BatteryHigh, Lightning, Calculator, Shield, Wrench, CaretRight, Phone } from '@phosphor-icons/react';
+import { BookOpen, Sun, BatteryHigh, Lightning, Calculator, Shield, Wrench, CaretRight, Phone, ArrowRight } from '@phosphor-icons/react';
+
+const contentHubs = [
+  {
+    title: 'So sánh giải pháp',
+    desc: 'So sánh On-Grid, Hybrid, BESS, pin lưu trữ và combo theo nhu cầu thực tế.',
+    href: '/hybrid-bess',
+    tag: 'Compare',
+  },
+  {
+    title: 'Hướng dẫn triển khai',
+    desc: 'Quy trình thi công, checklist khảo sát và các bước vận hành sau lắp đặt.',
+    href: '/tin-tuc/quy-trinh-lap-dat-solar',
+    tag: 'Setup',
+  },
+  {
+    title: 'Thương hiệu & thiết bị',
+    desc: 'Tổng hợp inverter, tấm pin, pin lưu trữ và nhãn hàng theo từng nhóm giải pháp.',
+    href: '/nhan-hang',
+    tag: 'Brands',
+  },
+  {
+    title: 'Tính chi phí nhanh',
+    desc: 'Ước tính suất đầu tư, hoàn vốn và phương án phù hợp trước khi tư vấn.',
+    href: '/calculator',
+    tag: 'Tools',
+  },
+];
 
 const categories = [
   {
@@ -95,8 +122,8 @@ export default function KienThucHubPage() {
             Kiến Thức Điện Mặt Trời
           </h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-            Tổng hợp kiến thức từ A-Z về điện mặt trời: từ cơ bản đến nâng cao, 
-            giúp bạn đưa ra quyết định đầu tư thông minh nhất.
+            Hub nội dung theo mô hình so sánh, hướng dẫn, thương hiệu và công cụ tính chi phí,
+            giúp người dùng đi từ tìm hiểu đến chọn giải pháp phù hợp nhanh hơn.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#danh-muc" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
@@ -105,6 +132,42 @@ export default function KienThucHubPage() {
             <a href="tel:0988446113" className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/10 transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> Tư Vấn Miễn Phí
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Content hubs */}
+      <section className="py-12 bg-slate-100 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between gap-4 mb-6">
+            <div>
+              <p className="text-xs font-bold tracking-[0.22em] uppercase text-blue-700 mb-2">Nội dung chiến lược</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Lộ trình đọc giống hub RMSURV</h2>
+            </div>
+            <a href="/tin-tuc" className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-900">
+              Xem toàn bộ bài viết
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+            {contentHubs.map((hub) => (
+              <a
+                key={hub.title}
+                href={hub.href}
+                className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:shadow-md transition-all"
+              >
+                <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-blue-700">
+                  {hub.tag}
+                </div>
+                <h3 className="mt-4 text-lg font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{hub.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{hub.desc}</p>
+                <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-blue-700">
+                  Khám phá
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -141,7 +204,7 @@ export default function KienThucHubPage() {
               Danh Mục Kiến Thức
             </h2>
             <p className="text-xl text-slate-600">
-              Chọn chủ đề bạn quan tâm để tìm hiểu chi tiết
+              Chọn chủ đề bạn quan tâm để đi thẳng vào nội dung phù hợp.
             </p>
           </div>
 
@@ -173,6 +236,40 @@ export default function KienThucHubPage() {
                 </a>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Internal linking block */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+            <div>
+              <p className="text-xs font-bold tracking-[0.22em] uppercase text-slate-400 mb-3">Đi đường tắt</p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
+                Từ kiến thức đến báo giá, dự án và thương hiệu trong cùng một luồng đọc
+              </h2>
+              <p className="mt-4 text-lg text-slate-600 max-w-2xl">
+                Cách này giúp người đọc không chỉ đọc bài mà còn được dẫn sang trang giải pháp, trang sản phẩm và trang dự án ngay khi đã sẵn sàng ra quyết định.
+              </p>
+            </div>
+            <div className="grid gap-3">
+              {[
+                ['Combo giải pháp', '/solar-home', 'Dẫn tới các cấu hình On-Grid, Hybrid và combo sẵn có.'],
+                ['Dự án thực tế', '/du-an', 'Tăng độ tin cậy bằng case study và công trình đã triển khai.'],
+                ['Hỏi đáp nhanh', '/hoi-dap', 'Bắt traffic từ nhu cầu tìm câu trả lời ngắn, rõ và thực tế.'],
+              ].map(([title, href, desc]) => (
+                <a key={title} href={href} className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 hover:bg-white hover:shadow-sm transition-all">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{title}</h3>
+                      <p className="mt-1 text-sm text-slate-600">{desc}</p>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-blue-700 group-hover:translate-x-1 transition-all" />
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>

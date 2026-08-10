@@ -16,8 +16,20 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
+
+const appLabelMap: Record<string, string> = {
+  'nha-o': 'Nhà ở',
+  'van-phong': 'Văn phòng',
+  'nha-xuong': 'Nhà xưởng',
+  'khach-san': 'Khách sạn',
+  'nha-hang': 'Nhà hàng',
+};
+
+const appLabel = appLabelMap[slug] || slug;
+const seoTitle = `Ứng dụng ${appLabel} - Điện Mặt Trời EPC Solar`;
+const seoDescription = `Giải pháp điện mặt trời cho ${appLabel.toLowerCase()}. Lắp đặt trọn gói, tiết kiệm đến 90% hóa đơn điện.`;
 ---
-<DashboardLayout title={`Ứng dụng ${slug} - Điện mặt trời EPC Solar`} description={`Giải pháp điện mặt trời cho ${slug === 'nha-o' ? 'nhà ở' : slug === 'van-phong' ? 'văn phòng' : slug === 'nha-xuong' ? 'nhà xưởng' : slug === 'khach-san' ? 'khách sạn' : slug === 'nha-hang' ? 'nhà hàng' : slug}. Lắp đặt trọn gói, tiết kiệm đến 90% hóa đơn điện.`}>
+<DashboardLayout title={seoTitle} description={seoDescription}>
   <DashboardShell client:load>
     <ApplicationPage applicationType={slug as any} client:idle />
   </DashboardShell>

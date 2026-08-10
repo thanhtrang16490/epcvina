@@ -5,6 +5,10 @@ Disallow: /api/
 
 Sitemap: https://epcvina.com/sitemap-index.xml
 
+# Content Signals draft for AI systems
+# These directives describe usage preferences, not crawl access rules.
+Content-Signal: ai-train=no, ai-retrieval=yes, search=yes, ai-personalization=no
+
 User-agent: AhrefsBot
 Crawl-delay: 10
 

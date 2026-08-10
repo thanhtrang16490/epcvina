@@ -8,6 +8,7 @@ interface Props {
   ogImage?: string;
   noindex?: boolean;
   breadcrumbs?: Array<{name: string, url: string}>;
+  updatedTime?: string;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   ogImage = '/opengraph-epcvina-medium.jpeg',
   noindex = false,
   breadcrumbs = [],
+  updatedTime,
 } = Astro.props;
 
 const defaultOgImage = '/opengraph-epcvina-medium.jpeg';
@@ -93,7 +95,7 @@ const structuredData = buildLocalBusinessSchema({
     <meta property="og:image:type" content={(ogImage || defaultOgImage).endsWith('.png') ? 'image/png' : 'image/jpeg'} />
     
     <!-- Zalo / Vietnamese Social Networks -->
-    <meta property="og:updated_time" content={new Date().toISOString()} />
+    {updatedTime && <meta property="og:updated_time" content={updatedTime} />}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

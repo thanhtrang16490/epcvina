@@ -41,9 +41,9 @@ const categoryMeta: Record<string, { title: string; description: string; keyword
 };
 
 const meta = categoryMeta[category || ''] || {
-  title: `Thiết Bị ${category} - Điện Mặt Trời Chính Hãng | EPCVINA Solar`,
-  description: `Thiết bị điện mặt trời ${category} chính hãng, bảo hành đầy đủ. Tư vấn miễn phí: 0988 446 113`,
-  keywords: `thiết bị ${category}, điện mặt trời, EPCVINA Solar`
+  title: `Thiết Bị Điện Mặt Trời - EPCVINA Solar`,
+  description: 'Thiết bị điện mặt trời chính hãng, bảo hành đầy đủ. Tư vấn miễn phí: 0988 446 113',
+  keywords: 'thiết bị điện mặt trời, EPCVINA Solar'
 };
 if (!category) {
   return Astro.redirect('/thiet-bi', 301);

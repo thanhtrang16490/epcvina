@@ -6,9 +6,47 @@ import DashboardShell from '../../components/layout/DashboardShell';
 import HybridPage from '../../components/pages/hybrid/HybridPage';
 
 const { slug } = Astro.params;
+
+const formatHybridSlug = (value: string) => {
+  const normalized = value.replace(/^hybrid-/, '');
+  const parts = normalized.split('-').filter(Boolean);
+
+  const power = parts[0] || '';
+  const phasePart = parts.find((part) => part.includes('pha')) || '';
+  const batteryPart = parts.find((part) => part.includes('kwh')) || '';
+  const suffix = parts.find((part) => ['at', 'ac'].includes(part)) || '';
+
+  const formatPower = (input: string) => {
+    const match = input.match(/^(\d+(?:\.\d+)?)(kwp?|kwh)$/i);
+    if (!match) return input;
+    const [, number, unit] = match;
+    const label = unit.toLowerCase() === 'kwh' ? 'kWh' : 'kWp';
+    return `${number} ${label}`;
+  };
+
+  const phaseLabel =
+    phasePart === '1pha' ? '1 pha' :
+    phasePart === '3pha' ? '3 pha' :
+    phasePart ? phasePart.replace(/pha/i, ' pha') : '';
+
+  const batteryLabel = batteryPart ? formatPower(batteryPart) : '';
+  const suffixLabel = suffix === 'at' ? 'AT' : suffix === 'ac' ? 'AC' : '';
+
+  return [
+    'Hybrid',
+    formatPower(power),
+    phaseLabel,
+    suffixLabel,
+    batteryLabel,
+  ].filter(Boolean).join(' ');
+};
+
+const readableTitle = formatHybridSlug(slug);
+const seoTitle = `${readableTitle} - EPC Solar`;
+const seoDescription = `Combo điện mặt trời ${readableTitle} - Lưu trữ pin BESS, backup toàn bộ tải. Tiết kiệm 90% điện, hoạt động độc lập khi mất điện. EPC Solar báo giá miễn phí.`;
 ---
 
-<DashboardLayout title={`${slug} - Combo Hybrid - EPC Solar`} description={`Combo điện mặt trời Hybrid ${slug} - Lưu trữ pin BESS, backup toàn bộ tải. Tiết kiệm 90% điện, hoạt động độc lập khi mất điện. EPC Solar báo giá miễn phí.`}>
+<DashboardLayout title={seoTitle} description={seoDescription}>
   <DashboardShell client:load>
     <HybridPage comboSlug={slug} client:idle />
   </DashboardShell>
