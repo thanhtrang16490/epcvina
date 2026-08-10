@@ -157,7 +157,15 @@ export default function SolarCIPage() {
                 className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Nhận Tư Vấn Miễn Phí
+                Tính Nhanh Hiệu Quả Đầu Tư
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <a
+                href="/bao-gia"
+                className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out border border-white/20 focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
+              >
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                Xem Báo Giá Trọn Gói
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
@@ -390,7 +398,7 @@ export default function SolarCIPage() {
                   href="/calculator"
                   className="cursor-pointer mt-6 inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none text-base min-h-[44px]"
                 >
-                  Liên hệ tư vấn EPC
+                  Tính Nhanh Hiệu Quả Đầu Tư
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>

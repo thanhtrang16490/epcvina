@@ -26,16 +26,18 @@ export default function IndustrialApplicationPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="#benefits"
+                href="/solar-cong-nghiep"
                 className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                Khám phá giải pháp
+                Khám phá Solar C&I
+                <ArrowRight className="h-5 w-5" />
               </a>
               <a
                 href="/bao-gia"
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 font-semibold px-8 py-3.5 rounded-lg transition-all duration-200"
               >
                 Xem báo giá dự kiến
+                <Phone className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -339,17 +341,18 @@ export default function IndustrialApplicationPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="/bao-gia"
+              href="/solar-cong-nghiep"
               className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-orange-700 font-semibold px-8 py-3.5 rounded-xl cursor-pointer transition-all duration-200 shadow-lg"
             >
-              <Phone className="h-5 w-5" />
-              Yêu Cầu Tư Vấn Giải Pháp
+              <ArrowRight className="h-5 w-5" />
+              Xem toàn bộ giải pháp
             </a>
             <a
               href="/calculator"
               className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white border border-white/30 font-semibold px-8 py-3.5 rounded-xl hover:bg-white/20 transition-colors"
             >
-              Liên hệ ngay
+              <Phone className="h-5 w-5" />
+              Tính nhanh hiệu quả đầu tư
               <ArrowRight className="h-5 w-5" />
             </a>
           </div>
