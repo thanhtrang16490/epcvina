@@ -178,7 +178,7 @@ export default function HeaderBar() {
 
           <div className="ml-auto flex items-center gap-2 flex-shrink-0">
             <a
-              href="/bao-gia"
+              href="/calculator"
               className="hidden md:flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-3 lg:px-4 py-2 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
             >
               <FileText className="h-4 w-4" weight="bold" />
