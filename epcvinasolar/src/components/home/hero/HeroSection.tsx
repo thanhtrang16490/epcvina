@@ -164,29 +164,26 @@ export default function HeroSection() {
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-3xl border border-white/10 bg-black/20 p-4">
+                    <a href="/solar-home" className="rounded-3xl border border-white/10 bg-black/20 p-4 transition-colors hover:bg-black/30">
                       <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Hub</p>
                       <p className="mt-2 text-lg font-bold text-white">Solar Home</p>
                       <p className="mt-1 text-sm text-white/70 leading-relaxed">Gia đình, nhà phố, biệt thự.</p>
-                    </div>
-                    <div className="rounded-3xl border border-white/10 bg-black/20 p-4">
+                    </a>
+                    <a href="/solar-cong-nghiep" className="rounded-3xl border border-white/10 bg-black/20 p-4 transition-colors hover:bg-black/30">
                       <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Hub</p>
                       <p className="mt-2 text-lg font-bold text-white">Solar C&I</p>
                       <p className="mt-1 text-sm text-white/70 leading-relaxed">Nhà xưởng, văn phòng, doanh nghiệp.</p>
-                    </div>
-                    <div className="rounded-3xl border border-white/10 bg-black/20 p-4 sm:col-span-2">
+                    </a>
+                    <a href="/calculator" className="rounded-3xl border border-white/10 bg-black/20 p-4 transition-colors hover:bg-black/30">
                       <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Điểm chốt</p>
-                      <div className="mt-3 grid grid-cols-3 gap-3">
-                        {['Calculator', 'Báo giá', 'Liên hệ'].map((step) => (
-                          <div
-                            key={step}
-                            className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-center"
-                          >
-                            <p className="text-sm font-bold text-white">{step}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                      <p className="mt-2 text-lg font-bold text-white">Calculator</p>
+                      <p className="mt-1 text-sm text-white/70 leading-relaxed">Tính nhanh chi phí và hiệu quả đầu tư.</p>
+                    </a>
+                    <a href="/bao-gia" className="rounded-3xl border border-white/10 bg-black/20 p-4 transition-colors hover:bg-black/30">
+                      <p className="text-[11px] uppercase tracking-[0.22em] text-white/50">Điểm chốt</p>
+                      <p className="mt-2 text-lg font-bold text-white">Báo giá</p>
+                      <p className="mt-1 text-sm text-white/70 leading-relaxed">Nhận đề xuất trọn gói theo nhu cầu thực tế.</p>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -235,6 +235,12 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
         >
           <Phone className="w-4 h-4" /> Xem chi tiết
         </a>
+        <a
+          href="/bao-gia"
+          className="btn-scale flex-1 h-11 rounded-xl text-[#DC2626] text-[14px] font-bold flex items-center justify-center gap-2 border border-[#DC2626]/20 bg-white transition-all duration-200 ease-in-out shadow-sm hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
+        >
+          <ArrowRight className="w-4 h-4" /> Nhận báo giá
+        </a>
       </div>
     </div>
   );
@@ -743,9 +749,12 @@ export default function SolarSolutionFinder() {
               )}
             </div>
 
-            <div className="px-5 pb-5">
+            <div className="px-5 pb-5 space-y-3">
               <a href="/solar-home" className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 font-medium hover:bg-gray-50 transition-all">
-                Xem tất cả giải pháp <ArrowRight className="w-4 h-4" />
+                Xem Solar Home <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="/solar-cong-nghiep" className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-red-200 rounded-xl text-sm text-[#DC2626] font-medium hover:bg-red-50 transition-all">
+                Xem Solar C&I <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>
