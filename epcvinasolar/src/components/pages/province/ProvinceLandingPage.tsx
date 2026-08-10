@@ -36,8 +36,8 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             <a href="tel:0988446113" className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-lg transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> Gọi Tư Vấn: 0988 446 113
             </a>
-            <a href="/bao-gia-dien-mat-troi" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
-              Nhận Báo Giá Miễn Phí
+            <a href="/solar-cong-nghiep" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
+              Xem giải pháp doanh nghiệp
             </a>
           </div>
         </div>
@@ -101,8 +101,8 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
                   <Sun className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 mb-2">{system}</h3>
-                <a href="/bao-gia-dien-mat-troi" className="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center gap-1">
-                  Xem chi phí <ArrowRight className="w-4 h-4" />
+                <a href="/calculator" className="text-blue-600 hover:text-blue-800 text-sm font-semibold flex items-center gap-1">
+                  Tính chi phí <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             ))}
@@ -140,8 +140,8 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             <a href="tel:0988446113" className="bg-white text-orange-600 font-bold px-8 py-3 rounded-lg hover:bg-orange-50 transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> 0988 446 113
             </a>
-            <a href="/calculator" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
-              Yêu Cầu Báo Giá
+            <a href="/solar-cong-nghiep" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+              Xem hub Solar C&I
             </a>
           </div>
         </div>

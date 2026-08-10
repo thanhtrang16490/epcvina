@@ -8,7 +8,6 @@ const navItems = [
   { label: 'Hybrid BESS', href: '/hybrid-bess' },
   { label: 'Sạc EV', href: '/sac-ev' },
   { label: 'Solar C&I', href: '/solar-cong-nghiep' },
-  { label: 'Báo giá', href: '/bao-gia' },
   { label: 'Tin tức', href: '/tin-tuc' },
   { label: 'Liên hệ', href: '/lien-he' },
 ];

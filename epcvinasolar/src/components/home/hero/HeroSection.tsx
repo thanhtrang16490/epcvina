@@ -127,10 +127,10 @@ export default function HeroSection() {
                   Tính nhanh hiệu quả đầu tư
                 </a>
                 <a
-                  href="/bao-gia"
+                  href="/solar-cong-nghiep"
                   className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-white/85 hover:text-white underline underline-offset-4 decoration-white/30 hover:decoration-white/70 w-full sm:w-auto py-1.5"
                 >
-                  Xem báo giá trọn gói
+                  Khám phá Solar C&I
                 </a>
               </motion.div>
 
