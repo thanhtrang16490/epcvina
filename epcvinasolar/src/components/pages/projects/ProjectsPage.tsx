@@ -371,6 +371,10 @@ const partnerLogos: Record<string, { src: string; alt: string }> = {
     src: '/partners/coteccons.png',
     alt: 'Coteccons logo',
   },
+  'Đại sứ quán HQ': {
+    src: '/partners/korea-embassy.svg',
+    alt: 'Đại sứ quán Hàn Quốc logo',
+  },
 };
 
 /* ─── Client Icons ─── */
