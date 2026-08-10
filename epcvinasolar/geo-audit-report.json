@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T12:13:11.499Z",
+  "generatedAt": "2026-08-10T12:14:52.965Z",
   "summary": {
     "pages": 85,
     "dynamicPages": 12,
@@ -681,7 +681,7 @@
     {
       "file": "src/pages/solar-home/hybrid/index.astro",
       "title": "Combo Hybrid Solar | EPCVINA Solar",
-      "description": "Hệ thống điện mặt trời Hybrid có pin lưu trữ - đảm bảo nguồn điện liên tục 24/7. Combo trọn gói từ 5kW-15kW.",
+      "description": "Hệ thống điện mặt trời Hybrid có pin lưu trữ - đảm bảo nguồn điện liên tục 24/7. Combo 5kW-15kW, phù hợp khi cần dự phòng mất điện và tự chủ năng lượng.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
@@ -701,7 +701,7 @@
     {
       "file": "src/pages/solar-home/on-grid/index.astro",
       "title": "On-Grid Solar | EPCVINA Solar",
-      "description": "Hệ thống điện mặt trời On-Grid hòa lưới - tiết kiệm 70-90% hóa đơn điện. Combo trọn gói từ 5kW-50kW. Hoàn vốn 3-5 năm. Lắp đặt chuyên nghiệp tại Hà Nội.",
+      "description": "Hệ thống điện mặt trời On-Grid hòa lưới tập trung vào tiết kiệm chi phí. Combo trọn gói từ 5kW-50kW, hoàn vốn 3-5 năm, phù hợp khi ưu tiên giảm hóa đơn điện.",
       "titlePresent": true,
       "descriptionPresent": true,
       "noindex": false,
