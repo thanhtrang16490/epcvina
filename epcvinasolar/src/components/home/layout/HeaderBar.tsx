@@ -208,6 +208,16 @@ export default function HeaderBar() {
           {/* Mirror reflection gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none" />
           <nav className="flex flex-col py-2 relative">
+            <div className="px-4 py-3 border-b border-white/20">
+              <a
+                href="/calculator"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full active:scale-[0.98]"
+              >
+                <FileText className="h-4 w-4" weight="bold" />
+                <span>Báo giá</span>
+              </a>
+            </div>
             {mainNavItems.map((item) => {
               const isActive = activePath === item.href;
               return (
@@ -226,13 +236,16 @@ export default function HeaderBar() {
               );
             })}
             <div className="px-4 py-3 border-t border-white/20">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500 mb-2">
+                Báo giá nhanh
+              </div>
               <a
                 href="/bao-gia"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full active:scale-[0.98]"
+                className="flex items-center justify-center gap-2 bg-white/80 hover:bg-white text-gray-800 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full active:scale-[0.98] border border-gray-200"
               >
                 <FileText className="h-4 w-4" weight="bold" />
-                <span>Nhận Báo Giá</span>
+                <span>Nhận báo giá</span>
               </a>
             </div>
             <div className="px-4 pb-4">

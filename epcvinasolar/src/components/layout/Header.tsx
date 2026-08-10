@@ -27,7 +27,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
       } ${
         isHidden || isMenuOpen ? '-translate-y-full' : 'translate-y-0'
       }`}>
-        <div className="flex items-center gap-3 px-4 h-14">
+        <div className="flex items-center gap-2 px-3 sm:px-4 h-14">
           {/* Left - Hamburger or Back */}
           {isDetailPage ? (
             <button 
@@ -48,14 +48,21 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
           )}
 
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center shrink-0">
             <img
               src={logoSrc}
               alt="EPCVINA Solar"
               width={1024}
               height={159}
-              className="h-7 w-auto"
+              className="h-6 w-auto sm:h-7"
             />
+          </a>
+
+          <a
+            href="/calculator"
+            className="ml-auto inline-flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors hover:from-orange-600 hover:to-orange-700 active:scale-[0.98] sm:px-3.5 sm:py-2 sm:text-sm"
+          >
+            Báo giá
           </a>
 
         </div>
