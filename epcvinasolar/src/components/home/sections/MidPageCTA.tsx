@@ -27,11 +27,11 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
             </div>
             <div className="flex items-center gap-3 flex-shrink-0">
               <a
-                href="#tu-van"
+                href="/bao-gia"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#DC2626] hover:bg-[#B01A22] text-white font-bold rounded-full text-sm transition-colors active:scale-[0.98] shadow-lg"
               >
                 <Phone className="h-4 w-4" weight="bold" />
-                Đăng ký ngay
+                Nhận báo giá
               </a>
             </div>
           </motion.div>
@@ -68,10 +68,10 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
             </p>
           </div>
           <a
-            href="#tu-van"
+            href="/bao-gia"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-red-600 hover:bg-orange-50 font-bold rounded-full text-sm transition-colors active:scale-[0.98] shadow-lg flex-shrink-0"
           >
-            Đăng ký tư vấn miễn phí
+            Nhận báo giá miễn phí
             <ArrowRight className="h-4 w-4" weight="bold" />
           </a>
         </motion.div>
