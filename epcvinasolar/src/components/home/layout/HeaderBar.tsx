@@ -2,23 +2,25 @@ import { useState, useEffect, useRef } from 'react';
 import { CaretDown, FileText, List, X } from '@phosphor-icons/react';
 import { useScrollContext } from '../../layout/DashboardShell';
 
-const navItems = [
+const mainNavItems = [
   { label: 'Trang chủ', href: '/' },
   { label: 'Solar Home', href: '/solar-home' },
   { label: 'Hybrid BESS', href: '/hybrid-bess' },
-  { label: 'Sạc EV', href: '/sac-ev' },
   { label: 'Solar C&I', href: '/solar-cong-nghiep' },
-  { label: 'Tin tức', href: '/tin-tuc' },
-  { label: 'Liên hệ', href: '/lien-he' },
+  { label: 'Trạm sạc', href: '/sac-ev' },
+  { label: 'Bảo trì', href: '/bao-tri' },
+  { label: 'Dự án', href: '/du-an' },
 ];
 
-const secondaryNavItems = navItems.slice(5);
+const secondaryNavItems = [
+  { label: 'Liên hệ', href: '/lien-he' },
+];
 
 export default function HeaderBar() {
   const [activePath, setActivePath] = useState('/');
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
-  const [visibleNavCount, setVisibleNavCount] = useState(navItems.length);
+  const [visibleNavCount, setVisibleNavCount] = useState(mainNavItems.length);
   const { isHeaderVisible } = useScrollContext();
   const navRef = useRef<HTMLDivElement>(null);
   const moreButtonRef = useRef<HTMLButtonElement>(null);
@@ -54,13 +56,13 @@ export default function HeaderBar() {
       if (!navEl) return;
 
       const availableWidth = navEl.clientWidth;
-      const itemWidths = navItems.map((_, index) => navItemRefs.current[index]?.offsetWidth ?? 0);
+      const itemWidths = mainNavItems.map((_, index) => navItemRefs.current[index]?.offsetWidth ?? 0);
       const gapWidth = 4;
       const moreWidth = moreButtonEl?.offsetWidth ?? 56;
       const totalItemsWidth = itemWidths.reduce((sum, width) => sum + width, 0) + gapWidth * Math.max(0, itemWidths.length - 1);
 
       if (totalItemsWidth <= availableWidth) {
-        setVisibleNavCount(navItems.length);
+        setVisibleNavCount(mainNavItems.length);
         return;
       }
 
@@ -108,8 +110,8 @@ export default function HeaderBar() {
       }`}
     >
       <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex items-center gap-3 rounded-full border border-white/50 bg-white/75 backdrop-blur-2xl shadow-[0_12px_40px_rgba(15,23,42,0.10)] px-3 py-2">
-          <a href="/" className="flex-shrink-0">
+        <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-full border border-white/50 bg-white/75 backdrop-blur-2xl shadow-[0_12px_40px_rgba(15,23,42,0.10)] px-3 py-2">
+          <a href="/" className="flex-shrink-0 justify-self-start">
             <img
               src={logoSrc}
               alt="EPCVINA Solar"
@@ -119,8 +121,8 @@ export default function HeaderBar() {
             />
           </a>
 
-          <nav ref={navRef} className="hidden lg:flex flex-1 min-w-0 items-center gap-0.5 overflow-hidden">
-            {navItems.slice(0, visibleNavCount).map((item, index) => {
+          <nav ref={navRef} className="hidden lg:flex min-w-0 items-center justify-center gap-1 xl:gap-1.5 overflow-hidden justify-self-center mx-auto">
+            {mainNavItems.slice(0, visibleNavCount).map((item, index) => {
               const isActive = activePath === item.href;
               return (
                 <a
@@ -129,7 +131,7 @@ export default function HeaderBar() {
                   ref={(el) => {
                     navItemRefs.current[index] = el;
                   }}
-                  className={`relative flex-shrink-0 px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
+                  className={`relative flex-shrink-0 px-3 xl:px-3.5 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
                     isActive
                       ? 'bg-gray-900 text-white shadow-md'
                       : 'text-gray-700 hover:text-gray-900 hover:bg-white/70'
@@ -139,13 +141,13 @@ export default function HeaderBar() {
                 </a>
               );
             })}
-            {visibleNavCount < navItems.length && (
+            {visibleNavCount < mainNavItems.length && (
               <div ref={moreMenuRef} className="relative flex-shrink-0">
                 <button
                   ref={moreButtonRef}
                   type="button"
                   onClick={() => setMoreOpen((open) => !open)}
-                  className="relative flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 whitespace-nowrap active:scale-[0.97]"
+                  className="relative flex items-center gap-1 px-3 xl:px-3.5 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 whitespace-nowrap active:scale-[0.97]"
                   aria-expanded={moreOpen}
                 >
                   Khác
@@ -175,7 +177,7 @@ export default function HeaderBar() {
             )}
           </nav>
 
-          <div className="ml-auto flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-2 flex-shrink-0 justify-self-end">
             <a
               href="/calculator"
               className="hidden md:flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-3 lg:px-4 py-2 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
@@ -206,7 +208,7 @@ export default function HeaderBar() {
           {/* Mirror reflection gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none" />
           <nav className="flex flex-col py-2 relative">
-            {navItems.map((item) => {
+            {mainNavItems.map((item) => {
               const isActive = activePath === item.href;
               return (
                 <a
@@ -231,6 +233,15 @@ export default function HeaderBar() {
               >
                 <FileText className="h-4 w-4" weight="bold" />
                 <span>Nhận Báo Giá</span>
+              </a>
+            </div>
+            <div className="px-4 pb-4">
+              <a
+                href="/lien-he"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white/80 px-4 py-2.5 text-sm font-semibold text-gray-800 transition-colors hover:bg-white active:scale-[0.98]"
+              >
+                Liên hệ
               </a>
             </div>
           </nav>
