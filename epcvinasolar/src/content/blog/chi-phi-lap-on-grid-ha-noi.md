@@ -1,5 +1,5 @@
 ---
-title: "Chi Phí Lắp Đặt Điện Mặt Trời On-Grid 5kW Tại Hà Nội 2026"
+title: "Chi Phí Lắp Điện Mặt Trời On-Grid Tại Hà Nội 2026"
 description: "Phân tích chi phí lắp đặt On-Grid 5kW, 10kW và 15kW tại Hà Nội năm 2026, gồm giá từng hạng mục, ROI, tiết kiệm và yếu tố ảnh hưởng."
 publishDate: 2026-06-10
 updatedDate: 2026-06-23

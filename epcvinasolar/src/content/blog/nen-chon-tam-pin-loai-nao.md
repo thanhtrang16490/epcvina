@@ -1,6 +1,6 @@
 ---
-title: "Nên Chọn Tấm Pin Mặt Trời Loại Nào Cho Công Trình Dân Dụng?"
-description: "Cách chọn tấm pin theo hiệu suất, thương hiệu, kích thước mái và ngân sách."
+title: "Nên Chọn Tấm Pin Mặt Trời Loại Nào?"
+description: "Cách chọn tấm pin theo hiệu suất, thương hiệu, kích thước mái và ngân sách để tránh mua sai cấu hình."
 publishDate: 2026-07-25
 author: "EPC Solar"
 image: "/images/blog/solar-guide.svg"

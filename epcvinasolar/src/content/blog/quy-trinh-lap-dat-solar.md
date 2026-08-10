@@ -1,6 +1,6 @@
 ---
-title: "Quy Trình Lắp Đặt Điện Mặt Trời Từ A-Z Tại EPC Solar"
-description: "Quy trình lắp đặt điện mặt trời từ A đến Z: tư vấn, khảo sát, thiết kế, thi công, nghiệm thu và đấu nối EVN."
+title: "Quy Trình Lắp Đặt Điện Mặt Trời Từ A-Z"
+description: "Quy trình lắp đặt điện mặt trời từ tư vấn, khảo sát, thiết kế, thi công đến nghiệm thu và đấu nối EVN."
 publishDate: 2026-06-08
 updatedDate: 2026-08-10
 author: "EPC Solar"

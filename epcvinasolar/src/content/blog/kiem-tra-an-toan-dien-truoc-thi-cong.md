@@ -1,6 +1,6 @@
 ---
-title: "Kiểm Tra An Toàn Điện Trước Thi Công: Đừng Bỏ Qua Bước Này"
-description: "Các bước kiểm tra tủ điện, tiếp địa, phụ tải và chống sét trước khi thi công."
+title: "Kiểm Tra An Toàn Điện Trước Thi Công: Cần Xem Gì?"
+description: "Các bước kiểm tra tủ điện, tiếp địa, phụ tải và chống sét trước khi thi công để giảm rủi ro ngay từ đầu."
 publishDate: 2026-07-22
 author: "EPC Solar"
 image: "/images/blog/installation.svg"
