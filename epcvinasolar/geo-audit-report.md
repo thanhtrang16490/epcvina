@@ -1,6 +1,6 @@
 # EPCVINA GEO Audit Report
 
-Generated: 2026-08-10T12:09:41.669Z
+Generated: 2026-08-10T12:13:11.499Z
 
 ## Summary
 - Pages scanned: 85
