@@ -1,6 +1,6 @@
 ---
-title: "Giá Điện EVN 2026 Và Tác Động Đến ROI Điện Mặt Trời"
-description: "Cách nhìn giá điện EVN 2026 theo góc độ đầu tư điện mặt trời: hóa đơn tăng ra sao, ROI thay đổi thế nào và gia đình nên chuẩn bị gì."
+title: "Giá Điện EVN 2026: ROI Điện Mặt Trời Thay Đổi Ra Sao?"
+description: "Xem giá điện EVN 2026 tác động thế nào đến hóa đơn, mức tiết kiệm và thời gian hoàn vốn của hệ điện mặt trời gia đình."
 publishDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/economics.svg"
@@ -49,4 +49,3 @@ Khi giá điện thay đổi, thông điệp bán hàng không nên chỉ là �
 Giá điện EVN 2026 là một biến số quan trọng trong bài toán đầu tư điện mặt trời.
 
 Nếu bạn muốn biết ROI của nhà mình, hãy bắt đầu từ hóa đơn điện 3 tháng gần nhất và diện tích mái thực tế.
-

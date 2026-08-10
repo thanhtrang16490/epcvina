@@ -1,5 +1,5 @@
 ---
-title: "Bảo Trì Hệ Thống Điện Mặt Trời Khi Nào Là Hợp Lý?"
+title: "Bảo Trì Điện Mặt Trời Khi Nào Cần Làm?"
 description: "Sổ tay vận hành và bảo dưỡng từ EVN cho thấy vì sao bảo trì định kỳ giúp giữ sản lượng, kéo dài tuổi thọ và giảm rủi ro."
 publishDate: 2026-08-10
 author: "EPC Solar"

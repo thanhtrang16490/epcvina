@@ -1,6 +1,6 @@
 ---
-title: "On-Grid Hay Hybrid: Nên Chọn Hệ Nào Cho Gia Đình?"
-description: "So sánh On-Grid và Hybrid theo chi phí, mức dự phòng, ROI và tình huống dùng thực tế để chọn đúng hệ cho nhà phố, biệt thự."
+title: "On-Grid Hay Hybrid: Hệ Nào Hợp Nhà Bạn Hơn?"
+description: "So sánh On-Grid và Hybrid theo chi phí, dự phòng điện, ROI và tình huống dùng thực tế để chọn đúng hệ cho nhà phố, biệt thự."
 publishDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/hybrid.svg"
@@ -50,4 +50,3 @@ Không nên chọn hệ chỉ vì “nghe hay”:
 
 Nếu mục tiêu chính là tiết kiệm tiền điện, On-Grid thường là lựa chọn hiệu quả.
 Nếu mục tiêu là chủ động và dự phòng, Hybrid sẽ phù hợp hơn.
-

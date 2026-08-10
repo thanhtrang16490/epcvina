@@ -1,6 +1,6 @@
 ---
-title: "Chỉ Thị 10/CT-TTg Và Cơ Hội Cho Điện Mặt Trời Mái Nhà"
-description: "Tóm lược Chỉ thị 10/CT-TTg năm 2026 về tiết kiệm điện và phát triển điện mặt trời mái nhà, cùng góc nhìn ứng dụng cho gia đình và doanh nghiệp."
+title: "Chỉ Thị 10/CT-TTg: Điện Mặt Trời Mái Nhà Được Khuyến Khích Ra Sao?"
+description: "Tóm lược Chỉ thị 10/CT-TTg về tiết kiệm điện và điện mặt trời mái nhà, kèm góc nhìn ứng dụng cho gia đình và doanh nghiệp."
 publishDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/solar-guide.svg"
@@ -44,4 +44,3 @@ Khi có một chỉ thị cấp Chính phủ, người dùng thường quan tâm
 Chỉ thị 10/CT-TTg không chỉ là văn bản về tiết kiệm điện, mà còn là tín hiệu thị trường tích cực cho điện mặt trời mái nhà.
 
 Nếu bạn đã sẵn mái và đang trả hóa đơn điện cao, đây là thời điểm hợp lý để bắt đầu khảo sát.
-

@@ -1,6 +1,6 @@
 ---
-title: "Chính Sách Hỗ Trợ Điện Mặt Trời Mái Nhà 2026: Gia Chủ Cần Biết Gì?"
-description: "Tổng hợp các thông tin mới từ Bộ Công Thương về hỗ trợ điện mặt trời mái nhà, công tơ hai chiều và điều kiện triển khai cho hộ gia đình."
+title: "Chính Sách Điện Mặt Trời Mái Nhà 2026: Mức Hỗ Trợ, Điều Kiện & Công Tơ"
+description: "Cập nhật thông tin từ Bộ Công Thương về điện mặt trời mái nhà, công tơ hai chiều, điều kiện triển khai và những điểm gia chủ cần biết trước khi lắp."
 publishDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/economics.svg"
@@ -51,4 +51,3 @@ Chính sách chỉ có ý nghĩa nếu đi kèm một cấu hình phù hợp. V�
 2026 là thời điểm tốt để bắt đầu tìm hiểu điện mặt trời mái nhà nếu bạn muốn đón sớm xu hướng tiết kiệm điện và tận dụng chính sách hỗ trợ mới.
 
 Nếu muốn, bước tiếp theo là lấy hóa đơn điện và khảo sát mái để ra cấu hình và báo giá sát hơn.
-

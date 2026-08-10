@@ -1,6 +1,6 @@
 ---
-title: "Giá Điện EVN Tăng Ảnh Hưởng ROI Điện Mặt Trời Thế Nào?"
-description: "Khi giá điện EVN thay đổi, mức tiết kiệm và thời gian hoàn vốn của hệ điện mặt trời cũng thay đổi theo ra sao."
+title: "Giá Điện EVN Tăng, ROI Điện Mặt Trời Thay Đổi Thế Nào?"
+description: "Khi giá điện EVN tăng, mức tiết kiệm, thời gian hoàn vốn và hiệu quả đầu tư điện mặt trời thay đổi ra sao."
 publishDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/economics.svg"
@@ -47,4 +47,3 @@ Từ góc độ marketing, bài viết dạng này nên dẫn người đọc đ
 ### Kết luận
 
 Giá điện EVN tăng không phải là tin xấu nếu bạn đang sở hữu mái nhà phù hợp. Với nhiều hộ gia đình, đây lại là tín hiệu để xem lại ROI và cân nhắc đầu tư sớm hơn.
-

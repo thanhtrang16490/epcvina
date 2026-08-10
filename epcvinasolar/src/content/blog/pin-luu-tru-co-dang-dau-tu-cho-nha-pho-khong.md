@@ -1,6 +1,6 @@
 ---
-title: "Pin Lưu Trữ Có Đáng Đầu Tư Cho Nhà Phố Không?"
-description: "Khi nào nên thêm pin lưu trữ, khi nào chỉ cần On-Grid và cách đánh giá hiệu quả đầu tư theo nhu cầu sử dụng điện thực tế."
+title: "Pin Lưu Trữ Có Đáng Đầu Tư Cho Nhà Phố?"
+description: "Khi nào nên thêm pin lưu trữ, khi nào chỉ cần On-Grid và cách đánh giá hiệu quả đầu tư theo nhu cầu dùng điện thực tế."
 publishDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/hybrid.svg"

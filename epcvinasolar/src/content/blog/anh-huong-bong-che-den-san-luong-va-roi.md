@@ -1,6 +1,6 @@
 ---
-title: "Bóng Che Ảnh Hưởng Đến Sản Lượng Và ROI Điện Mặt Trời Ra Sao?"
-description: "Vì sao bóng che làm giảm sản lượng, ảnh hưởng ROI và cách xử lý khi thiết kế hệ thống điện mặt trời mái nhà."
+title: "Bóng Che Làm Giảm Sản Lượng Điện Mặt Trời Thế Nào?"
+description: "Vì sao bóng che làm tụt sản lượng, ảnh hưởng ROI và cách xử lý khi thiết kế hệ thống điện mặt trời mái nhà."
 publishDate: 2026-08-10
 author: "EPC Solar"
 image: "/images/blog/roof.svg"
@@ -49,4 +49,3 @@ Vì vậy một báo giá tốt không chỉ là giá rẻ mà phải nói rõ:
 ### Kết luận
 
 Bóng che là yếu tố phải kiểm tra trước khi chốt thiết kế. Nếu bỏ qua, hệ thống có thể vẫn chạy nhưng hiệu quả đầu tư sẽ không còn đẹp như dự kiến.
-
