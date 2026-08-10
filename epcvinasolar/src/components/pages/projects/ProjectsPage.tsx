@@ -345,6 +345,34 @@ const mepProjects = [
 /* ─── Client Names ─── */
 const clientNames = ['Samsung', 'VinCom', 'VinFast', 'Lotte', 'Keangnam', 'Đại sứ quán HQ', 'Coteccons'];
 
+/* ─── Partner Logos ─── */
+const partnerLogos: Record<string, { src: string; alt: string }> = {
+  Samsung: {
+    src: '/partners/samsung.svg',
+    alt: 'Samsung logo',
+  },
+  VinCom: {
+    src: '/partners/vincom.webp',
+    alt: 'Vincom logo',
+  },
+  VinFast: {
+    src: '/partners/vinfast.png',
+    alt: 'VinFast logo',
+  },
+  Lotte: {
+    src: '/partners/lotte.jpg',
+    alt: 'Lotte logo',
+  },
+  Keangnam: {
+    src: '/partners/keangnam.png',
+    alt: 'Keangnam logo',
+  },
+  Coteccons: {
+    src: '/partners/coteccons.png',
+    alt: 'Coteccons logo',
+  },
+};
+
 /* ─── Client Icons ─── */
 const clientIcons: Record<string, React.ReactNode> = {
   Samsung: <Factory className="h-6 w-6" aria-hidden="true" />,
@@ -597,7 +625,7 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* ═══════════════════ Client Partners Section ═══════════════════ */}
+        {/* ═══════════════════ Partner Brands Section ═══════════════════ */}
         <section className="py-12 sm:py-16 bg-gray-50" aria-labelledby="partners-heading">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
@@ -618,9 +646,20 @@ export default function ProjectsPage() {
                   key={name}
                   className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-emerald-200 hover:shadow-lg transition-shadow duration-200 motion-reduce:transition-none text-center flex flex-col items-center justify-center gap-3 min-h-[120px]"
                 >
-                  <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">
-                    {clientIcons[name]}
-                  </div>
+                  {partnerLogos[name] ? (
+                    <div className="w-14 h-14 rounded-xl bg-white border border-gray-100 flex items-center justify-center p-2">
+                      <img
+                        src={partnerLogos[name].src}
+                        alt={partnerLogos[name].alt}
+                        className="max-h-full max-w-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600">
+                      {clientIcons[name]}
+                    </div>
+                  )}
                   <span className="text-base font-semibold text-gray-700">{name}</span>
                 </div>
               ))}
