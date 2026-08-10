@@ -12,6 +12,7 @@ interface ProvincePageProps {
     customersServed: string;
     popularSystems: string[];
     benefits: string[];
+    localProofs?: string[];
     faqs: { q: string; a: string }[];
   };
 }
@@ -32,6 +33,9 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
           <p className="text-xl text-blue-100 max-w-3xl mb-8">
             {province.description}
           </p>
+          <p className="text-sm sm:text-base text-blue-200/85 max-w-3xl mb-6 leading-relaxed">
+            Trang địa phương này ưu tiên khách hàng tại {province.name}, dùng proof thực tế theo khu vực và dẫn thẳng về hub Solar C&I khi doanh nghiệp cần phương án tổng thể.
+          </p>
           <div className="flex flex-wrap gap-4">
             <a href="tel:0988446113" className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-lg transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> Gọi Tư Vấn: 0988 446 113
@@ -42,6 +46,35 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             <a href="/calculator" className="bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/20 transition-all">
               Tính chi phí nhanh
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Local Proof */}
+      <section className="py-12 bg-slate-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-6 items-start">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3">
+                Vì Sao Phù Hợp Tại {province.name}?
+              </h2>
+              <p className="text-slate-300 leading-relaxed max-w-2xl">
+                Nội dung địa phương nên bám vào hạ tầng, cụm KCN, khí hậu và mô hình phụ tải thực tế tại {province.name}.
+                Điều này giúp trang giữ intent địa phương nhưng vẫn dẫn người dùng về đúng hub Solar C&I khi họ cần tư vấn quy mô lớn.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {(province.localProofs ?? [
+                `Bám sát nhu cầu điện của doanh nghiệp tại ${province.name}`,
+                `Phù hợp nhà máy, kho vận, văn phòng và dự án mái lớn`,
+                `Có thể ước tính nhanh qua calculator trước khi nhận báo giá`,
+                `Điểm chốt chuyển tiếp sang hub Solar C&I`,
+              ]).map((proof) => (
+                <div key={proof} className="rounded-xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200">
+                  {proof}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -148,6 +181,9 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             </a>
             <a href="/bao-gia" className="border-2 border-white/40 text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
               Nhận báo giá
+            </a>
+            <a href="/calculator" className="border-2 border-white/40 text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+              Tính chi phí nhanh
             </a>
           </div>
         </div>
