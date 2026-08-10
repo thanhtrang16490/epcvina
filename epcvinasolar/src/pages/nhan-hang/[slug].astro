@@ -13,7 +13,7 @@ export function getStaticPaths() {
 const { brand } = Astro.props;
 const currentBrand = getBrandBySlug(brand.slug);
 
-const seoTitle = `${currentBrand?.name || brand.name} - Nhãn Hàng Chính Hãng | EPCVINA Solar`;
+const seoTitle = `${currentBrand?.name || brand.name} | EPCVINA`;
 const seoDescription = currentBrand?.description || `Trang nhãn hàng chính hãng ${brand.name} tại EPCVINA Solar.`;
 const seoKeywords = `${currentBrand?.name || brand.name}, nhãn hàng solar, thương hiệu điện mặt trời, EPCVINA Solar`;
 ---
