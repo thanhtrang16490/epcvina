@@ -140,6 +140,8 @@ export async function POST(request: NextRequest) {
       source_form: text(body.source_form, 120) || "website",
       landing_page: text(body.landing_page, 1000) || null,
       referrer: text(body.referrer, 1000) || null,
+      content_id: text(body.content_id, 120) || null,
+      content_slug: text(body.content_slug, 200) || null,
       system_type: text(body.system_type, 120) || null,
       roof_area: text(body.roof_area, 120) || null,
       monthly_bill: text(body.monthly_bill, 120) || null,

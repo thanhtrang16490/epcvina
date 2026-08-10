@@ -1,6 +1,7 @@
 import { AdminShell } from "@/components/AdminShell";
+import { LeadDeleteConfirm } from "@/components/LeadDeleteConfirm";
 import { SectionTitle } from "@/components/SectionTitle";
-import { LeadsKanbanBoard } from "@/components/LeadsKanbanBoard";
+import { ModalShell } from "@/components/ModalShell";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { revalidatePath } from "next/cache";
@@ -152,6 +153,18 @@ async function addLeadQuickActivity(formData: FormData) {
   revalidatePath(`/leads/${id}`);
 }
 
+async function deleteLead(formData: FormData) {
+  "use server";
+  const id = String(formData.get("id") ?? "").trim();
+  if (!id) return;
+  const supabase = createSupabaseAdminClient();
+  if (!supabase) return;
+  const { error } = await supabase.from("crm_leads").delete().eq("id", id);
+  if (error) throw error;
+  revalidatePath("/leads");
+  revalidatePath(`/leads/${id}`);
+}
+
 export default async function LeadsPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
   const params = (await searchParams) ?? {};
   const page = getPage(params.page);
@@ -191,35 +204,66 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
     { label: "Đủ điều kiện", value: counts.qualified ?? 0 },
     { label: "Quá hạn follow-up", value: rows.filter((lead: any) => lead.follow_up_at && new Date(lead.follow_up_at).getTime() < Date.now()).length },
   ];
-  const boardColumns = pipelineStatuses.map((statusKey) => ({
-    key: statusKey,
-    label: getStatusLabel(statusKey),
-    items: rows.filter((lead: any) => lead.status === statusKey),
-  }));
-
   return (
     <AdminShell>
       <main className="mx-auto max-w-[1600px] px-4 py-4 md:px-0">
-        <SectionTitle eyebrow="CRM" title="Lead từ website" description="Tiếp nhận và theo dõi khách hàng gửi từ epcvinasolar." />
+        <SectionTitle
+          eyebrow="CRM"
+          title="Bảng lead chung"
+          description="Bảng tổng hợp lead chung, gồm lead từ website và lead nhập thủ công trong admin."
+        />
 
         <ThemeCard className="mt-6 p-5">
-          <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <div className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">CRM thủ công</div>
               <h2 className="mt-2 text-xl font-semibold text-[color:var(--text)]">Tạo lead ngay trong admin</h2>
-              <p className="mt-2 text-sm text-[color:var(--muted)]">Dùng cho lead ngoài website. Mỗi lead có tag nguồn riêng để phân biệt rõ.</p>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">Bấm nút để mở popup thêm lead nhanh.</p>
             </div>
+            <ModalShell
+              trigger={<span className="rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950">Thêm lead</span>}
+              title="Tạo lead thủ công"
+              description="Nhập nhanh lead ngoài website, Facebook, gọi điện hoặc nguồn khác."
+            >
+              <form action={createManualLead} className="grid gap-4">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="grid gap-2">
+                    <label className="text-sm text-[color:var(--muted)]">Tên khách hàng</label>
+                    <input name="name" placeholder="Tên khách hàng" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                  </div>
+                  <div className="grid gap-2">
+                    <label className="text-sm text-[color:var(--muted)]">Số điện thoại</label>
+                    <input name="phone" placeholder="Số điện thoại" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                  </div>
+                  <div className="grid gap-2">
+                    <label className="text-sm text-[color:var(--muted)]">Email</label>
+                    <input name="email" placeholder="Email" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                  </div>
+                  <div className="grid gap-2">
+                    <label className="text-sm text-[color:var(--muted)]">Owner</label>
+                    <input name="owner_name" list="lead-owner-options" placeholder="Owner" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
+                    <datalist id="lead-owner-options">
+                      {ownerOptions.map((name) => <option key={name} value={name} />)}
+                    </datalist>
+                  </div>
+                </div>
+                <div className="grid gap-2">
+                  <label className="text-sm text-[color:var(--muted)]">Nguồn lead</label>
+                  <select name="source_tag" defaultValue="manual" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
+                    {leadSourceTags.map((tag) => <option key={tag.value} value={tag.value}>{tag.label}</option>)}
+                  </select>
+                  <div className="flex flex-wrap gap-2 text-xs text-[color:var(--muted)]">
+                    {leadSourceTags.slice(0, 5).map((tag) => (
+                      <span key={tag.value} className="rounded-full border border-[color:var(--border)] bg-[color:var(--panel)] px-2.5 py-1">{tag.label}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex justify-end gap-3">
+                  <button type="submit" className="rounded-full bg-cyan-400 px-5 py-3 font-semibold text-slate-950">Tạo lead</button>
+                </div>
+              </form>
+            </ModalShell>
           </div>
-          <form action={createManualLead} className="mt-5 grid gap-3 md:grid-cols-[1.1fr_1fr_1fr_220px_220px_auto]">
-            <input name="name" placeholder="Tên khách hàng" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-            <input name="phone" placeholder="Số điện thoại" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-            <input name="email" placeholder="Email" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-            <select name="source_tag" defaultValue="manual" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]">
-              {leadSourceTags.map((tag) => <option key={tag.value} value={tag.value}>{tag.label}</option>)}
-            </select>
-            <input name="owner_name" placeholder="Owner" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)] outline-none" />
-            <button className="rounded-2xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950">Tạo lead</button>
-          </form>
         </ThemeCard>
 
         <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -287,7 +331,22 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
                         <div>{new Intl.DateTimeFormat("vi-VN", { dateStyle: "short", timeStyle: "short" }).format(new Date(lead.created_at))}</div>
                         <div className="mt-1 text-xs">{lead.follow_up_at ? `Hẹn: ${new Intl.DateTimeFormat("vi-VN", { dateStyle: "short", timeStyle: "short" }).format(new Date(lead.follow_up_at))}` : "Chưa có hẹn"}</div>
                       </td>
-                      <td className="px-5 py-4"><Link href={`/admin/leads/${lead.id}`} className="font-medium text-cyan-500 hover:underline">Xử lý</Link></td>
+                      <td className="px-5 py-4">
+                        <div className="flex flex-wrap gap-2">
+                          <Link href={`/admin/leads/${lead.id}`} className="font-medium text-cyan-500 hover:underline">Xử lý</Link>
+                          <ModalShell
+                            trigger={<span className="font-medium text-rose-400 hover:underline">Xoá</span>}
+                            title="Xác nhận xoá lead"
+                            description={`Bạn có chắc muốn xoá lead "${lead.name || lead.phone || lead.id}"? Hành động này không thể hoàn tác.`}
+                          >
+                            <LeadDeleteConfirm
+                              leadLabel={lead.name || lead.phone || lead.id}
+                              action={deleteLead}
+                              extraNote={<input type="hidden" name="id" value={lead.id} />}
+                            />
+                          </ModalShell>
+                        </div>
+                      </td>
                     </tr>
                   );
                 })}
@@ -297,12 +356,15 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
           {!rows.length ? <div className="p-10 text-center text-[color:var(--muted)]">Chưa có lead phù hợp.</div> : null}
         </ThemeCard>
 
-        <div className="mt-8">
-          <SectionTitle eyebrow="CRM Pipeline" title="Kanban lead" description="Bố cục gần với Odoo: nhìn nhanh số lượng theo từng giai đoạn và kéo việc xử lý theo stage." />
-          <LeadsKanbanBoard
-            columns={boardColumns}
-            statusLabels={Object.fromEntries(pipelineStatuses.map((key) => [key, getStatusLabel(key)]))}
-          />
+        <div className="mt-8 flex items-center justify-between gap-4 rounded-[2rem] border border-[color:var(--border)] bg-[color:var(--panel)] px-5 py-4">
+          <div>
+            <div className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">CRM Pipeline</div>
+            <div className="mt-1 text-lg font-semibold text-[color:var(--text)]">Kanban lead</div>
+            <div className="mt-1 text-sm text-[color:var(--muted)]">Đã tách sang trang riêng để kéo thả theo stage.</div>
+          </div>
+          <Link href="/admin/leads/pipeline" className="rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950">
+            Mở CRM Pipeline
+          </Link>
         </div>
 
         <div className="mt-5 flex items-center justify-between text-sm text-[color:var(--muted)]">

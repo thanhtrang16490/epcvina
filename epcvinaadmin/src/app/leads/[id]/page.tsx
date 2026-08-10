@@ -1,5 +1,6 @@
 import { AdminShell } from "@/components/AdminShell";
 import { LeadActivityComposer } from "@/components/LeadActivityComposer";
+import { LeadDeleteConfirm } from "@/components/LeadDeleteConfirm";
 import { ModalShell } from "@/components/ModalShell";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ThemeCard } from "@/components/ui/ThemeCard";
@@ -74,6 +75,18 @@ async function updateLead(formData: FormData) {
   redirect(`/admin/leads/${id}?saved=1`);
 }
 
+async function deleteLead(formData: FormData) {
+  "use server";
+  const id = String(formData.get("id") ?? "");
+  const supabase = createSupabaseAdminClient();
+  if (!supabase || !id) return;
+  const { error } = await supabase.from("crm_leads").delete().eq("id", id);
+  if (error) throw error;
+  revalidatePath("/leads");
+  revalidatePath(`/leads/${id}`);
+  redirect("/admin/leads");
+}
+
 async function updateLeadCard(formData: FormData) {
   "use server";
   const id = String(formData.get("id") ?? "");
@@ -112,6 +125,8 @@ async function updateLeadCard(formData: FormData) {
   if (section === "source") {
     values.source_form = String(formData.get("source_form") ?? "").trim() || null;
     values.landing_page = String(formData.get("landing_page") ?? "").trim() || null;
+    values.content_id = String(formData.get("content_id") ?? "").trim() || null;
+    values.content_slug = String(formData.get("content_slug") ?? "").trim() || null;
     values.utm_source = String(formData.get("utm_source") ?? "").trim() || null;
     values.utm_medium = String(formData.get("utm_medium") ?? "").trim() || null;
     values.utm_campaign = String(formData.get("utm_campaign") ?? "").trim() || null;
@@ -133,6 +148,65 @@ async function updateLeadCard(formData: FormData) {
 
 function Field({ label, value }: { label: string; value: unknown }) {
   return <div><div className="text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">{label}</div><div className="mt-1 break-words text-[color:var(--text)]">{String(value || "—")}</div></div>;
+}
+
+function formatMoneyVnd(value: unknown) {
+  const amount = typeof value === "number" ? value : Number(String(value ?? "").replace(/[^\d.-]/g, ""));
+  if (!Number.isFinite(amount)) return String(value ?? "—");
+  return `${new Intl.NumberFormat("vi-VN", { maximumFractionDigits: 0 }).format(amount)} đ`;
+}
+
+function formatRoofType(value: unknown) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  const labels: Record<string, string> = {
+    flat: "Mái phẳng",
+    gable: "Mái dốc 2 phía",
+    hip: "Mái chóp",
+    shed: "Mái dốc 1 phía",
+    mixed: "Mái hỗn hợp",
+  };
+  return labels[normalized] || String(value ?? "—");
+}
+
+function formatPhaseType(value: unknown) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  const labels: Record<string, string> = {
+    one: "1 pha",
+    single: "1 pha",
+    three: "3 pha",
+    "3phase": "3 pha",
+    "1phase": "1 pha",
+  };
+  return labels[normalized] || String(value ?? "—");
+}
+
+function formatLoadProfile(value: unknown) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  const labels: Record<string, string> = {
+    light: "Nhẹ",
+    medium: "Trung bình",
+    normal: "Bình thường",
+    heavy: "Nặng",
+    "very-heavy": "Rất nặng",
+    residential: "Sinh hoạt",
+    commercial: "Thương mại",
+    industrial: "Công nghiệp",
+  };
+  return labels[normalized] || String(value ?? "—");
+}
+
+function formatBillType(value: unknown) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  const labels: Record<string, string> = {
+    family: "Hộ gia đình",
+    household: "Hộ gia đình",
+    residential: "Nhà ở",
+    business: "Kinh doanh",
+    commercial: "Thương mại",
+    factory: "Nhà máy",
+    industrial: "Công nghiệp",
+  };
+  return labels[normalized] || String(value ?? "—");
 }
 
 const resultSectionLabels: Record<string, string> = {
@@ -165,6 +239,17 @@ function ResultValue({ value }: { value: unknown }) {
   if (typeof value === "boolean") return <>{value ? "Có" : "Không"}</>;
   if (typeof value === "number") return <>{value.toLocaleString("vi-VN")}</>;
   return <>{String(value ?? "—")}</>;
+}
+
+function ResultFieldValue({ fieldKey, value }: { fieldKey: string; value: unknown }) {
+  if (fieldKey === "monthly_bill_vnd" || fieldKey === "bill_after_solar_vnd" || fieldKey.endsWith("_vnd")) {
+    return <>{formatMoneyVnd(value)}</>;
+  }
+  if (fieldKey === "roof_type") return <>{formatRoofType(value)}</>;
+  if (fieldKey === "phase_type") return <>{formatPhaseType(value)}</>;
+  if (fieldKey === "load_profile") return <>{formatLoadProfile(value)}</>;
+  if (fieldKey === "bill_type") return <>{formatBillType(value)}</>;
+  return <ResultValue value={value} />;
 }
 
 function formatDateTime(value: string | null | undefined) {
@@ -329,7 +414,20 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
       <main className="mx-auto w-full max-w-[1600px] px-4 py-4 md:px-6 lg:px-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <SectionTitle eyebrow="CRM · Chi tiết lead" title={lead.name || lead.phone} description={`Nhận lúc ${new Intl.DateTimeFormat("vi-VN", { dateStyle: "medium", timeStyle: "short" }).format(new Date(lead.created_at))}`} />
-          <Link href="/admin/leads" className="rounded-full border border-[color:var(--border)] px-4 py-2 text-sm text-[color:var(--text)]">← Danh sách lead</Link>
+          <div className="flex flex-wrap gap-2">
+            <Link href="/admin/leads" className="rounded-full border border-[color:var(--border)] px-4 py-2 text-sm text-[color:var(--text)]">← Danh sách lead</Link>
+            <ModalShell
+              trigger={<span className="rounded-full border border-rose-400/30 bg-rose-400/10 px-4 py-2 text-sm text-rose-300">Xoá lead</span>}
+              title="Xác nhận xoá lead"
+              description={`Bạn có chắc muốn xoá lead "${lead.name || lead.phone || lead.id}"? Hành động này không thể hoàn tác.`}
+            >
+              <LeadDeleteConfirm
+                leadLabel={lead.name || lead.phone || lead.id}
+                action={deleteLead}
+                extraNote={<input type="hidden" name="id" value={lead.id} />}
+              />
+            </ModalShell>
+          </div>
         </div>
         <div className="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_minmax(360px,0.92fr)]">
           <div className="space-y-6">
@@ -493,7 +591,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
               <Field label="Họ tên" value={lead.name} /><Field label="Điện thoại" value={lead.phone} />
               <Field label="Email" value={lead.email} /><Field label="Địa chỉ" value={lead.address} />
               <Field label="Loại hệ thống" value={lead.system_type} /><Field label="Diện tích mái" value={lead.roof_area} />
-              <Field label="Hóa đơn/tháng" value={lead.monthly_bill} /><Field label="Công suất đề xuất" value={lead.system_size_kw ? `${lead.system_size_kw} kWp` : null} />
+              <Field label="Hóa đơn/tháng" value={formatMoneyVnd(lead.monthly_bill)} /><Field label="Công suất đề xuất" value={lead.system_size_kw ? `${lead.system_size_kw} kWp` : null} />
               <div className="sm:col-span-2"><Field label="Nhu cầu / nội dung" value={lead.message} /></div>
             </ThemeCard>
             <ThemeCard className="grid gap-5 p-6 sm:grid-cols-2">
@@ -513,6 +611,14 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                       <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                         Landing page
                         <input name="landing_page" defaultValue={lead.landing_page || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Content ID
+                        <input name="content_id" defaultValue={lead.content_id || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
+                      </label>
+                      <label className="grid gap-2 text-sm text-[color:var(--muted)]">
+                        Content slug
+                        <input name="content_slug" defaultValue={lead.content_slug || ""} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3 text-[color:var(--text)]" />
                       </label>
                       <label className="grid gap-2 text-sm text-[color:var(--muted)]">
                         UTM source
@@ -548,6 +654,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                 }
               />
               <Field label="Form nguồn" value={lead.source_form} /><Field label="Landing page" value={lead.landing_page} />
+              <Field label="Content ID" value={lead.content_id} /><Field label="Content slug" value={lead.content_slug} />
               <Field label="UTM source / medium" value={[lead.utm_source, lead.utm_medium].filter(Boolean).join(" / ")} /><Field label="UTM campaign" value={lead.utm_campaign} />
               <Field label="UTM term" value={lead.utm_term} /><Field label="GCLID / FBCLID" value={lead.gclid || lead.fbclid} />
             </ThemeCard>
@@ -566,7 +673,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                             .map(([key, value]) => (
                               <div key={key} className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
                                 <div className="text-xs text-[color:var(--muted)]">{resultFieldLabels[key] || key.replaceAll("_", " ")}</div>
-                                <div className="mt-1 break-words font-medium text-[color:var(--text)]"><ResultValue value={value} /></div>
+                                <div className="mt-1 break-words font-medium text-[color:var(--text)]"><ResultFieldValue fieldKey={key} value={value} /></div>
                               </div>
                             ))}
                         </div>

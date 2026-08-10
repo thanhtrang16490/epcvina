@@ -28,6 +28,7 @@ export default async function AdminHomePage() {
               <Link href="/admin/combos" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Combo</Link>
               <Link href="/admin/products" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Sản phẩm</Link>
               <Link href="/admin/brands" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Brand</Link>
+              <Link href="/admin/content" className="rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-2 text-sm text-[color:var(--text)]">Content</Link>
             </div>
           </div>
 
@@ -42,6 +43,7 @@ export default async function AdminHomePage() {
               <Link href="/admin/brands" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Brand</Link>
               <Link href="/admin/product-categories" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Danh mục sản phẩm</Link>
               <Link href="/admin/combo-categories" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Danh mục combo</Link>
+              <Link href="/admin/content" className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-4 text-[color:var(--text)]">Content Hub</Link>
             </div>
           </div>
 

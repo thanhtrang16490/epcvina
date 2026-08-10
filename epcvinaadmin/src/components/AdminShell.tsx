@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { AuthGate } from "@/components/AuthGate";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -36,12 +36,36 @@ const navGroups: NavGroup[] = [
     icon: "orders",
     description: "Khách hàng, dự án và đơn hàng",
     items: [
-      { href: "/admin/leads", label: "Lead từ website", icon: "customer", badge: "CRM" },
       { href: "/orders", label: "Đơn hàng", icon: "orders" },
       { href: "/admin/projects", label: "Dự án", icon: "project" },
       { href: "/admin/customers", label: "Khách hàng", icon: "customer" },
       { href: "/admin/discounts", label: "Chiết khấu", icon: "card" },
       { href: "/admin/payment-policies", label: "Thanh toán", icon: "card" },
+    ],
+  },
+  {
+    id: "crm",
+    label: "CRM",
+    icon: "customer",
+    description: "Tổng hợp và quản lý lead đa nguồn",
+    items: [
+      { href: "/admin/leads", label: "Bảng lead chung", icon: "customer", badge: "CRM" },
+      { href: "/admin/leads/pipeline", label: "CRM Pipeline", icon: "grid", badge: "Kanban" },
+    ],
+  },
+  {
+    id: "content",
+    label: "Content",
+    icon: "card",
+    description: "Bài viết, lịch đăng và AI",
+    items: [
+      { href: "/admin/content", label: "Content Hub", icon: "card", badge: "New" },
+      { href: "/admin/content/review", label: "Review Queue", icon: "check" },
+      { href: "/admin/content/settings", label: "AI Settings", icon: "settings", badge: "API" },
+      { href: "/admin/content/studio", label: "AI Studio", icon: "sun" },
+      { href: "/admin/content/new", label: "Tạo bài", icon: "card" },
+      { href: "/admin/content/calendar", label: "Calendar", icon: "grid" },
+      { href: "/admin/content/facebook-sync", label: "Facebook Sync", icon: "grid", badge: "Sync" },
     ],
   },
   {
@@ -92,7 +116,9 @@ const navGroups: NavGroup[] = [
 function isRouteActive(pathname: string | null, href: string) {
   if (!pathname) return false;
   if (href === "/") return pathname === "/";
-  return pathname === href || pathname.startsWith(`${href}/`);
+  if (pathname === href) return true;
+  if (href === "/admin") return pathname === "/admin";
+  return pathname.startsWith(`${href}/`);
 }
 
 function NavIcon({ kind }: { kind: string }) {
@@ -199,6 +225,12 @@ function NavIcon({ kind }: { kind: string }) {
           <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       );
+    case "check":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" className={common} aria-hidden="true">
+          <path d="M20 6 9 17l-5-5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
     case "settings":
     default:
       return (
@@ -228,13 +260,16 @@ export function AdminShell({ children }: { children: ReactNode }) {
   });
   const [themeTooltip, setThemeTooltip] = useState(() => (theme === "dark" ? "Chuyển sang light mode" : "Chuyển sang dark mode"));
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
-    dashboard: true,
-    sales: true,
-    catalog: true,
+    dashboard: false,
+    sales: false,
+    catalog: false,
     partners: false,
+    content: false,
     storefront: false,
     system: false,
   });
+  const [hoverTarget, setHoverTarget] = useState<string | null>(null);
+  const hoverCloseTimerRef = useRef<number | null>(null);
   const shellText = theme === "light" ? "text-slate-900" : "text-white";
   const sidebarClass =
     theme === "light"
@@ -351,13 +386,32 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const activeGroup = navGroups.find((group) => group.items.some((item) => isRouteActive(pathname, item.href)));
-    if (!activeGroup) return;
-    setOpenGroups((value) => ({ ...value, [activeGroup.id]: true }));
+    setHoverTarget(null);
+    setOpenGroups(
+      navGroups.reduce<Record<string, boolean>>((acc, group) => {
+        acc[group.id] = group.id === activeGroup?.id;
+        return acc;
+      }, {})
+    );
   }, [pathname]);
 
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (sidebarExpanded) {
+      setHoverTarget(null);
+    }
+  }, [sidebarExpanded]);
+
+  useEffect(() => {
+    return () => {
+      if (hoverCloseTimerRef.current !== null) {
+        window.clearTimeout(hoverCloseTimerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const onStorage = (event: StorageEvent) => {
@@ -398,7 +452,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
           />
         ) : null}
         <aside
-          className={`fixed left-0 top-0 z-50 h-dvh overflow-y-auto border-r border-[color:var(--border)] bg-[color:var(--panel-strong)]/90 backdrop-blur-2xl shadow-[4px_0_28px_rgba(0,0,0,0.18)] px-2 py-3 transition-[width,transform] duration-300 ease-out lg:px-3 lg:py-4 ${
+          className={`group fixed left-0 top-0 z-50 h-dvh overflow-y-auto border-r border-[color:var(--border)] bg-[color:var(--panel-strong)]/90 backdrop-blur-2xl shadow-[4px_0_28px_rgba(0,0,0,0.18)] px-2 py-3 transition-[width,transform,box-shadow] duration-300 ease-out lg:px-3 lg:py-4 lg:hover:shadow-[8px_0_32px_rgba(0,0,0,0.24)] ${
             isMobile
               ? `${mobileSidebarOpen ? "w-[86vw] max-w-[320px] translate-x-0" : "w-[86vw] max-w-[320px] -translate-x-full"}`
               : sidebarExpanded
@@ -418,7 +472,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
                   <span className="text-[11px] font-semibold tracking-[0.18em] text-orange-500">E</span>
                 </div>
-                <div className={sidebarExpanded ? "min-w-0" : "sr-only"}>
+                <div className={`${sidebarExpanded ? "min-w-0" : "sr-only"} transition-all duration-200`}>
                   <div className="truncate text-sm font-semibold text-white">EPCVINA Solar</div>
                   <div className="text-[10px] uppercase tracking-[0.24em] text-orange-500">Admin</div>
                 </div>
@@ -447,7 +501,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
             </div>
 
               {sidebarExpanded ? (
-                <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-sm">
+                <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 px-3 py-3 text-sm transition-all duration-200">
                   <div className={mutedText}>Đang đăng nhập</div>
                   <div className={`mt-0.5 truncate font-medium ${theme === "light" ? "text-slate-900" : "text-white"}`}>{identityName}</div>
                 </div>
@@ -458,20 +512,62 @@ export function AdminShell({ children }: { children: ReactNode }) {
               )}
 
               <nav className="mt-3 space-y-1.5 lg:mt-4">
-                {navGroups.map((group) => {
-                  const groupActive = group.items.some((item) => isRouteActive(pathname, item.href));
-                  const expanded = openGroups[group.id] ?? false;
-                  return (
-                    <div key={group.id} className="space-y-1">
-                      <button
-                        type="button"
-                        onClick={() => setOpenGroups((value) => ({ ...value, [group.id]: !value[group.id] }))}
-                        className={`flex w-full items-center gap-2 rounded-2xl border px-2.5 py-2 text-sm transition ${groupActive ? navActive : navIdle} ${sidebarExpanded ? "" : "justify-center px-2"} ${isMobile ? "touch-manipulation active:scale-[0.99]" : ""}`}
-                        aria-expanded={expanded}
-                        aria-label={sidebarExpanded ? `${expanded ? "Thu" : "Mở"} ${group.label}` : group.label}
-                        title={sidebarExpanded ? group.description : group.label}
-                      >
-                        <NavIcon kind={group.icon} />
+              {navGroups.map((group) => {
+                const groupActive = group.items.some((item) => isRouteActive(pathname, item.href));
+                const expanded = openGroups[group.id] ?? false;
+                const isHoverOpen = !sidebarExpanded && hoverTarget === group.id;
+                const shouldShowSubmenu = sidebarExpanded ? expanded : expanded || isHoverOpen;
+
+                const openCollapsedGroup = () => {
+                  if (sidebarExpanded) return;
+                  if (hoverCloseTimerRef.current !== null) {
+                    window.clearTimeout(hoverCloseTimerRef.current);
+                    hoverCloseTimerRef.current = null;
+                  }
+                  setHoverTarget(group.id);
+                  setOpenGroups(
+                    navGroups.reduce<Record<string, boolean>>((acc, navGroup) => {
+                      acc[navGroup.id] = navGroup.id === group.id;
+                      return acc;
+                    }, {})
+                  );
+                };
+
+                const closeCollapsedGroup = () => {
+                  if (sidebarExpanded) return;
+                  if (hoverCloseTimerRef.current !== null) {
+                    window.clearTimeout(hoverCloseTimerRef.current);
+                  }
+                  hoverCloseTimerRef.current = window.setTimeout(() => {
+                    setOpenGroups((value) => ({ ...value, [group.id]: false }));
+                    setHoverTarget((value) => (value === group.id ? null : value));
+                  }, 90);
+                };
+
+                return (
+                  <div
+                    key={group.id}
+                    className="group/nav relative space-y-1"
+                    onMouseEnter={openCollapsedGroup}
+                    onMouseLeave={closeCollapsedGroup}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (sidebarExpanded) {
+                          setOpenGroups((value) => ({ ...value, [group.id]: !value[group.id] }));
+                        } else {
+                          openCollapsedGroup();
+                        }
+                      }}
+                      className={`flex w-full items-center gap-2 rounded-2xl border px-2.5 py-2 text-sm transition duration-200 ${groupActive ? navActive : navIdle} ${sidebarExpanded ? "" : "justify-center px-2"} ${isMobile ? "touch-manipulation active:scale-[0.99]" : "hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(0,0,0,0.12)]"}`}
+                      aria-expanded={expanded}
+                      aria-label={sidebarExpanded ? `${expanded ? "Thu" : "Mở"} ${group.label}` : group.label}
+                      title={sidebarExpanded ? group.description : group.label}
+                    >
+                        <span className="transition-transform duration-200 group-hover/nav:scale-110 group-hover/nav:text-[color:var(--accent)]">
+                          <NavIcon kind={group.icon} />
+                        </span>
                         <span className={sidebarExpanded ? "flex-1 text-left" : "sr-only"}>
                           <span className="block font-medium">{group.label}</span>
                           <span className={`mt-0.5 block text-[11px] leading-4 ${groupActive ? "opacity-70" : "opacity-55"}`}>{group.description}</span>
@@ -485,17 +581,54 @@ export function AdminShell({ children }: { children: ReactNode }) {
                         )}
                       </button>
 
-                      {expanded && sidebarExpanded && (
-                        <div className={`ml-3 space-y-1 border-l pl-2.5 ${theme === "light" ? "border-slate-200" : "border-white/10"}`}>
+                    {shouldShowSubmenu && sidebarExpanded && (
+                      <div className={`ml-3 space-y-1 border-l pl-2.5 ${theme === "light" ? "border-slate-200" : "border-white/10"}`}>
+                        {group.items.map((item) => {
+                          const active = isRouteActive(pathname, item.href);
+                          return (
+                            <Link
+                              key={item.href}
+                              href={item.href as never}
+                              className={`flex items-center gap-2.5 rounded-xl border px-3 py-2 text-sm transition duration-200 ${active ? navChildActive : navChildIdle} ${isMobile ? "touch-manipulation active:scale-[0.99]" : "hover:-translate-x-0.5 hover:border-[color:var(--accent)]/35 hover:bg-white/8 hover:shadow-[0_8px_18px_rgba(0,0,0,0.10)]"}`}
+                            >
+                              <NavIcon kind={item.icon} />
+                              <span className="min-w-0 flex-1 truncate">{item.label}</span>
+                              {item.badge ? (
+                                <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${active ? "bg-white/50 text-orange-700" : "bg-white/8 text-[color:var(--muted)]"}`}>
+                                  {item.badge}
+                                </span>
+                              ) : (
+                                <span className="text-xs opacity-45">→</span>
+                              )}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                    {!sidebarExpanded && shouldShowSubmenu ? (
+                      <div
+                        className={`pointer-events-none absolute left-full top-0 z-50 ml-2 w-[240px] rounded-[1.25rem] border border-[color:var(--border)] bg-[color:var(--panel-strong)]/98 p-2.5 opacity-0 translate-x-1 shadow-[0_20px_45px_rgba(0,0,0,0.22)] transition-all duration-180 ease-out group-hover/nav:pointer-events-auto group-hover/nav:translate-x-0 group-hover/nav:opacity-100 ${
+                          groupActive ? "ring-1 ring-[color:var(--accent)]/20" : ""
+                        }`}
+                        onMouseEnter={openCollapsedGroup}
+                        onMouseLeave={closeCollapsedGroup}
+                      >
+                        <div className="mb-2 px-2 pt-1">
+                          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[color:var(--muted)]">{group.label}</div>
+                          <div className="mt-1 text-xs text-[color:var(--muted)]">{group.description}</div>
+                        </div>
+                        <div className="space-y-1">
                           {group.items.map((item) => {
                             const active = isRouteActive(pathname, item.href);
                             return (
                               <Link
                                 key={item.href}
                                 href={item.href as never}
-                                className={`flex items-center gap-2.5 rounded-xl border px-3 py-2 text-sm transition ${active ? navChildActive : navChildIdle} ${isMobile ? "touch-manipulation active:scale-[0.99]" : ""}`}
+                                className={`flex items-center gap-2.5 rounded-xl border px-3 py-2 text-sm transition duration-150 ease-out ${active ? navChildActive : navChildIdle} hover:-translate-x-0.5 hover:border-[color:var(--accent)]/35 hover:bg-white/8`}
                               >
-                                <NavIcon kind={item.icon} />
+                                <span className="transition-transform duration-200 group-hover/nav:scale-110">
+                                  <NavIcon kind={item.icon} />
+                                </span>
                                 <span className="min-w-0 flex-1 truncate">{item.label}</span>
                                 {item.badge ? (
                                   <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${active ? "bg-white/50 text-orange-700" : "bg-white/8 text-[color:var(--muted)]"}`}>
@@ -508,11 +641,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
                             );
                           })}
                         </div>
-                      )}
-                      {!sidebarExpanded && groupActive ? <div className="hidden" /> : null}
-                    </div>
-                  );
-                })}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })}
               </nav>
 
               <div className="mt-4 lg:mt-5">

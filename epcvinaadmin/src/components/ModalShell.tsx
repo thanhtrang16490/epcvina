@@ -7,11 +7,12 @@ type Props = {
   title: string;
   description?: string;
   defaultOpen?: boolean;
-  children: ReactNode;
+  children: ReactNode | ((close: () => void) => ReactNode);
 };
 
 export function ModalShell({ trigger, title, description, defaultOpen = false, children }: Props) {
   const [open, setOpen] = useState(defaultOpen);
+  const close = () => setOpen(false);
 
   useEffect(() => {
     setOpen(defaultOpen);
@@ -50,15 +51,13 @@ export function ModalShell({ trigger, title, description, defaultOpen = false, c
                   <h3 className="mt-1 text-xl font-semibold text-[color:var(--text)]">{title}</h3>
                   {description && <p className="mt-2 max-w-3xl text-sm leading-6 text-[color:var(--muted)]">{description}</p>}
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10"
-                >
+                <button type="button" onClick={close} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-[color:var(--text)] transition hover:bg-white/10">
                   Đóng
                 </button>
               </div>
-              <div className="max-h-[calc(92vh-76px)] overflow-y-auto px-5 py-5">{children}</div>
+              <div className="max-h-[calc(92vh-76px)] overflow-y-auto px-5 py-5">
+                {typeof children === "function" ? children(close) : children}
+              </div>
             </div>
           </div>
         </div>
