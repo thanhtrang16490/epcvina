@@ -6,10 +6,12 @@ interface Props {
   description: string;
   variant: 'app-store' | 'chplay';
   noindex?: boolean;
+  ogImage?: string;
 }
 
-const { title, description, variant, noindex = true } = Astro.props;
+const { title, description, variant, noindex = true, ogImage = '/opengraph-epcvina-medium.jpeg' } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(ogImage, Astro.site);
 
 const isAppStore = variant === 'app-store';
 const brand = isAppStore
@@ -26,6 +28,19 @@ const brand = isAppStore
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL.href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:site_name" content="EPCVINA Solar" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL.href} />
   </head>
   <body class="min-h-screen text-slate-900 antialiased" style={`background:${brand.tint};`}>
     <div class={`store-app store-app--${variant}`}>
