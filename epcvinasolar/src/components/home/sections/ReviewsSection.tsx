@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Star, ArrowRight } from '@phosphor-icons/react';
 
 const reviews = [
@@ -54,12 +53,8 @@ export default function ReviewsSection() {
     <section className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <motion.div
+        <div
           className="text-center mb-10"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
         >
           <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-display">
             Khách hàng nói gì về chúng tôi?
@@ -74,7 +69,7 @@ export default function ReviewsSection() {
             Trở thành khách hàng tiếp theo
             <ArrowRight className="h-4 w-4" weight="bold" />
           </a>
-        </motion.div>
+        </div>
 
         {/* Horizontal scroll carousel */}
         <p className="sm:hidden text-xs text-gray-600 text-center mb-2 animate-pulse">&larr; Vuốt để xem thêm &rarr;</p>
@@ -85,13 +80,9 @@ export default function ReviewsSection() {
           <div className="absolute right-0 top-0 bottom-4 w-6 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10 sm:hidden" aria-hidden="true" />
           <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory flex gap-5 pb-4 touch-pan-x">
           {reviews.map((review, i) => (
-            <motion.div
+            <div
               key={review.name + review.location}
               className="w-[320px] flex-shrink-0 snap-start bg-white border border-gray-200 rounded-xl p-6 flex flex-col"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.4 }}
             >
               {/* Typographic quotation mark */}
               <span className="text-4xl leading-none text-orange-200 font-serif mb-2 select-none" aria-hidden="true">&ldquo;</span>
@@ -128,7 +119,7 @@ export default function ReviewsSection() {
                 <span className="font-medium">{review.capacity}</span>
                 <span>{review.completion}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
           </div>
         </div>

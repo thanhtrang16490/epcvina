@@ -3,7 +3,18 @@ import { buildFaqSchema } from '../lib/schema';
 
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell';
-import SolarFullPage from '../components/home/layout/SolarFullPage';
+import HeaderBar from '../components/home/layout/HeaderBar';
+import HeroSection from '../components/home/hero/HeroSection';
+import ComparisonSection from '../components/home/combos/ComparisonSection';
+import SolarSolutionFinder from '../components/home/tools/SolarSolutionFinder';
+import BenefitsSection from '../components/home/sections/BenefitsSection';
+import MidPageCTA from '../components/home/sections/MidPageCTA';
+import ProcessSection from '../components/home/sections/ProcessSection';
+import ProjectsPreviewSection from '../components/home/sections/ProjectsPreviewSection';
+import ReviewsSection from '../components/home/sections/ReviewsSection';
+import FAQSection from '../components/home/sections/FAQSection';
+import CTASection from '../components/home/contact/CTASection';
+import FooterSection from '../components/home/layout/FooterSection';
 
 // WebSite schema with SearchAction for Google
 const websiteSchema = {
@@ -86,6 +97,20 @@ const videoSchema = {
     },
   ]) ?? { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [] })} />
   <DashboardShell client:idle showFooter={false}>
-    <SolarFullPage client:idle />
+    <HeaderBar />
+    <div class="lg:-ml-16 lg:w-[calc(100%+4rem)]">
+      <HeroSection />
+    </div>
+    <ComparisonSection />
+    <SolarSolutionFinder client:visible />
+    <BenefitsSection />
+    <MidPageCTA variant="benefits" />
+    <ProcessSection />
+    <ProjectsPreviewSection />
+    <ReviewsSection />
+    <MidPageCTA variant="reviews" />
+    <FAQSection />
+    <CTASection client:visible />
+    <FooterSection />
   </DashboardShell>
 </DashboardLayout>

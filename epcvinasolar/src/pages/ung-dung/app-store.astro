@@ -14,17 +14,17 @@ const screenshots = [
 ];
 
 const ratings = [
-  { value: '4.9', label: 'Xếp hạng', detail: '2,4 N đánh giá' },
-  { value: '12+', label: 'Độ tuổi', detail: 'Điều khiển in-app' },
-  { value: '#1', label: 'BXH', detail: 'Công cụ nội bộ' },
+  { value: '4.9', label: 'Xếp hạng nội bộ', detail: '2,4 N đánh giá mô phỏng' },
+  { value: '12+', label: 'Độ tuổi', detail: 'Phù hợp khách hàng trưởng thành' },
   { value: 'EPCVINA', label: 'Nhà phát triển', detail: 'Đội ngũ nội bộ' },
-  { value: 'VI + 1', label: 'Ngôn ngữ', detail: 'Tiếng Việt, English' },
+  { value: 'VI + EN', label: 'Ngôn ngữ', detail: 'Tiếng Việt và English' },
   { value: '24,6 MB', label: 'Kích cỡ', detail: 'Tối ưu gọn nhẹ' },
+  { value: 'Offline', label: 'Trạng thái', detail: 'Xem dữ liệu đã đồng bộ' },
 ];
 
 const releaseNotes = [
-  'Đã sửa một số lỗi nhỏ và cải thiện ứng dụng để mang đến trải nghiệm mượt mà hơn.',
-  'Tối ưu hiển thị trên mobile, điều hướng nhanh hơn và tải dữ liệu ổn định hơn.',
+  'Tối ưu điều hướng giữa dự án, hỗ trợ và tài liệu để mở đúng màn hình nhanh hơn.',
+  'Cải thiện chế độ xem trên mobile, giúp đọc trạng thái và phản hồi rõ ràng hơn.',
 ];
 
 const privacyData = [
@@ -52,7 +52,7 @@ const privacyData = [
         EPCVINA
       </a>
       <span class="text-slate-300">/</span>
-      <span class="font-medium text-slate-500">App Store nội bộ</span>
+      <span class="font-medium text-slate-500">Ứng dụng EPCVINA</span>
     </div>
 
     <div class="rounded-[2.25rem] bg-white p-5 shadow-[0_20px_90px_rgba(15,23,42,0.08)] ring-1 ring-black/5 sm:p-6 lg:p-8">
@@ -63,18 +63,18 @@ const privacyData = [
               
             </div>
             <div class="min-w-0 flex-1 pt-1">
-              <p class="text-3xl font-semibold tracking-tight text-slate-950 font-display sm:text-4xl">EPCVINA</p>
-              <p class="mt-2 text-2xl font-medium tracking-tight text-slate-700 font-display sm:text-3xl">Nhanh. Ổn định. Riêng tư.</p>
+              <p class="text-3xl font-semibold tracking-tight text-slate-950 font-display sm:text-4xl">EPCVINA Mobile</p>
+              <p class="mt-2 text-2xl font-medium tracking-tight text-slate-700 font-display sm:text-3xl">Một nơi để theo dõi. Một nơi để xử lý.</p>
               <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-slate-500">
                 <span>Miễn phí</span>
                 <span>·</span>
-                <span>Mua in-app</span>
-                <a href="/lien-he" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
-                  Chia sẻ
+                <span>Không quảng cáo</span>
+                <a href="/ung-dung/epcvina-app" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
+                  Mở app web
                 </a>
               </div>
               <div class="mt-5 flex flex-wrap gap-2">
-                {['Tất cả', 'Nổi bật', 'Năng lượng', 'Theo dõi', 'Hỗ trợ', 'Tài liệu'].map((category, index) => (
+                {['Theo dõi dự án', 'Hỗ trợ kỹ thuật', 'Tài liệu', 'Báo cáo', 'Riêng tư', 'Tối ưu mobile'].map((category, index) => (
                   <span class={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ${index === 0 ? 'bg-black text-white' : 'bg-slate-100 text-slate-600'}`}>
                     {category}
                   </span>
@@ -89,29 +89,80 @@ const privacyData = [
               <span>★</span>
               <span>2,4 N đánh giá</span>
             </span>
-            <span>12+ Điều khiển in-app</span>
-            <span>#1 Công cụ nội bộ</span>
-            <span>Nhà phát triển EPCVINA</span>
-            <span>VI + 1 ngôn ngữ</span>
+            <span>12+ giao diện nội bộ</span>
+            <span>EPCVINA</span>
+            <span>VI + EN</span>
             <span>24,6 MB</span>
           </div>
 
           <div class="space-y-3 text-[15px] leading-7 text-slate-600">
-            <p>
-              Giao diện nội bộ lấy cảm hứng từ App Store, dành cho việc giới thiệu app EPCVINA mà không đưa người dùng ra ngoài hệ thống.
-            </p>
-            <p>
-              Ứng dụng hỗ trợ theo dõi dự án, nhận hỗ trợ kỹ thuật và tra cứu tài liệu ngay trong hệ sinh thái EPCVINA.
-            </p>
+            <p>Giao diện nội bộ lấy cảm hứng từ App Store, nhưng vẫn giữ người dùng ở trong hệ sinh thái EPCVINA.</p>
+            <p>Ứng dụng hỗ trợ theo dõi dự án, nhận hỗ trợ kỹ thuật và tra cứu tài liệu trong một luồng gọn và riêng tư.</p>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-3">
+            {features.map((feature) => (
+              <div class="rounded-[1.5rem] border border-slate-200 bg-white p-4 shadow-sm">
+                <p class="text-sm font-semibold text-slate-950 font-display">{feature.title}</p>
+                <p class="mt-1 text-sm leading-6 text-slate-600">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="rounded-[1.75rem] border border-slate-200 bg-white p-4 sm:p-5 shadow-sm">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <div>
+                <p class="text-xs uppercase tracking-[0.22em] text-slate-500 font-display">Sơ đồ luồng</p>
+                <p class="mt-1 text-sm font-semibold text-slate-900 font-display">Cách app được dùng trong công trình</p>
+              </div>
+              <span class="text-xs text-slate-400">Edit view</span>
+            </div>
+            <div class="overflow-x-auto">
+              <svg viewBox="0 0 960 220" class="h-[220px] min-w-[760px] w-full" role="img" aria-label="Sơ đồ luồng sử dụng ứng dụng EPCVINA">
+                <defs>
+                  <linearGradient id="flowAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#0f172a" />
+                    <stop offset="100%" stop-color="#f97316" />
+                  </linearGradient>
+                  <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L0,6 L8,3 z" fill="#cbd5e1" />
+                  </marker>
+                </defs>
+
+                <rect x="24" y="32" rx="28" ry="28" width="240" height="156" fill="#ffffff" stroke="#cbd5e1" />
+                <rect x="360" y="32" rx="28" ry="28" width="240" height="156" fill="#0f172a" stroke="#0f172a" />
+                <rect x="696" y="32" rx="28" ry="28" width="240" height="156" fill="#ffffff" stroke="#cbd5e1" />
+
+                <path d="M264 110H336" stroke="url(#flowAccent)" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowHead)" />
+                <path d="M600 110H672" stroke="url(#flowAccent)" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowHead)" />
+
+                <circle cx="120" cy="72" r="14" fill="#0f172a" />
+                <circle cx="456" cy="72" r="14" fill="#f97316" />
+                <circle cx="792" cy="72" r="14" fill="#0f172a" />
+
+                <text x="120" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">1</text>
+                <text x="456" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">2</text>
+                <text x="792" y="78" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">3</text>
+
+                <text x="48" y="120" font-size="20" font-weight="700" fill="#0f172a">Dự án</text>
+                <text x="48" y="148" font-size="14" fill="#475569">Mốc tiến độ, nghiệm thu, bàn giao</text>
+
+                <text x="384" y="120" font-size="20" font-weight="700" fill="#ffffff">Hỗ trợ</text>
+                <text x="384" y="148" font-size="14" fill="#cbd5e1">Gửi yêu cầu, xem trạng thái xử lý</text>
+
+                <text x="720" y="120" font-size="20" font-weight="700" fill="#0f172a">Tài liệu</text>
+                <text x="720" y="148" font-size="14" fill="#475569">Catalogue, checklist, hướng dẫn</text>
+              </svg>
+            </div>
           </div>
 
           <div class="rounded-[1.75rem] border border-slate-200 bg-[#fbfbfd] p-4 sm:p-5">
             <div class="mb-4 flex items-center justify-between">
               <div>
                 <p class="text-xs uppercase tracking-[0.22em] text-slate-500 font-display">Ảnh chụp màn hình</p>
-                <p class="mt-1 text-sm font-semibold text-slate-900 font-display">Xem nhanh luồng sử dụng</p>
+                <p class="mt-1 text-sm font-semibold text-slate-900 font-display">Xem nhanh các màn hình chính</p>
               </div>
-              <span class="text-xs text-slate-400">Swipe để xem</span>
+              <span class="text-xs text-slate-400">Vuốt để xem</span>
             </div>
             <div class="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory">
               {screenshots.map((shot, index) => (
@@ -150,11 +201,11 @@ const privacyData = [
             <div class="flex items-center gap-4">
               <div class="flex h-14 w-14 items-center justify-center rounded-[1.25rem] bg-gradient-to-br from-slate-950 to-slate-700 text-xl text-white"></div>
               <div>
-                <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-display">App Store nội bộ</p>
+                <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-display">Ứng dụng EPCVINA</p>
                 <p class="text-base font-semibold text-slate-900 font-display">EPCVINA Mobile</p>
               </div>
               <a href="/ung-dung/chplay" class="ml-auto inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
-                Xem CH Play nội bộ
+                Xem CH Play
               </a>
             </div>
           </div>
@@ -163,13 +214,13 @@ const privacyData = [
         <div class="space-y-5">
           <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-[#fbfbfd]">
             <div class="border-b border-slate-200 px-5 py-4">
-              <div class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-black text-white"></div>
-                <div>
-                  <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-display">App Store nội bộ</p>
+                <div class="flex items-center gap-3">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-black text-white"></div>
+                  <div>
+                  <p class="text-xs uppercase tracking-[0.2em] text-slate-500 font-display">Ứng dụng EPCVINA</p>
                   <p class="text-sm font-semibold text-slate-900 font-display">EPCVINA Mobile</p>
+                  </div>
                 </div>
-              </div>
             </div>
             <div class="space-y-4 p-5">
               <div class="rounded-[1.5rem] bg-white p-4 shadow-sm ring-1 ring-black/5">
@@ -204,7 +255,7 @@ const privacyData = [
           </div>
 
           <div class="rounded-[1.75rem] border border-slate-200 bg-white p-5">
-            <p class="text-xs uppercase tracking-[0.22em] text-slate-500 font-display">Xếp hạng & nhận xét</p>
+            <p class="text-xs uppercase tracking-[0.22em] text-slate-500 font-display">Xếp hạng và chi tiết</p>
             <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {ratings.map((item) => (
                 <div class="rounded-[1.25rem] bg-slate-50 p-4">
@@ -220,9 +271,9 @@ const privacyData = [
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-xs uppercase tracking-[0.22em] text-slate-500 font-display">Tính Năng Mới</p>
-                <p class="mt-1 text-sm font-semibold text-slate-900 font-display">Lịch sử phiên bản</p>
+                <p class="mt-1 text-sm font-semibold text-slate-900 font-display">Phiên bản gần đây</p>
               </div>
-              <button class="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">Thêm</button>
+              <button class="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700">Xem tất cả</button>
             </div>
             <div class="mt-4 space-y-4 text-sm leading-6 text-slate-600">
               {releaseNotes.map((note, index) => (
@@ -237,10 +288,10 @@ const privacyData = [
           <div class="rounded-[1.75rem] border border-slate-200 bg-white p-5">
             <div class="flex items-center justify-between">
               <div>
-                <p class="text-xs uppercase tracking-[0.22em] text-slate-500 font-display">Chế độ riêng tư cho ứng dụng</p>
-                <p class="mt-1 text-sm font-semibold text-slate-900 font-display">Dữ liệu có thể được thu thập</p>
+                <p class="text-xs uppercase tracking-[0.22em] text-slate-500 font-display">Chế độ riêng tư</p>
+                <p class="mt-1 text-sm font-semibold text-slate-900 font-display">Dữ liệu được sử dụng</p>
               </div>
-              <span class="text-xs text-slate-400">Thông tin nội bộ</span>
+              <span class="text-xs text-slate-400">Thông tin minh bạch</span>
             </div>
             <div class="mt-4 space-y-4">
               {privacyData.map((block) => (

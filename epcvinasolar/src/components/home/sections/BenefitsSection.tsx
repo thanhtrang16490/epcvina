@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Lightning, ShieldCheck, Cpu, CloudRain, Wrench, Building } from '@phosphor-icons/react';
 import type { Icon } from '@phosphor-icons/react';
 
@@ -40,12 +39,8 @@ export default function BenefitsSection() {
     <section className="py-14 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <motion.div
+        <div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
         >
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-red-600 mb-3 font-display">
             TẠI SAO CHỌN EPCVINA SOLAR
@@ -61,20 +56,16 @@ export default function BenefitsSection() {
             Mỗi công trình điện mặt trời đều được đội ngũ kỹ sư có chứng chỉ hành nghề khảo sát thực tế, thiết kế bản vẽ kỹ thuật, tính toán kết cấu mái,
             giải pháp chống thấm, tiếp địa, chống sét và bảo vệ quá áp — đảm bảo hệ thống hoạt động ổn định 25–30 năm.
           </p>
-        </motion.div>
+        </div>
 
         {/* Benefits grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {benefits.map((benefit, i) => {
             const Icon = benefit.icon;
             return (
-              <motion.div
+              <div
                 key={benefit.title}
                 className="group relative bg-white border border-gray-200 rounded-2xl p-6 hover:border-red-200 hover:-translate-y-1 hover:shadow-lg transition-all duration-200"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ delay: i * 0.07, duration: 0.4 }}
               >
                 <div className="flex items-start gap-4">
                   <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-red-50 flex items-center justify-center group-hover:-translate-y-0.5 transition-transform duration-200">
@@ -85,7 +76,7 @@ export default function BenefitsSection() {
                     <p className="text-[13px] text-gray-600 leading-relaxed">{benefit.description}</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

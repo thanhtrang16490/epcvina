@@ -140,9 +140,13 @@ const structuredData = buildLocalBusinessSchema({
     />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400..900&display=swap" rel="stylesheet" /></noscript>
 
-    <!-- Preload hero image (LCP element) - WebP format for performance -->
+    <!-- Preload hero image (LCP element) - match the viewport to avoid overshipping bytes -->
     {Astro.url.pathname === '/' && (
-      <link rel="preload" as="image" href="/hero-bg-1920.webp" imagesrcset="/hero-bg-768.webp 768w, /hero-bg-1280.webp 1280w, /hero-bg-1920.webp 1920w" imagesizes="100vw" fetchpriority="high" />
+      <>
+        <link rel="preload" as="image" href="/hero-bg-mobile.webp" media="(max-width: 768px)" />
+        <link rel="preload" as="image" href="/hero-bg-1280.webp" media="(min-width: 769px) and (max-width: 1280px)" />
+        <link rel="preload" as="image" href="/hero-bg-1920.webp" media="(min-width: 1281px)" />
+      </>
     )}
 
     <!-- Structured Data (JSON-LD) -->
@@ -152,6 +156,14 @@ const structuredData = buildLocalBusinessSchema({
     <script is:inline>
       (function () {
         try {
+          var consentKey = 'epcvina_cookie_consent_v1';
+          var consent = null;
+          try {
+            consent = window.localStorage.getItem(consentKey);
+          } catch (_) {}
+          window.epcvinaCookieConsent = consent;
+          window.epcvinaAnalyticsEnabled = consent === 'accepted';
+
           var keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'];
           var params = new URLSearchParams(window.location.search);
           var touch = {};
@@ -171,13 +183,21 @@ const structuredData = buildLocalBusinessSchema({
     </script>
 
     <!-- Google tag (Google Analytics + Google Ads) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18369898149"></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
-      window.gtag('js', new Date());
-      window.gtag('config', 'G-2VLQ1GQBQL');
-      window.gtag('config', 'AW-18369898149');
+      (function () {
+        if (!window.epcvinaAnalyticsEnabled) return;
+
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18369898149';
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-2VLQ1GQBQL');
+        window.gtag('config', 'AW-18369898149');
+      })();
 
       window.epcConversionLabels = window.epcConversionLabels || {
         lead_submit: 'epcvina_lead_submit',
@@ -185,6 +205,7 @@ const structuredData = buildLocalBusinessSchema({
         zalo_click: 'epcvina_zalo_click',
       };
       window.epcTrackConversion = window.epcTrackConversion || function(eventName, params) {
+        if (!window.epcvinaAnalyticsEnabled || !window.gtag) return;
         var defaultLabel = window.epcConversionLabels[eventName] || eventName;
         window.gtag('event', eventName, Object.assign({
           event_category: 'conversion',
@@ -228,6 +249,11 @@ const structuredData = buildLocalBusinessSchema({
 
         if (!opensNewContext) event.preventDefault();
 
+        if (!window.epcvinaAnalyticsEnabled || !window.gtag) {
+          continueNavigation();
+          return;
+        }
+
         window.gtag('event', 'conversion', {
           send_to: destination,
           value: 1.0,
@@ -260,16 +286,18 @@ const structuredData = buildLocalBusinessSchema({
 
     {metaPixelId && (
       <script is:inline define:vars={{ metaPixelId }}>
-        !function(f,b,e,v,n,t,s){
-          if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)
-        }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', metaPixelId);
-        fbq('track', 'PageView');
+        if (window.epcvinaAnalyticsEnabled) {
+          !function(f,b,e,v,n,t,s){
+            if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)
+          }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', metaPixelId);
+          fbq('track', 'PageView');
+        }
       </script>
     )}
 

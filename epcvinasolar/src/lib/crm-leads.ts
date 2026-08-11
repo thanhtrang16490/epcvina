@@ -2,7 +2,7 @@ import { trackEvent } from "./tracking";
 
 export type CrmLeadInput = {
   name?: string;
-  phone: string;
+  phone?: string;
   email?: string;
   address?: string;
   message?: string;
@@ -50,8 +50,13 @@ export function normalizeVietnamPhone(value: string) {
 export async function submitCrmLead(input: CrmLeadInput) {
   if (typeof window === "undefined") throw new Error("Chỉ gửi lead từ trình duyệt.");
   const endpoint = import.meta.env.PUBLIC_CRM_LEAD_ENDPOINT || DEFAULT_CRM_LEAD_ENDPOINT;
-  const phone = normalizeVietnamPhone(input.phone);
-  if (!phone) throw new Error("Số điện thoại chưa đúng. Vui lòng nhập ví dụ 0988446113 hoặc +84988446113.");
+  const phone = input.phone ? normalizeVietnamPhone(input.phone) : "";
+  const email = input.email?.trim() || "";
+  const hasValidPhone = Boolean(phone);
+  const hasValidEmail = Boolean(email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+  if (!hasValidPhone && !hasValidEmail) {
+    throw new Error("Vui lòng nhập số điện thoại hoặc email hợp lệ.");
+  }
 
   const attribution = readAttribution();
   const params = new URLSearchParams(window.location.search);
@@ -64,7 +69,8 @@ export async function submitCrmLead(input: CrmLeadInput) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       ...input,
-      phone,
+      phone: phone || input.phone?.trim() || email,
+      email: email || undefined,
       metadata: { ...input.metadata, attribution },
       ...tracking,
       source: "epcvinasolar",

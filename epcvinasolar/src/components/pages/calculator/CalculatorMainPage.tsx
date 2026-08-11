@@ -516,6 +516,7 @@ export default function CalculatorMainPage() {
   const [showTech, setShowTech] = useState(false);
   const [resultSlide, setResultSlide] = useState<'estimate' | 'saving' | 'environment'>('saving');
   const [customerName, setCustomerName] = useState('');
+  const [customerCompany, setCustomerCompany] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
   const [quickContactPhone, setQuickContactPhone] = useState('');
   const [quickContactSubmitting, setQuickContactSubmitting] = useState(false);
@@ -767,6 +768,7 @@ export default function CalculatorMainPage() {
     : '';
   const leadPayload = {
     customerName: customerName.trim(),
+    customerCompany: customerCompany.trim(),
     customerPhone: customerPhone.trim(),
     installTiming: installTimingOptions.find((item) => item.id === installTiming)?.label ?? installTiming,
     province,
@@ -872,6 +874,7 @@ export default function CalculatorMainPage() {
     setShowTech(false);
     setResultSlide('saving');
     setCustomerName('');
+    setCustomerCompany('');
     setCustomerPhone('');
     setQuickContactPhone('');
     setQuickContactSubmitting(false);
@@ -2131,6 +2134,7 @@ export default function CalculatorMainPage() {
                     calculator_result: calculatorResult,
                     metadata: {
                       calculator_version: 'full_solar_v1',
+                      customer_company: customerCompany.trim() || undefined,
                       install_timing: installTiming,
                     },
                   });
@@ -2146,7 +2150,7 @@ export default function CalculatorMainPage() {
             >
               <div className="relative overflow-hidden rounded-[18px] shadow-[0_18px_38px_-24px_rgba(65,64,66,.55)]">
                 <img
-                  src="/hero-bg-768.webp"
+                  src="/hero-bg-mobile.webp"
                   alt=""
                   className="h-[174px] w-full object-cover"
                 />
@@ -2198,6 +2202,7 @@ export default function CalculatorMainPage() {
                   <div className="mt-3 rounded-[18px] border border-[#E5E7EB] bg-white px-4 py-3 text-left text-[12px] leading-relaxed text-[#71717A]">
                     <p className="font-black text-[#414042]">Dữ liệu tư vấn đi kèm</p>
                     <p className="mt-1">Khu vực: {province || 'Chưa chọn'}</p>
+                    <p>Công ty: {customerCompany.trim() || 'Chưa cung cấp'}</p>
                     <p>Hóa đơn: {formatCurrency(billValue)}/tháng · Mái: {roofValue} m²</p>
                     <p>Công suất: {estimatedKwp} kWp · Pin: {recommendedSystem.storageValue}</p>
                     <p>Chi phí: {formatMillionRange(costMin, costMax)} · Hoàn vốn: {formatYears(paybackAverage)}</p>
@@ -2248,6 +2253,24 @@ export default function CalculatorMainPage() {
                   {surveyAttempted && customerNameError ? (
                     <span className="mt-1.5 text-[12px] font-medium text-[#B45309]">{customerNameError}</span>
                   ) : null}
+                </label>
+                <label className="relative grid">
+                  <span className="sr-only">Công ty / đơn vị</span>
+                  <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[#F58220]">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M4 21V8a2 2 0 0 1 2-2h5V4h2v2h5a2 2 0 0 1 2 2v13" />
+                      <path d="M4 21h16" />
+                      <path d="M8 21v-4h4v4" />
+                    </svg>
+                  </span>
+                  <input
+                    name="customer-company"
+                    value={customerCompany}
+                    onChange={(event) => setCustomerCompany(event.target.value)}
+                    className="h-[54px] rounded-[14px] border border-[#E5E7EB] bg-white pl-12 pr-4 text-[15px] font-medium text-[#414042] shadow-[0_10px_24px_rgba(65,64,66,0.06)] outline-none transition placeholder:text-[#9AA0A9] focus:border-[#F58220] focus:ring-2 focus:ring-orange-100"
+                    placeholder="Công ty / đơn vị (không bắt buộc)"
+                    autoComplete="organization"
+                  />
                 </label>
                 <label className="relative grid">
                   <span className="sr-only">SĐT/Zalo</span>

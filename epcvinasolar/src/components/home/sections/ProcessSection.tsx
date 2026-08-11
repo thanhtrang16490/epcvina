@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { PhoneCall, MapPin, PencilSimple, FileText, Wrench, ChartBar } from '@phosphor-icons/react';
 import type { Icon } from '@phosphor-icons/react';
 
@@ -46,12 +45,8 @@ export default function ProcessSection() {
     <section className="py-14 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <motion.div
+        <div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
         >
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#DC2626] mb-3 font-display">
             QUY TRÌNH TRIỂN KHAI
@@ -67,20 +62,16 @@ export default function ProcessSection() {
             Thời gian triển khai trung bình từ 3–7 ngày tùy công suất. Chúng tôi cam kết đúng tiến độ,
             đảm bảo vệ sinh công trình và xử lý chống thấm mái 100% trước khi bàn giao.
           </p>
-        </motion.div>
+        </div>
 
         {/* Steps grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {steps.map((step, i) => {
             const Icon = step.icon;
             return (
-              <motion.div
+              <div
                 key={step.step}
                 className="group relative bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-orange-200 hover:-translate-y-1 transition-all duration-200"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ delay: i * 0.07, duration: 0.4 }}
               >
                 {/* Step number badge */}
                 <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-[#DC2626] text-white text-sm font-bold flex items-center justify-center shadow-md">
@@ -94,7 +85,7 @@ export default function ProcessSection() {
 
                 <h3 className="font-bold text-gray-900 mb-1.5 text-[15px]">{step.title}</h3>
                 <p className="text-[13px] text-gray-500 leading-relaxed">{step.description}</p>
-              </motion.div>
+              </div>
             );
           })}
         </div>

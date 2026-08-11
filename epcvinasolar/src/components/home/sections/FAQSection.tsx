@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { CaretDown } from '@phosphor-icons/react';
 
 const faqData = [
@@ -33,12 +32,8 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.div
+    <div
       className="border border-gray-200 rounded-xl overflow-hidden"
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.06, duration: 0.35 }}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -61,7 +56,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
           {answer}
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -70,12 +65,8 @@ export default function FAQSection() {
     <section className="py-12 sm:py-16 bg-gray-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <motion.div
+        <div
           className="flex items-end justify-between mb-8"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
         >
           <div>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight font-display">Hỏi đáp</h2>
@@ -84,7 +75,7 @@ export default function FAQSection() {
           <a href="/hoi-dap" className="text-[#DC2626] hover:text-[#B01A22] font-medium text-sm active:scale-[0.98]">
             Tìm hiểu thêm
           </a>
-        </motion.div>
+        </div>
 
         {/* FAQ Items */}
         <div className="space-y-3">

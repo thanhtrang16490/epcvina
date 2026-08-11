@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { MapPin, Lightning, ArrowRight } from '@phosphor-icons/react';
 
 const projects = [
@@ -53,12 +52,8 @@ export default function ProjectsPreviewSection() {
     <section className="py-14 sm:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
+        <div
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
         >
           <div>
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#DC2626] mb-2 font-display">
@@ -78,18 +73,14 @@ export default function ProjectsPreviewSection() {
             Xem tất cả dự án
             <ArrowRight className="h-4 w-4" weight="bold" />
           </a>
-        </motion.div>
+        </div>
 
         {/* Project grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {projects.map((p, i) => (
-            <motion.div
+            <div
               key={p.slug}
               className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ delay: i * 0.08, duration: 0.4 }}
             >
               {/* Project Image */}
               <a href={`/du-an/${p.slug}`} className="block relative h-48 w-full overflow-hidden">
@@ -97,6 +88,8 @@ export default function ProjectsPreviewSection() {
                   src={p.image}
                   alt={p.title}
                   loading="lazy"
+                  width="640"
+                  height="360"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -132,17 +125,13 @@ export default function ProjectsPreviewSection() {
                   <span className="text-xs text-gray-500">{p.location}</span>
                 </div>
               </a>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
+        <div
           className="mt-10 text-center"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
         >
           <a
             href="/du-an"
@@ -151,7 +140,7 @@ export default function ProjectsPreviewSection() {
             Xem toàn bộ dự án đã thi công
             <ArrowRight className="h-4 w-4" weight="bold" />
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
