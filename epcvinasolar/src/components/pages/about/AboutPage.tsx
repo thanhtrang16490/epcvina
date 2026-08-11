@@ -283,7 +283,7 @@ export default function AboutPage() {
                 brand.slug ? (
                   <a
                     key={brand.name}
-                    href={`/doi-tac/${brand.slug}`}
+                    href={`/nhan-hang/${brand.slug}`}
                     className="group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
                   >
                     <img
