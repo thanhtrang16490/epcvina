@@ -83,6 +83,11 @@ const clientLogos: Record<string, { src: string; alt: string }> = {
   Coteccons: { src: '/partners/coteccons.png', alt: 'Coteccons logo' },
 };
 
+const brandLinkClassName =
+  'group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 hover:cursor-pointer transition-all duration-200 aspect-[4/3]';
+const clientLinkClassName =
+  'group flex flex-col items-center justify-center border border-gray-200 rounded-2xl bg-white p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 hover:cursor-pointer transition-all duration-200 aspect-[4/3]';
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
@@ -284,7 +289,7 @@ export default function AboutPage() {
                   <a
                     key={brand.name}
                     href={`/nhan-hang/${brand.slug}`}
-                    className="group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
+                    className={brandLinkClassName}
                   >
                     <img
                       src={brand.logo}
@@ -302,7 +307,7 @@ export default function AboutPage() {
                 ) : (
                   <div
                     key={brand.name}
-                    className="group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 aspect-[4/3]"
+                    className={brandLinkClassName}
                   >
                     <img
                       src={brand.logo}
@@ -336,9 +341,10 @@ export default function AboutPage() {
               {clients.map((client) => {
                 const logo = clientLogos[client];
                 return (
-                  <div
+                  <a
                     key={client}
-                    className="group flex flex-col items-center justify-center border border-gray-200 rounded-2xl bg-white p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
+                    href="/doi-tac"
+                    className={clientLinkClassName}
                   >
                     {logo ? (
                       <img
@@ -352,7 +358,7 @@ export default function AboutPage() {
                         <span className="text-sm sm:text-base font-bold text-gray-700">{client}</span>
                       </div>
                     )}
-                  </div>
+                  </a>
                 );
               })}
             </div>
