@@ -51,11 +51,16 @@ const certifications = [
   { icon: <SealCheck className="h-8 w-8" />, title: 'An toàn lao động', desc: 'Quản lý an toàn vệ sinh lao động' },
 ];
 
-const suppliers = [
-  { name: 'AIKO', logo: '/partners/aiko.webp', category: 'Tấm pin mặt trời' },
+const brands = [
+  { name: 'AIKO', logo: '/partners/aiko.webp', category: 'Tấm pin mặt trời', slug: 'aiko' },
+  { name: 'Canadian Solar', logo: '/brands/canadian-solar.png', category: 'Tấm pin mặt trời', slug: 'canadian-solar' },
+  { name: 'Longi', logo: '/brands/longi.png', category: 'Tấm pin mặt trời', slug: 'longi' },
   { name: 'Trina Solar', logo: '/partners/trina.png', category: 'Tấm pin mặt trời' },
-  { name: 'SAJ', logo: '/partners/saj.png', category: 'Biến tần Inverter' },
-  { name: 'Genxgreen', logo: '/partners/GenixGreen.webp', category: 'Pin lưu trữ' },
+  { name: 'SAJ', logo: '/partners/saj.png', category: 'Biến tần Inverter', slug: 'saj' },
+  { name: 'Deye', logo: '/brands/deye.png', category: 'Biến tần Inverter', slug: 'deye' },
+  { name: 'Growatt', logo: '/brands/growatt.png', category: 'Biến tần Inverter', slug: 'growatt' },
+  { name: 'Huawei', logo: '/brands/huawei.jpg', category: 'Biến tần Inverter', slug: 'huawei' },
+  { name: 'Genxgreen', logo: '/partners/GenixGreen.webp', category: 'Pin lưu trữ', slug: 'genix-green' },
 ];
 
 
@@ -68,6 +73,15 @@ const clients = [
   'Keangnam',
   'Coteccons',
 ];
+
+const clientLogos: Record<string, { src: string; alt: string }> = {
+  Samsung: { src: '/partners/samsung.svg', alt: 'Samsung logo' },
+  VinFast: { src: '/partners/vinfast.png', alt: 'VinFast logo' },
+  VinCom: { src: '/partners/vincom.webp', alt: 'Vincom logo' },
+  Lotte: { src: '/partners/lotte.jpg', alt: 'Lotte logo' },
+  Keangnam: { src: '/partners/keangnam.png', alt: 'Keangnam logo' },
+  Coteccons: { src: '/partners/coteccons.png', alt: 'Coteccons logo' },
+};
 
 export default function AboutPage() {
   return (
@@ -251,33 +265,59 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Section 5.5 - Equipment Suppliers (Partners) */}
+        {/* Section 5.5 - Distributed Brands */}
         <section className="py-12 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <p className="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 mb-2">ĐỐI TÁC CHIẾN LƯỢC</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Đơn vị cung cấp thiết bị</h2>
+              <p className="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600 mb-2">THƯƠNG HIỆU PHÂN PHỐI</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Các thương hiệu EPCVINA phân phối</h2>
               <p className="text-gray-500 mt-2 max-w-2xl mx-auto">
-                Chúng tôi chỉ sử dụng thiết bị chính hãng từ các thương hiệu Tier 1 hàng đầu thế giới, đảm bảo hiệu suất và tuổi thọ trên 25 năm.
+                EPCVINA phân phối và triển khai các thương hiệu chính hãng đang được sử dụng trong dự án thực tế,
+                đảm bảo hiệu suất, độ bền và khả năng tương thích trong suốt vòng đời hệ thống.
               </p>
             </div>
 
-            {/* Supplier logos grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
-              {suppliers.map((supplier) => (
-                <div
-                  key={supplier.name}
-                  className="group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
-                >
-                  <img
-                    src={supplier.logo}
-                    alt={supplier.name}
-                    className="h-10 sm:h-12 object-contain grayscale group-hover:grayscale-0 transition-all duration-200"
-                  loading="lazy" />
-                  <p className="text-[10px] sm:text-xs text-gray-400 mt-2 group-hover:text-gray-500 transition-colors text-center">
-                    {supplier.category}
-                  </p>
-                </div>
+            {/* Brand logos grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+              {brands.map((brand) => (
+                brand.slug ? (
+                  <a
+                    key={brand.name}
+                    href={`/doi-tac/${brand.slug}`}
+                    className="group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-10 sm:h-12 object-contain transition-all duration-200"
+                      loading="lazy"
+                    />
+                    <p className="text-[10px] sm:text-xs font-semibold text-gray-700 mt-2 group-hover:text-gray-900 transition-colors text-center">
+                      {brand.name}
+                    </p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 mt-0.5 text-center">
+                      {brand.category}
+                    </p>
+                  </a>
+                ) : (
+                  <div
+                    key={brand.name}
+                    className="group flex flex-col items-center justify-center bg-white rounded-xl border border-gray-200 p-4 sm:p-5 aspect-[4/3]"
+                  >
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="h-10 sm:h-12 object-contain transition-all duration-200"
+                      loading="lazy"
+                    />
+                    <p className="text-[10px] sm:text-xs font-semibold text-gray-700 mt-2 text-center">
+                      {brand.name}
+                    </p>
+                    <p className="text-[9px] sm:text-[10px] text-gray-400 mt-0.5 text-center">
+                      {brand.category}
+                    </p>
+                  </div>
+                )
               ))}
             </div>
 
@@ -292,15 +332,29 @@ export default function AboutPage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Đối tác & Khách hàng tiêu biểu</h2>
               <p className="text-gray-500 mt-2">Đồng hành cùng các tập đoàn hàng đầu</p>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-              {clients.map((client) => (
-                <div
-                  key={client}
-                  className="border border-gray-200 rounded-lg px-6 py-3 bg-gray-50 text-gray-600 font-semibold text-sm sm:text-base hover:border-emerald-300 hover:bg-emerald-50 hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
-                >
-                  {client}
-                </div>
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+              {clients.map((client) => {
+                const logo = clientLogos[client];
+                return (
+                  <div
+                    key={client}
+                    className="group flex flex-col items-center justify-center border border-gray-200 rounded-2xl bg-white p-4 sm:p-5 hover:border-emerald-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 aspect-[4/3]"
+                  >
+                    {logo ? (
+                      <img
+                        src={logo.src}
+                        alt={logo.alt}
+                        className="h-11 sm:h-14 object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="flex h-11 sm:h-14 items-center justify-center">
+                        <span className="text-sm sm:text-base font-bold text-gray-700">{client}</span>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
