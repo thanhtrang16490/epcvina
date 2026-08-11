@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import {
   Lightning,
   Building,
@@ -24,12 +23,8 @@ export default function ComparisonSection() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
           {/* Section label + headline */}
-          <motion.div
+          <div
             className="text-center mb-8 sm:mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-amber-400 mb-3 font-display">
               CHỌN HỆ THỐNG PHÙ HỢP
@@ -44,15 +39,11 @@ export default function ComparisonSection() {
               Thiết kế hệ thống điện mặt trời tối ưu theo nhu cầu sử dụng thực tế —
               giúp giảm chi phí điện và tối đa hiệu quả đầu tư.
             </p>
-          </motion.div>
+          </div>
 
           {/* Side-by-side hero cards + VS badge */}
-          <motion.div
+          <div
             className="flex flex-col sm:flex-row items-stretch sm:items-center gap-0 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* HYBRID Card */}
             <div
@@ -163,15 +154,11 @@ export default function ComparisonSection() {
                 </ul>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA buttons */}
-          <motion.div
+          <div
             className="mt-8 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
           >
             <a
               href="/hybrid-bess"
@@ -187,7 +174,7 @@ export default function ComparisonSection() {
               <Sun className="h-4 w-4" weight="bold" />
               Xem Solar Home
             </a>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
