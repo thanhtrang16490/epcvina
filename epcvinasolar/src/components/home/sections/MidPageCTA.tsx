@@ -1,4 +1,3 @@
-import { motion } from 'motion/react';
 import { Phone, ArrowRight } from '@phosphor-icons/react';
 
 interface MidPageCTAProps {
@@ -10,12 +9,8 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
     return (
       <section className="bg-gradient-to-r from-[#1a365d] to-[#0f2444] py-8 sm:py-10" data-header-theme="dark">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
-          <motion.div
+          <div
             className="flex flex-col sm:flex-row items-center justify-between gap-5"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
           >
             <div className="text-center sm:text-left">
               <p className="text-white font-extrabold text-lg sm:text-xl leading-snug">
@@ -34,7 +29,7 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
                 Nhận báo giá
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     );
@@ -42,14 +37,10 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
 
   // Reviews variant — pricing teaser + social proof CTA
   return (
-    <section className="bg-gradient-to-r from-orange-600 to-red-600 py-8 sm:py-10" data-header-theme="dark">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <motion.div
+      <section className="bg-gradient-to-r from-orange-600 to-red-600 py-8 sm:py-10" data-header-theme="dark">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <div
           className="flex flex-col sm:flex-row items-center justify-between gap-5"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
         >
           <div className="text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
@@ -74,7 +65,7 @@ export default function MidPageCTA({ variant }: MidPageCTAProps) {
             Nhận báo giá miễn phí
             <ArrowRight className="h-4 w-4" weight="bold" />
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
