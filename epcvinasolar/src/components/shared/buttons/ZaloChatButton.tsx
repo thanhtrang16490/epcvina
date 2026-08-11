@@ -25,7 +25,7 @@ export default function ZaloChatButton() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const zaloPhone = '0988446113';
+  const zaloPhone = '0368927332';
   const zaloUrl = `https://zalo.me/${zaloPhone}`;
 
   return (

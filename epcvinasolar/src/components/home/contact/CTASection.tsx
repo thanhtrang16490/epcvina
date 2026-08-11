@@ -39,7 +39,7 @@ export default function CTASection() {
       `• Hóa đơn điện: ${form.bill || 'N/A'}`,
       `• Nhu cầu: ${form.need || 'N/A'}`,
     ].join('\n');
-    const zaloUrl = `https://zalo.me/0988446113?text=${encodeURIComponent(msg)}`;
+    const zaloUrl = `https://zalo.me/0368927332?text=${encodeURIComponent(msg)}`;
     try {
       await submitCrmLead({
         name: form.name,

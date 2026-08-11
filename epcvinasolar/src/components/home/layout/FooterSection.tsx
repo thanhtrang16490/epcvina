@@ -24,7 +24,7 @@ export default function FooterSection() {
             <div className="flex items-center gap-2.5">
               {/* Zalo */}
               <a
-                href="https://zalo.me/0988446113"
+                href="https://zalo.me/0368927332"
                 target="_blank" rel="noopener noreferrer"
 
                 className="w-11 h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
@@ -136,7 +136,7 @@ export default function FooterSection() {
               <li className="flex items-center gap-3">
                 <ChatCircle className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
                 <a
-                  href="https://zalo.me/0988446113"
+                  href="https://zalo.me/0368927332"
                   target="_blank" rel="noopener noreferrer"
 
                   className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]"

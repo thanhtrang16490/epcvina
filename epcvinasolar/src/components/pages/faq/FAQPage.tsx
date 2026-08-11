@@ -121,7 +121,7 @@ export default function FAQPage({ generalFAQ, productFAQ }: FAQPageProps) {
               Gọi tư vấn: 0988 446 113
             </a>
             <a
-              href="https://zalo.me/0988446113"
+              href="https://zalo.me/0368927332"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white border border-blue-200 text-blue-600 hover:bg-blue-50 font-semibold px-6 py-3 rounded-lg transition-all text-sm"
