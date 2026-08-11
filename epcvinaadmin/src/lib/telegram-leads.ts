@@ -23,7 +23,8 @@ type TelegramLeadAction = {
 };
 
 function getTelegramChatIds() {
-  const list = (process.env.TELEGRAM_LEAD_CHAT_IDS || "")
+  const fallback = "6091962149,-5555556294";
+  const list = (process.env.TELEGRAM_LEAD_CHAT_IDS || fallback)
     .split(",")
     .map((value) => value.trim())
     .filter(Boolean);
