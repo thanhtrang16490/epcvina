@@ -15,6 +15,23 @@ type TelegramLead = {
   utm_campaign: string | null;
 };
 
+type TelegramLeadAction = {
+  kind: "new" | "stage" | "activity" | "admin_manual";
+  label: string;
+  note?: string | null;
+  author?: string | null;
+};
+
+function getTelegramChatIds() {
+  const list = (process.env.TELEGRAM_LEAD_CHAT_IDS || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  if (list.length > 0) return list;
+  const single = process.env.TELEGRAM_LEAD_CHAT_ID?.trim();
+  return single ? [single] : [];
+}
+
 function escapeHtml(value: unknown) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -29,8 +46,8 @@ function line(label: string, value: unknown) {
 
 export async function notifyTelegramAboutLead(lead: TelegramLead) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_LEAD_CHAT_ID;
-  if (!token || !chatId) return "not_configured" as const;
+  const chatIds = getTelegramChatIds();
+  if (!token || chatIds.length === 0) return "not_configured" as const;
 
   const text = [
     "🔔 <b>LEAD MỚI TỪ EPCVINA.COM</b>",
@@ -54,28 +71,87 @@ export async function notifyTelegramAboutLead(lead: TelegramLead) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5_000);
   try {
-    const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text,
-        parse_mode: "HTML",
-        disable_web_page_preview: true,
-        reply_markup: {
-          inline_keyboard: [[{ text: "Mở lead trong CRM", url: `https://app.epcvina.com/admin/leads/${lead.id}` }]],
-        },
-      }),
-      signal: controller.signal,
-      cache: "no-store",
-    });
-    if (!response.ok) {
-      console.warn("Telegram lead notification failed with status", response.status);
-      return `telegram_${response.status}` as const;
+    const results = await Promise.all(chatIds.map(async (chatId) => {
+      const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: "HTML",
+          disable_web_page_preview: true,
+          reply_markup: {
+            inline_keyboard: [[{ text: "Mở lead trong CRM", url: `https://app.epcvina.com/admin/leads/${lead.id}` }]],
+          },
+        }),
+        signal: controller.signal,
+        cache: "no-store",
+      });
+      return response.ok ? "sent" : `telegram_${response.status}`;
+    }));
+    const failed = results.find((result) => result !== "sent");
+    if (failed) {
+      console.warn("Telegram lead notification failed with status", failed);
+      return failed as `telegram_${number}`;
     }
     return "sent" as const;
   } catch (error) {
     console.warn("Telegram lead notification could not be delivered");
+    return error instanceof Error && error.name === "AbortError" ? "timeout" as const : "network_error" as const;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+export async function notifyTelegramAboutLeadAction(lead: TelegramLead, action: TelegramLeadAction) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatIds = getTelegramChatIds();
+  if (!token || chatIds.length === 0) return "not_configured" as const;
+
+  const text = [
+    "🔔 <b>CRM EPCVINA ADMIN</b>",
+    "",
+    `<b>Hành động:</b> ${escapeHtml(action.label)}`,
+    line("Khách hàng", lead.name || "Chưa cung cấp tên"),
+    line("Điện thoại", lead.phone),
+    line("Email", lead.email),
+    line("Nguồn form", lead.source_form),
+    line("Trạng thái", action.kind === "stage" ? action.label : undefined),
+    line("Người xử lý", action.author),
+    line("Ghi chú", action.note),
+    "",
+    line("Trang gửi", lead.landing_page),
+  ].filter(Boolean).join("\n").slice(0, 3900);
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5_000);
+  try {
+    const results = await Promise.all(chatIds.map(async (chatId) => {
+      const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text,
+          parse_mode: "HTML",
+          disable_web_page_preview: true,
+          reply_markup: {
+            inline_keyboard: [[{ text: "Mở lead trong CRM", url: `https://app.epcvina.com/admin/leads/${lead.id}` }]],
+          },
+        }),
+        signal: controller.signal,
+        cache: "no-store",
+      });
+      return response.ok ? "sent" : `telegram_${response.status}`;
+    }));
+    const failed = results.find((result) => result !== "sent");
+    if (failed) {
+      console.warn("Telegram admin notification failed with status", failed);
+      return failed as `telegram_${number}`;
+    }
+    return "sent" as const;
+  } catch (error) {
+    console.warn("Telegram admin notification could not be delivered");
     return error instanceof Error && error.name === "AbortError" ? "timeout" as const : "network_error" as const;
   } finally {
     clearTimeout(timeout);

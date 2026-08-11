@@ -6,6 +6,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 import { ModalShell } from "@/components/ModalShell";
 import { ThemeCard } from "@/components/ui/ThemeCard";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import { notifyTelegramAboutLeadAction } from "@/lib/telegram-leads";
 import { revalidatePath } from "next/cache";
 import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
@@ -163,6 +164,25 @@ async function createManualLead(formData: FormData) {
     },
   });
   if (error) throw error;
+  await notifyTelegramAboutLeadAction(
+    {
+      id: "admin-manual",
+      name: name || null,
+      phone: phone || "—",
+      email: email || null,
+      address: null,
+      message: null,
+      source_form: "admin/manual",
+      system_type: null,
+      roof_area: null,
+      monthly_bill: null,
+      system_size_kw: null,
+      landing_page: null,
+      utm_source: null,
+      utm_campaign: null,
+    },
+    { kind: "admin_manual", label: "Tạo lead thủ công trong admin", author: ownerName || null },
+  );
   revalidatePath("/leads");
   redirect("/admin/leads?created=1");
 }
@@ -175,7 +195,7 @@ async function updateLeadStage(formData: FormData) {
   const supabase = createSupabaseAdminClient();
   if (!supabase) return;
   const now = new Date().toISOString();
-  const { data: current } = await supabase.from("crm_leads").select("first_contacted_at,status,metadata").eq("id", id).single();
+  const { data: current } = await supabase.from("crm_leads").select("first_contacted_at,status,metadata,name,phone,email,address,message,source_form,system_type,roof_area,monthly_bill,system_size_kw,landing_page,utm_source,utm_campaign").eq("id", id).single();
   const currentMetadata = (current?.metadata && typeof current.metadata === "object" && !Array.isArray(current.metadata) ? current.metadata : {}) as Record<string, unknown>;
   const values: Record<string, unknown> = {
     status,
@@ -222,6 +242,25 @@ async function addLeadQuickActivity(formData: FormData) {
   };
   if (!current?.first_contacted_at) values.first_contacted_at = now;
   await supabase.from("crm_leads").update(values).eq("id", id);
+  await notifyTelegramAboutLeadAction(
+    {
+      id,
+      name: current?.name ?? null,
+      phone: current?.phone ?? "—",
+      email: current?.email ?? null,
+      address: current?.address ?? null,
+      message: current?.message ?? null,
+      source_form: current?.source_form ?? "admin/update",
+      system_type: current?.system_type ?? null,
+      roof_area: current?.roof_area ?? null,
+      monthly_bill: current?.monthly_bill ?? null,
+      system_size_kw: current?.system_size_kw ?? null,
+      landing_page: current?.landing_page ?? null,
+      utm_source: current?.utm_source ?? null,
+      utm_campaign: current?.utm_campaign ?? null,
+    },
+    { kind: "stage", label: `Cập nhật trạng thái ${getStatusLabel(status)}` },
+  );
   revalidatePath("/leads");
   revalidatePath(`/leads/${id}`);
   redirect("/admin/leads?updated=1");
