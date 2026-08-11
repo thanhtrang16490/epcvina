@@ -27,9 +27,7 @@ function getTelegramChatIds() {
     .split(",")
     .map((value) => value.trim())
     .filter(Boolean);
-  if (list.length > 0) return list;
-  const single = process.env.TELEGRAM_LEAD_CHAT_ID?.trim();
-  return single ? [single] : [];
+  return list;
 }
 
 function escapeHtml(value: unknown) {
