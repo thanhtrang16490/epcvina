@@ -22,9 +22,14 @@ function allowedOrigins() {
     .filter(Boolean);
 }
 
+function isLocalOrigin(origin: string | null) {
+  if (!origin) return false;
+  return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+}
+
 function corsHeaders(origin: string | null) {
   const configured = allowedOrigins();
-  const allowedOrigin = origin && configured.includes(origin) ? origin : configured[0] ?? "https://epcvina.com";
+  const allowedOrigin = origin && (configured.includes(origin) || isLocalOrigin(origin)) ? origin : configured[0] ?? "https://epcvina.com";
   return {
     "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -59,7 +64,7 @@ export async function OPTIONS(request: NextRequest) {
 export async function POST(request: NextRequest) {
   const origin = request.headers.get("origin");
   const headers = corsHeaders(origin);
-  if (origin && !allowedOrigins().includes(origin)) {
+  if (origin && !allowedOrigins().includes(origin) && !isLocalOrigin(origin)) {
     return NextResponse.json({ success: false, message: "Nguồn gửi không được phép." }, { status: 403, headers });
   }
   const contentLength = Number(request.headers.get("content-length") || 0);
@@ -87,8 +92,10 @@ export async function POST(request: NextRequest) {
     }
 
     const phone = normalizedPhone(body.phone);
-    if (!phone) {
-      return NextResponse.json({ success: false, message: "Số điện thoại chưa đúng. Vui lòng nhập số Việt Nam, ví dụ 0988446113 hoặc +84988446113." }, { status: 400, headers });
+    const email = text(body.email, 254);
+    const hasValidEmail = Boolean(email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    if (!phone && !hasValidEmail) {
+      return NextResponse.json({ success: false, message: "Vui lòng nhập số điện thoại hoặc email hợp lệ." }, { status: 400, headers });
     }
 
     const supabase = createSupabaseAdminClient();
@@ -109,15 +116,17 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const duplicateCutoff = new Date(now - DUPLICATE_WINDOW_MINUTES * 60_000).toISOString();
-    const { count: duplicateCount, error: duplicateError } = await supabase
-      .from("crm_leads")
-      .select("id", { count: "exact", head: true })
-      .eq("phone", phone)
-      .gte("created_at", duplicateCutoff);
-    if (duplicateError) throw duplicateError;
-    if ((duplicateCount ?? 0) > 0) {
-      return NextResponse.json({ success: true, accepted: false, duplicate: true }, { status: 202, headers });
+    if (phone) {
+      const duplicateCutoff = new Date(now - DUPLICATE_WINDOW_MINUTES * 60_000).toISOString();
+      const { count: duplicateCount, error: duplicateError } = await supabase
+        .from("crm_leads")
+        .select("id", { count: "exact", head: true })
+        .eq("phone", phone)
+        .gte("created_at", duplicateCutoff);
+      if (duplicateError) throw duplicateError;
+      if ((duplicateCount ?? 0) > 0) {
+        return NextResponse.json({ success: true, accepted: false, duplicate: true }, { status: 202, headers });
+      }
     }
 
     const suspiciousText = [text(body.name, 160), text(body.address, 500), text(body.message, 3000)].join(" ");
@@ -132,8 +141,8 @@ export async function POST(request: NextRequest) {
     };
     const payload = {
       name: text(body.name, 160) || null,
-      phone,
-      email: text(body.email, 254) || null,
+      phone: phone || email,
+      email: email || null,
       address: text(body.address, 500) || null,
       message: text(body.message, 3000) || null,
       source: text(body.source, 80) || "epcvinasolar",
@@ -171,8 +180,8 @@ export async function POST(request: NextRequest) {
       sendMetaLeadEvent({
         eventId: data.id,
         eventSourceUrl: payload.landing_page,
-        phone,
-        email: payload.email,
+      phone: phone || null,
+      email: payload.email,
         clientIpAddress: clientKey !== "unknown" ? clientKey : null,
         clientUserAgent: request.headers.get("user-agent"),
         fbclid: payload.fbclid,
