@@ -255,21 +255,10 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
 
             {/* Right: Product Info */}
             <div className="flex flex-col">
-              {/* Brand Badge - Linkable */}
               <div className="mb-4">
-                {brandInfo ? (
-                  <a
-                    href={`/doi-tac/${brandInfo.slug}`}
-                    className="px-4 py-2 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg inline-flex items-center gap-2 hover:bg-orange-200 transition-colors"
-                  >
-                    {product.brand}
-                    <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
-                  </a>
-                ) : (
-                  <span className="px-4 py-2 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg">
-                    {product.brand}
-                  </span>
-                )}
+                <span className="px-4 py-2 bg-orange-100 text-orange-700 text-sm font-semibold rounded-lg inline-flex items-center gap-2">
+                  {product.brand}
+                </span>
               </div>
 
               {/* Product Name */}
@@ -515,15 +504,6 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                     {brandInfo?.description || `Sản phẩm ${product.brand} chính hãng - Bảo hành đầy đủ, hỗ trợ kỹ thuật 24/7.`}
                   </p>
                   <div className="flex items-center gap-3">
-                    {brandInfo && (
-                      <a
-                        href={`/doi-tac/${brandInfo.slug}`}
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition-colors"
-                      >
-                        Xem thông tin đối tác {brandInfo.name}
-                        <ArrowLeft className="w-4 h-4 rotate-180" />
-                      </a>
-                    )}
                   </div>
                 </div>
               </div>

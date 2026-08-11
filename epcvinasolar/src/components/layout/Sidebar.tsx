@@ -73,17 +73,6 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    name: 'Đối tác',
-    icon: Sun,
-    children: [
-      { name: 'Tất cả đối tác', href: '/doi-tac' },
-      { name: 'EPCVINA', href: '/doi-tac/epcvina' },
-      { name: 'QUANG MINH TECH', href: '/doi-tac/quang-minh-tech' },
-      { name: 'GPG Solar', href: '/doi-tac/gpg-solar' },
-      { name: 'Japan Green Power', href: '/doi-tac/japan-green-power' },
-    ],
-  },
-  {
     name: 'Nhãn hàng',
     icon: Sun,
     children: [
