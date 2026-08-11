@@ -19,7 +19,7 @@ const projects = [
     capacity: '15 kWp + BatteryHigh',
     completion: 'T6.2024',
     system_type: 'Hybrid có lưu trữ',
-    image: '/du-an/DU-AN-LOTTE-MART-DONG-DA.jpg',
+    image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png',
     tag: 'Hybrid 3P',
     tagColor: 'bg-indigo-600',
   },
@@ -83,13 +83,13 @@ export default function ProjectsPreviewSection() {
               className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               {/* Project Image */}
-              <a href={`/du-an/${p.slug}`} className="block relative h-48 w-full overflow-hidden">
+              <a href={`/du-an/${p.slug}`} className="block relative aspect-square w-full overflow-hidden">
                 <img
                   src={p.image}
                   alt={p.title}
                   loading="lazy"
                   width="640"
-                  height="360"
+                  height="640"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
