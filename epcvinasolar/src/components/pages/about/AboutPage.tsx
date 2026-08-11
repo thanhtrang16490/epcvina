@@ -334,16 +334,15 @@ export default function AboutPage() {
         <section className="py-12 sm:py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Đối tác & Khách hàng tiêu biểu</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Khách hàng tiêu biểu</h2>
               <p className="text-gray-500 mt-2">Đồng hành cùng các tập đoàn hàng đầu</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {clients.map((client) => {
                 const logo = clientLogos[client];
                 return (
-                  <a
+                  <div
                     key={client}
-                    href="/doi-tac"
                     className={clientLinkClassName}
                   >
                     {logo ? (
@@ -358,7 +357,7 @@ export default function AboutPage() {
                         <span className="text-sm sm:text-base font-bold text-gray-700">{client}</span>
                       </div>
                     )}
-                  </a>
+                  </div>
                 );
               })}
             </div>
