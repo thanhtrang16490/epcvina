@@ -92,6 +92,7 @@ const menuItems: MenuItem[] = [
       { name: 'Genix Green', href: '/nhan-hang/genix-green' },
       { name: 'Hope Trek', href: '/nhan-hang/hope-trek' },
       { name: 'Leader', href: '/nhan-hang/leader' },
+      { name: 'QUANG MINH TECH', href: '/nhan-hang/quang-minh-tech' },
     ],
   },
   {
