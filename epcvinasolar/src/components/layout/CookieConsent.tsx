@@ -3,12 +3,12 @@ import { ShieldCheck, X } from '@phosphor-icons/react';
 import { submitCrmLead } from '../../lib/crm-leads';
 
 const STORAGE_KEY = 'epcvina_cookie_consent_v1';
-const DAY_MS = 24 * 60 * 60 * 1000;
+const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
 
 type ConsentState = 'accepted' | 'essential' | null;
 type ConsentRecord = {
   value: Exclude<ConsentState, null>;
-  expiresAt: number;
+  expiresAt?: number;
 };
 
 export default function CookieConsent() {
@@ -28,6 +28,11 @@ export default function CookieConsent() {
       }
 
       const stored = JSON.parse(storedRaw) as Partial<ConsentRecord>;
+      if (stored?.value === 'accepted') {
+        setVisible(false);
+        return;
+      }
+
       if (!stored?.expiresAt || stored.expiresAt <= Date.now()) {
         window.localStorage.removeItem(STORAGE_KEY);
         setVisible(true);
@@ -43,11 +48,11 @@ export default function CookieConsent() {
     };
   }, []);
 
-  const saveConsent = (value: Exclude<ConsentState, null>) => {
+  const saveConsent = (value: Exclude<ConsentState, null>, ttlMs?: number) => {
     try {
       const record: ConsentRecord = {
         value,
-        expiresAt: Date.now() + DAY_MS,
+        ...(ttlMs ? { expiresAt: Date.now() + ttlMs } : {}),
       };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
     } catch {
@@ -57,7 +62,7 @@ export default function CookieConsent() {
   };
 
   const dismissWithoutPreference = () => {
-    setVisible(false);
+    saveConsent('essential', SIX_HOURS_MS);
   };
 
   const showThankYou = () => {
