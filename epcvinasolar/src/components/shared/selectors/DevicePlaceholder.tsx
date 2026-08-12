@@ -122,6 +122,10 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
   };
 
   const keySpecs = getKeySpecs();
+  const visibleSpecs = keySpecs.filter((spec) => {
+    const normalized = spec.value.trim();
+    return !/^0(\s|$|~)/.test(normalized);
+  });
 
   return (
     <div className="relative w-full aspect-square bg-gradient-to-br from-gray-100 via-gray-50 to-white overflow-hidden font-sans">
@@ -160,7 +164,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
           
           {/* Floating spec badges */}
           <div className="absolute bottom-4 left-4 right-4 flex justify-center gap-2">
-            {keySpecs.slice(0, 2).map((spec, index) => (
+            {visibleSpecs.slice(0, 2).map((spec, index) => (
               <div
                 key={index}
                 className="px-2 py-1 bg-white/80 backdrop-blur-sm rounded-md shadow-sm border border-gray-200"
@@ -182,7 +186,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
           
           {/* Key Specifications - No model name */}
           <div className="mt-8 space-y-3">
-            {keySpecs.map((spec, index) => (
+            {visibleSpecs.map((spec, index) => (
               <div key={index} className="space-y-0.5">
                 <div className="flex items-baseline gap-1">
                   <span className={`text-xl font-extrabold leading-none ${
@@ -194,7 +198,7 @@ export default function DevicePlaceholder({ device }: DevicePlaceholderProps) {
                 <div className="text-xs font-medium text-gray-600">
                   {spec.label}
                 </div>
-                {index < keySpecs.length - 1 && (
+                {index < visibleSpecs.length - 1 && (
                   <div className="pt-2 border-t border-gray-100" />
                 )}
               </div>

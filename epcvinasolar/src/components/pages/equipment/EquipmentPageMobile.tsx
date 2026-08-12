@@ -7,6 +7,24 @@ import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 import { useScrollContext } from '../../layout/DashboardShell';
 import { formatCurrency, CATEGORY_META } from './shared-equipment';
+
+function CardImagePlaceholder({ category, label }: { category: EquipmentCategory; label: string }) {
+  const meta = CATEGORY_META[category];
+
+  return (
+    <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${meta.gradient} p-4`}>
+      <div className="flex h-full w-full flex-col items-center justify-center rounded-2xl border border-white/40 bg-white/85 text-center shadow-sm backdrop-blur-sm">
+        <div className={`mb-2 flex h-12 w-12 items-center justify-center rounded-2xl ${meta.bg} ${meta.color}`}>
+          {meta.icon}
+        </div>
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-500">Chưa có ảnh</p>
+        <p className="mt-1 max-w-[9rem] text-sm font-semibold leading-snug text-gray-900 line-clamp-2">
+          {label}
+        </p>
+      </div>
+    </div>
+  );
+}
 function ImageGallery({ images, alt }: { images: string[]; alt: string }) {
   const [activeIdx, setActiveIdx] = useState(0);
   const startX = useRef<number | null>(null);
@@ -97,15 +115,14 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
     accent: 'bg-indigo-500',
     gradient: 'from-indigo-400 to-indigo-600',
   } : CATEGORY_META[category as EquipmentCategory];
+  const ITEMS_PER_PAGE = 20;
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('az');
   const [showFilterDrawer, setShowFilterDrawer] = useState(false);
-  const [mobilePage, setMobilePage] = useState(1);
-  const [pcPage, setPcPage] = useState(1);
-  const ITEMS_PER_PAGE = 12;
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const { isHeaderVisible } = useScrollContext();
   const [isFirstCardVisible, setIsFirstCardVisible] = useState(true);
   const [allDevices, setAllDevices] = useState<Device[]>([]);
@@ -140,7 +157,6 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
             unit: 'sản phẩm',
             price: product.price || 0,
             specs: {
-              'Danh mục': product.category || category,
               'Thương hiệu': product.brand || '',
               ...(product.specifications || {}),
             },
@@ -193,18 +209,15 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
     return devices;
   }, [allDevices, searchQuery, sortBy]);
 
-  // Reset pages when search/sort changes
+  // Reset visible count when search/sort changes
   useEffect(() => {
-    setMobilePage(1);
-    setPcPage(1);
+    setVisibleCount(ITEMS_PER_PAGE);
   }, [searchQuery, sortBy]);
 
-  // Paginated devices for PC grid
-  const pcTotalPages = Math.max(1, Math.ceil(filteredDevices.length / ITEMS_PER_PAGE));
-  const pcPaginatedDevices = useMemo(() => {
-    const start = (pcPage - 1) * ITEMS_PER_PAGE;
-    return filteredDevices.slice(start, start + ITEMS_PER_PAGE);
-  }, [filteredDevices, pcPage]);
+  // Load-more devices for the grid
+  const visibleDevices = useMemo(() => {
+    return filteredDevices.slice(0, visibleCount);
+  }, [filteredDevices, visibleCount]);
 
   // Extract unique brands
   const brands = useMemo(() => {
@@ -560,126 +573,68 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
           </div>
         ) : (
           <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {pcPaginatedDevices.map((device) => {
-              const isSelected = selectedDeviceId === device.id;
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5">
+            {visibleDevices.map((device) => {
               return (
-                <div
+                <a
                   key={device.id}
-                  onClick={() => {
-                    setSelectedDeviceId(device.id);
-                    setShowModal(true);
-                  }}
-                  className={`group bg-white rounded-2xl border-2 overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-xl hover:-translate-y-1 ${
-                    isSelected ? 'border-[#F97316] shadow-lg' : 'border-gray-200 hover:border-[#F97316]'
-                  }`}
+                  href={`/thiet-bi/${device.id}`}
+                  className={`group bg-white rounded-2xl border overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 block border-gray-200 hover:border-[#0B63CE]`}
                 >
                   {/* Product Image */}
-                  <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
+                  <div className="relative w-full aspect-square bg-white overflow-hidden">
                     {device.images?.[0] ? (
                       <Image
                         src={device.images[0]}
                         alt={device.model}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain p-3 group-hover:scale-[1.03] transition-transform duration-300"
                       />
                     ) : (
-                      <div className={`w-full h-full flex items-center justify-center ${meta.bg}`}>
-                        <div className={`${meta.color} opacity-30`}>
-                          {meta.icon}
-                        </div>
-                      </div>
-                    )}
-                    {/* Badge */}
-                    <div className="absolute top-3 left-3 flex gap-2">
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full ${meta.bg} ${meta.color} backdrop-blur-sm`}>
-                        {device.brand}
-                      </span>
-                    </div>
-                    {/* Warranty Badge */}
-                    {device.warranty && (
-                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full">
-                        <span className="text-xs font-medium text-gray-700">BH {device.warranty} năm</span>
-                      </div>
+                      <CardImagePlaceholder category={device.category} label={device.name} />
                     )}
                   </div>
 
                   {/* Product Info */}
-                  <div className="p-5">
-                    <h3 className="font-bold text-gray-900 text-base leading-snug mb-2 group-hover:text-[#F97316] transition-colors">
+                  <div className="p-4">
+                    <h3 className="font-semibold text-gray-900 text-[14px] leading-snug mb-2 line-clamp-2 group-hover:text-[#0B63CE] transition-colors">
                       {device.name}
                     </h3>
                     
                     {/* Specs */}
-                    <div className="space-y-2 mb-4">
+                    <div className="space-y-2 mb-3">
                       {Object.entries(device.specs)
+                        .filter(([, val]) => {
+                          const normalized = String(val).trim();
+                          return !/^0(\s|$|~)/.test(normalized);
+                        })
                         .slice(0, 3)
                         .map(([key, val]) => (
-                          <div key={key} className="flex items-center justify-between text-sm">
-                            <span className="text-gray-500">{key}</span>
-                            <span className="font-medium text-gray-900">{val}</span>
+                          <div key={key} className="flex items-center justify-between gap-3 border-t border-gray-100 pt-2 first:border-t-0 first:pt-0">
+                            <span className="text-gray-500 text-[10px] leading-none">{key}</span>
+                            <span className="font-medium text-gray-900 text-[11px] text-right leading-none">{val}</span>
                           </div>
                         ))}
                     </div>
 
                     {/* CTA */}
-                    <div className="pt-4 border-t border-gray-100 space-y-2">
-                      {device.price > 0 && (
-                        <div className="mb-2">
-                          <p className="text-xs text-gray-500">Báo giá</p>
-                          <p className="text-base font-semibold text-[#F97316]">{formatCurrency(device.price)}</p>
-                        </div>
-                      )}
-                      <div className="flex gap-2">
-                        <a
-                          href={`/thiet-bi/${device.id}`}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-[#F97316] text-white rounded-lg text-sm font-medium hover:bg-[#C2410C] transition-colors"
-                        >
-                          Chi tiết
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </a>
-                      </div>
-                    </div>
+                    <div className="pt-3 border-t border-gray-100" />
                   </div>
-                </div>
+                </a>
               );
             })}
           </div>
 
-          {/* PC Pagination */}
-          {pcTotalPages > 1 && (
-            <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-500">
-                {(pcPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(pcPage * ITEMS_PER_PAGE, filteredDevices.length)} / {filteredDevices.length}
-              </p>
-              <div className="flex items-center gap-1">
-                <button
-                  onClick={() => setPcPage(p => Math.max(1, p - 1))}
-                  disabled={pcPage === 1}
-                  className={`p-1.5 rounded-lg border transition-colors ${pcPage === 1 ? 'border-gray-200 text-gray-300' : 'border-gray-300 text-gray-600 hover:bg-orange-50'}`}
-                >
-                  <CaretLeft className="w-4 h-4" />
-                </button>
-                {Array.from({ length: pcTotalPages }, (_, i) => i + 1).slice(
-                  Math.max(0, pcPage - 3),
-                  Math.min(pcTotalPages, pcPage + 2)
-                ).map(page => (
-                  <button
-                    key={page}
-                    onClick={() => setPcPage(page)}
-                    className={`w-8 h-8 rounded-lg text-xs font-medium transition-colors ${pcPage === page ? 'bg-[#F97316] text-white' : 'text-gray-600 hover:bg-orange-50'}`}
-                  >
-                    {page}
-                  </button>
-                ))}
-                <button
-                  onClick={() => setPcPage(p => Math.min(pcTotalPages, p + 1))}
-                  disabled={pcPage === pcTotalPages}
-                  className={`p-1.5 rounded-lg border transition-colors ${pcPage === pcTotalPages ? 'border-gray-200 text-gray-300' : 'border-gray-300 text-gray-600 hover:bg-orange-50'}`}
-                >
-                  <CaretRight className="w-4 h-4" />
-                </button>
-              </div>
+          {visibleCount < filteredDevices.length && (
+            <div className="mt-6 pt-4 border-t border-gray-200 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((count) => Math.min(count + ITEMS_PER_PAGE, filteredDevices.length))}
+                className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:border-[#0B63CE] hover:text-[#0B63CE] hover:bg-blue-50"
+              >
+                Xem thêm
+                <CaretRight className="h-4 w-4" />
+              </button>
             </div>
           )}
           </div>

@@ -1,9 +1,27 @@
 import { useMemo, useState, useEffect, useRef } from 'react';
-import { Shield, X, Eye, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown, CaretLeft } from '@phosphor-icons/react';
+import { Shield, X, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortAscending, SortDescending, ArrowUp, ArrowDown } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 import { formatCurrency, CATEGORY_META } from './shared-equipment';
+
+function CardImagePlaceholder({ category, label }: { category: EquipmentCategory; label: string }) {
+  const meta = CATEGORY_META[category];
+
+  return (
+    <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${meta.gradient} p-5`}>
+      <div className="flex h-full w-full flex-col items-center justify-center rounded-2xl border border-white/40 bg-white/85 text-center shadow-sm backdrop-blur-sm">
+        <div className={`mb-3 flex h-14 w-14 items-center justify-center rounded-2xl ${meta.bg} ${meta.color}`}>
+          {meta.icon}
+        </div>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gray-500">Chưa có ảnh</p>
+        <p className="mt-1 max-w-[10rem] text-sm font-semibold leading-snug text-gray-900 line-clamp-2">
+          {label}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 interface PageProps {
   category: string;
@@ -18,6 +36,7 @@ interface PageProps {
   onSearchChange: (query: string) => void;
   onSortChange: (sort: 'az' | 'za' | 'price-asc' | 'price-desc') => void;
   onGridColumnsChange?: (columns: number) => void;
+  onItemsPerPageChange?: (count: number) => void;
   showHero?: boolean;
   showContent?: boolean;
 }
@@ -30,11 +49,12 @@ export default function EquipmentPageDesktop({
   loading,
   searchQuery,
   sortBy,
-  gridColumns = 4,
-  itemsPerPage = 16,
+  gridColumns = 5,
+  itemsPerPage = 20,
   onSearchChange,
   onSortChange,
   onGridColumnsChange,
+  onItemsPerPageChange,
   showHero = true,
   showContent = true,
 }: PageProps) {
@@ -50,7 +70,7 @@ export default function EquipmentPageDesktop({
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [visibleCount, setVisibleCount] = useState(itemsPerPage);
   const searchRef = useRef<HTMLDivElement>(null);
   // Auto-collapse search when clicking outside
   useEffect(() => {
@@ -100,34 +120,14 @@ export default function EquipmentPageDesktop({
     return filtered;
   }, [devices, searchQuery, sortBy]);
 
-  // Pagination
-  const totalPages = Math.max(1, Math.ceil(filteredDevices.length / itemsPerPage));
-  const paginatedDevices = useMemo(() => {
-    const start = (currentPage - 1) * itemsPerPage;
-    return filteredDevices.slice(start, start + itemsPerPage);
-  }, [filteredDevices, currentPage, itemsPerPage]);
+  const visibleDevices = useMemo(() => {
+    return filteredDevices.slice(0, visibleCount);
+  }, [filteredDevices, visibleCount]);
 
-  // Reset page when search/sort changes
+  // Reset visible count when search/sort changes
   useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery, sortBy]);
-
-  // Generate page numbers
-  const pageNumbers = useMemo(() => {
-    const pages: (number | '...')[] = [];
-    if (totalPages <= 7) {
-      for (let i = 1; i <= totalPages; i++) pages.push(i);
-    } else {
-      pages.push(1);
-      if (currentPage > 3) pages.push('...');
-      for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
-        pages.push(i);
-      }
-      if (currentPage < totalPages - 2) pages.push('...');
-      pages.push(totalPages);
-    }
-    return pages;
-  }, [totalPages, currentPage]);
+    setVisibleCount(itemsPerPage);
+  }, [searchQuery, sortBy, itemsPerPage]);
 
   const brands = useMemo(() => {
     const brandSet = new Set<string>();
@@ -264,6 +264,17 @@ export default function EquipmentPageDesktop({
                   <GridNine className="h-4 w-4" />
                 </button>
                 <button
+                  onClick={() => onGridColumnsChange?.(5)}
+                  className={`p-2 rounded transition-colors ${
+                    gridColumns === 5
+                      ? 'bg-[#F97316] text-white'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                  title="Lưới 5 cột"
+                >
+                  <GridNine className="h-4 w-4" />
+                </button>
+                <button
                   onClick={() => onGridColumnsChange?.(4)}
                   className={`p-2 rounded transition-colors ${
                     gridColumns === 4
@@ -278,16 +289,16 @@ export default function EquipmentPageDesktop({
               
               {/* Items per page */}
               <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
-                {[12, 16, 24, 32].map((limit) => (
+                {[20, 40, 60].map((limit) => (
                   <button
                     key={limit}
-                    onClick={() => { setCurrentPage(1); }}
+                    onClick={() => onItemsPerPageChange?.(limit)}
                     className={`px-2.5 py-1.5 text-xs font-medium rounded transition-colors ${
                       itemsPerPage === limit
                         ? 'bg-[#F97316] text-white'
                         : 'text-gray-600 hover:bg-gray-100'
                     }`}
-                    title={`${limit}/trang`}
+                    title={`Hiển thị ${limit}`}
                   >
                     {limit}
                   </button>
@@ -363,22 +374,22 @@ export default function EquipmentPageDesktop({
             gridColumns === 1 
               ? 'flex flex-col gap-4' 
               : `grid grid-cols-1 sm:grid-cols-2 ${
-                  gridColumns === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'
-                } gap-6`
+                  gridColumns === 3 ? 'lg:grid-cols-3' : gridColumns === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'
+                } gap-4 lg:gap-5`
           }`}>
-            {paginatedDevices.map((device) => (
-              <div
+            {visibleDevices.map((device) => (
+              <a
                 key={device.id}
-                className={`group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-300 cursor-pointer ${
+                href={`/thiet-bi/${device.id}`}
+                className={`group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-[#0B63CE] cursor-pointer block ${
                   gridColumns === 1
                     ? 'flex flex-row hover:translate-x-2'
                     : 'hover:-translate-y-2'
                 }`}
-                role="article"
                 aria-label={device.model}
               >
                 {/* Product Image */}
-                <div className={`relative bg-gray-50 overflow-hidden ${
+                <div className={`relative bg-white overflow-hidden ${
                   gridColumns === 1 ? 'w-48 flex-shrink-0' : 'w-full aspect-square'
                 }`}>
                   {device.images?.[0] ? (
@@ -386,125 +397,54 @@ export default function EquipmentPageDesktop({
                       src={device.images[0]}
                       alt={device.model}
                       fill
-                      className="object-contain p-4 group-hover:scale-110 transition-transform duration-500 ease-out"
+                      className="object-contain p-3 group-hover:scale-[1.04] transition-transform duration-500 ease-out"
                     />
                   ) : (
-                    <div className={`w-full h-full flex items-center justify-center ${meta.bg}`}>
-                      <div className={`${meta.color} opacity-30 scale-150`}>{meta.icon}</div>
-                    </div>
+                    <CardImagePlaceholder category={device.category} label={device.name} />
                   )}
-                  {/* Badges */}
-                  <div className="absolute top-3 left-3 flex flex-col gap-2">
-                    <span className={`px-3 py-1.5 text-xs font-semibold rounded-full ${meta.bg} ${meta.color} backdrop-blur-sm shadow-sm`}>
-                      {device.brand}
-                    </span>
-                  </div>
-                  {device.warranty && (
-                    <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full shadow-sm">
-                      <span className="text-xs font-semibold text-gray-700 flex items-center gap-1"><Shield weight="fill" className="w-3.5 h-3.5 text-emerald-600" /> {device.warranty} năm</span>
-                    </div>
-                  )}
-                  {/* Hover overlay with eye icon for quick view */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedDeviceId(device.id);
-                        setShowModal(true);
-                      }}
-                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/80 backdrop-blur-sm rounded-full p-3 hover:bg-white hover:scale-110 transform transition-all duration-200 cursor-pointer shadow-lg"
-                      aria-label={`Xem nhanh ${device.model}`}
-                    >
-                      <Eye className="w-5 h-5 text-gray-700" />
-                    </button>
-                  </div>
                 </div>
 
                 {/* Product Info */}
-                <div className={`p-5 space-y-4 ${gridColumns === 1 ? 'flex-1 min-w-0 flex flex-col justify-between' : ''}`}>
+                <div className={`p-4 space-y-3 ${gridColumns === 1 ? 'flex-1 min-w-0 flex flex-col justify-between' : ''}`}>
                   <a href={`/thiet-bi/${device.id}`} className="block">
-                    <h3 className="font-bold text-gray-900 text-base leading-snug hover:text-orange-600 transition-colors duration-300">
+                    <h3 className="font-semibold text-gray-900 text-[14px] leading-snug line-clamp-2 hover:text-[#0B63CE] transition-colors duration-300">
                       {device.name}
                     </h3>
                   </a>
                   
                   {/* Specs */}
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     {Object.entries(device.specs)
+                      .filter(([, val]) => {
+                        const normalized = String(val).trim();
+                        return !/^0(\s|$|~)/.test(normalized);
+                      })
                       .slice(0, 3)
                       .map(([key, val]) => (
-                        <div key={key} className="flex items-center justify-between text-sm">
-                          <span className="text-gray-500 text-xs">{key}</span>
-                          <span className="font-semibold text-gray-900 text-xs">{val}</span>
+                        <div key={key} className="flex items-center justify-between gap-3 border-t border-gray-100 pt-2 first:border-t-0 first:pt-0">
+                          <span className="text-gray-500 text-[10px] leading-none">{key}</span>
+                          <span className="font-semibold text-gray-900 text-[11px] text-right leading-none">{val}</span>
                         </div>
                       ))}
                   </div>
 
-                  {/* CTA */}
-                  <div className="pt-4 border-t border-gray-100 space-y-3">
-                    {device.price > 0 && (
-                      <div>
-                        <p className="text-xs text-gray-500 mb-0.5">Báo giá</p>
-                        <p className="text-sm font-semibold text-[#F97316]">
-                          {formatCurrency(device.price)}
-                        </p>
-                      </div>
-                    )}
-                  </div>
+                  <div className="pt-3 border-t border-gray-100" />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
-              <p className="text-sm text-gray-500">
-                Hiển thị <span className="font-semibold text-gray-900">{(currentPage - 1) * itemsPerPage + 1}</span>–<span className="font-semibold text-gray-900">{Math.min(currentPage * itemsPerPage, filteredDevices.length)}</span> / <span className="font-semibold text-gray-900">{filteredDevices.length}</span> sản phẩm
-              </p>
-              <div className="flex items-center gap-1.5">
-                <button
-                  onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
-                  className={`p-2 rounded-lg border transition-colors ${
-                    currentPage === 1
-                      ? 'border-gray-200 text-gray-300 cursor-not-allowed'
-                      : 'border-gray-300 text-gray-600 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600'
-                  }`}
-                  aria-label="Trang trước"
-                >
-                  <CaretLeft className="w-4 h-4" />
-                </button>
-                {pageNumbers.map((page, idx) => (
-                  page === '...' ? (
-                    <span key={`dots-${idx}`} className="px-2 text-gray-400">…</span>
-                  ) : (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page as number)}
-                      className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
-                        currentPage === page
-                          ? 'bg-[#F97316] text-white shadow-sm'
-                          : 'text-gray-600 hover:bg-orange-50 hover:text-orange-600'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  )
-                ))}
-                <button
-                  onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                  disabled={currentPage === totalPages}
-                  className={`p-2 rounded-lg border transition-colors ${
-                    currentPage === totalPages
-                      ? 'border-gray-200 text-gray-300 cursor-not-allowed'
-                      : 'border-gray-300 text-gray-600 hover:bg-orange-50 hover:border-orange-300 hover:text-orange-600'
-                  }`}
-                  aria-label="Trang sau"
-                >
-                  <CaretRight className="w-4 h-4" />
-                </button>
-              </div>
+          {/* Load more */}
+          {visibleCount < filteredDevices.length && (
+            <div className="mt-8 pt-6 border-t border-gray-200 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVisibleCount((count) => Math.min(count + itemsPerPage, filteredDevices.length))}
+                className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:border-[#0B63CE] hover:text-[#0B63CE] hover:bg-blue-50"
+              >
+                Xem thêm
+                <CaretRight className="h-4 w-4" />
+              </button>
             </div>
           )}
           </div>
