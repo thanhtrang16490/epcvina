@@ -1,6 +1,7 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/layout/HeaderBar';
 import KienThucHubPage from '../../components/pages/kienthuc/KienThucHubPage';
 import { buildFaqSchema } from '../../lib/schema';
 
@@ -28,7 +29,8 @@ const faqSchema = buildFaqSchema([
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <DashboardShell client:load>
+  <DashboardShell client:idle>
+      <HeaderBar client:idle />
       <KienThucHubPage client:visible />
     </DashboardShell>
 </DashboardLayout>

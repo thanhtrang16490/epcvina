@@ -33,7 +33,7 @@ const categories = [
     name: 'Điện Mặt Trời Cơ Bản',
     icon: Sun,
     color: 'bg-amber-100 text-amber-700',
-    desc: 'Kiến thức nền tảng về hệ thống điện mặt trời, nguyên lý hoạt động, các loại hệ thống phổ biến.',
+    desc: 'Kiến thức nền tảng về điện mặt trời, nguyên lý hoạt động và các hệ thống phổ biến.',
     articles: [
       { slug: 'dien-mat-troi-la-gi', title: 'Điện Mặt Trời Là Gì? Nguyên Lý Hoạt Động Chi Tiết' },
       { slug: 'cac-loai-he-thong-solar', title: '3 Loại Hệ Thống Điện Mặt Trời: On-Grid, Hybrid, Off-Grid' },
@@ -46,7 +46,7 @@ const categories = [
     name: 'Chi Phí & Đầu Tư',
     icon: Calculator,
     color: 'bg-blue-100 text-blue-700',
-    desc: 'Phân tích chi phí, thời gian hoàn vốn, ROI và các yếu tố ảnh hưởng đến giá hệ thống điện mặt trời.',
+    desc: 'Phân tích chi phí, thời gian hoàn vốn, ROI và các yếu tố ảnh hưởng đến giá hệ thống.',
     articles: [
       { slug: 'chi-phi-lap-dien-mat-troi-2026', title: 'Chi Phí Lắp Điện Mặt Trời 2026: Bảng Giá Chi Tiết' },
       { slug: 'thoi-gian-hoan-von-solar', title: 'Thời Gian Hoàn Vốn Điện Mặt Trời: Tính Toán Chi Tiết' },
@@ -59,7 +59,7 @@ const categories = [
     name: 'Pin Lưu Trữ & BESS',
     icon: BatteryHigh,
     color: 'bg-emerald-100 text-emerald-700',
-    desc: 'Tìm hiểu về pin lưu trữ điện, hệ thống BESS, công nghệ Lithium và ứng dụng trong điện mặt trời.',
+    desc: 'Tìm hiểu về pin lưu trữ, hệ thống BESS, công nghệ Lithium và ứng dụng thực tế.',
     articles: [
       { slug: 'pin-luu-tru-la-gi', title: 'Pin Lưu Trữ Điện Là Gì? Có Nên Lắp Đặt Không?' },
       { slug: 'cong-nghe-pin-lithium-vs-lfp', title: 'Pin Lithium-ion vs LFP: So Sánh Công Nghệ & Tuổi Thọ' },
@@ -72,7 +72,7 @@ const categories = [
     name: 'Kỹ Thuật & Lắp Đặt',
     icon: Wrench,
     color: 'bg-purple-100 text-purple-700',
-    desc: 'Hướng dẫn kỹ thuật, quy trình lắp đặt, vị trí tối ưu và bảo trì hệ thống điện mặt trời.',
+    desc: 'Hướng dẫn kỹ thuật, quy trình lắp đặt, vị trí tối ưu và bảo trì hệ thống.',
     articles: [
       { slug: 'quy-trinh-lap-dat-solar', title: 'Quy Trình Lắp Đặt Điện Mặt Trời: 7 Bước Chi Tiết' },
       { slug: 'huong-mai-nha-tot-nhat', title: 'Hướng Nhà & Góc Nghiêng Tối Ưu Cho Pin Mặt Trời' },
@@ -85,7 +85,7 @@ const categories = [
     name: 'Chính Sách & Pháp Luật',
     icon: Shield,
     color: 'bg-red-100 text-red-700',
-    desc: 'Cập nhật chính sách, quy định pháp luật về điện mặt trời, cơ chế giá, thủ tục đấu nối.',
+    desc: 'Cập nhật chính sách, quy định pháp luật, cơ chế giá và thủ tục đấu nối.',
     articles: [
       { slug: 'chinh-sach-dien-mat-troi-2026', title: 'Chính Sách Điện Mặt Trời 2026: Cập Nhật Mới Nhất' },
       { slug: 'thu-tuc-dau-noi-dien-luc', title: 'Thủ Tục Đấu Nối Điện Lực: Hướng Dẫn Từ A-Z' },
@@ -122,8 +122,7 @@ export default function KienThucHubPage() {
             Kiến Thức Điện Mặt Trời
           </h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-            Hub nội dung theo mô hình so sánh, hướng dẫn, thương hiệu và công cụ tính chi phí,
-            giúp người dùng đi từ tìm hiểu đến chọn giải pháp phù hợp nhanh hơn.
+            Tài nguyên kiến thức giúp bạn hiểu nhanh, so sánh đúng và chọn giải pháp điện mặt trời phù hợp hơn.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#danh-muc" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
@@ -144,8 +143,8 @@ export default function KienThucHubPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-4 mb-6">
             <div>
-              <p className="text-xs font-bold tracking-[0.22em] uppercase text-blue-700 mb-2">Nội dung chiến lược</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Lộ trình đọc giống hub RMSURV</h2>
+              <p className="text-xs font-bold tracking-[0.22em] uppercase text-blue-700 mb-2">Bài viết nổi bật</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Đọc theo chủ đề bạn quan tâm</h2>
             </div>
             <a href="/tin-tuc" className="hidden md:inline-flex items-center gap-2 text-sm font-semibold text-blue-700 hover:text-blue-900">
               Xem toàn bộ bài viết
@@ -246,14 +245,19 @@ export default function KienThucHubPage() {
       {/* Internal linking block */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8">
+            <p className="text-xs font-bold tracking-[0.22em] uppercase text-blue-700 mb-3">Tràn kiến thức</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
+              Mở rộng nội dung sau khi đọc xong bài
+            </h2>
+          </div>
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
             <div>
-              <p className="text-xs font-bold tracking-[0.22em] uppercase text-slate-400 mb-3">Đi đường tắt</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
-                Từ kiến thức đến báo giá, dự án và thương hiệu trong cùng một luồng đọc
+                Từ kiến thức đến giải pháp, báo giá và dự án trong cùng một luồng đọc
               </h2>
               <p className="mt-4 text-lg text-slate-600 max-w-2xl">
-                Cách này giúp người đọc không chỉ đọc bài mà còn được dẫn sang trang giải pháp, trang sản phẩm và trang dự án ngay khi đã sẵn sàng ra quyết định.
+                Người đọc có thể tiếp tục sang trang giải pháp, sản phẩm hoặc dự án ngay khi đã sẵn sàng ra quyết định.
               </p>
             </div>
             <div className="grid gap-3">
