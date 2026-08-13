@@ -5,7 +5,7 @@ import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import DashboardShell from '../../components/layout/DashboardShell';
 import HybridPage from '../../components/pages/hybrid/HybridPage';
 
-const { slug } = Astro.params;
+const slug = Astro.params.slug ?? '';
 
 const formatHybridSlug = (value: string) => {
   const normalized = value.replace(/^hybrid-/, '');

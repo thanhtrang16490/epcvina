@@ -1,0 +1,20 @@
+# EPCVINA Solar - Solar Product Website (SSR)
+# Deployed separately on Dokploy with Node.js adapter
+
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[variables]
+HOST = "0.0.0.0"
+PORT = "3000"
+NODE_ENV = "production"
+
+# Start Astro Node.js SSR server
+[start]
+cmd = "npm run start"

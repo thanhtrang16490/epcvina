@@ -20,6 +20,7 @@ const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "
 const DEFAULT_CRM_LEAD_ENDPOINT = "https://app.epcvina.com/api/public/leads";
 const FORM_SESSION_STARTED_AT = Date.now();
 const ATTRIBUTION_STORAGE_KEY = "epcvina_attribution_v1";
+const LEAD_DEBUG_KEY = "epcvina_lead_debug_v1";
 
 type Touchpoint = Partial<Record<(typeof TRACKING_KEYS)[number], string>> & {
   landing_page?: string;
@@ -81,14 +82,27 @@ export async function submitCrmLead(input: CrmLeadInput) {
   });
   const result = await response.json().catch(() => ({}));
   if (!response.ok || !result.success) throw new Error(result.message || "Không gửi được thông tin.");
-  if (result.accepted && result.lead_id) {
+  if (result.filtered) throw new Error("Yêu cầu chưa được ghi nhận. Vui lòng kiểm tra thông tin và thử lại.");
+  if (result.accepted && result.lead_id && !result.duplicate) {
+    try {
+      window.localStorage.setItem(LEAD_DEBUG_KEY, JSON.stringify({
+        captured_at: new Date().toISOString(),
+        source_form: input.source_form,
+        accepted: Boolean(result.accepted),
+        duplicate: Boolean(result.duplicate),
+        filtered: Boolean(result.filtered),
+        lead_id: result.lead_id,
+        endpoint,
+      }));
+    } catch {
+      // Debug storage is best-effort only.
+    }
     trackEvent("generate_lead", {
       source_form: input.source_form,
       event_id: result.lead_id,
     });
     window.fbq?.("track", "Lead", { source_form: input.source_form }, { eventID: result.lead_id });
   }
-  if (result.filtered) throw new Error("Yêu cầu chưa được ghi nhận. Vui lòng kiểm tra thông tin và thử lại.");
   return result as { success: true; accepted: boolean; lead_id?: string; duplicate?: boolean };
 }
 

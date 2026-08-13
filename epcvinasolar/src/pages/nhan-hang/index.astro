@@ -53,7 +53,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
           <div class="max-w-7xl mx-auto grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div class="max-w-2xl">
               <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-4 py-2 mb-5">
-                <Shield class="w-5 h-5 text-amber-300" />
+                <Shield className="w-5 h-5 text-amber-300" />
                 <span class="text-sm font-medium tracking-wide">Nhãn hàng chính hãng</span>
               </div>
               <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-none">
@@ -65,7 +65,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
               <div class="mt-8 flex flex-wrap gap-3">
                 <a href="#brands" class="inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-5 py-3 text-sm font-semibold shadow-sm transition-transform hover:-translate-y-0.5 active:translate-y-[1px]">
                   Xem nhãn hàng
-                  <ArrowRight class="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
@@ -73,7 +73,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
             <div class="grid grid-cols-2 gap-4">
               <div class="rounded-3xl border border-white/10 bg-white/8 p-5 backdrop-blur-sm">
                 <div class="flex items-center gap-3 text-amber-300 mb-3">
-                  <Buildings class="w-5 h-5" />
+                  <Buildings className="w-5 h-5" />
                   <span class="text-xs uppercase tracking-[0.2em]">Tổng quan</span>
                 </div>
                 <div class="text-3xl font-bold">{brandStats.length}</div>
@@ -81,7 +81,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
               </div>
               <div class="rounded-3xl border border-white/10 bg-white/8 p-5 backdrop-blur-sm">
                 <div class="flex items-center gap-3 text-cyan-300 mb-3">
-                  <Package class="w-5 h-5" />
+                  <Package className="w-5 h-5" />
                   <span class="text-xs uppercase tracking-[0.2em]">Sản phẩm</span>
                 </div>
                 <div class="text-3xl font-bold">{products.length}</div>
@@ -89,7 +89,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
               </div>
               <div class="rounded-3xl border border-white/10 bg-white/8 p-5 backdrop-blur-sm">
                 <div class="flex items-center gap-3 text-emerald-300 mb-3">
-                  <Star class="w-5 h-5" />
+                  <Star className="w-5 h-5" />
                   <span class="text-xs uppercase tracking-[0.2em]">Nổi bật</span>
                 </div>
                 <div class="text-3xl font-bold">{featuredBrands.length}</div>
@@ -97,7 +97,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
               </div>
               <div class="rounded-3xl border border-white/10 bg-white/8 p-5 backdrop-blur-sm">
                 <div class="flex items-center gap-3 text-orange-300 mb-3">
-                  <Lightning class="w-5 h-5" />
+                  <Lightning className="w-5 h-5" />
                   <span class="text-xs uppercase tracking-[0.2em]">Danh mục</span>
                 </div>
                 <div class="text-3xl font-bold">{solutionGroups.length}</div>
@@ -124,11 +124,11 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
         <div class="max-w-7xl mx-auto">
           <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {solutionGroups.map((group) => (
-              <div key={group.name} class={`rounded-3xl border border-gray-200 bg-gradient-to-br ${group.tone} p-5 shadow-sm`}>
+              <div class={`rounded-3xl border border-gray-200 bg-gradient-to-br ${group.tone} p-5 shadow-sm`}>
                 <h2 class={`text-lg font-bold ${group.accent}`}>{group.name}</h2>
                 <div class="mt-4 flex flex-wrap gap-2">
                   {group.brands.map((name) => (
-                    <span key={name} class="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-700">
+                    <span class="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-gray-700">
                       {name}
                     </span>
                   ))}
@@ -151,7 +151,6 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
           <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {brandStats.map((brand) => (
               <a
-                key={brand.id}
                 href={`/nhan-hang/${brand.slug}`}
                 class="group block overflow-hidden rounded-3xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-orange-200 hover:shadow-[0_20px_40px_rgba(249,115,22,0.10)]"
               >
@@ -162,7 +161,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
                     </div>
                   ) : (
                     <div class="w-14 h-14 flex-shrink-0 rounded-2xl bg-orange-50 flex items-center justify-center">
-                      <Shield class="w-7 h-7 text-orange-300" />
+                      <Shield className="w-7 h-7 text-orange-300" />
                     </div>
                   )}
                   <div class="flex-1 min-w-0">
@@ -178,13 +177,13 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
                   <div class="flex items-center gap-3">
                     {brand.country && (
                       <span class="flex items-center gap-1 text-xs text-gray-500">
-                        <MapPin class="w-3 h-3" />
+                        <MapPin className="w-3 h-3" />
                         {brand.country}
                       </span>
                     )}
                     {brand.website && (
                       <span class="flex items-center gap-1 text-xs text-gray-500">
-                        <Globe class="w-3 h-3" />
+                        <Globe className="w-3 h-3" />
                         {brand.website.replace(/^https?:\/\//, '')}
                       </span>
                     )}
@@ -194,7 +193,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
                   </div>
                   <span class="text-xs text-orange-600 font-medium flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
                     Xem chi tiết
-                    <ArrowRight class="w-3 h-3" />
+                    <ArrowRight className="w-3 h-3" />
                   </span>
                 </div>
               </a>

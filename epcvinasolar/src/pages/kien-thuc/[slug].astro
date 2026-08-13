@@ -75,6 +75,12 @@ const categoryMap = {
   },
 };
 
+export function getStaticPaths() {
+  return Object.keys(categoryMap).map((slug) => ({
+    params: { slug },
+  }));
+}
+
 const { slug } = Astro.params;
 const category = categoryMap[slug as keyof typeof categoryMap];
 if (!category) {

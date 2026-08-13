@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "Medusa Admin",
+    "welcome": "Welcome to the backend"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "search": "Search"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "products": "Products",
+    "brands": "Brands",
+    "customers": "Customers",
+    "settings": "Settings"
+  }
+}

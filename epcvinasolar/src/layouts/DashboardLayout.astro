@@ -1,5 +1,6 @@
 ---
 import { buildLocalBusinessSchema } from '../lib/schema';
+import { Partytown } from '@astrojs/partytown/components';
 
 interface Props {
   title?: string;
@@ -182,25 +183,23 @@ const structuredData = buildLocalBusinessSchema({
       })();
     </script>
 
+    <Partytown />
+
     <!-- Google tag (Google Analytics + Google Ads) -->
-    <script is:inline>
-      (function () {
-        if (!window.epcvinaAnalyticsEnabled) return;
-
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=AW-18369898149';
-        document.head.appendChild(script);
-
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=AW-18369898149"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
+      if (window.epcvinaAnalyticsEnabled) {
         window.gtag('js', new Date());
         window.gtag('config', 'G-2VLQ1GQBQL');
         window.gtag('config', 'AW-18369898149');
-      })();
+      }
+    </script>
 
+    <script type="text/partytown">
       window.epcConversionLabels = window.epcConversionLabels || {
-        lead_submit: 'epcvina_lead_submit',
+        form_submit: 'epcvina_form_submit',
         hotline_click: 'epcvina_hotline_click',
         zalo_click: 'epcvina_zalo_click',
       };
@@ -266,7 +265,6 @@ const structuredData = buildLocalBusinessSchema({
         // Google callback from running.
         if (!opensNewContext) window.setTimeout(continueNavigation, 850);
       }, true);
-
     </script>
 
     {gtmId && (

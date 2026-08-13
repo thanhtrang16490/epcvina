@@ -61,7 +61,7 @@ export default function DienMatTroiGiaDinh() {
     setFormError('');
     try {
       await submitCrmLead({ ...formData, source_form: 'family_landing_contact' });
-      trackEvent('lead_submit', { event_label: 'family_landing_contact', conversion_action: 'lead_submit_family_landing_contact' });
+      trackEvent('form_submit', { event_label: 'family_landing_contact', conversion_action: 'form_submit_family_landing_contact' });
       redirectToThankYou('family_landing_contact');
     } catch (error) {
       setFormError(error instanceof Error ? error.message : 'Chưa gửi được thông tin.');
@@ -85,7 +85,7 @@ export default function DienMatTroiGiaDinh() {
             system_size_kw: Number(data.system_size),
             calculator_result: { combo_index: data.combo_index },
           });
-          trackEvent('lead_submit', { event_label: 'family_inline_calculator', conversion_action: 'lead_submit_family_inline_calculator' });
+          trackEvent('form_submit', { event_label: 'family_inline_calculator', conversion_action: 'form_submit_family_inline_calculator' });
         }}
       />
       <div className="hidden md:block">

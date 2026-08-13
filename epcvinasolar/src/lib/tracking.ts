@@ -1,13 +1,13 @@
 type GtagParams = Record<string, string | number | boolean | undefined>;
 
 const DEFAULT_CONVERSION_ACTIONS: Record<string, string> = {
-  lead_submit: "lead_submit",
+  form_submit: "form_submit",
   hotline_click: "hotline_click",
   zalo_click: "zalo_click",
 };
 
 const DEFAULT_CONVERSION_LABELS: Record<string, string> = {
-  lead_submit: "epcvina_lead_submit",
+  form_submit: "epcvina_form_submit",
   hotline_click: "epcvina_hotline_click",
   zalo_click: "epcvina_zalo_click",
 };

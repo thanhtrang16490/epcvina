@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config';
+import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
 import node from '@astrojs/node';
 import sitemap from '@astrojs/sitemap';
@@ -26,6 +27,12 @@ export default defineConfig({
   },
   integrations: [
     react(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push'],
+        debug: false,
+      },
+    }),
     sitemap({
       filter: (page) => ![
         'https://epcvina.com/projects/',
