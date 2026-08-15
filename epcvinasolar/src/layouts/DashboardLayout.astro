@@ -1,6 +1,7 @@
 ---
 import { buildLocalBusinessSchema } from '../lib/schema';
-import { Partytown } from '@astrojs/partytown/components';
+import { getLocaleFromPathname } from '../i18n/messages';
+import { getLocalizedAlternates } from '../i18n/routes';
 
 interface Props {
   title?: string;
@@ -31,6 +32,8 @@ const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '1716110676297295';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage || defaultOgImage, Astro.site);
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const alternates = getLocalizedAlternates(Astro.url.pathname);
 
 const cleanMeta = (value: string) => value.replace(/\s+/g, ' ').trim();
 const truncateMeta = (value: string, maxLength: number) => {
@@ -72,7 +75,7 @@ const structuredData = buildLocalBusinessSchema({
 ---
 
 <!DOCTYPE html>
-<html lang="vi" class="h-full antialiased">
+<html lang={locale} class="h-full antialiased">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -83,6 +86,14 @@ const structuredData = buildLocalBusinessSchema({
     <meta name="description" content={seoDescription} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalURL.href} />
+    {alternates.map((alternate) => (
+      <link
+        rel="alternate"
+        hreflang={alternate.locale === 'vi' ? 'vi-VN' : alternate.locale === 'en' ? 'en-US' : alternate.locale === 'zh' ? 'zh-CN' : alternate.locale === 'ja' ? 'ja-JP' : 'ko-KR'}
+        href={new URL(alternate.href, Astro.site).href}
+      />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).href} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <!-- Open Graph / Facebook / Zalo -->
     <meta property="og:type" content={ogType} />
@@ -93,7 +104,7 @@ const structuredData = buildLocalBusinessSchema({
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={seoTitle} />
-    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:locale" content={locale === 'vi' ? 'vi_VN' : locale === 'zh' ? 'zh_CN' : locale === 'ja' ? 'ja_JP' : locale === 'ko' ? 'ko_KR' : 'en_US'} />
     <meta property="og:site_name" content="EPCVINA Solar" />
     <meta property="og:image:type" content={(ogImage || defaultOgImage).endsWith('.png') ? 'image/png' : 'image/jpeg'} />
     
@@ -182,8 +193,6 @@ const structuredData = buildLocalBusinessSchema({
         } catch (_) {}
       })();
     </script>
-
-    <Partytown />
 
     <!-- Google tag (Google Analytics + Google Ads) -->
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=AW-18369898149"></script>

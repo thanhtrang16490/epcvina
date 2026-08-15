@@ -21,6 +21,6 @@ const faqSchema = buildFaqSchema([
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <DashboardShell client:load>
-    <BaoTriPage client:idle />
+    <BaoTriPage client:idle pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

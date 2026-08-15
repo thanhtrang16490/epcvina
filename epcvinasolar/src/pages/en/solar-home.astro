@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolutionsLandingPage from '../../components/pages/solar-home/SolutionsLandingPage';
+---
+
+<DashboardLayout
+  title="Solar Home Solutions | EPCVINA Solar"
+  description="Explore turnkey solar solutions for homes, townhouses, and villas in Vietnam. Compare on-grid and hybrid options with EPCVINA Solar."
+  keywords="solar home, rooftop solar, on-grid, hybrid solar, residential solar Vietnam, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://epcvina.com/en' },
+    { name: 'Solar Home', url: 'https://epcvina.com/en/solar-home' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolutionsLandingPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

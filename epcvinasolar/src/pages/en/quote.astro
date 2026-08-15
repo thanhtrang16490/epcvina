@@ -1,0 +1,16 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import QuotationPage from '../../components/pages/bao-gia/QuotationPage';
+---
+
+<DashboardLayout
+  title="Get a Quote | EPCVINA Solar"
+  description="Request a solar quote from EPCVINA Solar."
+  keywords="solar quote, EPCVINA Solar"
+  breadcrumbs={[{name: "Home", url: "https://epcvina.com/en"}, {name: "Quote", url: "https://epcvina.com/en/quote"}]}
+>
+  <DashboardShell client:load>
+    <QuotationPage client:visible pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

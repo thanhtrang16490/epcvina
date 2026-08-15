@@ -11,47 +11,47 @@ import FAQSection from '../sections/FAQSection';
 import CTASection from '../contact/CTASection';
 import FooterSection from './FooterSection';
 
-export default function SolarFullPage() {
+export default function SolarFullPage({ pathname = '/' }: { pathname?: string }) {
   return (
     <div className="min-h-screen bg-white scroll-smooth">
-      <HeaderBar />
+      <HeaderBar pathname={pathname} />
       <div>
       {/* 1. Hero — EPCVINA Solar brand, CTA, stats bar */}
       <div className="lg:-ml-16 lg:w-[calc(100%+4rem)]">
-        <HeroSection />
+        <HeroSection pathname={pathname} />
       </div>
 
       {/* 2. So sánh Hybrid vs On-Grid — context trước khi dùng tool */}
-      <ComparisonSection />
+      <ComparisonSection pathname={pathname} />
 
       {/* 3. Gói giải pháp — SolarSolutionFinder */}
-      <SolarSolutionFinder />
+      <SolarSolutionFinder pathname={pathname} />
 
       {/* 4. Lợi thế EPCVINA — 6 điểm cơ điện */}
-      <BenefitsSection />
+      <BenefitsSection pathname={pathname} />
 
       {/* 4.5 Mid-page CTA — after Benefits */}
-      <MidPageCTA variant="benefits" />
+      <MidPageCTA variant="benefits" pathname={pathname} />
 
       {/* 5. Quy trình triển khai — 6 bước theo PDF */}
-      <ProcessSection />
+      <ProcessSection pathname={pathname} />
 
       {/* 6. Dự án thực tế — portfolio */}
-      <ProjectsPreviewSection />
+      <ProjectsPreviewSection pathname={pathname} />
 
       {/* 7. Đánh giá khách hàng */}
-      <ReviewsSection />
+      <ReviewsSection pathname={pathname} />
 
       {/* 7.5 Pricing teaser CTA — after Reviews */}
-      <MidPageCTA variant="reviews" />
+      <MidPageCTA variant="reviews" pathname={pathname} />
 
       {/* 8. FAQ */}
-      <FAQSection />
+      <FAQSection pathname={pathname} />
 
       {/* 9. CTA — Form thu lead */}
-      <CTASection />
+      <CTASection pathname={pathname} />
 
-      <FooterSection />
+      <FooterSection pathname={pathname} />
       </div>
     </div>
   );

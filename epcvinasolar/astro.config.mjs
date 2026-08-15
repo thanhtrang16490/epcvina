@@ -40,7 +40,13 @@ export default defineConfig({
       ].includes(page),
       i18n: {
         defaultLocale: 'vi',
-        locales: { vi: 'vi-VN' },
+        locales: {
+          vi: 'vi-VN',
+          en: 'en-US',
+          zh: 'zh-CN',
+          ja: 'ja-JP',
+          ko: 'ko-KR',
+        },
       },
     }),
   ],

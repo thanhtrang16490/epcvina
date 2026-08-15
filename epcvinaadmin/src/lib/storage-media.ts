@@ -1,6 +1,7 @@
 import { slugify } from "@/lib/slug";
 
 export const MEDIA_BUCKET = "catalog-media";
+export const SURVEY_MEDIA_BUCKET = "survey-media";
 
 function extensionFor(file: File) {
   const name = file.name.toLowerCase();
@@ -52,6 +53,64 @@ export async function uploadMediaFiles(
     urls.push(bucket.getPublicUrl(path).data.publicUrl);
   }
   return urls;
+}
+
+function surveyExtensionFor(file: File) {
+  const name = file.name.toLowerCase();
+  const ext = name.includes(".") ? name.split(".").pop() : "";
+  if (ext && ext.length <= 5) return `.${ext}`;
+  const type = file.type.toLowerCase();
+  if (type.includes("png")) return ".png";
+  if (type.includes("webp")) return ".webp";
+  if (type.includes("gif")) return ".gif";
+  if (type.includes("jpeg") || type.includes("jpg")) return ".jpg";
+  if (type.includes("mp4")) return ".mp4";
+  return ".bin";
+}
+
+export async function uploadSurveyMediaFiles(
+  supabase: {
+    storage: {
+      from: (bucket: string) => {
+        upload: (path: string, file: File, options?: { upsert?: boolean; contentType?: string }) => Promise<{ data: { path: string } | null; error: unknown }>;
+        getPublicUrl: (path: string) => { data: { publicUrl: string } };
+      };
+    };
+  },
+  leadId: string,
+  folder: "site-images" | "sketch-images",
+  files: File[],
+) {
+  const bucket = supabase.storage.from(SURVEY_MEDIA_BUCKET);
+  const urls: string[] = [];
+  const paths: string[] = [];
+  for (let index = 0; index < files.length; index += 1) {
+    const file = files[index];
+    if (!file || file.size === 0) continue;
+    const safeName = slugify(file.name.replace(/\.[^.]+$/, "")) || `file-${index + 1}`;
+    const path = `leads/${leadId}/${folder}/${String(index + 1).padStart(2, "0")}-${safeName}${surveyExtensionFor(file)}`;
+    const { error } = await bucket.upload(path, file, { upsert: true, contentType: file.type || "application/octet-stream" });
+    if (error) throw error;
+    urls.push(bucket.getPublicUrl(path).data.publicUrl);
+    paths.push(path);
+  }
+  return { urls, paths };
+}
+
+export async function deleteSurveyMediaPaths(
+  supabase: {
+    storage: {
+      from: (bucket: string) => {
+        remove: (paths: string[]) => Promise<{ data: unknown; error: unknown }>;
+      };
+    };
+  },
+  paths: string[],
+) {
+  const cleanPaths = Array.from(new Set(paths.filter(Boolean)));
+  if (!cleanPaths.length) return;
+  const { error } = await supabase.storage.from(SURVEY_MEDIA_BUCKET).remove(cleanPaths);
+  if (error) throw error;
 }
 
 export function parseImageUrls(value: FormDataEntryValue | null) {

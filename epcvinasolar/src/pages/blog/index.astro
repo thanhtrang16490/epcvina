@@ -1,3 +1,15 @@
 ---
-return Astro.redirect('/tin-tuc', 301);
+const target = '/tin-tuc';
 ---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={new URL(target, Astro.site).href} />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>Tin tức</a>...</p>
+  </body>
+</html>

@@ -32,6 +32,9 @@ import {
 } from '@phosphor-icons/react';
 import { motion } from 'motion/react';
 import HeaderBar from '../../home/layout/HeaderBar';
+import { getLocaleFromPathname } from '../../../i18n/messages';
+
+type Locale = 'vi' | 'en' | 'zh' | 'ja' | 'ko';
 
 
 /* ─── Data ──────────────────────────────────────────────── */
@@ -487,14 +490,15 @@ function HybridComboGrid() {
 
 /* ─── Section Component ─────────────────────────────────── */
 
-export default function HybridBESSPage() {
+export default function HybridBESSPage({ pathname = '/' }: { pathname?: string }) {
+  const locale = (['vi', 'en', 'zh', 'ja', 'ko'].includes(getLocaleFromPathname(pathname)) ? getLocaleFromPathname(pathname) : 'vi') as Locale;
   return (
     <div className="min-h-screen bg-white">
       {/* ═══════════════════════════════════════════════════════
           SECTION 1 — HERO
           ═══════════════════════════════════════════════════════ */}
       <div className="relative">
-        <HeaderBar />
+        <HeaderBar pathname={pathname} />
         <section
           className="relative overflow-hidden bg-slate-900 text-white min-h-[70vh] sm:min-h-[80vh] flex items-center"
           aria-labelledby="hero-heading"
@@ -523,7 +527,7 @@ export default function HybridBESSPage() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-sm border border-white/20 mb-6">
                 <BatteryHigh className="h-4 w-4 text-amber-400" />
-                <span>Hybrid & BESS</span>
+                <span>{locale === 'vi' ? 'Hybrid & BESS' : locale === 'en' ? 'Hybrid & BESS' : locale === 'zh' ? '混合式与储能系统' : locale === 'ja' ? 'ハイブリッド＆BESS' : '하이브리드 & BESS'}</span>
               </div>
 
               {/* H1 */}
@@ -531,19 +535,17 @@ export default function HybridBESSPage() {
                 id="hero-heading"
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
               >
-                Lưu Trữ Năng Lượng{' '}
-                <span className="text-indigo-400">Thông Minh</span>
+                {locale === 'vi' ? 'Lưu Trữ Năng Lượng' : locale === 'en' ? 'Smart Energy' : locale === 'zh' ? '智能能源' : locale === 'ja' ? 'スマートエネルギー' : '스마트 에너지'}{' '}
+                <span className="text-indigo-400">{locale === 'vi' ? 'Thông Minh' : locale === 'en' ? 'Storage' : locale === 'zh' ? '储存' : locale === 'ja' ? '蓄電' : '저장'}</span>
               </h1>
               <p className="text-xl sm:text-2xl font-medium text-gray-200 mb-6">
-                Cho Gia Đình Và{' '}
-                <span className="text-amber-400">Doanh Nghiệp</span>
+                {locale === 'vi' ? 'Cho Gia Đình Và' : locale === 'en' ? 'For Homes And' : locale === 'zh' ? '面向家庭与' : locale === 'ja' ? '家庭と' : '가정과'}{' '}
+                <span className="text-amber-400">{locale === 'vi' ? 'Doanh Nghiệp' : locale === 'en' ? 'Businesses' : locale === 'zh' ? '企业' : locale === 'ja' ? '企業' : '기업'}</span>
               </p>
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed">
-                Kết hợp điện mặt trời và hệ thống lưu trữ năng lượng tiên tiến giúp
-                chủ động nguồn điện, duy trì hoạt động liên tục và tối ưu chi phí
-                điện năng.
+                {locale === 'vi' ? 'Kết hợp điện mặt trời và hệ thống lưu trữ năng lượng tiên tiến giúp chủ động nguồn điện, duy trì hoạt động liên tục và tối ưu chi phí điện năng.' : locale === 'en' ? 'Combine solar power with advanced energy storage to secure backup power, keep operations running, and optimize electricity costs.' : locale === 'zh' ? '将太阳能与先进储能系统结合，实现备用供电、持续运行和电费优化。' : locale === 'ja' ? '太陽光発電と高度な蓄電システムを組み合わせ、バックアップ電源の確保、継続運転、電気料金の最適化を実現します。' : '태양광과 첨단 에너지 저장 시스템을 결합해 백업 전원 확보, 지속 운영, 전기요금 최적화를 실현합니다.'}
               </p>
 
               {/* CTA buttons */}
@@ -552,21 +554,21 @@ export default function HybridBESSPage() {
                   href="/calculator"
                   className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 shadow-lg shadow-indigo-500/25 min-h-[44px]"
                 >
-                  Nhận tư vấn giải pháp
+                  {locale === 'vi' ? 'Nhận tư vấn giải pháp' : locale === 'en' ? 'Request a solution consult' : locale === 'zh' ? '获取方案咨询' : locale === 'ja' ? 'ご提案を依頼' : '솔루션 상담 받기'}
                   <ArrowRight className="h-5 w-5" />
                 </a>
                 <a
                   href="#calculator"
                   className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/25 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 min-h-[44px]"
                 >
-                  Tính toán dung lượng lưu trữ
+                  {locale === 'vi' ? 'Tính toán dung lượng lưu trữ' : locale === 'en' ? 'Calculate storage capacity' : locale === 'zh' ? '计算储能容量' : locale === 'ja' ? '蓄電容量を計算' : '저장 용량 계산'}
                   <Lightning className="h-5 w-5" />
                 </a>
               </div>
 
               {/* Stats row */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                {heroStats.map((stat) => {
+                {heroStats.map((stat, idx) => {
                   const StatIcon = stat.icon;
                   return (
                     <div
@@ -578,9 +580,9 @@ export default function HybridBESSPage() {
                       </div>
                       <div>
                         <div className="text-sm font-bold text-white leading-tight">
-                          {stat.value}
+                          {locale === 'vi' ? stat.value : locale === 'en' ? ['Backup during outages','Peak cost optimization','Smart energy management','Battery life up to 15 years'][idx] : locale === 'zh' ? ['停电备用','优化高峰成本','智能能源管理','电池寿命长达15年'][idx] : locale === 'ja' ? ['停電時のバックアップ','ピーク時間コスト最適化','スマートエネルギー管理','最大15年の電池寿命'][idx] : ['정전 대비 백업','피크 비용 최적화','스마트 에너지 관리','최대 15년 배터리 수명'][idx]}
                         </div>
-                        <div className="text-xs text-gray-400">{stat.label}</div>
+                        <div className="text-xs text-gray-400">{locale === 'vi' ? stat.label : locale === 'en' ? ['Continuous backup','Maximum savings','Automated EMS','Long-lasting'][idx] : locale === 'zh' ? ['持续供电','节省更多','自动 EMS','持久耐用'][idx] : locale === 'ja' ? ['連続バックアップ','最大節約','自動 EMS','長寿命'][idx] : ['연속 백업','최대 절감','자동 EMS','장기 내구성'][idx]}</div>
                       </div>
                     </div>
                   );
@@ -605,12 +607,11 @@ export default function HybridBESSPage() {
                 id="what-is-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                Từ Điện Mặt Trời Đến{' '}
-                <span className="text-indigo-600">Hệ Sinh Thái Năng Lượng</span>{' '}
-                Hoàn Chỉnh
+                {locale === 'vi' ? 'Từ Điện Mặt Trời Đến' : locale === 'en' ? 'From Solar Power To A' : locale === 'zh' ? '从太阳能到' : locale === 'ja' ? '太陽光から' : '태양광에서'}{' '}
+                <span className="text-indigo-600">{locale === 'vi' ? 'Hệ Sinh Thái Năng Lượng' : locale === 'en' ? 'Complete Energy Ecosystem' : locale === 'zh' ? '完整能源生态系统' : locale === 'ja' ? '完全なエネルギーエコシステム' : '완전한 에너지 생태계'}</span>
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Hai giải pháp lưu trữ năng lượng phù hợp với mọi quy mô và nhu cầu.
+                {locale === 'vi' ? 'Hai giải pháp lưu trữ năng lượng phù hợp với mọi quy mô và nhu cầu.' : locale === 'en' ? 'Two energy storage options for every scale and use case.' : locale === 'zh' ? '两种储能方案，适配不同规模与需求。' : locale === 'ja' ? '規模や用途に応じた2つの蓄電ソリューション。' : '규모와 용도에 맞는 두 가지 에너지 저장 솔루션.'}
               </p>
             </div>
           </AnimateIn>
@@ -664,10 +665,10 @@ export default function HybridBESSPage() {
                 id="pain-heading"
                 className="text-3xl sm:text-4xl font-bold mb-4"
               >
-                Những Bài Toán Mà Hybrid & BESS Giải Quyết
+                {locale === 'vi' ? 'Những Bài Toán Mà Hybrid & BESS Giải Quyết' : locale === 'en' ? 'Problems Hybrid & BESS Solve' : locale === 'zh' ? 'Hybrid 与 BESS 解决的痛点' : locale === 'ja' ? 'Hybrid と BESS が解決する課題' : 'Hybrid & BESS가 해결하는 문제'}
               </h2>
               <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Những vấn đề phổ biến mà hệ thống lưu trữ năng lượng giúp bạn khắc phục.
+                {locale === 'vi' ? 'Những vấn đề phổ biến mà hệ thống lưu trữ năng lượng giúp bạn khắc phục.' : locale === 'en' ? 'Common energy challenges that storage systems can help you overcome.' : locale === 'zh' ? '储能系统可帮助您应对常见能源问题。' : locale === 'ja' ? '蓄電システムが一般的なエネルギー課題を解決します。' : '저장 시스템이 흔한 에너지 문제를 해결합니다.'}
               </p>
             </div>
           </AnimateIn>
@@ -709,11 +710,12 @@ export default function HybridBESSPage() {
                 id="scale-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                Chọn Hệ Thống Phù Hợp Với{' '}
-                <span className="text-indigo-600">Quy Mô</span> Của Bạn
+                {locale === 'vi' ? 'Chọn Hệ Thống Phù Hợp Với' : locale === 'en' ? 'Choose The Right System For' : locale === 'zh' ? '选择适合您' : locale === 'ja' ? '規模に合った' : '규모에 맞는'}{' '}
+                <span className="text-indigo-600">{locale === 'vi' ? 'Quy Mô' : locale === 'en' ? 'Your Scale' : locale === 'zh' ? '规模' : locale === 'ja' ? 'システムを' : '시스템을'}</span>{' '}
+                {locale === 'vi' ? 'Của Bạn' : locale === 'en' ? '' : locale === 'zh' ? '的系统' : locale === 'ja' ? '選ぶ' : '선택'}
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Từ gia đình đến nhà máy quy mô lớn, EPCVINA Solar có giải pháp phù hợp.
+                {locale === 'vi' ? 'Từ gia đình đến nhà máy quy mô lớn, EPCVINA Solar có giải pháp phù hợp.' : locale === 'en' ? 'From homes to large industrial plants, EPCVINA Solar has a suitable solution.' : locale === 'zh' ? '从家庭到大型工厂，EPCVINA Solar 都有合适方案。' : locale === 'ja' ? '住宅から大型工場まで、EPCVINA Solar が最適解をご用意します。' : '가정부터 대형 공장까지, EPCVINA Solar가 적합한 솔루션을 제공합니다.'}
               </p>
             </div>
           </AnimateIn>
@@ -787,11 +789,11 @@ export default function HybridBESSPage() {
                 id="how-it-works-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                Quản Lý Năng Lượng{' '}
-                <span className="text-indigo-600">Tự Động</span>
+                {locale === 'vi' ? 'Quản Lý Năng Lượng' : locale === 'en' ? 'Automated Energy' : locale === 'zh' ? '自动化能源' : locale === 'ja' ? '自動エネルギー' : '자동 에너지'}{' '}
+                <span className="text-indigo-600">{locale === 'vi' ? 'Tự Động' : locale === 'en' ? 'Management' : locale === 'zh' ? '管理' : locale === 'ja' ? '管理' : '관리'}</span>
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Hệ thống tự động điều phối năng lượng theo từng thời điểm trong ngày.
+                {locale === 'vi' ? 'Hệ thống tự động điều phối năng lượng theo từng thời điểm trong ngày.' : locale === 'en' ? 'The system automatically manages energy through every time of day.' : locale === 'zh' ? '系统会根据一天中的不同时间自动调配能源。' : locale === 'ja' ? 'システムが時間帯ごとに自動でエネルギーを配分します。' : '시스템이 하루의 각 시간대에 맞춰 에너지를 자동으로 배분합니다.'}
               </p>
             </div>
           </AnimateIn>
@@ -872,11 +874,11 @@ export default function HybridBESSPage() {
                 id="features-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                Không Chỉ Là Một Bộ Pin{' '}
-                <span className="text-indigo-600">Lưu Trữ</span>
+                {locale === 'vi' ? 'Không Chỉ Là Một Bộ Pin' : locale === 'en' ? 'More Than Just A Battery' : locale === 'zh' ? '不仅仅是' : locale === 'ja' ? '単なる蓄電池' : '단순한 배터리'}{' '}
+                <span className="text-indigo-600">{locale === 'vi' ? 'Lưu Trữ' : locale === 'en' ? 'Storage' : locale === 'zh' ? '储能电池' : locale === 'ja' ? 'ではありません' : '저장 그 이상'}</span>
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Hệ thống tích hợp nhiều tính năng thông minh để tối ưu năng lượng.
+                {locale === 'vi' ? 'Hệ thống tích hợp nhiều tính năng thông minh để tối ưu năng lượng.' : locale === 'en' ? 'Integrated smart features help you optimize energy use.' : locale === 'zh' ? '多种智能功能助您优化能源使用。' : locale === 'ja' ? 'スマート機能を統合し、エネルギー使用を最適化します。' : '통합 스마트 기능으로 에너지 사용을 최적화합니다.'}
               </p>
             </div>
           </AnimateIn>
@@ -917,18 +919,17 @@ export default function HybridBESSPage() {
             <div className="text-center mb-10 sm:mb-14">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold mb-4">
                 <BatteryHigh className="h-4 w-4" aria-hidden="true" />
-                Combo Hybrid & BESS
+                {locale === 'vi' ? 'Combo Hybrid & BESS' : locale === 'en' ? 'Hybrid & BESS Combos' : locale === 'zh' ? 'Hybrid 与 BESS 组合' : locale === 'ja' ? 'Hybrid & BESS 構成' : 'Hybrid & BESS 조합'}
               </span>
               <h2
                 id="combo-heading"
                 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4"
               >
-                Hệ Thống Hybrid{' '}
-                <span className="text-indigo-600">Sẵn Sàng Lắp Đặt</span>
+                {locale === 'vi' ? 'Hệ Thống Hybrid' : locale === 'en' ? 'Ready-to-Deploy Hybrid Systems' : locale === 'zh' ? 'Hybrid 系统' : locale === 'ja' ? 'Hybrid システム' : '하이브리드 시스템'}{' '}
+                <span className="text-indigo-600">{locale === 'vi' ? 'Sẵn Sàng Lắp Đặt' : locale === 'en' ? 'Ready To Deploy' : locale === 'zh' ? '可直接部署' : locale === 'ja' ? '導入可能' : '즉시 구축 가능'}</span>
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Các combo Hybrid & BESS được thiết kế sẵn, tối ưu về hiệu suất và chi
-                phí cho từng nhu cầu sử dụng.
+                {locale === 'vi' ? 'Các combo Hybrid & BESS được thiết kế sẵn, tối ưu về hiệu suất và chi phí cho từng nhu cầu sử dụng.' : locale === 'en' ? 'Preconfigured Hybrid & BESS combos optimized for performance and cost for each use case.' : locale === 'zh' ? '预设 Hybrid 与 BESS 组合，针对不同场景优化性能与成本。' : locale === 'ja' ? '用途ごとに性能とコストを最適化した Hybrid & BESS の事前構成。' : '각 사용 목적에 맞게 성능과 비용을 최적화한 Hybrid & BESS 사전 구성.'}
               </p>
             </div>
           </AnimateIn>
@@ -938,14 +939,14 @@ export default function HybridBESSPage() {
           <AnimateIn delay={100}>
             <div className="text-center mt-10">
               <p className="text-gray-500 text-sm mb-4">
-                Không tìm thấy cấu hình phù hợp?
+                {locale === 'vi' ? 'Không tìm thấy cấu hình phù hợp?' : locale === 'en' ? 'Did not find a matching configuration?' : locale === 'zh' ? '没有找到合适的配置？' : locale === 'ja' ? '最適な構成が見つかりませんか？' : '맞는 구성을 찾지 못하셨나요?'}
               </p>
               <a
                 href="/calculator"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full cursor-pointer transition-colors min-h-[44px] focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 motion-reduce:transition-none"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Tư vấn cấu hình riêng
+                {locale === 'vi' ? 'Tư vấn cấu hình riêng' : locale === 'en' ? 'Request a custom design' : locale === 'zh' ? '咨询定制方案' : locale === 'ja' ? '個別設計を依頼' : '맞춤 설계 요청'}
               </a>
             </div>
           </AnimateIn>
@@ -966,13 +967,12 @@ export default function HybridBESSPage() {
                 id="why-us-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                Chuyên Gia Năng Lượng Và{' '}
-                <span className="text-indigo-600">Cơ Điện</span> Cho Những Hệ Thống
-                Quan Trọng
+                {locale === 'vi' ? 'Chuyên Gia Năng Lượng Và' : locale === 'en' ? 'Energy & MEP Specialists' : locale === 'zh' ? '能源与机电专家' : locale === 'ja' ? 'エネルギー・MEP 専門チーム' : '에너지 & MEP 전문가'}{' '}
+                <span className="text-indigo-600">{locale === 'vi' ? 'Cơ Điện' : locale === 'en' ? '' : locale === 'zh' ? '' : locale === 'ja' ? '' : ''}</span>{' '}
+                {locale === 'vi' ? 'Cho Những Hệ Thống Quan Trọng' : locale === 'en' ? '' : locale === 'zh' ? '' : locale === 'ja' ? '' : ''}
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                EPCVINA Solar mang đến giải pháp lưu trữ năng lượng với cam kết chất
-                lượng từ A đến Z.
+                {locale === 'vi' ? 'EPCVINA Solar mang đến giải pháp lưu trữ năng lượng với cam kết chất lượng từ A đến Z.' : locale === 'en' ? 'EPCVINA Solar delivers energy storage solutions with end-to-end quality commitments.' : locale === 'zh' ? 'EPCVINA Solar 提供从 A 到 Z 的高品质储能解决方案。' : locale === 'ja' ? 'EPCVINA Solar は A から Z まで一貫した品質を約束する蓄電ソリューションを提供します。' : 'EPCVINA Solar는 A부터 Z까지 품질을 보장하는 에너지 저장 솔루션을 제공합니다.'}
               </p>
             </div>
           </AnimateIn>
@@ -1014,11 +1014,11 @@ export default function HybridBESSPage() {
                 id="industries-heading"
                 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4"
               >
-                Giải Pháp Được Ứng Dụng Trong Nhiều{' '}
-                <span className="text-indigo-600">Lĩnh Vực</span>
+                {locale === 'vi' ? 'Giải Pháp Được Ứng Dụng Trong Nhiều' : locale === 'en' ? 'Solutions Used Across Many' : locale === 'zh' ? '适用于多个' : locale === 'ja' ? '幅広い' : '다양한'}{' '}
+                <span className="text-indigo-600">{locale === 'vi' ? 'Lĩnh Vực' : locale === 'en' ? 'Industries' : locale === 'zh' ? '领域' : locale === 'ja' ? '分野' : '분야'}</span>
               </h2>
               <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-                Hybrid & BESS phù hợp với mọi loại hình công trình và doanh nghiệp.
+                {locale === 'vi' ? 'Hybrid & BESS phù hợp với mọi loại hình công trình và doanh nghiệp.' : locale === 'en' ? 'Hybrid & BESS fits a wide range of buildings and businesses.' : locale === 'zh' ? 'Hybrid 与 BESS 适用于各类建筑与企业。' : locale === 'ja' ? 'Hybrid & BESS はあらゆる建物と事業に適しています。' : 'Hybrid & BESS는 다양한 건물과 기업에 적합합니다.'}
               </p>
             </div>
           </AnimateIn>
@@ -1062,16 +1062,14 @@ export default function HybridBESSPage() {
               id="final-cta-heading"
               className="text-3xl sm:text-4xl font-bold mb-4"
             >
-              Sẵn Sàng Chủ Động Nguồn Điện Cho{' '}
-              <span className="text-indigo-400">Tương Lai</span>?
+              {locale === 'vi' ? 'Sẵn Sàng Chủ Động Nguồn Điện Cho' : locale === 'en' ? 'Ready To Take Control Of Power For' : locale === 'zh' ? '准备好为' : locale === 'ja' ? '電力を自ら確保する' : '전력을 주도적으로 확보할'}{' '}
+              <span className="text-indigo-400">{locale === 'vi' ? 'Tương Lai' : locale === 'en' ? 'The Future' : locale === 'zh' ? '未来' : locale === 'ja' ? '未来' : '미래'}</span>?
             </h2>
           </AnimateIn>
 
           <AnimateIn delay={100}>
             <p className="text-gray-300 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
-              Từ giải pháp Hybrid cho biệt thự đến hệ thống BESS quy mô MWh cho
-              doanh nghiệp, EPCVINA Solar mang đến các giải pháp lưu trữ năng lượng
-              an toàn, hiệu quả và có khả năng mở rộng.
+              {locale === 'vi' ? 'Từ giải pháp Hybrid cho biệt thự đến hệ thống BESS quy mô MWh cho doanh nghiệp, EPCVINA Solar mang đến các giải pháp lưu trữ năng lượng an toàn, hiệu quả và có khả năng mở rộng.' : locale === 'en' ? 'From villa hybrid solutions to MWh-scale BESS for businesses, EPCVINA Solar delivers safe, efficient, and scalable energy storage.' : locale === 'zh' ? '从别墅混合方案到企业级 MWh 储能系统，EPCVINA Solar 提供安全、高效且可扩展的储能方案。' : locale === 'ja' ? 'ヴィラ向け Hybrid から企業向けの MWh 級 BESS まで、EPCVINA Solar は安全で効率的、拡張性のある蓄電ソリューションを提供します。' : '빌라용 하이브리드부터 기업용 MWh급 BESS까지, EPCVINA Solar는 안전하고 효율적이며 확장 가능한 에너지 저장 솔루션을 제공합니다.'}
             </p>
           </AnimateIn>
 
@@ -1081,14 +1079,14 @@ export default function HybridBESSPage() {
                 href="/calculator"
                 className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-700 hover:to-indigo-600 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 shadow-lg shadow-indigo-500/25 min-h-[44px]"
               >
-                Tư Vấn Hybrid & BESS
+                {locale === 'vi' ? 'Tư Vấn Hybrid & BESS' : locale === 'en' ? 'Consult Hybrid & BESS' : locale === 'zh' ? '咨询 Hybrid 与 BESS' : locale === 'ja' ? 'Hybrid & BESS を相談' : 'Hybrid & BESS 상담'}
                 <ArrowRight className="h-5 w-5" />
               </a>
               <a
                 href="/calculator"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/25 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl cursor-pointer transition-all duration-200 motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 min-h-[44px]"
               >
-                Đăng Ký Khảo Sát Miễn Phí
+                {locale === 'vi' ? 'Đăng Ký Khảo Sát Miễn Phí' : locale === 'en' ? 'Request A Free Survey' : locale === 'zh' ? '申请免费勘察' : locale === 'ja' ? '無料調査を申し込む' : '무료 현장조사 신청'}
                 <Phone className="h-5 w-5" />
               </a>
             </div>

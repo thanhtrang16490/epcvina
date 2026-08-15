@@ -1,0 +1,26 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import BaoTriPage from '../components/pages/bao-tri/BaoTriPage';
+import { buildFaqSchema } from '../lib/schema';
+
+const faqSchema = buildFaqSchema([
+  { q: 'Có cần bảo trì hệ thống điện mặt trời không?', a: 'Có. Bảo trì định kỳ giúp tăng 15-20% sản lượng, giảm 60% chi phí sửa chữa và kéo dài tuổi thọ hệ thống. EPCVINA khuyến nghị vệ sinh tấm pin 2-6 lần/năm và kiểm tra toàn diện 1 năm/lần.' },
+  { q: 'Chi phí bảo trì điện mặt trời bao nhiêu?', a: 'Từ 2-15 triệu/năm tùy quy mô hệ thống. Gói Cơ Bản (100-250kWp) từ 2 triệu/năm, gói Tiêu Chuẩn (250-500kWp) từ 4 triệu/năm, gói Premium (500kWp+) từ 8 triệu/năm.' },
+  { q: 'Bảo trì gồm những gì?', a: 'Giám sát từ xa 24/7, vệ sinh tấm pin, kiểm tra aptomat và đầu nối, bảo dưỡng inverter, kiểm tra khung giàn, phân tích hiệu suất và báo cáo định kỳ.' },
+  { q: 'Khi có sự cố thì xử lý mất bao lâu?', a: 'EPCVINA cam kết khắc phục sự cố trong vòng 24 giờ. Đội kỹ sư kiểm tra từ xa qua monitoring, nếu cần sẽ cử kỹ thuật viên đến tận nơi.' },
+]);
+---
+
+<DashboardLayout
+  title="Bảo Trì & Bảo Dưỡng Hệ Thống Điện Mặt Trời | EPCVINA Solar"
+  description="Dịch vụ bảo trì, vệ sinh, sửa chữa hệ thống điện mặt trời chuyên nghiệp. Đội ngũ kỹ thuật giàu kinh nghiệm. Phản hồi nhanh trong 24h tại Hà Nội."
+  keywords="bảo trì điện mặt trời, O&M solar, vệ sinh tấm pin, giám sát hệ thống, EPCVINA Solar"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Bảo Trì", url: "https://epcvina.com/maintenance"}]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <DashboardShell client:load>
+    <BaoTriPage client:idle locale="vi" />
+  </DashboardShell>
+</DashboardLayout>

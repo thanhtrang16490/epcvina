@@ -10,6 +10,7 @@ import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import type { ReactNode } from "react";
+import { deleteLeadWithMedia } from "../survey/actions";
 
 export const dynamic = "force-dynamic";
 
@@ -77,14 +78,7 @@ async function updateLead(formData: FormData) {
 
 async function deleteLead(formData: FormData) {
   "use server";
-  const id = String(formData.get("id") ?? "");
-  const supabase = createSupabaseAdminClient();
-  if (!supabase || !id) return;
-  const { error } = await supabase.from("crm_leads").delete().eq("id", id);
-  if (error) throw error;
-  revalidatePath("/leads");
-  revalidatePath(`/leads/${id}`);
-  redirect("/admin/leads");
+  await deleteLeadWithMedia(formData);
 }
 
 async function updateLeadCard(formData: FormData) {
@@ -450,6 +444,9 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                 extraNote={<input type="hidden" name="id" value={lead.id} />}
               />
             </ModalShell>
+            <Link href="/admin/leads/survey/technical" className="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-300">
+              Khảo sát kỹ thuật
+            </Link>
           </div>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">

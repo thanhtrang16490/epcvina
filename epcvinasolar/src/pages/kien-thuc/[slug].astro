@@ -6,8 +6,8 @@ import { getCollection } from 'astro:content';
 
 export const prerender = true;
 
-const categoryMap = {
-  'dien-mat-troi-co-ban': {
+const categoryEntries = [
+  ['dien-mat-troi-co-ban', {
     title: 'Điện Mặt Trời Cơ Bản',
     description: 'Kiến thức nền tảng về điện mặt trời, nguyên lý hoạt động và các hệ thống phổ biến.',
     intro: 'Đây là cụm nội dung dành cho người mới bắt đầu, giúp bạn nắm nhanh khái niệm và cách hệ thống vận hành.',
@@ -17,8 +17,8 @@ const categoryMap = {
       'so-sanh-on-grid-vs-hybrid',
       'tam-pin-monocrystal-vs-polycrystal',
     ],
-  },
-  'chi-phi-dau-tu': {
+  }],
+  ['chi-phi-dau-tu', {
     title: 'Chi Phí & Đầu Tư',
     description: 'Phân tích chi phí, thời gian hoàn vốn, ROI và các yếu tố ảnh hưởng đến giá hệ thống.',
     intro: 'Cụm này gom các bài về chi phí để bạn ước lượng ngân sách và thời gian thu hồi vốn rõ ràng hơn.',
@@ -28,8 +28,8 @@ const categoryMap = {
       'co-nen-lap-dien-mat-troi',
       'gia-mua-dien-cua-evn',
     ],
-  },
-  'pin-luu-tru': {
+  }],
+  ['pin-luu-tru', {
     title: 'Pin Lưu Trữ & BESS',
     description: 'Tìm hiểu về pin lưu trữ, hệ thống BESS, công nghệ Lithium và ứng dụng thực tế.',
     intro: 'Khu vực này phù hợp cho người đang cân nhắc hybrid, backup điện hoặc hệ lưu trữ quy mô lớn.',
@@ -39,8 +39,8 @@ const categoryMap = {
       'bess-la-gi',
       'cach-chon-pin-luu-tru',
     ],
-  },
-  'ky-thuat-lap-dat': {
+  }],
+  ['ky-thuat-lap-dat', {
     title: 'Kỹ Thuật & Lắp Đặt',
     description: 'Hướng dẫn kỹ thuật, quy trình lắp đặt, vị trí tối ưu và bảo trì hệ thống.',
     intro: 'Nhóm này tổng hợp các bước kỹ thuật quan trọng để hệ thống chạy ổn định và an toàn hơn.',
@@ -50,8 +50,8 @@ const categoryMap = {
       'bao-tri-he-thong-solar',
       'chong-set-cho-solar',
     ],
-  },
-  'chinh-sach-phap-luat': {
+  }],
+  ['chinh-sach-phap-luat', {
     title: 'Chính Sách & Pháp Luật',
     description: 'Cập nhật chính sách, quy định pháp luật, cơ chế giá và thủ tục đấu nối.',
     intro: 'Mục này giúp bạn đọc nhanh các thay đổi chính sách và hiểu thủ tục triển khai thực tế.',
@@ -61,8 +61,8 @@ const categoryMap = {
       'dpm-cao-cap-la-gi',
       'co-che-mua-dien-moi',
     ],
-  },
-  'ung-dung-thuc-te': {
+  }],
+  ['ung-dung-thuc-te', {
     title: 'Ứng Dụng Thực Tế',
     description: 'Case study thực tế, kinh nghiệm lắp đặt, câu chuyện khách hàng và xu hướng ứng dụng.',
     intro: 'Cụm này hướng vào tình huống thật, để bạn nhìn rõ cách điện mặt trời được áp dụng trong đời sống.',
@@ -72,20 +72,25 @@ const categoryMap = {
       'solar-ket-hop-sac-xe-dien',
       'ung-dung-solar-nong-nghiep',
     ],
-  },
-};
+  }],
+] as const;
 
+const categoryMap = Object.fromEntries(categoryEntries);
 export function getStaticPaths() {
-  return Object.keys(categoryMap).map((slug) => ({
+  return [
+    'dien-mat-troi-co-ban',
+    'chi-phi-dau-tu',
+    'pin-luu-tru',
+    'ky-thuat-lap-dat',
+    'chinh-sach-phap-luat',
+    'ung-dung-thuc-te',
+  ].map((slug) => ({
     params: { slug },
   }));
 }
 
 const { slug } = Astro.params;
 const category = categoryMap[slug as keyof typeof categoryMap];
-if (!category) {
-  return Astro.redirect('/kien-thuc', 302);
-}
 
 const allPosts = await getCollection('blog');
 const posts = category.posts

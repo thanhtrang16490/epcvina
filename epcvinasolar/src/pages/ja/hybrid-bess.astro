@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
+---
+
+<DashboardLayout
+  title="ハイブリッド BESS ソリューション | EPCVINA Solar"
+  description="住宅・法人向けのターンキー型ハイブリッド太陽光＋蓄電ソリューション。バックアップ電源と投資効率を両立します。"
+  keywords="ハイブリッドBESS, 蓄電池, 太陽光蓄電, バックアップ電源, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'ホーム', url: 'https://epcvina.com/ja' },
+    { name: 'ハイブリッドBESS', url: 'https://epcvina.com/ja/hybrid-bess' }
+  ]}
+>
+  <DashboardShell client:load>
+    <HybridBESSPage client:idle />
+  </DashboardShell>
+</DashboardLayout>

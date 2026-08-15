@@ -1,0 +1,7 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/layout/HeaderBar';
+import BlogHero from '../../components/blog/BlogHero';
+---
+<DashboardLayout title="태양광 뉴스와 인사이트 | EPCVINA Solar" description="EPCVINA Solar 한국어 뉴스 페이지. 태양광 인사이트, 도입 정보, 산업 소식을 제공합니다." keywords="태양광 뉴스, EPCVINA Solar 뉴스, 태양광 인사이트, 도입 정보"><DashboardShell client:load><HeaderBar pathname={Astro.url.pathname} /><main class="min-h-screen md:pt-16"><BlogHero client:idle /><div class="max-w-4xl mx-auto px-4 py-16 text-gray-700">준비 중입니다.</div></main></DashboardShell></DashboardLayout>

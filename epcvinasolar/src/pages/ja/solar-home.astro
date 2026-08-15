@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolutionsLandingPage from '../../components/pages/solar-home/SolutionsLandingPage';
+---
+
+<DashboardLayout
+  title="住宅向け太陽光ソリューション | EPCVINA Solar"
+  description="住宅、町家、別荘向けのターンキー太陽光ソリューション。オン・グリッドとハイブリッドを比較できます。"
+  keywords="住宅用太陽光, 屋根置き太陽光, オングリッド, ハイブリッド, ベトナム住宅, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'ホーム', url: 'https://epcvina.com/ja' },
+    { name: '住宅向け太陽光', url: 'https://epcvina.com/ja/solar-home' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolutionsLandingPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

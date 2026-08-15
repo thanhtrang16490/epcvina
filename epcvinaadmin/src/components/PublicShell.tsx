@@ -34,8 +34,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
       const storedUnlock = window.localStorage.getItem(PUBLIC_UNLOCK_STORAGE_KEY) === "1";
       const sessionResult = await supabaseBrowserClient?.auth.getSession();
       const session = sessionResult?.data.session;
-      const isLoggedIn = Boolean(session);
-      if (isLoggedIn) {
+      if (session) {
         const metadata = session.user.user_metadata as Record<string, unknown> | undefined;
         const displayName =
           (typeof metadata?.full_name === "string" && metadata.full_name) ||
@@ -54,7 +53,7 @@ export function PublicShell({ children }: { children: ReactNode }) {
         setAccountLabel(null);
         setAccountAvatar(null);
       }
-      setIsUnlocked(isLoggedIn || storedUnlock);
+      setIsUnlocked(Boolean(session) || storedUnlock);
     };
 
     void restoreUnlockState();
@@ -203,6 +202,9 @@ export function PublicShell({ children }: { children: ReactNode }) {
             </ThemeLinkButton>
             <ThemeLinkButton href="/products/public" tone="secondary">
               Sản phẩm
+            </ThemeLinkButton>
+            <ThemeLinkButton href="/surveys/public" tone="secondary">
+              Khảo sát
             </ThemeLinkButton>
             {accountLabel ? (
               <div className="relative" data-account-menu>

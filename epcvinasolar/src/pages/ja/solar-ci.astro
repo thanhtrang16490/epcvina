@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolarCIPage from '../../components/pages/solar-ci/SolarCIPage';
+---
+
+<DashboardLayout
+  title="産業・商業向け太陽光ソリューション | EPCVINA Solar"
+  description="工場、倉庫、オフィス、商業施設向けのターンキー太陽光ソリューション。投資効率の最大化を支援します。"
+  keywords="産業用太陽光, 商業太陽光, 屋根置き太陽光, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'ホーム', url: 'https://epcvina.com/ja' },
+    { name: '産業・商業向け太陽光', url: 'https://epcvina.com/ja/solar-ci' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolarCIPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

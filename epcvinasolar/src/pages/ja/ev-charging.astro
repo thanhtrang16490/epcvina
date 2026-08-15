@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EVChargerPage from '../../components/pages/ev-charger/EVChargerPage';
+---
+
+<DashboardLayout
+  title="EV充電ソリューション | EPCVINA Solar"
+  description="家庭と企業向けのEV充電ソリューション。太陽光発電と連携し、運用コストを最適化します。"
+  keywords="EV充電, 充電ステーション, 太陽光充電, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'ホーム', url: 'https://epcvina.com/ja' },
+    { name: 'EV充電', url: 'https://epcvina.com/ja/ev-charging' }
+  ]}
+>
+  <DashboardShell client:load>
+    <EVChargerPage client:idle locale="ja" pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

@@ -1,0 +1,41 @@
+---
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../../components/layout/DashboardShell';
+import HeaderBar from '../../../components/home/layout/HeaderBar';
+import BlogHero from '../../../components/blog/BlogHero';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<DashboardLayout
+  title="Solar Blog & Insights | EPCVINA Solar"
+  description="English solar blog hub covering design tips, technical guidance, case studies, and EPCVINA Solar project stories."
+  keywords="solar blog, EPCVINA Solar insights, solar guidance, solar case studies, Vietnamese solar market"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://epcvina.com/en' },
+    { name: 'Blog', url: 'https://epcvina.com/en/blog' }
+  ]}
+>
+  <DashboardShell client:load>
+    <HeaderBar pathname={Astro.url.pathname} />
+    <main class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50 md:pt-16">
+      <BlogHero client:idle />
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="rounded-[2rem] border border-orange-100 bg-white p-6 md:p-8 shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+          <p class="text-[11px] uppercase tracking-[0.22em] text-orange-700 font-semibold">EPCVINA Updates</p>
+          <h1 class="mt-3 text-2xl md:text-4xl font-semibold tracking-tight text-gray-950 leading-tight">
+            Solar content for homeowners, businesses, and technical teams.
+          </h1>
+          <p class="mt-4 max-w-2xl text-gray-600 leading-relaxed">
+            This English blog hub keeps its own URL space so it can evolve independently from the Vietnamese news section.
+          </p>
+          <p class="mt-4 text-sm text-gray-500">Published posts: {posts.length}</p>
+        </div>
+      </div>
+    </main>
+  </DashboardShell>
+</DashboardLayout>

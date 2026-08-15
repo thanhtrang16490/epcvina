@@ -1,5 +1,14 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
+import { getLocaleFromPathname } from '../i18n/messages';
+import { getLocalizedRoute } from '../i18n/routes';
+
+const locale = getLocaleFromPathname(Astro.url.pathname);
+const homeHref = getLocalizedRoute(locale, 'home');
+const contactHref = getLocalizedRoute(locale, 'contact');
+const quoteHref = getLocalizedRoute(locale, 'quote');
+const projectsHref = getLocalizedRoute(locale, 'projects');
+const newsHref = getLocalizedRoute(locale, 'news');
 ---
 
 <DashboardLayout title="Trang Không Tìm Thấy - EPCVINA Solar" description="Trang bạn tìm không tồn tại. Quay lại trang chủ EPCVINA Solar để khám phá giải pháp điện mặt trời.">
@@ -28,7 +37,7 @@ import DashboardLayout from '../layouts/DashboardLayout.astro';
       {/* Actions */}
       <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
         <a
-          href="/"
+          href={homeHref}
           class="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-full transition-colors shadow-lg shadow-emerald-600/20"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -37,7 +46,7 @@ import DashboardLayout from '../layouts/DashboardLayout.astro';
           Về trang chủ
         </a>
         <a
-          href="/lien-he"
+          href={contactHref}
           class="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 font-semibold rounded-full transition-colors border border-gray-200 shadow-sm"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -51,10 +60,10 @@ import DashboardLayout from '../layouts/DashboardLayout.astro';
       <div class="mt-10 pt-8 border-t border-gray-200">
         <p class="text-sm text-gray-400 mb-4">Có thể bạn đang tìm:</p>
         <div class="flex flex-wrap items-center justify-center gap-2">
-          <a href="/bao-gia" class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Báo giá</a>
+          <a href={quoteHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Báo giá</a>
           <a href="/calculator" class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Tính chi phí</a>
-          <a href="/du-an" class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Dự án</a>
-          <a href="/tin-tuc" class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Tin tức</a>
+          <a href={projectsHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Dự án</a>
+          <a href={newsHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Tin tức</a>
         </div>
       </div>
     </div>

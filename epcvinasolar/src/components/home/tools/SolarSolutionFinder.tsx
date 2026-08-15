@@ -8,6 +8,8 @@ import {
 } from '@phosphor-icons/react';
 import { SliderInput, ToggleRow } from '../../shared/solar-form-inputs';
 import type { SolutionCard } from '../../shared/solar-form-inputs';
+import { getLocaleFromPathname } from '../../../i18n/messages';
+import { getLocalizedRoute } from '../../../i18n/routes';
 
 // ─────────────────────────────────────────────
 // Types
@@ -134,7 +136,7 @@ function RecommendationCard({ sol, index, isSelected, onSelect }: {
 // ─────────────────────────────────────────────
 // Selected Solution Detail Panel (Column 3)
 // ─────────────────────────────────────────────
-function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
+function SolutionDetailPanel({ sol, locale }: { sol: SolutionCard; locale: 'vi' | 'en' | 'zh' | 'ja' | 'ko' }) {
   const isHybrid = sol.type === 'hybrid';
   const panelBrand = 'Aiko';
   const inverterBrand = 'SAJ';
@@ -175,7 +177,7 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
             }}
           >
             {isHybrid ? <Lightning className="w-3 h-3" /> : <Sun className="w-3 h-3" />}
-            {isHybrid ? 'Hệ Hybrid' : 'Hệ On-Grid'}
+            {isHybrid ? (locale === 'vi' ? 'Hệ Hybrid' : 'Hybrid') : (locale === 'vi' ? 'Hệ On-Grid' : 'On-Grid')}
           </span>
           {/* Name */}
           <h3 className="text-[17px] font-bold text-[#0F172A] leading-snug">{sol.name}</h3>
@@ -195,14 +197,14 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
         {/* Price block */}
         <div className="mx-4 mt-3 rounded-xl border border-gray-100 bg-[#F8FAFC] px-4 py-3 flex items-center justify-between">
           <div>
-            <p className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">Giá niêm yết</p>
+            <p className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">{locale === 'vi' ? 'Giá niêm yết' : 'List price'}</p>
             <p className="text-[22px] font-extrabold text-[#0F172A] leading-tight mt-0.5">
               {new Intl.NumberFormat('vi-VN').format(sol.investment * 1_000_000)}
               <span className="text-[14px] font-semibold text-gray-500 ml-1">đ</span>
             </p>
           </div>
           <div className="text-right">
-            <p className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">Công suất</p>
+            <p className="text-[11px] uppercase tracking-widest text-gray-400 font-semibold">{locale === 'vi' ? 'Công suất' : 'Capacity'}</p>
             <p className="text-[20px] font-extrabold text-[#DC2626] leading-tight mt-0.5">{sol.power} <span className="text-[13px] font-semibold text-gray-500">kWp</span></p>
           </div>
         </div>
@@ -233,13 +235,13 @@ function SolutionDetailPanel({ sol }: { sol: SolutionCard }) {
           className="btn-scale flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-in-out shadow-sm focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
           style={{ background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' }}
         >
-          <Phone className="w-4 h-4" /> Xem chi tiết
+          <Phone className="w-4 h-4" /> {locale === 'vi' ? 'Xem chi tiết' : 'View details'}
         </a>
         <a
           href="/bao-gia"
           className="btn-scale flex-1 h-11 rounded-xl text-[#DC2626] text-[14px] font-bold flex items-center justify-center gap-2 border border-[#DC2626]/20 bg-white transition-all duration-200 ease-in-out shadow-sm hover:bg-red-50 focus-visible:ring-2 focus-visible:ring-[#DC2626] focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:transform-none"
         >
-          <ArrowRight className="w-4 h-4" /> Nhận báo giá
+          <ArrowRight className="w-4 h-4" /> {locale === 'vi' ? 'Nhận báo giá' : 'Get a quote'}
         </a>
       </div>
     </div>
@@ -260,7 +262,7 @@ const systemTypes = [
 ];
 
 // ── Cascading system type selector ──
-function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+function SystemTypeSelector({ value, onChange, locale }: { value: string; onChange: (v: string) => void; locale: 'vi' | 'en' | 'zh' | 'ja' | 'ko' }) {
   // Derive sub-state from value string
   const kind: 'hybrid' | 'on-grid' | null =
     value.startsWith('hybrid') ? 'hybrid' : value.startsWith('on-grid') ? 'on-grid' : null;
@@ -287,17 +289,17 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
         <span className="w-8 h-8 rounded-lg bg-[#FFF4E8] flex items-center justify-center text-[#F5831F] flex-shrink-0">
           <Lightning className="w-4 h-4" />
         </span>
-        Loại hệ thống mong muốn
+        {locale === 'vi' ? 'Loại hệ thống mong muốn' : 'Desired system type'}
       </div>
 
       {/* Step 1: Hybrid vs On-Grid */}
       <ToggleRow
-        label="Hệ"
+        label={locale === 'vi' ? 'Hệ' : 'System'}
         value={kind}
         onChange={handleKind}
         options={[
-          { value: 'hybrid',   label: 'Hybrid',   sub: 'Lưu trữ + dự phòng' },
-          { value: 'on-grid',  label: 'On-Grid',  sub: 'Nối lưới trực tiếp' },
+          { value: 'hybrid',   label: 'Hybrid',   sub: locale === 'vi' ? 'Lưu trữ + dự phòng' : 'Storage + backup' },
+          { value: 'on-grid',  label: 'On-Grid',  sub: locale === 'vi' ? 'Nối lưới trực tiếp' : 'Grid-tied' },
         ]}
         accentBlue={kind === 'hybrid'}
       />
@@ -305,12 +307,12 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
       {/* Step 2: Phase — appears after kind chosen */}
       {kind && (
         <ToggleRow
-          label="Số pha"
+          label={locale === 'vi' ? 'Số pha' : 'Phase'}
           value={phase}
           onChange={handlePhase}
           options={[
-            { value: '1', label: '1 Pha', sub: 'Hộ gia đình' },
-            { value: '3', label: '3 Pha', sub: 'Doanh nghiệp' },
+            { value: '1', label: locale === 'vi' ? '1 Pha' : '1 Phase', sub: locale === 'vi' ? 'Hộ gia đình' : 'Homes' },
+            { value: '3', label: locale === 'vi' ? '3 Pha' : '3 Phase', sub: locale === 'vi' ? 'Doanh nghiệp' : 'Businesses' },
           ]}
           accentBlue
         />
@@ -319,12 +321,12 @@ function SystemTypeSelector({ value, onChange }: { value: string; onChange: (v: 
       {/* Step 3: BatteryHigh voltage — only for Hybrid 3-phase */}
       {kind === 'hybrid' && phase === '3' && (
         <ToggleRow
-          label="Áp pin lưu trữ"
+          label={locale === 'vi' ? 'Áp pin lưu trữ' : 'Battery voltage'}
           value={battVolt}
           onChange={handleBatt}
           options={[
-            { value: 'lv', label: 'Áp thấp', sub: '48V · Phổ thông' },
-            { value: 'hv', label: 'Áp cao',  sub: '100V+ · Hiệu suất cao' },
+            { value: 'lv', label: locale === 'vi' ? 'Áp thấp' : 'Low voltage', sub: locale === 'vi' ? '48V · Phổ thông' : '48V · Common' },
+            { value: 'hv', label: locale === 'vi' ? 'Áp cao' : 'High voltage',  sub: locale === 'vi' ? '100V+ · Hiệu suất cao' : '100V+ · Higher efficiency' },
           ]}
           accentBlue
         />
@@ -512,7 +514,191 @@ const VISIBLE_LIMIT = 8;
 // ─────────────────────────────────────────────
 // Main Component
 // ─────────────────────────────────────────────
-export default function SolarSolutionFinder() {
+const FINDER_TEXT: Record<string, {
+  headerKicker: string;
+  headerTitle1: string;
+  headerTitle2: string;
+  headerLead: string;
+  emptyMobile: string;
+  panelHeader: string;
+  panelSub: string;
+  billLabel: string;
+  areaLabel: string;
+  budgetLabel: string;
+  reset: string;
+  recTitle: string;
+  recDesktop: string;
+  recMobile: string;
+  expand: (count: number) => string;
+  collapse: string;
+  noMatch: string;
+  chooseDetail: string;
+  viewHome: string;
+  viewCi: string;
+  infoFlowLabel: string;
+  systemLabel: string;
+  phaseLabel: string;
+  batteryLabel: string;
+  allLabel: string;
+  noneLabel: string;
+  detailCta: string;
+  quoteCta: string;
+}> = {
+  vi: {
+    headerKicker: 'TƯ VẤN GIẢI PHÁP ĐIỆN MẶT TRỜI',
+    headerTitle1: 'Hệ Thống Nào',
+    headerTitle2: 'Phù Hợp Với Bạn?',
+    headerLead: 'Chỉ cần nhập thông tin cơ bản, EPCVINA Solar sẽ đề xuất giải pháp phù hợp nhất dựa trên nhu cầu sử dụng thực tế của bạn.',
+    emptyMobile: 'Nhập thông số để xem đề xuất',
+    panelHeader: 'Thông Tin Công Trình',
+    panelSub: 'Điều chỉnh các thông số phù hợp với nhu cầu của bạn',
+    billLabel: 'Hóa đơn điện hàng tháng',
+    areaLabel: 'Diện tích mái có sẵn',
+    budgetLabel: 'Ngân sách đầu tư',
+    reset: 'Đặt lại',
+    recTitle: 'Giải Pháp Phù Hợp Với Bạn',
+    recDesktop: 'Chọn một để xem chi tiết ở cột bên phải',
+    recMobile: 'Chọn một để xem chi tiết bên dưới',
+    expand: (count) => `Xem thêm ${count} giải pháp`,
+    collapse: 'Thu gọn',
+    noMatch: 'Không có combo phù hợp với bộ lọc hiện tại',
+    chooseDetail: 'Chọn một giải pháp để xem chi tiết',
+    viewHome: 'Xem Solar Home',
+    viewCi: 'Xem Solar C&I',
+    infoFlowLabel: 'Loại hệ thống mong muốn',
+    systemLabel: 'Hệ',
+    phaseLabel: 'Số pha',
+    batteryLabel: 'Áp pin lưu trữ',
+    allLabel: 'Tất cả',
+    noneLabel: 'Không lọc',
+    detailCta: 'Xem chi tiết',
+    quoteCta: 'Nhận báo giá',
+  },
+  en: {
+    headerKicker: 'SOLAR SOLUTION CONSULTING',
+    headerTitle1: 'Which System Is',
+    headerTitle2: 'Right for You?',
+    headerLead: 'Just enter a few basics and EPCVINA Solar will suggest the best solution based on your real usage needs.',
+    emptyMobile: 'Enter your details to see recommendations',
+    panelHeader: 'Project Information',
+    panelSub: 'Adjust the parameters to match your needs',
+    billLabel: 'Monthly electricity bill',
+    areaLabel: 'Available roof area',
+    budgetLabel: 'Investment budget',
+    reset: 'Reset',
+    recTitle: 'Solutions Matched to You',
+    recDesktop: 'Pick one to see details in the right column',
+    recMobile: 'Pick one to see details below',
+    expand: (count) => `Show ${count} more solutions`,
+    collapse: 'Collapse',
+    noMatch: 'No combo matches the current filters',
+    chooseDetail: 'Choose a solution to see details',
+    viewHome: 'View Solar Home',
+    viewCi: 'View Solar C&I',
+    infoFlowLabel: 'Desired system type',
+    systemLabel: 'System',
+    phaseLabel: 'Phase',
+    batteryLabel: 'Battery voltage',
+    allLabel: 'All',
+    noneLabel: 'No filter',
+    detailCta: 'View details',
+    quoteCta: 'Get a quote',
+  },
+  zh: {
+    headerKicker: '太阳能方案咨询',
+    headerTitle1: '哪种系统',
+    headerTitle2: '更适合您？',
+    headerLead: '只需输入基本信息，EPCVINA Solar 就会根据您的实际需求推荐最合适的方案。',
+    emptyMobile: '输入参数即可查看推荐',
+    panelHeader: '项目信息',
+    panelSub: '调整参数以匹配您的需求',
+    billLabel: '每月电费',
+    areaLabel: '可用屋顶面积',
+    budgetLabel: '投资预算',
+    reset: '重置',
+    recTitle: '为您匹配的方案',
+    recDesktop: '选择一个即可在右侧查看详情',
+    recMobile: '选择一个即可在下方查看详情',
+    expand: (count) => `查看更多 ${count} 个方案`,
+    collapse: '收起',
+    noMatch: '当前筛选条件下没有匹配方案',
+    chooseDetail: '选择一个方案查看详情',
+    viewHome: '查看 Solar Home',
+    viewCi: '查看 Solar C&I',
+    infoFlowLabel: '期望的系统类型',
+    systemLabel: '系统',
+    phaseLabel: '相数',
+    batteryLabel: '电池电压',
+    allLabel: '全部',
+    noneLabel: '不过滤',
+    detailCta: '查看详情',
+    quoteCta: '获取报价',
+  },
+  ja: {
+    headerKicker: '太陽光ソリューション相談',
+    headerTitle1: 'どのシステムが',
+    headerTitle2: '最適ですか？',
+    headerLead: '基本情報を入力するだけで、EPCVINA Solar が実際の用途に基づいて最適な提案を行います。',
+    emptyMobile: '条件を入力すると提案が表示されます',
+    panelHeader: '物件情報',
+    panelSub: '用途に合わせて数値を調整してください',
+    billLabel: '月額電気料金',
+    areaLabel: '確保可能な屋根面積',
+    budgetLabel: '投資予算',
+    reset: 'リセット',
+    recTitle: 'あなたに合う提案',
+    recDesktop: '1つ選ぶと右列で詳細を確認できます',
+    recMobile: '1つ選ぶと下部で詳細を確認できます',
+    expand: (count) => `さらに ${count} 件を見る`,
+    collapse: '折りたたむ',
+    noMatch: '現在の条件に合う組み合わせはありません',
+    chooseDetail: '提案を選んで詳細を表示',
+    viewHome: 'Solar Home を見る',
+    viewCi: 'Solar C&I を見る',
+    infoFlowLabel: '希望するシステム種別',
+    systemLabel: 'システム',
+    phaseLabel: '相',
+    batteryLabel: '蓄電池電圧',
+    allLabel: 'すべて',
+    noneLabel: '絞り込みなし',
+    detailCta: '詳細を見る',
+    quoteCta: '見積を依頼',
+  },
+  ko: {
+    headerKicker: '태양광 솔루션 상담',
+    headerTitle1: '어떤 시스템이',
+    headerTitle2: '맞을까요?',
+    headerLead: '기본 정보만 입력하시면 EPCVINA Solar가 실제 사용 목적에 맞는 최적의 솔루션을 제안합니다.',
+    emptyMobile: '조건을 입력하면 추천이 표시됩니다',
+    panelHeader: '프로젝트 정보',
+    panelSub: '필요에 맞게 항목을 조정하세요',
+    billLabel: '월 전기요금',
+    areaLabel: '사용 가능한 지붕 면적',
+    budgetLabel: '투자 예산',
+    reset: '초기화',
+    recTitle: '당신에게 맞는 솔루션',
+    recDesktop: '하나를 선택하면 오른쪽에서 상세를 볼 수 있습니다',
+    recMobile: '하나를 선택하면 아래에서 상세를 볼 수 있습니다',
+    expand: (count) => `솔루션 ${count}개 더 보기`,
+    collapse: '접기',
+    noMatch: '현재 필터에 맞는 조합이 없습니다',
+    chooseDetail: '솔루션을 선택해 상세를 보세요',
+    viewHome: 'Solar Home 보기',
+    viewCi: 'Solar C&I 보기',
+    infoFlowLabel: '희망하는 시스템 유형',
+    systemLabel: '시스템',
+    phaseLabel: '상',
+    batteryLabel: '배터리 전압',
+    allLabel: '전체',
+    noneLabel: '필터 없음',
+    detailCta: '상세 보기',
+    quoteCta: '견적 받기',
+  },
+};
+
+export default function SolarSolutionFinder({ pathname = '/' }: { pathname?: string }) {
+  const locale = getLocaleFromPathname(pathname);
+  const text = FINDER_TEXT[locale] ?? FINDER_TEXT.vi;
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const detailRef = useRef<HTMLDivElement>(null);
   const [bill, setBill] = useState(0);
@@ -584,18 +770,17 @@ export default function SolarSolutionFinder() {
           <p
             className={`text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-3  `}
           >
-            TƯ VẤN GIẢI PHÁP ĐIỆN MẶT TRỜI
+            {text.headerKicker}
           </p>
           <h2
             className={`text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-3 leading-tight  `}
             
           >
-            Hệ Thống Nào{' '}
-            <span style={{ color: '#f59e0b' }}>Phù Hợp Với Bạn?</span>
+            {text.headerTitle1}{' '}
+            <span style={{ color: '#f59e0b' }}>{text.headerTitle2}</span>
           </h2>
           <p className="text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
-            Chỉ cần nhập thông tin cơ bản, EPCVINA Solar sẽ đề xuất giải pháp phù hợp nhất
-            dựa trên nhu cầu sử dụng thực tế của bạn.
+            {text.headerLead}
           </p>
         </div>
 
@@ -606,11 +791,12 @@ export default function SolarSolutionFinder() {
               <SolutionDetailPanel
                 key={displaySolutions[selectedIndex ?? 0].name + '-mobile'}
                 sol={displaySolutions[selectedIndex ?? 0]}
+                locale={locale}
               />
             ) : (
               <div className="flex flex-col items-center justify-center py-16 text-gray-400">
                 <CheckCircle className="w-8 h-8 mb-2 text-gray-200" />
-                <p className="text-sm">Nhập thông số để xem đề xuất</p>
+                <p className="text-sm">{text.emptyMobile}</p>
               </div>
             )}
           </div>
@@ -628,26 +814,26 @@ export default function SolarSolutionFinder() {
                   1
                 </div>
                 <div>
-                  <p className="font-bold text-gray-900 text-sm">Thông Tin Công Trình</p>
-                  <p className="text-[11px] text-gray-500">Điều chỉnh các thông số phù hợp với nhu cầu của bạn</p>
+                  <p className="font-bold text-gray-900 text-sm">{text.panelHeader}</p>
+                  <p className="text-[11px] text-gray-500">{text.panelSub}</p>
                 </div>
               </div>
             </div>
 
             <div className="p-5 space-y-5 flex-1 overflow-y-auto">
               {/* System type selector */}
-              <SystemTypeSelector value={systemType} onChange={setSystemType} />
+              <SystemTypeSelector value={systemType} onChange={setSystemType} locale={locale} />
 
               <SliderInput
-                label="Hóa đơn điện hàng tháng"
+                label={text.billLabel}
                 icon={<Building className="w-4 h-4" />}
                 value={bill}
                 min={0} max={100000000} step={500000}
                 onChange={setBill}
-                format={v => v === 0 ? 'Không lọc' : (v >= 1000000 ? `${(v / 1000000).toFixed(1).replace(/\.0$/, '')},000,000` : v.toLocaleString())}
+                format={v => v === 0 ? text.noneLabel : (v >= 1000000 ? `${(v / 1000000).toFixed(1).replace(/\.0$/, '')},000,000` : v.toLocaleString())}
                 unit={bill === 0 ? '' : 'VND'}
                 ticks={[
-                  { value: 0, label: 'Tất cả' }, { value: 2000000, label: '2M' },
+                  { value: 0, label: text.allLabel }, { value: 2000000, label: '2M' },
                   { value: 5000000, label: '5M' }, { value: 10000000, label: '10M' },
                   { value: 20000000, label: '20M' }, { value: 50000000, label: '50M' },
                   { value: 100000000, label: '100M' },
@@ -655,30 +841,30 @@ export default function SolarSolutionFinder() {
               />
 
               <SliderInput
-                label="Diện tích mái có sẵn"
+                label={text.areaLabel}
                 icon={<House className="w-4 h-4" />}
                 value={roofArea}
                 min={0} max={500} step={5}
                 onChange={setRoofArea}
-                format={v => v === 0 ? 'Không lọc' : String(v)}
+                format={v => v === 0 ? text.noneLabel : String(v)}
                 unit={roofArea === 0 ? '' : 'm²'}
                 ticks={[
-                  { value: 0, label: 'Tất cả' }, { value: 40, label: '40m²' },
+                  { value: 0, label: text.allLabel }, { value: 40, label: '40m²' },
                   { value: 80, label: '80m²' }, { value: 150, label: '150m²' },
                   { value: 200, label: '200m²' }, { value: 500, label: '500m²' },
                 ]}
               />
 
               <SliderInput
-                label="Ngân sách đầu tư"
+                label={text.budgetLabel}
                 icon={<TrendUp className="w-4 h-4" />}
                 value={budget}
                 min={0} max={2000000000} step={5000000}
                 onChange={setBudget}
-                format={v => v === 0 ? 'Không lọc' : `${(v / 1000000).toFixed(0)},000,000`}
+                format={v => v === 0 ? text.noneLabel : `${(v / 1000000).toFixed(0)},000,000`}
                 unit={budget === 0 ? '' : 'VND'}
                 ticks={[
-                  { value: 0, label: 'Tất cả' }, { value: 100000000, label: '100M' },
+                  { value: 0, label: text.allLabel }, { value: 100000000, label: '100M' },
                   { value: 200000000, label: '200M' }, { value: 400000000, label: '400M' },
                   { value: 800000000, label: '800M' }, { value: 2000000000, label: '2B' },
                 ]}
@@ -694,7 +880,7 @@ export default function SolarSolutionFinder() {
                 className="btn-scale flex items-center gap-1.5 px-4 py-3 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all"
               >
                 <ArrowsClockwise className="w-4 h-4" />
-                Đặt lại
+                {text.reset}
               </button>
             </div>
           </div>
@@ -707,9 +893,9 @@ export default function SolarSolutionFinder() {
                   2
                 </div>
                 <div>
-                  <p className="font-bold text-gray-900 text-sm">Giải Pháp Phù Hợp Với Bạn</p>
-                  <p className="text-[11px] text-gray-500 hidden md:block">Chọn một để xem chi tiết ở cột bên phải</p>
-                  <p className="text-[11px] text-gray-500 md:hidden">Chọn một để xem chi tiết bên dưới</p>
+                  <p className="font-bold text-gray-900 text-sm">{text.recTitle}</p>
+                  <p className="text-[11px] text-gray-500 hidden md:block">{text.recDesktop}</p>
+                  <p className="text-[11px] text-gray-500 md:hidden">{text.recMobile}</p>
                 </div>
               </div>
             </div>
@@ -739,22 +925,22 @@ export default function SolarSolutionFinder() {
                   }}
                   className="w-full py-2.5 text-sm font-medium text-blue-600 hover:text-blue-700 hover:bg-blue-50 rounded-xl transition-colors"
                 >
-                  {showAll ? 'Thu gọn' : `Xem thêm ${solutions.length - VISIBLE_LIMIT} giải pháp`}
+                  {showAll ? text.collapse : text.expand(solutions.length - VISIBLE_LIMIT)}
                 </button>
               )}
               {solutions.length === 0 && (
                 <div className="py-12 text-center text-gray-400 text-sm">
-                  Không có combo phù hợp với bộ lọc hiện tại
+                  {text.noMatch}
                 </div>
               )}
             </div>
 
             <div className="px-5 pb-5 space-y-3">
-              <a href="/solar-home" className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 font-medium hover:bg-gray-50 transition-all">
-                Xem Solar Home <ArrowRight className="w-4 h-4" />
+              <a href={getLocalizedRoute(locale, 'solarHome')} className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-600 font-medium hover:bg-gray-50 transition-all">
+                {text.viewHome} <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="/solar-cong-nghiep" className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-red-200 rounded-xl text-sm text-[#DC2626] font-medium hover:bg-red-50 transition-all">
-                Xem Solar C&I <ArrowRight className="w-4 h-4" />
+              <a href={getLocalizedRoute(locale, 'solarCi')} className="w-full flex items-center justify-center gap-1.5 py-2.5 border border-red-200 rounded-xl text-sm text-[#DC2626] font-medium hover:bg-red-50 transition-all">
+                {text.viewCi} <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -770,11 +956,12 @@ export default function SolarSolutionFinder() {
               <SolutionDetailPanel
                 key={selectedSol.name}
                 sol={selectedSol}
+                locale={locale}
               />
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center text-gray-400">
                 <CheckCircle className="w-10 h-10 mb-3 text-gray-200" />
-                <p className="text-sm">Chọn một giải pháp để xem chi tiết</p>
+                <p className="text-sm">{text.chooseDetail}</p>
               </div>
             )}
           </div>

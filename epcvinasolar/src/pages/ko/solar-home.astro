@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolutionsLandingPage from '../../components/pages/solar-home/SolutionsLandingPage';
+---
+
+<DashboardLayout
+  title="주택용 태양광 솔루션 | EPCVINA Solar"
+  description="주택, 타운하우스, 빌라를 위한 턴키 태양광 솔루션입니다. 온그리드와 하이브리드 옵션을 비교해보세요."
+  keywords="주택용 태양광, 옥상 태양광, 온그리드, 하이브리드, 베트남 주택, EPCVINA Solar"
+  breadcrumbs={[
+    { name: '홈', url: 'https://epcvina.com/ko' },
+    { name: '주택용 태양광', url: 'https://epcvina.com/ko/solar-home' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolutionsLandingPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

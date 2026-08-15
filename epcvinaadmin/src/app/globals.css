@@ -212,6 +212,26 @@ html[data-theme="light"] .login-tab-active {
   color: var(--muted);
 }
 
+.survey-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  padding: 0.875rem 1rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease, background-color 120ms ease;
+}
+
+.survey-input::placeholder {
+  color: color-mix(in srgb, var(--muted) 75%, transparent);
+}
+
+.survey-input:focus {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
 html[data-theme="dark"] .login-tab-inactive:hover {
   color: white;
 }

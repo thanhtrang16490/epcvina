@@ -28,6 +28,6 @@ import { buildFaqSchema, buildProductSchema } from '../../lib/schema';
     { q: 'Nên Chọn On-Grid Hay Hybrid?', a: 'Chọn On-Grid nếu: khu vực ít mất điện, ngân sách hạn chế. Chọn Hybrid nếu: hay mất điện, cần backup 24/7, muốn tối đa hóa sử dụng điện mặt trời.' },
   ]))} />
   <DashboardShell client:load>
-    <HybridBESSPage client:idle />
+    <HybridBESSPage pathname={Astro.url.pathname} client:idle />
   </DashboardShell>
 </DashboardLayout>

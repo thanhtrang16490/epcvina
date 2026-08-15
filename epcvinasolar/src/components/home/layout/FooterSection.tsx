@@ -1,8 +1,26 @@
+import { useEffect, useState } from 'react';
 import { Phone, Envelope, MapPin, ChatCircle } from '@phosphor-icons/react';
+import LanguageSwitcher from '../../layout/LanguageSwitcher';
+import { getLocaleFromPathname } from '../../../i18n/messages';
+import { getLocalePath, getLocalizedRoute } from '../../../i18n/routes';
+import { getFooterLayoutConfig } from './localeLayoutConfig';
 
 const BRAND_RED = '#DC2626';
 
-export default function FooterSection() {
+export default function FooterSection({ pathname = '/' }: { pathname?: string }) {
+  const [pathnameState, setPathname] = useState(pathname);
+  const locale = getLocaleFromPathname(pathnameState);
+  const { t, titles, links } = getFooterLayoutConfig(locale);
+  const newsHref = getLocalizedRoute(locale, 'news');
+  const profileHref = getLocalizedRoute(locale, 'profile');
+  const quoteHref = getLocalizedRoute(locale, 'quote');
+  const hybridBessHref = getLocalizedRoute(locale, 'hybridBess');
+  const solarCiHref = getLocalizedRoute(locale, 'solarCi');
+
+  useEffect(() => {
+    setPathname(pathname);
+  }, [pathname]);
+
   return (
     <footer style={{ backgroundColor: '#1A1D21' }} className="text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
@@ -14,10 +32,10 @@ export default function FooterSection() {
               <img src="/logo-epcvina-solar-white.png" alt="EPCVINA Solar" width={1024} height={159} className="h-9 sm:h-12 w-auto" loading="lazy" />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-1">
-              Điện mặt trời an toàn từ chuyên gia cơ điện.
+              {t.footer.aboutText}
             </p>
             <p className="text-xs text-gray-400 leading-relaxed mb-5">
-              Tư vấn &middot; Thiết kế &middot; Lắp đặt &middot; Bảo trì
+              {t.footer.servicesLine}
             </p>
 
             {/* Social links */}
@@ -70,68 +88,71 @@ export default function FooterSection() {
 
           {/* Products */}
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
-            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Sản phẩm</h3>
+            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{titles.products}</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar Home</a></li>
-              <li><a href="/solar-home/he-thong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Tất cả combo</a></li>
-              <li><a href="/solar-home/on-grid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Combo On-Grid</a></li>
-              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Combo Hybrid</a></li>
-              <li><a href="/thiet-bi/panel" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Tấm quang năng</a></li>
-              <li><a href="/thiet-bi/hybrid-inverter" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Biến tần Hybrid</a></li>
-              <li><a href="/thiet-bi/hv-battery" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Pin lưu trữ BESS</a></li>
+              <li><a href={getLocalePath('/solar-home', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarHome}</a></li>
+              <li><a href={getLocalePath('/solar-home/he-thong', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.allCombos}</a></li>
+              <li><a href={getLocalePath('/solar-home/on-grid', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.onGridCombo}</a></li>
+              <li><a href={getLocalePath('/solar-home/hybrid', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.hybridCombo}</a></li>
+              <li><a href={getLocalePath('/thiet-bi/panel', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarModules}</a></li>
+              <li><a href={getLocalePath('/thiet-bi/hybrid-inverter', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.hybridInverter}</a></li>
+              <li><a href={getLocalePath('/thiet-bi/hv-battery', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.bessBattery}</a></li>
             </ul>
           </div>
 
           {/* Services */}
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
-            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Dịch vụ</h3>
+            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{titles.services}</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/calculator" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Công cụ tính toán</a></li>
-              <li><a href="/bao-gia" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Nhận báo giá</a></li>
-              <li><a href="/solar-home" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar Home</a></li>
-              <li><a href="/solar-home/hybrid" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Hybrid & BESS</a></li>
-              <li><a href="/solar-cong-nghiep" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Solar C&I</a></li>
-              <li><a href="/ung-dung/van-phong" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Văn phòng</a></li>
-              <li><a href="/du-an" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Dự án đã thi công</a></li>
-              <li><a href="/tin-tuc" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">Blog</a></li>
+              <li><a href={getLocalePath('/calculator', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.calculator}</a></li>
+              <li><a href={quoteHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.requestQuote}</a></li>
+              <li><a href={getLocalePath('/solar-home', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarHome}</a></li>
+              <li><a href={hybridBessHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.hybridBess}</a></li>
+              <li><a href={solarCiHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarCi}</a></li>
+              <li><a href={getLocalePath('/ung-dung/van-phong', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.office}</a></li>
+              <li><a href={profileHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.nav.capabilityProfile}</a></li>
+              <li><a href={newsHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.news}</a></li>
             </ul>
           </div>
 
           {/* Policies */}
           <div className="pb-6 sm:pb-0 border-b sm:border-b-0 border-white/10">
-            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Chính sách</h3>
+            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{titles.policies}</h3>
             <ul className="space-y-3 text-sm">
-              <li><a href="/chinh-sach-bao-mat" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách bảo mật</a></li>
-              <li><a href="/chinh-sach-thanh-toan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách thanh toán</a></li>
-              <li><a href="/bao-hanh" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách bảo hành</a></li>
-              <li><a href="/chinh-sach-doi-tra" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách đổi trả</a></li>
-              <li><a href="/chinh-sach-giao-nhan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Chính sách giao nhận</a></li>
-              <li><a href="/dieu-khoan" className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">Điều khoản sử dụng</a></li>
+              <li><a href={getLocalePath('/chinh-sach-bao-mat', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">{t.footer.privacy}</a></li>
+              <li><a href={getLocalePath('/chinh-sach-thanh-toan', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">{t.footer.paymentPolicy}</a></li>
+              <li><a href={getLocalePath('/bao-hanh', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">{t.footer.warrantyPolicy}</a></li>
+              <li><a href={getLocalePath('/chinh-sach-doi-tra', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">{t.footer.returnsPolicy}</a></li>
+              <li><a href={getLocalePath('/chinh-sach-giao-nhan', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">{t.footer.deliveryPolicy}</a></li>
+              <li><a href={getLocalePath('/dieu-khoan', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block">{t.footer.terms}</a></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Liên hệ</h3>
+            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{t.footer.contact}</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" weight="fill" style={{ color: BRAND_RED }} />
-                <span className="text-gray-400 leading-relaxed">
-                  Phòng 315, Khu thương mại – Chung cư Học viện Quốc phòng,<br className="sm:hidden" />
-                  Đường Xuân Tảo, Q. Tây Hồ, Hà Nội
-                </span>
+                <span className="text-gray-400 leading-relaxed">{t.footer.address}</span>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
-                <a href="tel:0988446113" className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]">
-                  0988 446 113 <span className="text-gray-400">(Mrs. Giang)</span>
-                </a>
+                <div className="leading-relaxed">
+                  <p className="text-[11px] uppercase tracking-wider text-gray-500">{t.footer.consultant}</p>
+                  <a href="tel:0988446113" className="hover:text-white transition-colors cursor-pointer inline-block active:scale-[0.98]">
+                    0988 446 113 <span className="text-gray-400">({t.footer.salesContactName})</span>
+                  </a>
+                </div>
               </li>
-              <li className="flex items-center gap-3">
+              <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
-                <a href="tel:0368927332" className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]">
-                  0368 927 332 <span className="text-gray-400">(Mr. Thái)</span>
-                </a>
+                <div className="leading-relaxed">
+                  <p className="text-[11px] uppercase tracking-wider text-gray-500">{t.footer.technical}</p>
+                  <a href="tel:0368927332" className="hover:text-white transition-colors cursor-pointer inline-block active:scale-[0.98]">
+                    0368 927 332 <span className="text-gray-400">({t.footer.technicalContactName})</span>
+                  </a>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <ChatCircle className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
@@ -141,7 +162,7 @@ export default function FooterSection() {
 
                   className="hover:text-white transition-colors cursor-pointer py-1 inline-block active:scale-[0.98]"
                 >
-                  Zalo: 0988 446 113
+                  Zalo: 0368 927 332
                 </a>
               </li>
               <li className="flex items-center gap-3">
@@ -155,17 +176,20 @@ export default function FooterSection() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 space-y-3 text-xs text-gray-400">
+          <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 space-y-3 text-xs text-gray-400">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
-            <p>&copy; {new Date().getFullYear()} EPCVINA Solar — Công ty CP Xây Lắp EPC Việt Nam. All rights reserved.</p>
-            <div className="flex items-center gap-4">
-              <a href="/chinh-sach-bao-mat" className="hover:text-gray-300 transition-colors cursor-pointer py-1">Chính sách bảo mật</a>
-              <a href="/dieu-khoan" className="hover:text-gray-300 transition-colors cursor-pointer py-1">Điều khoản sử dụng</a>
+            <p>&copy; {new Date().getFullYear()} EPCVINA Solar — {t.footer.legalName}. {t.footer.copyright}</p>
+            <div className="flex flex-col items-center gap-3 sm:items-end">
+              <LanguageSwitcher pathname={pathnameState} />
+              <div className="flex items-center gap-4">
+                <a href={getLocalePath('/chinh-sach-bao-mat', locale)} className="hover:text-gray-300 transition-colors cursor-pointer py-1">{t.footer.privacy}</a>
+                <a href={getLocalePath('/dieu-khoan', locale)} className="hover:text-gray-300 transition-colors cursor-pointer py-1">{t.footer.terms}</a>
+              </div>
             </div>
           </div>
           <div className="text-center sm:text-left leading-relaxed text-gray-400">
-            <p>CÔNG TY CỔ PHẦN XÂY LẮP EPC VIỆT NAM (EPC VINA.,JSC)</p>
-            <p>Giấy chứng nhận đăng ký doanh nghiệp số 0105313377 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp ngày 17/05/2011.</p>
+            <p>{t.footer.legalName}</p>
+            <p>{t.footer.businessRegistration}</p>
           </div>
         </div>
       </div>

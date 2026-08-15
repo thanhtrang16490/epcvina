@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { CaretDown, CaretUp, ChatCircle, Phone, Lightning, CurrencyDollar, Wrench, FileText, Shield, Sun } from '@phosphor-icons/react';
+import { getLocaleFromPathname } from '../../i18n/messages';
+import { getLocalizedRoute } from '../../i18n/routes';
 
 interface FAQ {
   question: string;
@@ -146,7 +148,10 @@ const categories = [
   { name: 'Dịch vụ EPCVINA', icon: <Sun className="w-5 h-5" /> },
 ];
 
-export default function FAQPage() {
+export default function FAQPage({ pathname = '/' }: { pathname?: string }) {
+  const locale = getLocaleFromPathname(pathname);
+  const quoteHref = getLocalizedRoute(locale, 'quote');
+  const contactHref = getLocalizedRoute(locale, 'contact');
   const [activeCategory, setActiveCategory] = useState('Tất cả');
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -263,7 +268,7 @@ export default function FAQPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/bao-gia"
+              href={quoteHref}
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-emerald-600 font-bold rounded-xl hover:bg-emerald-50 transition-colors shadow-lg"
             >
               <FileText className="w-6 h-6" />
@@ -277,7 +282,7 @@ export default function FAQPage() {
               <span>0988 446 113</span>
             </a>
             <a
-              href="/lien-he"
+              href={contactHref}
               className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-700 text-white font-bold rounded-xl hover:bg-emerald-800 transition-colors border-2 border-white"
             >
               <ChatCircle className="w-6 h-6" />

@@ -32,51 +32,231 @@ import {
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
+type Locale = 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+
+const copy: Record<Locale, any> = {
+  vi: {
+    badge: 'Thương Mại & Công Nghiệp',
+    title: ['Giải Pháp Điện Mặt Trời cho', 'Thương Mại & Công Nghiệp'],
+    lead: 'EPCVINA SOLAR — Tổng thầu EPC hàng đầu cung cấp giải pháp điện mặt trời toàn diện cho nhà máy, xưởng sản xuất, trung tâm thương mại. Công suất 100kWp đến 5MWp, tối ưu ROI và tuân thủ tiêu chuẩn quốc tế.',
+    primaryCta: 'Tính Nhanh Hiệu Quả Đầu Tư',
+    secondaryCta: 'Xem Báo Giá Trọn Gói',
+    appLink: 'Xem trang ứng dụng công nghiệp',
+    provinceLink: 'Xem landing tỉnh',
+    clientBadge: 'Đối tượng khách hàng',
+    clientTitle: ['Giải Pháp Dành Cho', 'Mô Hình Doanh Nghiệp'],
+    clientLead: 'Hệ thống điện mặt trời phù hợp mọi loại hình doanh nghiệp thương mại và công nghiệp',
+    benefitBadge: 'Lợi ích vượt trội',
+    benefitTitle: ['Vì Sao Doanh Nghiệp Cần', 'Điện Mặt Trời'],
+    benefitLead: 'Lợi ích kinh tế và chiến lược vượt trội cho doanh nghiệp',
+    tierBadge: 'Quy mô hệ thống',
+    tierTitle: ['Các Cấp', 'Công Suất Phổ Biến'],
+    tierLead: 'Lựa chọn công suất theo nhu cầu tiêu thụ và diện tích mái.',
+    tierHeaders: ['Công Suất', 'Ứng Dụng', 'Chi Phí', 'ROI', 'Loại'],
+    processBadge: 'Quy trình triển khai',
+    processTitle: ['Quy Trình', 'Triển Khai EPC'],
+    processLead: 'Từ khảo sát đến vận hành, EPCVINA đồng hành trọn vòng đời dự án.',
+    serviceBadge: 'Dịch vụ EPC trọn gói',
+    serviceTitle: ['Dịch Vụ', 'EPCVINA'],
+    serviceLead: 'Tổng thầu EPC trọn gói — từ khảo sát đến vận hành dài hạn, một đầu mối duy nhất cho doanh nghiệp',
+    serviceCta: 'Tính Nhanh Hiệu Quả Đầu Tư',
+    whyTitle: 'Tại sao chọn EPCVINA SOLAR?',
+    whyItems: ['Tổng thầu EPC — một đầu mối duy nhất', '15+ năm kinh nghiệm M&E & điện mặt trời', 'Thiết bị chính hãng — bảo hành 25 năm', 'Giám sát chất lượng ISO 9001:2015', 'Hỗ trợ thủ tục pháp lý & đấu nối EVN', 'O&M chuyên nghiệp — vận hành 30 năm'],
+    statsTitle: ['Những con số', 'chứng minh hiệu quả'],
+    statsLead: 'Những con số chứng minh tiềm năng và hiệu quả của điện mặt trời công nghiệp',
+    greenBadge: '100% năng lượng sạch — cam kết Net-Zero',
+    ctaTitle: 'Sẵn sàng tối ưu chi phí điện cho doanh nghiệp?',
+    ctaLead: 'Nhận tư vấn khảo sát, báo giá và mô phỏng ROI trong 24 giờ.',
+    ctaPrimary: 'Liên hệ EPCVINA',
+    ctaSecondary: 'Xem dự án thực tế',
+  },
+  en: {
+    badge: 'Commercial & Industrial',
+    title: ['Solar Solutions for', 'Commercial & Industrial Sites'],
+    lead: 'EPCVINA SOLAR is a leading EPC contractor delivering end-to-end solar solutions for factories, production sites, and commercial complexes. Systems from 100kWp to 5MWp, optimized for ROI and international standards.',
+    primaryCta: 'Estimate ROI',
+    secondaryCta: 'View Turnkey Pricing',
+    appLink: 'View industrial applications',
+    provinceLink: 'View provincial landing page',
+    clientBadge: 'Target clients',
+    clientTitle: ['Built for', 'Business Models'],
+    clientLead: 'Solar systems tailored for commercial and industrial operations',
+    benefitBadge: 'Key benefits',
+    benefitTitle: ['Why Businesses Need', 'Solar Power'],
+    benefitLead: 'Strong economic and strategic advantages for businesses',
+    tierBadge: 'System scale',
+    tierTitle: ['Common', 'Capacity Ranges'],
+    tierLead: 'Choose the right size based on consumption and roof area.',
+    tierHeaders: ['Capacity', 'Application', 'Cost', 'ROI', 'Type'],
+    processBadge: 'Delivery process',
+    processTitle: ['EPC', 'Delivery Workflow'],
+    processLead: 'From survey to operations, EPCVINA supports the full project lifecycle.',
+    serviceBadge: 'Turnkey EPC services',
+    serviceTitle: ['EPCVINA', 'Services'],
+    serviceLead: 'A single EPC partner from survey to long-term operations',
+    serviceCta: 'Estimate ROI',
+    whyTitle: 'Why choose EPCVINA SOLAR?',
+    whyItems: ['Single EPC partner - one point of contact', '15+ years of M&E and solar experience', 'Genuine equipment - 25-year warranty', 'ISO 9001:2015 quality control', 'Legal procedures and EVN interconnection support', 'Professional O&M - 30 years of operation'],
+    statsTitle: ['Numbers that', 'prove performance'],
+    statsLead: 'Key figures demonstrating the potential and efficiency of industrial solar',
+    greenBadge: '100% clean energy - Net-Zero commitment',
+    ctaTitle: 'Ready to reduce business electricity costs?',
+    ctaLead: 'Get a site survey, quote, and ROI simulation within 24 hours.',
+    ctaPrimary: 'Contact EPCVINA',
+    ctaSecondary: 'View real projects',
+  },
+  zh: {
+    badge: '工商业',
+    title: ['工商业光伏解决方案', ''],
+    lead: 'EPCVINA Solar 提供面向工厂、生产车间和商业综合体的一站式交钥匙光伏方案，容量从 100kWp 到 5MWp，兼顾投资回报与国际标准。',
+    primaryCta: '快速测算投资回报',
+    secondaryCta: '查看整包报价',
+    appLink: '查看工商业应用',
+    provinceLink: '查看省份落地页',
+    clientBadge: '适用客户',
+    clientTitle: ['适用于', '企业模式'],
+    clientLead: '适用于各类工商业场景的光伏系统',
+    benefitBadge: '核心优势',
+    benefitTitle: ['企业为何需要', '光伏'],
+    benefitLead: '为企业带来显著的经济与战略价值',
+    tierBadge: '系统规模',
+    tierTitle: ['常见', '装机容量'],
+    tierLead: '按用电需求与屋顶面积选择合适容量。',
+    tierHeaders: ['容量', '应用', '成本', 'ROI', '类型'],
+    processBadge: '实施流程',
+    processTitle: ['EPC', '实施流程'],
+    processLead: '从勘察到运营，EPCVINA 覆盖项目全生命周期。',
+    serviceBadge: '交钥匙 EPC 服务',
+    serviceTitle: ['EPCVINA', '服务'],
+    serviceLead: '从勘察到长期运营的一站式 EPC 合作伙伴',
+    serviceCta: '快速测算投资回报',
+    whyTitle: '为什么选择 EPCVINA Solar？',
+    whyItems: ['单一 EPC 总包，沟通更高效', '15年以上机电与光伏经验', '正品设备，25年质保', 'ISO 9001:2015 质量管理', '协助法务流程与并网接入', '专业运维，30年运行支持'],
+    statsTitle: ['证明效率的', '核心数字'],
+    statsLead: '展示工商业光伏潜力与效率的关键数据',
+    greenBadge: '100% 清洁能源 - Net-Zero 承诺',
+    ctaTitle: '准备好降低企业电费了吗？',
+    ctaLead: '24 小时内获取勘察、报价与回报测算。',
+    ctaPrimary: '联系 EPCVINA',
+    ctaSecondary: '查看真实项目',
+  },
+  ja: {
+    badge: '商業・産業向け',
+    title: ['太陽光ソリューション', '商業・産業施設向け'],
+    lead: 'EPCVINA Solar は、工場・生産拠点・商業施設向けに、100kWp〜5MWp のターンキー太陽光ソリューションを提供します。ROI 最適化と国際基準に対応します。',
+    primaryCta: '投資回収を試算',
+    secondaryCta: '一括見積を見る',
+    appLink: '産業向けアプリを見る',
+    provinceLink: '地域別ページを見る',
+    clientBadge: '対象顧客',
+    clientTitle: ['こんな', '事業形態に'],
+    clientLead: '商業・産業用途に最適な太陽光システム',
+    benefitBadge: '主なメリット',
+    benefitTitle: ['なぜ企業に', '太陽光が必要か'],
+    benefitLead: '経済性と戦略面の両方で大きな効果があります。',
+    tierBadge: 'システム規模',
+    tierTitle: ['一般的な', '容量帯'],
+    tierLead: '消費量と屋根面積に合わせて最適な容量を選定します。',
+    tierHeaders: ['容量', '用途', '費用', 'ROI', '区分'],
+    processBadge: '導入プロセス',
+    processTitle: ['EPC', '導入フロー'],
+    processLead: '現地調査から運用まで、EPCVINA が一貫対応します。',
+    serviceBadge: 'EPC一括サービス',
+    serviceTitle: ['EPCVINA', 'サービス'],
+    serviceLead: '調査から長期運用まで一社完結の EPC パートナー',
+    serviceCta: '投資回収を試算',
+    whyTitle: 'なぜ EPCVINA Solar を選ぶのか？',
+    whyItems: ['EPC一括対応 - 連絡窓口を一本化', '15年以上の設備・太陽光実績', '純正機器 - 25年保証', 'ISO 9001:2015 品質管理', '法手続きとEVN連系サポート', '専門 O&M - 30年運用支援'],
+    statsTitle: ['実績を示す', '数字'],
+    statsLead: '産業用太陽光の可能性と効果を示す主要数値',
+    greenBadge: '100% クリーンエネルギー - Net-Zero への取り組み',
+    ctaTitle: '企業の電気代削減を始めませんか？',
+    ctaLead: '24 時間以内に現地調査・見積・ROI試算をご案内します。',
+    ctaPrimary: 'EPCVINA に相談',
+    ctaSecondary: '実績を見る',
+  },
+  ko: {
+    badge: '상업·산업용',
+    title: ['태양광 솔루션', '상업·산업 시설용'],
+    lead: 'EPCVINA Solar는 공장, 생산시설, 상업 복합시설을 위한 100kWp~5MWp 규모의 턴키 태양광 솔루션을 제공합니다. ROI 최적화와 국제 기준을 반영합니다.',
+    primaryCta: '투자수익률 계산',
+    secondaryCta: '패키지 견적 보기',
+    appLink: '산업용 적용 사례 보기',
+    provinceLink: '지역 랜딩 보기',
+    clientBadge: '대상 고객',
+    clientTitle: ['이런', '사업 형태에'],
+    clientLead: '상업·산업 환경에 맞춘 태양광 시스템',
+    benefitBadge: '핵심 장점',
+    benefitTitle: ['왜 기업에', '태양광이 필요한가'],
+    benefitLead: '기업에 경제적·전략적으로 큰 이점을 제공합니다.',
+    tierBadge: '시스템 규모',
+    tierTitle: ['일반적인', '용량 범위'],
+    tierLead: '소비량과 지붕 면적에 맞는 적정 용량을 선택하세요.',
+    tierHeaders: ['용량', '적용', '비용', 'ROI', '구분'],
+    processBadge: '도입 절차',
+    processTitle: ['EPC', '도입 프로세스'],
+    processLead: '현장 조사부터 운영까지 EPCVINA가 전 과정을 지원합니다.',
+    serviceBadge: '턴키 EPC 서비스',
+    serviceTitle: ['EPCVINA', '서비스'],
+    serviceLead: '조사부터 장기 운영까지 한 번에 해결하는 EPC 파트너',
+    serviceCta: '투자수익률 계산',
+    whyTitle: '왜 EPCVINA Solar인가요?',
+    whyItems: ['EPC 일괄 대응 - 단일 창구', '15년 이상 M&E 및 태양광 경험', '정품 장비 - 25년 보증', 'ISO 9001:2015 품질 관리', '법적 절차 및 EVN 계통 연계 지원', '전문 O&M - 30년 운영 지원'],
+    statsTitle: ['성과를 증명하는', '숫자'],
+    statsLead: '산업용 태양광의 잠재력과 효율을 보여주는 핵심 수치',
+    greenBadge: '100% 청정에너지 - Net-Zero 약속',
+    ctaTitle: '기업 전기요금 절감을 시작할 준비가 되셨나요?',
+    ctaLead: '24시간 내에 현장 조사, 견적, ROI 시뮬레이션을 제공합니다.',
+    ctaPrimary: 'EPCVINA 문의',
+    ctaSecondary: '실제 프로젝트 보기',
+  },
+};
+
 /* ─── Client Types (with images) ─── */
 const clientTypes = [
-  { icon: <Factory className="h-6 w-6" aria-hidden="true" />, label: 'Nhà máy & Xưởng sản xuất', desc: '2000–10000 m²', image: '/images/solar-cong-nghiep/nha-may-xuong-san-xuat.webp', alt: 'Nhà máy sản xuất với hệ thống điện mặt trời trên mái' },
-  { icon: <ShoppingBag className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm thương mại & Siêu thị', desc: 'Diện tích mái lớn', image: '/images/solar-cong-nghiep/trung-tam-thuong-mai.webp', alt: 'Trung tâm thương mại lắp điện mặt trời' },
-  { icon: <Buildings className="h-6 w-6" aria-hidden="true" />, label: 'Tòa nhà văn phòng & Khách sạn', desc: 'Tiết kiệm vận hành', image: '/images/solar-cong-nghiep/van-phong-khach-san.webp', alt: 'Tòa nhà văn phòng với hệ thống điện mặt trời' },
-  { icon: <Warehouse className="h-6 w-6" aria-hidden="true" />, label: 'Kho bãi & Trung tâm logistics', desc: 'Mái rộng, tối ưu lắp đặt', image: '/images/solar-cong-nghiep/kho-bai-logistics.webp', alt: 'Kho bãi logistics lắp điện mặt trời mái' },
-  { icon: <HardDrives className="h-6 w-6" aria-hidden="true" />, label: 'Trung tâm dữ liệu & HardDrives farm', desc: 'Nhu cầu điện liên tục', image: '/images/solar-cong-nghiep/trung-tam-du-lieu.webp', alt: 'Trung tâm dữ liệu sử dụng điện mặt trời' },
-  { icon: <Heartbeat className="h-6 w-6" aria-hidden="true" />, label: 'Cơ sở y tế & Bệnh viện', desc: 'An ninh năng lượng', image: '/images/solar-cong-nghiep/benh-vien-co-so-y-te.webp', alt: 'Bệnh viện với hệ thống điện mặt trời an toàn' },
+  { icon: <Factory className="h-6 w-6" aria-hidden="true" />, label: 'Factories & production plants', desc: '2,000–10,000 m²', image: '/images/solar-cong-nghiep/nha-may-xuong-san-xuat.webp', alt: 'Factory with rooftop solar system' },
+  { icon: <ShoppingBag className="h-6 w-6" aria-hidden="true" />, label: 'Retail centers & supermarkets', desc: 'Large roof area', image: '/images/solar-cong-nghiep/trung-tam-thuong-mai.webp', alt: 'Retail center with solar panels' },
+  { icon: <Buildings className="h-6 w-6" aria-hidden="true" />, label: 'Office buildings & hotels', desc: 'Lower operating costs', image: '/images/solar-cong-nghiep/van-phong-khach-san.webp', alt: 'Office building with solar power system' },
+  { icon: <Warehouse className="h-6 w-6" aria-hidden="true" />, label: 'Warehouses & logistics centers', desc: 'Wide roofs, easy installation', image: '/images/solar-cong-nghiep/kho-bai-logistics.webp', alt: 'Logistics warehouse with rooftop solar' },
+  { icon: <HardDrives className="h-6 w-6" aria-hidden="true" />, label: 'Data centers & server farms', desc: 'Continuous power demand', image: '/images/solar-cong-nghiep/trung-tam-du-lieu.webp', alt: 'Data center powered by solar energy' },
+  { icon: <Heartbeat className="h-6 w-6" aria-hidden="true" />, label: 'Healthcare facilities & hospitals', desc: 'Energy security', image: '/images/solar-cong-nghiep/benh-vien-co-so-y-te.webp', alt: 'Hospital with solar power system' },
 ];
 
 const benefits = [
   {
     icon: <PiggyBank className="h-6 w-6" aria-hidden="true" />,
-    title: 'Tiết Kiệm Chi Phí',
-    desc: 'Giảm 50–90% chi phí điện. VD: nhà máy 500kW tiết kiệm 200–400 triệu/năm',
+    title: 'Cost Savings',
+    desc: 'Reduce electricity costs by 50–90%. Example: a 500kW plant can save 200–400 million VND per year.',
     gradient: 'from-cyan-600 to-cyan-500',
   },
   {
     icon: <TrendUp className="h-6 w-6" aria-hidden="true" />,
-    title: 'ROI Cao',
-    desc: 'Hoàn vốn 4–6 năm, tuổi thọ 30+ năm = 24 năm lợi nhuận ròng',
+    title: 'High ROI',
+    desc: 'Payback in 4–6 years, 30+ year lifespan = 24 years of net profit',
     gradient: 'from-green-600 to-green-500',
   },
   {
     icon: <Medal className="h-6 w-6" aria-hidden="true" />,
-    title: 'Nâng Cao Giá Trị',
-    desc: 'Chứng chỉ Green Building, cam kết Net-Zero, hỗ trợ ESG',
+    title: 'Increase Asset Value',
+    desc: 'Green Building certification, Net-Zero commitment, and ESG support',
     gradient: 'from-blue-600 to-blue-500',
   },
   {
     icon: <Bank className="h-6 w-6" aria-hidden="true" />,
-    title: 'Chính Sách Hỗ Trợ',
-    desc: 'Bán điện dư theo NĐ 135/2024, ưu đãi thuế',
+    title: 'Policy Support',
+    desc: 'Sell surplus electricity under Decree 135/2024 and benefit from tax incentives',
     gradient: 'from-cyan-500 to-cyan-400',
   },
   {
     icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />,
-    title: 'An Ninh Năng Lượng',
-    desc: 'Độc lập nguồn điện, tránh mất điện đột xuất',
+    title: 'Energy Security',
+    desc: 'Greater power independence and fewer unplanned outages',
     gradient: 'from-violet-600 to-violet-500',
   },
   {
     icon: <Thermometer className="h-6 w-6" aria-hidden="true" />,
-    title: 'Giảm Nhiệt Mái',
-    desc: 'Giảm 3–5°C, giảm chi phí làm mát',
+    title: 'Cooler Roofs',
+    desc: 'Lower roof temperature by 3–5°C and reduce cooling costs',
     gradient: 'from-cyan-600 to-cyan-500',
   },
 ];
@@ -113,12 +293,13 @@ const stats = [
   { icon: <Shield className="h-6 w-6" aria-hidden="true" />, value: '30+', label: 'Năm tuổi thọ', gradient: 'from-cyan-500 to-cyan-400' },
 ];
 
-export default function SolarCIPage() {
+export default function SolarCIPage({ locale = 'vi', pathname = '/' }: { locale?: Locale; pathname?: string }) {
+  const t = copy[locale];
   return (
     <div className="min-h-screen bg-white">
       {/* Hero area with HeaderBar floating over */}
       <div className="relative">
-        <HeaderBar />
+        <HeaderBar pathname={pathname} />
         {/* ═══════════════════ Hero Section ═══════════════════ */}
         <section data-header-theme="dark" className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
@@ -139,17 +320,15 @@ export default function SolarCIPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-cyan-500/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-base border border-cyan-400/30 mb-6">
               <Sun className="h-4 w-4 text-cyan-400" aria-hidden="true" />
-              <span className="text-cyan-300 font-semibold tracking-wide">Thương Mại & Công Nghiệp</span>
+              <span className="text-cyan-300 font-semibold tracking-wide">{t.badge}</span>
               <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" aria-hidden="true" />
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-              Giải Pháp Điện Mặt Trời cho{' '}
-              <span className="text-cyan-400">Thương Mại & Công Nghiệp</span>
+              {t.title[0]}{' '}
+              <span className="text-cyan-400">{t.title[1]}</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              EPCVINA SOLAR — Tổng thầu EPC hàng đầu cung cấp giải pháp điện mặt trời toàn diện cho nhà
-              máy, xưởng sản xuất, trung tâm thương mại. Công suất 100kWp đến 5MWp, tối ưu ROI và tuân thủ
-              tiêu chuẩn quốc tế.
+              {t.lead}
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <a
@@ -157,7 +336,7 @@ export default function SolarCIPage() {
                 className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Tính Nhanh Hiệu Quả Đầu Tư
+                {t.primaryCta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <a
@@ -165,17 +344,17 @@ export default function SolarCIPage() {
                 className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out border border-white/20 focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Xem Báo Giá Trọn Gói
+                {t.secondaryCta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm text-cyan-100/80">
               <a href="/ung-dung/dien-cong-nghiep" className="underline underline-offset-4 decoration-cyan-300/40 hover:text-white">
-                Xem trang ứng dụng công nghiệp
+                {t.appLink}
               </a>
               <span className="hidden sm:inline text-cyan-300/40">•</span>
               <a href="/dien-mat-troi-bac-ninh" className="underline underline-offset-4 decoration-cyan-300/40 hover:text-white">
-                Xem landing tỉnh
+                {t.provinceLink}
               </a>
             </div>
           </div>
@@ -190,13 +369,13 @@ export default function SolarCIPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-cyan-50 rounded-full px-4 py-1.5 text-base font-semibold text-cyan-700 mb-4">
                 <Building className="h-4 w-4" aria-hidden="true" />
-                Đối tượng khách hàng
+                {t.clientBadge}
               </div>
               <h2 id="client-types-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Giải Pháp Dành Cho <span className="text-cyan-600">Mô Hình Doanh Nghiệp</span>
+                {t.clientTitle[0]} <span className="text-cyan-600">{t.clientTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Hệ thống điện mặt trời phù hợp mọi loại hình doanh nghiệp thương mại và công nghiệp
+                {t.clientLead}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -234,13 +413,13 @@ export default function SolarCIPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 text-base font-semibold text-cyan-700 mb-4">
                 <TrendUp className="h-4 w-4" aria-hidden="true" />
-                Lợi ích vượt trội
+                {t.benefitBadge}
               </div>
               <h2 id="benefits-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Vì Sao Doanh Nghiệp Cần <span className="text-cyan-600">Điện Mặt Trời</span>
+                {t.benefitTitle[0]} <span className="text-cyan-600">{t.benefitTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Lợi ích kinh tế và chiến lược vượt trội cho doanh nghiệp
+                {t.benefitLead}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

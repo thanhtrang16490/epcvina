@@ -1,0 +1,231 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import { locales, type Locale } from '../../i18n/messages';
+import { getLocalizedRoute } from '../../i18n/routes';
+
+export const prerender = true;
+
+const policyRoutes = {
+  vi: {
+    policies: { title: 'Chính Sách Công Ty', description: 'Tổng hợp các chính sách áp dụng cho EPCVINA Solar.' },
+    'privacy-policy': { title: 'Chính Sách Bảo Mật', description: 'Bảo vệ dữ liệu cá nhân và thông tin khách hàng.' },
+    'payment-policy': { title: 'Chính Sách Thanh Toán', description: 'Quy định thanh toán cho dự án và thiết bị.' },
+    'returns-policy': { title: 'Chính Sách Đổi Trả & Hủy Dịch Vụ', description: 'Điều kiện đổi trả, hoàn tiền và hủy dịch vụ.' },
+    'delivery-policy': { title: 'Chính Sách Giao Nhận & Triển Khai', description: 'Quy trình giao hàng, vận chuyển và thi công.' },
+    'warranty-policy': { title: 'Chính Sách Bảo Hành', description: 'Phạm vi và thời hạn bảo hành thiết bị, hệ thống.' },
+    terms: { title: 'Điều Khoản Sử Dụng', description: 'Quy định sử dụng website và dịch vụ EPCVINA.' },
+  },
+  en: {
+    policies: { title: 'Company Policies', description: 'A summary of the policies that apply to EPCVINA Solar.' },
+    'privacy-policy': { title: 'Privacy Policy', description: 'How we protect customer and personal information.' },
+    'payment-policy': { title: 'Payment Policy', description: 'Payment rules for projects and equipment.' },
+    'returns-policy': { title: 'Returns & Cancellation Policy', description: 'Conditions for returns, refunds, and cancellations.' },
+    'delivery-policy': { title: 'Delivery & Installation Policy', description: 'Delivery, logistics, and construction process.' },
+    'warranty-policy': { title: 'Warranty Policy', description: 'Coverage and warranty periods for equipment and systems.' },
+    terms: { title: 'Terms of Use', description: 'Rules for using the EPCVINA website and services.' },
+  },
+  zh: {
+    policies: { title: '公司政策', description: 'EPCVINA Solar 适用政策概览。' },
+    'privacy-policy': { title: '隐私政策', description: '我们如何保护客户与个人信息。' },
+    'payment-policy': { title: '付款政策', description: '项目与设备付款规则。' },
+    'returns-policy': { title: '退换与取消政策', description: '退换货、退款和取消条件。' },
+    'delivery-policy': { title: '交付与安装政策', description: '交付、物流与施工流程。' },
+    'warranty-policy': { title: '保修政策', description: '设备与系统的保修范围和期限。' },
+    terms: { title: '使用条款', description: '使用 EPCVINA 网站和服务的规则。' },
+  },
+  ja: {
+    policies: { title: '会社ポリシー', description: 'EPCVINA Solar に適用される各種ポリシー一覧。' },
+    'privacy-policy': { title: 'プライバシーポリシー', description: 'お客様情報と個人情報の保護方針。' },
+    'payment-policy': { title: 'お支払いポリシー', description: '案件・機器の支払い条件。' },
+    'returns-policy': { title: '返品・キャンセルポリシー', description: '返品、返金、キャンセルの条件。' },
+    'delivery-policy': { title: '納品・施工ポリシー', description: '納品、物流、施工の流れ。' },
+    'warranty-policy': { title: '保証ポリシー', description: '機器とシステムの保証範囲と期間。' },
+    terms: { title: '利用規約', description: 'EPCVINA のサイトとサービスの利用条件。' },
+  },
+  ko: {
+    policies: { title: '회사 정책', description: 'EPCVINA Solar에 적용되는 정책 안내입니다.' },
+    'privacy-policy': { title: '개인정보 처리방침', description: '고객 및 개인정보 보호 원칙입니다.' },
+    'payment-policy': { title: '결제 정책', description: '프로젝트와 장비에 대한 결제 규정입니다.' },
+    'returns-policy': { title: '반품 및 취소 정책', description: '반품, 환불, 취소 조건입니다.' },
+    'delivery-policy': { title: '배송 및 시공 정책', description: '배송, 물류, 시공 절차입니다.' },
+    'warranty-policy': { title: '보증 정책', description: '장비와 시스템의 보증 범위와 기간입니다.' },
+    terms: { title: '이용 약관', description: 'EPCVINA 사이트와 서비스 이용 조건입니다.' },
+  },
+} satisfies Record<Locale, Record<string, { title: string; description: string }>>;
+
+const policyContent = {
+  en: {
+    'privacy-policy': [
+      'We only collect information needed for consultation, quotation, installation, and support.',
+      'Information is not sold or shared for commercial purposes without consent.',
+      'Users may request access, correction, or deletion where legally permitted.',
+    ],
+    'payment-policy': [
+      'Standard payment terms are defined in the contract and project schedule.',
+      'Payments may be made by bank transfer or other agreed methods.',
+      'Large projects may have milestone-based payment plans.',
+    ],
+    'returns-policy': [
+      'Defective equipment is handled according to manufacturer and EPCVINA warranty rules.',
+      'Refunds or replacements are processed when agreed conditions are met.',
+      'Damage caused by misuse or unauthorized repair is excluded.',
+    ],
+    'delivery-policy': [
+      'Delivery and installation timelines depend on project scale and location.',
+      'EPCVINA coordinates logistics, handover, and on-site installation.',
+      'The exact schedule is confirmed in the project contract.',
+    ],
+    'warranty-policy': [
+      'Warranty coverage follows the manufacturer and EPCVINA installation scope.',
+      'Solar modules, inverters, batteries, and installation items may have separate terms.',
+      'Please contact our technical team for warranty claims and diagnostics.',
+    ],
+    terms: [
+      'Use of this website means you agree to the published terms and policies.',
+      'Content, images, and documents remain the property of EPCVINA unless stated otherwise.',
+      'We may update terms to reflect legal or operational changes.',
+    ],
+  },
+  zh: {
+    'privacy-policy': [
+      '我们仅收集咨询、报价、安装和支持所需的信息。',
+      '未经同意，不会将信息出售或用于商业共享。',
+      '在法律允许的范围内，用户可申请查看、更正或删除信息。',
+    ],
+    'payment-policy': [
+      '付款条件以合同和项目进度为准。',
+      '可通过银行转账或双方约定方式付款。',
+      '大型项目可采用分阶段付款方案。',
+    ],
+    'returns-policy': [
+      '设备故障将按照制造商及 EPCVINA 保修规则处理。',
+      '在符合约定条件时，可办理退换货或退款。',
+      '因误用或未经授权维修造成的损坏不在范围内。',
+    ],
+    'delivery-policy': [
+      '交付与安装周期取决于项目规模与所在地。',
+      'EPCVINA 负责物流协调、交接与现场安装。',
+      '具体进度以项目合同确认为准。',
+    ],
+    'warranty-policy': [
+      '保修范围以制造商和 EPCVINA 的安装范围为准。',
+      '光伏组件、逆变器、电池和安装项可能分别适用不同条款。',
+      '如需保修检测，请联系技术团队。',
+    ],
+    terms: [
+      '使用本网站即表示您同意已发布的条款与政策。',
+      '除非另有说明，内容、图片和文件均归 EPCVINA 所有。',
+      '我们可能根据法律或运营变化更新条款。',
+    ],
+  },
+  ja: {
+    'privacy-policy': [
+      '収集する情報は、相談・見積・設置・サポートに必要な範囲に限定します。',
+      '同意なく情報を販売または商用共有することはありません。',
+      '法令の範囲内で、閲覧・訂正・削除の申請が可能です。',
+    ],
+    'payment-policy': [
+      '支払い条件は契約書および案件スケジュールに基づきます。',
+      '銀行振込など、合意した方法でお支払いいただけます。',
+      '大規模案件ではマイルストーン方式を採用する場合があります。',
+    ],
+    'returns-policy': [
+      '初期不良はメーカーおよび EPCVINA の保証規定に従って対応します。',
+      '合意条件を満たす場合、返品・交換・返金を行います。',
+      '誤使用や無断修理による損傷は対象外です。',
+    ],
+    'delivery-policy': [
+      '納品と施工の期間は案件規模と所在地により異なります。',
+      'EPCVINA が物流、引き渡し、現場施工を調整します。',
+      '詳細な工程は契約で確定します。',
+    ],
+    'warranty-policy': [
+      '保証範囲はメーカー保証および EPCVINA の施工範囲に準じます。',
+      'モジュール、インバーター、蓄電池、施工項目は別条件の場合があります。',
+      '保証対応や診断は技術チームへご連絡ください。',
+    ],
+    terms: [
+      '本サイトの利用は、掲載された利用規約およびポリシーへの同意を意味します。',
+      '別途明記がない限り、コンテンツ・画像・文書は EPCVINA に帰属します。',
+      '法令や運用変更に応じて規約を更新する場合があります。',
+    ],
+  },
+  ko: {
+    'privacy-policy': [
+      '상담, 견적, 설치, 지원에 필요한 정보만 수집합니다.',
+      '동의 없이 정보를 판매하거나 상업적으로 공유하지 않습니다.',
+      '법이 허용하는 범위 내에서 열람, 수정, 삭제를 요청할 수 있습니다.',
+    ],
+    'payment-policy': [
+      '결제 조건은 계약서와 프로젝트 일정에 따릅니다.',
+      '은행 송금 등 합의한 방식으로 결제할 수 있습니다.',
+      '대규모 프로젝트는 단계별 결제 계획을 사용할 수 있습니다.',
+    ],
+    'returns-policy': [
+      '초기 불량 장비는 제조사 및 EPCVINA 보증 기준에 따라 처리됩니다.',
+      '합의된 조건을 충족하면 반품, 교환 또는 환불을 진행합니다.',
+      '오용 또는 무단 수리로 인한 손상은 제외됩니다.',
+    ],
+    'delivery-policy': [
+      '배송 및 설치 일정은 프로젝트 규모와 지역에 따라 달라집니다.',
+      'EPCVINA가 물류, 인수인계, 현장 설치를 조율합니다.',
+      '세부 일정은 계약서에서 확정됩니다.',
+    ],
+    'warranty-policy': [
+      '보증 범위는 제조사 보증 및 EPCVINA 설치 범위를 따릅니다.',
+      '모듈, 인버터, 배터리, 설치 항목은 별도 조건이 적용될 수 있습니다.',
+      '보증 문의나 진단은 기술팀으로 연락해 주세요.',
+    ],
+    terms: [
+      '본 웹사이트를 사용하면 게시된 약관과 정책에 동의한 것으로 간주됩니다.',
+      '별도 명시가 없는 한 콘텐츠, 이미지, 문서는 EPCVINA의 자산입니다.',
+      '법적 또는 운영상 변경을 반영하기 위해 약관을 업데이트할 수 있습니다.',
+    ],
+  },
+} satisfies Record<Exclude<Locale, 'vi'>, Record<string, string[]>>;
+
+export function getStaticPaths() {
+  return ['en', 'zh', 'ja', 'ko'].flatMap((locale) =>
+    ['policies', 'privacy-policy', 'payment-policy', 'returns-policy', 'delivery-policy', 'warranty-policy', 'terms'].map((slug) => ({
+      params: { locale, slug },
+    })),
+  );
+}
+
+const { locale, slug } = Astro.params as { locale: Locale; slug: string };
+const page = policyRoutes[locale]?.[slug];
+if (!page) {
+  return Astro.redirect('/', 302);
+}
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const backHref = getLocalizedRoute(locale, 'policies');
+---
+
+<DashboardLayout
+  title={`${page.title} - EPCVINA Solar`}
+  description={page.description}
+  noindex={false}
+  breadcrumbs={[
+    { name: locale === 'vi' ? 'Trang chủ' : 'Home', url: `https://epcvina.com${getLocalizedRoute(locale, 'home')}` },
+    { name: page.title, url: canonical },
+  ]}
+>
+  <DashboardShell client:load>
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      <div class="mb-8">
+        <a href={backHref} class="text-sm text-gray-500 hover:text-gray-700 transition-colors">← {locale === 'vi' ? 'Tất cả chính sách' : 'All policies'}</a>
+      </div>
+
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">{page.title}</h1>
+      <p class="text-sm text-gray-500 mb-10">{page.description}</p>
+
+      <div class="space-y-5 text-gray-700 leading-relaxed">
+        {policyContent[locale][slug]?.map((item) => (
+          <p>{item}</p>
+        ))}
+      </div>
+    </main>
+  </DashboardShell>
+</DashboardLayout>

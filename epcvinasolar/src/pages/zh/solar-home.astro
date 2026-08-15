@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolutionsLandingPage from '../../components/pages/solar-home/SolutionsLandingPage';
+---
+
+<DashboardLayout
+  title="住宅太阳能方案 | EPCVINA Solar"
+  description="面向住宅、联排别墅和独栋别墅的一体化太阳能方案。比较并网与混合储能选项，适合越南家庭。"
+  keywords="住宅太阳能, 屋顶光伏, 并网, 混合储能, 越南家庭光伏, EPCVINA Solar"
+  breadcrumbs={[
+    { name: '首页', url: 'https://epcvina.com/zh' },
+    { name: '住宅太阳能', url: 'https://epcvina.com/zh/solar-home' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolutionsLandingPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

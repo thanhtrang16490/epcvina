@@ -17,7 +17,7 @@ export default function KetHopSacXeLandingPage() {
               <a href="tel:0988446113" className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all">
                 <Phone className="w-5 h-5" /> Tư Vấn Ngay
               </a>
-              <a href="/sac-ev" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20">
+              <a href="/ev-charging" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all border border-white/20">
                 Xem Giải Pháp EV
               </a>
             </div>

@@ -1,0 +1,6 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import QuotationPage from '../../components/pages/bao-gia/QuotationPage';
+---
+<DashboardLayout title="报价 | EPCVINA Solar"><DashboardShell client:load><QuotationPage client:visible pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>

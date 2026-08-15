@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolarCIPage from '../../components/pages/solar-ci/SolarCIPage';
+---
+
+<DashboardLayout
+  title="산업·상업용 태양광 솔루션 | EPCVINA Solar"
+  description="공장, 창고, 오피스, 상업시설을 위한 턴키 태양광 솔루션입니다. 투자 효율을 높여드립니다."
+  keywords="산업용 태양광, 상업용 태양광, 옥상 태양광, EPCVINA Solar"
+  breadcrumbs={[
+    { name: '홈', url: 'https://epcvina.com/ko' },
+    { name: '산업·상업용 태양광', url: 'https://epcvina.com/ko/solar-ci' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolarCIPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

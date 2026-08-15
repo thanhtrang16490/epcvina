@@ -1,4 +1,6 @@
 import { MapPin, Phone, CheckCircle, Sun, Lightning, Shield, ArrowRight, Star } from '@phosphor-icons/react';
+import { getLocaleFromPathname } from '../../../i18n/messages';
+import { getLocalePath } from '../../../i18n/routes';
 
 interface ProvincePageProps {
   province: {
@@ -15,9 +17,11 @@ interface ProvincePageProps {
     localProofs?: string[];
     faqs: { q: string; a: string }[];
   };
+  pathname?: string;
 }
 
-export default function ProvinceLandingPage({ province }: ProvincePageProps) {
+export default function ProvinceLandingPage({ province, pathname = '/' }: ProvincePageProps) {
+  const locale = getLocaleFromPathname(pathname);
   return (
     <div className="min-h-screen pt-20 md:pt-20">
       {/* Hero */}
@@ -40,7 +44,7 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             <a href="tel:0988446113" className="bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-lg transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> Gọi Tư Vấn: 0988 446 113
             </a>
-            <a href="/solar-cong-nghiep" className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
+            <a href={getLocalePath('/solar-cong-nghiep', locale)} className="bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
               Xem giải pháp doanh nghiệp
             </a>
             <a href="/calculator" className="bg-white/10 border border-white/20 text-white font-semibold px-8 py-3 rounded-lg hover:bg-white/20 transition-all">
@@ -176,7 +180,7 @@ export default function ProvinceLandingPage({ province }: ProvincePageProps) {
             <a href="tel:0988446113" className="bg-white text-orange-600 font-bold px-8 py-3 rounded-lg hover:bg-orange-50 transition-all flex items-center gap-2">
               <Phone className="w-5 h-5" /> 0988 446 113
             </a>
-            <a href="/solar-cong-nghiep" className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
+            <a href={getLocalePath('/solar-cong-nghiep', locale)} className="border-2 border-white text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">
               Xem hub Solar C&I
             </a>
             <a href="/bao-gia" className="border-2 border-white/40 text-white font-bold px-8 py-3 rounded-lg hover:bg-white/10 transition-all">

@@ -17,6 +17,6 @@ const breadcrumbs = [
 >
   <h1 class="sr-only">Báo Giá Lắp Đặt Điện Mặt Trời EPCVINA Solar</h1>
   <DashboardShell client:load>
-    <QuotationPage client:visible />
+    <QuotationPage client:visible pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

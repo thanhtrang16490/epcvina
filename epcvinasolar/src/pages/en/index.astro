@@ -1,0 +1,40 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/layout/HeaderBar';
+import HeroSection from '../../components/home/hero/HeroSection';
+import ComparisonSection from '../../components/home/combos/ComparisonSection';
+import SolarSolutionFinder from '../../components/home/tools/SolarSolutionFinder';
+import BenefitsSection from '../../components/home/sections/BenefitsSection';
+import MidPageCTA from '../../components/home/sections/MidPageCTA';
+import ProcessSection from '../../components/home/sections/ProcessSection';
+import ProjectsPreviewSection from '../../components/home/sections/ProjectsPreviewSection';
+import ReviewsSection from '../../components/home/sections/ReviewsSection';
+import FAQSection from '../../components/home/sections/FAQSection';
+import CTASection from '../../components/home/contact/CTASection';
+import FooterSection from '../../components/home/layout/FooterSection';
+---
+
+<DashboardLayout
+  title="EPCVINA Solar | Turnkey Solar EPC for Homes, Businesses & EV"
+  description="Explore EPCVINA Solar's English homepage for rooftop solar, hybrid battery storage, EV charging, and turnkey EPC delivery in Vietnam."
+  keywords="EPCVINA Solar, solar EPC Vietnam, rooftop solar Vietnam, hybrid BESS, EV charging, turnkey solar, solar contractor Vietnam"
+>
+  <DashboardShell client:idle showFooter={false}>
+    <HeaderBar pathname={Astro.url.pathname} />
+    <div class="lg:-ml-16 lg:w-[calc(100%+4rem)]">
+      <HeroSection pathname={Astro.url.pathname} />
+    </div>
+    <ComparisonSection pathname={Astro.url.pathname} />
+    <SolarSolutionFinder pathname={Astro.url.pathname} client:visible />
+    <BenefitsSection pathname={Astro.url.pathname} />
+    <MidPageCTA variant="benefits" pathname={Astro.url.pathname} />
+    <ProcessSection pathname={Astro.url.pathname} />
+    <ProjectsPreviewSection pathname={Astro.url.pathname} />
+    <ReviewsSection pathname={Astro.url.pathname} />
+    <MidPageCTA variant="reviews" pathname={Astro.url.pathname} />
+    <FAQSection pathname={Astro.url.pathname} client:visible />
+    <CTASection pathname={Astro.url.pathname} client:visible />
+    <FooterSection pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

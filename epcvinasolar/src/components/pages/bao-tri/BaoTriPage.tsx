@@ -26,13 +26,149 @@ import {
   Sparkle,
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
+import { getLocaleFromPathname } from '../../../i18n/messages';
+
+type Locale = 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+
+const copy: Record<Locale, any> = {
+  vi: {
+    badge: 'Vận Hành & Bảo Trì',
+    title: ['Dịch Vụ O&M', 'Điện Mặt Trời'],
+    lead: 'EPCVINA SOLAR cung cấp dịch vụ vận hành & bảo trì chuyên nghiệp — tối đa hóa hiệu suất, kéo dài tuổi thọ hệ thống, giảm thiểu rủi ro.',
+    cta: 'Đăng Ký Dịch Vụ O&M',
+    statsHeading: ['Hiệu Quả', 'O&M'],
+    statsLead: 'Những con số chứng minh giá trị của dịch vụ vận hành & bảo trì chuyên nghiệp',
+    statsTag: 'Đảm bảo hiệu suất — tối đa hóa lợi nhuận đầu tư',
+    whyBadge: 'Tại sao cần O&M',
+    whyTitle: ['Không Bảo Trì =', 'Lỗ Hổng Lớn'],
+    whyLead: 'Những con số cho thấy rủi ro khi bỏ qua bảo trì hệ thống điện mặt trời',
+    servicesBadge: 'Dịch vụ toàn diện',
+    servicesTitle: ['Các Dịch Vụ', 'O&M'],
+    servicesLead: 'Giải pháp bảo trì toàn diện cho hệ thống điện mặt trời',
+    packagesBadge: 'Gói dịch vụ',
+    packagesTitle: ['Gói Dịch Vụ', 'O&M'],
+    packagesLead: 'Lựa chọn gói phù hợp với quy mô hệ thống điện mặt trời',
+    packagesHeaders: ['Gói', 'Công Suất', 'Chi Phí', 'Giám Sát', 'Vệ Sinh', 'Sửa Chữa', 'Hỗ Trợ'],
+    processBadge: 'Quy trình xử lý',
+    processTitle: ['Quy Trình', 'Hỗ Trợ'],
+    processLead: 'Quy trình xử lý sự cố nhanh chóng & chuyên nghiệp — 7 bước đảm bảo',
+    ctaTitle: 'Sẵn Sàng Tối Ưu Hệ Thống Điện Mặt Trời?',
+    ctaLead: 'Liên hệ ngay để được tư vấn gói O&M phù hợp với hệ thống của bạn. Đội ngũ kỹ sư EPCVINA sẵn sàng hỗ trợ 24/7.',
+    ctaPrimary: 'Đăng Ký Dịch Vụ O&M',
+    ctaPhone: '0988 446 113',
+  },
+  en: {
+    badge: 'Operations & Maintenance',
+    title: ['Solar O&M', 'Services'],
+    lead: 'EPCVINA SOLAR delivers professional operations & maintenance services to maximize performance, extend system life, and reduce risk.',
+    cta: 'Register for O&M service',
+    statsHeading: ['Why O&M', 'Works'],
+    statsLead: 'Numbers that prove the value of professional operations and maintenance',
+    statsTag: 'Performance guaranteed - maximize investment returns',
+    whyBadge: 'Why O&M matters',
+    whyTitle: ['No maintenance =', 'big risk'],
+    whyLead: 'These numbers show the risk of skipping solar maintenance',
+    servicesBadge: 'Full service',
+    servicesTitle: ['O&M', 'Services'],
+    servicesLead: 'Comprehensive maintenance solutions for solar systems',
+    packagesBadge: 'Service plans',
+    packagesTitle: ['O&M', 'Plans'],
+    packagesLead: 'Choose the right plan for your solar system size',
+    packagesHeaders: ['Plan', 'Capacity', 'Cost', 'Monitoring', 'Cleaning', 'Repair', 'Support'],
+    processBadge: 'Resolution flow',
+    processTitle: ['Support', 'Workflow'],
+    processLead: 'Fast, professional issue handling - 7 clear steps',
+    ctaTitle: 'Ready to optimize your solar system?',
+    ctaLead: 'Contact us to get the right O&M package for your system. EPCVINA engineers are ready 24/7.',
+    ctaPrimary: 'Register for O&M service',
+    ctaPhone: '0988 446 113',
+  },
+  zh: {
+    badge: '运维与保养',
+    title: ['光伏 O&M', '服务'],
+    lead: 'EPCVINA Solar 提供专业的运维与保养服务，提升效率、延长寿命并降低风险。',
+    cta: '申请 O&M 服务',
+    statsHeading: ['运维', '价值'],
+    statsLead: '专业运维保养的价值数据',
+    statsTag: '保障效率，最大化投资回报',
+    whyBadge: '为何需要运维',
+    whyTitle: ['不保养 =', '大风险'],
+    whyLead: '这些数据说明忽视运维的风险',
+    servicesBadge: '全面服务',
+    servicesTitle: ['O&M', '服务'],
+    servicesLead: '为光伏系统提供全面保养方案',
+    packagesBadge: '服务方案',
+    packagesTitle: ['O&M', '方案'],
+    packagesLead: '按系统规模选择合适方案',
+    packagesHeaders: ['方案', '容量', '费用', '监控', '清洗', '维修', '支持'],
+    processBadge: '处理流程',
+    processTitle: ['支持', '流程'],
+    processLead: '快速专业的故障处理流程 - 7 个步骤',
+    ctaTitle: '准备好优化光伏系统了吗？',
+    ctaLead: '联系我们，为您的系统选择合适的 O&M 方案。EPCVINA 工程师 24/7 待命。',
+    ctaPrimary: '申请 O&M 服务',
+    ctaPhone: '0988 446 113',
+  },
+  ja: {
+    badge: '運用・保守',
+    title: ['太陽光 O&M', 'サービス'],
+    lead: 'EPCVINA Solar は、性能向上・長寿命化・リスク低減を実現するプロフェッショナルな O&M サービスを提供します。',
+    cta: 'O&M サービスに申し込む',
+    statsHeading: ['O&M の', '効果'],
+    statsLead: 'プロの運用保守の価値を示す数値',
+    statsTag: '性能を保証し、投資効果を最大化',
+    whyBadge: 'なぜ O&M が必要か',
+    whyTitle: ['保守なし =', '大きなリスク'],
+    whyLead: '保守を省略した場合のリスクを示す数値',
+    servicesBadge: '総合サービス',
+    servicesTitle: ['O&M', 'サービス'],
+    servicesLead: '太陽光システム向けの総合保守ソリューション',
+    packagesBadge: 'サービスプラン',
+    packagesTitle: ['O&M', 'プラン'],
+    packagesLead: 'システム規模に合ったプランを選択',
+    packagesHeaders: ['プラン', '容量', '費用', '監視', '清掃', '修理', 'サポート'],
+    processBadge: '対応フロー',
+    processTitle: ['サポート', 'フロー'],
+    processLead: '迅速かつ専門的な障害対応 - 7 ステップ',
+    ctaTitle: '太陽光システムを最適化しませんか？',
+    ctaLead: 'システムに合った O&M プランをご案内します。EPCVINA の技術者が 24 時間対応します。',
+    ctaPrimary: 'O&M サービスに申し込む',
+    ctaPhone: '0988 446 113',
+  },
+  ko: {
+    badge: '운영·유지보수',
+    title: ['태양광 O&M', '서비스'],
+    lead: 'EPCVINA Solar는 효율 극대화, 수명 연장, 리스크 감소를 위한 전문 운영·유지보수 서비스를 제공합니다.',
+    cta: 'O&M 서비스 신청',
+    statsHeading: ['O&M의', '효과'],
+    statsLead: '전문 운영·유지보수의 가치를 보여주는 수치',
+    statsTag: '성능 보장, 투자수익 극대화',
+    whyBadge: '왜 O&M이 필요한가',
+    whyTitle: ['유지보수 없음 =', '큰 위험'],
+    whyLead: '유지보수를 생략했을 때의 위험을 보여주는 수치',
+    servicesBadge: '종합 서비스',
+    servicesTitle: ['O&M', '서비스'],
+    servicesLead: '태양광 시스템을 위한 종합 유지보수 솔루션',
+    packagesBadge: '서비스 패키지',
+    packagesTitle: ['O&M', '패키지'],
+    packagesLead: '시스템 규모에 맞는 패키지를 선택하세요',
+    packagesHeaders: ['패키지', '용량', '비용', '모니터링', '청소', '수리', '지원'],
+    processBadge: '처리 절차',
+    processTitle: ['지원', '워크플로우'],
+    processLead: '빠르고 전문적인 장애 처리 - 7단계',
+    ctaTitle: '태양광 시스템을 최적화할 준비가 되셨나요?',
+    ctaLead: '시스템에 맞는 O&M 패키지를 안내드립니다. EPCVINA 엔지니어가 24/7 지원합니다.',
+    ctaPrimary: 'O&M 서비스 신청',
+    ctaPhone: '0988 446 113',
+  },
+};
 
 /* ─── Stats ─── */
 const stats = [
   { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, value: '15–20%', label: 'Tăng sản lượng với O&M', gradient: 'from-emerald-600 to-emerald-500' },
   { icon: <Pulse className="h-6 w-6" aria-hidden="true" />, value: '80%', label: 'Giảm thời gian dừng hệ thống', gradient: 'from-green-600 to-green-500' },
   { icon: <Gauge className="h-6 w-6" aria-hidden="true" />, value: '60%', label: 'Giảm chi phí sửa chữa', gradient: 'from-teal-600 to-teal-500' },
-  { icon: <Headphones className="h-6 w-6" aria-hidden="true" />, value: '24/7', label: 'Giám sát & hỗ trợ', gradient: 'from-cyan-600 to-cyan-500' },
+  { icon: <Headphones className="h-6 w-6" aria-hidden="true" />, value: '24/7', label: 'Monitoring & support', gradient: 'from-cyan-600 to-cyan-500' },
 ];
 
 /* ─── Why O&M ─── */
@@ -40,7 +176,7 @@ const whyOMItems = [
   {
     icon: <Warning className="h-6 w-6" aria-hidden="true" />,
     value: '36%',
-    label: 'Sản lượng giảm nếu không vệ sinh tấm pin',
+    label: 'Output drops without panel cleaning',
     color: 'text-red-500',
     bg: 'bg-red-50',
     image: '/images/bao-tri/tam-pin-bam-bui.webp',
@@ -49,7 +185,7 @@ const whyOMItems = [
   {
     icon: <Clock className="h-6 w-6" aria-hidden="true" />,
     value: '10–15 năm',
-    label: 'Tuổi thọ inverter — cần kiểm tra định kỳ',
+    label: 'Inverter lifespan requires regular inspection',
     color: 'text-amber-500',
     bg: 'bg-amber-50',
     image: '/images/bao-tri/kiem-tra-inverter.webp',
@@ -58,7 +194,7 @@ const whyOMItems = [
   {
     icon: <Lightning className="h-6 w-6" aria-hidden="true" />,
     value: '500K–2 triệu/năm',
-    label: 'O&M định kỳ vs 10–50 triệu/lần sửa chữa khẩn cấp',
+    label: 'Routine O&M vs emergency repair costs',
     color: 'text-emerald-500',
     bg: 'bg-emerald-50',
     image: '/images/bao-tri/bao-tri-phong-ngua.webp',
@@ -67,7 +203,7 @@ const whyOMItems = [
   {
     icon: <TrendUp className="h-6 w-6" aria-hidden="true" />,
     value: '15–20%',
-    label: 'Trung bình tăng sản lượng khi có O&M chuyên nghiệp',
+    label: 'Average output increase with professional O&M',
     color: 'text-teal-500',
     bg: 'bg-teal-50',
     image: '/images/bao-tri/he-thong-hieu-suat-cao.webp',
@@ -79,76 +215,76 @@ const whyOMItems = [
 const services = [
   {
     icon: <Monitor className="h-6 w-6" aria-hidden="true" />,
-    title: 'Giám Sát Từ Xa 24/7',
+    title: '24/7 Remote Monitoring',
     subtitle: 'Remote Monitoring',
     items: [
-      'Data Logger ghi 5 phút/lần',
-      'App web/mobile real-time',
-      'Cảnh báo lỗi tức thì',
-      'Chỉ số: công suất, nhiệt độ, dòng/áp, năng lượng tích lũy',
+      'Data logger records every 5 minutes',
+      'Real-time web/mobile app',
+      'Instant fault alerts',
+      'Metrics: power, temperature, current/voltage, accumulated energy',
     ],
     image: '/images/bao-tri/giam-sat-tu-xa.webp',
-    alt: 'Bảng giám sát hệ thống điện mặt trời từ xa',
+    alt: 'Remote solar system monitoring dashboard',
     tag: 'Real-time',
     tagColor: 'bg-emerald-100 text-emerald-700',
   },
   {
     icon: <Drop className="h-6 w-6" aria-hidden="true" />,
-    title: 'Vệ Sinh Tấm Pin',
+    title: 'Panel Cleaning',
     subtitle: 'Panel Cleaning',
     items: [
-      '2–6 lần/năm tùy vùng',
-      'Nước sạch + chổi mềm, không áp lực cao',
-      'Tăng sản lượng 15–36%',
-      'Chi phí: 200K–500K/lần',
+      '2–6 times per year depending on location',
+      'Clean water + soft brush, no high pressure',
+      'Boost output by 15–36%',
+      'Cost: 200K–500K per visit',
     ],
     image: '/images/bao-tri/ve-sinh-tam-pin.webp',
-    alt: 'Vệ sinh tấm pin mặt trời chuyên nghiệp',
+    alt: 'Professional solar panel cleaning',
     tag: 'Tăng 36%',
     tagColor: 'bg-sky-100 text-sky-700',
   },
   {
     icon: <Wrench className="h-6 w-6" aria-hidden="true" />,
-    title: 'Kiểm Tra & Bảo Dưỡng Định Kỳ',
+    title: 'Preventive Inspection & Maintenance',
     subtitle: 'Preventive Maintenance',
     items: [
-      'Hàng tuần: kiểm tra trực quan',
-      'Hàng tháng: số liệu monitoring',
-      'Hàng quý: vệ sinh, kiểm tra nối kết',
-      'Hàng năm: test inverter, thay lọc',
-      '10 năm: xem xét thay inverter',
+      'Weekly: visual inspection',
+      'Monthly: monitoring data review',
+      'Quarterly: cleaning and connection checks',
+      'Yearly: inverter testing, filter replacement',
+      '10 years: evaluate inverter replacement',
     ],
     image: '/images/bao-tri/kiem-tra-dinh-ky.webp',
-    alt: 'Kỹ thuật viên bảo dưỡng hệ thống điện mặt trời',
+    alt: 'Technician maintaining a solar system',
     tag: 'Định kỳ',
     tagColor: 'bg-amber-100 text-amber-700',
   },
   {
     icon: <ShieldWarning className="h-6 w-6" aria-hidden="true" />,
-    title: 'Sửa Chữa & Phòng Ngừa',
+    title: 'Corrective Maintenance',
     subtitle: 'Corrective Maintenance',
     items: [
-      'Inverter mất kết nối, quá nhiệt, mất đất',
-      'Thay dây cáp, sửa mạch, thay quạt tản nhiệt',
-      'Khắc phục trong vòng 24 giờ',
+      'Inverter disconnection, overheating, grounding issues',
+      'Cable replacement, board repair, fan replacement',
+      'Resolve within 24 hours',
     ],
     image: '/images/bao-tri/sua-chua-khan-cap.webp',
-    alt: 'Sửa chữa hệ thống điện mặt trời trên mái',
+    alt: 'Rooftop solar system repair',
     tag: '24 giờ',
     tagColor: 'bg-red-100 text-red-700',
   },
   {
     icon: <ChartBar className="h-6 w-6" aria-hidden="true" />,
-    title: 'Phân Tích & Tối Ưu',
+    title: 'Performance Analytics',
     subtitle: 'Performance Analytics',
     items: [
-      'Báo cáo tháng/năm chi tiết',
+      'Detailed monthly and annual reports',
       'PR (Performance Ratio) > 80%',
-      'So sánh dự báo vs thực tế',
-      'Đề xuất nâng cấp hệ thống',
+      'Forecast vs actual comparison',
+      'System upgrade recommendations',
     ],
     image: '/images/bao-tri/phan-tich-hieu-suat.webp',
-    alt: 'Phân tích dữ liệu hiệu suất điện mặt trời',
+    alt: 'Solar performance analytics',
     tag: 'Analytics',
     tagColor: 'bg-violet-100 text-violet-700',
   },
@@ -157,29 +293,29 @@ const services = [
 /* ─── Packages (table data) ─── */
 const packages = [
   {
-    name: 'Cơ Bản',
+    name: 'Basic',
     power: '100–250kWp',
     price: '2–3 triệu',
     period: '/năm',
     monitoring: '24/7',
     cleaning: '2 lần/năm',
     repair: '—',
-    support: 'Giờ hành chính',
+    support: 'Business hours',
     highlight: false,
-    tag: 'Nhỏ',
+    tag: 'Small',
     tagColor: 'bg-sky-100 text-sky-700',
   },
   {
-    name: 'Tiêu Chuẩn',
+    name: 'Standard',
     power: '250–500kWp',
     price: '4–6 triệu',
     period: '/năm',
     monitoring: '24/7',
     cleaning: '4 lần/năm',
-    repair: 'Sửa chữa nhỏ',
+    repair: 'Minor repairs',
     support: '8/7',
     highlight: true,
-    tag: 'Vừa',
+    tag: 'Medium',
     tagColor: 'bg-emerald-100 text-emerald-700',
   },
   {
@@ -196,46 +332,48 @@ const packages = [
     tagColor: 'bg-violet-100 text-violet-700',
   },
   {
-    name: 'EPC Trọn Gói',
+    name: 'Turnkey EPC',
     power: 'Bất kỳ',
     price: 'Tùy chỉnh',
     period: '',
     monitoring: '24/7',
     cleaning: 'Không giới hạn',
-    repair: 'Toàn diện',
+    repair: 'Full coverage',
     support: '24/7 ưu tiên',
     highlight: false,
-    tag: 'Trọn gói',
+    tag: 'Turnkey',
     tagColor: 'bg-amber-100 text-amber-700',
   },
 ];
 
 /* ─── Commitments ─── */
 const commitments = [
-  { icon: <Gauge className="h-6 w-6" aria-hidden="true" />, label: 'PR ≥ 80%', desc: 'Performance Ratio đạt chuẩn quốc tế', gradient: 'from-emerald-600 to-emerald-500' },
-  { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, label: 'Giảm ≤ 0.5%/năm', desc: 'Sản lượng giảm không quá 0.5% mỗi năm', gradient: 'from-green-600 to-green-500' },
-  { icon: <Clock className="h-6 w-6" aria-hidden="true" />, label: '< 24 giờ', desc: 'Sửa chữa khẩn cấp trong vòng 24 giờ', gradient: 'from-teal-600 to-teal-500' },
-  { icon: <Shield className="h-6 w-6" aria-hidden="true" />, label: '30 năm', desc: 'Bảo hành tấm pin', gradient: 'from-cyan-600 to-cyan-500' },
-  { icon: <Medal className="h-6 w-6" aria-hidden="true" />, label: '5–10 năm', desc: 'Bảo hành inverter', gradient: 'from-amber-600 to-amber-500' },
+  { icon: <Gauge className="h-6 w-6" aria-hidden="true" />, label: 'PR ≥ 80%', desc: 'International-standard performance ratio', gradient: 'from-emerald-600 to-emerald-500' },
+  { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, label: '≤ 0.5%/year', desc: 'Output decline kept below 0.5% annually', gradient: 'from-green-600 to-green-500' },
+  { icon: <Clock className="h-6 w-6" aria-hidden="true" />, label: '< 24 hours', desc: 'Emergency repair within 24 hours', gradient: 'from-teal-600 to-teal-500' },
+  { icon: <Shield className="h-6 w-6" aria-hidden="true" />, label: '30 years', desc: 'Panel warranty', gradient: 'from-cyan-600 to-cyan-500' },
+  { icon: <Medal className="h-6 w-6" aria-hidden="true" />, label: '5–10 years', desc: 'Inverter warranty', gradient: 'from-amber-600 to-amber-500' },
 ];
 
 /* ─── Process Steps ─── */
 const processSteps = [
-  { step: 1, title: 'Phát Hiện Sự Cố', desc: 'Hệ thống cảnh báo tự động hoặc khách hàng phát hiện', icon: <Radio className="h-6 w-6" aria-hidden="true" /> },
-  { step: 2, title: 'Liên Hệ EPCVINA', desc: 'Hotline, Email hoặc Chat — tiếp nhận ngay lập tức', icon: <Phone className="h-6 w-6" aria-hidden="true" /> },
-  { step: 3, title: 'Kiểm Tra Từ Xa', desc: 'Đội kỹ sư phân tích dữ liệu monitoring', icon: <Eye className="h-6 w-6" aria-hidden="true" /> },
-  { step: 4, title: 'Phân Loại & Đánh Giá', desc: 'Xác định mức độ nghiêm trọng, phương án xử lý', icon: <ClipboardText className="h-6 w-6" aria-hidden="true" /> },
-  { step: 5, title: 'Xử Lý Sự Cố', desc: 'Hướng dẫn remote hoặc cử kỹ thuật viên on-site', icon: <Wrench className="h-6 w-6" aria-hidden="true" /> },
-  { step: 6, title: 'Báo Cáo Hoàn Thành', desc: 'Xác nhận khắc phục, báo cáo chi tiết', icon: <File className="h-6 w-6" aria-hidden="true" /> },
-  { step: 7, title: 'Theo Dõi Liên Tục', desc: 'Giám sát hiệu suất, phòng ngừa tái phát', icon: <Gear className="h-6 w-6" aria-hidden="true" /> },
+  { step: 1, title: 'Issue Detection', desc: 'Automatic alerts or customer detection', icon: <Radio className="h-6 w-6" aria-hidden="true" /> },
+  { step: 2, title: 'Contact EPCVINA', desc: 'Hotline, email, or chat - immediate response', icon: <Phone className="h-6 w-6" aria-hidden="true" /> },
+  { step: 3, title: 'Remote Check', desc: 'Engineers analyze monitoring data', icon: <Eye className="h-6 w-6" aria-hidden="true" /> },
+  { step: 4, title: 'Classify & Assess', desc: 'Determine severity and response plan', icon: <ClipboardText className="h-6 w-6" aria-hidden="true" /> },
+  { step: 5, title: 'Resolve Issue', desc: 'Remote guidance or on-site technician dispatch', icon: <Wrench className="h-6 w-6" aria-hidden="true" /> },
+  { step: 6, title: 'Completion Report', desc: 'Confirm fix and provide detailed report', icon: <File className="h-6 w-6" aria-hidden="true" /> },
+  { step: 7, title: 'Continuous Monitoring', desc: 'Track performance and prevent recurrence', icon: <Gear className="h-6 w-6" aria-hidden="true" /> },
 ];
 
-export default function BaoTriPage() {
+export default function BaoTriPage({ pathname = '/' }: { pathname?: string }) {
+  const locale = (['vi', 'en', 'zh', 'ja', 'ko'].includes(getLocaleFromPathname(pathname)) ? getLocaleFromPathname(pathname) : 'vi') as Locale;
+  const t = copy[locale];
   return (
     <div className="min-h-screen bg-white">
       {/* Hero area with HeaderBar floating over */}
       <div className="relative">
-        <HeaderBar />
+        <HeaderBar pathname={pathname} />
         {/* ═══════════════════ Hero Section ═══════════════════ */}
         <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
@@ -256,17 +394,15 @@ export default function BaoTriPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-base border border-emerald-400/30 mb-6">
               <Sun className="h-4 w-4 text-amber-400" aria-hidden="true" />
-              <span className="text-emerald-300 font-semibold tracking-wide">Vận Hành & Bảo Trì</span>
+              <span className="text-emerald-300 font-semibold tracking-wide">{t.badge}</span>
               <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" aria-hidden="true" />
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-              Dịch Vụ O&M{' '}
-              <span className="text-emerald-400">Điện Mặt Trời</span>
+              {t.title[0]}{' '}
+              <span className="text-emerald-400">{t.title[1]}</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              EPCVINA SOLAR cung cấp dịch vụ vận hành & bảo trì chuyên nghiệp — tối đa hóa hiệu suất,
-              kéo dài tuổi thọ hệ thống, giảm thiểu rủi ro. Từ giám sát từ xa 24/7, vệ sinh pin
-              đến bảo dưỡng định kỳ, đảm bảo hệ thống hoạt động tối ưu suốt 30 năm.
+                {t.lead}
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <a
@@ -274,7 +410,7 @@ export default function BaoTriPage() {
                 className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Đăng Ký Dịch Vụ O&M
+                {t.cta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
@@ -289,10 +425,10 @@ export default function BaoTriPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <h2 id="stats-heading" className="text-2xl sm:text-3xl font-bold">
-                Hiệu Quả <span className="text-emerald-400">O&M</span> Nói Lên Tất Cả
+                {t.statsHeading[0]} <span className="text-emerald-400">{t.statsHeading[1]}</span> Nói Lên Tất Cả
               </h2>
               <p className="text-base text-gray-400 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Những con số chứng minh giá trị của dịch vụ vận hành & bảo trì chuyên nghiệp
+                {t.statsLead}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -312,7 +448,7 @@ export default function BaoTriPage() {
             <div className="mt-8 text-center">
               <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-full px-5 py-2.5 text-base text-emerald-300 font-medium">
                 <Sparkle className="h-4 w-4" aria-hidden="true" />
-                Đảm bảo hiệu suất — tối đa hóa lợi nhuận đầu tư
+                {t.statsTag}
               </div>
             </div>
           </div>
@@ -324,13 +460,13 @@ export default function BaoTriPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
                 <Warning className="h-4 w-4" aria-hidden="true" />
-                Tại sao cần O&M
+                {t.whyBadge}
               </div>
               <h2 id="why-om-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Không Bảo Trì = <span className="text-emerald-600">Lỗ Hổng Lớn</span>
+                {t.whyTitle[0]} <span className="text-emerald-600">{t.whyTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Những con số cho thấy rủi ro khi bỏ qua bảo trì hệ thống điện mặt trời
+                {t.whyLead}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -368,13 +504,13 @@ export default function BaoTriPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
                 <Gear className="h-4 w-4" aria-hidden="true" />
-                Dịch vụ toàn diện
+                {t.servicesBadge}
               </div>
               <h2 id="services-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Các Dịch Vụ <span className="text-emerald-600">O&M</span>
+                {t.servicesTitle[0]} <span className="text-emerald-600">{t.servicesTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Giải pháp bảo trì toàn diện cho hệ thống điện mặt trời
+                {t.servicesLead}
               </p>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -428,13 +564,13 @@ export default function BaoTriPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
                 <ThumbsUp className="h-4 w-4" aria-hidden="true" />
-                Gói dịch vụ
+                {t.packagesBadge}
               </div>
               <h2 id="packages-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Gói Dịch Vụ <span className="text-emerald-600">O&M</span>
+                {t.packagesTitle[0]} <span className="text-emerald-600">{t.packagesTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Lựa chọn gói phù hợp với quy mô hệ thống điện mặt trời
+                {t.packagesLead}
               </p>
             </div>
 
@@ -443,13 +579,7 @@ export default function BaoTriPage() {
               <table className="w-full text-base">
                 <thead>
                   <tr className="bg-emerald-600 text-white">
-                    <th className="px-6 py-4 text-left font-semibold">Gói</th>
-                    <th className="px-6 py-4 text-left font-semibold">Công Suất</th>
-                    <th className="px-6 py-4 text-left font-semibold">Chi Phí</th>
-                    <th className="px-6 py-4 text-center font-semibold">Giám Sát</th>
-                    <th className="px-6 py-4 text-center font-semibold">Vệ Sinh</th>
-                    <th className="px-6 py-4 text-left font-semibold">Sửa Chữa</th>
-                    <th className="px-6 py-4 text-left font-semibold">Hỗ Trợ</th>
+                    {t.packagesHeaders.map(h => <th key={h} className="px-6 py-4 text-left font-semibold">{h}</th>)}
                   </tr>
                 </thead>
                 <tbody>
@@ -466,7 +596,7 @@ export default function BaoTriPage() {
                           </span>
                           {pkg.highlight && (
                             <span className="inline-block bg-amber-400 text-emerald-900 text-xs font-bold px-2 py-0.5 rounded-full">
-                              Phổ biến
+                              {locale === 'vi' ? 'Phổ biến' : 'Popular'}
                             </span>
                           )}
                         </div>
@@ -506,7 +636,7 @@ export default function BaoTriPage() {
                     </div>
                     {pkg.highlight && (
                       <span className="bg-amber-400 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full">
-                        Phổ biến nhất
+                        {locale === 'vi' ? 'Phổ biến nhất' : 'Most popular'}
                       </span>
                     )}
                   </div>
@@ -516,23 +646,23 @@ export default function BaoTriPage() {
                   </div>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Công suất</span>
+                      <span className="text-gray-500">{locale === 'vi' ? 'Công suất' : 'Capacity'}</span>
                       <span className={`font-medium ${pkg.highlight ? 'text-emerald-700' : 'text-gray-700'}`}>{pkg.power}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Giám sát</span>
+                      <span className="text-gray-500">{locale === 'vi' ? 'Giám sát' : 'Monitoring'}</span>
                       <span className="text-gray-700">{pkg.monitoring}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Vệ sinh</span>
+                      <span className="text-gray-500">{locale === 'vi' ? 'Vệ sinh' : 'Cleaning'}</span>
                       <span className="text-gray-700">{pkg.cleaning}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-500">Sửa chữa</span>
+                      <span className="text-gray-500">{locale === 'vi' ? 'Sửa chữa' : 'Repair'}</span>
                       <span className="text-gray-700">{pkg.repair}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-500">Hỗ trợ</span>
+                      <span className="text-gray-500">{locale === 'vi' ? 'Hỗ trợ' : 'Support'}</span>
                       <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-700 rounded-full px-3 py-1 text-xs font-medium">
                         <Headphones className="h-3 w-3" aria-hidden="true" />
                         {pkg.support}
@@ -551,13 +681,13 @@ export default function BaoTriPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
                 <Shield className="h-4 w-4" aria-hidden="true" />
-                Cam kết hiệu suất
+                {t.whyBadge}
               </div>
               <h2 id="commitments-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Cam Kết <span className="text-emerald-600">Hiệu Suất</span>
+                {locale === 'vi' ? 'Cam Kết' : 'Performance'} <span className="text-emerald-600">{locale === 'vi' ? 'Hiệu Suất' : 'Commitment'}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Chỉ số hiệu suất được đảm bảo bằng hợp đồng — an tâm đầu tư dài hạn
+                {locale === 'vi' ? 'Chỉ số hiệu suất được đảm bảo bằng hợp đồng — an tâm đầu tư dài hạn' : 'Performance metrics backed by contract - invest with confidence.'}
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
@@ -583,13 +713,13 @@ export default function BaoTriPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
                 <Gear className="h-4 w-4" aria-hidden="true" />
-                Quy trình xử lý
+                {t.processBadge}
               </div>
               <h2 id="process-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Quy Trình <span className="text-emerald-600">Hỗ Trợ</span>
+                {t.processTitle[0]} <span className="text-emerald-600">{t.processTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Quy trình xử lý sự cố nhanh chóng & chuyên nghiệp — 7 bước đảm bảo
+                {t.processLead}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -627,18 +757,17 @@ export default function BaoTriPage() {
                   <Sun className="h-8 w-8 text-emerald-300" aria-hidden="true" />
                 </div>
                 <h2 id="cta-heading" className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                  Sẵn Sàng Tối Ưu Hệ Thống Điện Mặt Trời?
+                  {t.ctaTitle}
                 </h2>
                 <p className="text-base text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                  Liên hệ ngay để được tư vấn gói O&M phù hợp với hệ thống của bạn.
-                  Đội ngũ kỹ sư EPCVINA sẵn sàng hỗ trợ 24/7.
+                  {t.ctaLead}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href="/lien-he"
                     className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors duration-200 ease-in-out hover:shadow-xl focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                   >
-                    Đăng Ký Dịch Vụ O&M
+                    {t.ctaPrimary}
                     <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   </a>
                   <a

@@ -19,13 +19,24 @@ import {
   FileText,
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
+import { getLocaleFromPathname } from '../../../i18n/messages';
+
+type Locale = 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+
+const copy: Record<Locale, { badge: string; title: [string, string]; lead: string; solarBadge: string; solarTitle: [string, string]; solarLead: string; cta: string; cta2: string }> = {
+  vi: { badge: 'Dự Án Tiêu Biểu', title: ['Dự Án', 'Điện Mặt Trời & MEP'], lead: 'EPCVINA SOLAR — Tổng thầu EPC hàng đầu với hơn 100 công trình điện mặt trời và MEP trên toàn quốc. Từ trang trại MWp đến mái nhà C&I, mỗi dự án đều cam kết chất lượng quốc tế.', solarBadge: 'Điện mặt trời', solarTitle: ['Dự Án', 'Điện Mặt Trời'], solarLead: 'Từ trang trại MWp đến rooftop C&I — mỗi dự án đều cam kết hiệu suất tối ưu', cta: 'Tư Vấn Dự Án Mới', cta2: 'Xem dự án thực tế' },
+  en: { badge: 'Featured projects', title: ['Solar and MEP', 'projects delivered'], lead: 'EPCVINA SOLAR is a leading EPC contractor with 100+ solar and MEP projects across Vietnam. From MWp-scale farms to C&I rooftops, every project is delivered to international quality standards.', solarBadge: 'Solar', solarTitle: ['Solar', 'Projects'], solarLead: 'From MWp-scale farms to C&I rooftops, every project is built for performance', cta: 'Talk about a new project', cta2: 'View real projects' },
+  zh: { badge: '代表项目', title: ['太阳能与机电', '项目交付'], lead: 'EPCVINA Solar 是越南领先的 EPC 总包商，拥有 100+ 个太阳能与机电项目。从 MWp 级电站到工商业屋顶，每个项目都按国际标准交付。', solarBadge: '太阳能', solarTitle: ['太阳能', '项目'], solarLead: '从 MWp 电站到工商业屋顶，每个项目都以高效表现为目标', cta: '咨询新项目', cta2: '查看真实项目' },
+  ja: { badge: '代表的な実績', title: ['太陽光・MEP', '導入実績'], lead: 'EPCVINA Solar は、ベトナム全土で 100 件以上の太陽光・MEP 実績を持つ EPC 企業です。MWp 規模の発電所から C&I 屋根まで、国際基準で施工します。', solarBadge: '太陽光', solarTitle: ['太陽光', '実績'], solarLead: 'MWp 規模の発電所から C&I 屋根まで、すべて高効率を目指して施工', cta: '新規案件を相談', cta2: '実績を見る' },
+  ko: { badge: '대표 프로젝트', title: ['태양광 및 MEP', '프로젝트'], lead: 'EPCVINA Solar는 베트남 전역에서 100건 이상의 태양광 및 MEP 프로젝트를 수행한 선도적인 EPC 회사입니다. MWp급 발전소부터 C&I 옥상까지 국제 품질 기준으로 시공합니다.', solarBadge: '태양광', solarTitle: ['태양광', '프로젝트'], solarLead: 'MWp급 발전소부터 C&I 옥상까지 모든 프로젝트를 최고의 성능으로 구현', cta: '신규 프로젝트 상담', cta2: '실제 프로젝트 보기' },
+};
 
 /* ─── Stats ─── */
 const heroStats = [
-  { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '100+', label: 'Công trình', gradient: 'from-emerald-600 to-emerald-500' },
-  { icon: <Lightning className="h-6 w-6" aria-hidden="true" />, value: '42 MWp', label: 'Lớn nhất', gradient: 'from-green-600 to-green-500' },
-  { icon: <Medal className="h-6 w-6" aria-hidden="true" />, value: '15+', label: 'Năm kinh nghiệm', gradient: 'from-teal-600 to-teal-500' },
-  { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: '100%', label: 'Hài lòng', gradient: 'from-cyan-600 to-cyan-500' },
+  { icon: <Globe className="h-6 w-6" aria-hidden="true" />, value: '100+', label: '100+', gradient: 'from-emerald-600 to-emerald-500' },
+  { icon: <Lightning className="h-6 w-6" aria-hidden="true" />, value: '42 MWp', label: '42 MWp', gradient: 'from-green-600 to-green-500' },
+  { icon: <Medal className="h-6 w-6" aria-hidden="true" />, value: '15+', label: '15+', gradient: 'from-teal-600 to-teal-500' },
+  { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: '100%', label: '100%', gradient: 'from-cyan-600 to-cyan-500' },
 ];
 
 /* ─── Solar Projects - From GIGASOLAR Data ─── */
@@ -388,14 +399,16 @@ const clientIcons: Record<string, React.ReactNode> = {
   Coteccons: <CheckCircle className="h-6 w-6" aria-hidden="true" />,
 };
 
-export default function ProjectsPage() {
+export default function ProjectsPage({ pathname = '/' }: { pathname?: string }) {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+  const locale = (['vi', 'en', 'zh', 'ja', 'ko'].includes(getLocaleFromPathname(pathname)) ? getLocaleFromPathname(pathname) : 'vi') as Locale;
+  const t = copy[locale];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero area with HeaderBar floating over */}
       <div className="relative">
-        <HeaderBar />
+        <HeaderBar pathname={pathname} />
         {/* ═══════════════════ Hero Section ═══════════════════ */}
         <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
@@ -416,16 +429,14 @@ export default function ProjectsPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-base border border-emerald-400/30 mb-6">
               <Sun className="h-4 w-4 text-amber-400" aria-hidden="true" />
-              <span className="text-emerald-300 font-semibold tracking-wide">Dự Án Tiêu Biểu</span>
+              <span className="text-emerald-300 font-semibold tracking-wide">{t.badge}</span>
               <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" aria-hidden="true" />
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-              Dự Án <span className="text-emerald-400">Điện Mặt Trời</span> & MEP
+              {t.title[0]} <span className="text-emerald-400">{t.title[1]}</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              EPCVINA SOLAR — Tổng thầu EPC hàng đầu với hơn 100 công trình điện mặt trời và MEP
-              trên toàn quốc. Từ trang trại MWp đến mái nhà C&I, mỗi dự án đều cam kết chất lượng
-              quốc tế.
+              {t.lead}
             </p>
             {/* Hero stats */}
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto w-full">
@@ -448,7 +459,7 @@ export default function ProjectsPage() {
                 className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
                 <Phone className="h-4 w-4" aria-hidden="true" />
-                Tư Vấn Dự Án Mới
+                {t.cta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
@@ -464,13 +475,13 @@ export default function ProjectsPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-emerald-50 rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
                 <Sun className="h-4 w-4" aria-hidden="true" />
-                Điện mặt trời
+                {t.solarBadge}
               </div>
               <h2 id="solar-projects-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Dự Án <span className="text-emerald-600">Điện Mặt Trời</span>
+                {t.solarTitle[0]} <span className="text-emerald-600">{t.solarTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Từ trang trại MWp đến rooftop C&I — mỗi dự án đều cam kết hiệu suất tối ưu
+                {t.solarLead}
               </p>
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -568,13 +579,13 @@ export default function ProjectsPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-base font-semibold text-amber-300 mb-4 border border-amber-400/30">
                 <Building className="h-4 w-4" aria-hidden="true" />
-                Cơ điện (MEP)
+                {locale === 'vi' ? 'Cơ điện (MEP)' : 'MEP'}
               </div>
               <h2 id="mep-projects-heading" className="text-2xl sm:text-3xl font-bold">
-                Dự Án <span className="text-emerald-400">Cơ Điện (MEP)</span>
+                {locale === 'vi' ? 'Dự Án' : 'Projects'} <span className="text-emerald-400">Cơ Điện (MEP)</span>
               </h2>
               <p className="text-base text-gray-400 mt-2 max-w-2xl mx-auto leading-relaxed">
-                15+ năm kinh nghiệm M&E với các tập đoàn đa quốc gia hàng đầu Việt Nam
+                {locale === 'vi' ? '15+ năm kinh nghiệm M&E với các tập đoàn đa quốc gia hàng đầu Việt Nam' : '15+ years of M&E experience with leading multinational groups in Vietnam'}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -635,13 +646,13 @@ export default function ProjectsPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 text-base font-semibold text-emerald-700 mb-4">
                 <Handshake className="h-4 w-4" aria-hidden="true" />
-                Đối tác tin cậy
+                {locale === 'vi' ? 'Đối tác tin cậy' : 'Trusted partners'}
               </div>
               <h2 id="partners-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Đối Tác <span className="text-emerald-600">Tiên Phong</span>
+                {locale === 'vi' ? 'Đối Tác' : 'Partners'} <span className="text-emerald-600">{locale === 'vi' ? 'Tiên Phong' : 'Leading'}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Các tập đoàn đa quốc gia và doanh nghiệp hàng đầu tin tưởng lựa chọn EPCVINA Solar
+                {locale === 'vi' ? 'Các tập đoàn đa quốc gia và doanh nghiệp hàng đầu tin tưởng lựa chọn EPCVINA Solar' : 'Leading multinationals and enterprises trust EPCVINA Solar'}
               </p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
@@ -676,18 +687,18 @@ export default function ProjectsPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-10">
               <h2 id="summary-stats-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Năng Lực <span className="text-emerald-600">EPCVINA SOLAR</span>
+                {locale === 'vi' ? 'Năng Lực' : 'Capability'} <span className="text-emerald-600">EPCVINA SOLAR</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Tổng thầu EPC trọn gói — từ khảo sát đến vận hành dài hạn
+                {locale === 'vi' ? 'Tổng thầu EPC trọn gói — từ khảo sát đến vận hành dài hạn' : 'Turnkey EPC contractor — from survey to long-term operations'}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: <Sun className="h-6 w-6" aria-hidden="true" />, value: '5+', label: 'Dự án Solar Farm MWp', gradient: 'from-emerald-600 to-emerald-500' },
-                { icon: <Building className="h-6 w-6" aria-hidden="true" />, value: '10+', label: 'Dự án MEP đa quốc gia', gradient: 'from-amber-600 to-amber-500' },
-                { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, value: '100+ MWp', label: 'Tổng công suất đã thi công', gradient: 'from-green-600 to-green-500' },
-                { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: 'ISO 9001', label: 'Chứng nhận chất lượng', gradient: 'from-teal-600 to-teal-500' },
+                { icon: <Sun className="h-6 w-6" aria-hidden="true" />, value: '5+', label: locale === 'vi' ? 'Dự án Solar Farm MWp' : 'Solar farm projects', gradient: 'from-emerald-600 to-emerald-500' },
+                { icon: <Building className="h-6 w-6" aria-hidden="true" />, value: '10+', label: locale === 'vi' ? 'Dự án MEP đa quốc gia' : 'Multinational MEP projects', gradient: 'from-amber-600 to-amber-500' },
+                { icon: <TrendUp className="h-6 w-6" aria-hidden="true" />, value: '100+ MWp', label: locale === 'vi' ? 'Tổng công suất đã thi công' : 'Total installed capacity', gradient: 'from-green-600 to-green-500' },
+                { icon: <ShieldCheck className="h-6 w-6" aria-hidden="true" />, value: 'ISO 9001', label: locale === 'vi' ? 'Chứng nhận chất lượng' : 'Quality certification', gradient: 'from-teal-600 to-teal-500' },
               ].map((stat) => (
                 <div
                   key={stat.label}
@@ -717,11 +728,10 @@ export default function ProjectsPage() {
                   <Sun className="h-8 w-8 text-emerald-300" aria-hidden="true" />
                 </div>
                 <h2 id="cta-heading" className="text-2xl sm:text-3xl font-bold text-white mb-4">
-                  Bạn Có Dự Án Cần Triển Khai?
+                  {locale === 'vi' ? 'Bạn Có Dự Án Cần Triển Khai?' : locale === 'en' ? 'Do you have a project to deliver?' : locale === 'zh' ? '您有需要实施的项目吗？' : locale === 'ja' ? '導入したい案件がありますか？' : '진행할 프로젝트가 있으신가요?'}
                 </h2>
                 <p className="text-base text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-                  Liên hệ ngay để được tư vấn giải pháp điện mặt trời & MEP phù hợp nhất.
-                  Đội ngũ EPCVINA sẵn sàng hỗ trợ từ khảo sát đến vận hành.
+                  {locale === 'vi' ? 'Liên hệ ngay để được tư vấn giải pháp điện mặt trời & MEP phù hợp nhất. Đội ngũ EPCVINA sẵn sàng hỗ trợ từ khảo sát đến vận hành.' : 'Contact us for the most suitable solar and MEP solution. EPCVINA supports you from survey to operations.'}
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a
@@ -729,7 +739,7 @@ export default function ProjectsPage() {
                   className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-colors duration-200 ease-in-out hover:shadow-xl focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                 >
                   <Phone className="h-5 w-5" aria-hidden="true" />
-                  Liên Hệ Tư Vấn
+                  {locale === 'vi' ? 'Liên Hệ Tư Vấn' : 'Contact for consultation'}
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </a>
                 <a
@@ -737,7 +747,7 @@ export default function ProjectsPage() {
                   className="cursor-pointer inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-8 py-4 rounded-xl text-base border border-white/20 transition-colors duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
                 >
                   <FileText className="h-5 w-5" aria-hidden="true" />
-                  Xem báo giá
+                  {locale === 'vi' ? 'Xem báo giá' : 'View quote'}
                 </a>
                 <a
                   href="tel:0988446113"
@@ -763,13 +773,13 @@ export default function ProjectsPage() {
           <button
             className="absolute top-4 right-4 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white text-2xl font-bold transition-colors cursor-pointer"
             onClick={() => setLightboxImage(null)}
-            aria-label="Đóng"
+            aria-label={locale === 'vi' ? 'Đóng' : 'Close'}
           >
             ✕
           </button>
           <img
             src={lightboxImage}
-            alt="Xem ảnh lớn"
+            alt={locale === 'vi' ? 'Xem ảnh lớn' : 'View larger image'}
             className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />

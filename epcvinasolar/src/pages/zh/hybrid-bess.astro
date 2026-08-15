@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
+---
+
+<DashboardLayout
+  title="混合储能 BESS 方案 | EPCVINA Solar"
+  description="面向住宅和企业的一体化混合储能太阳能方案。提供备用电源、储能与高效投资回报。"
+  keywords="混合储能, BESS, 电池储能, 太阳能储能, 备用电源, EPCVINA Solar"
+  breadcrumbs={[
+    { name: '首页', url: 'https://epcvina.com/zh' },
+    { name: '混合储能', url: 'https://epcvina.com/zh/hybrid-bess' }
+  ]}
+>
+  <DashboardShell client:load>
+    <HybridBESSPage client:idle />
+  </DashboardShell>
+</DashboardLayout>

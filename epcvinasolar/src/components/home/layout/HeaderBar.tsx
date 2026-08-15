@@ -1,36 +1,35 @@
 import { useState, useEffect, useRef } from 'react';
 import { CaretDown, FileText, List, X } from '@phosphor-icons/react';
 import { useScrollContext } from '../../layout/DashboardShell';
+import { getLocaleFromPathname, messages } from '../../../i18n/messages';
+import { getLocalePath, getLocalizedRoute } from '../../../i18n/routes';
+import { getHeaderLayoutConfig } from './localeLayoutConfig';
 
-const mainNavItems = [
-  { label: 'Trang chủ', href: '/' },
-  { label: 'Solar Home', href: '/solar-home' },
-  { label: 'Hybrid BESS', href: '/hybrid-bess' },
-  { label: 'Solar C&I', href: '/solar-cong-nghiep' },
-  { label: 'Trạm sạc', href: '/sac-ev' },
-  { label: 'Bảo trì', href: '/bao-tri' },
-  { label: 'Dự án', href: '/du-an' },
-];
+const MAIN_NAV_KEYS = ['home', 'solar-home', 'hybrid-bess', 'solar-cong-nghiep', 'sac-ev', 'bao-tri', 'profile'] as const;
 
-const secondaryNavItems = [
-  { label: 'Liên hệ', href: '/lien-he' },
-];
-
-export default function HeaderBar() {
-  const [activePath, setActivePath] = useState('/');
+export default function HeaderBar({ pathname = '/' }: { pathname?: string }) {
+  const [activePath, setActivePath] = useState(() => {
+    if (pathname) return pathname;
+    if (typeof window !== 'undefined') return window.location.pathname;
+    return '/';
+  });
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
-  const [visibleNavCount, setVisibleNavCount] = useState(mainNavItems.length);
   const { isHeaderVisible } = useScrollContext();
   const navRef = useRef<HTMLDivElement>(null);
   const moreButtonRef = useRef<HTMLButtonElement>(null);
   const moreMenuRef = useRef<HTMLDivElement>(null);
   const navItemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const logoSrc = '/logo-epcvina-solar.png';
+  const locale = getLocaleFromPathname(activePath);
+  const t = messages[locale];
+  const config = getHeaderLayoutConfig(locale, activePath);
+  const { homeHref, quoteHref, mainNavItems, secondaryNavItems, labels } = config;
+  const [visibleNavCount, setVisibleNavCount] = useState(mainNavItems.length);
 
   useEffect(() => {
-    setActivePath(window.location.pathname);
-  }, []);
+    setActivePath(pathname || window.location.pathname);
+  }, [pathname]);
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -56,13 +55,13 @@ export default function HeaderBar() {
       if (!navEl) return;
 
       const availableWidth = navEl.clientWidth;
-      const itemWidths = mainNavItems.map((_, index) => navItemRefs.current[index]?.offsetWidth ?? 0);
+  const itemWidths = MAIN_NAV_KEYS.map((_, index) => navItemRefs.current[index]?.offsetWidth ?? 0);
       const gapWidth = 4;
       const moreWidth = moreButtonEl?.offsetWidth ?? 56;
       const totalItemsWidth = itemWidths.reduce((sum, width) => sum + width, 0) + gapWidth * Math.max(0, itemWidths.length - 1);
 
       if (totalItemsWidth <= availableWidth) {
-        setVisibleNavCount(mainNavItems.length);
+        setVisibleNavCount(MAIN_NAV_KEYS.length);
         return;
       }
 
@@ -74,9 +73,7 @@ export default function HeaderBar() {
         const needsMore = i < itemWidths.length - 1;
         const reservedMore = needsMore ? moreWidth + gapWidth : 0;
 
-        if (usedWidth + nextGap + nextWidth + reservedMore > availableWidth) {
-          break;
-        }
+        if (usedWidth + nextGap + nextWidth + reservedMore > availableWidth) break;
 
         usedWidth += nextGap + nextWidth;
         count += 1;
@@ -104,21 +101,11 @@ export default function HeaderBar() {
   }, []);
 
   return (
-    <header
-      className={`hidden lg:block fixed left-0 right-0 lg:left-16 z-[80] top-2 transition-transform duration-300 ${
-        isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
-      }`}
-    >
+    <header className={`hidden lg:block fixed left-0 right-0 lg:left-16 z-[80] top-2 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 rounded-full border border-white/50 bg-white/75 backdrop-blur-2xl shadow-[0_12px_40px_rgba(15,23,42,0.10)] px-3 py-2">
-          <a href="/" className="flex-shrink-0 justify-self-start">
-            <img
-              src={logoSrc}
-              alt="EPCVINA Solar"
-              width={1024}
-              height={159}
-              className="h-8 md:h-9 w-auto"
-            />
+          <a href={homeHref} className="flex-shrink-0 justify-self-start">
+            <img src={logoSrc} alt="EPCVINA Solar" width={1024} height={159} className="h-8 md:h-9 w-auto" />
           </a>
 
           <nav ref={navRef} className="hidden lg:flex min-w-0 items-center justify-center gap-1 xl:gap-1.5 overflow-hidden justify-self-center mx-auto">
@@ -127,15 +114,11 @@ export default function HeaderBar() {
               return (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={getLocalePath(item.href, locale)}
                   ref={(el) => {
                     navItemRefs.current[index] = el;
                   }}
-                  className={`relative flex-shrink-0 px-3 xl:px-3.5 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
-                    isActive
-                      ? 'bg-gray-900 text-white shadow-md'
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-white/70'
-                  }`}
+                  className={`relative flex-shrink-0 px-3 xl:px-3.5 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${isActive ? 'bg-gray-900 text-white shadow-md' : 'text-gray-700 hover:text-gray-900 hover:bg-white/70'}`}
                 >
                   {item.label}
                 </a>
@@ -150,7 +133,7 @@ export default function HeaderBar() {
                   className="relative flex items-center gap-1 px-3 xl:px-3.5 py-1.5 rounded-full text-[11px] xl:text-[13px] font-medium text-gray-700 hover:text-gray-900 hover:bg-white/70 transition-all duration-200 whitespace-nowrap active:scale-[0.97]"
                   aria-expanded={moreOpen}
                 >
-                  Khác
+                  {labels.more}
                   <CaretDown className={`h-3.5 w-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} weight="bold" />
                 </button>
                 {moreOpen && (
@@ -160,12 +143,8 @@ export default function HeaderBar() {
                       return (
                         <a
                           key={item.href}
-                          href={item.href}
-                          className={`block px-4 py-3 text-sm font-medium transition-colors ${
-                            isActive
-                              ? 'bg-gray-900 text-white'
-                              : 'text-gray-700 hover:bg-gray-100'
-                          }`}
+                          href={getLocalePath(item.href, locale)}
+                          className={`block px-4 py-3 text-sm font-medium transition-colors ${isActive ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-100'}`}
                         >
                           {item.label}
                         </a>
@@ -179,12 +158,12 @@ export default function HeaderBar() {
 
           <div className="flex items-center gap-2 flex-shrink-0 justify-self-end">
             <a
-              href="/calculator"
+              href={quoteHref}
               className="hidden md:flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-3 lg:px-4 py-2 text-xs sm:text-sm font-semibold shadow-md transition-colors active:scale-[0.98]"
             >
               <FileText className="h-4 w-4" weight="bold" />
-              <span className="hidden xl:inline">Nhận Báo Giá</span>
-              <span className="hidden lg:inline xl:hidden">Báo giá</span>
+              <span className="hidden xl:inline">{t.nav.quote}</span>
+              <span className="hidden lg:inline xl:hidden">{labels.quoteShort}</span>
             </a>
 
             <button
@@ -193,7 +172,7 @@ export default function HeaderBar() {
                 setMobileOpen(!mobileOpen);
               }}
               className="md:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/70 shadow-[0_8px_24px_rgba(15,23,42,0.08)] border border-white/50 text-gray-700 active:scale-[0.97]"
-              aria-label="Toggle menu"
+              aria-label={labels.toggleMenu}
               aria-expanded={mobileOpen}
             >
               {mobileOpen ? <X className="h-5 w-5" weight="bold" /> : <List className="h-5 w-5" weight="bold" />}
@@ -202,20 +181,18 @@ export default function HeaderBar() {
         </div>
       </div>
 
-      {/* Mobile menu dropdown */}
       {mobileOpen && (
         <div className="md:hidden mt-2 mx-4 rounded-2xl bg-white/60 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-white/40 overflow-hidden relative z-[81]">
-          {/* Mirror reflection gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none" />
           <nav className="flex flex-col py-2 relative">
             <div className="px-4 py-3 border-b border-white/20">
               <a
-                href="/calculator"
+                href={quoteHref}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full active:scale-[0.98]"
               >
                 <FileText className="h-4 w-4" weight="bold" />
-                <span>Báo giá</span>
+                <span>{t.nav.quote}</span>
               </a>
             </div>
             {mainNavItems.map((item) => {
@@ -223,13 +200,9 @@ export default function HeaderBar() {
               return (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={getLocalePath(item.href, locale)}
                   onClick={() => setMobileOpen(false)}
-                  className={`px-5 py-3 text-sm font-medium transition-colors active:scale-[0.98] ${
-                    isActive
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-700 hover:bg-white/60'
-                  }`}
+                  className={`px-5 py-3 text-sm font-medium transition-colors active:scale-[0.98] ${isActive ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-white/60'}`}
                 >
                   {item.label}
                 </a>
@@ -237,24 +210,24 @@ export default function HeaderBar() {
             })}
             <div className="px-4 py-3 border-t border-white/20">
               <div className="text-xs font-semibold uppercase tracking-[0.18em] text-gray-500 mb-2">
-                Báo giá nhanh
+                {t.footer.quickQuote}
               </div>
               <a
-                href="/bao-gia"
+                href={getLocalePath('/bao-gia', locale)}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 bg-white/80 hover:bg-white text-gray-800 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full active:scale-[0.98] border border-gray-200"
               >
                 <FileText className="h-4 w-4" weight="bold" />
-                <span>Nhận báo giá</span>
+                <span>{t.nav.quote}</span>
               </a>
             </div>
             <div className="px-4 pb-4">
               <a
-                href="/lien-he"
+                href={contactHref}
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 rounded-full border border-gray-200 bg-white/80 px-4 py-2.5 text-sm font-semibold text-gray-800 transition-colors hover:bg-white active:scale-[0.98]"
               >
-                Liên hệ
+                {t.nav.contact}
               </a>
             </div>
           </nav>

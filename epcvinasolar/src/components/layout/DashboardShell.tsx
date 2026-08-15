@@ -11,6 +11,7 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
   showFooter?: boolean; // Control footer visibility
   showChrome?: boolean;
+  pathname?: string;
 }
 
 // Scroll context for header visibility
@@ -24,9 +25,9 @@ const ScrollContext = createContext<{
 
 export const useScrollContext = () => useContext(ScrollContext);
 
-export default function DashboardLayout({ children, showFooter = true, showChrome = true }: DashboardLayoutProps) {
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
-  const needsMobileTopOffset = pathname.startsWith('/solar-home/he-thong');
+export default function DashboardLayout({ children, showFooter = true, showChrome = true, pathname }: DashboardLayoutProps) {
+  const currentPathname = pathname || (typeof window !== 'undefined' ? window.location.pathname : '/');
+  const needsMobileTopOffset = currentPathname.startsWith('/solar-home/he-thong');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [scrollY, setScrollY] = useState(0);
@@ -96,7 +97,7 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
         {/* Footer - visible on equipment pages, hidden on homepage (SolarFullPage has its own footer) */}
         {showFooter && (
           <div className={showChrome ? 'lg:ml-16' : ''}>
-            <FooterSection />
+            <FooterSection pathname={currentPathname} />
           </div>
         )}
         

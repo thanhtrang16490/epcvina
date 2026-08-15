@@ -7,10 +7,16 @@ import {
   XCircle,
   CheckCircle,
 } from '@phosphor-icons/react';
+import { getLocaleFromPathname, messages } from '../../../i18n/messages';
+import { getLocalizedRoute } from '../../../i18n/routes';
 
 const ORANGE = '#ea580c';
 
-export default function ComparisonSection() {
+export default function ComparisonSection({ pathname = '/' }: { pathname?: string }) {
+  const locale = getLocaleFromPathname(pathname);
+  const t = messages[locale]?.home ?? messages.vi.home;
+  const hybridHref = getLocalizedRoute(locale, 'hybridBess');
+  const solarHomeHref = getLocalizedRoute(locale, 'solarHome');
   return (
     <section className="bg-white" data-header-theme="dark">
       {/* Visual hero cards — inherits hero background */}
@@ -27,17 +33,16 @@ export default function ComparisonSection() {
             className="text-center mb-8 sm:mb-10"
           >
             <p className="text-xs font-bold tracking-[0.2em] uppercase text-amber-400 mb-3 font-display">
-              CHỌN HỆ THỐNG PHÙ HỢP
+              {t.compareLabel}
             </p>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight font-display">
-              <span style={{ color: '#60a5fa' }}>Hybrid</span>{' '}
-              <span className="text-white/60">hay</span>{' '}
-              <span style={{ color: ORANGE }}>On-Grid</span>
-              <span className="text-white">?</span>
+              <span style={{ color: '#60a5fa' }}>{t.compareTitlePrefix}</span>{' '}
+              <span className="text-white/60">{locale === 'vi' ? 'hay' : ''}</span>{' '}
+              <span style={{ color: ORANGE }}>{t.compareTitleSuffix}</span>
+              {locale === 'vi' ? <span className="text-white">?</span> : null}
             </h2>
             <p className="mt-3 text-white text-sm sm:text-base max-w-xl mx-auto">
-              Thiết kế hệ thống điện mặt trời tối ưu theo nhu cầu sử dụng thực tế —
-              giúp giảm chi phí điện và tối đa hiệu quả đầu tư.
+              {t.compareDesc}
             </p>
           </div>
 
@@ -62,34 +67,34 @@ export default function ComparisonSection() {
                 />
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0a1d3a] to-transparent" />
                 <span className="absolute left-4 top-4 rounded-full border border-blue-300/30 bg-blue-950/75 px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-blue-200 backdrop-blur-sm">
-                  CÓ PIN LƯU TRỮ
+                  {t.hybridPill}
                 </span>
               </div>
               <div className="flex flex-1 flex-col p-5 sm:p-6">
-                <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-blue-300 font-display">
-                  HYBRID
-                </h3>
+                  <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-blue-300 font-display">
+                  {t.hybridLabel}
+                  </h3>
                 <p className="mb-4 text-xs text-blue-100/70">SAJ Hybrid + GENIXGREEN Battery</p>
                 <ul className="space-y-2.5 flex-1">
                   <li className="flex items-start gap-2">
                     <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                    <span className="text-xs sm:text-sm">Tích trữ điện để sử dụng khi cần</span>
+                    <span className="text-xs sm:text-sm">{t.hybridPoints[0]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                    <span className="text-xs sm:text-sm">Duy trì nguồn điện khi mất lưới</span>
+                    <span className="text-xs sm:text-sm">{t.hybridPoints[1]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <TrendUp className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                    <span className="text-xs sm:text-sm">Tối ưu tỷ lệ điện tự dùng</span>
+                    <span className="text-xs sm:text-sm">{t.hybridPoints[2]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                    <span className="text-xs sm:text-sm">Đầu tư ban đầu cao hơn</span>
+                    <span className="text-xs sm:text-sm">{t.hybridPoints[3]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-300" weight="fill" />
-                    <span className="text-xs sm:text-sm">Hoàn vốn dự kiến 5–7 năm</span>
+                    <span className="text-xs sm:text-sm">{t.hybridPoints[4]}</span>
                   </li>
                 </ul>
               </div>
@@ -122,34 +127,34 @@ export default function ComparisonSection() {
                 />
                 <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#7c2d12] to-transparent" />
                 <span className="absolute left-4 top-4 rounded-full border border-orange-200/30 bg-orange-950/70 px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-orange-100 backdrop-blur-sm">
-                  HÒA LƯỚI TRỰC TIẾP
+                  {t.onGridPill}
                 </span>
               </div>
               <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <h3 className="text-xl sm:text-2xl font-extrabold mb-1 tracking-wide text-orange-300 font-display">
-                  ON-GRID
+                  {t.onGridLabel}
                 </h3>
                 <p className="mb-4 text-xs text-orange-100/70">SAJ On-Grid Inverter</p>
                 <ul className="space-y-2.5 flex-1">
                   <li className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                    <span className="text-xs sm:text-sm">Không sử dụng pin lưu trữ</span>
+                    <span className="text-xs sm:text-sm">{t.onGridPoints[0]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Lightning className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                    <span className="text-xs sm:text-sm">Vận hành đồng bộ với điện lưới</span>
+                    <span className="text-xs sm:text-sm">{t.onGridPoints[1]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Building className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                    <span className="text-xs sm:text-sm">Chi phí đầu tư thấp hơn</span>
+                    <span className="text-xs sm:text-sm">{t.onGridPoints[2]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                    <span className="text-xs sm:text-sm">Hiệu quả kinh tế, hoàn vốn nhanh</span>
+                    <span className="text-xs sm:text-sm">{t.onGridPoints[3]}</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Clock className="w-4 h-4 mt-0.5 flex-shrink-0 text-orange-200" weight="fill" />
-                    <span className="text-xs sm:text-sm">Hoàn vốn dự kiến 3–4 năm</span>
+                    <span className="text-xs sm:text-sm">{t.onGridPoints[4]}</span>
                   </li>
                 </ul>
               </div>
@@ -161,18 +166,18 @@ export default function ComparisonSection() {
             className="mt-8 pb-4 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a
-              href="/hybrid-bess"
+              href={hybridHref}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#4A4F56] hover:bg-[#3A3F45] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
               <Lightning className="h-4 w-4" weight="bold" />
-              Xem Hybrid BESS
+              {t.compareCtaHybrid}
             </a>
             <a
-              href="/solar-home"
+              href={solarHomeHref}
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] hover:bg-[#B91C1C] text-white font-semibold rounded-full active:scale-[0.98] transition-colors shadow-lg"
             >
               <Sun className="h-4 w-4" weight="bold" />
-              Xem Solar Home
+              {t.compareCtaHome}
             </a>
           </div>
         </div>

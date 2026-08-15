@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EVChargerPage from '../../components/pages/ev-charger/EVChargerPage';
+---
+
+<DashboardLayout
+  title="电动汽车充电解决方案 | EPCVINA Solar"
+  description="面向家庭与企业的交钥匙电动汽车充电解决方案，结合太阳能系统，降低运营成本。"
+  keywords="电动汽车充电, 充电桩, 太阳能充电, EPCVINA Solar"
+  breadcrumbs={[
+    { name: '首页', url: 'https://epcvina.com/zh' },
+    { name: '电动汽车充电', url: 'https://epcvina.com/zh/ev-charging' }
+  ]}
+>
+  <DashboardShell client:load>
+    <EVChargerPage client:idle locale="zh" pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

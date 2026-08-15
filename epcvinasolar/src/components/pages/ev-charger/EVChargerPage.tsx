@@ -27,6 +27,146 @@ import {
 } from '@phosphor-icons/react';
 import HeaderBar from '../../home/layout/HeaderBar';
 
+type Locale = 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+
+const copy: Record<Locale, any> = {
+  vi: {
+    badge: 'EPCVINA Charging',
+    title: ['Trạm Sạc Xe Điện', 'Năng Lượng Mặt Trời'],
+    lead: 'EPCVINA — Giải pháp trạm sạc xe điện tích hợp năng lượng mặt trời. Solar + BESS + Trạm sạc = Hệ sinh thái xanh hoàn chỉnh.',
+    cta: 'Liên hệ tư vấn lắp đặt trạm sạc EPCVINA',
+    networkBadge: 'Mạng lưới EPCVINA',
+    networkTitle: ['Mạng Lưới Sạc Lớn Nhất', 'Việt Nam'],
+    networkLead: 'Hạ tầng sạc điện toàn quốc do EPCVINA vận hành, cung cấp năng lượng tái tạo cho mọi hành trình',
+    greenBadge: '100% năng lượng tái tạo — Solar + Wind + BESS',
+    featuredTitle: ['Sản Phẩm', 'Nổi Bật'],
+    featuredLead: 'Giải pháp sạc toàn diện — từ nhà ở đến trạm trọng điểm',
+    lineupTitle: ['Dòng Sản Phẩm', 'Trụ Sạc EPCVINA'],
+    lineupLead: 'Phủ sóng mọi nhu cầu sạc — từ xe máy điện đến xe hơi cao cấp',
+    pricingTitle: ['Giá', 'Dịch Vụ Sạc'],
+    pricingLead: 'Bảng giá minh bạch — thanh toán tiện lợi qua app EPCVINA',
+    franchiseBadge: 'Nhượng Quyền EPCVINA',
+    franchiseTitle: ['Mô Hình', 'Nhượng Quyền'],
+    franchiseLead: '"Doanh nghiệp và nhân dân cùng làm" — Cơ hội kinh doanh trạm sạc EPCVINA với cam kết doanh thu ổn định 10 năm.',
+    integrationTitle: ['EPCVINA Solar', 'Integration'],
+    integrationLead: 'Trạm sạc kết hợp điện mặt trời, BESS và lưới điện để đảm bảo chi phí vận hành tối ưu.',
+    statsBadge: 'Dự án trọng điểm 2026',
+    statsTitle: ['99', 'Siêu Trạm Sạc'],
+    statsLead: 'Đầu tư 10,000 tỷ VNĐ — 99 siêu trạm sạc phủ sóng 34 tỉnh/thành, mỗi trạm phục vụ 100 xe sạc đồng thời',
+    ctaTitle: ['Sẵn sàng triển khai', 'trạm sạc?'],
+    ctaLead: 'Nhận tư vấn miễn phí, khảo sát vị trí và phương án đầu tư phù hợp.',
+    ctaPrimary: 'Nhận tư vấn miễn phí',
+  },
+  en: {
+    badge: 'EPCVINA Charging',
+    title: ['EV Charging', 'Solar Powered'],
+    lead: 'EPCVINA delivers solar-integrated EV charging solutions. Solar + BESS + charging stations = a complete green ecosystem.',
+    cta: 'Contact EPCVINA for charging station consultation',
+    networkBadge: 'EPCVINA network',
+    networkTitle: ['Largest EV Charging Network in', 'Vietnam'],
+    networkLead: 'Nationwide charging infrastructure operated by EPCVINA, powered by renewable energy for every journey',
+    greenBadge: '100% renewable energy — Solar + Wind + BESS',
+    featuredTitle: ['Featured', 'Products'],
+    featuredLead: 'End-to-end charging solutions from residential to flagship sites',
+    lineupTitle: ['EV Charger', 'Product Lineup'],
+    lineupLead: 'Covering every charging need from e-bikes to premium EVs',
+    pricingTitle: ['Charging', 'Service Pricing'],
+    pricingLead: 'Transparent pricing with convenient EPCVINA app payments',
+    franchiseBadge: 'EPCVINA Franchise',
+    franchiseTitle: ['Franchise', 'Model'],
+    franchiseLead: 'A shared business opportunity for charging stations with a stable 10-year revenue commitment.',
+    integrationTitle: ['EPCVINA Solar', 'Integration'],
+    integrationLead: 'Charging stations integrated with solar, BESS, and the grid for optimal operating cost.',
+    statsBadge: 'Key project 2026',
+    statsTitle: ['99', 'Supercharging Hubs'],
+    statsLead: 'VND 10,000 billion investment - 99 supercharging hubs across 34 provinces, each serving 100 vehicles at once',
+    ctaTitle: ['Ready to deploy', 'a charging station?'],
+    ctaLead: 'Get a free consultation, site survey, and investment plan tailored to your needs.',
+    ctaPrimary: 'Get free consultation',
+  },
+  zh: {
+    badge: 'EPCVINA 充电',
+    title: ['电动汽车充电', '太阳能方案'],
+    lead: 'EPCVINA 提供太阳能一体化电动汽车充电解决方案。Solar + BESS + 充电桩 = 完整绿色生态。',
+    cta: '联系 EPCVINA 咨询充电桩方案',
+    networkBadge: 'EPCVINA 网络',
+    networkTitle: ['越南最大的', '充电网络'],
+    networkLead: '由 EPCVINA 运营的全国充电基础设施，为每一段旅程提供可再生能源',
+    greenBadge: '100% 可再生能源 — Solar + Wind + BESS',
+    featuredTitle: ['精选', '产品'],
+    featuredLead: '从住宅到旗舰站点的一体化充电方案',
+    lineupTitle: ['充电桩', '产品系列'],
+    lineupLead: '覆盖从电动两轮车到高端电动车的全部充电需求',
+    pricingTitle: ['充电', '服务价格'],
+    pricingLead: '价格透明，支持 EPCVINA App 便捷支付',
+    franchiseBadge: 'EPCVINA 加盟',
+    franchiseTitle: ['加盟', '模式'],
+    franchiseLead: '共享充电站商业机会，并提供稳定的 10 年收益承诺。',
+    integrationTitle: ['EPCVINA Solar', '集成方案'],
+    integrationLead: '充电站与光伏、BESS 和电网联动，优化运营成本。',
+    statsBadge: '2026 重点项目',
+    statsTitle: ['99', '超级充电站'],
+    statsLead: '投资 10000 亿越南盾，在 34 个省份布局 99 座超级充电站，每站可同时服务 100 辆车',
+    ctaTitle: ['准备好部署', '充电站了吗？'],
+    ctaLead: '获取免费咨询、现场勘察和定制投资方案。',
+    ctaPrimary: '免费咨询',
+  },
+  ja: {
+    badge: 'EPCVINA Charging',
+    title: ['EV充電', '太陽光ソリューション'],
+    lead: 'EPCVINA は、太陽光と連携したEV充電ソリューションを提供します。Solar + BESS + 充電ステーションで、完全なグリーンエコシステムを実現します。',
+    cta: '充電ステーションのご相談',
+    networkBadge: 'EPCVINA ネットワーク',
+    networkTitle: ['ベトナム最大の', 'EV充電ネットワーク'],
+    networkLead: 'EPCVINA が運営する全国充電インフラ。再生可能エネルギーであらゆる移動を支えます。',
+    greenBadge: '100% 再生可能エネルギー — Solar + Wind + BESS',
+    featuredTitle: ['注目', '製品'],
+    featuredLead: '住宅から旗艦拠点まで対応する総合充電ソリューション',
+    lineupTitle: ['EV充電器', 'ラインナップ'],
+    lineupLead: '電動二輪車から高級EVまで、あらゆる充電ニーズをカバーします。',
+    pricingTitle: ['充電', '料金プラン'],
+    pricingLead: '料金は明確で、EPCVINA アプリで簡単に決済できます。',
+    franchiseBadge: 'EPCVINA フランチャイズ',
+    franchiseTitle: ['フランチャイズ', 'モデル'],
+    franchiseLead: '安定した10年収益を前提とした充電ステーション事業の共同機会です。',
+    integrationTitle: ['EPCVINA Solar', '統合'],
+    integrationLead: '充電ステーションを太陽光・BESS・系統と統合し、運用コストを最適化します。',
+    statsBadge: '2026重点案件',
+    statsTitle: ['99', 'スーパーチャージ拠点'],
+    statsLead: '34省に99拠点を展開する総額10000億VNDの大型投資。各拠点で同時に100台を充電可能です。',
+    ctaTitle: ['充電拠点の', '導入準備はできていますか？'],
+    ctaLead: '無料相談、現地調査、投資計画をご案内します。',
+    ctaPrimary: '無料相談を受ける',
+  },
+  ko: {
+    badge: 'EPCVINA Charging',
+    title: ['전기차 충전', '태양광 솔루션'],
+    lead: 'EPCVINA는 태양광과 연계된 전기차 충전 솔루션을 제공합니다. Solar + BESS + 충전소로 완전한 친환경 생태계를 구축합니다.',
+    cta: '충전소 상담 문의',
+    networkBadge: 'EPCVINA 네트워크',
+    networkTitle: ['베트남 최대', '전기차 충전망'],
+    networkLead: 'EPCVINA가 운영하는 전국 충전 인프라로, 모든 여정에 재생에너지를 제공합니다.',
+    greenBadge: '100% 재생에너지 — Solar + Wind + BESS',
+    featuredTitle: ['주요', '제품'],
+    featuredLead: '주거용부터 핵심 거점까지 아우르는 충전 솔루션',
+    lineupTitle: ['충전기', '제품 라인업'],
+    lineupLead: '전동 이륜차부터 고급 EV까지 모든 충전 수요를 커버합니다.',
+    pricingTitle: ['충전', '서비스 요금'],
+    pricingLead: '투명한 요금과 EPCVINA 앱 결제 지원',
+    franchiseBadge: 'EPCVINA 프랜차이즈',
+    franchiseTitle: ['프랜차이즈', '모델'],
+    franchiseLead: '안정적인 10년 수익을 전제로 한 충전소 비즈니스 기회입니다.',
+    integrationTitle: ['EPCVINA Solar', '통합'],
+    integrationLead: '충전소를 태양광, BESS, 전력망과 통합해 운영 비용을 최적화합니다.',
+    statsBadge: '2026 핵심 프로젝트',
+    statsTitle: ['99', '슈퍼충전 허브'],
+    statsLead: '34개 성에 99개의 슈퍼충전 허브를 구축하는 1조 VND 규모의 투자로, 각 허브는 동시에 100대를 서비스합니다.',
+    ctaTitle: ['충전소', '도입을 준비하셨나요?'],
+    ctaLead: '무료 상담, 현장 조사, 맞춤 투자안을 받아보세요.',
+    ctaPrimary: '무료 상담 받기',
+  },
+};
+
 /* ─── EPCVINA Charging Network Stats ─── */
 const epcvinaStats = [
   { icon: <Plug className="h-6 w-6" aria-hidden="true" />, value: '150,000+', label: 'Cổng sạc trên toàn quốc', gradient: 'from-cyan-600 to-cyan-500' },
@@ -161,12 +301,13 @@ const epcvinaValues = [
   { icon: <Shield className="h-7 w-7" aria-hidden="true" />, title: 'Bảo hành dài hạn', value: 'ISO 9001', desc: 'Chứng nhận chất lượng quốc tế', gradient: 'from-cyan-500 to-cyan-400' },
 ];
 
-export default function EVChargerPage() {
+export default function EVChargerPage({ locale = 'vi', pathname = '/' }: { locale?: Locale; pathname?: string }) {
+  const t = copy[locale];
   return (
     <div className="min-h-screen bg-white">
       {/* Hero area with HeaderBar floating over */}
       <div className="relative">
-        <HeaderBar />
+        <HeaderBar pathname={pathname} />
         {/* ═══════════════════ Hero Section ═══════════════════ */}
         <section className="relative overflow-hidden bg-slate-900 text-white min-h-[60vh] sm:min-h-[70vh]">
           {/* Background image */}
@@ -187,27 +328,25 @@ export default function EVChargerPage() {
             {/* EPCVINA badge */}
             <div className="inline-flex items-center gap-2 bg-cyan-500/20 backdrop-blur-sm rounded-full px-5 py-2.5 text-base border border-cyan-400/30 mb-6">
               <Lightning className="h-4 w-4 text-cyan-400" aria-hidden="true" />
-              <span className="text-cyan-300 font-semibold tracking-wide">EPCVINA Charging</span>
+              <span className="text-cyan-300 font-semibold tracking-wide">{t.badge}</span>
               <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" aria-hidden="true" />
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-              Trạm Sạc Xe Điện{' '}
+              {t.title[0]}{' '}
               <span className="text-cyan-400">EPCVINA</span>
               <br className="hidden sm:block" />
               {' '}×{' '}
-              <span className="text-green-400">Năng Lượng Mặt Trời</span>
+              <span className="text-green-400">{t.title[1]}</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              EPCVINA — Giải pháp trạm sạc xe điện tích hợp năng lượng mặt trời.
-              <br className="hidden sm:block" />
-              Solar + BESS + Trạm sạc = Hệ sinh thái xanh hoàn chỉnh.
+              {t.lead}
             </p>
             <div className="mt-8 flex flex-wrap gap-4 justify-center">
               <a
                 href="/lien-he"
                 className="cursor-pointer inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors duration-200 ease-in-out hover:shadow-lg focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 motion-reduce:transition-none min-h-[44px]"
               >
-                Liên hệ tư vấn lắp đặt trạm sạc EPCVINA
+                {t.cta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
@@ -222,13 +361,13 @@ export default function EVChargerPage() {
             <div className="text-center mb-10">
               <div className="inline-flex items-center gap-2 bg-cyan-50 rounded-full px-4 py-1.5 text-base font-semibold text-cyan-700 mb-4">
                 <Globe className="h-4 w-4" aria-hidden="true" />
-                Mạng lưới EPCVINA
+                {t.networkBadge}
               </div>
               <h2 id="epcvina-network-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-                Mạng Lưới Sạc Lớn Nhất <span className="text-cyan-600">Việt Nam</span>
+                {t.networkTitle[0]} <span className="text-cyan-600">{t.networkTitle[1]}</span>
               </h2>
               <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-                Hạ tầng sạc điện toàn quốc do EPCVINA vận hành, cung cấp năng lượng tái tạo cho mọi hành trình
+                {t.networkLead}
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -248,7 +387,7 @@ export default function EVChargerPage() {
             <div className="mt-8 text-center">
               <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 rounded-full px-5 py-2.5 text-base text-cyan-700">
                 <Leaf className="h-4 w-4" aria-hidden="true" />
-                <span className="font-medium">100% năng lượng tái tạo — Solar + Wind + BESS</span>
+                <span className="font-medium">{t.greenBadge}</span>
               </div>
             </div>
           </div>

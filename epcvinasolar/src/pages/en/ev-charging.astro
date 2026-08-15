@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EVChargerPage from '../../components/pages/ev-charger/EVChargerPage';
+---
+
+<DashboardLayout
+  title="EV Charging Solutions | EPCVINA Solar"
+  description="Turnkey EV charging solutions for homes and businesses in Vietnam. Integrate solar power, reduce operating costs, and scale with EPCVINA Solar."
+  keywords="EV charging, EV charger, solar EV charging, charging station Vietnam, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://epcvina.com/en' },
+    { name: 'EV Charging', url: 'https://epcvina.com/en/ev-charging' }
+  ]}
+>
+  <DashboardShell client:load>
+    <EVChargerPage client:idle locale="en" pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

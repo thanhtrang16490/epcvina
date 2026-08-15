@@ -1,0 +1,16 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/layout/HeaderBar';
+import BlogHero from '../../components/blog/BlogHero';
+---
+
+<DashboardLayout title="太阳能新闻与知识 | EPCVINA Solar" description="EPCVINA Solar 中文新闻与知识中心，提供太阳能行业资讯、技术与应用内容。" keywords="太阳能新闻, EPCVINA Solar 新闻, 光伏知识, 行业资讯">
+  <DashboardShell client:load>
+    <HeaderBar pathname={Astro.url.pathname} />
+    <main class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50 md:pt-16">
+      <BlogHero client:idle />
+      <div class="max-w-4xl mx-auto px-4 py-16 text-gray-700">内容即将上线。</div>
+    </main>
+  </DashboardShell>
+</DashboardLayout>

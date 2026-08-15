@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
+---
+
+<DashboardLayout
+  title="Hybrid BESS Solar Solutions | EPCVINA Solar"
+  description="Turnkey hybrid solar and BESS solutions for homes and businesses in Vietnam. Backup power, energy storage, and optimized ROI."
+  keywords="hybrid BESS, battery storage, solar storage, backup power, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://epcvina.com/en' },
+    { name: 'Hybrid BESS', url: 'https://epcvina.com/en/hybrid-bess' }
+  ]}
+>
+  <DashboardShell client:load>
+    <HybridBESSPage pathname={Astro.url.pathname} client:idle />
+  </DashboardShell>
+</DashboardLayout>

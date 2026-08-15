@@ -5,12 +5,14 @@ import { PageToast } from "@/components/PageToast";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ModalShell } from "@/components/ModalShell";
 import { ThemeCard } from "@/components/ui/ThemeCard";
+import { ThemeLinkButton } from "@/components/ui/ThemeButton";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { notifyTelegramAboutLeadAction } from "@/lib/telegram-leads";
 import { revalidatePath } from "next/cache";
 import { getPage, getPageCount, getPageRange, getPageSize } from "@/lib/pagination";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { deleteLeadWithMedia } from "./survey/actions";
 
 export const dynamic = "force-dynamic";
 
@@ -268,15 +270,7 @@ async function addLeadQuickActivity(formData: FormData) {
 
 async function deleteLead(formData: FormData) {
   "use server";
-  const id = String(formData.get("id") ?? "").trim();
-  if (!id) return;
-  const supabase = createSupabaseAdminClient();
-  if (!supabase) return;
-  const { error } = await supabase.from("crm_leads").delete().eq("id", id);
-  if (error) throw error;
-  revalidatePath("/leads");
-  revalidatePath(`/leads/${id}`);
-  redirect("/admin/leads?deleted=1");
+  await deleteLeadWithMedia(formData);
 }
 
 export default async function LeadsPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
@@ -364,6 +358,9 @@ export default async function LeadsPage({ searchParams }: { searchParams?: Promi
           <Link href="/admin/leads/pipeline" className={`rounded-full border px-4 py-2 text-sm font-medium transition ${getLeadTabClass(false)}`}>
             CRM Pipeline
           </Link>
+          <ThemeLinkButton href="/admin/leads/survey" tone="secondary">
+            Mở khảo sát
+          </ThemeLinkButton>
         </div>
 
         <ThemeCard className="mt-6 p-5">

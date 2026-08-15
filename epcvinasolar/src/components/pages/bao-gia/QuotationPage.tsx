@@ -9,6 +9,218 @@ import {
 import { SliderInput, ToggleRow } from '../../shared/solar-form-inputs';
 import type { SolutionCard } from '../../shared/solar-form-inputs';
 import HeaderBar from '../../home/layout/HeaderBar';
+import { getLocaleFromPathname } from '../../../i18n/messages';
+import { getLocalePath } from '../../../i18n/routes';
+
+type Locale = 'vi' | 'en' | 'zh' | 'ja' | 'ko';
+
+const copy: Record<Locale, any> = {
+  vi: {
+    systemType: 'Loại hệ thống mong muốn',
+    system: 'Hệ',
+    phase: 'Số pha',
+    batteryVolt: 'Áp pin lưu trữ',
+    stats: { production: 'Sản lượng', payback: 'Hoàn vốn', savings: 'Tiết kiệm' },
+    seeDetails: 'Xem chi tiết',
+    heroTag: 'BÁO GIÁ & TƯ VẤN',
+    heroTitle: ['Nhận Báo Giá', 'Chi Tiết'],
+    heroLead: 'Điền thông tin và chọn thông số để nhận đề xuất, dự toán và phương án tối ưu trước khi chốt đầu tư.',
+    sourceHome: 'Từ Solar Home',
+    sourceCI: 'Từ Solar C&I',
+    sourceCalc: 'Từ Calculator',
+    contactInfo: 'Thông Tin Liên Hệ',
+    contactLead: 'Điền thông tin để nhận báo giá',
+    name: 'Họ và tên',
+    phone: 'Số điện thoại',
+    province: 'Tỉnh/Thành phố',
+    provincePlaceholder: 'Chọn tỉnh/thành phố',
+    address: 'Địa chỉ lắp đặt',
+    referral: 'Mã giới thiệu',
+    notes: 'Ghi chú thêm',
+    notesPlaceholder: 'Yêu cầu cụ thể hoặc thông tin bổ sung...',
+    projectInfo: 'Thông Tin Công Trình',
+    projectLead: 'Điều chỉnh các thông số phù hợp với nhu cầu',
+    bill: 'Hóa đơn điện hàng tháng',
+    roof: 'Diện tích mái có sẵn',
+    budget: 'Ngân sách đầu tư',
+    filterAll: 'Tất cả',
+    noFilter: 'Không lọc',
+    send: 'Xem Đề Xuất & Báo Giá',
+    sent: 'Đã gửi — Xem đề xuất bên dưới',
+    reset: 'Đặt lại',
+    privacy: '* Thông tin sẽ được bảo mật tuyệt đối',
+    resultTitle: 'Giải Pháp Phù Hợp Với Bạn',
+    resultLead: (n: number) => `${n} giải pháp phù hợp — click để xem chi tiết`,
+    noResult: 'Không có combo phù hợp với bộ lọc hiện tại',
+    back: 'Về hub Solar C&I',
+    mobileAction: 'Nhận báo giá',
+    showDetails: 'Xem chi tiết',
+  },
+  en: {
+    systemType: 'Desired system type',
+    system: 'System',
+    phase: 'Phase',
+    batteryVolt: 'Battery voltage',
+    stats: { production: 'Production', payback: 'Payback', savings: 'Savings' },
+    seeDetails: 'View details',
+    heroTag: 'QUOTE & CONSULTING',
+    heroTitle: ['Get a Detailed', 'Quote'],
+    heroLead: 'Fill in your information and choose the system parameters to receive recommendations, estimates, and the best investment plan.',
+    sourceHome: 'From Solar Home',
+    sourceCI: 'From Solar C&I',
+    sourceCalc: 'From Calculator',
+    contactInfo: 'Contact Information',
+    contactLead: 'Fill in your details to receive a quote',
+    name: 'Full name',
+    phone: 'Phone number',
+    province: 'Province / City',
+    provincePlaceholder: 'Select a province/city',
+    address: 'Installation address',
+    referral: 'Referral code',
+    notes: 'Additional notes',
+    notesPlaceholder: 'Specific requirements or extra information...',
+    projectInfo: 'Project Information',
+    projectLead: 'Adjust parameters to fit your needs',
+    bill: 'Monthly electricity bill',
+    roof: 'Available roof area',
+    budget: 'Investment budget',
+    filterAll: 'All',
+    noFilter: 'No filter',
+    send: 'View Recommendations & Quote',
+    sent: 'Sent - see recommendations below',
+    reset: 'Reset',
+    privacy: '* Your information will be kept strictly confidential',
+    resultTitle: 'Solutions That Fit You',
+    resultLead: (n: number) => `${n} matching solutions - click to view details`,
+    noResult: 'No combo matches the current filter',
+    back: 'Back to Solar C&I hub',
+    mobileAction: 'Get a quote',
+    showDetails: 'View details',
+  },
+  zh: {
+    systemType: '所需系统类型',
+    system: '系统',
+    phase: '相数',
+    batteryVolt: '电池电压',
+    stats: { production: '发电量', payback: '回本', savings: '节省' },
+    seeDetails: '查看详情',
+    heroTag: '报价与咨询',
+    heroTitle: ['获取详细', '报价'],
+    heroLead: '填写信息并选择参数，即可获得方案建议、预算和最佳投资方案。',
+    sourceHome: '来自 Solar Home',
+    sourceCI: '来自 Solar C&I',
+    sourceCalc: '来自计算器',
+    contactInfo: '联系信息',
+    contactLead: '填写信息以接收报价',
+    name: '姓名',
+    phone: '电话号码',
+    province: '省 / 市',
+    provincePlaceholder: '选择省市',
+    address: '安装地址',
+    referral: '推荐码',
+    notes: '补充说明',
+    notesPlaceholder: '具体需求或补充信息...',
+    projectInfo: '项目信息',
+    projectLead: '根据需求调整参数',
+    bill: '每月电费',
+    roof: '可用屋顶面积',
+    budget: '投资预算',
+    filterAll: '全部',
+    noFilter: '不过滤',
+    send: '查看建议与报价',
+    sent: '已发送 - 请查看下方方案',
+    reset: '重置',
+    privacy: '* 您的信息将被严格保密',
+    resultTitle: '适合您的方案',
+    resultLead: (n: number) => `${n} 个匹配方案 - 点击查看详情`,
+    noResult: '当前筛选条件下没有匹配方案',
+    back: '返回 Solar C&I 中心',
+    mobileAction: '获取报价',
+    showDetails: '查看详情',
+  },
+  ja: {
+    systemType: '希望するシステム種別',
+    system: 'システム',
+    phase: '相数',
+    batteryVolt: '蓄電池電圧',
+    stats: { production: '発電量', payback: '回収', savings: '削減額' },
+    seeDetails: '詳細を見る',
+    heroTag: '見積・相談',
+    heroTitle: ['詳細な', '見積を取得'],
+    heroLead: '情報を入力し、条件を選択すると、提案・概算・最適な投資案をご案内します。',
+    sourceHome: 'Solar Home から',
+    sourceCI: 'Solar C&I から',
+    sourceCalc: '計算ツールから',
+    contactInfo: '連絡先情報',
+    contactLead: '見積を受け取るために情報を入力してください',
+    name: '氏名',
+    phone: '電話番号',
+    province: '都道府県 / 市',
+    provincePlaceholder: '都道府県を選択',
+    address: '設置住所',
+    referral: '紹介コード',
+    notes: '備考',
+    notesPlaceholder: '要望や補足情報...',
+    projectInfo: '案件情報',
+    projectLead: 'ご要望に合わせて条件を調整してください',
+    bill: '月額電気料金',
+    roof: '利用可能な屋根面積',
+    budget: '投資予算',
+    filterAll: 'すべて',
+    noFilter: 'フィルタなし',
+    send: '提案と見積を見る',
+    sent: '送信済み - 下の提案をご覧ください',
+    reset: 'リセット',
+    privacy: '* 情報は厳重に管理されます',
+    resultTitle: 'あなたに合うソリューション',
+    resultLead: (n: number) => `${n} 件の候補 - 詳細を見る`,
+    noResult: '現在の条件に合う組み合わせはありません',
+    back: 'Solar C&I ハブへ戻る',
+    mobileAction: '見積を受け取る',
+    showDetails: '詳細を見る',
+  },
+  ko: {
+    systemType: '희망 시스템 유형',
+    system: '시스템',
+    phase: '상',
+    batteryVolt: '배터리 전압',
+    stats: { production: '발전량', payback: '회수', savings: '절감액' },
+    seeDetails: '상세 보기',
+    heroTag: '견적 및 상담',
+    heroTitle: ['상세한', '견적 받기'],
+    heroLead: '정보를 입력하고 조건을 선택하면 제안, 예산안, 최적 투자안을 받아보실 수 있습니다.',
+    sourceHome: 'Solar Home에서',
+    sourceCI: 'Solar C&I에서',
+    sourceCalc: '계산기에서',
+    contactInfo: '연락처 정보',
+    contactLead: '견적을 받기 위해 정보를 입력하세요',
+    name: '성명',
+    phone: '전화번호',
+    province: '도 / 시',
+    provincePlaceholder: '도시 선택',
+    address: '설치 주소',
+    referral: '추천 코드',
+    notes: '추가 메모',
+    notesPlaceholder: '요구 사항 또는 추가 정보...',
+    projectInfo: '프로젝트 정보',
+    projectLead: '요구에 맞게 조건을 조정하세요',
+    bill: '월 전기요금',
+    roof: '사용 가능한 지붕 면적',
+    budget: '투자 예산',
+    filterAll: '전체',
+    noFilter: '필터 없음',
+    send: '제안 및 견적 보기',
+    sent: '전송 완료 - 아래 제안을 확인하세요',
+    reset: '초기화',
+    privacy: '* 정보는 엄격히 보호됩니다',
+    resultTitle: '고객님께 맞는 솔루션',
+    resultLead: (n: number) => `${n}개의 적합한 솔루션 - 상세 보기`,
+    noResult: '현재 필터에 맞는 조합이 없습니다',
+    back: 'Solar C&I 허브로 이동',
+    mobileAction: '견적 받기',
+    showDetails: '상세 보기',
+  },
+};
 
 // ─────────────────────────────────────────────
 // Cascading System Type Selector
@@ -475,7 +687,9 @@ const PROVINCES = [
 // ─────────────────────────────────────────────
 // Main QuotationPage Component
 // ─────────────────────────────────────────────
-export default function QuotationPage() {
+export default function QuotationPage({ pathname = '/' }: { pathname?: string }) {
+  const locale = getLocaleFromPathname(pathname) as Locale;
+  const t = copy[locale];
   // ── Customer info form state ──
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -553,7 +767,7 @@ export default function QuotationPage() {
 
   return (
     <>
-      <HeaderBar />
+      <HeaderBar pathname={pathname} />
       <div className="min-h-screen" style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #f8fafc 100%)' }}>
 
         {/* ═══════════════════════════════════════════
@@ -564,22 +778,22 @@ export default function QuotationPage() {
 
             {/* Section header */}
             <div className="text-center mb-8">
-              <p className="text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-2">BÁO GIÁ & TƯ VẤN</p>
+              <p className="text-xs font-bold tracking-[0.2em] uppercase text-blue-600 mb-2">{t.heroTag}</p>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] mb-2 leading-tight">
-                Nhận Báo Giá <span style={{ color: '#f59e0b' }}>Chi Tiết</span>
+                {t.heroTitle[0]} <span style={{ color: '#f59e0b' }}>{t.heroTitle[1]}</span>
               </h2>
               <p className="text-gray-500 text-sm sm:text-base max-w-lg mx-auto">
-                Điền thông tin và chọn thông số để nhận đề xuất, dự toán và phương án tối ưu trước khi chốt đầu tư.
+                {t.heroLead}
               </p>
               <div className="mt-4 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
-                <a href="/solar-home" className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
-                  Từ Solar Home
+                <a href={getLocalePath('/solar-home', locale)} className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
+                  {t.sourceHome}
                 </a>
-                <a href="/solar-cong-nghiep" className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
-                  Từ Solar C&I
+                <a href={getLocalePath('/solar-cong-nghiep', locale)} className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
+                  {t.sourceCI}
                 </a>
                 <a href="/calculator" className="rounded-full border border-gray-200 bg-white px-4 py-2 font-semibold text-gray-600 hover:border-orange-200 hover:text-orange-600 transition-colors">
-                  Từ Calculator
+                  {t.sourceCalc}
                 </a>
               </div>
             </div>
@@ -592,8 +806,8 @@ export default function QuotationPage() {
                 <div className="flex items-center gap-2 mb-5">
                   <div className="w-7 h-7 rounded-full bg-[#F5831F] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">1</div>
                   <div>
-                    <p className="font-bold text-gray-900 text-sm">Thông Tin Liên Hệ</p>
-                    <p className="text-[11px] text-gray-500">Điền thông tin để nhận báo giá</p>
+                    <p className="font-bold text-gray-900 text-sm">{t.contactInfo}</p>
+                    <p className="text-[11px] text-gray-500">{t.contactLead}</p>
                   </div>
                 </div>
 
@@ -601,11 +815,11 @@ export default function QuotationPage() {
                   {/* Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Họ và tên <span className="text-red-500">*</span>
+                      {t.name} <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                      <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Nguyễn Văn A"
+                      <input type="text" value={name} onChange={e => setName(e.target.value)} placeholder={t.name}
                         className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#F5831F] focus:ring-2 focus:ring-[#F5831F]/20 outline-none transition-all" />
                     </div>
                   </div>
@@ -613,7 +827,7 @@ export default function QuotationPage() {
                   {/* Phone */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Số điện thoại <span className="text-red-500">*</span>
+                      {t.phone} <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -635,13 +849,13 @@ export default function QuotationPage() {
                   {/* Province */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Tỉnh/Thành phố <span className="text-red-500">*</span>
+                      {t.province} <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                       <select value={province} onChange={e => setProvince(e.target.value)}
                         className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#F5831F] focus:ring-2 focus:ring-[#F5831F]/20 outline-none appearance-none cursor-pointer transition-all">
-                        <option value="">Chọn tỉnh/thành phố</option>
+                        <option value="">{t.provincePlaceholder}</option>
                         {PROVINCES.map(p => <option key={p} value={p}>{p}</option>)}
                       </select>
                       <CaretDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -651,7 +865,7 @@ export default function QuotationPage() {
                   {/* Address */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Địa chỉ lắp đặt <span className="text-red-500">*</span>
+                      {t.address} <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
                       <MapPin className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
@@ -663,7 +877,7 @@ export default function QuotationPage() {
                   {/* Referral Code */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Mã giới thiệu <span className="text-gray-400 font-normal text-xs">(nếu có)</span>
+                      {t.referral} <span className="text-gray-400 font-normal text-xs">(nếu có)</span>
                     </label>
                     <div className="relative">
                       <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -674,10 +888,10 @@ export default function QuotationPage() {
 
                   {/* Notes */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Ghi chú thêm</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">{t.notes}</label>
                     <div className="relative">
                       <Chat className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                      <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={3} placeholder="Yêu cầu cụ thể hoặc thông tin bổ sung..."
+                      <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={3} placeholder={t.notesPlaceholder}
                         className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:border-[#F5831F] focus:ring-2 focus:ring-[#F5831F]/20 outline-none resize-none transition-all" />
                     </div>
                   </div>
@@ -690,8 +904,8 @@ export default function QuotationPage() {
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-full bg-[#F5831F] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">2</div>
                     <div>
-                      <p className="font-bold text-gray-900 text-sm">Thông Tin Công Trình</p>
-                      <p className="text-[11px] text-gray-500">Điều chỉnh các thông số phù hợp với nhu cầu</p>
+                      <p className="font-bold text-gray-900 text-sm">{t.projectInfo}</p>
+                      <p className="text-[11px] text-gray-500">{t.projectLead}</p>
                     </div>
                   </div>
                 </div>
@@ -701,15 +915,15 @@ export default function QuotationPage() {
                   <SystemTypeSelector value={systemType} onChange={setSystemType} />
                   {/* Monthly Bill Slider */}
                   <SliderInput
-                    label="Hóa đơn điện hàng tháng"
+                    label={t.bill}
                     icon={<Building className="w-4 h-4" />}
                     value={bill}
                     min={0} max={100000000} step={500000}
                     onChange={setBill}
-                    format={v => v === 0 ? 'Không lọc' : (v >= 1000000 ? `${(v / 1000000).toFixed(1).replace(/\.0$/, '')},000,000` : v.toLocaleString())}
+                    format={v => v === 0 ? t.noFilter : (v >= 1000000 ? `${(v / 1000000).toFixed(1).replace(/\.0$/, '')},000,000` : v.toLocaleString())}
                     unit={bill === 0 ? '' : 'VND'}
                     ticks={[
-                      { value: 0, label: 'Tất cả' }, { value: 2000000, label: '2M' },
+                      { value: 0, label: t.filterAll }, { value: 2000000, label: '2M' },
                       { value: 5000000, label: '5M' }, { value: 10000000, label: '10M' },
                       { value: 20000000, label: '20M' }, { value: 50000000, label: '50M' },
                       { value: 100000000, label: '100M' },
@@ -717,30 +931,30 @@ export default function QuotationPage() {
                   />
                   {/* Roof Area Slider */}
                   <SliderInput
-                    label="Diện tích mái có sẵn"
+                    label={t.roof}
                     icon={<House className="w-4 h-4" />}
                     value={roofArea}
                     min={0} max={500} step={5}
                     onChange={setRoofArea}
-                    format={v => v === 0 ? 'Không lọc' : String(v)}
+                    format={v => v === 0 ? t.noFilter : String(v)}
                     unit={roofArea === 0 ? '' : 'm²'}
                     ticks={[
-                      { value: 0, label: 'Tất cả' }, { value: 40, label: '40m²' },
+                      { value: 0, label: t.filterAll }, { value: 40, label: '40m²' },
                       { value: 80, label: '80m²' }, { value: 150, label: '150m²' },
                       { value: 200, label: '200m²' }, { value: 500, label: '500m²' },
                     ]}
                   />
                   {/* Budget Slider */}
                   <SliderInput
-                    label="Ngân sách đầu tư"
+                    label={t.budget}
                     icon={<TrendUp className="w-4 h-4" />}
                     value={budget}
                     min={0} max={2000000000} step={5000000}
                     onChange={setBudget}
-                    format={v => v === 0 ? 'Không lọc' : `${(v / 1000000).toFixed(0)},000,000`}
+                    format={v => v === 0 ? t.noFilter : `${(v / 1000000).toFixed(0)},000,000`}
                     unit={budget === 0 ? '' : 'VND'}
                     ticks={[
-                      { value: 0, label: 'Tất cả' }, { value: 100000000, label: '100M' },
+                      { value: 0, label: t.filterAll }, { value: 100000000, label: '100M' },
                       { value: 200000000, label: '200M' }, { value: 400000000, label: '400M' },
                       { value: 800000000, label: '800M' }, { value: 2000000000, label: '2B' },
                     ]}
@@ -759,12 +973,12 @@ export default function QuotationPage() {
                     {submitted ? (
                       <>
                         <CheckCircle className="w-5 h-5" />
-                        Đã gửi — Xem đề xuất bên dưới
+                        {t.sent}
                       </>
                     ) : (
                       <>
                         <Sparkle className="w-5 h-5" />
-                        Xem Đề Xuất & Báo Giá
+                        {t.send}
                       </>
                     )}
                   </button>
@@ -774,13 +988,13 @@ export default function QuotationPage() {
                     className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all"
                   >
                     <ArrowsClockwise className="w-4 h-4" />
-                    Đặt lại
+                    {t.reset}
                   </button>
                 </div>
               </div>
             </div>
 
-            <p className="text-xs text-gray-400 text-center mt-4">* Thông tin sẽ được bảo mật tuyệt đối</p>
+            <p className="text-xs text-gray-400 text-center mt-4">{t.privacy}</p>
           </div>
         </section>
 
@@ -799,13 +1013,13 @@ export default function QuotationPage() {
                   <div className="flex items-center gap-2">
                     <div className="w-7 h-7 rounded-full bg-[#F5831F] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">3</div>
                     <div className="flex-1">
-                      <p className="font-bold text-gray-900 text-sm">Giải Pháp Phù Hợp Với Bạn</p>
+                      <p className="font-bold text-gray-900 text-sm">{t.resultTitle}</p>
                       <p className="text-[11px] text-gray-500">
-                        {solutions.length > 0 ? `${solutions.length} giải pháp phù hợp — click để xem chi tiết` : 'Không có combo phù hợp với bộ lọc hiện tại'}
+                        {solutions.length > 0 ? t.resultLead(solutions.length) : t.noResult}
                       </p>
                     </div>
-                    <a href="/solar-cong-nghiep" className="flex items-center gap-1 text-xs text-gray-500 hover:text-[#DC2626] font-medium transition-colors">
-                      Về hub Solar C&I <ArrowRight className="w-3.5 h-3.5" />
+                    <a href={getLocalePath('/solar-cong-nghiep', locale)} className="flex items-center gap-1 text-xs text-gray-500 hover:text-[#DC2626] font-medium transition-colors">
+                      {t.back} <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
@@ -829,7 +1043,7 @@ export default function QuotationPage() {
                     </div>
                   ) : (
                     <div className="py-12 text-center text-gray-400 text-sm">
-                      Không có combo phù hợp với bộ lọc hiện tại
+                      {t.noResult}
                     </div>
                   )}
                 </div>
@@ -960,12 +1174,12 @@ function MobileDetailContent({ sol }: { sol: SolutionCard; onContactClick: () =>
       </div>
 
       <div className="flex gap-2.5 mx-4 mb-4">
-        <a
+          <a
           href="/bao-gia"
           className="flex-1 h-11 rounded-xl text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm"
           style={{ background: 'linear-gradient(135deg,#DC2626 0%,#F5831F 100%)' }}
         >
-          <Phone className="w-4 h-4" /> Nhận báo giá
+          <Phone className="w-4 h-4" /> {t.mobileAction}
         </a>
       </div>
     </div>

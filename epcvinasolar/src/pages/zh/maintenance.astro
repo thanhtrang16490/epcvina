@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import BaoTriPage from '../../components/pages/bao-tri/BaoTriPage';
+---
+
+<DashboardLayout
+  title="光伏运维与保养 | EPCVINA Solar"
+  description="为家庭和企业提供专业的太阳能系统运维、清洗、检修与监控服务。"
+  keywords="光伏运维, 太阳能保养, 清洗组件, 监控系统, EPCVINA Solar"
+  breadcrumbs={[
+    { name: '首页', url: 'https://epcvina.com/zh' },
+    { name: '运维', url: 'https://epcvina.com/zh/maintenance' }
+  ]}
+>
+  <DashboardShell client:load>
+    <BaoTriPage client:idle locale="zh" pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

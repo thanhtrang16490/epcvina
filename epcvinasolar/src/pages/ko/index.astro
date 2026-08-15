@@ -1,0 +1,34 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import HeaderBar from '../../components/home/layout/HeaderBar';
+import HeroSection from '../../components/home/hero/HeroSection';
+import ComparisonSection from '../../components/home/combos/ComparisonSection';
+import SolarSolutionFinder from '../../components/home/tools/SolarSolutionFinder';
+import BenefitsSection from '../../components/home/sections/BenefitsSection';
+import MidPageCTA from '../../components/home/sections/MidPageCTA';
+import ProcessSection from '../../components/home/sections/ProcessSection';
+import ProjectsPreviewSection from '../../components/home/sections/ProjectsPreviewSection';
+import ReviewsSection from '../../components/home/sections/ReviewsSection';
+import FAQSection from '../../components/home/sections/FAQSection';
+import CTASection from '../../components/home/contact/CTASection';
+import FooterSection from '../../components/home/layout/FooterSection';
+---
+
+<DashboardLayout title="EPCVINA Solar | 베트남 주택·기업용 태양광 EPC" description="EPCVINA Solar 한국어 사이트. 주택, 산업용, 하이브리드 ESS, EV 충전용 로컬라이즈된 정적 페이지입니다.">
+  <DashboardShell client:idle showFooter={false}>
+    <HeaderBar pathname={Astro.url.pathname} />
+    <HeroSection pathname={Astro.url.pathname} />
+    <ComparisonSection pathname={Astro.url.pathname} />
+    <SolarSolutionFinder pathname={Astro.url.pathname} client:visible />
+    <BenefitsSection pathname={Astro.url.pathname} />
+    <MidPageCTA variant="benefits" pathname={Astro.url.pathname} />
+    <ProcessSection pathname={Astro.url.pathname} />
+    <ProjectsPreviewSection pathname={Astro.url.pathname} />
+    <ReviewsSection pathname={Astro.url.pathname} />
+    <MidPageCTA variant="reviews" pathname={Astro.url.pathname} />
+    <FAQSection pathname={Astro.url.pathname} client:visible />
+    <CTASection pathname={Astro.url.pathname} client:visible />
+    <FooterSection pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

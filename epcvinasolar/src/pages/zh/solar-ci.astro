@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolarCIPage from '../../components/pages/solar-ci/SolarCIPage';
+---
+
+<DashboardLayout
+  title="工商业光伏方案 | EPCVINA Solar"
+  description="面向工厂、仓库、办公室和商业建筑的一体化太阳能方案，帮助企业提升投资回报。"
+  keywords="工商业光伏, 工业太阳能, 屋顶光伏, EPCVINA Solar"
+  breadcrumbs={[
+    { name: '首页', url: 'https://epcvina.com/zh' },
+    { name: '工商业光伏', url: 'https://epcvina.com/zh/solar-ci' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolarCIPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

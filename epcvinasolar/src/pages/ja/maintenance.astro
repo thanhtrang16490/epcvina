@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import BaoTriPage from '../../components/pages/bao-tri/BaoTriPage';
+---
+
+<DashboardLayout
+  title="太陽光O&M・メンテナンス | EPCVINA Solar"
+  description="住宅・企業向けの太陽光システム保守、清掃、修理、監視サービス。"
+  keywords="太陽光メンテナンス, O&M, パネル清掃, 監視, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'ホーム', url: 'https://epcvina.com/ja' },
+    { name: 'メンテナンス', url: 'https://epcvina.com/ja/maintenance' }
+  ]}
+>
+  <DashboardShell client:load>
+    <BaoTriPage client:idle locale="ja" pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

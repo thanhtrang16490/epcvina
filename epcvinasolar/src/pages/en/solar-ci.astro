@@ -1,0 +1,19 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import SolarCIPage from '../../components/pages/solar-ci/SolarCIPage';
+---
+
+<DashboardLayout
+  title="Commercial Solar Solutions | EPCVINA Solar"
+  description="Turnkey solar solutions for factories, warehouses, offices, and commercial buildings in Vietnam. Maximize ROI with EPCVINA Solar."
+  keywords="commercial solar, solar C&I, industrial solar, rooftop solar Vietnam, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://epcvina.com/en' },
+    { name: 'Commercial Solar', url: 'https://epcvina.com/en/solar-ci' }
+  ]}
+>
+  <DashboardShell client:load>
+    <SolarCIPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>

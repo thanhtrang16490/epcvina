@@ -1,5 +1,25 @@
-export const prerender = false;
 ---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
 const { slug } = Astro.params;
-return Astro.redirect(`/tin-tuc/${slug}`, 301);
+const target = `/tin-tuc/${slug}`;
 ---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={new URL(target, Astro.site).href} />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>bài viết</a>...</p>
+  </body>
+</html>

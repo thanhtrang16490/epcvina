@@ -1,0 +1,16 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import ProjectsPage from '../../components/pages/projects/ProjectsPage';
+---
+
+<DashboardLayout
+  title="Solar Projects in Vietnam | EPCVINA Solar"
+  description="Browse EPCVINA Solar project case studies across homes, factories, offices, and commercial rooftops in Vietnam."
+  keywords="solar projects Vietnam, EPCVINA Solar projects, rooftop solar case studies, hybrid solar projects"
+  breadcrumbs={[{name: "Home", url: "https://epcvina.com/en"}, {name: "Projects", url: "https://epcvina.com/en/projects"}]}
+>
+  <DashboardShell client:load>
+    <ProjectsPage client:idle pathname={Astro.url.pathname} />
+  </DashboardShell>
+</DashboardLayout>
