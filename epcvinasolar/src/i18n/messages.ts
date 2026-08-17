@@ -35,6 +35,18 @@ type Messages = {
     toggleMenu: string;
     quoteShort: string;
   };
+  notFound: {
+    title: string;
+    heading: string;
+    description: string;
+    home: string;
+    support: string;
+    quickLinksLabel: string;
+    quote: string;
+    calculator: string;
+    projects: string;
+    news: string;
+  };
   home: {
     heroBadge: string;
     heroTitle1: string;
@@ -189,6 +201,18 @@ export const messages: Record<Locale, Messages> = {
       toggleMenu: 'Mở menu',
       quoteShort: 'Báo giá',
     },
+    notFound: {
+      title: 'Trang Không Tìm Thấy - EPCVINA Solar',
+      heading: 'Trang không tồn tại',
+      description: 'Xin lỗi, trang bạn đang tìm không tồn tại hoặc đã bị di chuyển. Vui lòng kiểm tra lại đường dẫn.',
+      home: 'Về trang chủ',
+      support: 'Liên hệ hỗ trợ',
+      quickLinksLabel: 'Có thể bạn đang tìm:',
+      quote: 'Báo giá',
+      calculator: 'Tính chi phí',
+      projects: 'Dự án',
+      news: 'Tin tức',
+    },
     footer: {
       products: 'Sản phẩm',
       services: 'Dịch vụ',
@@ -292,6 +316,18 @@ export const messages: Record<Locale, Messages> = {
       toggleMenu: 'Toggle menu',
       quoteShort: 'Quote',
     },
+    notFound: {
+      title: 'Page Not Found - EPCVINA Solar',
+      heading: 'Page not found',
+      description: 'Sorry, the page you are looking for does not exist or has been moved. Please check the URL.',
+      home: 'Go to home',
+      support: 'Contact support',
+      quickLinksLabel: 'You may be looking for:',
+      quote: 'Quote',
+      calculator: 'Calculator',
+      projects: 'Projects',
+      news: 'News',
+    },
     footer: {
       products: 'Products',
       services: 'Services',
@@ -346,6 +382,18 @@ export const messages: Record<Locale, Messages> = {
       more: '更多',
       toggleMenu: '切换菜单',
       quoteShort: '报价',
+    },
+    notFound: {
+      title: '页面未找到 - EPCVINA Solar',
+      heading: '页面不存在',
+      description: '抱歉，您查找的页面不存在或已被移动。请检查链接是否正确。',
+      home: '返回首页',
+      support: '联系支持',
+      quickLinksLabel: '您可能在找：',
+      quote: '报价',
+      calculator: '计算器',
+      projects: '项目',
+      news: '新闻',
     },
     footer: {
       products: '产品',
@@ -402,6 +450,18 @@ export const messages: Record<Locale, Messages> = {
       toggleMenu: 'メニューを切り替え',
       quoteShort: '見積',
     },
+    notFound: {
+      title: 'ページが見つかりません - EPCVINA Solar',
+      heading: 'ページが見つかりません',
+      description: '申し訳ありません。お探しのページは存在しないか、移動されました。URLをご確認ください。',
+      home: 'トップへ戻る',
+      support: 'サポートに連絡',
+      quickLinksLabel: 'こちらもご覧ください：',
+      quote: '見積',
+      calculator: '料金計算',
+      projects: 'プロジェクト',
+      news: 'ニュース',
+    },
     footer: {
       products: '製品',
       services: 'サービス',
@@ -456,6 +516,18 @@ export const messages: Record<Locale, Messages> = {
       more: '더보기',
       toggleMenu: '메뉴 열기',
       quoteShort: '견적',
+    },
+    notFound: {
+      title: '페이지를 찾을 수 없습니다 - EPCVINA Solar',
+      heading: '페이지가 없습니다',
+      description: '죄송합니다. 찾으시는 페이지가 없거나 이동되었습니다. URL을 다시 확인해 주세요.',
+      home: '홈으로 이동',
+      support: '지원 문의',
+      quickLinksLabel: '찾으시는 페이지가 있나요:',
+      quote: '견적',
+      calculator: '계산기',
+      projects: '프로젝트',
+      news: '뉴스',
     },
     footer: {
       products: '제품',

@@ -15,6 +15,8 @@ import {
   CaretRight,
   X,
 } from '@phosphor-icons/react';
+import { getLocaleFromPathname, messages, type Locale } from '../../i18n/messages';
+import { getLocalePath } from '../../i18n/routes';
 // Supabase is loaded dynamically to avoid adding it to every page's client bundle.
 
 interface SidebarProps {
@@ -30,96 +32,97 @@ interface MenuItem {
   children?: { name: string; href: string; soon?: boolean }[];
 }
 
-const menuItems: MenuItem[] = [
-  // { name: 'Trang chủ', href: '/', icon: LayoutDashboard },
-  // { name: 'Báo Giá', href: '/bao-gia', icon: Calculator },
+function buildMenuItems(locale: Locale): MenuItem[] {
+  const vi = locale === 'vi';
+  const text = {
+    combo: vi ? 'Combo' : locale === 'en' ? 'Combos' : locale === 'zh' ? '组合方案' : locale === 'ja' ? 'コンボ' : '콤보',
+    allCombo: vi ? 'Tất cả Combo' : locale === 'en' ? 'All combos' : locale === 'zh' ? '全部方案' : locale === 'ja' ? 'すべてのコンボ' : '전체 콤보',
+    onGridCombo: vi ? 'Combo On-Grid' : locale === 'en' ? 'On-Grid combo' : locale === 'zh' ? '并网方案' : locale === 'ja' ? '系統連系コンボ' : '계통연계 콤보',
+    hybridCombo: vi ? 'Combo Hybrid' : locale === 'en' ? 'Hybrid combo' : locale === 'zh' ? '混合方案' : locale === 'ja' ? 'ハイブリッドコンボ' : '하이브리드 콤보',
+    equipment: vi ? 'Thiết bị' : locale === 'en' ? 'Equipment' : locale === 'zh' ? '设备' : locale === 'ja' ? '機器' : '장비',
+    accessories: vi ? 'Phụ kiện' : locale === 'en' ? 'Accessories' : locale === 'zh' ? '配件' : locale === 'ja' ? 'アクセサリー' : '액세서리',
+    application: vi ? 'Giải pháp ứng dụng' : locale === 'en' ? 'Applications' : locale === 'zh' ? '应用场景' : locale === 'ja' ? '用途' : '적용 분야',
+    brand: vi ? 'Nhãn hàng' : locale === 'en' ? 'Brands' : locale === 'zh' ? '品牌' : locale === 'ja' ? 'ブランド' : '브랜드',
+    project: vi ? 'Dự án' : locale === 'en' ? 'Projects' : locale === 'zh' ? '项目' : locale === 'ja' ? 'プロジェクト' : '프로젝트',
+    blog: vi ? 'Blog' : locale === 'en' ? 'Blog' : locale === 'zh' ? '新闻' : locale === 'ja' ? 'ブログ' : '블로그',
+    about: vi ? 'Về chúng tôi' : locale === 'en' ? 'About us' : locale === 'zh' ? '关于我们' : locale === 'ja' ? '私たちについて' : '회사 소개',
+    careers: vi ? 'Tuyển dụng' : locale === 'en' ? 'Careers' : locale === 'zh' ? '招聘' : locale === 'ja' ? '採用' : '채용',
+    faq: vi ? 'Hỏi đáp' : locale === 'en' ? 'FAQ' : locale === 'zh' ? '问答' : locale === 'ja' ? 'よくある質問' : '문의',
+    guide: vi ? 'Hướng dẫn' : locale === 'en' ? 'Guide' : locale === 'zh' ? '指南' : locale === 'ja' ? 'ガイド' : '가이드',
+  };
 
-  {
-    name: 'Combo',
-    icon: Package,
-    children: [
-      { name: 'Tất cả Combo', href: '/solar-home/he-thong' },
-      { name: 'Combo On-Grid', href: '/solar-home/on-grid' },
-      { name: 'Combo Hybrid', href: '/solar-home/hybrid' },
-    ],
-  },
-  {
-    name: 'Thiết bị',
-    icon: Sun,
-    children: [
-      { name: 'Tấm quang năng', href: '/thiet-bi/panel' },
-      { name: 'Biến tần On-Grid', href: '/thiet-bi/on-grid-inverter' },
-      { name: 'Biến tần Hybrid', href: '/thiet-bi/hybrid-inverter' },
-      { name: 'Pin lưu trữ áp cao', href: '/thiet-bi/hv-battery' },
-      { name: 'Pin lưu trữ áp thấp', href: '/thiet-bi/lv-battery' },
-    ],
-  },
-  {
-    name: 'Phụ kiện',
-    icon: Wrench,
-    children: [
-      { name: 'Hệ khung nhôm', href: '/thiet-bi/mounting' },
-      { name: 'Hệ dây điện', href: '/thiet-bi/wiring' },
-      { name: 'Tủ điện', href: '/thiet-bi/cabinet' },
-      { name: 'Hệ tiếp địa', href: '/thiet-bi/grounding' },
-    ],
-  },
-  {
-    name: 'Giải pháp thi công',
-    icon: Lightbulb,
-    children: [
-      { name: 'Mái tôn', href: '/giai-phap-thi-cong-mai-ton' },
-      { name: 'Mái ngói', href: '/giai-phap-thi-cong-mai-ngoi' },
-      { name: 'Mái bằng', href: '/giai-phap-thi-cong-mai-bang' },
-    ],
-  },
-  {
-    name: 'Nhãn hàng',
-    icon: Sun,
-    children: [
-      { name: 'Tất cả nhãn hàng', href: '/nhan-hang' },
-      { name: 'AIKO', href: '/nhan-hang/aiko' },
-      { name: 'Huawei', href: '/nhan-hang/huawei' },
-      { name: 'Growatt', href: '/nhan-hang/growatt' },
-      { name: 'Pylontech', href: '/nhan-hang/pylontech' },
-      { name: 'Canadian Solar', href: '/nhan-hang/canadian-solar' },
-      { name: 'JA Solar', href: '/nhan-hang/ja-solar' },
-      { name: 'Longi', href: '/nhan-hang/longi' },
-      { name: 'Sharp', href: '/nhan-hang/sharp' },
-      { name: 'Sungrow', href: '/nhan-hang/sungrow' },
-      { name: 'Deye', href: '/nhan-hang/deye' },
-      { name: 'SAJ', href: '/nhan-hang/saj' },
-      { name: 'CFE', href: '/nhan-hang/cfe' },
-      { name: 'Genix Green', href: '/nhan-hang/genix-green' },
-      { name: 'Hope Trek', href: '/nhan-hang/hope-trek' },
-      { name: 'Leader', href: '/nhan-hang/leader' },
-      { name: 'QUANG MINH TECH', href: '/nhan-hang/quang-minh-tech' },
-    ],
-  },
-  {
-    name: 'Giải pháp ứng dụng',
-    icon: Lightbulb,
-    children: [
-      { name: 'Điện công nghiệp', href: '/ung-dung/dien-cong-nghiep' },
-      { name: 'Điện dân dụng', href: '/ung-dung/dien-dan-dung' },
-      { name: 'Điện sản xuất nông nghiệp', href: '/ung-dung/dien-nong-nghiep' },
-    ],
-  },
-  { name: 'Dự án', href: '/du-an', icon: FileText },
-  { name: 'Blog', href: '/tin-tuc', icon: Newspaper },
-  { name: 'Về chúng tôi', href: '/ve-chung-toi', icon: User },
-  { name: 'Tuyển dụng', href: '/tuyen-dung', icon: Users },
-  { name: 'Hỏi đáp', href: '/hoi-dap', icon: Chat },
-  {
-    name: 'Hướng dẫn',
-    icon: BookOpen,
-    children: [
-      { name: 'Hướng dẫn sử dụng', href: '/huong-dan-su-dung' },
-      { name: 'Bảo trì & Xử lý sự cố', href: '/bao-tri' },
-      { name: 'Quy trình thi công', href: '/quy-trinh-thi-cong' },
-    ],
-  },
-];
+  return [
+    { name: text.combo, icon: Package, children: [
+      { name: text.allCombo, href: getLocalePath('/solar-home/he-thong', locale) },
+      { name: text.onGridCombo, href: getLocalePath('/solar-home/on-grid', locale) },
+      { name: text.hybridCombo, href: getLocalePath('/solar-home/hybrid', locale) },
+    ]},
+    { name: text.equipment, icon: Sun, children: [
+      { name: vi ? 'Tấm quang năng' : locale === 'en' ? 'PV modules' : locale === 'zh' ? '光伏组件' : locale === 'ja' ? 'PVモジュール' : '태양광 모듈', href: getLocalePath('/thiet-bi/panel', locale) },
+      { name: vi ? 'Biến tần On-Grid' : locale === 'en' ? 'On-grid inverter' : locale === 'zh' ? '并网逆变器' : locale === 'ja' ? '系統連系インバータ' : '온그리드 인버터', href: getLocalePath('/thiet-bi/on-grid-inverter', locale) },
+      { name: vi ? 'Biến tần Hybrid' : locale === 'en' ? 'Hybrid inverter' : locale === 'zh' ? '混合逆变器' : locale === 'ja' ? 'ハイブリッドインバータ' : '하이브리드 인버터', href: getLocalePath('/thiet-bi/hybrid-inverter', locale) },
+      { name: vi ? 'Pin lưu trữ áp cao' : locale === 'en' ? 'High-voltage battery' : locale === 'zh' ? '高压电池' : locale === 'ja' ? '高圧バッテリー' : '고전압 배터리', href: getLocalePath('/thiet-bi/hv-battery', locale) },
+      { name: vi ? 'Pin lưu trữ áp thấp' : locale === 'en' ? 'Low-voltage battery' : locale === 'zh' ? '低压电池' : locale === 'ja' ? '低圧バッテリー' : '저전압 배터리', href: getLocalePath('/thiet-bi/lv-battery', locale) },
+    ]},
+    { name: text.accessories, icon: Wrench, children: [
+      { name: vi ? 'Hệ khung nhôm' : locale === 'en' ? 'Mounting system' : locale === 'zh' ? '支架系统' : locale === 'ja' ? '架台システム' : '거치 시스템', href: getLocalePath('/thiet-bi/mounting', locale) },
+      { name: vi ? 'Hệ dây điện' : locale === 'en' ? 'Wiring' : locale === 'zh' ? '线缆' : locale === 'ja' ? '配線' : '배선', href: getLocalePath('/thiet-bi/wiring', locale) },
+      { name: vi ? 'Tủ điện' : locale === 'en' ? 'Electrical cabinet' : locale === 'zh' ? '电柜' : locale === 'ja' ? '盤' : '배전함', href: getLocalePath('/thiet-bi/cabinet', locale) },
+      { name: vi ? 'Hệ tiếp địa' : locale === 'en' ? 'Grounding' : locale === 'zh' ? '接地' : locale === 'ja' ? '接地' : '접지', href: getLocalePath('/thiet-bi/grounding', locale) },
+    ]},
+    { name: vi ? 'Giải pháp thi công' : locale === 'en' ? 'Installation solutions' : locale === 'zh' ? '施工方案' : locale === 'ja' ? '施工ソリューション' : '시공 솔루션', icon: Lightbulb, children: [
+      { name: vi ? 'Mái tôn' : locale === 'en' ? 'Metal roof' : locale === 'zh' ? '彩钢屋顶' : locale === 'ja' ? '折板屋根' : '철판 지붕', href: getLocalePath('/giai-phap-thi-cong-mai-ton', locale) },
+      { name: vi ? 'Mái ngói' : locale === 'en' ? 'Tile roof' : locale === 'zh' ? '瓦屋顶' : locale === 'ja' ? '瓦屋根' : '기와 지붕', href: getLocalePath('/giai-phap-thi-cong-mai-ngoi', locale) },
+      { name: vi ? 'Mái bằng' : locale === 'en' ? 'Flat roof' : locale === 'zh' ? '平屋顶' : locale === 'ja' ? 'フラット屋根' : '평지붕', href: getLocalePath('/giai-phap-thi-cong-mai-bang', locale) },
+    ]},
+    { name: text.brand, icon: Sun, children: [
+      { name: vi ? 'Tất cả nhãn hàng' : locale === 'en' ? 'All brands' : locale === 'zh' ? '全部品牌' : locale === 'ja' ? '全ブランド' : '전체 브랜드', href: getLocalePath('/nhan-hang', locale) },
+      { name: 'AIKO', href: getLocalePath('/nhan-hang/aiko', locale) },
+      { name: 'Huawei', href: getLocalePath('/nhan-hang/huawei', locale) },
+      { name: 'Growatt', href: getLocalePath('/nhan-hang/growatt', locale) },
+      { name: 'Pylontech', href: getLocalePath('/nhan-hang/pylontech', locale) },
+      { name: 'Canadian Solar', href: getLocalePath('/nhan-hang/canadian-solar', locale) },
+      { name: 'JA Solar', href: getLocalePath('/nhan-hang/ja-solar', locale) },
+      { name: 'Longi', href: getLocalePath('/nhan-hang/longi', locale) },
+      { name: 'Sharp', href: getLocalePath('/nhan-hang/sharp', locale) },
+      { name: 'Sungrow', href: getLocalePath('/nhan-hang/sungrow', locale) },
+      { name: 'Deye', href: getLocalePath('/nhan-hang/deye', locale) },
+      { name: 'SAJ', href: getLocalePath('/nhan-hang/saj', locale) },
+      { name: 'CFE', href: getLocalePath('/nhan-hang/cfe', locale) },
+      { name: 'Genix Green', href: getLocalePath('/nhan-hang/genix-green', locale) },
+      { name: 'Hope Trek', href: getLocalePath('/nhan-hang/hope-trek', locale) },
+      { name: 'Leader', href: getLocalePath('/nhan-hang/leader', locale) },
+      { name: 'QUANG MINH TECH', href: getLocalePath('/nhan-hang/quang-minh-tech', locale) },
+    ]},
+    { name: text.application, icon: Lightbulb, children: [
+      { name: vi ? 'Điện công nghiệp' : locale === 'en' ? 'Industrial power' : locale === 'zh' ? '工业用电' : locale === 'ja' ? '産業用電力' : '산업용 전력', href: getLocalePath('/ung-dung/dien-cong-nghiep', locale) },
+      { name: vi ? 'Điện dân dụng' : locale === 'en' ? 'Residential power' : locale === 'zh' ? '家庭用电' : locale === 'ja' ? '家庭用電力' : '가정용 전력', href: getLocalePath('/ung-dung/dien-dan-dung', locale) },
+      { name: vi ? 'Điện sản xuất nông nghiệp' : locale === 'en' ? 'Agriculture' : locale === 'zh' ? '农业用电' : locale === 'ja' ? '農業' : '농업', href: getLocalePath('/ung-dung/dien-nong-nghiep', locale) },
+    ]},
+    { name: text.project, href: getLocalePath('/du-an', locale), icon: FileText },
+    { name: text.blog, href: getLocalePath('/tin-tuc', locale), icon: Newspaper },
+    { name: text.about, href: getLocalePath('/ve-chung-toi', locale), icon: User },
+    { name: text.careers, href: getLocalePath('/tuyen-dung', locale), icon: Users },
+    { name: text.faq, href: getLocalePath('/hoi-dap', locale), icon: Chat },
+    { name: text.guide, icon: BookOpen, children: [
+      { name: vi ? 'Hướng dẫn sử dụng' : locale === 'en' ? 'User guide' : locale === 'zh' ? '使用指南' : locale === 'ja' ? '使い方ガイド' : '사용 가이드', href: getLocalePath('/huong-dan-su-dung', locale) },
+      { name: vi ? 'Bảo trì & Xử lý sự cố' : locale === 'en' ? 'Maintenance & troubleshooting' : locale === 'zh' ? '维护与故障排除' : locale === 'ja' ? '保守とトラブル対応' : '유지보수 및 문제 해결', href: getLocalePath('/bao-tri', locale) },
+      { name: vi ? 'Quy trình thi công' : locale === 'en' ? 'Installation process' : locale === 'zh' ? '施工流程' : locale === 'ja' ? '施工プロセス' : '시공 절차', href: getLocalePath('/quy-trinh-thi-cong', locale) },
+    ]},
+  ];
+}
+
+function getSoonText(locale: Locale) {
+  return locale === 'en'
+    ? 'Coming soon'
+    : locale === 'zh'
+      ? '即将推出'
+      : locale === 'ja'
+        ? '近日公開'
+        : locale === 'ko'
+          ? '출시 예정'
+          : 'Sắp ra mắt';
+}
 
 function MenuGroup({ 
   item, 
@@ -197,14 +200,14 @@ function MenuGroup({
                 <div
                   key={child.href}
                   className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-sm cursor-not-allowed opacity-50"
-                  title="Sắp ra mắt"
+                  title={getSoonText(locale)}
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
                     <span className="text-gray-400">{child.name}</span>
                   </div>
                   <span className="text-[10px] font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full whitespace-nowrap">
-                    Sắp ra mắt
+                    {getSoonText(locale)}
                   </span>
                 </div>
               );
@@ -233,6 +236,9 @@ function MenuGroup({
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const locale = getLocaleFromPathname(pathname);
+  const t = messages[locale];
+  const menuItems = buildMenuItems(locale);
   const isCalculatorPage = pathname.startsWith('/calculator');
   const [isExpanded, setIsExpanded] = useState(false);
   const [user, setUser] = useState<{ email: string; name?: string } | null>(null);
@@ -314,7 +320,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <a href="/" className="flex items-center gap-3">
             <img src="/logo-epcvina-solar.png" alt="EPCVINA Solar" className="h-8 w-auto" loading="lazy" />
           </a>
-          <button onClick={onClose} className="p-2 -mr-2 text-gray-600 hover:text-gray-900" aria-label="Đóng menu">
+          <button onClick={onClose} className="p-2 -mr-2 text-gray-600 hover:text-gray-900" aria-label={t.header.toggleMenu}>
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -339,7 +345,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <>
               {/* App download badges */}
               <div className="pt-3 border-t border-white/30 mt-2 space-y-2">
-                <p className="text-[11px] text-gray-400 text-center font-medium uppercase tracking-wider">Tải ứng dụng</p>
+                <p className="text-[11px] text-gray-400 text-center font-medium uppercase tracking-wider">
+                  {locale === 'en' ? 'Download app' : locale === 'zh' ? '下载应用' : locale === 'ja' ? 'アプリをダウンロード' : locale === 'ko' ? '앱 다운로드' : 'Tải ứng dụng'}
+                </p>
                 <a
                   href="/ung-dung/app-store"
 
@@ -377,7 +385,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       </div>
                       <span className="text-sm text-gray-700 truncate">{user.name}</span>
                     </div>
-                    <button onClick={handleLogout} title="Đăng xuất"
+                    <button onClick={handleLogout} title={locale === 'en' ? 'Logout' : locale === 'zh' ? '退出' : locale === 'ja' ? 'ログアウト' : locale === 'ko' ? '로그아웃' : 'Đăng xuất'}
                       className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
                       <SignOut className="h-4 w-4" />
                     </button>
@@ -497,14 +505,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           <div
                             key={child.href}
                             className="flex items-center justify-between gap-2 px-3 py-2 rounded-lg text-sm cursor-not-allowed opacity-50"
-                            title="Sắp ra mắt"
+                            title={getSoonText(locale)}
                           >
                             <div className="flex items-center gap-2">
                               <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
                               <span className="text-gray-400">{child.name}</span>
                             </div>
                             <span className="text-[10px] font-medium text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded-full whitespace-nowrap">
-                              Sắp ra mắt
+                              {getSoonText(locale)}
                             </span>
                           </div>
                         );
@@ -535,7 +543,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           <div className={`pt-3 border-t border-white/30 mt-2 space-y-2 ${isExpanded ? 'px-1' : 'px-0'}`}>
             {isExpanded && (
               <>
-                <p className="text-[11px] text-gray-400 text-center font-medium uppercase tracking-wider">Tải ứng dụng</p>
+                <p className="text-[11px] text-gray-400 text-center font-medium uppercase tracking-wider">
+                  {locale === 'en' ? 'Download app' : locale === 'zh' ? '下载应用' : locale === 'ja' ? 'アプリをダウンロード' : locale === 'ko' ? '앱 다운로드' : 'Tải ứng dụng'}
+                </p>
                 <a
                   href="/ung-dung/app-store"
 
@@ -594,13 +604,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     </div>
                     <span className="text-sm text-gray-700 truncate">{user.name}</span>
                   </div>
-                  <button onClick={handleLogout} title="Đăng xuất"
+                  <button onClick={handleLogout} title={locale === 'en' ? 'Logout' : locale === 'zh' ? '退出' : locale === 'ja' ? 'ログアウト' : locale === 'ko' ? '로그아웃' : 'Đăng xuất'}
                     className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
                     <SignOut className="h-4 w-4" />
                   </button>
                 </div>
               ) : (
-                <button onClick={handleLogout} title="Đăng xuất"
+                <button onClick={handleLogout} title={locale === 'en' ? 'Logout' : locale === 'zh' ? '退出' : locale === 'ja' ? 'ログアウト' : locale === 'ko' ? '로그아웃' : 'Đăng xuất'}
                   className="w-full flex justify-center py-2 text-gray-400 hover:text-red-600 transition-colors">
                   <SignOut className="h-5 w-5" />
                 </button>

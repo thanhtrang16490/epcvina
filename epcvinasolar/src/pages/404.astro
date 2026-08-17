@@ -1,9 +1,10 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import { getLocaleFromPathname } from '../i18n/messages';
+import { getLocaleFromPathname, messages } from '../i18n/messages';
 import { getLocalizedRoute } from '../i18n/routes';
 
 const locale = getLocaleFromPathname(Astro.url.pathname);
+const t = messages[locale];
 const homeHref = getLocalizedRoute(locale, 'home');
 const contactHref = getLocalizedRoute(locale, 'contact');
 const quoteHref = getLocalizedRoute(locale, 'quote');
@@ -11,7 +12,7 @@ const projectsHref = getLocalizedRoute(locale, 'projects');
 const newsHref = getLocalizedRoute(locale, 'news');
 ---
 
-<DashboardLayout title="Trang Không Tìm Thấy - EPCVINA Solar" description="Trang bạn tìm không tồn tại. Quay lại trang chủ EPCVINA Solar để khám phá giải pháp điện mặt trời.">
+<DashboardLayout title={t.notFound.title} description={t.notFound.description} noindex={true}>
   <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
     <div class="text-center max-w-md mx-auto">
       {/* Error Code */}
@@ -23,10 +24,10 @@ const newsHref = getLocalizedRoute(locale, 'news');
 
       {/* Message */}
       <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-        Trang không tồn tại
+        {t.notFound.heading}
       </h1>
       <p class="text-gray-500 mb-8 leading-relaxed">
-        Xin lỗi, trang bạn đang tìm không tồn tại hoặc đã bị di chuyển. Vui lòng kiểm tra lại đường dẫn.
+        {t.notFound.description}
       </p>
 
       {/* Logo */}
@@ -43,7 +44,7 @@ const newsHref = getLocalizedRoute(locale, 'news');
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
-          Về trang chủ
+          {t.notFound.home}
         </a>
         <a
           href={contactHref}
@@ -52,18 +53,18 @@ const newsHref = getLocalizedRoute(locale, 'news');
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
           </svg>
-          Liên hệ hỗ trợ
+          {t.notFound.support}
         </a>
       </div>
 
       {/* Quick Links */}
       <div class="mt-10 pt-8 border-t border-gray-200">
-        <p class="text-sm text-gray-400 mb-4">Có thể bạn đang tìm:</p>
+        <p class="text-sm text-gray-400 mb-4">{t.notFound.quickLinksLabel}</p>
         <div class="flex flex-wrap items-center justify-center gap-2">
-          <a href={quoteHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Báo giá</a>
-          <a href="/calculator" class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Tính chi phí</a>
-          <a href={projectsHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Dự án</a>
-          <a href={newsHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">Tin tức</a>
+          <a href={quoteHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">{t.notFound.quote}</a>
+          <a href="/calculator" class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">{t.notFound.calculator}</a>
+          <a href={projectsHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">{t.notFound.projects}</a>
+          <a href={newsHref} class="px-4 py-2 text-sm bg-white rounded-full border border-gray-200 text-gray-600 hover:text-orange-600 hover:border-orange-200 transition-colors">{t.notFound.news}</a>
         </div>
       </div>
     </div>

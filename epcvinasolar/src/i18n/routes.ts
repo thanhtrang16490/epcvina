@@ -14,6 +14,7 @@ type RouteKey =
   | 'solarCi'
   | 'charging'
   | 'maintenance'
+  | 'brands'
   | 'policies'
   | 'privacyPolicy'
   | 'paymentPolicy'
@@ -35,6 +36,7 @@ const localizedRoutes: Record<Locale, Record<RouteKey, string>> = {
     solarCi: '/solar-cong-nghiep',
     charging: '/ev-charging',
     maintenance: '/maintenance',
+    brands: '/nhan-hang',
     policies: '/chinh-sach',
     privacyPolicy: '/chinh-sach-bao-mat',
     paymentPolicy: '/chinh-sach-thanh-toan',
@@ -55,6 +57,7 @@ const localizedRoutes: Record<Locale, Record<RouteKey, string>> = {
     solarCi: '/en/solar-ci',
     charging: '/en/ev-charging',
     maintenance: '/en/maintenance',
+    brands: '/en/brands',
     policies: '/en/policies',
     privacyPolicy: '/en/privacy-policy',
     paymentPolicy: '/en/payment-policy',
@@ -75,6 +78,7 @@ const localizedRoutes: Record<Locale, Record<RouteKey, string>> = {
     solarCi: '/zh/solar-ci',
     charging: '/zh/ev-charging',
     maintenance: '/zh/maintenance',
+    brands: '/zh/brands',
     policies: '/zh/policies',
     privacyPolicy: '/zh/privacy-policy',
     paymentPolicy: '/zh/payment-policy',
@@ -95,6 +99,7 @@ const localizedRoutes: Record<Locale, Record<RouteKey, string>> = {
     solarCi: '/ja/solar-ci',
     charging: '/ja/ev-charging',
     maintenance: '/ja/maintenance',
+    brands: '/ja/brands',
     policies: '/ja/policies',
     privacyPolicy: '/ja/privacy-policy',
     paymentPolicy: '/ja/payment-policy',
@@ -115,6 +120,7 @@ const localizedRoutes: Record<Locale, Record<RouteKey, string>> = {
     solarCi: '/ko/solar-ci',
     charging: '/ko/ev-charging',
     maintenance: '/ko/maintenance',
+    brands: '/ko/brands',
     policies: '/ko/policies',
     privacyPolicy: '/ko/privacy-policy',
     paymentPolicy: '/ko/payment-policy',
@@ -143,6 +149,8 @@ const localizedRouteAliases: Array<{ from: string; key: RouteKey }> = [
   { from: '/ev-charging', key: 'charging' },
   { from: '/bao-tri', key: 'maintenance' },
   { from: '/maintenance', key: 'maintenance' },
+  { from: '/nhan-hang', key: 'brands' },
+  { from: '/brands', key: 'brands' },
   { from: '/chinh-sach', key: 'policies' },
   { from: '/chinh-sach-bao-mat', key: 'privacyPolicy' },
   { from: '/chinh-sach-thanh-toan', key: 'paymentPolicy' },
@@ -163,6 +171,10 @@ export function stripLocalePrefix(pathname: string) {
 
 export function getLocalePath(pathname: string, locale: Locale) {
   const basePath = stripLocalePrefix(pathname);
+  if (basePath.startsWith('/nhan-hang/')) {
+    const slug = basePath.slice('/nhan-hang/'.length);
+    return getLocalizedRoute(locale, 'brands') + `/${slug}`;
+  }
   const aliased = localizedRouteAliases.find((entry) => entry.from === basePath);
   if (aliased) return getLocalizedRoute(locale, aliased.key);
   if (locale === 'vi') return basePath;

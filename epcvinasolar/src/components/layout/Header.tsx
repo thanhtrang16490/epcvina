@@ -1,5 +1,6 @@
 import { CaretLeft, List } from '@phosphor-icons/react';
 import { useScrollContext } from './DashboardShell';
+import { getLocaleFromPathname, messages } from '../../i18n/messages';
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -11,6 +12,8 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const navigateTo = (path: string) => { window.location.href = path; };
   const { scrollY } = useScrollContext();
+  const locale = getLocaleFromPathname(pathname);
+  const t = messages[locale];
   
   const isHome = pathname === '/';
   const isDetailPage = pathname.includes('/combos/') && pathname !== '/combos';
@@ -62,7 +65,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProp
             href="/calculator"
             className="ml-auto inline-flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-orange-600 px-3 py-1.5 text-xs font-semibold text-white shadow-md transition-colors hover:from-orange-600 hover:to-orange-700 active:scale-[0.98] sm:px-3.5 sm:py-2 sm:text-sm"
           >
-            Báo giá
+            {t.nav.quote}
           </a>
 
         </div>

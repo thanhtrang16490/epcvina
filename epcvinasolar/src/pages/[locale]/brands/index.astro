@@ -1,0 +1,46 @@
+---
+import DashboardLayout from '../../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../../components/layout/DashboardShell';
+import { localBrands } from '../../../data/brands';
+import { type Locale } from '../../../i18n/messages';
+import { getLocalizedRoute } from '../../../i18n/routes';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return ['en', 'zh', 'ja', 'ko'].map((locale) => ({
+    params: { locale },
+  }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const brands = localBrands.filter((b) => b.logo_url || b.description).sort((a, b) => a.name.localeCompare(b.name));
+const isEn = locale === 'en';
+const title = isEn ? 'Brands - EPCVINA Solar' : locale === 'zh' ? '品牌 - EPCVINA Solar' : locale === 'ja' ? 'ブランド - EPCVINA Solar' : locale === 'ko' ? '브랜드 - EPCVINA Solar' : 'Nhãn Hàng - EPCVINA Solar';
+const description = isEn ? 'Official EPCVINA Solar brands and manufacturers.' : locale === 'zh' ? 'EPCVINA Solar 官方品牌与制造商。' : locale === 'ja' ? 'EPCVINA Solar の公式ブランド一覧。' : locale === 'ko' ? 'EPCVINA Solar 공식 브랜드 및 제조사.' : 'Danh sách nhãn hàng chính hãng EPCVINA Solar.';
+---
+
+<DashboardLayout
+  title={title}
+  description={description}
+  breadcrumbs={[
+    { name: locale === 'vi' ? 'Trang chủ' : 'Home', url: `https://epcvina.com${getLocalizedRoute(locale, 'home')}` },
+    { name: locale === 'en' ? 'Brands' : locale === 'zh' ? '品牌' : locale === 'ja' ? 'ブランド' : locale === 'ko' ? '브랜드' : 'Nhãn Hàng', url: `https://epcvina.com${getLocalizedRoute(locale, 'brands')}` }
+  ]}
+>
+  <DashboardShell client:load>
+    <div class="flex-1">
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h1 class="text-3xl font-bold text-gray-900">{locale === 'en' ? 'Brands' : locale === 'zh' ? '品牌' : locale === 'ja' ? 'ブランド' : locale === 'ko' ? '브랜드' : 'Nhãn Hàng'}</h1>
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          {brands.map((brand) => (
+            <a href={getLocalizedRoute(locale, 'brands') + '/' + brand.slug} class="rounded-2xl border border-gray-200 bg-white p-5 hover:shadow-md transition-shadow">
+              <div class="font-semibold">{brand.name}</div>
+              <div class="text-sm text-gray-500 mt-1">{brand.description}</div>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </DashboardShell>
+</DashboardLayout>
