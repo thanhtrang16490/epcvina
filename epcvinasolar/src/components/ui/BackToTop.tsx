@@ -5,28 +5,30 @@ import { ArrowUp } from '@phosphor-icons/react';
  * BackToTop Component
  * 
  * - Always right: 35px
- * - Desktop: shows after scrolling 500px, bottom: 100px
- * - Mobile: shows only near page bottom (swap with Call/Zalo), bottom: 35px
+ * - Shows only near the page footer
  */
-export default function BackToTop() {
+interface BackToTopProps {
+  onVisibilityChange?: (visible: boolean) => void;
+}
+
+export default function BackToTop({ onVisibilityChange }: BackToTopProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const mobile = window.matchMedia('(max-width: 768px)').matches;
-
     const handleScroll = () => {
-      if (mobile) {
-        const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
-        setVisible(scrollBottom < 200);
-      } else {
-        setVisible(window.scrollY > 500);
-      }
+      const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+      const nextVisible = scrollBottom < 220;
+      setVisible(nextVisible);
+      onVisibilityChange?.(nextVisible);
     };
 
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      onVisibilityChange?.(false);
+    };
+  }, [onVisibilityChange]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -48,7 +50,7 @@ export default function BackToTop() {
       style={{
         width: 40,
         height: 40,
-        bottom: 100,
+        bottom: 32,
         right: 35,
         animation: 'fadeIn 0.3s ease-in-out',
       }}

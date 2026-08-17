@@ -31,6 +31,7 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [scrollY, setScrollY] = useState(0);
+  const [isBackToTopVisible, setIsBackToTopVisible] = useState(false);
   const lastScrollY = useRef(0);
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -86,8 +87,8 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
         {/* Floating Contact Buttons */}
         {showChrome ? (
           <>
-            <CallBoxButton />
-            <ZaloChatButton />
+            <CallBoxButton stackAboveBackToTop={isBackToTopVisible} />
+            <ZaloChatButton stackAboveBackToTop={isBackToTopVisible} />
           </>
         ) : null}
 
@@ -102,7 +103,7 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
         )}
         
         {/* Back to Top Button */}
-        {showChrome ? <BackToTop /> : null}
+        {showChrome ? <BackToTop onVisibilityChange={setIsBackToTopVisible} /> : null}
       </div>
     </ScrollContext.Provider>
   );

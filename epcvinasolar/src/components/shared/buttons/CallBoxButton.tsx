@@ -10,12 +10,20 @@ import { Phone } from '@phosphor-icons/react';
  * - Hidden on mobile until scroll (300px), always visible on desktop
  * - Opens phone dialer on click
  */
-export default function CallBoxButton() {
+interface CallBoxButtonProps {
+  stackAboveBackToTop?: boolean;
+}
+
+export default function CallBoxButton({ stackAboveBackToTop = false }: CallBoxButtonProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (!isMobile) { setVisible(true); return; }
+    if (stackAboveBackToTop) {
+      setVisible(true);
+      return;
+    }
 
     const handleScroll = () => {
       const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
@@ -24,14 +32,14 @@ export default function CallBoxButton() {
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [stackAboveBackToTop]);
 
   const phoneNumber = '0988446113';
 
   return (
     <div
-      className="call-container right"
-      style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none', transition: 'opacity 0.3s ease' }}
+      className={`call-container right ${stackAboveBackToTop ? 'is-stacked' : ''}`}
+      style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none', transition: 'opacity 0.3s ease, transform 0.28s ease' }}
     >
       <a id="call-btn" href={`tel:${phoneNumber}`} rel="noopener nofollow" aria-label="Gọi hotline EPCVINA">
         <div className="animated_call infinite zoomIn_call cmoz-alo-circle"></div>
@@ -136,6 +144,10 @@ export default function CallBoxButton() {
             .call-container {
               bottom: 32px;
               right: 16px;
+              transition: transform 0.28s ease, opacity 0.3s ease;
+            }
+            .call-container.is-stacked {
+              transform: translateY(-60px);
             }
           }
         `

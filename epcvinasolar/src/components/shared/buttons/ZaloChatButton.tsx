@@ -9,12 +9,20 @@ import { useState, useEffect } from 'react';
  * - Hidden on mobile until scroll (300px), always visible on desktop
  * - Opens Zalo chat on click
  */
-export default function ZaloChatButton() {
+interface ZaloChatButtonProps {
+  stackAboveBackToTop?: boolean;
+}
+
+export default function ZaloChatButton({ stackAboveBackToTop = false }: ZaloChatButtonProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (!isMobile) { setVisible(true); return; }
+    if (stackAboveBackToTop) {
+      setVisible(true);
+      return;
+    }
 
     const handleScroll = () => {
       const scrollBottom = document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
@@ -23,15 +31,15 @@ export default function ZaloChatButton() {
     handleScroll(); // check initial position
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [stackAboveBackToTop]);
 
   const zaloPhone = '0368927332';
   const zaloUrl = `https://zalo.me/${zaloPhone}`;
 
   return (
     <div
-      className="zalo-container right"
-      style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none', transition: 'opacity 0.3s ease' }}
+      className={`zalo-container right ${stackAboveBackToTop ? 'is-stacked' : ''}`}
+      style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none', transition: 'opacity 0.3s ease, transform 0.28s ease' }}
     >
       <a id="zalo-btn" href={zaloUrl} target="_blank" rel="noopener nofollow">
         <div className="animated_zalo infinite zoomIn_zalo cmoz-alo-circle"></div>
@@ -148,6 +156,10 @@ export default function ZaloChatButton() {
             .zalo-container {
               bottom: 92px;
               right: 16px;
+              transition: transform 0.28s ease, opacity 0.3s ease;
+            }
+            .zalo-container.is-stacked {
+              transform: translateY(-60px);
             }
           }
         `
