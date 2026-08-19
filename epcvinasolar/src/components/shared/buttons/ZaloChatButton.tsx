@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { TECHNICAL_ZALO_URL } from '../../../lib/contact';
 
 /**
  * ZaloChatButton - Floating Zalo contact button
@@ -33,15 +34,12 @@ export default function ZaloChatButton({ stackAboveBackToTop = false }: ZaloChat
     return () => window.removeEventListener('scroll', handleScroll);
   }, [stackAboveBackToTop]);
 
-  const zaloPhone = '0368927332';
-  const zaloUrl = `https://zalo.me/${zaloPhone}`;
-
   return (
     <div
       className={`zalo-container right ${stackAboveBackToTop ? 'is-stacked' : ''}`}
       style={{ opacity: visible ? 1 : 0, pointerEvents: visible ? 'auto' : 'none', transition: 'opacity 0.3s ease, transform 0.28s ease' }}
     >
-      <a id="zalo-btn" href={zaloUrl} target="_blank" rel="noopener nofollow">
+      <a id="zalo-btn" href={TECHNICAL_ZALO_URL} target="_blank" rel="noopener nofollow">
         <div className="animated_zalo infinite zoomIn_zalo cmoz-alo-circle"></div>
         <div className="animated_zalo infinite pulse_zalo cmoz-alo-circle-fill"></div>
         <span>

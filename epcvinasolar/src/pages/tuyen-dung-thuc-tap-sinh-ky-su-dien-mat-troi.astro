@@ -1,0 +1,244 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+import HeaderBar from '../components/home/layout/HeaderBar';
+import { TECHNICAL_ZALO_URL } from '../lib/contact';
+import { buildFaqSchema } from '../lib/schema';
+
+const faqSchema = buildFaqSchema([
+  {
+    q: 'Thực tập sinh kỹ sư điện mặt trời sẽ làm gì?',
+    a: 'Bạn sẽ được học cách khảo sát hiện trường, đọc bản vẽ cơ bản, hỗ trợ thiết kế hệ thống điện mặt trời và tham gia cùng đội ngũ kỹ sư trong các dự án thực tế.',
+  },
+  {
+    q: 'Sinh viên năm mấy có thể đăng ký?',
+    a: 'Chúng tôi ưu tiên sinh viên năm 3, năm 4 hoặc mới tốt nghiệp các ngành Điện, Điện - Điện tử, Năng lượng tái tạo, Cơ điện và ngành liên quan.',
+  },
+  {
+    q: 'Nộp thông tin bằng cách nào?',
+    a: 'Bạn có thể điền form trên trang này để gửi lead trực tiếp, hoặc bấm nút Zalo để gửi nhanh thông tin ứng tuyển.',
+  },
+]);
+---
+
+<script type="module">
+  import { TECHNICAL_ZALO_URL } from '../lib/contact';
+  import { redirectToThankYou, submitCrmLead } from '../lib/crm-leads';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('intern-form');
+    const success = document.getElementById('intern-success');
+    const zaloLink = document.getElementById('zalo-link');
+
+    const buildMessage = () => {
+      if (!(form instanceof HTMLFormElement)) return '';
+      const getValue = (name) => {
+        const element = form.querySelector(`[name="${name}"]`);
+        return element && 'value' in element ? element.value.trim() : '';
+      };
+
+      return [
+        'Ứng tuyển thực tập sinh kỹ sư điện mặt trời từ website EPCVINA Solar:',
+        `Họ tên: ${getValue('name')}`,
+        `Số điện thoại: ${getValue('phone')}`,
+        `Trường: ${getValue('school')}`,
+        `Tuổi: ${getValue('age')}`,
+      ].join('\n');
+    };
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!(form instanceof HTMLFormElement)) return;
+
+      const getValue = (name) => {
+        const element = form.querySelector(`[name="${name}"]`);
+        return element && 'value' in element ? element.value.trim() : '';
+      };
+
+      const name = getValue('name');
+      const phone = getValue('phone');
+      const school = getValue('school');
+      const age = getValue('age');
+      const message = buildMessage();
+
+      try {
+        await submitCrmLead({
+          name,
+          phone,
+          message,
+          source_form: 'internship_solar_engineer',
+          metadata: {
+            school,
+            age,
+            role: 'Thực tập sinh kỹ sư điện mặt trời',
+          },
+        });
+        redirectToThankYou('internship_solar_engineer');
+      } catch {
+        const zalo = String(zaloLink?.getAttribute('href') || TECHNICAL_ZALO_URL);
+        window.open(`${zalo}${zalo.includes('?') ? '&' : '?'}msg=${encodeURIComponent(message)}`, '_blank');
+        form.classList.add('hidden');
+        success?.classList.remove('hidden');
+      }
+    });
+  });
+</script>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<DashboardLayout
+  title="Tuyển Thực Tập Sinh Kỹ Sư Điện Mặt Trời | EPCVINA Solar"
+  description="Cơ hội thực tập sinh cho sinh viên ngành điện mặt trời tại EPCVINA Solar. Được đào tạo thực tế, tham gia dự án, hỗ trợ kỹ sư và phát triển nghề nghiệp."
+  keywords="thực tập sinh kỹ sư điện mặt trời, tuyển thực tập sinh solar, internship điện mặt trời, EPCVINA Solar"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[{ name: 'Trang Chủ', url: 'https://epcvina.com' }, { name: 'Tuyển Dụng', url: 'https://epcvina.com/tuyen-dung-thuc-tap-sinh-ky-su-dien-mat-troi' }]}
+>
+  <DashboardShell client:load>
+    <HeaderBar client:idle pathname={Astro.url.pathname} />
+    <section class="relative overflow-hidden text-white">
+      <div class="absolute inset-0">
+        <img src="/images/tuyen-dung-thuc-tap-solar-hero.png" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#5f1116]/92 via-[#b11f28]/76 to-[#f5831f]/48"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_28%)]"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:pt-28 sm:pb-20 min-h-[620px] flex items-center">
+        <div class="max-w-3xl">
+          <p class="text-orange-100 text-sm font-semibold uppercase tracking-[0.24em] mb-4 drop-shadow-sm">Tuyển Dụng Thực Tập Sinh</p>
+          <h1 class="text-4xl sm:text-5xl font-bold leading-tight mb-5 drop-shadow-sm">
+            Thực Tập Sinh Kỹ Sư
+            <span class="block text-orange-100">Điện Mặt Trời</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-white/92 max-w-2xl drop-shadow-sm">
+            Dành cho sinh viên muốn học nghề thực tế, được kèm cặp bởi kỹ sư giàu kinh nghiệm và tham gia vào các dự án điện mặt trời từ khảo sát đến triển khai. Có hỗ trợ chi phí thực tập cho ứng viên phù hợp.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#dang-ky" class="inline-flex items-center gap-2 bg-white text-red-700 font-bold px-6 py-3 rounded-2xl hover:bg-orange-50 transition-colors shadow-lg shadow-black/10">
+              Đăng ký ngay
+            </a>
+            <a id="zalo-link" href={TECHNICAL_ZALO_URL} target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white/20 transition-colors border border-white/20 shadow-lg shadow-black/10">
+              Gửi qua Zalo
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-14">
+      <section class="grid gap-6 lg:grid-cols-3">
+        <div class="lg:col-span-2 bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Bạn sẽ được học gì?</h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl bg-orange-50 p-5">
+              <h3 class="font-semibold text-gray-900 mb-2">Thực chiến dự án</h3>
+              <p class="text-sm text-gray-600">Tham gia cùng đội ngũ kỹ sư ở các dự án điện mặt trời dân dụng và công nghiệp.</p>
+            </div>
+            <div class="rounded-2xl bg-red-50 p-5">
+              <h3 class="font-semibold text-gray-900 mb-2">Đào tạo từ đầu</h3>
+              <p class="text-sm text-gray-600">Được hướng dẫn cách khảo sát, đọc bản vẽ, hiểu thiết bị và quy trình thi công cơ bản.</p>
+            </div>
+            <div class="rounded-2xl bg-emerald-50 p-5">
+              <h3 class="font-semibold text-gray-900 mb-2">Hỗ trợ kỹ năng nghề</h3>
+              <p class="text-sm text-gray-600">Rèn luyện tư duy kỹ thuật, giao tiếp với khách hàng và phối hợp nhóm dự án.</p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 p-5">
+              <h3 class="font-semibold text-gray-900 mb-2">Cơ hội phát triển</h3>
+              <p class="text-sm text-gray-600">Ứng viên phù hợp có thể được xem xét lên vị trí nhân sự chính thức sau giai đoạn thực tập.</p>
+            </div>
+            <div class="rounded-2xl bg-amber-50 p-5 sm:col-span-2">
+              <h3 class="font-semibold text-gray-900 mb-2">Hỗ trợ chi phí thực tập</h3>
+              <p class="text-sm text-gray-600">Có hỗ trợ chi phí theo thời gian tham gia và mức độ phù hợp với vị trí, trao đổi cụ thể khi phỏng vấn.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="bg-gradient-to-br from-gray-900 to-red-700 text-white rounded-3xl p-6 sm:p-8">
+          <h2 class="text-2xl font-bold mb-4">Phù hợp với</h2>
+          <ul class="space-y-3 text-white/90 text-sm">
+            <li>Sinh viên năm 3, năm 4 hoặc mới tốt nghiệp</li>
+            <li>Ngành Điện, Điện - Điện tử, Cơ điện, Năng lượng tái tạo</li>
+            <li>Muốn học việc thực tế thay vì chỉ lý thuyết</li>
+            <li>Có tinh thần chủ động, ham học hỏi và trách nhiệm</li>
+          </ul>
+          <div class="mt-6 rounded-2xl bg-white/10 p-4">
+            <p class="text-sm text-white/80">Hình thức</p>
+            <p class="text-lg font-semibold">Thực tập / Part-time linh hoạt</p>
+          </div>
+          <div class="mt-4 rounded-2xl bg-white/10 p-4">
+            <p class="text-sm text-white/80">Hỗ trợ</p>
+            <p class="text-lg font-semibold">Có hỗ trợ chi phí thực tập</p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="dang-ky" class="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-3">Đăng ký ứng tuyển</h2>
+          <p class="text-gray-500 text-center mb-8">Điền thông tin, chúng tôi sẽ tạo lead và liên hệ lại sớm qua SĐT hoặc Zalo.</p>
+
+          <form id="intern-form" class="space-y-4">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Họ tên <span class="text-red-500">*</span></label>
+                <input name="name" type="text" required placeholder="Nguyễn Văn A" class="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Số điện thoại <span class="text-red-500">*</span></label>
+                <input name="phone" type="tel" required placeholder="0912 345 678" class="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none" />
+              </div>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Trường <span class="text-red-500">*</span></label>
+                <input name="school" type="text" required placeholder="Đại học Bách Khoa Hà Nội" class="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1.5">Tuổi <span class="text-red-500">*</span></label>
+                <input name="age" type="number" min="16" max="35" required placeholder="21" class="w-full rounded-2xl border border-gray-200 px-4 py-3 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none" />
+              </div>
+            </div>
+
+            <button type="submit" class="w-full rounded-2xl bg-gradient-to-r from-red-600 to-orange-500 px-5 py-3.5 font-bold text-white shadow-lg shadow-red-500/20 transition hover:brightness-105">
+              Gửi thông tin ứng tuyển
+            </button>
+            <p class="text-xs text-gray-500 text-center">
+              Dữ liệu được gửi vào lead của EPCVINA Solar. Nếu cần, bạn cũng có thể bấm nút Zalo ở phần đầu trang.
+            </p>
+          </form>
+
+          <div id="intern-success" class="hidden text-center py-8">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+              <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Đã gửi thông tin thành công</h3>
+            <p class="text-gray-600">Bộ phận tuyển dụng sẽ liên hệ bạn sớm nhất có thể.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-8">Câu hỏi thường gặp</h2>
+        <div class="max-w-3xl mx-auto space-y-3">
+          <details class="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900">
+              Em chưa có kinh nghiệm có đăng ký được không?
+              <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-sm text-gray-600">
+              Được. Trang này dành cho sinh viên và ứng viên mới bắt đầu, ưu tiên tinh thần học hỏi và mong muốn theo nghề.
+            </div>
+          </details>
+          <details class="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900">
+              Lead được gửi như thế nào?
+              <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-sm text-gray-600">
+              Khi bấm gửi, thông tin sẽ được đẩy vào hệ thống lead của EPCVINA Solar. Nếu xảy ra lỗi kết nối, hệ thống sẽ mở Zalo với nội dung ứng tuyển đã điền.
+            </div>
+          </details>
+        </div>
+      </section>
+    </div>
+  </DashboardShell>
+</DashboardLayout>
