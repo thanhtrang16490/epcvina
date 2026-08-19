@@ -1,6 +1,6 @@
 import { ArrowLeft, Package, Shield, Lightning, TrendUp, Medal, MapPin, Star, Quotes, CaretDown, CaretUp, CheckCircle } from '@phosphor-icons/react';
 import { useState, useEffect, useMemo, useRef } from 'react';
-import HeaderBar from '../../home/layout/HeaderBar';
+import ProductDetailPreview from './ProductDetailPreview';
 import { localBrands } from '../../../data/brands';
 
 interface Product {
@@ -130,7 +130,12 @@ const DEFAULT_FAQ = [
 ];
 
 export default function ProductDetail({ product, relatedProjects = [] }: ProductDetailProps) {
-  return <ProductDetailInner product={product} relatedProjects={relatedProjects} />;
+  const images = [
+    product.main_image,
+    ...(product as Product & { gallery_images?: string[] }).gallery_images || [],
+  ].filter(Boolean) as string[];
+
+  return <ProductDetailPreview product={product} images={images} />;
 }
 
 function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProps) {

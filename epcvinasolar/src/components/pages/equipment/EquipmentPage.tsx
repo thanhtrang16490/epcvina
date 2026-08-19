@@ -1,6 +1,6 @@
 import EquipmentPageMobile from './EquipmentPageMobile';
 import EquipmentPageDesktop from './EquipmentPageDesktop';
-import EquipmentAlibabaHeader from './EquipmentAlibabaHeader';
+import EquipmentMarketplaceHeader from './EquipmentMarketplaceHeader';
 import { useMemo, useState, useEffect } from 'react';
 import { ArrowRight, Lightning, TrendUp, BatteryHigh, Shield, Plug, Stack, CableCar, BookOpen, CaretRight } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
@@ -238,7 +238,7 @@ export default function EquipmentPage({ category }: PageProps) {
   return (
     <div className="flex-1 flex flex-col">
       <div className="hidden md:block">
-        <EquipmentAlibabaHeader
+        <EquipmentMarketplaceHeader
           title={CATEGORY_META[category as EquipmentCategory]?.label || 'Thiết bị'}
           subtitle={`Thiết bị năng lượng mặt trời • ${CATEGORY_META[category as EquipmentCategory]?.label || 'Danh mục'}`}
         />
