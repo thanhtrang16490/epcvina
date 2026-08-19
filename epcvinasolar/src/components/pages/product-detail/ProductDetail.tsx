@@ -71,6 +71,12 @@ function getCategoryLabel(category: string) {
   return CATEGORY_NAMES[category] || category;
 }
 
+function getCategoryPath(category: string) {
+  if (!category) return 'thiet-bi';
+  if (category === 'solar-panel') return 'panel';
+  return category;
+}
+
 // FAQ data per product category
 const PRODUCT_FAQ: Record<string, Array<{ q: string; a: string }>> = {
   'panel': [
@@ -910,7 +916,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                 relatedProducts.map((relatedProduct) => (
                   <a
                     key={relatedProduct.id}
-                    href={`/thiet-bi/${relatedProduct.slug || relatedProduct.id}`}
+                    href={`/thiet-bi/${getCategoryPath(relatedProduct.category)}/${relatedProduct.slug || relatedProduct.id}`}
                     className="flex gap-3 bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow p-3 cursor-pointer"
                   >
                     {/* Image on Left */}

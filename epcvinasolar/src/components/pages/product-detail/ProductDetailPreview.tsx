@@ -10,6 +10,7 @@ interface ProductDetailPreviewProps {
   product?: {
     name?: string;
     brand?: string;
+    category?: string;
     main_image?: string;
     gallery_images?: string[];
     video_url?: string;
@@ -60,6 +61,12 @@ const buyerModes = [
   },
 ];
 
+function getCategoryPath(category: string) {
+  if (!category) return 'thiet-bi';
+  if (category === 'solar-panel') return 'panel';
+  return category;
+}
+
 export default function ProductDetailPreview({ product, images }: ProductDetailPreviewProps = {}) {
   const descriptionRef = useRef<HTMLElement | null>(null);
   const specsRef = useRef<HTMLElement | null>(null);
@@ -95,6 +102,7 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
   const productBrand = product?.brand || 'EPCVINA Solar';
   const productModel = product?.model || 'Cấu hình tiêu chuẩn';
   const categoryLabel = product?.specifications?.['Danh mục'] || product?.specifications?.['Category'] || 'Thiết bị';
+  const categoryPath = getCategoryPath(product?.category || '');
   const supportPhone = '0988446113';
   const zaloLink = 'https://zalo.me/0368927332';
   const inquiryHref = product?.video_url || product?.main_image || '/lien-he';
@@ -192,6 +200,7 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
       .slice(0, 5)
       .map((item, index) => ({
         slug: item.slug,
+        category: item.category,
         name: item.name,
         meta: item.brand,
         image: item.main_image,
@@ -310,7 +319,7 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
               </div>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
                 {relatedProducts.map((item, index) => (
-                  <a key={item.slug || item.name} href={`/thiet-bi/${item.slug || ''}`} className="group block">
+                  <a key={item.slug || item.name} href={`/thiet-bi/${getCategoryPath(item.category || categoryPath)}/${item.slug || ''}`} className="group block">
                     <div className="aspect-square overflow-hidden rounded-[18px] bg-white shadow-[0_1px_0_rgba(0,0,0,0.03)] transition group-hover:shadow-md">
                       <img
                         src={item.image}
