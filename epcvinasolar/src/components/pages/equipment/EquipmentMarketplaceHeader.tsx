@@ -94,15 +94,7 @@ export default function EquipmentMarketplaceHeader({ title, subtitle }: Equipmen
             </div>
           </div>
 
-          <div className="flex items-center gap-5 text-[14px] text-gray-800">
-            <div className="hidden flex-col leading-tight xl:flex">
-              <span className="text-[12px] text-gray-500">Giao đến:</span>
-              <span className="font-semibold">VN</span>
-            </div>
-            <a href="/dang-ky" className="inline-flex items-center rounded-full bg-[#ff6a00] px-5 py-2.5 font-semibold text-white shadow-sm">
-              Đăng ký
-            </a>
-          </div>
+          <div className="hidden lg:block" aria-hidden="true" />
         </div>
 
         <div className="relative flex items-center justify-between gap-6 border-t border-[#ededed] py-3 text-[14px] text-gray-700">

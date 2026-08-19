@@ -4,8 +4,8 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID;
 
 {googleAdsId && (
   <>
-    <script type="text/partytown" async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}></script>
-    <script type="text/partytown" define:vars={{ googleAdsId }}>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}></script>
+    <script is:inline define:vars={{ googleAdsId }}>
       window.dataLayer = window.dataLayer || [];
       window.epcConversionLabels = window.epcConversionLabels || {
         form_submit: 'epcvina_form_submit',

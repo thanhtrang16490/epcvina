@@ -13,8 +13,14 @@ const DEFAULT_CONVERSION_LABELS: Record<string, string> = {
 };
 
 export function trackEvent(eventName: string, params: GtagParams = {}) {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", eventName, params);
+  if (typeof window === "undefined") return;
+  if (window.gtag) {
+    window.gtag("event", eventName, params);
+    return;
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(["event", eventName, params]);
 }
 
 export function trackConversionEvent(eventName: string, params: GtagParams = {}) {

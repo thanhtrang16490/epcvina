@@ -29,6 +29,8 @@ const defaultOgImage = '/opengraph-epcvina-medium.jpeg';
 
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
 const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '1716110676297295';
+const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-18369898149';
+const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID || 'G-2VLQ1GQBQL';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage || defaultOgImage, Astro.site);
@@ -169,12 +171,24 @@ const structuredData = buildLocalBusinessSchema({
       (function () {
         try {
           var consentKey = 'epcvina_cookie_consent_v1';
-          var consent = null;
+          var consent = { value: 'accepted' };
           try {
-            consent = window.localStorage.getItem(consentKey);
+            var stored = window.localStorage.getItem(consentKey);
+            if (!stored) {
+              window.localStorage.setItem(consentKey, JSON.stringify(consent));
+            } else {
+              try {
+                var parsed = JSON.parse(stored);
+                if (!parsed || parsed.value !== 'accepted') {
+                  window.localStorage.setItem(consentKey, JSON.stringify(consent));
+                }
+              } catch (_) {
+                window.localStorage.setItem(consentKey, JSON.stringify(consent));
+              }
+            }
           } catch (_) {}
-          window.epcvinaCookieConsent = consent;
-          window.epcvinaAnalyticsEnabled = consent === 'accepted';
+          window.epcvinaCookieConsent = JSON.stringify(consent);
+          window.epcvinaAnalyticsEnabled = true;
 
           var keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'];
           var params = new URLSearchParams(window.location.search);
@@ -195,18 +209,18 @@ const structuredData = buildLocalBusinessSchema({
     </script>
 
     <!-- Google tag (Google Analytics + Google Ads) -->
-    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=AW-18369898149"></script>
-    <script type="text/partytown">
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}></script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
       if (window.epcvinaAnalyticsEnabled) {
         window.gtag('js', new Date());
-        window.gtag('config', 'G-2VLQ1GQBQL');
-        window.gtag('config', 'AW-18369898149');
+        window.gtag('config', googleAnalyticsId);
+        window.gtag('config', googleAdsId);
       }
     </script>
 
-    <script type="text/partytown">
+    <script is:inline>
       window.epcConversionLabels = window.epcConversionLabels || {
         form_submit: 'epcvina_form_submit',
         hotline_click: 'epcvina_hotline_click',

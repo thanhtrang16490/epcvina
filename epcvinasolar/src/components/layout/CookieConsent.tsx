@@ -3,7 +3,6 @@ import { ShieldCheck, X } from '@phosphor-icons/react';
 import { submitCrmLead } from '../../lib/crm-leads';
 
 const STORAGE_KEY = 'epcvina_cookie_consent_v1';
-const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
 
 type ConsentState = 'accepted' | 'essential' | null;
 type ConsentRecord = {
@@ -23,22 +22,20 @@ export default function CookieConsent() {
     try {
       const storedRaw = window.localStorage.getItem(STORAGE_KEY);
       if (!storedRaw) {
-        setVisible(true);
-        return;
-      }
-
-      const stored = JSON.parse(storedRaw) as Partial<ConsentRecord>;
-      if (stored?.value === 'accepted') {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: 'accepted' }));
         setVisible(false);
         return;
       }
-
-      if (!stored?.expiresAt || stored.expiresAt <= Date.now()) {
-        window.localStorage.removeItem(STORAGE_KEY);
-        setVisible(true);
+      const stored = JSON.parse(storedRaw) as Partial<ConsentRecord>;
+      if (stored?.value !== 'accepted') {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: 'accepted' }));
       }
+      setVisible(false);
     } catch {
-      setVisible(true);
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: 'accepted' }));
+      } catch {}
+      setVisible(false);
     }
 
     return () => {
@@ -48,11 +45,11 @@ export default function CookieConsent() {
     };
   }, []);
 
-  const saveConsent = (value: Exclude<ConsentState, null>, ttlMs?: number) => {
+  const saveConsent = (_value: Exclude<ConsentState, null>) => {
     try {
+      const acceptedValue = 'accepted';
       const record: ConsentRecord = {
-        value,
-        ...(ttlMs ? { expiresAt: Date.now() + ttlMs } : {}),
+        value: acceptedValue,
       };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
     } catch {
@@ -62,7 +59,7 @@ export default function CookieConsent() {
   };
 
   const dismissWithoutPreference = () => {
-    saveConsent('essential', SIX_HOURS_MS);
+    saveConsent('accepted');
   };
 
   const showThankYou = () => {
@@ -177,7 +174,7 @@ export default function CookieConsent() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => saveConsent('essential')}
+                    onClick={() => saveConsent('accepted')}
                     className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-2.5 py-2 text-[13px] font-semibold text-slate-700 transition-colors hover:bg-slate-50"
                   >
                     Để sau

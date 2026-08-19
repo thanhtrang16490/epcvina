@@ -7,6 +7,8 @@ interface ImportMetaEnv {
   readonly SUPABASE_SERVICE_ROLE_KEY: string;
   readonly PUBLIC_APP_URL: string;
   readonly PUBLIC_API_URL: string;
+  readonly PUBLIC_GOOGLE_ANALYTICS_ID?: string;
+  readonly PUBLIC_GOOGLE_ADS_ID?: string;
   readonly PUBLIC_GTM_ID?: string;
   readonly PUBLIC_META_PIXEL_ID?: string;
 }
