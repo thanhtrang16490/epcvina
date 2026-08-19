@@ -94,10 +94,23 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
   const productName = product?.name || 'Tấm quang năng chất lượng cao cho nhà ở, nhà xưởng và dự án EPC';
   const productBrand = product?.brand || 'EPCVINA Solar';
   const productModel = product?.model || 'Cấu hình tiêu chuẩn';
+  const categoryLabel = product?.specifications?.['Danh mục'] || product?.specifications?.['Category'] || 'Thiết bị';
+  const supportPhone = '0988446113';
+  const zaloLink = 'https://zalo.me/0368927332';
+  const inquiryHref = product?.video_url || product?.main_image || '/lien-he';
   const productDescription =
     product?.description ||
     'Thiết bị điện mặt trời chính hãng, tối ưu cho hệ nhà ở và dự án EPC với hiệu suất ổn định, hồ sơ kỹ thuật rõ ràng và khả năng cung ứng nhanh.';
   const productSpecs = product?.specifications || {};
+  const productSpecEntries = useMemo(() => Object.entries(productSpecs).filter(([, value]) => Boolean(value)), [productSpecs]);
+
+  const getSpecValue = (...keys: string[]) => {
+    for (const key of keys) {
+      const value = productSpecs[key];
+      if (value) return value;
+    }
+    return '';
+  };
 
   const brandInfo = useMemo(() => {
     const normalizedBrand = (product?.brand || '').toLowerCase();
@@ -111,28 +124,50 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
   }, [product?.brand]);
 
   const keySpecs = [
-    ['Danh mục', productSpecs['Danh mục'] || productSpecs['Category'] || 'Tấm pin mặt trời'],
+    ['Danh mục', categoryLabel],
     ['Thương hiệu', productBrand],
-    ['Công suất', productSpecs['Công suất'] || productSpecs['Công suất tấm pin Pmax'] || productSpecs['Power'] || '550-720W'],
-    ['Hiệu suất', productSpecs['Hiệu suất'] || '20.5-23.0%'],
-    ['Loại cell', productSpecs['Loại cell'] || productSpecs['Cell type'] || 'Mono half-cut'],
-    ['Bảo hành', productSpecs['Bảo hành'] || product?.warranty || '12 năm / 25 năm'],
-    ['Ứng dụng', productSpecs['Ứng dụng'] || 'Nhà ở / nhà xưởng'],
-    ['Điện áp hệ', productSpecs['Điện áp hệ'] || '1000V - 1500V'],
-    ['Số lượng tối thiểu', productSpecs['MOQ'] || '1 bộ'],
-    ['Khả năng cấp', productSpecs['Khả năng cấp'] || 'Có hàng nhanh'],
-    ['Chứng từ', productSpecs['Chứng từ'] || 'CO, CQ, datasheet'],
-    ['Mức ưu tiên', 'Hàng bán chạy'],
+    ['Model', productModel],
+    ['Bảo hành', getSpecValue('Bảo hành', 'Bảo hành sản phẩm', 'Bảo hành hiệu suất') || product?.warranty || `${product?.warranty_years || ''}`.trim() || ''],
+    ['Ứng dụng', getSpecValue('Ứng dụng') || ''],
+    ['Chứng từ', getSpecValue('Chứng từ') || ''],
+  ].filter(([, value]) => Boolean(value));
+
+  const highlightSpecKeys = [
+    'Công suất',
+    'Công suất tấm pin Pmax',
+    'Công suất cực đại (Pmax)',
+    'power',
+    'Power',
+    'Hiệu suất',
+    'Hiệu suất Module',
+    'Hiệu suất(%)',
+    'efficiency',
+    'Loại cell',
+    'Loại Cell',
+    'cell_type',
+    'Cell type',
+    'Kích thước',
+    'Dimensions',
+    'dimensions',
+    'Trọng lượng',
+    'Weight',
+    'weight',
+    'Điện áp hệ thống tối đa',
+    'Điện áp tối đa hệ thống DC(V)',
+    'Điện áp hở mạch (Voc)',
+    'Dòng ngắn mạch (Isc)',
   ];
 
-  const technicalSpecs = [
-    ['Công suất', productSpecs['power'] || productSpecs['Power'] || productSpecs['Công suất'] || '550-720W'],
-    ['Hiệu suất', productSpecs['efficiency'] || productSpecs['Hiệu suất'] || '20.5-23.0%'],
-    ['Loại cell', productSpecs['cell_type'] || productSpecs['Cell type'] || productSpecs['Loại cell'] || 'Mono half-cut'],
-    ['Loại mặt pin', productSpecs['panel_type'] || productSpecs['panel type'] || productSpecs['Loại mặt pin'] || 'Mặt kính / Mono'],
-    ['Kích thước', productSpecs['dimensions'] || productSpecs['Dimensions'] || 'Tiêu chuẩn dự án'],
-    ['Khối lượng', productSpecs['weight'] || productSpecs['Weight'] || 'Theo cấu hình'],
-  ];
+  const technicalSpecs = useMemo(() => {
+    const specs = productSpecEntries
+      .filter(([key]) => highlightSpecKeys.includes(key))
+      .map(([key, value]) => [key, value] as [string, string]);
+
+    if (specs.length >= 6) return specs;
+
+    const fallbackSpecs = productSpecEntries.slice(0, 8).map(([key, value]) => [key, value] as [string, string]);
+    return specs.length ? specs : fallbackSpecs;
+  }, [productSpecEntries]);
 
   const technicalSpecRows = useMemo(() => {
     const rows: Array<Array<[string, string]>> = [];
@@ -140,7 +175,7 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
       rows.push(technicalSpecs.slice(i, i + 2) as Array<[string, string]>);
     }
     return rows;
-  }, [productSpecs]);
+  }, [technicalSpecs]);
 
   const priceTiersDynamic = product?.price
     ? [
@@ -156,6 +191,7 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
       .filter((item) => item.main_image !== currentSlug)
       .slice(0, 5)
       .map((item, index) => ({
+        slug: item.slug,
         name: item.name,
         meta: item.brand,
         image: item.main_image,
@@ -184,7 +220,7 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
             Thiết bị năng lượng mặt trời
           </a>
           <span>/</span>
-          <span className="font-medium text-gray-700">Tấm quang năng</span>
+          <span className="font-medium text-gray-700">{categoryLabel}</span>
           <span>/</span>
           <span className="font-medium text-gray-700">{productBrand}</span>
         </nav>
@@ -274,7 +310,7 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
               </div>
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
                 {relatedProducts.map((item, index) => (
-                  <a key={item.name} href="/thiet-bi" className="group block">
+                  <a key={item.slug || item.name} href={`/thiet-bi/${item.slug || ''}`} className="group block">
                     <div className="aspect-square overflow-hidden rounded-[18px] bg-white shadow-[0_1px_0_rgba(0,0,0,0.03)] transition group-hover:shadow-md">
                       <img
                         src={item.image}
@@ -307,6 +343,13 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
                 className="rounded-full border border-gray-200 bg-white px-4 py-2 text-[13px] font-semibold text-gray-700 transition hover:border-[#f60] hover:text-[#c24f00]"
               >
                 Thông số kỹ thuật
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollToSection(reviewsRef)}
+                className="rounded-full border border-gray-200 bg-white px-4 py-2 text-[13px] font-semibold text-gray-700 transition hover:border-[#f60] hover:text-[#c24f00]"
+              >
+                Đánh giá khách hàng
               </button>
             </div>
 
@@ -429,15 +472,26 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
                     </span>
                   </div>
                 </div>
-                <button className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] bg-[#f60] px-5 py-3 text-[14px] font-semibold text-white shadow-[0_12px_28px_-16px_rgba(255,102,0,.65)] transition active:scale-[0.98]">
+                <a
+                  href={`${inquiryHref}#consult`}
+                  className="mt-4 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] bg-[#f60] px-5 py-3 text-[14px] font-semibold text-white shadow-[0_12px_28px_-16px_rgba(255,102,0,.65)] transition active:scale-[0.98]"
+                >
                   Gửi yêu cầu
-                </button>
-                <button className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[14px] font-semibold text-gray-900 transition active:scale-[0.98]">
+                </a>
+                <a
+                  href={zaloLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[14px] font-semibold text-gray-900 transition active:scale-[0.98]"
+                >
                   Chat ngay
-                </button>
-                <button className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-[#f60] bg-[#fff7f2] px-5 py-3 text-[14px] font-semibold text-[#c24f00] transition active:scale-[0.98]">
+                </a>
+                <a
+                  href={`tel:${supportPhone}`}
+                  className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-[#f60] bg-[#fff7f2] px-5 py-3 text-[14px] font-semibold text-[#c24f00] transition active:scale-[0.98]"
+                >
                   Nhận giá mới nhất
-                </button>
+                </a>
               </div>
             </aside>
           </div>

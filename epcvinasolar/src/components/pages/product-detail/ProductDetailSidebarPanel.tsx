@@ -5,6 +5,8 @@ interface ProductDetailSidebarPanelProps {
 }
 
 export default function ProductDetailSidebarPanel({ onSelectBuyerMode }: ProductDetailSidebarPanelProps) {
+  const supportPhone = '0988446113';
+  const zaloLink = 'https://zalo.me/0368927332';
   return (
     <aside className="rounded-[18px] border border-gray-200 bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.03)] lg:sticky lg:top-6 lg:self-start lg:max-w-none">
       <div className="space-y-0">
@@ -61,15 +63,26 @@ export default function ProductDetailSidebarPanel({ onSelectBuyerMode }: Product
           </div>
         </div>
 
-        <button className="mt-5 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] bg-[#f60] px-5 py-3 text-[14px] font-semibold text-white shadow-[0_12px_28px_-16px_rgba(255,102,0,.65)] transition active:scale-[0.98]">
+        <a
+          href="/lien-he#consult"
+          className="mt-5 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] bg-[#f60] px-5 py-3 text-[14px] font-semibold text-white shadow-[0_12px_28px_-16px_rgba(255,102,0,.65)] transition active:scale-[0.98]"
+        >
           Gửi yêu cầu
-        </button>
-        <button className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[14px] font-semibold text-gray-900 transition active:scale-[0.98]">
+        </a>
+        <a
+          href={zaloLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[14px] font-semibold text-gray-900 transition active:scale-[0.98]"
+        >
           Chat ngay
-        </button>
-        <button className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-[#f60] bg-[#fff7f2] px-5 py-3 text-[14px] font-semibold text-[#c24f00] transition active:scale-[0.98]">
+        </a>
+        <a
+          href={`tel:${supportPhone}`}
+          className="mt-3 inline-flex min-h-[52px] w-full items-center justify-center rounded-[999px] border border-[#f60] bg-[#fff7f2] px-5 py-3 text-[14px] font-semibold text-[#c24f00] transition active:scale-[0.98]"
+        >
           Nhận giá mới nhất
-        </button>
+        </a>
         <button
           type="button"
           onClick={onSelectBuyerMode}

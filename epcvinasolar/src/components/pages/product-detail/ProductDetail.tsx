@@ -67,6 +67,10 @@ const CATEGORY_NAMES: Record<string, string> = {
   'accessories': 'Phụ kiện lắp đặt',
 };
 
+function getCategoryLabel(category: string) {
+  return CATEGORY_NAMES[category] || category;
+}
+
 // FAQ data per product category
 const PRODUCT_FAQ: Record<string, Array<{ q: string; a: string }>> = {
   'panel': [
@@ -248,7 +252,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
               </div>
               <div>
                 <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
-                <p className="text-3xl font-bold">{CATEGORY_NAMES[product.category] || product.category}</p>
+                <p className="text-3xl font-bold">{getCategoryLabel(product.category)}</p>
               </div>
             </div>
             <p className="text-gray-300 max-w-2xl text-base leading-relaxed">
@@ -263,15 +267,15 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
         <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
           <div className="max-w-7xl mx-auto">
             <nav className="flex items-center space-x-2 text-sm text-gray-600" aria-label="Breadcrumb">
-              <a href="/thiet-bi/panel" className="hover:text-orange-600 transition-colors cursor-pointer">
-                Thiết bị
+              <a href="/thiet-bi" className="hover:text-orange-600 transition-colors cursor-pointer">
+                Thiết bị năng lượng mặt trời
               </a>
               <span aria-hidden="true">/</span>
               <a 
                 href={`/thiet-bi/${product.category}`} 
                 className="hover:text-orange-600 transition-colors cursor-pointer"
               >
-                {CATEGORY_NAMES[product.category] || product.category}
+                {getCategoryLabel(product.category)}
               </a>
               <span aria-hidden="true">/</span>
               <span className="text-gray-900 font-medium truncate" aria-current="page">{product.name}</span>
@@ -443,12 +447,12 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                   </div>
 
                   <div className="border-t border-gray-200 pt-4 mt-4">
-                    <button className="inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] bg-[#e55b06] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_10px_18px_rgba(229,91,6,0.18)]">
+                    <a href="#consult" className="inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] bg-[#e55b06] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_10px_18px_rgba(229,91,6,0.18)]">
                       Gửi yêu cầu
-                    </button>
-                    <button className="mt-3 inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[15px] font-semibold text-gray-900">
+                    </a>
+                    <a href="https://zalo.me/0368927332" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[15px] font-semibold text-gray-900">
                       Chat ngay
-                    </button>
+                    </a>
                   </div>
                 </aside>
               </div>
