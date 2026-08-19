@@ -1,5 +1,5 @@
-import { ArrowLeft, Package, Shield, Lightning, TrendUp, Medal, MapPin, Star, Quotes, CaretDown, CaretUp } from '@phosphor-icons/react';
-import { useState, useEffect, useMemo } from 'react';
+import { ArrowLeft, Package, Shield, Lightning, TrendUp, Medal, MapPin, Star, Quotes, CaretDown, CaretUp, CheckCircle } from '@phosphor-icons/react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import HeaderBar from '../../home/layout/HeaderBar';
 import { localBrands } from '../../../data/brands';
 
@@ -136,6 +136,11 @@ export default function ProductDetail({ product, relatedProjects = [] }: Product
 function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [relatedProducts, setRelatedProducts] = useState<any[]>([]);
+  const [consultAbsoluteTop, setConsultAbsoluteTop] = useState<number | null>(null);
+  const [isConsultSticky, setIsConsultSticky] = useState(false);
+  const attributesRef = useRef<HTMLDivElement>(null);
+  const consultColumnRef = useRef<HTMLDivElement>(null);
+  const consultCardRef = useRef<HTMLDivElement>(null);
   const images = product.main_image ? [product.main_image] : [];
 
   // Find brand info from local brand data
@@ -176,6 +181,48 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
     efficiency: product.specifications?.['Hiệu suất'] || '',
     cellType: product.specifications?.['Loại cell'] || '',
   };
+
+  useEffect(() => {
+    const updateConsultState = () => {
+      const attributesEl = attributesRef.current;
+      const consultColumnEl = consultColumnRef.current;
+      const consultCardEl = consultCardRef.current;
+
+      if (!attributesEl || !consultColumnEl || !consultCardEl) return;
+
+      const stickyTop = 88;
+      const attributesTop = attributesEl.getBoundingClientRect().top + window.scrollY;
+      const columnTop = consultColumnEl.getBoundingClientRect().top + window.scrollY;
+      const columnHeight = consultColumnEl.getBoundingClientRect().height;
+      const cardHeight = consultCardEl.getBoundingClientRect().height;
+      const bottomLockTop = Math.max(0, columnHeight - cardHeight);
+      const scrollTop = window.scrollY + stickyTop;
+
+      if (scrollTop < attributesTop) {
+        setIsConsultSticky(false);
+        setConsultAbsoluteTop(null);
+        return;
+      }
+
+      if (scrollTop >= columnTop + bottomLockTop) {
+        setIsConsultSticky(false);
+        setConsultAbsoluteTop(bottomLockTop);
+        return;
+      }
+
+      setIsConsultSticky(true);
+      setConsultAbsoluteTop(null);
+    };
+
+    updateConsultState();
+    window.addEventListener('scroll', updateConsultState, { passive: true });
+    window.addEventListener('resize', updateConsultState);
+
+    return () => {
+      window.removeEventListener('scroll', updateConsultState);
+      window.removeEventListener('resize', updateConsultState);
+    };
+  }, []);
 
   return (
     <div className="relative bg-[#f6f8f6]">
@@ -317,26 +364,89 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
 
           {/* Section 4: Key Specs Highlight (Thông số chính) */}
           <div className="border-t border-orange-100 pt-10">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Thông số chính</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {keySpecs.power && (
-                <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
-                  <div className="text-3xl font-bold text-orange-600 mb-2">{keySpecs.power}</div>
-                  <div className="text-sm text-gray-600">Công suất tấm pin</div>
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+              <div ref={attributesRef} className="min-w-0 flex-1">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Thông số chính</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {keySpecs.power && (
+                    <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
+                      <div className="text-3xl font-bold text-orange-600 mb-2">{keySpecs.power}</div>
+                      <div className="text-sm text-gray-600">Công suất tấm pin</div>
+                    </div>
+                  )}
+                  {keySpecs.efficiency && (
+                    <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
+                      <div className="text-3xl font-bold text-orange-600 mb-2">{keySpecs.efficiency}</div>
+                      <div className="text-sm text-gray-600">Hiệu suất</div>
+                    </div>
+                  )}
+                  {keySpecs.cellType && (
+                    <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
+                      <div className="text-2xl font-bold text-orange-600 mb-2">{keySpecs.cellType}</div>
+                      <div className="text-sm text-gray-600">Loại cell</div>
+                    </div>
+                  )}
                 </div>
-              )}
-              {keySpecs.efficiency && (
-                <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
-                  <div className="text-3xl font-bold text-orange-600 mb-2">{keySpecs.efficiency}</div>
-                  <div className="text-sm text-gray-600">Hiệu suất</div>
-                </div>
-              )}
-              {keySpecs.cellType && (
-                <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
-                  <div className="text-2xl font-bold text-orange-600 mb-2">{keySpecs.cellType}</div>
-                  <div className="text-sm text-gray-600">Loại cell</div>
-                </div>
-              )}
+              </div>
+
+              <div ref={consultColumnRef} className="hidden lg:block lg:w-[392px] lg:shrink-0 lg:relative">
+                <aside
+                  ref={consultCardRef}
+                  className={`box-border w-full rounded-[18px] border border-gray-200 bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.03)] ${
+                    isConsultSticky ? 'lg:sticky' : 'lg:relative'
+                  }`}
+                  style={
+                    consultAbsoluteTop != null
+                      ? { top: `${consultAbsoluteTop}px`, width: '392px', position: 'absolute' }
+                      : isConsultSticky
+                        ? { top: '88px', width: '392px' }
+                        : { width: '392px' }
+                  }
+                >
+                  <div className="pb-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3 className="text-[18px] font-semibold text-gray-900">Tư vấn nhanh</h3>
+                      <span className="text-2xl leading-none text-gray-400">›</span>
+                    </div>
+                    <p className="mt-4 text-[13px] leading-6 text-gray-700">
+                      EPCVINA hỗ trợ báo giá, hồ sơ kỹ thuật và gợi ý cấu hình cho dự án, đại lý hoặc khách mua lẻ.
+                    </p>
+                  </div>
+
+                  <div className="border-t border-gray-200 pt-4">
+                    <h4 className="text-[17px] font-semibold text-gray-900">Lợi ích khi gửi yêu cầu</h4>
+                    <div className="mt-4 space-y-4">
+                      <div className="flex items-start gap-2">
+                        <CheckCircle className="mt-0.5 h-5 w-5 text-green-600" weight="fill" />
+                        <div>
+                          <p className="text-[14px] font-semibold text-gray-900">Báo giá nhanh</p>
+                          <p className="mt-1 text-[13px] leading-6 text-gray-600">
+                            Nhận báo giá phù hợp theo số lượng, công suất và nhu cầu triển khai.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <CheckCircle className="mt-0.5 h-5 w-5 text-green-600" weight="fill" />
+                        <div>
+                          <p className="text-[14px] font-semibold text-gray-900">Tài liệu đầy đủ</p>
+                          <p className="mt-1 text-[13px] leading-6 text-gray-600">
+                            Cung cấp catalogue, datasheet và hướng dẫn lắp đặt khi cần.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-200 pt-4 mt-4">
+                    <button className="inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] bg-[#e55b06] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_10px_18px_rgba(229,91,6,0.18)]">
+                      Gửi yêu cầu
+                    </button>
+                    <button className="mt-3 inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[15px] font-semibold text-gray-900">
+                      Chat ngay
+                    </button>
+                  </div>
+                </aside>
+              </div>
             </div>
           </div>
 

@@ -1,12 +1,11 @@
 ---
-import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import EquipmentLayout from '../../layouts/EquipmentLayout.astro';
 import EquipmentPage from '../../components/pages/equipment/EquipmentPage';
 
 export const prerender = true;
 ---
 
-<DashboardLayout
+<EquipmentLayout
   title="Thiết Bị Điện Mặt Trời | EPCVINA Solar"
   description="Danh mục thiết bị điện mặt trời chính hãng: tấm pin, inverter, pin lưu trữ, mounting."
   keywords="thiết bị điện mặt trời, pin mặt trời chính hãng, inverter solar, pin lưu trữ BESS, khung giàn mounting, EPCVINA Solar"
@@ -17,7 +16,5 @@ export const prerender = true;
   ]}
 >
   <h1 class="sr-only">Thiết Bị Điện Mặt Trời Chính Hãng EPCVINA Solar</h1>
-  <DashboardShell client:load>
-    <EquipmentPage category="panel" client:idle />
-  </DashboardShell>
-</DashboardLayout>
+  <EquipmentPage category="panel" client:idle />
+</EquipmentLayout>

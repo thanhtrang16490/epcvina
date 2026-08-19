@@ -27,6 +27,7 @@ interface PageProps {
   category: string;
   brand?: string;
   brandName?: string;
+  audienceMode?: 'b2b' | 'b2c';
   devices: Device[];
   loading: boolean;
   searchQuery: string;
@@ -45,6 +46,7 @@ export default function EquipmentPageDesktop({
   category, 
   brand,
   brandName,
+  audienceMode = 'b2b',
   devices, 
   loading,
   searchQuery,
@@ -65,8 +67,22 @@ export default function EquipmentPageDesktop({
     color: 'text-indigo-600',
     bg: 'bg-indigo-50',
     accent: 'bg-indigo-500',
-    description: `Sản phẩm chính hãng ${brandName || brand} - Bảo hành chính hãng, hỗ trợ kỹ thuật 24/7`,
+    description: `Thiết bị chính hãng ${brandName || brand} cho EPC, đại lý và nhà thầu - hỗ trợ BOM, CO/CQ, báo giá dự án và giao hàng toàn quốc`,
   } : CATEGORY_META[category as EquipmentCategory];
+  const isB2C = audienceMode === 'b2c';
+  const heroLabel = isB2C ? 'Thiết bị cho khách mua lẻ' : 'Thiết bị cho EPC, đại lý và nhà thầu';
+  const heroTitle = isB2C
+    ? 'Chọn thiết bị phù hợp cho nhà mình nhanh hơn'
+    : 'Thiết bị chính hãng, tồn kho sẵn cho EPC toàn quốc';
+  const heroLead = isB2C
+    ? 'Xem theo nhu cầu sử dụng, so sánh cấu hình và nhận tư vấn nhanh cho nhà phố, biệt thự hoặc hộ gia đình.'
+    : 'Tồn kho sẵn, hỗ trợ BOM, datasheet, CO/CQ và báo giá theo dự án. Phù hợp cho EPC cần chốt cấu hình nhanh.';
+  const primaryCtaLabel = isB2C ? 'Tính nhanh cho nhà tôi' : 'Nhận báo giá dự án';
+  const secondaryCtaLabel = isB2C ? 'Gọi tư vấn' : 'Gọi đội phân phối';
+  const leadTitle = isB2C ? 'Bạn đang muốn lắp cho nhà mình?' : 'Cần báo giá sỉ, BOM hay kiểm tra tồn kho?';
+  const leadLead = isB2C
+    ? 'Gửi diện tích mái, hóa đơn điện hoặc nhu cầu dùng ban ngày/ban đêm, EPCVINA sẽ gợi ý cấu hình phù hợp.'
+    : 'Gửi công suất, số lượng hoặc danh mục thiết bị. EPCVINA phản hồi theo dự án, hỗ trợ CO/CQ và giao hàng toàn quốc.';
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
   const [showModal, setShowModal] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -149,31 +165,47 @@ export default function EquipmentPageDesktop({
     <div className="hidden md:flex md:flex-col">
       {/* PC Hero Section - Full Width */}
       {showHero && (
-        <section className="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">
+        <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white py-16">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#F97316]/20 rounded-full -translate-y-1/2 translate-x-1/4" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />
           </div>
           <div className="relative max-w-7xl mx-auto px-6">
-            <div className="flex items-center gap-3 mb-4">
-              <div className={`w-12 h-12 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
-                {meta.icon}
+            <div className="max-w-3xl space-y-5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-orange-200">
+                EPCVINA - phân phối thiết bị solar toàn quốc
               </div>
-              <div>
-                <p className="text-sm text-gray-400">Thiết bị năng lượng mặt trời</p>
-                <h2 className="text-3xl font-bold">{meta.label}</h2>
+              <div className="flex items-center gap-3">
+                <div className={`w-12 h-12 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
+                  {meta.icon}
+                </div>
+                <div>
+                  <p className="text-sm text-slate-400">{heroLabel}</p>
+                  <h2 className="text-3xl font-black">{heroTitle}</h2>
+                </div>
               </div>
-            </div>
-            <p className="text-gray-300 max-w-2xl">{meta?.description}</p>
-            <div className="flex items-center gap-6 mt-6">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-[#F97316]">{devices.length}</span>
-                <span className="text-sm text-gray-400">sản phẩm</span>
+              <p className="text-slate-300 max-w-2xl text-base leading-relaxed">
+                {heroLead}
+              </p>
+              <div className="grid gap-3 sm:grid-cols-3">
+                {[
+                  ['Tồn kho', 'Sẵn hàng cho dự án'],
+                  ['Tài liệu', 'Datasheet / CO-CQ / BOM'],
+                  ['Báo giá', 'Theo số lượng & cấu hình'],
+                ].map(([k, v]) => (
+                  <div key={k} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                    <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">{k}</p>
+                    <p className="mt-1 text-sm font-semibold text-white">{v}</p>
+                  </div>
+                ))}
               </div>
-              <div className="w-px h-8 bg-gray-700" />
-              <div className="flex items-center gap-2">
-                <span className="text-2xl font-bold text-[#F97316]">{brands.length}</span>
-                <span className="text-sm text-gray-400">thương hiệu</span>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href="#lead-b2b" className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-orange-500 px-6 py-3 text-sm font-bold text-white active:scale-[0.98] hover:bg-orange-400">
+                  {primaryCtaLabel}
+                </a>
+                <a href="tel:0988446113" className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-bold text-white active:scale-[0.98] hover:bg-white/10">
+                  {secondaryCtaLabel}
+                </a>
               </div>
             </div>
           </div>
@@ -184,30 +216,49 @@ export default function EquipmentPageDesktop({
       {showContent && (
         <div className="flex-1 w-full">
         <div className="w-full">
+        <section id="lead-b2b" className="mb-6 rounded-3xl border border-orange-100 bg-white p-5 shadow-sm">
+          <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-orange-600">{isB2C ? 'Lead nhanh cho khách mua lẻ' : 'Lead nhanh cho EPC'}</p>
+              <h3 className="mt-2 text-2xl font-black text-gray-900">{leadTitle}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-600">
+                {leadLead}
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                isB2C ? 'Tư vấn cấu hình' : 'Giá dự án',
+                isB2C ? 'Hoàn vốn nhanh' : 'Tồn kho thực tế',
+                isB2C ? 'Báo giá trọn gói' : 'Đăng ký đối tác',
+              ].map((item) => (
+                <div key={item} className="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-semibold text-gray-700">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
         {/* Horizontal MagnifyingGlass & Filter Bar with Breadcrumbs */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-4 mb-6">
-          <div className="flex items-center gap-3">
-            {/* Breadcrumbs - Left Side */}
-            <div className="flex items-center gap-2 text-sm text-gray-600 flex-1">
-              <a href="/" className="hover:text-[#F97316] transition-colors">Trang chủ</a>
+        <div className="mb-6 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <a href="/" className="hover:text-[#ff6a00] transition-colors">Trang chủ</a>
               <CaretRight className="h-3 w-3" />
-              <a href="/thiet-bi/panel" className="hover:text-[#F97316] transition-colors">Thiết bị</a>
+              <a href="/thiet-bi/panel" className="hover:text-[#ff6a00] transition-colors">Thiết bị</a>
               <CaretRight className="h-3 w-3" />
-              <span className="text-gray-900 font-medium">{meta?.label || 'Danh mục'}</span>
+              <span className="font-medium text-gray-900">{meta?.label || 'Danh mục'}</span>
             </div>
 
-            {/* Filter Options - Right Side */}
-            <div className="flex items-center gap-3">
-              {/* Collapsible MagnifyingGlass */}
-              <div ref={searchRef}>
+            <div className="flex flex-wrap items-center gap-3">
+              <div ref={searchRef} className="min-w-[260px] flex-1 xl:flex-none xl:w-[360px]">
                 {showSearch ? (
-                  <div className="relative w-64">
+                  <div className="relative">
                     <input
                       type="text"
                       placeholder="Tìm thiết bị..."
                       value={searchQuery}
                       onChange={(e) => onSearchChange(e.target.value)}
-                      className="w-full px-4 py-2.5 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
+                      className="w-full rounded-full border border-gray-300 px-4 py-2.5 pr-10 text-sm focus:border-[#ff6a00] focus:outline-none focus:ring-2 focus:ring-[#ff6a00]/20"
                       autoFocus
                     />
                     {searchQuery && (
@@ -223,7 +274,7 @@ export default function EquipmentPageDesktop({
                         setShowSearch(false);
                         onSearchChange('');
                       }}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 hover:bg-gray-100 rounded"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600"
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -231,126 +282,40 @@ export default function EquipmentPageDesktop({
                 ) : (
                   <button
                     onClick={() => setShowSearch(true)}
-                    className="p-2.5 border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-[#F97316] transition-colors"
+                    className="inline-flex w-full items-center justify-between rounded-full border border-gray-300 px-4 py-2.5 text-sm text-gray-500 hover:border-[#ff6a00] hover:text-gray-700"
                     title="Tìm kiếm"
                   >
-                    <MagnifyingGlass className="h-4 w-4 text-gray-600" />
+                    <span>Tìm thiết bị, thương hiệu, model</span>
+                    <MagnifyingGlass className="h-4 w-4 text-gray-400" />
                   </button>
                 )}
               </div>
-              
-              {/* Layout View Icons */}
-              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
-                <button
-                  onClick={() => onGridColumnsChange?.(1)}
-                  className={`p-2 rounded transition-colors ${
-                    gridColumns === 1
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Danh sách 1 cột"
-                >
-                  <List className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => onGridColumnsChange?.(3)}
-                  className={`p-2 rounded transition-colors ${
-                    gridColumns === 3
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Lưới 3 cột"
-                >
-                  <GridNine className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => onGridColumnsChange?.(5)}
-                  className={`p-2 rounded transition-colors ${
-                    gridColumns === 5
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Lưới 5 cột"
-                >
-                  <GridNine className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => onGridColumnsChange?.(4)}
-                  className={`p-2 rounded transition-colors ${
-                    gridColumns === 4
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Lưới 4 cột"
-                >
-                  <GridFour className="h-4 w-4" />
-                </button>
+
+              <div className="flex items-center gap-1 rounded-full border border-gray-300 p-1">
+                <button onClick={() => onGridColumnsChange?.(1)} className={`rounded-full p-2 transition-colors ${gridColumns === 1 ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Danh sách 1 cột"><List className="h-4 w-4" /></button>
+                <button onClick={() => onGridColumnsChange?.(3)} className={`rounded-full p-2 transition-colors ${gridColumns === 3 ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Lưới 3 cột"><GridNine className="h-4 w-4" /></button>
+                <button onClick={() => onGridColumnsChange?.(5)} className={`rounded-full p-2 transition-colors ${gridColumns === 5 ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Lưới 5 cột"><GridNine className="h-4 w-4" /></button>
+                <button onClick={() => onGridColumnsChange?.(4)} className={`rounded-full p-2 transition-colors ${gridColumns === 4 ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Lưới 4 cột"><GridFour className="h-4 w-4" /></button>
               </div>
-              
-              {/* Items per page */}
-              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+
+              <div className="flex items-center gap-1 rounded-full border border-gray-300 p-1">
                 {[20, 40, 60].map((limit) => (
                   <button
                     key={limit}
                     onClick={() => onItemsPerPageChange?.(limit)}
-                    className={`px-2.5 py-1.5 text-xs font-medium rounded transition-colors ${
-                      itemsPerPage === limit
-                        ? 'bg-[#F97316] text-white'
-                        : 'text-gray-600 hover:bg-gray-100'
-                    }`}
+                    className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${itemsPerPage === limit ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
                     title={`Hiển thị ${limit}`}
                   >
                     {limit}
                   </button>
                 ))}
               </div>
-              
-              {/* Sort Options */}
-              <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
-                <button
-                  onClick={() => onSortChange('az')}
-                  className={`p-2 rounded transition-colors ${
-                    sortBy === 'az'
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Sắp xếp A-Z"
-                >
-                  <SortAscending className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => onSortChange('za')}
-                  className={`p-2 rounded transition-colors ${
-                    sortBy === 'za'
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Sắp xếp Z-A"
-                >
-                  <SortDescending className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => onSortChange('price-asc')}
-                  className={`p-2 rounded transition-colors ${
-                    sortBy === 'price-asc'
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Giá tăng dần"
-                >
-                  <ArrowUp className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => onSortChange('price-desc')}
-                  className={`p-2 rounded transition-colors ${
-                    sortBy === 'price-desc'
-                      ? 'bg-[#F97316] text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                  title="Giá giảm dần"
-                >
-                  <ArrowDown className="h-4 w-4" />
-                </button>
+
+              <div className="flex items-center gap-1 rounded-full border border-gray-300 p-1">
+                <button onClick={() => onSortChange('az')} className={`rounded-full p-2 transition-colors ${sortBy === 'az' ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Sắp xếp A-Z"><SortAscending className="h-4 w-4" /></button>
+                <button onClick={() => onSortChange('za')} className={`rounded-full p-2 transition-colors ${sortBy === 'za' ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Sắp xếp Z-A"><SortDescending className="h-4 w-4" /></button>
+                <button onClick={() => onSortChange('price-asc')} className={`rounded-full p-2 transition-colors ${sortBy === 'price-asc' ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Giá tăng dần"><ArrowUp className="h-4 w-4" /></button>
+                <button onClick={() => onSortChange('price-desc')} className={`rounded-full p-2 transition-colors ${sortBy === 'price-desc' ? 'bg-[#ff6a00] text-white' : 'text-gray-600 hover:bg-gray-100'}`} title="Giá giảm dần"><ArrowDown className="h-4 w-4" /></button>
               </div>
             </div>
           </div>

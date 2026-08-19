@@ -24,7 +24,7 @@ export default function HeaderBar({ pathname = '/' }: { pathname?: string }) {
   const locale = getLocaleFromPathname(activePath);
   const t = messages[locale];
   const config = getHeaderLayoutConfig(locale, activePath);
-  const { homeHref, quoteHref, mainNavItems, secondaryNavItems, labels } = config;
+  const { homeHref, quoteHref, contactHref, mainNavItems, secondaryNavItems, labels } = config;
   const [visibleNavCount, setVisibleNavCount] = useState(mainNavItems.length);
 
   useEffect(() => {

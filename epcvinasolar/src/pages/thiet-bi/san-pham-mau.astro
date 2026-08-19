@@ -1,0 +1,14 @@
+---
+import EquipmentLayout from '../../layouts/EquipmentLayout.astro';
+import ProductPreviewAlibaba from '../../components/pages/product-detail/ProductPreviewAlibaba';
+
+export const prerender = true;
+---
+
+<EquipmentLayout
+  title="San pham mau | EPCVINA Solar"
+  description="Trang mẫu giao diện chi tiết sản phẩm kiểu marketplace để review trước khi áp dụng cho các PDP thật."
+  ogImage="/hero-bg-1920.webp"
+>
+  <ProductPreviewAlibaba client:load />
+</EquipmentLayout>

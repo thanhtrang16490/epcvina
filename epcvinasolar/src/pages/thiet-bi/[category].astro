@@ -1,6 +1,5 @@
 ---
-import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import EquipmentLayout from '../../layouts/EquipmentLayout.astro';
 import EquipmentPage from '../../components/pages/equipment/EquipmentPage';
 
 export const prerender = false;
@@ -50,7 +49,7 @@ if (!category) {
 }
 ---
 
-<DashboardLayout
+<EquipmentLayout
   title={meta.title}
   description={meta.description}
   keywords={meta.keywords}
@@ -61,7 +60,5 @@ if (!category) {
     { name: category || '', url: `https://epcvina.com/thiet-bi/${category}` }
   ]}
 >
-  <DashboardShell client:load>
-    <EquipmentPage category={category!} client:idle />
-  </DashboardShell>
-</DashboardLayout>
+  <EquipmentPage category={category!} client:idle />
+</EquipmentLayout>

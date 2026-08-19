@@ -1,0 +1,38 @@
+---
+import DashboardLayout from './DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell';
+
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  ogImage?: string;
+  breadcrumbs?: { name: string; url: string }[];
+  showChrome?: boolean;
+  sidebarExpandedByDefault?: boolean;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  ogImage,
+  breadcrumbs,
+  showChrome = true,
+  sidebarExpandedByDefault = true,
+} = Astro.props as Props;
+---
+
+<DashboardLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  ogImage={ogImage}
+  breadcrumbs={breadcrumbs}
+  showChrome={showChrome}
+  sidebarExpandedByDefault={sidebarExpandedByDefault}
+>
+  <DashboardShell client:load>
+    <slot />
+  </DashboardShell>
+</DashboardLayout>

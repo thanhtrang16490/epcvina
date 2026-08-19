@@ -1,0 +1,25 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import DashboardShell from '../../components/layout/DashboardShell';
+import EpcPartnerSignupPage from '../../components/pages/partner/EpcPartnerSignupPage';
+
+const seoTitle = 'Đăng ký đối tác EPC | EPCVINA Solar';
+const seoDescription = 'Trang đăng ký riêng cho đối tác EPC, nhà thầu và đại lý muốn nhận báo giá dự án, tồn kho, BOM và hỗ trợ kỹ thuật từ EPCVINA Solar.';
+const seoKeywords = 'đăng ký đối tác EPC, EPCVINA Solar, lead B2B solar, báo giá dự án, thiết bị điện mặt trời';
+---
+
+<DashboardLayout
+  title={seoTitle}
+  description={seoDescription}
+  keywords={seoKeywords}
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Đối tác', url: 'https://epcvina.com/doi-tac' },
+    { name: 'Đăng ký EPC', url: 'https://epcvina.com/doi-tac/dang-ky-epc' }
+  ]}
+>
+  <DashboardShell client:load>
+    <EpcPartnerSignupPage client:idle />
+  </DashboardShell>
+</DashboardLayout>

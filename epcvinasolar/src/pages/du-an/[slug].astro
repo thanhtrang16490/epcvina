@@ -74,36 +74,35 @@ const faq = project.data.faq || [];
   breadcrumbs={[
     {name: "Trang Chủ", url: "/"}, 
     {name: "Dự Án", url: "/du-an"},
-    {name: project.data.title, url: ""}
+    {name: project.data.title, url: `/du-an/${projectSlug}`}
   ]}
   ogImage={project.data.image}
 >
   <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json" define:vars={{project}}>\n    JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": project.data.title,
-      "description": project.data.description,
-      "image": project.data.image,
-      "author": {
-        "@type": "Organization",
-        "name": "EPCVINA Solar"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "EPCVINA Solar",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://epcvina.com/logo-epcvina.svg"
-        }
-      },
-      "datePublished": project.data.completion_date,
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `https://epcvina.com/du-an/${project.id.replace('.md', '')}`
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": project.data.title,
+    "description": project.data.description,
+    "image": project.data.image,
+    "author": {
+      "@type": "Organization",
+      "name": "EPCVINA Solar"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "EPCVINA Solar",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://epcvina.com/logo-epcvina.svg"
       }
-    })
-  </script>
+    },
+    "datePublished": project.data.completion_date,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://epcvina.com/du-an/${projectSlug}`
+    }
+  })} />
   <DashboardShell client:load>
     <div class="min-h-screen bg-white">
       <HeaderBar client:load />

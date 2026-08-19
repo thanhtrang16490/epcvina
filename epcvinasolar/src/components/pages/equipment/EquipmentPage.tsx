@@ -1,6 +1,6 @@
 import EquipmentPageMobile from './EquipmentPageMobile';
 import EquipmentPageDesktop from './EquipmentPageDesktop';
-import HeaderBar from '../../home/layout/HeaderBar';
+import EquipmentAlibabaHeader from './EquipmentAlibabaHeader';
 import { useMemo, useState, useEffect } from 'react';
 import { ArrowRight, Lightning, TrendUp, BatteryHigh, Shield, Plug, Stack, CableCar, BookOpen, CaretRight } from '@phosphor-icons/react';
 import Image from '../../ui/Image';
@@ -35,6 +35,7 @@ function apiProductToDevice(product: any, categoryOverride?: string): Device {
 }
 
 export default function EquipmentPage({ category }: PageProps) {
+  const [audienceMode, setAudienceMode] = useState<'b2b' | 'b2c'>('b2b');
   const [allDevices, setAllDevices] = useState<Device[]>([]);
   const [categoryDevices, setCategoryDevices] = useState<Device[]>([]);
   const [loading, setLoading] = useState(true);
@@ -179,6 +180,22 @@ export default function EquipmentPage({ category }: PageProps) {
     return map;
   }, []);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const explicit = params.get('audience');
+    if (explicit === 'b2c' || explicit === 'b2b') {
+      setAudienceMode(explicit);
+      return;
+    }
+    const referrer = document.referrer || '';
+    const pathname = window.location.pathname;
+    if (/dien-mat-troi-gia-dinh|nha-pho|biet-thu|ho-kinh-doanh|solar-home|calculator/.test(referrer) || /dien-mat-troi-gia-dinh|nha-pho|biet-thu|ho-kinh-doanh|solar-home|calculator/.test(pathname)) {
+      setAudienceMode('b2c');
+      return;
+    }
+    setAudienceMode('b2b');
+  }, []);
+
   // Fetch products from Content Collections API
   useEffect(() => {
     const fetchDevices = async () => {
@@ -220,10 +237,15 @@ export default function EquipmentPage({ category }: PageProps) {
 
   return (
     <div className="flex-1 flex flex-col">
-      <HeaderBar />
+      <div className="hidden md:block">
+        <EquipmentAlibabaHeader
+          title={CATEGORY_META[category as EquipmentCategory]?.label || 'Thiết bị'}
+          subtitle={`Thiết bị năng lượng mặt trời • ${CATEGORY_META[category as EquipmentCategory]?.label || 'Danh mục'}`}
+        />
+      </div>
       {/* Phone: Render full mobile component (< md) */}
       <div className="md:hidden">
-        <EquipmentPageMobile category={category} />
+        <EquipmentPageMobile category={category} audienceMode={audienceMode} />
       </div>
 
       {/* Tablet + Desktop: Hero + Sidebar + Content (≥ md) */}
@@ -240,6 +262,7 @@ export default function EquipmentPage({ category }: PageProps) {
             itemsPerPage={itemsPerPage}
             showHero={true}
             showContent={false}
+            audienceMode={audienceMode}
           />
 
         {/* Section 2: Chọn loại sản phẩm + Thương hiệu */}
@@ -346,6 +369,7 @@ export default function EquipmentPage({ category }: PageProps) {
               onItemsPerPageChange={setItemsPerPage}
               showHero={false}
               showContent={true}
+              audienceMode={audienceMode}
             />
 
             <section className="mt-8 rounded-3xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">

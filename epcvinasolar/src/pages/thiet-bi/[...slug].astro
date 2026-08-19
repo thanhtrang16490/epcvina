@@ -1,7 +1,6 @@
 ---
-import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
-import ProductDetail from '../../components/pages/product-detail/ProductDetail.tsx';
+import EquipmentLayout from '../../layouts/EquipmentLayout.astro';
+import ProductDetail from '../../components/pages/product-detail/ProductDetail';
 import { getCollection } from 'astro:content';
 import { getOptimizedProductImage } from '../../lib/optimized-product-images';
 
@@ -92,18 +91,11 @@ const breadcrumbSchema = {
   ]
 };
 ---
-
-<DashboardLayout
+<EquipmentLayout
   title={product.data.name}
   description={`${product.data.name}. ${product.data.description || 'Thiết bị điện mặt trời chính hãng, tư vấn và bảo hành bởi EPCVINA Solar.'}`}
 >
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  <DashboardShell client:load>
-    <ProductDetail 
-      client:visible 
-      product={optimizedProductData}
-      relatedProjects={relatedProjects}
-    />
-  </DashboardShell>
-</DashboardLayout>
+  <ProductDetail client:visible product={optimizedProductData} relatedProjects={relatedProjects} />
+</EquipmentLayout>

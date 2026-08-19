@@ -125,7 +125,7 @@ const videoSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
   
   {/* Ad landing mode: keep the page focused on calculator, hotline and lead form. */}
-  <DashboardShell client:load showChrome={false} showFooter={false}>
+  <DashboardShell client:load showFooter={false}>
       <FamilyLandingPage client:visible />
     </DashboardShell>
 </DashboardLayout>

@@ -103,9 +103,10 @@ function SpecRow({ label, value, highlight }: { label: string; value: string; hi
 interface PageProps {
   category: string;
   brand?: string;
+  audienceMode?: 'b2b' | 'b2c';
 }
 
-export default function EquipmentCategoryPage({ category, brand }: PageProps) {
+export default function EquipmentCategoryPage({ category, brand, audienceMode = 'b2b' }: PageProps) {
   // Use brand metadata if in brand mode, otherwise use category metadata
   const meta = brand ? {
     label: `Thương hiệu ${brand}`,
@@ -114,7 +115,12 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
     bg: 'bg-indigo-50',
     accent: 'bg-indigo-500',
     gradient: 'from-indigo-400 to-indigo-600',
+    description: `Thiết bị chính hãng ${brand} cho EPC, đại lý và nhà thầu - hỗ trợ BOM, CO/CQ, báo giá dự án và giao hàng toàn quốc`,
   } : CATEGORY_META[category as EquipmentCategory];
+  const isB2C = audienceMode === 'b2c';
+  const heroLead = isB2C
+    ? 'Xem nhanh cấu hình phù hợp cho nhà phố, biệt thự hoặc hộ gia đình và nhận tư vấn theo nhu cầu thực tế.'
+    : 'Xem nhanh thiết bị sẵn hàng cho EPC, đại lý và nhà thầu. Hỗ trợ BOM, CO/CQ và báo giá theo dự án.';
   const ITEMS_PER_PAGE = 20;
   const [selectedBrand, setSelectedBrand] = useState<string>('');
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>('');
@@ -368,7 +374,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
             {meta?.label || 'Thiết bị'}
           </h2>
           <p className="text-xs text-gray-500 mt-0.5">
-            {allDevices.length} sản phẩm
+            {allDevices.length} sản phẩm {isB2C ? 'phù hợp mua lẻ' : 'cho EPC và nhà thầu'}
           </p>
         </div>
 
@@ -381,7 +387,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
                 onClick={() => scrollToBrand(brand)}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
                   selectedBrand === brand
-                    ? 'bg-[#F97316] text-white'
+                  ? 'bg-[#F97316] text-white'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
@@ -398,7 +404,7 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
             <div className="flex-1 relative">
               <input
                 type="text"
-                placeholder="Tìm kiếm thiết bị..."
+                placeholder="Tìm thiết bị / model..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent"
@@ -419,11 +425,38 @@ export default function EquipmentCategoryPage({ category, brand }: PageProps) {
               className="px-4 py-2 bg-[#F97316] text-white rounded-lg flex items-center gap-2 hover:bg-[#C2410C] transition-colors flex-shrink-0"
             >
               <SlidersHorizontal className="h-4 w-4" />
-              <span className="text-sm font-medium hidden sm:inline">Bộ lọc</span>
+              <span className="text-sm font-medium hidden sm:inline">Lọc nhanh</span>
             </button>
           </div>
         </div>
+        <div className="px-4 pb-3">
+          <a href="#lead-b2b-mobile" className="block rounded-2xl bg-gradient-to-r from-slate-950 to-slate-800 p-4 text-white">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-orange-200">Lead nhanh cho EPC</p>
+            <p className="mt-1 text-base font-black">Nhận báo giá sỉ, kiểm tra tồn kho, xin BOM</p>
+            <p className="mt-1 text-xs leading-relaxed text-slate-300">{heroLead}</p>
+          </a>
+        </div>
       </header>
+
+      <section id="lead-b2b-mobile" className="mx-4 mt-4 rounded-3xl border border-orange-100 bg-white p-4 shadow-sm">
+        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-orange-600">{isB2C ? 'Khách mua lẻ' : 'EPC / nhà thầu'}</p>
+        <h3 className="mt-2 text-lg font-black text-gray-900">
+          {isB2C ? 'Nhận tư vấn cấu hình cho nhà mình' : 'Nhận báo giá sỉ, BOM, CO/CQ'}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-gray-600">
+          {isB2C
+            ? 'Gửi diện tích mái, hóa đơn điện hoặc nhu cầu dùng ban ngày/ban đêm, EPCVINA sẽ gợi ý cấu hình phù hợp.'
+            : 'Gửi model hoặc số lượng cần mua, EPCVINA sẽ phản hồi theo dự án và tình trạng tồn kho.'}
+        </p>
+        <div className="mt-4 grid grid-cols-2 gap-2">
+          <a href="tel:0988446113" className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-orange-500 px-3 py-2 text-sm font-bold text-white">
+            {isB2C ? 'Gọi tư vấn' : 'Gọi ngay'}
+          </a>
+          <a href="https://zalo.me/0368927332" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-blue-600 px-3 py-2 text-sm font-bold text-white">
+            {isB2C ? 'Zalo tư vấn' : 'Zalo EPC'}
+          </a>
+        </div>
+      </section>
 
       {/* ===== PC: Header + Filter Bar ===== */}
       <header className="hidden md:block sticky top-0 z-30 bg-white border-b border-gray-200 shadow-sm">
