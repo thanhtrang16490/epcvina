@@ -66,7 +66,7 @@ const faqSchema = buildFaqSchema([
     </section>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-14">
-      <section class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+      <section class="hidden sm:grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div class="bg-white rounded-3xl border border-gray-100 p-6 sm:p-8 shadow-sm">
           <div class="inline-flex items-center rounded-full bg-red-50 px-4 py-1.5 text-sm font-semibold text-red-700 mb-4">
             QR truy cập nhanh
@@ -75,8 +75,8 @@ const faqSchema = buildFaqSchema([
           <p class="text-sm sm:text-base text-gray-600 max-w-2xl">
             Dùng điện thoại quét mã này để truy cập trực tiếp trang tuyển dụng thực tập sinh kỹ sư điện mặt trời, tiện cho in poster, chia sẻ nội bộ hoặc gửi cho sinh viên.
           </p>
-          <div class="mt-6 flex flex-col sm:flex-row gap-4 sm:items-center">
-            <div class="relative aspect-square w-full max-w-64 rounded-3xl border border-gray-200 bg-white p-3 shadow-sm">
+          <div class="mt-6 grid gap-4 sm:grid-cols-[280px_1fr] sm:items-center">
+            <div class="relative aspect-square w-full max-w-[280px] justify-self-center rounded-3xl border border-gray-200 bg-white p-3 shadow-sm sm:justify-self-start">
               <img
                 src={`https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=14&data=${encodeURIComponent(Astro.url.href)}`}
                 alt="QR truy cập trang tuyển dụng thực tập sinh kỹ sư điện mặt trời"
@@ -90,14 +90,14 @@ const faqSchema = buildFaqSchema([
                 </div>
               </div>
             </div>
-            <div class="space-y-3 text-sm text-gray-600">
+            <div class="space-y-3 text-sm text-gray-600 text-center sm:text-left">
               <p><strong class="text-gray-900">URL:</strong> {Astro.url.href}</p>
               <p>Phù hợp để in lên standee, poster tuyển dụng hoặc gửi qua Zalo cho ứng viên.</p>
               <a
                 href={`https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=12&data=${encodeURIComponent(Astro.url.href)}`}
                 target="_blank"
                 rel="noreferrer"
-                class="inline-flex items-center justify-center rounded-2xl border border-red-200 bg-red-50 px-4 py-2.5 font-semibold text-red-700 transition hover:bg-red-100"
+                class="inline-flex items-center justify-center rounded-2xl border border-red-200 bg-red-50 px-4 py-2.5 font-semibold text-red-700 transition hover:bg-red-100 sm:self-start"
               >
                 Mở QR kích thước lớn
               </a>
