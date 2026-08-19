@@ -93,14 +93,13 @@ const faqSchema = buildFaqSchema([
             <div class="space-y-3 text-sm text-gray-600 text-center sm:text-left">
               <p><strong class="text-gray-900">URL:</strong> {Astro.url.href}</p>
               <p>Phù hợp để in lên standee, poster tuyển dụng hoặc gửi qua Zalo cho ứng viên.</p>
-              <a
-                href={`https://api.qrserver.com/v1/create-qr-code/?size=280x280&margin=12&data=${encodeURIComponent(Astro.url.href)}`}
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
+                data-qr-modal-open
                 class="inline-flex items-center justify-center rounded-2xl border border-red-200 bg-red-50 px-4 py-2.5 font-semibold text-red-700 transition hover:bg-red-100 sm:self-start"
               >
                 Mở QR kích thước lớn
-              </a>
+              </button>
               <p class="text-xs text-gray-400">Logo giữa QR giúp nhận diện thương hiệu, vẫn giữ nền trắng quanh logo để dễ quét hơn.</p>
             </div>
           </div>
@@ -226,5 +225,82 @@ const faqSchema = buildFaqSchema([
         </div>
       </section>
     </div>
+
+    <div data-qr-modal class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 px-4 py-6">
+      <div class="relative w-full max-w-2xl overflow-hidden rounded-3xl bg-white shadow-2xl">
+        <div class="flex items-center justify-between border-b border-gray-100 px-5 py-4">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-red-600">QR truy cập nhanh</p>
+            <h3 class="text-lg font-bold text-gray-900">Quét để mở trang tuyển dụng</h3>
+          </div>
+          <button type="button" data-qr-modal-close class="rounded-full p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700" aria-label="Đóng modal">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="grid gap-6 p-5 sm:grid-cols-[320px_1fr] sm:p-6">
+          <div class="mx-auto w-full max-w-[320px]">
+            <div class="relative aspect-square rounded-3xl border border-gray-200 bg-white p-4 shadow-sm">
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=16&data=${encodeURIComponent(Astro.url.href)}`}
+                alt="QR truy cập trang tuyển dụng thực tập sinh kỹ sư điện mặt trời"
+                width="420"
+                height="420"
+                class="h-full w-full rounded-2xl"
+              />
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="rounded-2xl border border-gray-200 bg-white p-2 shadow-lg">
+                  <img src="/logo-favicon.svg" alt="EPCVINA Solar" class="h-12 w-12 rounded-xl object-contain" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-3 text-sm text-gray-600">
+            <p class="text-base font-semibold text-gray-900">Dùng cho in poster, standee hoặc gửi nhanh trong nhóm lớp.</p>
+            <p class="break-all"><strong class="text-gray-900">URL:</strong> {Astro.url.href}</p>
+            <p>Quét mã này sẽ mở đúng landing page tuyển dụng thực tập sinh kỹ sư điện mặt trời.</p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a
+                href={`https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=16&data=${encodeURIComponent(Astro.url.href)}`}
+                target="_blank"
+                rel="noreferrer"
+                class="inline-flex items-center justify-center rounded-2xl bg-red-600 px-4 py-2.5 font-semibold text-white transition hover:bg-red-700"
+              >
+                Mở ảnh QR
+              </a>
+              <button type="button" data-qr-modal-close class="inline-flex items-center justify-center rounded-2xl border border-gray-200 bg-white px-4 py-2.5 font-semibold text-gray-700 transition hover:bg-gray-50">
+                Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </DashboardShell>
 </DashboardLayout>
+
+<script>
+  const modal = document.querySelector('[data-qr-modal]');
+  const openButtons = document.querySelectorAll('[data-qr-modal-open]');
+  const closeButtons = document.querySelectorAll('[data-qr-modal-close]');
+
+  const openModal = () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+    document.body.style.overflow = '';
+  };
+
+  openButtons.forEach((button) => button.addEventListener('click', openModal));
+  closeButtons.forEach((button) => button.addEventListener('click', closeModal));
+  modal?.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeModal();
+  });
+</script>
