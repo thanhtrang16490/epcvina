@@ -31,6 +31,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID;
 const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '1716110676297295';
 const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-18369898149';
 const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID || 'G-2VLQ1GQBQL';
+const googleTagId = googleAnalyticsId || googleAdsId;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage || defaultOgImage, Astro.site);
@@ -209,16 +210,22 @@ const structuredData = buildLocalBusinessSchema({
     </script>
 
     <!-- Google tag (Google Analytics + Google Ads) -->
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`}></script>
-    <script is:inline>
+    <script is:inline define:vars={{ googleTagId, googleAnalyticsId, googleAdsId }}>
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
-      if (window.epcvinaAnalyticsEnabled) {
-        window.gtag('js', new Date());
-        window.gtag('config', googleAnalyticsId);
-        window.gtag('config', googleAdsId);
-      }
+      window.epcvinaGtagDebug = window.location.search.includes('gtag_debug=1');
+      window.epcvinaGtagLog = window.epcvinaGtagLog || function () {
+        if (!window.epcvinaGtagDebug) return;
+        try {
+          console.log.apply(console, ['[gtag]'].concat([].slice.call(arguments)));
+        } catch (_) {}
+      };
+      window.epcvinaGtagLog('boot', { googleTagId, googleAnalyticsId, googleAdsId });
+      window.gtag('js', new Date());
+      window.gtag('config', googleAnalyticsId, { send_page_view: true, debug_mode: window.epcvinaGtagDebug });
+      window.gtag('config', googleAdsId, { send_page_view: true, debug_mode: window.epcvinaGtagDebug });
     </script>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}></script>
 
     <script is:inline>
       window.epcConversionLabels = window.epcConversionLabels || {
@@ -227,7 +234,7 @@ const structuredData = buildLocalBusinessSchema({
         zalo_click: 'epcvina_zalo_click',
       };
       window.epcTrackConversion = window.epcTrackConversion || function(eventName, params) {
-        if (!window.epcvinaAnalyticsEnabled || !window.gtag) return;
+        if (!window.gtag) return;
         var defaultLabel = window.epcConversionLabels[eventName] || eventName;
         window.gtag('event', eventName, Object.assign({
           event_category: 'conversion',
@@ -271,7 +278,7 @@ const structuredData = buildLocalBusinessSchema({
 
         if (!opensNewContext) event.preventDefault();
 
-        if (!window.epcvinaAnalyticsEnabled || !window.gtag) {
+        if (!window.gtag) {
           continueNavigation();
           return;
         }
