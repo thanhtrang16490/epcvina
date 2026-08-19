@@ -7,16 +7,24 @@ import { buildFaqSchema } from '../lib/schema';
 
 const faqSchema = buildFaqSchema([
   {
-    q: 'Thực tập sinh kỹ sư điện mặt trời sẽ làm gì?',
-    a: 'Bạn sẽ được học cách khảo sát hiện trường, đọc bản vẽ cơ bản, hỗ trợ thiết kế hệ thống điện mặt trời và tham gia cùng đội ngũ kỹ sư trong các dự án thực tế.',
+    q: 'Em sẽ được làm gì khi thực tập?',
+    a: 'Em sẽ được học khảo sát hiện trường, đọc bản vẽ cơ bản, hỗ trợ thiết kế hệ thống điện mặt trời và đi cùng kỹ sư trong các dự án thực tế.',
   },
   {
-    q: 'Sinh viên năm mấy có thể đăng ký?',
-    a: 'Chúng tôi ưu tiên sinh viên năm 3, năm 4 hoặc mới tốt nghiệp các ngành Điện, Điện - Điện tử, Năng lượng tái tạo, Cơ điện và ngành liên quan.',
+    q: 'Sinh viên nào có thể đăng ký?',
+    a: 'Ưu tiên sinh viên năm 3, năm 4 hoặc mới tốt nghiệp các ngành Điện, Điện - Điện tử, Năng lượng tái tạo, Cơ điện và ngành liên quan.',
   },
   {
-    q: 'Nộp thông tin bằng cách nào?',
-    a: 'Bạn có thể điền form trên trang này để gửi lead trực tiếp hoặc liên hệ qua các kênh hỗ trợ của EPCVINA Solar.',
+    q: 'Thực tập có hỗ trợ chi phí không?',
+    a: 'Có. Ứng viên phù hợp sẽ được hỗ trợ chi phí thực tập theo thời gian tham gia và mức độ phù hợp với vị trí.',
+  },
+  {
+    q: 'Nộp thông tin thế nào?',
+    a: 'Chỉ cần điền form trên trang này, thông tin sẽ được gửi trực tiếp cho nhân sự và sẽ có người liên hệ lại sớm.',
+  },
+  {
+    q: 'QR trên trang để làm gì?',
+    a: 'QR giúp mở nhanh đúng trang tuyển dụng này, rất tiện để in poster, dán standee hoặc gửi cho bạn bè, nhóm lớp.',
   },
 ]);
 ---
@@ -172,20 +180,47 @@ const faqSchema = buildFaqSchema([
         <div class="max-w-3xl mx-auto space-y-3">
           <details class="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
             <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900">
-              Em chưa có kinh nghiệm có đăng ký được không?
+              Em sẽ được làm gì khi thực tập?
               <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <div class="px-5 pb-4 text-sm text-gray-600">
-              Được. Trang này dành cho sinh viên và ứng viên mới bắt đầu, ưu tiên tinh thần học hỏi và mong muốn theo nghề.
+              Em sẽ được học khảo sát hiện trường, đọc bản vẽ cơ bản, hỗ trợ thiết kế hệ thống điện mặt trời và đi cùng kỹ sư trong các dự án thực tế.
             </div>
           </details>
           <details class="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
             <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900">
-              Lead được gửi như thế nào?
+              Sinh viên nào có thể đăng ký?
               <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <div class="px-5 pb-4 text-sm text-gray-600">
-              Khi bấm gửi, thông tin sẽ được đẩy vào hệ thống lead của EPCVINA Solar. Nếu xảy ra lỗi kết nối, hệ thống sẽ mở Zalo với nội dung ứng tuyển đã điền.
+              Ưu tiên sinh viên năm 3, năm 4 hoặc mới tốt nghiệp các ngành Điện, Điện - Điện tử, Năng lượng tái tạo, Cơ điện và ngành liên quan.
+            </div>
+          </details>
+          <details class="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900">
+              Thực tập có hỗ trợ chi phí không?
+              <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-sm text-gray-600">
+              Có. Ứng viên phù hợp sẽ được hỗ trợ chi phí thực tập theo thời gian tham gia và mức độ phù hợp với vị trí.
+            </div>
+          </details>
+          <details class="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900">
+              Nộp thông tin thế nào?
+              <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-sm text-gray-600">
+              Chỉ cần điền form trên trang này, thông tin sẽ được gửi trực tiếp cho nhân sự và sẽ có người liên hệ lại sớm.
+            </div>
+          </details>
+          <details class="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 font-semibold text-gray-900">
+              QR trên trang để làm gì?
+              <svg class="h-5 w-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 text-sm text-gray-600">
+              QR giúp mở nhanh đúng trang tuyển dụng này, rất tiện để in poster, dán standee hoặc gửi cho bạn bè, nhóm lớp.
             </div>
           </details>
         </div>
