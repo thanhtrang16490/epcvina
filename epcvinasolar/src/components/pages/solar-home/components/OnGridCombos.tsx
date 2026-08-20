@@ -57,8 +57,8 @@ export function OnGridComboCard({ combo }: { combo: OnGridCombo }) {
       </div>
 
       {/* Product image */}
-      <div className="relative mx-4 mt-3 rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
-        <img src="/sample-combo.jpg" alt={combo.name} width={640} height={360} className="w-full h-full object-cover" loading="lazy" />
+      <div className="relative mx-4 mt-3 aspect-square rounded-xl overflow-hidden">
+        <img src="/sample-combo.jpg" alt={combo.name} width={640} height={640} className="w-full h-full object-cover" loading="lazy" />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(15,23,42,0.55) 0%, transparent 55%)' }} />
         <p className="absolute bottom-2.5 left-3 text-white text-xs font-semibold drop-shadow">{combo.name}</p>
       </div>

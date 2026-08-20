@@ -139,7 +139,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
       <div 
-        className="bg-white rounded-2xl shadow-2xl w-full max-h-[90vh] overflow-hidden lg:w-[80vw] lg:max-w-6xl lg:aspect-[2/1] relative" 
+        className="bg-white rounded-2xl shadow-2xl w-full max-h-[90vh] overflow-hidden lg:w-[80vw] lg:max-w-6xl lg:aspect-[5/4] relative" 
         onClick={e => e.stopPropagation()}
       >
         {/* Close Button - Inside modal, top right */}
@@ -154,7 +154,7 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
           {/* Left: Image Section (Desktop only) - 50% width */}
           <div className="hidden md:flex md:w-1/2 bg-gradient-to-br from-gray-100 to-gray-200 relative">
             <div className="absolute inset-0 flex items-center justify-center p-8">
-              <div className="w-full h-full bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
+              <div className="w-full max-w-[560px] aspect-square bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden">
                 <img 
                   src="/sample-combo.jpg"
                   alt={combo.name}
