@@ -244,28 +244,6 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
               </div>
             </div>
 
-            {/* Technical Specs Table */}
-            <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <Lightning className="h-6 w-6 text-gray-600" />
-                Thông số kỹ thuật
-              </h2>
-              <div className="overflow-hidden rounded-xl border border-gray-200">
-                <table className="w-full text-sm">
-                  <tbody>
-                    <SpecRow label="Hệ thống" value={systemLabel} />
-                    <SpecRow label="Pha" value={phaseLabel} />
-                    {data.voltage && <SpecRow label="Điện áp" value={data.voltage === 'high' ? 'Áp cao (HV)' : 'Áp thấp (LV)'} />}
-                    <SpecRow label="Công suất" value={`${data.power_kw} kWp`} highlight />
-                    {data.battery_kwh && <SpecRow label="Pin lưu trữ" value={`${data.battery_kwh} kWh`} highlight />}
-                    <SpecRow label="Sản lượng/tháng" value={`${data.production_min_kwh} – ${data.production_max_kwh} kWh`} />
-                    <SpecRow label="Diện tích mái yêu cầu" value={`~${area} m²`} />
-                    <SpecRow label="Số lượng tấm pin" value={`${panelCount} tấm (Aiko ~580Wp)`} />
-                    <SpecRow label="Biến tần" value={`SAJ ${data.power_kw} kW`} />
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Financial & CTA */}

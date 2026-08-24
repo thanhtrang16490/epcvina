@@ -361,107 +361,64 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
             </div>
           </div>
 
-          {/* Section 3: Product Description (MOVED DOWN) */}
           <div className="border-t border-orange-100 pt-10">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Mô tả sản phẩm</h3>
-            <div className="space-y-4 mb-8">
-              {product.description && (
-                <div className="text-justify leading-relaxed text-gray-600">
-                  {product.description.split('. ').map((sentence, idx) => (
-                    <p key={idx} className="mb-3 last:mb-0">
-                      {sentence}{idx < product.description.split('. ').length - 1 ? '.' : ''}
-                    </p>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Section 4: Key Specs Highlight (Thông số chính) */}
-          <div className="border-t border-orange-100 pt-10">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
-              <div ref={attributesRef} className="min-w-0 flex-1">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Thông số chính</h3>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {keySpecs.power && (
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
-                      <div className="text-3xl font-bold text-orange-600 mb-2">{keySpecs.power}</div>
-                      <div className="text-sm text-gray-600">Công suất tấm pin</div>
-                    </div>
-                  )}
-                  {keySpecs.efficiency && (
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
-                      <div className="text-3xl font-bold text-orange-600 mb-2">{keySpecs.efficiency}</div>
-                      <div className="text-sm text-gray-600">Hiệu suất</div>
-                    </div>
-                  )}
-                  {keySpecs.cellType && (
-                    <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center cursor-pointer hover:shadow-md transition-shadow">
-                      <div className="text-2xl font-bold text-orange-600 mb-2">{keySpecs.cellType}</div>
-                      <div className="text-sm text-gray-600">Loại cell</div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div ref={consultColumnRef} className="hidden lg:block lg:w-[392px] lg:shrink-0 lg:relative">
-                <aside
-                  ref={consultCardRef}
-                  className={`box-border w-full rounded-[18px] border border-gray-200 bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.03)] ${
-                    isConsultSticky ? 'lg:sticky' : 'lg:relative'
-                  }`}
-                  style={
-                    consultAbsoluteTop != null
-                      ? { top: `${consultAbsoluteTop}px`, width: '392px', position: 'absolute' }
-                      : isConsultSticky
-                        ? { top: '88px', width: '392px' }
-                        : { width: '392px' }
-                  }
-                >
-                  <div className="pb-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="text-[18px] font-semibold text-gray-900">Tư vấn nhanh</h3>
-                      <span className="text-2xl leading-none text-gray-400">›</span>
-                    </div>
-                    <p className="mt-4 text-[13px] leading-6 text-gray-700">
-                      EPCVINA hỗ trợ báo giá, hồ sơ kỹ thuật và gợi ý cấu hình cho dự án, đại lý hoặc khách mua lẻ.
-                    </p>
+            <div ref={consultColumnRef} className="hidden lg:block lg:w-[392px] lg:shrink-0 lg:relative lg:ml-auto">
+              <aside
+                ref={consultCardRef}
+                className={`box-border w-full rounded-[18px] border border-gray-200 bg-white p-5 shadow-[0_1px_0_rgba(0,0,0,0.03)] ${
+                  isConsultSticky ? 'lg:sticky' : 'lg:relative'
+                }`}
+                style={
+                  consultAbsoluteTop != null
+                    ? { top: `${consultAbsoluteTop}px`, width: '392px', position: 'absolute' }
+                    : isConsultSticky
+                      ? { top: '88px', width: '392px' }
+                      : { width: '392px' }
+                }
+              >
+                <div className="pb-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <h3 className="text-[18px] font-semibold text-gray-900">Tư vấn nhanh</h3>
+                    <span className="text-2xl leading-none text-gray-400">›</span>
                   </div>
+                  <p className="mt-4 text-[13px] leading-6 text-gray-700">
+                    EPCVINA hỗ trợ báo giá, hồ sơ kỹ thuật và gợi ý cấu hình cho dự án, đại lý hoặc khách mua lẻ.
+                  </p>
+                </div>
 
-                  <div className="border-t border-gray-200 pt-4">
-                    <h4 className="text-[17px] font-semibold text-gray-900">Lợi ích khi gửi yêu cầu</h4>
-                    <div className="mt-4 space-y-4">
-                      <div className="flex items-start gap-2">
-                        <CheckCircle className="mt-0.5 h-5 w-5 text-green-600" weight="fill" />
-                        <div>
-                          <p className="text-[14px] font-semibold text-gray-900">Báo giá nhanh</p>
-                          <p className="mt-1 text-[13px] leading-6 text-gray-600">
-                            Nhận báo giá phù hợp theo số lượng, công suất và nhu cầu triển khai.
-                          </p>
-                        </div>
+                <div className="border-t border-gray-200 pt-4">
+                  <h4 className="text-[17px] font-semibold text-gray-900">Lợi ích khi gửi yêu cầu</h4>
+                  <div className="mt-4 space-y-4">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="mt-0.5 h-5 w-5 text-green-600" weight="fill" />
+                      <div>
+                        <p className="text-[14px] font-semibold text-gray-900">Báo giá nhanh</p>
+                        <p className="mt-1 text-[13px] leading-6 text-gray-600">
+                          Nhận báo giá phù hợp theo số lượng, công suất và nhu cầu triển khai.
+                        </p>
                       </div>
-                      <div className="flex items-start gap-2">
-                        <CheckCircle className="mt-0.5 h-5 w-5 text-green-600" weight="fill" />
-                        <div>
-                          <p className="text-[14px] font-semibold text-gray-900">Tài liệu đầy đủ</p>
-                          <p className="mt-1 text-[13px] leading-6 text-gray-600">
-                            Cung cấp catalogue, datasheet và hướng dẫn lắp đặt khi cần.
-                          </p>
-                        </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle className="mt-0.5 h-5 w-5 text-green-600" weight="fill" />
+                      <div>
+                        <p className="text-[14px] font-semibold text-gray-900">Tài liệu đầy đủ</p>
+                        <p className="mt-1 text-[13px] leading-6 text-gray-600">
+                          Cung cấp catalogue, datasheet và hướng dẫn lắp đặt khi cần.
+                        </p>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <div className="border-t border-gray-200 pt-4 mt-4">
-                    <a href="#consult" className="inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] bg-[#e55b06] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_10px_18px_rgba(229,91,6,0.18)]">
-                      Gửi yêu cầu
-                    </a>
-                    <a href="https://zalo.me/0368927332" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[15px] font-semibold text-gray-900">
-                      Chat ngay
-                    </a>
-                  </div>
-                </aside>
-              </div>
+                <div className="border-t border-gray-200 pt-4 mt-4">
+                  <a href="#consult" className="inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] bg-[#e55b06] px-5 py-3 text-[15px] font-semibold text-white shadow-[0_10px_18px_rgba(229,91,6,0.18)]">
+                    Gửi yêu cầu
+                  </a>
+                  <a href="https://zalo.me/0368927332" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-[56px] w-full items-center justify-center rounded-[999px] border border-gray-400 bg-white px-5 py-3 text-[15px] font-semibold text-gray-900">
+                    Chat ngay
+                  </a>
+                </div>
+              </aside>
             </div>
           </div>
 
