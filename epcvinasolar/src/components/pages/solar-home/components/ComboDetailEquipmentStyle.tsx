@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRight, BatteryHigh, CheckCircle, Lightning, Phone, Shield, Sun, TrendUp } from '@phosphor-icons/react';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import ComboDetailMediaGallery, { type ComboMediaItem } from './ComboDetailMediaGallery';
+import { submitCrmLead } from '../../../../lib/crm-leads';
 
 interface ComboData {
   data: {
@@ -86,6 +87,10 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
   const { data, body } = combo;
   const equipmentStripRef = useRef<HTMLDivElement>(null);
   const [equipmentActiveIndex, setEquipmentActiveIndex] = useState(0);
+  const [leadPhone, setLeadPhone] = useState('');
+  const [leadSubmitting, setLeadSubmitting] = useState(false);
+  const [leadError, setLeadError] = useState('');
+  const [leadSubmitted, setLeadSubmitted] = useState(false);
   const isHybrid = data.system_type === 'hybrid';
   const systemLabel = isHybrid ? 'Hybrid' : 'On-Grid';
   const phaseLabel = data.phase === '1-phase' ? '1 pha' : '3 pha';
@@ -103,36 +108,50 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
       {
         icon: <Sun className="h-5 w-5 text-amber-500" />,
         title: `${panelModel} tấm pin`,
+        image: '/images/combo/source-panel.webp',
+        imagePosition: 'left top',
         specs: [['Bảo hành', '12 năm'], ['Nhóm vật tư', 'Tấm pin mặt trời'], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Lightning className="h-5 w-5 text-[#f60]" />,
         title: 'Biến tần',
+        image: '/images/combo/source-inverter.avif',
+        imagePosition: 'center top',
         specs: [['Bảo hành', '5 năm'], ['Nhóm vật tư', `${inverterModel} biến tần`], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Shield className="h-5 w-5 text-gray-700" />,
         title: 'Hệ khung nhôm',
+        image: '/images/combo/source-rail.webp',
+        imagePosition: 'right top',
         specs: [['Bảo hành', '5 năm'], ['Nhóm vật tư', 'Hệ khung nhôm'], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Lightning className="h-5 w-5 text-[#f60]" />,
         title: 'Hệ dây điện',
+        image: '/images/combo/source-wiring.avif',
+        imagePosition: 'left center',
         specs: [['Bảo hành', '5 năm'], ['Nhóm vật tư', 'Hệ dây điện'], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Shield className="h-5 w-5 text-gray-700" />,
         title: 'Tủ điện',
+        image: '/images/combo/source-cabinet.webp',
+        imagePosition: 'center center',
         specs: [['Bảo hành', '2 năm'], ['Nhóm vật tư', 'Tủ điện'], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Shield className="h-5 w-5 text-gray-700" />,
         title: 'Hệ tiếp địa',
+        image: '/images/combo/source-grounding.avif',
+        imagePosition: 'right center',
         specs: [['Bảo hành', '2 năm'], ['Nhóm vật tư', 'Hệ tiếp địa'], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Phone className="h-5 w-5 text-emerald-600" />,
         title: 'Vận chuyển + lắp đặt',
+        image: '/images/combo/source-install.webp',
+        imagePosition: 'center bottom',
         specs: [['Bảo hành', '--'], ['Nhóm vật tư', 'Vận chuyển + lắp đặt'], ['Trạng thái', 'Áp dụng theo công trình']] as Array<[string, string]>,
       },
     ],
@@ -214,17 +233,62 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
     },
     {
       type: 'image',
-      src: '/hero-bg-1920.webp',
+      src: '/images/combo/source-video-thumb.webp',
     },
     {
       type: 'image',
-      src: '/hero-bg-768.webp',
+      src: '/images/combo/source-panel.webp',
     },
     {
       type: 'image',
-      src: '/hero-bg-mobile.webp',
+      src: '/images/combo/source-inverter.webp',
+    },
+    {
+      type: 'image',
+      src: '/images/combo/source-rail.webp',
+    },
+    {
+      type: 'image',
+      src: '/images/combo/source-wiring.webp',
+    },
+    {
+      type: 'image',
+      src: '/images/combo/source-cabinet.webp',
+    },
+    {
+      type: 'image',
+      src: '/images/combo/source-grounding.webp',
+    },
+    {
+      type: 'image',
+      src: '/images/combo/source-install.webp',
     },
   ];
+
+  const handleLeadSubmit = async () => {
+    const value = leadPhone.trim();
+    if (!value) {
+      setLeadError('Vui lòng nhập số điện thoại.');
+      return;
+    }
+
+    setLeadSubmitting(true);
+    setLeadError('');
+    try {
+      await submitCrmLead({
+        phone: value,
+        source_form: 'combo_detail_green_cta',
+        message: `Khách để lại số điện thoại từ block Nhận tư vấn của combo: ${data.title}.`,
+      });
+      setLeadSubmitted(true);
+      setLeadPhone('');
+      window.setTimeout(() => setLeadSubmitted(false), 5000);
+    } catch (error) {
+      setLeadError(error instanceof Error ? error.message : 'Không gửi được thông tin.');
+    } finally {
+      setLeadSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white text-gray-900" style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}>
@@ -401,17 +465,54 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
             </div>
 
             <div className="rounded-[18px] bg-gradient-to-br from-emerald-600 to-teal-600 p-6 text-white shadow-lg">
-              <h3 className="mb-2 text-lg font-bold">Cần tư vấn?</h3>
-              <p className="mb-4 text-sm text-emerald-100">
-                Liên hệ với chúng tôi để được khảo sát miễn phí và nhận báo giá chi tiết.
-              </p>
-              <a href="/calculator" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-emerald-600 transition hover:bg-emerald-50">
-                <Phone className="h-5 w-5" />
-                Liên hệ ngay
-              </a>
-              <p className="mt-3 text-center text-xs text-emerald-200">
-                Hotline: <a href="tel:0988446113" className="underline hover:text-white">0988 446 113</a>
-              </p>
+              {leadSubmitted ? (
+                <div className="py-2 text-center">
+                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white ring-1 ring-white/20">
+                    <CheckCircle className="h-7 w-7" weight="fill" />
+                  </div>
+                  <h3 className="mt-3 text-lg font-bold">Cảm ơn bạn</h3>
+                  <p className="mt-1 text-sm text-emerald-100">
+                    EPCVINA sẽ liên hệ sớm để tư vấn giải pháp phù hợp.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <h3 className="mb-2 text-lg font-bold">Để lại số, chúng tôi sẽ liên hệ lại</h3>
+                  <p className="mb-4 text-sm text-emerald-100">
+                    Chỉ cần nhập số điện thoại, đội ngũ EPCVINA sẽ gọi lại để tư vấn giải pháp phù hợp cho công trình của bạn.
+                  </p>
+                  <div className="space-y-3">
+                    <label className="block">
+                      <span className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-100/90">
+                        Số điện thoại
+                      </span>
+                      <div className="flex items-stretch gap-2 rounded-2xl border border-white/20 bg-white p-1">
+                        <input
+                          type="tel"
+                          inputMode="tel"
+                          autoComplete="tel"
+                          value={leadPhone}
+                          onChange={(event) => setLeadPhone(event.target.value)}
+                          placeholder="VD: 0988 446 113"
+                          className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm text-slate-900 outline-none placeholder:text-slate-400"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleLeadSubmit}
+                          disabled={leadSubmitting}
+                          className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-70"
+                        >
+                          {leadSubmitting ? 'ĐANG GỬI...' : 'Gửi'}
+                        </button>
+                      </div>
+                    </label>
+                    {leadError && <p className="text-sm text-amber-100">{leadError}</p>}
+                  </div>
+                  <p className="mt-3 text-center text-xs text-emerald-200">
+                    Hotline: <a href="tel:0988446113" className="underline hover:text-white">0988 446 113</a>
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -441,7 +542,14 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
               className="flex gap-4 overflow-x-auto scroll-smooth pb-2 pr-12 pl-12 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             >
               {loopedEquipmentCards.map((item, index) => (
-                <EquipmentCard key={`${item.title}-${index}`} icon={item.icon} title={item.title} specs={item.specs} />
+                <EquipmentCard
+                  key={`${item.title}-${index}`}
+                  icon={item.icon}
+                  title={item.title}
+                  image={item.image}
+                  imagePosition={item.imagePosition}
+                  specs={item.specs}
+                />
               ))}
             </div>
             <div className="mt-4 flex items-center justify-center gap-2">
@@ -481,43 +589,75 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
           </div>
         </section>
 
-        <section className="mt-8 rounded-[18px] border border-gray-200 bg-white p-6">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-500">FAQ</p>
-          <h2 className="mt-2 text-[28px] font-semibold text-gray-900">Câu hỏi thường gặp</h2>
-          <div className="mt-5 space-y-3">
-            {[
-              {
-                question: 'Cần bao nhiêu m² mái?',
-                answer: 'Diện tích mái sẽ được tính theo công suất combo và điều kiện lắp đặt thực tế. Kỹ sư EPCVINA sẽ kiểm tra để xác nhận phương án phù hợp nhất.',
-              },
-              {
-                question: 'Bao lâu hoàn vốn?',
-                answer: 'Thời gian hoàn vốn phụ thuộc mức tiêu thụ điện, biểu giá điện và vị trí lắp đặt. Thông thường EPCVINA sẽ tư vấn con số ước tính ngay khi báo giá.',
-              },
-              {
-                question: 'Có cần xin phép không?',
-                answer: 'Tùy quy mô công trình và yêu cầu địa phương. EPCVINA sẽ hỗ trợ đánh giá hồ sơ cần thiết trước khi thi công để tránh phát sinh thủ tục.',
-              },
-              {
-                question: 'Bảo hành gồm những gì?',
-                answer: 'Bảo hành bao gồm thiết bị chính, hệ khung, tủ điện và các hạng mục liên quan theo từng cấu hình combo. Chi tiết sẽ được xác nhận trong báo giá.',
-              },
-              {
-                question: 'Khi nào kỹ sư khảo sát?',
-                answer: 'Sau khi tiếp nhận yêu cầu, EPCVINA sẽ liên hệ sớm để đặt lịch khảo sát mái và tư vấn phương án trong thời gian thuận tiện nhất cho khách hàng.',
-              },
-            ].map((item) => (
-              <details key={item.question} className="group rounded-[16px] border border-gray-200 bg-[#fafafa] px-5 py-4 open:bg-white open:shadow-[0_1px_0_rgba(0,0,0,0.03)]">
-                <summary className="cursor-pointer list-none text-[16px] font-semibold text-gray-900">
-                  <span className="flex items-center justify-between gap-4">
-                    <span>{item.question}</span>
-                    <span className="text-[20px] leading-none text-gray-400 transition group-open:rotate-45">+</span>
-                  </span>
-                </summary>
-                <p className="mt-3 text-[14px] leading-7 text-gray-600">{item.answer}</p>
-              </details>
-            ))}
+        <section className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+          <div className="rounded-[18px] border border-gray-200 bg-white p-6">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-500">FAQ</p>
+            <h2 className="mt-2 text-[28px] font-semibold text-gray-900">Câu hỏi thường gặp</h2>
+            <div className="mt-5 space-y-3">
+              {[
+                {
+                  question: 'Cần bao nhiêu m² mái?',
+                  answer: 'Diện tích mái sẽ được tính theo công suất combo và điều kiện lắp đặt thực tế. Kỹ sư EPCVINA sẽ kiểm tra để xác nhận phương án phù hợp nhất.',
+                },
+                {
+                  question: 'Bao lâu hoàn vốn?',
+                  answer: 'Thời gian hoàn vốn phụ thuộc mức tiêu thụ điện, biểu giá điện và vị trí lắp đặt. Thông thường EPCVINA sẽ tư vấn con số ước tính ngay khi báo giá.',
+                },
+                {
+                  question: 'Có cần xin phép không?',
+                  answer: 'Tùy quy mô công trình và yêu cầu địa phương. EPCVINA sẽ hỗ trợ đánh giá hồ sơ cần thiết trước khi thi công để tránh phát sinh thủ tục.',
+                },
+                {
+                  question: 'Bảo hành gồm những gì?',
+                  answer: 'Bảo hành bao gồm thiết bị chính, hệ khung, tủ điện và các hạng mục liên quan theo từng cấu hình combo. Chi tiết sẽ được xác nhận trong báo giá.',
+                },
+                {
+                  question: 'Khi nào kỹ sư khảo sát?',
+                  answer: 'Sau khi tiếp nhận yêu cầu, EPCVINA sẽ liên hệ sớm để đặt lịch khảo sát mái và tư vấn phương án trong thời gian thuận tiện nhất cho khách hàng.',
+                },
+              ].map((item) => (
+                <details key={item.question} className="group rounded-[16px] border border-gray-200 bg-[#fafafa] px-5 py-4 open:bg-white open:shadow-[0_1px_0_rgba(0,0,0,0.03)]">
+                  <summary className="cursor-pointer list-none text-[16px] font-semibold text-gray-900">
+                    <span className="flex items-center justify-between gap-4">
+                      <span>{item.question}</span>
+                      <span className="text-[20px] leading-none text-gray-400 transition group-open:rotate-45">+</span>
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-[14px] leading-7 text-gray-600">{item.answer}</p>
+                </details>
+              ))}
+            </div>
           </div>
+
+          <aside className="space-y-4">
+            <div className="rounded-[18px] border border-emerald-200 bg-gradient-to-br from-emerald-600 to-teal-600 p-6 text-white shadow-lg">
+              <h3 className="text-lg font-bold">Cần tư vấn ngay?</h3>
+              <p className="mt-2 text-sm text-emerald-100">
+                Để lại số điện thoại, EPCVINA sẽ liên hệ lại và giải đáp nhanh các thắc mắc về mái, hoàn vốn và bảo hành.
+              </p>
+              <a
+                href="tel:0988446113"
+                className="mt-4 inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-white px-4 py-3 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-50"
+              >
+                Gọi tư vấn: 0988 446 113
+              </a>
+            </div>
+
+            <div className="rounded-[18px] border border-gray-200 bg-white p-5">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-500">Cam kết</p>
+              <div className="mt-4 grid gap-3">
+                <div className="rounded-[14px] border border-gray-200 bg-[#fafafa] px-4 py-3 text-[13px] font-medium leading-6 text-gray-800">
+                  Khảo sát mái miễn phí trước khi chốt phương án.
+                </div>
+                <div className="rounded-[14px] border border-gray-200 bg-[#fafafa] px-4 py-3 text-[13px] font-medium leading-6 text-gray-800">
+                  Báo giá minh bạch, rõ vật tư và hạng mục thi công.
+                </div>
+                <div className="rounded-[14px] border border-gray-200 bg-[#fafafa] px-4 py-3 text-[13px] font-medium leading-6 text-gray-800">
+                  Phản hồi nhanh trong giờ hành chính.
+                </div>
+              </div>
+            </div>
+          </aside>
         </section>
 
       </div>
@@ -528,10 +668,14 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
 function EquipmentCard({
   icon,
   title,
+  image,
+  imagePosition,
   specs,
 }: {
   icon: ReactNode;
   title: string;
+  image: string;
+  imagePosition: string;
   specs: Array<[string, string]>;
 }) {
   return (
@@ -540,12 +684,15 @@ function EquipmentCard({
       className="group min-w-[280px] snap-start overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#0B63CE] hover:shadow-xl xl:min-w-[calc((100%-4.5rem)/4)]"
     >
       <div className="relative aspect-square overflow-hidden bg-white">
-        <div className="absolute inset-0 grid place-items-center">
-          <div className="grid h-20 w-20 place-items-center rounded-2xl bg-[#fff7f2] text-[#f60] ring-1 ring-[#ffd9c8]">
-            {icon}
-          </div>
+        <picture>
+          <source srcSet={image.endsWith('.avif') ? image : image.replace(/\.webp$/, '.avif')} type="image/avif" />
+          <source srcSet={image.endsWith('.webp') ? image : image.replace(/\.avif$/, '.webp')} type="image/webp" />
+          <img src={image} alt={title} className="h-full w-full object-cover" style={{ objectPosition: imagePosition }} loading="lazy" />
+        </picture>
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
+        <div className="absolute left-4 top-4 grid h-12 w-12 place-items-center rounded-2xl bg-white/90 text-[#f60] shadow-sm ring-1 ring-black/5 backdrop-blur">
+          {icon}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white via-white/90 to-transparent" />
       </div>
       <div className="p-4 space-y-3">
         <h3 className="text-[14px] font-semibold leading-snug text-gray-900 line-clamp-2 group-hover:text-[#0B63CE] transition-colors duration-300">

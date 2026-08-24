@@ -332,6 +332,11 @@ h3,
   to { opacity: 0; transform: translateY(60px) scale(0.95); }
 }
 
+@keyframes comboCountdown {
+  from { stroke-dashoffset: 100.53; }
+  to { stroke-dashoffset: 0; }
+}
+
 .animate-modal-backdrop-in { animation: modal-backdrop-in 0.2s ease-out both; }
 .animate-modal-backdrop-out { animation: modal-backdrop-out 0.15s ease-in both; }
 .animate-modal-panel-in { animation: modal-panel-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
