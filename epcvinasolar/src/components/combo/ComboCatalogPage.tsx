@@ -6,6 +6,7 @@ import {
   GridFour,
   GridNine,
   List,
+  DotsThreeVertical,
   MagnifyingGlass,
   Package,
   SortAscending,
@@ -55,7 +56,10 @@ export default function ComboCatalogPage() {
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('price-asc');
   const [gridColumns, setGridColumns] = useState<number>(4);
   const [productLimit, setProductLimit] = useState<number>(24);
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
+  const filterMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function fetchCombos() {
@@ -91,6 +95,20 @@ export default function ComboCatalogPage() {
     }
 
     fetchCombos();
+  }, []);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (filterMenuRef.current && !filterMenuRef.current.contains(event.target as Node)) {
+        setFilterMenuOpen(false);
+      }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setSearchOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const categoryCounts = useMemo(() => {
@@ -217,18 +235,93 @@ export default function ComboCatalogPage() {
 
       <div className="px-4 sm:px-6 lg:px-8 py-4 md:py-5">
         <section className="rounded-3xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">
-          <div className="flex items-end justify-between gap-4 mb-4">
-            <div>
+          <div className="flex items-start justify-between gap-3 mb-4 sm:items-end">
+            <div className="min-w-0">
               <p className="text-[11px] uppercase tracking-[0.18em] text-gray-400">Danh mục</p>
               <h3 className="mt-1 text-lg sm:text-xl font-bold text-gray-900">Chọn loại combo</h3>
             </div>
-            <a href="/solar-home" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B63CE] hover:text-[#084a9c]">
-              Về Solar House
-              <ArrowRight className="h-4 w-4" />
-            </a>
+            <div className="flex items-center gap-2 shrink-0">
+              <div className="relative" ref={searchRef}>
+                <button
+                  type="button"
+                  onClick={() => setSearchOpen((open) => !open)}
+                  className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white p-2.5 text-gray-700 shadow-sm hover:bg-gray-50"
+                  aria-label="Tìm combo"
+                >
+                  <MagnifyingGlass className="h-4 w-4" />
+                </button>
+                {searchOpen && (
+                  <div className="absolute right-0 top-full z-20 mt-2 w-[280px] rounded-2xl border border-gray-200 bg-white p-3 shadow-xl sm:w-[360px]">
+                    <div className="relative">
+                      <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Tìm combo..."
+                        className="w-full rounded-xl border border-gray-200 py-2.5 pl-9 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#0B63CE]"
+                      />
+                      {searchQuery && (
+                        <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                          <X className="h-4 w-4" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <a href="/solar-home" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-[#0B63CE] hover:text-[#084a9c]">
+                Về Solar House
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <div className="relative" ref={filterMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setFilterMenuOpen((open) => !open)}
+                  className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
+                >
+                  <DotsThreeVertical className="h-4 w-4" />
+                </button>
+
+                {filterMenuOpen && (
+                  <div className="absolute right-0 top-full z-20 mt-2 w-[260px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl">
+                    <div className="border-b border-gray-100 px-4 py-3">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">Hiển thị</p>
+                      <div className="mt-2 flex items-center gap-2">
+                        <button onClick={() => setGridColumns(2)} className={`p-2 rounded-lg border ${gridColumns === 2 ? 'bg-[#0B63CE] text-white border-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}><GridFour className="h-4 w-4" /></button>
+                        <button onClick={() => setGridColumns(3)} className={`p-2 rounded-lg border ${gridColumns === 3 ? 'bg-[#0B63CE] text-white border-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}><GridNine className="h-4 w-4" /></button>
+                        <button onClick={() => setGridColumns(4)} className={`p-2 rounded-lg border ${gridColumns === 4 ? 'bg-[#0B63CE] text-white border-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}><List className="h-4 w-4" /></button>
+                      </div>
+                    </div>
+
+                    <div className="px-4 py-3">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">Sắp xếp</p>
+                      <div className="mt-2 space-y-1">
+                        <button onClick={() => { setSortBy('price-asc'); setFilterMenuOpen(false); }} className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium ${sortBy === 'price-asc' ? 'bg-blue-50 text-[#0B63CE]' : 'text-gray-700 hover:bg-gray-50'}`}>
+                          Giá tăng
+                          <ArrowUp className="h-4 w-4" />
+                        </button>
+                        <button onClick={() => { setSortBy('price-desc'); setFilterMenuOpen(false); }} className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium ${sortBy === 'price-desc' ? 'bg-blue-50 text-[#0B63CE]' : 'text-gray-700 hover:bg-gray-50'}`}>
+                          Giá giảm
+                          <ArrowDown className="h-4 w-4" />
+                        </button>
+                        <button onClick={() => { setSortBy('az'); setFilterMenuOpen(false); }} className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium ${sortBy === 'az' ? 'bg-blue-50 text-[#0B63CE]' : 'text-gray-700 hover:bg-gray-50'}`}>
+                          A-Z
+                          <SortAscending className="h-4 w-4" />
+                        </button>
+                        <button onClick={() => { setSortBy('za'); setFilterMenuOpen(false); }} className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium ${sortBy === 'za' ? 'bg-blue-50 text-[#0B63CE]' : 'text-gray-700 hover:bg-gray-50'}`}>
+                          Z-A
+                          <SortDescending className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+          <div className="flex gap-3 overflow-x-auto pb-1 pr-1 snap-x snap-mandatory lg:grid lg:grid-cols-6 lg:overflow-visible lg:pb-0 lg:pr-0">
             {[
               { id: 'all', label: 'Tất cả', icon: <Package className="h-5 w-5" />, count: categoryCounts.all, bg: 'bg-orange-50', color: 'text-orange-600' },
               ...COMBO_CATEGORIES.map((cat) => ({
@@ -245,7 +338,7 @@ export default function ComboCatalogPage() {
                 <button
                   key={tile.id}
                   onClick={() => setActiveCategory(tile.id)}
-                  className={`group flex aspect-square flex-col justify-between rounded-2xl border p-3 text-left transition-all ${
+                  className={`group flex shrink-0 snap-start flex-col justify-between rounded-2xl border p-3 text-left transition-all w-[128px] sm:w-[140px] lg:w-auto lg:aspect-square lg:flex-1 ${
                     active
                       ? 'border-[#0B63CE] bg-blue-50 shadow-sm'
                       : 'border-gray-200 bg-white hover:border-[#0B63CE] hover:shadow-sm'
@@ -266,58 +359,16 @@ export default function ComboCatalogPage() {
               );
             })}
           </div>
-        </section>
 
-        <section className="mt-4 rounded-3xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">
-          <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="mt-5 border-t border-gray-100 pt-5">
             <div className="min-w-0">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-gray-400">Bộ lọc</p>
-              <h3 className="mt-1 text-lg sm:text-xl font-bold text-gray-900">{activeCategoryLabel}</h3>
-              <p className="mt-1 text-sm text-gray-500">{filteredCombos.length} combo</p>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <button onClick={() => setGridColumns(2)} className={`p-2 rounded-lg border ${gridColumns === 2 ? 'bg-[#0B63CE] text-white border-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}><GridFour className="h-4 w-4" /></button>
-              <button onClick={() => setGridColumns(3)} className={`p-2 rounded-lg border ${gridColumns === 3 ? 'bg-[#0B63CE] text-white border-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}><GridNine className="h-4 w-4" /></button>
-              <button onClick={() => setGridColumns(4)} className={`p-2 rounded-lg border ${gridColumns === 4 ? 'bg-[#0B63CE] text-white border-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}><List className="h-4 w-4" /></button>
-            </div>
-          </div>
-
-          <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-center">
-            <div className="relative flex-1" ref={searchRef}>
-              <MagnifyingGlass className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Tìm combo..."
-                className="w-full pl-9 pr-10 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#0B63CE]"
-              />
-              {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-                  <X className="h-4 w-4" />
-                </button>
-              )}
-            </div>
-
-            <div className="flex flex-wrap items-center gap-2">
-              <button onClick={() => setSortBy('az')} className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold ${sortBy === 'az' ? 'border-[#0B63CE] bg-blue-50 text-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}>
-                <SortAscending className="h-3.5 w-3.5" /> A-Z
-              </button>
-              <button onClick={() => setSortBy('za')} className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold ${sortBy === 'za' ? 'border-[#0B63CE] bg-blue-50 text-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}>
-                <SortDescending className="h-3.5 w-3.5" /> Z-A
-              </button>
-              <button onClick={() => setSortBy('price-asc')} className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold ${sortBy === 'price-asc' ? 'border-[#0B63CE] bg-blue-50 text-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}>
-                <ArrowUp className="h-3.5 w-3.5" /> Giá tăng
-              </button>
-              <button onClick={() => setSortBy('price-desc')} className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold ${sortBy === 'price-desc' ? 'border-[#0B63CE] bg-blue-50 text-[#0B63CE]' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}>
-                <ArrowDown className="h-3.5 w-3.5" /> Giá giảm
-              </button>
+              <h3 className="text-base font-bold text-gray-900 sm:text-xl">{activeCategoryLabel}</h3>
+              <p className="mt-1 text-xs text-gray-500 sm:text-sm">{filteredCombos.length} combo</p>
             </div>
           </div>
         </section>
 
-        <div className="mt-4 grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
+        <div className="mt-4">
           <section>
             <div className={`grid grid-cols-2 gap-3 ${gridColumns === 2 ? 'md:grid-cols-2' : gridColumns === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'}`}>
               {filteredCombos.map((combo) => (
@@ -325,55 +376,6 @@ export default function ComboCatalogPage() {
               ))}
             </div>
           </section>
-
-          <aside className="hidden lg:block lg:sticky lg:top-24">
-            <div className="rounded-3xl border border-gray-200 bg-white p-4 shadow-sm">
-              <div className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-blue-700">
-                <BookOpen className="h-4 w-4" />
-                Gợi ý nhanh
-              </div>
-              <h3 className="mt-2 text-xl font-bold text-gray-900">Đọc trước khi chọn combo</h3>
-              <p className="mt-2 text-sm leading-6 text-gray-600">
-                Xem thêm các bài viết nền tảng để chọn đúng cấu hình On-Grid hoặc Hybrid cho nhu cầu thực tế.
-              </p>
-
-              <div className="mt-4 space-y-3">
-                {relatedArticles.map((article) => (
-                  <a
-                    key={article.href}
-                    href={article.href}
-                    className="group block rounded-2xl border border-gray-200 bg-gray-50 p-4 transition-all hover:border-[#0B63CE] hover:bg-blue-50 hover:shadow-sm"
-                  >
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-400">Kiến thức</p>
-                    <h4 className="mt-2 text-sm font-semibold leading-snug text-gray-900 group-hover:text-[#0B63CE]">
-                      {article.title}
-                    </h4>
-                    <p className="mt-2 text-sm leading-6 text-gray-600">
-                      {article.desc}
-                    </p>
-                  </a>
-                ))}
-              </div>
-
-              <div className="mt-4 rounded-2xl bg-[#F8FAFC] p-4">
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">Tóm tắt</p>
-                <div className="mt-3 space-y-2 text-sm text-gray-700">
-                  <div className="flex items-center justify-between gap-3">
-                    <span>Combo đang xem</span>
-                    <span className="font-semibold text-gray-900">{filteredCombos.length}</span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span>Danh mục</span>
-                    <span className="font-semibold text-gray-900">{activeCategoryLabel}</span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span>Ưu tiên</span>
-                    <span className="font-semibold text-gray-900">On-Grid / Hybrid</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </aside>
         </div>
 
         <section className="mt-8 rounded-3xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm lg:hidden">
