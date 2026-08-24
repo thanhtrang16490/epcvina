@@ -6,6 +6,7 @@ import CallBoxButton from '../shared/buttons/CallBoxButton';
 import FooterSection from '../home/layout/FooterSection';
 import BackToTop from '../ui/BackToTop';
 import ErrorBoundary from '../ui/ErrorBoundary';
+import CookieConsent from './CookieConsent';
 import { ScrollContext } from './dashboardShellContext';
 
 interface DashboardLayoutProps {
@@ -96,6 +97,7 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
         
         {/* Back to Top Button */}
         {showChrome ? <BackToTop onVisibilityChange={setIsBackToTopVisible} /> : null}
+        <CookieConsent />
       </div>
     </ScrollContext.Provider>
   );

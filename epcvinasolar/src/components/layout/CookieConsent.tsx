@@ -22,20 +22,13 @@ export default function CookieConsent() {
     try {
       const storedRaw = window.localStorage.getItem(STORAGE_KEY);
       if (!storedRaw) {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: 'accepted' }));
-        setVisible(false);
+        setVisible(true);
         return;
       }
       const stored = JSON.parse(storedRaw) as Partial<ConsentRecord>;
-      if (stored?.value !== 'accepted') {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: 'accepted' }));
-      }
-      setVisible(false);
+      setVisible(stored?.value !== 'accepted');
     } catch {
-      try {
-        window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ value: 'accepted' }));
-      } catch {}
-      setVisible(false);
+      setVisible(true);
     }
 
     return () => {
@@ -47,9 +40,8 @@ export default function CookieConsent() {
 
   const saveConsent = (_value: Exclude<ConsentState, null>) => {
     try {
-      const acceptedValue = 'accepted';
       const record: ConsentRecord = {
-        value: acceptedValue,
+        value: 'accepted',
       };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
     } catch {
@@ -59,7 +51,7 @@ export default function CookieConsent() {
   };
 
   const dismissWithoutPreference = () => {
-    saveConsent('accepted');
+    saveConsent('essential');
   };
 
   const showThankYou = () => {

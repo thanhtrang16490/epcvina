@@ -205,10 +205,10 @@ function QuickQuoteSidebar({
             <div className="grid gap-3">
               <div className="rounded-[14px] border border-[#ffe3d2] bg-[#fff7f2] px-4 py-3 text-[13px] font-medium leading-6 text-gray-800">
                 Khảo sát mái miễn phí trước khi chốt phương án.
-              </section>
+              </div>
               <div className="rounded-[14px] border border-[#ffe3d2] bg-[#fff7f2] px-4 py-3 text-[13px] font-medium leading-6 text-gray-800">
                 Báo giá minh bạch, rõ vật tư và hạng mục thi công.
-              </section>
+              </div>
               <div className="rounded-[14px] border border-[#ffe3d2] bg-[#fff7f2] px-4 py-3 text-[13px] font-medium leading-6 text-gray-800">
                 Kỹ sư EPCVINA liên hệ lại để tư vấn nhanh trong giờ hành chính.
               </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Sun, Lightning, BatteryHigh, CaretDown, CaretUp, X, Sun as SunIcon, Lightning as ZapIcon, House, Calendar, Phone } from '@phosphor-icons/react';
 
 /* ─── Tab Types ────────────────────────────────────────── */
@@ -367,6 +367,96 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
   );
 }
 
+function ComboDetailPanel({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | 'hybrid' | 'hybrid-battery' }) {
+  const panelCount = Math.ceil(combo.power * 1000 / 580);
+  const inverterLabel =
+    variant === 'ongrid'
+      ? `${combo.inverter_brand} ${combo.power} kW`
+      : combo.battery
+        ? `${combo.inverter_brand} ${combo.power} kW + ${combo.battery} kWh`
+        : `${combo.inverter_brand} ${combo.power} kW`;
+
+  return (
+    <div className="grid gap-4 rounded-2xl border border-gray-200 bg-white p-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+      <div className="overflow-hidden rounded-2xl bg-gray-50">
+        <div className="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 p-4">
+          <img src="/sample-combo.jpg" alt={combo.name} className="h-full w-full object-cover rounded-xl" loading="lazy" />
+        </div>
+      </div>
+
+      <div>
+        <div className="mb-3 flex items-center gap-2">
+          <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${
+            variant === 'ongrid'
+              ? 'bg-amber-100 text-amber-700'
+              : variant === 'hybrid'
+                ? 'bg-emerald-100 text-emerald-700'
+                : 'bg-blue-100 text-blue-700'
+          }`}>
+            {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + Battery'}
+          </span>
+          {combo.is_popular && (
+            <span className="rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700">Phổ biến</span>
+          )}
+        </div>
+
+        <h4 className="text-2xl font-bold text-gray-900">{combo.name}</h4>
+        <p className="mt-2 text-sm leading-6 text-gray-600">
+          Combo này đã được thiết kế sẵn theo cấu hình thực tế, giúp khách hàng xem nhanh thành phần chính, hiệu quả đầu tư và phương án lắp đặt phù hợp.
+        </p>
+
+        <div className="mt-4 grid grid-cols-2 gap-3">
+          <div className="rounded-xl bg-gray-50 p-3">
+            <p className="text-xs text-gray-500">Công suất</p>
+            <p className="mt-1 text-lg font-bold text-gray-900">{combo.power} kWp</p>
+          </div>
+          {combo.battery && (
+            <div className="rounded-xl bg-blue-50 p-3">
+              <p className="text-xs text-gray-500">Pin lưu trữ</p>
+              <p className="mt-1 text-lg font-bold text-blue-700">{combo.battery} kWh</p>
+            </div>
+          )}
+          <div className="rounded-xl bg-emerald-50 p-3">
+            <p className="text-xs text-gray-500">Sản lượng/tháng</p>
+            <p className="mt-1 text-lg font-bold text-emerald-700">{combo.productionMin}–{combo.productionMax} kWh</p>
+          </div>
+          <div className="rounded-xl bg-amber-50 p-3">
+            <p className="text-xs text-gray-500">Diện tích</p>
+            <p className="mt-1 text-lg font-bold text-amber-700">~{Math.ceil(combo.power * 4.32)} m²</p>
+          </div>
+        </div>
+
+        <div className="mt-4 space-y-2">
+          <div className="flex items-center justify-between gap-3 rounded-xl border border-gray-200 px-4 py-3">
+            <span className="text-sm text-gray-600">Tấm pin</span>
+            <span className="font-semibold text-gray-900">{combo.panel_brand} × {panelCount} tấm</span>
+          </div>
+          <div className="flex items-center justify-between gap-3 rounded-xl border border-gray-200 px-4 py-3">
+            <span className="text-sm text-gray-600">Biến tần</span>
+            <span className="font-semibold text-gray-900">{inverterLabel}</span>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-3">
+          <a
+            href={`/goi-combo/${getComboSlug(combo)}`}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-700"
+          >
+            <Phone className="h-4 w-4" />
+            Xem chi tiết combo
+          </a>
+          <a
+            href="/calculator"
+            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-emerald-600 px-5 py-3 text-sm font-semibold text-emerald-600 transition-colors hover:bg-emerald-50"
+          >
+            Nhận tư vấn ngay
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── System Row Component ─────────────────────────────── */
 function SystemRow({ 
   title, 
@@ -396,6 +486,22 @@ function SystemRow({
 
   // Filter combos by active tab
   const filteredCombos = combos.filter(c => c.phase === activeTab);
+  const [selectedComboId, setSelectedComboId] = useState<string>(filteredCombos[0]?.id || combos[0]?.id || '');
+  const selectedCombo = filteredCombos.find((combo) => combo.id === selectedComboId) || filteredCombos[0];
+
+  useEffect(() => {
+    const currentExists = filteredCombos.some((combo) => combo.id === selectedComboId);
+    if (!currentExists && filteredCombos[0]) {
+      setSelectedComboId(filteredCombos[0].id);
+    }
+  }, [filteredCombos, selectedComboId]);
+
+  const handleTabChange = (tab: PhaseType) => {
+    setActiveTab(tab);
+    const nextCombo = combos.find((combo) => combo.phase === tab);
+    if (nextCombo) setSelectedComboId(nextCombo.id);
+    setShowAll(false);
+  };
 
   return (
     <div className="bg-white rounded-2xl border border-gray-200 p-6">
@@ -419,7 +525,7 @@ function SystemRow({
             return (
               <button
                 key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
+                onClick={() => handleTabChange(tab.key)}
                 className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-emerald-600 text-white shadow-md'
@@ -439,9 +545,17 @@ function SystemRow({
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {filteredCombos.slice(0, showAll ? filteredCombos.length : 4).map((combo) => (
-              <ComboCard key={combo.id} combo={combo} variant={variant} />
+              <div key={combo.id} onClick={() => setSelectedComboId(combo.id)} className={combo.id === selectedCombo?.id ? 'ring-2 ring-emerald-500 rounded-lg' : ''}>
+                <ComboCard combo={combo} variant={variant} />
+              </div>
             ))}
           </div>
+
+          {selectedCombo && (
+            <div className="mt-5">
+              <ComboDetailPanel combo={selectedCombo} variant={variant} />
+            </div>
+          )}
 
           {filteredCombos.length > 4 && (
             <div className="text-center mt-6">

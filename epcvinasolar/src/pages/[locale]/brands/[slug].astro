@@ -1,35 +1,12 @@
 ---
-import DashboardLayout from '../../../layouts/DashboardLayout.astro';
-import BrandPage from '../../../components/pages/brand/BrandPage';
-import { getBrandBySlug, localBrands } from '../../../data/brands';
 import { type Locale } from '../../../i18n/messages';
 import { getLocalizedRoute } from '../../../i18n/routes';
 
-export const prerender = true;
+export const prerender = false;
 
-export function getStaticPaths() {
-  return ['en', 'zh', 'ja', 'ko'].flatMap((locale) =>
-    localBrands.map((brand) => ({
-      params: { locale, slug: brand.slug },
-      props: { brand },
-    })),
-  );
-}
-
-const { brand } = Astro.props;
-const currentBrand = getBrandBySlug(brand.slug);
 const { locale } = Astro.params as { locale: Locale; slug: string };
-const brandTitle = currentBrand?.name || brand.name;
+const { slug } = Astro.params as { locale: Locale; slug: string };
+const target = `${getLocalizedRoute(locale, 'brands')}/${slug}`;
 ---
 
-<DashboardLayout
-  title={`${brandTitle} | EPCVINA`}
-  description={currentBrand?.description || `Trang nhãn hàng ${brandTitle}`}
-  breadcrumbs={[
-    { name: locale === 'vi' ? 'Trang chủ' : 'Home', url: `https://epcvina.com${getLocalizedRoute(locale, 'home')}` },
-    { name: locale === 'en' ? 'Brands' : locale === 'zh' ? '品牌' : locale === 'ja' ? 'ブランド' : locale === 'ko' ? '브랜드' : 'Nhãn Hàng', url: `https://epcvina.com${getLocalizedRoute(locale, 'brands')}` },
-    { name: brandTitle, url: `https://epcvina.com${getLocalizedRoute(locale, 'brands')}/${brand.slug}` },
-  ]}
->
-  <BrandPage brand={brand.slug} brandName={brandTitle} client:load />
-</DashboardLayout>
+<meta http-equiv="refresh" content={`0; url=${target}`} />

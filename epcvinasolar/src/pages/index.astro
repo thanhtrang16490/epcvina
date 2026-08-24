@@ -103,7 +103,7 @@ const videoSchema = {
         <HeroSection pathname={Astro.url.pathname} />
       </div>
       <ComparisonSection pathname={Astro.url.pathname} />
-      <SolarSolutionFinder pathname={Astro.url.pathname} />
+      <SolarSolutionFinder pathname={Astro.url.pathname} client:load />
       <BenefitsSection pathname={Astro.url.pathname} />
       <MidPageCTA variant="benefits" pathname={Astro.url.pathname} />
       <ProcessSection pathname={Astro.url.pathname} />

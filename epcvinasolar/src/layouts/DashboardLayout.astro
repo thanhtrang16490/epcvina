@@ -172,23 +172,18 @@ const structuredData = buildLocalBusinessSchema({
       (function () {
         try {
           var consentKey = 'epcvina_cookie_consent_v1';
-          var consent = { value: 'accepted' };
+          var storedConsent = null;
           try {
-            var stored = window.localStorage.getItem(consentKey);
-            if (!stored) {
-              window.localStorage.setItem(consentKey, JSON.stringify(consent));
-            } else {
+            var raw = window.localStorage.getItem(consentKey);
+            if (raw) {
               try {
-                var parsed = JSON.parse(stored);
-                if (!parsed || parsed.value !== 'accepted') {
-                  window.localStorage.setItem(consentKey, JSON.stringify(consent));
-                }
+                storedConsent = JSON.parse(raw);
               } catch (_) {
-                window.localStorage.setItem(consentKey, JSON.stringify(consent));
+                storedConsent = null;
               }
             }
           } catch (_) {}
-          window.epcvinaCookieConsent = JSON.stringify(consent);
+          window.epcvinaCookieConsent = JSON.stringify(storedConsent || { value: 'essential' });
           window.epcvinaAnalyticsEnabled = true;
 
           var keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'];
