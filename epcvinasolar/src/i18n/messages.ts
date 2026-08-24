@@ -96,11 +96,11 @@ type Messages = {
     ctaSuccessTitle: string;
     ctaSuccessLead: string;
   };
-  footer: {
-    products: string;
-    services: string;
-    policies: string;
-    solarHome: string;
+    footer: {
+      products: string;
+      services: string;
+      policies: string;
+      solarHome: string;
     allCombos: string;
     onGridCombo: string;
     hybridCombo: string;
@@ -119,10 +119,12 @@ type Messages = {
     technicalContactName: string;
     aboutText: string;
     servicesLine: string;
-    requestQuote: string;
-    hybridBess: string;
-    solarCi: string;
-    news: string;
+      requestQuote: string;
+      salesPartner: string;
+      affiliateSales: string;
+      hybridBess: string;
+      solarCi: string;
+      news: string;
     paymentPolicy: string;
     warrantyPolicy: string;
     returnsPolicy: string;
@@ -237,6 +239,8 @@ export const messages: Record<Locale, Messages> = {
       aboutText: 'Điện mặt trời an toàn từ chuyên gia cơ điện.',
       servicesLine: 'Tư vấn · Thiết kế · Lắp đặt · Bảo trì',
       requestQuote: 'Nhận báo giá',
+      salesPartner: 'Bán hàng cùng EPCVINA',
+      affiliateSales: 'Tiếp thị liên kết',
       hybridBess: 'Hybrid & BESS',
       solarCi: 'Solar C&I',
       news: 'Tin tức',
@@ -352,6 +356,8 @@ export const messages: Record<Locale, Messages> = {
       aboutText: 'Safe solar power from MEP experts.',
       servicesLine: 'Consulting · Design · Installation · Maintenance',
       requestQuote: 'Get Quote',
+      salesPartner: 'Sell with EPCVINA',
+      affiliateSales: 'Affiliate Sales',
       hybridBess: 'Hybrid & BESS',
       solarCi: 'Solar C&I',
       news: 'Blog',
@@ -419,6 +425,8 @@ export const messages: Record<Locale, Messages> = {
       aboutText: '由机电专家提供的安全太阳能解决方案。',
       servicesLine: '咨询 · 设计 · 安装 · 维护',
       requestQuote: '获取报价',
+      salesPartner: '与 EPCVINA 合作销售',
+      affiliateSales: '联盟营销',
       hybridBess: '混合储能',
       solarCi: '工商业光伏',
       news: '新闻',
@@ -486,6 +494,8 @@ export const messages: Record<Locale, Messages> = {
       aboutText: 'MEP専門家による安全な太陽光発電。',
       servicesLine: 'ご相談 · 設計 · 施工 · 保守',
       requestQuote: '見積依頼',
+      salesPartner: 'EPCVINAと販売連携',
+      affiliateSales: 'アフィリエイト販売',
       hybridBess: 'ハイブリッド蓄電',
       solarCi: '産業用太陽光',
       news: 'ニュース',
@@ -553,6 +563,8 @@ export const messages: Record<Locale, Messages> = {
       aboutText: '전기설비 전문가가 제공하는 안전한 태양광 솔루션.',
       servicesLine: '상담 · 설계 · 시공 · 유지보수',
       requestQuote: '견적 요청',
+      salesPartner: 'EPCVINA와 판매 협업',
+      affiliateSales: '제휴 판매',
       hybridBess: '하이브리드 ESS',
       solarCi: '산업용 태양광',
       news: '뉴스',

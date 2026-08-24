@@ -4,6 +4,8 @@ import { getLocalePath, getLocalizedRoute } from '../../../i18n/routes';
 export type HeaderNavItem = { label: string; href: string };
 export type FooterLinkGroup = {
   requestQuote: string;
+  salesPartner: string;
+  affiliateSales: string;
   hybridBess: string;
   solarCi: string;
   news: string;
@@ -56,6 +58,8 @@ export function getFooterLayoutConfig(locale: Locale) {
     },
     links: {
       requestQuote: t.footer.requestQuote,
+      salesPartner: t.footer.salesPartner,
+      affiliateSales: t.footer.affiliateSales,
       hybridBess: t.footer.hybridBess,
       solarCi: t.footer.solarCi,
       news: t.footer.news,

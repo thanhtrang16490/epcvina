@@ -14,10 +14,82 @@ export default function FooterSection({ pathname = '/' }: { pathname?: string })
   const quoteHref = getLocalizedRoute(locale, 'quote');
   const hybridBessHref = getLocalizedRoute(locale, 'hybridBess');
   const solarCiHref = getLocalizedRoute(locale, 'solarCi');
+  const salesPartnerHref = getLocalePath('/ban-hang', locale);
+  const affiliateSalesHref = getLocalePath('/tiep-thi-lien-ket', locale);
+  const quickLinks = [
+    { href: quoteHref, label: t.footer.requestQuote },
+    { href: salesPartnerHref, label: t.footer.salesPartner },
+    { href: affiliateSalesHref, label: t.footer.affiliateSales },
+  ];
 
   return (
     <footer style={{ backgroundColor: '#1A1D21' }} className="text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+        <div className="mb-6 sm:mb-10 rounded-[28px] border border-white/10 bg-white/5 px-5 sm:px-6 py-5 sm:py-6 backdrop-blur-sm">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                EPCVINA Solar
+              </p>
+              <p className="mt-2 text-sm sm:text-base leading-relaxed text-gray-300">
+                {t.footer.aboutText} {t.footer.servicesLine}.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+              {quickLinks.map((link, index) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={[
+                    'inline-flex items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold transition active:scale-[0.98]',
+                    index === 0
+                      ? 'bg-emerald-500 text-white hover:bg-emerald-400'
+                      : 'border border-white/15 bg-white/5 text-white hover:bg-white/10',
+                  ].join(' ')}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-6 grid gap-3 sm:hidden">
+          <div className="rounded-[24px] border border-white/10 bg-white/5 p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">Liên kết nhanh</p>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              {quickLinks.map((link, index) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={[
+                    'rounded-2xl px-3 py-3 text-center text-xs font-semibold transition active:scale-[0.98]',
+                    index === 0
+                      ? 'bg-emerald-500 text-white'
+                      : 'border border-white/10 bg-white/5 text-gray-200',
+                  ].join(' ')}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[24px] border border-white/10 bg-white/5 p-4">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">Kết nối nhanh</p>
+            <div className="mt-3 flex flex-col gap-2 text-sm">
+              <a href="tel:0988446113" className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 font-medium text-white">
+                0988 446 113
+              </a>
+              <a href="tel:0368927332" className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 font-medium text-white">
+                0368 927 332
+              </a>
+              <a href="mailto:epcvinasolar@gmail.com" className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3 font-medium text-white">
+                epcvinasolar@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12">
 
           {/* Company Info */}
@@ -25,11 +97,8 @@ export default function FooterSection({ pathname = '/' }: { pathname?: string })
             <div className="mb-4">
               <img src="/logo-epcvina-solar-white.png" alt="EPCVINA Solar" width={1024} height={159} className="h-9 sm:h-12 w-auto" loading="lazy" />
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed mb-1">
+            <p className="text-sm text-gray-400 leading-relaxed mb-5">
               {t.footer.aboutText}
-            </p>
-            <p className="text-xs text-gray-400 leading-relaxed mb-5">
-              {t.footer.servicesLine}
             </p>
 
             {/* Social links */}
@@ -100,7 +169,8 @@ export default function FooterSection({ pathname = '/' }: { pathname?: string })
             <ul className="space-y-3 text-sm">
               <li><a href={getLocalePath('/calculator', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.calculator}</a></li>
               <li><a href={quoteHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.requestQuote}</a></li>
-              <li><a href={getLocalePath('/solar-home', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarHome}</a></li>
+              <li><a href={salesPartnerHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.salesPartner}</a></li>
+              <li><a href={affiliateSalesHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.affiliateSales}</a></li>
               <li><a href={hybridBessHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.hybridBess}</a></li>
               <li><a href={solarCiHref} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarCi}</a></li>
               <li><a href={getLocalePath('/ung-dung/van-phong', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.office}</a></li>
@@ -166,11 +236,25 @@ export default function FooterSection({ pathname = '/' }: { pathname?: string })
                 </a>
               </li>
             </ul>
+            <div className="mt-5 hidden rounded-2xl border border-white/10 bg-white/5 p-4 sm:block">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gray-500">Liên kết nhanh</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {quickLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-gray-200 transition hover:border-white/20 hover:bg-white/10"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-          <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 space-y-3 text-xs text-gray-400">
+        <div className="border-t border-white/10 mt-8 sm:mt-10 pt-4 sm:pt-6 pb-2 space-y-3 text-xs text-gray-400">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
             <p>&copy; {new Date().getFullYear()} EPCVINA Solar — {t.footer.legalName}. {t.footer.copyright}</p>
             <div className="flex flex-col items-center gap-3 sm:items-end">

@@ -1,0 +1,24 @@
+---
+import DashboardLayout from '../layouts/DashboardLayout.astro';
+import DashboardShell from '../components/layout/DashboardShell.astro';
+import AffiliateSalesPage from '../components/pages/ban-hang/AffiliateSalesPage';
+
+export const prerender = true;
+
+const breadcrumbs = [
+  { name: 'Trang chủ', url: 'https://epcvina.com' },
+  { name: 'Tiếp thị liên kết', url: 'https://epcvina.com/tiep-thi-lien-ket' },
+];
+---
+
+<DashboardLayout
+  title="Tiếp Thị Liên Kết Bán Hàng | EPCVINA Solar"
+  description="Tham gia tiếp thị liên kết bán hàng cùng EPCVINA Solar. Chia sẻ link giới thiệu, EPCVINA hỗ trợ tài liệu, tư vấn kỹ thuật và chốt đơn."
+  keywords="tiếp thị liên kết điện mặt trời, affiliate solar, link giới thiệu EPCVINA, bán hàng liên kết solar"
+  ogImage="/hero-bg-1920.webp"
+  breadcrumbs={breadcrumbs}
+>
+  <DashboardShell>
+    <AffiliateSalesPage client:visible />
+  </DashboardShell>
+</DashboardLayout>
