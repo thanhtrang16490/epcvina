@@ -212,7 +212,7 @@ export default function ComboDetailMediaGallery({ gallery }: ComboDetailMediaGal
                 {src.type === 'video' ? (
                   <video src={src.src} muted playsInline preload="metadata" className="h-full w-full object-cover" />
                 ) : (
-                  <img src={src.src} alt={`Thumbnail ${index + 1}`} className="h-full w-full object-cover" />
+                  <img src={src.src} alt={`Thumbnail ${index + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
                 )}
                 <div className="pointer-events-none absolute inset-0 bg-black/5" />
                 <span className="sr-only">Thumbnail {index + 1}</span>
@@ -253,6 +253,8 @@ export default function ComboDetailMediaGallery({ gallery }: ComboDetailMediaGal
                   key={selectedMedia?.src}
                   src={selectedMedia?.src}
                   alt={`Ảnh combo ${selectedImage + 1}`}
+                  fetchPriority={selectedImage === 0 ? 'high' : 'auto'}
+                  decoding="async"
                   className={`h-full w-full transition-all duration-300 ease-out ${
                     zoomed ? 'scale-[1.35] cursor-zoom-out object-contain' : 'cursor-zoom-in object-cover'
                   } ${mediaTransitioning ? 'opacity-0 scale-[0.985]' : 'opacity-100 scale-100'}`}
@@ -377,6 +379,8 @@ export default function ComboDetailMediaGallery({ gallery }: ComboDetailMediaGal
                       key={selectedMedia?.src}
                       src={selectedMedia?.src}
                       alt={`Ảnh combo lớn ${selectedImage + 1}`}
+                      loading="eager"
+                      decoding="async"
                       className={`max-h-[68vh] w-full object-contain transition-all duration-300 ease-out ${
                         mediaTransitioning ? 'opacity-0 scale-[0.985]' : 'opacity-100 scale-100'
                       }`}

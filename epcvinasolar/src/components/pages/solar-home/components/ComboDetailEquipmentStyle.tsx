@@ -786,7 +786,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
           />
         </section>
 
-        <section className="mt-8 rounded-[18px] border border-gray-200 bg-white p-6">
+        <section className="mt-8 rounded-[18px] border border-gray-200 bg-white p-6 [content-visibility:auto] [contain-intrinsic-size:1px_900px]">
           <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-500">Thiết bị chính</p>
           <h2 className="mt-2 text-[28px] font-semibold text-gray-900">Các thiết bị trong combo</h2>
           <div className="relative mt-5">
@@ -853,7 +853,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
 
         <section ref={sidebarSectionRef} className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
           <div className="space-y-6">
-            <section className="rounded-[18px] border border-gray-200 bg-white p-6">
+            <section className="rounded-[18px] border border-gray-200 bg-white p-6 [content-visibility:auto] [contain-intrinsic-size:1px_700px]">
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-500">Mô tả chi tiết combo</p>
               <h2 className="mt-2 text-[28px] font-semibold text-gray-900">Thông tin chi tiết để khách hàng dễ ra quyết định</h2>
               <div className="mt-5 rounded-[18px] border border-gray-200 bg-[#fafafa] p-5 sm:p-6">
@@ -881,9 +881,11 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
               </div>
             </section>
 
-            <ProcessFaqSection faqExpanded={faqExpanded} setFaqExpanded={setFaqExpanded} />
+            <div className="[content-visibility:auto] [contain-intrinsic-size:1px_1100px]">
+              <ProcessFaqSection faqExpanded={faqExpanded} setFaqExpanded={setFaqExpanded} />
+            </div>
 
-            <section className="rounded-[18px] border border-gray-200 bg-white p-6">
+            <section className="rounded-[18px] border border-gray-200 bg-white p-6 [content-visibility:auto] [contain-intrinsic-size:1px_520px]">
               <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-500">Đánh giá khách hàng</p>
               <h2 className="mt-2 text-[28px] font-semibold text-gray-900">Khách hàng nói gì về combo</h2>
               <div className="mt-5 grid gap-3 lg:grid-cols-3">
@@ -925,9 +927,13 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
               </div>
             </section>
 
-            <ProjectsSection projectsExpanded={projectsExpanded} setProjectsExpanded={setProjectsExpanded} />
+            <div className="[content-visibility:auto] [contain-intrinsic-size:1px_620px]">
+              <ProjectsSection projectsExpanded={projectsExpanded} setProjectsExpanded={setProjectsExpanded} />
+            </div>
 
-            <SolarCapabilitySection />
+            <div className="[content-visibility:auto] [contain-intrinsic-size:1px_1200px]">
+              <SolarCapabilitySection />
+            </div>
           </div>
 
           <RightSidebarSection />
