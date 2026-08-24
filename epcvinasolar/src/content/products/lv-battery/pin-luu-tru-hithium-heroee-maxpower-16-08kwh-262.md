@@ -6,7 +6,7 @@ model: "Hithium Hero EE MaxPower 16"
 description: "Pin lưu trữ HiTHIUM HeroEE Maxpower 16 đang trở thành lựa chọn hàng đầu cho các hệ thống điện mặt trời nhờ dung lượng lớn, độ bền vượt trội và khả năng tương thích linh hoạt với nhiều dòng inverter phổ biến."
 price: 49900000
 unit_price: 49900000
-main_image: "/images/products/pin-luu-tru-hithium-heroee-maxpower-16-08kwh-262/pin-luu-tru-hithium-heroee-maxpower-16-08kwh-262.png"
+main_image: "/images/products/pin-luu-tru-hithium-heroee-maxpower-16-08kwh-262/pin-luu-tru-hithium-heroee-maxpower-16-08kwh-262.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

@@ -4,7 +4,7 @@ brand: "AIKO"
 category: "panel"
 model: "AIKO-A680-GRH66Dw"
 description: "Dòng pin ứng dụng công nghệ mới nhất N-type ABC độ quyền của AIKO, tối ưu về hiệu suất, sản lượng điện lớn và tính ổn định cao."
-main_image: "/images/products/tam-pin-mat-troi-aiko-680w-mat-kinh-stellar-2n-66-231/tam-pin-mat-troi-aiko-680w-mat-kinh-stellar-2n-66-231.jpeg"
+main_image: "/images/products/tam-pin-mat-troi-aiko-680w-mat-kinh-stellar-2n-66-231/tam-pin-mat-troi-aiko-680w-mat-kinh-stellar-2n-66-231.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

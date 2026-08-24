@@ -6,7 +6,7 @@ model: "ESS-LB16-W02"
 description: "Pin lưu trữ Hopetrek ESS-LB16-W02 là dòng pin lithium LiFePO4 áp thấp, dung lượng 16.08kWh, thiết kế dạng tủ đứng đặt sàn công suất lớn, đáp ứng nhu cầu lưu trữ điện cho hệ thống điện mặt trời dân dụng và thương mại nhỏ."
 price: 49802000
 unit_price: 49802000
-main_image: "/images/products/pin-luu-tru-hopetrek-16-08-kwh-ess-lb16-w02-226/pin-luu-tru-hopetrek-16-08-kwh-ess-lb16-w02-226.png"
+main_image: "/images/products/pin-luu-tru-hopetrek-16-08-kwh-ess-lb16-w02-226/pin-luu-tru-hopetrek-16-08-kwh-ess-lb16-w02-226.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

@@ -4,7 +4,7 @@ brand: "JA Solar"
 category: "panel"
 model: "JA Solar 605W (JAM66D45‑605/LB)"
 description: "Tấm pin JA Solar 605W là dòng mô-đun hai mặt (bifacial) sử dụng công nghệ cell N-Type TOPCon hiệu suất cao, đạt hiệu suất mô-đun 22,4%, cho khả năng vận hành ổn định và suy hao thấp trong suốt vòng đời sử dụng. Nhờ cấu trúc double glass, thiết kế half‑cut cell và multi‑busbar (MBB), tấm pin giúp tăng sản lượng thực tế, cải thiện hiệu suất trong điều kiện bức xạ thấp và nâng cao độ bền cho hệ thống điện mặt trời."
-main_image: "/images/products/tam-pin-ja-solar-605w-jam66d45-605-lb/tam-pin-ja-solar-605w-jam66d45-605-lb.png"
+main_image: "/images/products/tam-pin-ja-solar-605w-jam66d45-605-lb/tam-pin-ja-solar-605w-jam66d45-605-lb.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

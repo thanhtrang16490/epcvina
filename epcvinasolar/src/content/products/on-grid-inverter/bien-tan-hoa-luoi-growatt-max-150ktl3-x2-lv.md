@@ -4,7 +4,7 @@ brand: "Growatt"
 category: "on-grid-inverter"
 model: "MAX 150 KTL3-X2 LV"
 description: "⭐Mã sản phẩm: Inverter Growatt MAX 150 KTL3-X2 LV ⭐Công suất: 150kW - 3 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99% ⭐Số string/MPPT: 8/2 ⭐Trọng lượng: 84 kg ⭐Kích thước: 970 x 640 x 345 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm"
-main_image: "/images/products/bien-tan-hoa-luoi-growatt-max-150ktl3-x2-lv/bien-tan-hoa-luoi-growatt-max-150ktl3-x2-lv.png"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-max-150ktl3-x2-lv/bien-tan-hoa-luoi-growatt-max-150ktl3-x2-lv.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

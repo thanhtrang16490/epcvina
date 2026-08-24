@@ -97,7 +97,13 @@ export default function ProductDetailMediaGallery({ gallery }: ProductDetailMedi
                 {src.type === 'video' ? (
                   <video src={src.src} muted playsInline preload="metadata" className="h-full w-full object-cover" />
                 ) : (
-                  <img src={src.src} alt={`Thumbnail ${index + 1}`} className="h-full w-full object-cover" />
+                  <img
+                    src={src.src}
+                    alt={`Thumbnail ${index + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
+                  />
                 )}
                 <div className="pointer-events-none absolute inset-0 bg-black/5" />
                 <span className="sr-only">Thumbnail {index + 1}</span>
@@ -136,6 +142,9 @@ export default function ProductDetailMediaGallery({ gallery }: ProductDetailMedi
                   key={selectedMedia?.src}
                   src={selectedMedia?.src}
                   alt={`Ảnh sản phẩm ${selectedImage + 1}`}
+                  fetchPriority={selectedImage === 0 ? 'high' : 'auto'}
+                  decoding="async"
+                  loading={selectedImage === 0 ? 'eager' : 'lazy'}
                   className="h-full w-full object-cover transition duration-300 ease-out"
                 />
               )}

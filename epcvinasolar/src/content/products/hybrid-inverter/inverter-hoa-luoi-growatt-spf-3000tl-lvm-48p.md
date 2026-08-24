@@ -4,7 +4,7 @@ brand: "Growatt"
 category: "hybrid-inverter"
 model: "SPF 3000TL LVM-48P"
 description: "Thương hiệu: GROWATT Bảo hành: 5 năm"
-main_image: "/images/products/inverter-hoa-luoi-growatt-spf-3000tl-lvm-48p/inverter-hoa-luoi-growatt-spf-3000tl-lvm-48p.png"
+main_image: "/images/products/inverter-hoa-luoi-growatt-spf-3000tl-lvm-48p/inverter-hoa-luoi-growatt-spf-3000tl-lvm-48p.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

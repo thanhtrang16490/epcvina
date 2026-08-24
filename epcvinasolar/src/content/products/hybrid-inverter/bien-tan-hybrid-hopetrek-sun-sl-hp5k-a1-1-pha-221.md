@@ -6,7 +6,7 @@ model: "SUN-SL-HP5K-A1"
 description: "Biến tần Hybrid Hope Trek SUN-SL-HP5K-A1 là giải pháp năng lượng mặt trời tích hợp lưu trữ công suất 5 kW, cho phép tối ưu hóa đồng thời nguồn điện PV, pin Li-ion và lưới điện trong một thiết bị nhỏ gọn. Với hiệu suất chuyển đổi lên đến 97,23%, sản phẩm đáp ứng nhu cầu dùng điện liên tục, tiết kiệm cho hộ gia đình."
 price: 23051000
 unit_price: 23051000
-main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-sl-hp5k-a1-1-pha-221/bien-tan-hybrid-hopetrek-sun-sl-hp5k-a1-1-pha-221.png"
+main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-sl-hp5k-a1-1-pha-221/bien-tan-hybrid-hopetrek-sun-sl-hp5k-a1-1-pha-221.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

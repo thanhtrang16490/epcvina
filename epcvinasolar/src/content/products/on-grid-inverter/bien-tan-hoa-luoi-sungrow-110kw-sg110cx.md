@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "on-grid-inverter"
 model: "110kW SG110CX"
 description: "⭐ Mã sản phẩm: Biến tần hòa lưới Sungrow 110kW⭐ Công suất: 110 kVA @ 45°C / 100 kVA @ 50°C – 3 pha (400 V)⭐ Hiệu suất chuyển đổi cực đại: 98.7%⭐ Số MPPT / Số string: 9 MPPT / 18 strings (2 strings mỗi MPPT)⭐ Dải điện áp MPPT: 200 – 1000 V⭐ Cấp bảo vệ: IP66⭐ Nhiệt độ hoạt động: -30°C đến +60°C (>50°C sẽ giảm công suất)⭐ Trọng lượng: 89 kg⭐ Kích thước: 1051 × 660 × 362.5 mm⭐ Làm mát: Làm mát cưỡng bức thông minh (Smart forced air cooling)⭐ Chứng từ: CO, CQ, VAT (theo bộ hồ sơ cung cấp hàng)⭐ Bảo hành: 5 năm"
-main_image: "/images/products/bien-tan-hoa-luoi-sungrow-110kw-sg110cx/bien-tan-hoa-luoi-sungrow-110kw-sg110cx.png"
+main_image: "/images/products/bien-tan-hoa-luoi-sungrow-110kw-sg110cx/bien-tan-hoa-luoi-sungrow-110kw-sg110cx.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

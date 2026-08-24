@@ -4,7 +4,7 @@ brand: "Pylontech"
 category: "lv-battery"
 model: "FORCE L2"
 description: "MODEL: FORCE L2 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 7,1 – 14,21kWh DÒNG SẠC & XẢ: 75-100A"
-main_image: "/images/products/pin-luu-tru-pylontech-force-l2/pin-luu-tru-pylontech-force-l2.png"
+main_image: "/images/products/pin-luu-tru-pylontech-force-l2/pin-luu-tru-pylontech-force-l2.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

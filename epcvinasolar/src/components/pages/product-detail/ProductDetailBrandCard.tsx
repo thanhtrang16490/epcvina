@@ -23,7 +23,13 @@ export default function ProductDetailBrandCard({
       <div className="flex items-start gap-3">
         <div className="grid h-12 w-12 place-items-center overflow-hidden rounded bg-white ring-1 ring-black/5">
           {brandInfo?.logo_url ? (
-            <img src={brandInfo.logo_url} alt={brandInfo.name} className="h-full w-full object-contain p-1" />
+            <img
+              src={brandInfo.logo_url}
+              alt={brandInfo.name}
+              className="h-full w-full object-contain p-1"
+              loading="lazy"
+              decoding="async"
+            />
           ) : (
             <span className="text-[11px] font-bold uppercase text-gray-700">{productBrand.slice(0, 3)}</span>
           )}

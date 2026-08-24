@@ -4,7 +4,7 @@ brand: "Japan Green Power"
 category: "mounting"
 model: "THANH RAIL NHÔM"
 description: "THANH RAIL Sử dụng rất dễ dàng và nhanh chóng, tiết kiệm chi phí. Thanh rail nhôm được chế tạo bằng hợp kim nhôm độ cứng cao, siêu nhẹ Al6005-T5, Nhôm đạt tiêu chuẩn cao. Chất liệu SUS304 Hàng mới 100% Bảo hành sản phẩm: 10 năm Xuất xứ: Trung Quốc"
-main_image: "/images/products/thanh-rail-nhom/thanh-rail-nhom.png"
+main_image: "/images/products/thanh-rail-nhom/thanh-rail-nhom.webp"
 is_available: true
 show_on_homepage: false
 product_type: "mounting"

@@ -4,7 +4,7 @@ brand: "Growatt"
 category: "on-grid-inverter"
 model: "MIN8000TL-X"
 description: "⭐Mã sản phẩm: Inverter Growatt MIN8000TL-X ⭐Công suất: 8kW - 1 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.5% ⭐Số string/MPPT: 1/1/1 ⭐Trọng lượng: 18.2 kg ⭐Kích thước: 425 x 387 x 180 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!"
-main_image: "/images/products/bien-tan-hoa-luoi-growatt-min-8000tl-x/bien-tan-hoa-luoi-growatt-min-8000tl-x.png"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-min-8000tl-x/bien-tan-hoa-luoi-growatt-min-8000tl-x.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

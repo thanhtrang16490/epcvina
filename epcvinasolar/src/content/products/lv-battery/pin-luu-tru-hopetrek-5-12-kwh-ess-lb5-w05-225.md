@@ -6,7 +6,7 @@ model: "ESS-LB5-W05"
 description: "Pin lưu trữ Hopetrek ESS-LB5-W05 là dòng pin lithium LiFePO4 áp thấp, dung lượng 5.12kWh, thiết kế dạng treo tường nhỏ gọn, đáp ứng nhu cầu lưu trữ điện cho hệ thống điện mặt trời dân dụng."
 price: 21344000
 unit_price: 21344000
-main_image: "/images/products/pin-luu-tru-hopetrek-5-12-kwh-ess-lb5-w05-225/pin-luu-tru-hopetrek-5-12-kwh-ess-lb5-w05-225.png"
+main_image: "/images/products/pin-luu-tru-hopetrek-5-12-kwh-ess-lb5-w05-225/pin-luu-tru-hopetrek-5-12-kwh-ess-lb5-w05-225.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

@@ -6,7 +6,7 @@ model: "SUN-TL-HP10K-A1"
 description: "Biến tần Hybrid 3 pha Hope Trek SUN-TL-HP10K-A1 công suất 10 kW tích hợp PV đầu vào 16 kW, hỗ trợ pin Li-ion và Lead-acid với dòng sạc/xả 200 A, đạt chuẩn IP66 và hiệu suất 97,23% giải pháp lưu trữ năng lượng mặt trời quy mô lớn, sẵn sàng cho môi trường công nghiệp và thương mại khắc nghiệt."
 price: 46956000
 unit_price: 46956000
-main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-tl-hp10k-a1-3-pha-223/bien-tan-hybrid-hopetrek-sun-tl-hp10k-a1-3-pha-223.png"
+main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-tl-hp10k-a1-3-pha-223/bien-tan-hybrid-hopetrek-sun-tl-hp10k-a1-3-pha-223.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "on-grid-inverter"
 model: "SG15RT"
 description: "Thương hiệu: SUNGROW Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm"
-main_image: "/images/products/bien-tan-hoa-luoi-sungrow-15kw-sg15rt/bien-tan-hoa-luoi-sungrow-15kw-sg15rt.png"
+main_image: "/images/products/bien-tan-hoa-luoi-sungrow-15kw-sg15rt/bien-tan-hoa-luoi-sungrow-15kw-sg15rt.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

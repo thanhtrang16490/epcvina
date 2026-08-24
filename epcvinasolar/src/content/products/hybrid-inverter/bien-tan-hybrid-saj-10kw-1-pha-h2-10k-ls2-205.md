@@ -6,7 +6,7 @@ model: "H2-10K-LS2"
 description: "Biến tần Hybrid SAJ 10kW 1 Pha H2-10K-LS2 là dòng biến tần áp thấp, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng."
 price: 32180000
 unit_price: 32180000
-main_image: "/images/products/bien-tan-hybrid-saj-10kw-1-pha-h2-10k-ls2-205/bien-tan-hybrid-saj-10kw-1-pha-h2-10k-ls2-205.png"
+main_image: "/images/products/bien-tan-hybrid-saj-10kw-1-pha-h2-10k-ls2-205/bien-tan-hybrid-saj-10kw-1-pha-h2-10k-ls2-205.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

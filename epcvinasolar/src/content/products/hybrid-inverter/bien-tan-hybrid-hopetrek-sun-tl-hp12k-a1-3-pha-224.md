@@ -6,7 +6,7 @@ model: "SUN-TL-HP12K-A1"
 description: "Biến tần Hybrid 3 pha Hope Trek công suất 12 kW tích hợp PV đầu vào 16 kW, hỗ trợ pin Li-ion và Lead-acid với dòng sạc/xả lên đến 240 A, chuẩn IP66 và hiệu suất 97,23% lựa chọn tối ưu cho các công trình thương mại và công nghiệp yêu cầu lưu trữ năng lượng công suất lớn, hoạt động bền bỉ trong mọi điều kiện môi trường."
 price: 49090000
 unit_price: 49090000
-main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-tl-hp12k-a1-3-pha-224/bien-tan-hybrid-hopetrek-sun-tl-hp12k-a1-3-pha-224.png"
+main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-tl-hp12k-a1-3-pha-224/bien-tan-hybrid-hopetrek-sun-tl-hp12k-a1-3-pha-224.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

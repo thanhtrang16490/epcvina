@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "hybrid-inverter"
 model: "10KW"
 description: "Thương hiệu: SUNGROW Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm"
-main_image: "/images/products/inverter-hybrid-sungrow-10kw/inverter-hybrid-sungrow-10kw.png"
+main_image: "/images/products/inverter-hybrid-sungrow-10kw/inverter-hybrid-sungrow-10kw.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

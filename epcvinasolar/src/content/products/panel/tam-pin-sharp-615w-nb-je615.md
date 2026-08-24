@@ -4,7 +4,7 @@ brand: "Sharp"
 category: "panel"
 model: "Sharp 615W NB-JE615"
 description: "Tấm pin Sharp NB-JE615 615W là dòng pin đơn tinh thể sử dụng công nghệ N-Type TOPCon, đạt hiệu suất mô-đun 22,76%, hạn chế suy hao LID/LeTID, vận hành ổn định trong điều kiện nhiệt độ cao, đồng thời tối ưu hiệu quả khai thác hệ thống nhờ thiết kế bifacial, half-cut cell và MBB."
-main_image: "/images/products/tam-pin-sharp-615w-nb-je615/tam-pin-sharp-615w-nb-je615.jpg"
+main_image: "/images/products/tam-pin-sharp-615w-nb-je615/tam-pin-sharp-615w-nb-je615.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

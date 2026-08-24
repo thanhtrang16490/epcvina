@@ -4,7 +4,7 @@ brand: "Japan Green Power"
 category: "grounding"
 model: "TIẾP ĐỊA CHO THANH RAIL"
 description: "TIẾP ĐỊA Sử dụng rất dễ dàng và nhanh chóng, tiết kiệm chi phí. Al6005-T5, Nhôm đạt tiêu chuẩn cao. Hàng mới 100% Bảo hành sản phẩm: 10 năm Xuất xứ: Trung Quốc"
-main_image: "/images/products/tiep-dia-cho-thanh-rail/tiep-dia-cho-thanh-rail.png"
+main_image: "/images/products/tiep-dia-cho-thanh-rail/tiep-dia-cho-thanh-rail.webp"
 is_available: true
 show_on_homepage: false
 product_type: "grounding"

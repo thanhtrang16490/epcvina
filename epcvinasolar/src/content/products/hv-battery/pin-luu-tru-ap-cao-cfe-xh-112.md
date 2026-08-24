@@ -4,7 +4,7 @@ brand: "CFE"
 category: "hv-battery"
 model: "áp cao CFE-XH 112"
 description: "⭐ Model: CFE-XH 112 ⭐ Điện áp danh định hệ thống: 358.4V ⭐ Dung lượng mỗi pack: 16.07kWh (314Ah, 51.2V) ⭐ Dung lượng tối đa một rack: 241kWh (tối đa 15 pack) ⭐ Dòng điện định mức tối đa: 200A ⭐ Kích thước rack: 440 × 837 × 1850 mm ⭐ Chu kỳ vòng đời: ≥8000 chu kỳ (@25 ± 2 ℃, 0.5C / 0.5C, 80% DoD) ⭐ Bảo hành: 5 năm EPCVINA Solar là nhà phân phối và trung tâm bảo hành chính thức của pin lưu trữ CFE tại Việt Nam. 📞 Liên hệ ngay số 0988 446 113 để được tư vấn và bảo hành miễn phí!"
-main_image: "/images/products/pin-luu-tru-ap-cao-cfe-xh-112/pin-luu-tru-ap-cao-cfe-xh-112.png"
+main_image: "/images/products/pin-luu-tru-ap-cao-cfe-xh-112/pin-luu-tru-ap-cao-cfe-xh-112.webp"
 is_available: true
 show_on_homepage: false
 product_type: "hv-battery"

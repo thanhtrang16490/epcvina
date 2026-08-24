@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "hybrid-inverter"
 model: "MG6RL 6kW"
 description: "⭐ Mã sản phẩm: Inverter Sungrow MG6RL ⭐ Công suất: 6 kW – 1 pha ⭐ Số string/MPPT: 2 MPPT – 2 string (1/1) ⭐ Trọng lượng: ≤ 18 kg ⭐ Kích thước: 532 × 386 × 210 mm ⭐ Làm mát: Tản nhiệt tự nhiên ⭐ Chứng từ: CO, CQ, VAT ⭐ Bảo hành: 5 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của Sungrow Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!"
-main_image: "/images/products/bien-tan-hybrid-sungrow-mg6rl-6kw/bien-tan-hybrid-sungrow-mg6rl-6kw.png"
+main_image: "/images/products/bien-tan-hybrid-sungrow-mg6rl-6kw/bien-tan-hybrid-sungrow-mg6rl-6kw.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

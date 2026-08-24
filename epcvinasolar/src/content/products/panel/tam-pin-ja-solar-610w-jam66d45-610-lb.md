@@ -4,7 +4,7 @@ brand: "JA Solar"
 category: "panel"
 model: "JA Solar 610W (JAM66D45‑610/LB)"
 description: "Tấm pin JA Solar 610W thuộc dòng mô-đun hai mặt (bifacial) ứng dụng công nghệ cell N-Type TOPCon thế hệ mới, mang lại hiệu suất chuyển đổi cao 22,6% và khả năng suy hao thấp trong suốt thời gian vận hành. Với thiết kế double glass bền bỉ, cấu trúc half‑cut cell và công nghệ multi‑busbar (MBB), tấm pin giúp tăng sản lượng điện thực tế, cải thiện hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho toàn bộ hệ thống điện mặt trời."
-main_image: "/images/products/tam-pin-ja-solar-610w-jam66d45-610-lb/tam-pin-ja-solar-610w-jam66d45-610-lb.png"
+main_image: "/images/products/tam-pin-ja-solar-610w-jam66d45-610-lb/tam-pin-ja-solar-610w-jam66d45-610-lb.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

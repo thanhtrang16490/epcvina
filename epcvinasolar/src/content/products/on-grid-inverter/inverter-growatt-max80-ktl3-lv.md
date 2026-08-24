@@ -4,7 +4,7 @@ brand: "Growatt"
 category: "on-grid-inverter"
 model: "MAX80 KTL3 LV"
 description: "⭐Mã sản phẩm: Inverter Growatt MAX80 KTL3 LV ⭐Công suất: 80kW - 3 pha ⭐Hiệu suất chuyển đổi cực đại MPPT: 99.9% ⭐Số string/MPPT: 7/2 ⭐Trọng lượng: 86 kg ⭐Kích thước: 860 x 600 x 300 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!"
-main_image: "/images/products/inverter-growatt-max80-ktl3-lv/inverter-growatt-max80-ktl3-lv.png"
+main_image: "/images/products/inverter-growatt-max80-ktl3-lv/inverter-growatt-max80-ktl3-lv.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

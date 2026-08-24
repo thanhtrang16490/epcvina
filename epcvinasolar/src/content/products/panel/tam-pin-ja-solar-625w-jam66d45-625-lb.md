@@ -4,7 +4,7 @@ brand: "JA Solar"
 category: "panel"
 model: "JA Solar 625W (JAM66D45‑625/LB)"
 description: "Tấm pin JA Solar 625W thuộc dòng mô-đun hai mặt (bifacial) ứng dụng công nghệ cell N-Type TOPCon hiệu suất cao, mang lại hiệu suất mô-đun 23,1% cùng khả năng suy hao thấp trong suốt vòng đời vận hành. Nhờ cấu trúc double glass bền bỉ, thiết kế half‑cut cell và công nghệ multi‑busbar (MBB), tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời."
-main_image: "/images/products/tam-pin-ja-solar-625w-jam66d45-625-lb/tam-pin-ja-solar-625w-jam66d45-625-lb.png"
+main_image: "/images/products/tam-pin-ja-solar-625w-jam66d45-625-lb/tam-pin-ja-solar-625w-jam66d45-625-lb.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

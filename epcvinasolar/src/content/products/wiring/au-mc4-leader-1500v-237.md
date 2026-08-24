@@ -6,7 +6,7 @@ model: "PV-BN101A"
 description: "MC4 LEADER 1500V là loại đầu nối chuyên dụng được sử dụng trong hệ thống điện mặt trời, đặc biệt là để kết nối các tấm pin năng lượng mặt trời với nhau hoặc với các thiết bị khác như inverter."
 price: 16300
 unit_price: 16300
-main_image: "/images/products/au-mc4-leader-1500v-237/au-mc4-leader-1500v-237.png"
+main_image: "/images/products/au-mc4-leader-1500v-237/au-mc4-leader-1500v-237.webp"
 is_available: true
 show_on_homepage: false
 product_type: "wiring"

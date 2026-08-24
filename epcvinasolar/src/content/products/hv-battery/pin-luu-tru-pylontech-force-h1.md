@@ -4,7 +4,7 @@ brand: "Pylontech"
 category: "hv-battery"
 model: "FORCE H1"
 description: "MODEL: FORCE H1 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 24,86kWh DÒNG SẠC & XẢ: 37A"
-main_image: "/images/products/pin-luu-tru-pylontech-force-h1/pin-luu-tru-pylontech-force-h1.png"
+main_image: "/images/products/pin-luu-tru-pylontech-force-h1/pin-luu-tru-pylontech-force-h1.webp"
 is_available: true
 show_on_homepage: false
 product_type: "hv-battery"

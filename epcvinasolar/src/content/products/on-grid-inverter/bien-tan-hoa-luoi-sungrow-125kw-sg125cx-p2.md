@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "on-grid-inverter"
 model: "125kW SG125CX-P2"
 description: "⭐ Mã sản phẩm: Biến tần hòa lưới Sungrow 125 kW – SG125CX-P2 ⭐ Công suất: 125 kW AC – 3 pha ⭐ Hiệu suất chuyển đổi cực đại: 98.5% ⭐ Số MPPT / Số string: 12 MPPT / 24 strings ⭐ Dải điện áp MPPT: 180 – 1000 V ⭐ Dòng vào DC tối đa: 360 A (30 A × 12) ⭐ Dòng ngắn mạch tối đa: 480 A (40 A × 12) ⭐ Cấp bảo vệ: IP66, chống ăn mòn C5 ⭐ Nhiệt độ hoạt động: –30°C đến +60°C ⭐ Trọng lượng: ≤ 95 kg ⭐ Kích thước: 1020 × 795 × 360 mm ⭐ Làm mát: Làm mát cưỡng bức thông minh ⭐ Giao tiếp: RS485 / WLAN ⭐ Chứng từ: CO, CQ, VAT ⭐ Bảo hành: 5 năm"
-main_image: "/images/products/bien-tan-hoa-luoi-sungrow-125kw-sg125cx-p2/bien-tan-hoa-luoi-sungrow-125kw-sg125cx-p2.png"
+main_image: "/images/products/bien-tan-hoa-luoi-sungrow-125kw-sg125cx-p2/bien-tan-hoa-luoi-sungrow-125kw-sg125cx-p2.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

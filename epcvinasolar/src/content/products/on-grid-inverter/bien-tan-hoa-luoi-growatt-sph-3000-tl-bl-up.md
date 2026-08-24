@@ -4,7 +4,7 @@ brand: "Growatt"
 category: "on-grid-inverter"
 model: "SPH 3000 TL BL-UP"
 description: "⭐Mã sản phẩm: Inverter Growatt SPH 3000 TL BL-UP ⭐Công suất: 3kW - 1 pha ⭐Số string/MPPT: 2/1 ⭐Trọng lượng: 27 kg ⭐Kích thước: 565 x 456 x 188 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!"
-main_image: "/images/products/bien-tan-hoa-luoi-growatt-sph-3000-tl-bl-up/bien-tan-hoa-luoi-growatt-sph-3000-tl-bl-up.png"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-sph-3000-tl-bl-up/bien-tan-hoa-luoi-growatt-sph-3000-tl-bl-up.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

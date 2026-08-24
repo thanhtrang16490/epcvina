@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "on-grid-inverter"
 model: "SG50CX"
 description: "Thương hiệu: SUNGROW Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm"
-main_image: "/images/products/bien-tan-hoa-luoi-sungrow-50kw-sg50cx/bien-tan-hoa-luoi-sungrow-50kw-sg50cx.png"
+main_image: "/images/products/bien-tan-hoa-luoi-sungrow-50kw-sg50cx/bien-tan-hoa-luoi-sungrow-50kw-sg50cx.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

@@ -4,7 +4,7 @@ brand: "SAJ"
 category: "on-grid-inverter"
 model: "C6-99.9K-T9-40"
 description: "Biến tần Hòa lưới SAJ 99kW 3 Pha C6-99.9K-T9-40 là dòng biến tần cao cấp, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống thương mai và công nghiệp."
-main_image: "/images/products/bien-tan-hoa-luoi-saj-99kw-3-pha-c6-99-9k-t9-40/bien-tan-hoa-luoi-saj-99kw-3-pha-c6-99-9k-t9-40.png"
+main_image: "/images/products/bien-tan-hoa-luoi-saj-99kw-3-pha-c6-99-9k-t9-40/bien-tan-hoa-luoi-saj-99kw-3-pha-c6-99-9k-t9-40.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

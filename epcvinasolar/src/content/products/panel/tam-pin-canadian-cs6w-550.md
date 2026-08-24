@@ -4,7 +4,7 @@ brand: "Canadian Solar"
 category: "panel"
 model: "CANADIAN CS6W-550"
 description: "Tấm pin mono HiKu6 Canadian Solar 550W là dòng pin đơn tinh thể được sản xuất theo công nghệ làm mát Ku Modules, dựa trên nền tảng công nghệ Low Internal Current (LIC) Modules. Hiệu suất tấm pin đạt 21.5 %, giảm chi phí sản xuất điện LCOE đến 4.5%, giảm giá thành hệ thống lên đến 5.6%. Công nghệ giảm thiểu LID / LeTID toàn diện, mức độ suy giảm thấp hơn tới 50%. Tấm pin được trang bị nhiều công nghệ tối tân như: Half-cut cells, PERC, Multi Busbars…. giúp hệ thống điện mặt trời đạt hiệu suất và sản lượng cao, giảm mức độ ảnh hưởng của đổ bóng."
-main_image: "/images/products/tam-pin-canadian-cs6w-550/tam-pin-canadian-cs6w-550.png"
+main_image: "/images/products/tam-pin-canadian-cs6w-550/tam-pin-canadian-cs6w-550.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

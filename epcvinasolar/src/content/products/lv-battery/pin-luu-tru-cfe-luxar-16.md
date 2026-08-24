@@ -4,7 +4,7 @@ brand: "CFE"
 category: "lv-battery"
 model: "CFE-LUXAR 16"
 description: "⭐ Model: CFE-LUXAR 16 ⭐ Điện áp danh định: 51.2V ⭐ Dung lượng tổng: 16.07kWh (dung lượng khả dụng: 14.46kWh) ⭐ Công suất xả tối đa: 10kW ⭐ Kích thước: 564 × 156 × 960 mm ⭐ Bảo hành: 10 năm (thiết kế 8.000 chu kỳ) EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của pin lưu trữ CFE tại Việt Nam. Liên hệ ngay số 0988 446 113 để được tư vấn kỹ thuật, lắp đặt và bảo hành miễn phí!"
-main_image: "/images/products/pin-luu-tru-cfe-luxar-16/pin-luu-tru-cfe-luxar-16.png"
+main_image: "/images/products/pin-luu-tru-cfe-luxar-16/pin-luu-tru-cfe-luxar-16.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

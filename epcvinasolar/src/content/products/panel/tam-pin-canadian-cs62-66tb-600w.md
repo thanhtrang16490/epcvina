@@ -4,7 +4,7 @@ brand: "Canadian Solar"
 category: "panel"
 model: "Canadian CS6.2-66TB 600W"
 description: "Tấm pin Canadian CS6.2-66TB 600W là dòng pin đơn tinh thể được sản xuất theo công nghệ làm mát Ku Modules, dựa trên nền tảng công nghệ Low Internal Current (LIC) Modules. Hiệu suất tấm pin đạt 22.2 %, giảm chi phí sản xuất điện LCOE đến 4.5%, giảm giá thành hệ thống lên đến 5.6%. Công nghệ giảm thiểu LID / LeTID toàn diện, mức độ suy giảm thấp hơn tới 50%. Tấm pin được trang bị nhiều công nghệ tối tân như: Half-cut cells, PERC, Multi Busbars…. giúp hệ thống điện mặt trời đạt hiệu suất và sản lượng cao, giảm mức độ ảnh hưởng của đổ bóng."
-main_image: "/images/products/tam-pin-canadian-cs62-66tb-600w/tam-pin-canadian-cs62-66tb-600w.png"
+main_image: "/images/products/tam-pin-canadian-cs62-66tb-600w/tam-pin-canadian-cs62-66tb-600w.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

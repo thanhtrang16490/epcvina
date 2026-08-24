@@ -4,7 +4,7 @@ brand: "AIKO"
 category: "panel"
 model: "AIKO 650W"
 description: "Tấm pin AIKO 650W thuộc dòng mô‑đun Mono‑Glass ứng dụng công nghệ cell N‑Type ABC (All Back Contact) hiệu suất cao, mang lại hiệu suất mô‑đun 24,1% cùng khả năng suy hao thấp trong suốt vòng đời vận hành. Với cấu trúc kính cường lực 3,2 mm bền bỉ, thiết kế cell toàn tiếp điểm mặt sau và công nghệ chống PID/LID gần như tuyệt đối, tấm pin giúp tăng sản lượng điện thực tế, tối ưu hiệu suất trong điều kiện bức xạ yếu và nâng cao độ ổn định cho hệ thống điện mặt trời."
-main_image: "/images/products/tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202/tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202.png"
+main_image: "/images/products/tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202/tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202.webp"
 is_available: true
 show_on_homepage: false
 product_type: "panel"

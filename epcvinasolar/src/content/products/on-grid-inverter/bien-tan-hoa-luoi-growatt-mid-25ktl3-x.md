@@ -4,7 +4,7 @@ brand: "Growatt"
 category: "on-grid-inverter"
 model: "MID 25KTL3-X"
 description: "⭐Mã sản phẩm: Inverter Growatt MID 25KTL3-X ⭐Công suất: 25kW - 3 pha ⭐Số string/MPPT: 2/3 ⭐Trọng lượng: 23 kg ⭐Kích thước: 525 x 395 x 222 mm ⭐Làm mát: Tản nhiệt tự nhiên ⭐Chứng từ: CO, CQ, VAT ⭐Bảo hành: 5 năm EPCVINA Solar là đơn vị phân phối và trung tâm bảo hành chính hãng của Inverter Growatt Liên hệ ngay với số 0988 446 113 để được tư vấn, bảo hành miễn phí!"
-main_image: "/images/products/bien-tan-hoa-luoi-growatt-mid-25ktl3-x/bien-tan-hoa-luoi-growatt-mid-25ktl3-x.png"
+main_image: "/images/products/bien-tan-hoa-luoi-growatt-mid-25ktl3-x/bien-tan-hoa-luoi-growatt-mid-25ktl3-x.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

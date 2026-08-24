@@ -6,7 +6,7 @@ model: "ES-BOX12F MAX"
 description: "Pin lưu trữ Genix Green 14.34kWh ES-BOX12F MAX là dòng pin lithium LiFePO4 áp thấp, dung lượng 14.34kWh, thiết kế dạng module, đáp ứng nhu cầu lưu trữ điện cho hệ thống điện mặt trời dân dụng."
 price: 36512000
 unit_price: 36512000
-main_image: "/images/products/pin-luu-tru-genixgreen-14-34kwh-es-box12f-max-212/pin-luu-tru-genixgreen-14-34kwh-es-box12f-max-212.png"
+main_image: "/images/products/pin-luu-tru-genixgreen-14-34kwh-es-box12f-max-212/pin-luu-tru-genixgreen-14-34kwh-es-box12f-max-212.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

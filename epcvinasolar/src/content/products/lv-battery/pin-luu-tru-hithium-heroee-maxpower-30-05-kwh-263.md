@@ -6,7 +6,7 @@ model: "Hithium Hero EE MaxPower 30"
 description: "Pin lưu trữ HiTHIUM HeroEE Maxpower 30 đang trở thành lựa chọn hàng đầu cho các hệ thống điện mặt trời nhờ dung lượng lớn, độ bền vượt trội và khả năng tương thích linh hoạt với nhiều dòng inverter phổ biến."
 price: 89500000
 unit_price: 89500000
-main_image: "/images/products/pin-luu-tru-hithium-heroee-maxpower-30-05-kwh-263/pin-luu-tru-hithium-heroee-maxpower-30-05-kwh-263.png"
+main_image: "/images/products/pin-luu-tru-hithium-heroee-maxpower-30-05-kwh-263/pin-luu-tru-hithium-heroee-maxpower-30-05-kwh-263.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

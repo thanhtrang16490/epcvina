@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "hybrid-inverter"
 model: "5KW"
 description: "Thương hiệu: SUNGROW Sử dụng trong mạng điện: 1 pha Bảo hành: 5 năm"
-main_image: "/images/products/inverter-hybrid-sungrow-5kw/inverter-hybrid-sungrow-5kw.png"
+main_image: "/images/products/inverter-hybrid-sungrow-5kw/inverter-hybrid-sungrow-5kw.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

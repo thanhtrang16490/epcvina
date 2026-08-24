@@ -6,7 +6,7 @@ model: "18-22 KW 3 Pha"
 description: "Tủ Điện năng lượng mặt trời hòa lưới có lưu trữ (Hybrid) 3 pha 3 Strings cho hệ thống Điện mặt trời 15kW – 20kW"
 price: 8088000
 unit_price: 8088000
-main_image: "/images/products/tu-dien-hybrid-3-pha-15-20kw-3-string-230/tu-dien-hybrid-3-pha-15-20kw-3-string-230.png"
+main_image: "/images/products/tu-dien-hybrid-3-pha-15-20kw-3-string-230/tu-dien-hybrid-3-pha-15-20kw-3-string-230.webp"
 is_available: true
 show_on_homepage: false
 product_type: "cabinet"

@@ -4,7 +4,7 @@ brand: "GENIXGREEN"
 category: "lv-battery"
 model: "ES-BOX12F"
 description: "Pin lưu trữ Genix Green 5.12kWh ES-BOX12F là dòng pin lithium LiFePO4 áp thấp 51.2V, dung lượng lớn 5.12kWh, hỗ trợ mở rộng linh hoạt và vận hành ổn định cho hệ thống điện mặt trời dân dụng"
-main_image: "/images/products/pin-luu-tru-genixgreen-5-12kwh-es-box12f-245/pin-luu-tru-genixgreen-5-12kwh-es-box12f-245.png"
+main_image: "/images/products/pin-luu-tru-genixgreen-5-12kwh-es-box12f-245/pin-luu-tru-genixgreen-5-12kwh-es-box12f-245.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

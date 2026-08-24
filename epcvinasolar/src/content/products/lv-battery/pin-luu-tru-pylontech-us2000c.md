@@ -4,7 +4,7 @@ brand: "Pylontech"
 category: "lv-battery"
 model: "US2000C"
 description: "MODEL: US2000C THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 2,4kWh DÒNG SẠC & XẢ: 25A"
-main_image: "/images/products/pin-luu-tru-pylontech-us2000c/pin-luu-tru-pylontech-us2000c.png"
+main_image: "/images/products/pin-luu-tru-pylontech-us2000c/pin-luu-tru-pylontech-us2000c.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

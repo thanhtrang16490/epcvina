@@ -4,7 +4,7 @@ brand: "Deye"
 category: "hybrid-inverter"
 model: "SUN-5 6 8 10 12K-SG04LP3"
 description: "Thương hiệu: DEYE Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm"
-main_image: "/images/products/inverter-hybrid-deye-sun-5-6-8-10-12k-sg04lp3/inverter-hybrid-deye-sun-5-6-8-10-12k-sg04lp3.png"
+main_image: "/images/products/inverter-hybrid-deye-sun-5-6-8-10-12k-sg04lp3/inverter-hybrid-deye-sun-5-6-8-10-12k-sg04lp3.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

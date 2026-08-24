@@ -4,7 +4,7 @@ brand: "Deye"
 category: "hybrid-inverter"
 model: "SUN-3.6 5K-SG01 03LP1-EU"
 description: "Thương hiệu: DEYE Sử dụng trong mạng điện: 1 pha Bảo hành: 5 năm"
-main_image: "/images/products/inverter-hybrid-deye-sun-3-6.5k-sg01-03lp1-eu/inverter-hybrid-deye-sun-3-6.5k-sg01-03lp1-eu.png"
+main_image: "/images/products/inverter-hybrid-deye-sun-3-6.5k-sg01-03lp1-eu/inverter-hybrid-deye-sun-3-6.5k-sg01-03lp1-eu.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

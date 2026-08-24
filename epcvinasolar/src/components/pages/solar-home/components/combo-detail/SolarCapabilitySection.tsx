@@ -80,36 +80,36 @@ export default function SolarCapabilitySection() {
                 </div>
               </div>
             </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                'Có khả năng đáp ứng nhiều cấu hình combo khác nhau theo nhu cầu thực tế.',
+                'Nguồn hàng vật tư được chuẩn hóa để giữ tiến độ triển khai ổn định.',
+                'Quy trình kiểm tra - đóng gói - xuất kho hỗ trợ giảm sai lệch khi thi công.',
+                'Phù hợp cả đơn hàng lẻ và các công trình cần phối hợp nhiều hạng mục.',
+              ].map((item) => (
+                <div key={item} className="rounded-[16px] border border-gray-200 bg-[#fafafa] px-4 py-3 text-[13px] leading-6 text-gray-700">
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                ['Nguồn hàng', 'Chủ động'],
+                ['Vật tư', 'Đồng bộ'],
+                ['Tiến độ', 'Nhanh'],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-[16px] border border-gray-200 bg-white px-4 py-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">{label}</p>
+                  <p className="mt-2 text-[18px] font-semibold text-gray-900">{value}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-2">
-            {[
-              'Có khả năng đáp ứng nhiều cấu hình combo khác nhau theo nhu cầu thực tế.',
-              'Nguồn hàng vật tư được chuẩn hóa để giữ tiến độ triển khai ổn định.',
-              'Quy trình kiểm tra - đóng gói - xuất kho hỗ trợ giảm sai lệch khi thi công.',
-              'Phù hợp cả đơn hàng lẻ và các công trình cần phối hợp nhiều hạng mục.',
-            ].map((item) => (
-              <div key={item} className="rounded-[16px] border border-gray-200 bg-[#fafafa] px-4 py-3 text-[13px] leading-6 text-gray-700">
-                {item}
-              </div>
-            ))}
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-3">
-            {[
-              ['Nguồn hàng', 'Chủ động'],
-              ['Vật tư', 'Đồng bộ'],
-              ['Tiến độ', 'Nhanh'],
-            ].map(([label, value]) => (
-              <div key={label} className="rounded-[16px] border border-gray-200 bg-white px-4 py-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gray-500">{label}</p>
-                <p className="mt-2 text-[18px] font-semibold text-gray-900">{value}</p>
-              </div>
-            ))}
-          </div>
-
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               { image: '/images/generated/warehouse-solar-panels.jpg', title: 'Kho tấm pin', desc: 'Tấm pin phổ biến cho nhiều cấu hình combo.' },

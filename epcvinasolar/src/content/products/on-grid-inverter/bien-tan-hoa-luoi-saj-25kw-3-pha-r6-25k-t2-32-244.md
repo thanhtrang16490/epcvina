@@ -4,7 +4,7 @@ brand: "SAJ"
 category: "on-grid-inverter"
 model: "R6-25K-T2-32"
 description: "Biến tần Hòa lưới SAJ 25kW 3 Pha R6-25K-T2-32 là dòng biến tần cao cấp, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng."
-main_image: "/images/products/bien-tan-hoa-luoi-saj-25kw-3-pha-r6-25k-t2-32-244/bien-tan-hoa-luoi-saj-25kw-3-pha-r6-25k-t2-32-244.png"
+main_image: "/images/products/bien-tan-hoa-luoi-saj-25kw-3-pha-r6-25k-t2-32-244/bien-tan-hoa-luoi-saj-25kw-3-pha-r6-25k-t2-32-244.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

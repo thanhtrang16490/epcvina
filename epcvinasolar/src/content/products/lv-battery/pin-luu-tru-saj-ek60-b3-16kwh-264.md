@@ -4,7 +4,7 @@ brand: "SAJ"
 category: "lv-battery"
 model: "EK60 B3 16kWh"
 description: "Pin lưu trữ Pin lưu trữ SAJ EK60 B3 16kWh là lựa chọn hàng đầu cho các hệ thống điện mặt trời nhờ dung lượng lớn, độ bền vượt trội và khả năng tương thích linh hoạt với nhiều dòng inverter phổ biến."
-main_image: "/images/products/pin-luu-tru-saj-ek60-b3-16kwh-264/pin-luu-tru-saj-ek60-b3-16kwh-264.png"
+main_image: "/images/products/pin-luu-tru-saj-ek60-b3-16kwh-264/pin-luu-tru-saj-ek60-b3-16kwh-264.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

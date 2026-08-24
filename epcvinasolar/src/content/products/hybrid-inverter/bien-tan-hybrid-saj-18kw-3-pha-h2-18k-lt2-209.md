@@ -6,7 +6,7 @@ model: "H2-18K-LT2"
 description: "Biến tần Hybrid SAJ 18kW 3 Pha H2-18K-LT2 là dòng biến tần áp cao, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng."
 price: 58326000
 unit_price: 58326000
-main_image: "/images/products/bien-tan-hybrid-saj-18kw-3-pha-h2-18k-lt2-209/bien-tan-hybrid-saj-18kw-3-pha-h2-18k-lt2-209.png"
+main_image: "/images/products/bien-tan-hybrid-saj-18kw-3-pha-h2-18k-lt2-209/bien-tan-hybrid-saj-18kw-3-pha-h2-18k-lt2-209.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

@@ -6,7 +6,7 @@ model: "H2-6K-LS2-S"
 description: "Biến tần Hybrid SAJ 6kW 1 Pha H2-6K-LS2-S là dòng biến tần áp thấp, tối ưu hiệu suất chuyển đổi năng lượng cho hệ thống dân dụng."
 price: 17900000
 unit_price: 17900000
-main_image: "/images/products/bien-tan-hybrid-saj-6kw-1-pha-h2-6k-ls2-203/bien-tan-hybrid-saj-6kw-1-pha-h2-6k-ls2-203.jpeg"
+main_image: "/images/products/bien-tan-hybrid-saj-6kw-1-pha-h2-6k-ls2-203/bien-tan-hybrid-saj-6kw-1-pha-h2-6k-ls2-203.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

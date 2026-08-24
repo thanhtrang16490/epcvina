@@ -4,7 +4,7 @@ brand: "Japan Green Power"
 category: "mounting"
 model: "KẸP NGOÀI ĐIỀU CHỈNH ĐỘ CAO"
 description: "KẸP NGOÀI Cài đặt rất dễ dàng và nhanh chóng. Có thể chứa tối đa hai dây cáp Phù hợp với khung pin mặt trời từ 35mm-50mm Đai ốc nghiêng dễ lắp đặt Đóng gói 400cái/ctn Bảo hành sản phẩm: 10 năm"
-main_image: "/images/products/kep-ngoai-dieu-chinh-do-cao/kep-ngoai-dieu-chinh-do-cao.png"
+main_image: "/images/products/kep-ngoai-dieu-chinh-do-cao/kep-ngoai-dieu-chinh-do-cao.webp"
 is_available: true
 show_on_homepage: false
 product_type: "mounting"

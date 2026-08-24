@@ -6,7 +6,7 @@ model: "8-10 KW 1 Pha"
 description: "Tủ Điện năng lượng mặt trời hòa lưới có lưu trữ (Hybrid) 1 pha 2 Strings cho hệ thống Điện mặt trời 6kW – 8kW"
 price: 5494000
 unit_price: 5494000
-main_image: "/images/products/tu-dien-hybrid-1-pha-8-10kw-2-string-228/tu-dien-hybrid-1-pha-8-10kw-2-string-228.png"
+main_image: "/images/products/tu-dien-hybrid-1-pha-8-10kw-2-string-228/tu-dien-hybrid-1-pha-8-10kw-2-string-228.webp"
 is_available: true
 show_on_homepage: false
 product_type: "cabinet"

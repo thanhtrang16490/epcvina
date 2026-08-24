@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "on-grid-inverter"
 model: "SG40CX"
 description: "Thương hiệu: SUNGROW Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm"
-main_image: "/images/products/bien-tan-hoa-luoi-sungrow-40kw-sg40cx/bien-tan-hoa-luoi-sungrow-40kw-sg40cx.png"
+main_image: "/images/products/bien-tan-hoa-luoi-sungrow-40kw-sg40cx/bien-tan-hoa-luoi-sungrow-40kw-sg40cx.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

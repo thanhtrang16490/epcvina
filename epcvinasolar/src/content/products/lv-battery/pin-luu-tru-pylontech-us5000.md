@@ -4,7 +4,7 @@ brand: "Pylontech"
 category: "lv-battery"
 model: "US5000"
 description: "MODEL: US5000 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 4,8kWh DÒNG SẠC & XẢ: 80A"
-main_image: "/images/products/pin-luu-tru-pylontech-us5000/pin-luu-tru-pylontech-us5000.png"
+main_image: "/images/products/pin-luu-tru-pylontech-us5000/pin-luu-tru-pylontech-us5000.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

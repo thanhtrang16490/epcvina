@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "on-grid-inverter"
 model: "SG150CX 150kW"
 description: "⭐ Mã sản phẩm: Inverter Sungrow SG150CX⭐ Công suất: 150 kW – 3 pha⭐ Hiệu suất chuyển đổi cực đại: 98.8%⭐ Số MPPT / Số string: 7 MPPT / 21 strings (3 strings mỗi MPPT)⭐ Dải điện áp MPPT: 180 – 1000V⭐ Cấp bảo vệ: IP66⭐ Nhiệt độ hoạt động: -30°C đến +60°C⭐ Trọng lượng: ≤ 100 kg⭐ Kích thước:1025 mm * 795 mm * 360 mm⭐ Làm mát: Tản nhiệt thông minh, thiết kế làm mát tự nhiên⭐ Chứng từ: CO, CQ, VAT đầy đủ⭐ Bảo hành: 5 năm"
-main_image: "/images/products/inverter-sungrow-sg150cx-150kw/inverter-sungrow-sg150cx-150kw.png"
+main_image: "/images/products/inverter-sungrow-sg150cx-150kw/inverter-sungrow-sg150cx-150kw.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

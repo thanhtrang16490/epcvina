@@ -6,7 +6,7 @@ model: "SUN-SL-HP6K-A1"
 description: "Biến tần Hybrid Hope Trek SUN-SL-HP6K-A1 công suất 6 kW tích hợp xử lý điện PV, lưu trữ pin Li-ion và kết nối lưới trong một thiết bị đạt hiệu suất 97,23%, chuẩn bảo vệ IP66, sẵn sàng vận hành bền bỉ trong mọi điều kiện thời tiết khắc nghiệt."
 price: 23905000
 unit_price: 23905000
-main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-sl-hp6k-a1-1-pha-222/bien-tan-hybrid-hopetrek-sun-sl-hp6k-a1-1-pha-222.png"
+main_image: "/images/products/bien-tan-hybrid-hopetrek-sun-sl-hp6k-a1-1-pha-222/bien-tan-hybrid-hopetrek-sun-sl-hp6k-a1-1-pha-222.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

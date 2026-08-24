@@ -4,7 +4,7 @@ brand: "GENIXGREEN"
 category: "lv-battery"
 model: "ES-BOX36 MAX"
 description: "Pin lưu trữ Genix Green 5.12kWh ES-BOX36 MAX là dòng pin lithium LiFePO4 áp thấp 51.2V, dung lượng lớn 16.08kWh, hỗ trợ mở rộng linh hoạt và vận hành ổn định cho hệ thống điện mặt trời dân dụng"
-main_image: "/images/products/pin-luu-tru-genixgreen-16-08kwh-es-box36-max-247/pin-luu-tru-genixgreen-16-08kwh-es-box36-max-247.png"
+main_image: "/images/products/pin-luu-tru-genixgreen-16-08kwh-es-box36-max-247/pin-luu-tru-genixgreen-16-08kwh-es-box36-max-247.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

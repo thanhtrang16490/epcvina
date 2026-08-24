@@ -4,7 +4,7 @@ brand: "Deye"
 category: "hybrid-inverter"
 model: "SUN-5-6K-SG01LP1-US-EU"
 description: "Thương hiệu: DEYE Sử dụng trong mạng điện: 1 pha Bảo hành: 5 năm"
-main_image: "/images/products/inverter-hybrid-deye-sun-5.6k-sg01lp1-us-eu/inverter-hybrid-deye-sun-5.6k-sg01lp1-us-eu.png"
+main_image: "/images/products/inverter-hybrid-deye-sun-5.6k-sg01lp1-us-eu/inverter-hybrid-deye-sun-5.6k-sg01lp1-us-eu.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

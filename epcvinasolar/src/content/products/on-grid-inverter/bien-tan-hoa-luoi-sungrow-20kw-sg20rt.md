@@ -4,7 +4,7 @@ brand: "Sungrow"
 category: "on-grid-inverter"
 model: "SG20RT"
 description: "Thương hiệu: SUNGROW Sử dụng trong mạng điện: 3 pha Bảo hành: 5 năm"
-main_image: "/images/products/bien-tan-hoa-luoi-sungrow-20kw-sg20rt/bien-tan-hoa-luoi-sungrow-20kw-sg20rt.png"
+main_image: "/images/products/bien-tan-hoa-luoi-sungrow-20kw-sg20rt/bien-tan-hoa-luoi-sungrow-20kw-sg20rt.webp"
 is_available: true
 show_on_homepage: false
 product_type: "inverter"

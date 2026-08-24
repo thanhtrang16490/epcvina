@@ -4,7 +4,7 @@ brand: "Pylontech"
 category: "lv-battery"
 model: "US3000C"
 description: "MODEL: US3000C THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 3,55kWh DÒNG SẠC & XẢ: 37A"
-main_image: "/images/products/pin-luu-tru-pylontech-us3000c/pin-luu-tru-pylontech-us3000c.png"
+main_image: "/images/products/pin-luu-tru-pylontech-us3000c/pin-luu-tru-pylontech-us3000c.webp"
 is_available: true
 show_on_homepage: false
 product_type: "lv-battery"

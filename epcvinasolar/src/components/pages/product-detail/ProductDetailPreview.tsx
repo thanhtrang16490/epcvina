@@ -325,6 +325,8 @@ export default function ProductDetailPreview({ product, images }: ProductDetailP
                         src={item.image}
                         alt={item.name}
                         className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                        loading={index < 4 ? 'eager' : 'lazy'}
+                        decoding="async"
                       />
                     </div>
                     <div className="mt-3 inline-flex rounded bg-slate-100 px-2 py-1 text-[11px] font-semibold text-gray-600">

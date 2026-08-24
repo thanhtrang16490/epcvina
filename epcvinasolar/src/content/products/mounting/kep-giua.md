@@ -4,7 +4,7 @@ brand: "Japan Green Power"
 category: "mounting"
 model: "KẸP GIỮA"
 description: "Kẹp giữa được chế tạo bằng hợp kim nhôm độ cứng cao, siêu nhẹ Chất liệu SUS304 Dễ dàng thi công các loại khác nhau Bảo vệ cáp ít hư hại Chất liệu SUS304 Đóng gói 400cái/ctn Bảo hành sản phẩm: 10 năm"
-main_image: "/images/products/kep-giua/kep-giua.png"
+main_image: "/images/products/kep-giua/kep-giua.webp"
 is_available: true
 show_on_homepage: false
 product_type: "mounting"

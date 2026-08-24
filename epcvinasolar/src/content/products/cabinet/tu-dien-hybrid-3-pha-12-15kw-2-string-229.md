@@ -6,7 +6,7 @@ model: "12-16 KW 3 Pha"
 description: "Tủ Điện năng lượng mặt trời hòa lưới có lưu trữ (Hybrid) 3 pha 2 Strings cho hệ thống Điện mặt trời 12kW – 15kW"
 price: 7436000
 unit_price: 7436000
-main_image: "/images/products/tu-dien-hybrid-3-pha-12-15kw-2-string-229/tu-dien-hybrid-3-pha-12-15kw-2-string-229.png"
+main_image: "/images/products/tu-dien-hybrid-3-pha-12-15kw-2-string-229/tu-dien-hybrid-3-pha-12-15kw-2-string-229.webp"
 is_available: true
 show_on_homepage: false
 product_type: "cabinet"

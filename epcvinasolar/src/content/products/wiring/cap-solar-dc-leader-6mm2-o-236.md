@@ -6,7 +6,7 @@ model: "1X6.0MM2-B"
 description: "Dây cáp DC LEADER 6mm² 1500VDC dùng cho hệ thống điện mặt trời, độ bền cao, chịu nhiệt tốt, chống UV, an toàn và ổn định trong mọi môi trường."
 price: 27300
 unit_price: 27300
-main_image: "/images/products/cap-solar-dc-leader-6mm2-o-236/cap-solar-dc-leader-6mm2-o-236.png"
+main_image: "/images/products/cap-solar-dc-leader-6mm2-o-236/cap-solar-dc-leader-6mm2-o-236.webp"
 is_available: true
 show_on_homepage: false
 product_type: "wiring"

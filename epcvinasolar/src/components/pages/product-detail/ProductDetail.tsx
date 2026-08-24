@@ -607,6 +607,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                       alt={brandInfo.name}
                       className="w-full h-full object-contain"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 )}
@@ -672,6 +673,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                             src={project.data.image}
                             alt={project.data.title}
                             loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -926,6 +928,7 @@ function ProductDetailInner({ product, relatedProjects = [] }: ProductDetailProp
                         alt={relatedProduct.name}
                         className="w-full h-full object-contain"
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           (e.target as HTMLImageElement).src = '/images/placeholder.png';
                         }}

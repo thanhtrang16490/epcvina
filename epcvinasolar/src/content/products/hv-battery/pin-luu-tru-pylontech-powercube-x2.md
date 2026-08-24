@@ -4,7 +4,7 @@ brand: "Pylontech"
 category: "hv-battery"
 model: "POWERCUBE X2"
 description: "MODEL: POWERCUBE X2 THƯƠNG HIỆU: PYLONTECH ĐIỆN NĂNG LƯU TRỮ: 7.1 – 35.52kWh DÒNG SẠC & XẢ: 37A"
-main_image: "/images/products/pin-luu-tru-pylontech-powercube-x2/pin-luu-tru-pylontech-powercube-x2.png"
+main_image: "/images/products/pin-luu-tru-pylontech-powercube-x2/pin-luu-tru-pylontech-powercube-x2.webp"
 is_available: true
 show_on_homepage: false
 product_type: "hv-battery"
