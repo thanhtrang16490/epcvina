@@ -72,9 +72,11 @@ const breadcrumbSchema = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(comboSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-  <EquipmentMarketplaceHeader
-    title="Chi tiết Gói Combo"
-    subtitle="Xem cấu hình, công suất, sản lượng và giá của combo bạn đang quan tâm."
-  />
+  <div class="hidden md:block">
+    <EquipmentMarketplaceHeader
+      title="Chi tiết Gói Combo"
+      subtitle="Xem cấu hình, công suất, sản lượng và giá của combo bạn đang quan tâm."
+    />
+  </div>
   <ComboDetailEquipmentStyle client:idle combo={JSON.parse(JSON.stringify(combo))} />
 </EquipmentLayout>

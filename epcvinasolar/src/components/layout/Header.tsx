@@ -16,7 +16,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen, pathname = '
   const t = messages[locale];
   
   const isHome = pathname === '/';
-  const isDetailPage = pathname.includes('/goi-combo/') || pathname.includes('/solar-home/he-thong/') || (pathname.includes('/combos/') && pathname !== '/combos');
+  const isDetailPage = pathname.includes('/solar-home/he-thong/') || (pathname.includes('/combos/') && pathname !== '/combos');
   const isTop = scrollY <= 10;
   const isDarkTheme = isTop;
   const iconColor = 'text-gray-800';

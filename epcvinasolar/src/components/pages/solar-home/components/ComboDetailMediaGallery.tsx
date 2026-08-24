@@ -129,6 +129,13 @@ export default function ComboDetailMediaGallery({ gallery }: ComboDetailMediaGal
     return Math.min(Math.max(0, thumbStartIndex * itemSize), maxOffset);
   }, [thumbStartIndex, gallery.length]);
 
+  const mobileThumbOffset = useMemo(() => {
+    const itemSize = 68;
+    const visibleCount = 4;
+    const maxOffset = Math.max(0, gallery.length * itemSize - visibleCount * itemSize);
+    return Math.min(Math.max(0, thumbStartIndex * itemSize), maxOffset);
+  }, [thumbStartIndex, gallery.length]);
+
   const maxThumbStartIndex = Math.max(0, gallery.length - visibleThumbCount);
   const canScrollThumbUp = thumbStartIndex > 0;
   const canScrollThumbDown = thumbStartIndex < maxThumbStartIndex;
@@ -172,9 +179,9 @@ export default function ComboDetailMediaGallery({ gallery }: ComboDetailMediaGal
 
   return (
     <div className="space-y-4 lg:sticky lg:top-6 lg:self-start">
-      <div className="relative pl-[82px]">
+      <div className="relative md:pl-[82px]">
         <div
-          className="absolute left-0 top-0 h-full w-[70px] overflow-hidden pr-1 pt-10 pb-10"
+          className="absolute left-0 top-0 hidden h-full w-[70px] overflow-hidden pr-1 pt-10 pb-10 md:block"
           onMouseLeave={stopThumbScroll}
         >
           <button
@@ -297,6 +304,63 @@ export default function ComboDetailMediaGallery({ gallery }: ComboDetailMediaGal
               className="absolute right-3 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-gray-700 shadow-md transition hover:bg-gray-50"
             >
               <span className="text-2xl leading-none">›</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-3 md:hidden">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="Cuộn thumbnail sang trái"
+              onClick={() => setThumbStartIndex((current) => Math.max(0, current - 1))}
+              className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border bg-white text-gray-700 shadow-sm transition ${
+                canScrollThumbUp ? 'border-gray-300 hover:border-gray-500' : 'pointer-events-none opacity-30'
+              }`}
+            >
+              <span className="text-lg leading-none">‹</span>
+            </button>
+
+            <div className="min-w-0 flex-1 overflow-hidden">
+              <div
+                className="flex gap-2 transition-transform duration-300 ease-out"
+                style={{ transform: `translate3d(-${mobileThumbOffset}px, 0, 0)` }}
+              >
+                {gallery.map((item, index) => (
+                  <button
+                    key={`mobile-thumb-${item.src}-${index}`}
+                    type="button"
+                    onPointerEnter={() => {
+                      changeSelectedImage(index);
+                    }}
+                    onFocus={() => {
+                      changeSelectedImage(index);
+                    }}
+                    onClick={() => changeSelectedImage(index)}
+                    className={`relative h-[64px] w-[64px] shrink-0 overflow-hidden rounded-[12px] border bg-white transition ${
+                      selectedImage === index ? 'border-gray-900 ring-2 ring-gray-900/10' : 'border-gray-300 hover:border-gray-500'
+                    }`}
+                  >
+                    {item.type === 'video' ? (
+                      <video src={item.src} muted playsInline preload="metadata" className="h-full w-full object-cover" />
+                    ) : (
+                      <img src={item.src} alt={`Mobile thumbnail ${index + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+                    )}
+                    <div className="pointer-events-none absolute inset-0 bg-black/5" />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              type="button"
+              aria-label="Cuộn thumbnail sang phải"
+              onClick={() => setThumbStartIndex((current) => Math.min(maxThumbStartIndex, current + 1))}
+              className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border bg-white text-gray-700 shadow-sm transition ${
+                canScrollThumbDown ? 'border-gray-300 hover:border-gray-500' : 'pointer-events-none opacity-30'
+              }`}
+            >
+              <span className="text-lg leading-none">›</span>
             </button>
           </div>
         </div>
