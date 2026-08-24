@@ -93,21 +93,21 @@ export default function ProcessFaqSection({
               className={`overflow-hidden rounded-[18px] border border-gray-200 bg-[#fafafa] ${index === 0 ? 'ring-1 ring-[#0B63CE]/10' : ''}`}
             >
               <div className="grid gap-0 sm:grid-cols-[160px_minmax(0,1fr)]">
-                <div className="relative aspect-[4/3] overflow-hidden bg-white">
+                <div className="relative aspect-square overflow-hidden bg-white sm:aspect-[4/3]">
                   <img src={item.image} alt={item.title} className="h-full w-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
                 </div>
                 <div className="min-w-0 p-4 sm:p-5">
-                  <div className="flex items-center gap-3">
-                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white text-sm font-bold text-[#0B63CE] shadow-sm ring-1 ring-gray-200">
+                  <div className="flex items-center gap-3 sm:items-center">
+                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white text-sm font-bold text-[#0B63CE] shadow-sm ring-1 ring-gray-200 sm:h-12 sm:w-12">
                       {item.step}
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-[16px] font-semibold text-gray-900">{item.title}</h3>
+                      <h3 className="text-[15px] font-semibold leading-snug text-gray-900 sm:text-[16px]">{item.title}</h3>
                       <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-gray-500">Bước {index + 1}</p>
                     </div>
                   </div>
-                  <p className="mt-3 max-w-2xl text-[13px] leading-6 text-gray-600">{item.desc}</p>
+                  <p className="mt-3 max-w-2xl text-[13px] leading-6 text-gray-600 sm:mt-3">{item.desc}</p>
                 </div>
               </div>
             </div>
