@@ -7,8 +7,8 @@ voltage: "high"
 power_kw: 15.63
 battery_kwh: 15.36
 investment_million_vnd: 271.7
-production_min_kwh: 1200
-production_max_kwh: 1500
+production_min_kwh: 1876
+production_max_kwh: 1876
 payback_years: 5.58
 payback_label: "5 năm 7 tháng"
 roof_area_m2: 67.5

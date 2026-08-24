@@ -7,8 +7,8 @@ voltage: null
 power_kw: 15.63
 battery_kwh: 32
 investment_million_vnd: 293.5
-production_min_kwh: 1200
-production_max_kwh: 1500
+production_min_kwh: 1876
+production_max_kwh: 1876
 payback_years: 6.08
 payback_label: "6 năm 1 tháng"
 roof_area_m2: 67.5

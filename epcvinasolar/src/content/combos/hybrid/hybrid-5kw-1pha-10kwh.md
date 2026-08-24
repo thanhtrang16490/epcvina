@@ -7,7 +7,7 @@ voltage: null
 power_kw: 5
 battery_kwh: 10.24
 investment_million_vnd: 123.6
-production_min_kwh: 400
+production_min_kwh: 600
 production_max_kwh: 600
 payback_years: 6.83
 payback_label: "6 năm 10 tháng"

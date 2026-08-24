@@ -20,6 +20,15 @@ interface ComboData {
     voltage: 'low' | 'high' | null;
     power_kw: number;
     battery_kwh?: number;
+    panel_brand?: string;
+    panel_model?: string;
+    panel_slug?: string;
+    inverter_brand?: string;
+    inverter_model?: string;
+    inverter_slug?: string;
+    battery_brand?: string;
+    battery_model?: string;
+    battery_slug?: string;
     investment_million_vnd: number;
     production_min_kwh: number;
     production_max_kwh: number;
@@ -155,19 +164,18 @@ function HighlightsMaterialsSection({
         <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-gray-500">Bản kê chi tiết vật tư</p>
         <h3 className="mt-2 text-[22px] font-semibold leading-tight text-gray-900">Danh sách vật tư chính</h3>
         <div className="mt-5 overflow-hidden rounded-[18px] border border-gray-200">
-          <div className="grid grid-cols-[minmax(0,1.5fr)_88px_120px] gap-4 border-b border-gray-200 bg-[#fafafa] px-5 py-3">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-gray-500">Nhóm vật tư</p>
-            <p className="text-center text-[12px] font-semibold uppercase tracking-[0.16em] text-gray-500">Số lượng</p>
-            <p className="pr-1 text-right text-[12px] font-semibold uppercase tracking-[0.16em] text-gray-500">Bảo hành</p>
+          <div className="grid grid-cols-[minmax(0,1fr)_140px] gap-4 border-b border-gray-200 bg-[#fafafa] px-5 py-3">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-gray-500">Thương hiệu</p>
+            <p className="text-right text-[12px] font-semibold uppercase tracking-[0.16em] text-gray-500">Công suất</p>
           </div>
           <div className="bg-white">
-            <MaterialRow icon={materialIcons.panel} name={`${panelModel} tấm pin`} warranty="12 năm" quantity={`${panelQuantity} tấm`} highlight />
-            <MaterialRow icon={materialIcons.inverter} name={`${inverterModel} biến tần`} warranty="5 năm" quantity={`${inverterQuantity} bộ`} />
-            <MaterialRow icon={materialIcons.rail} name="Hệ khung nhôm" warranty="5 năm" quantity="1 bộ" />
-            <MaterialRow icon={materialIcons.wiring} name="Hệ dây điện" warranty="5 năm" quantity="1 bộ" />
-            <MaterialRow icon={materialIcons.cabinet} name="Tủ điện" warranty="2 năm" quantity="1 bộ" />
-            <MaterialRow icon={materialIcons.grounding} name="Hệ tiếp địa" warranty="2 năm" quantity="1 bộ" />
-            <MaterialRow icon={materialIcons.install} name="Vận chuyển + lắp đặt" warranty="--" quantity="1 gói" />
+            <MaterialRow name={`${panelBrand} ${panelModel}`} power={`${data.power_kw} kWp`} highlight />
+            <MaterialRow name={`${inverterBrand} ${inverterModel}`} power={data.system_type === 'on-grid' ? `${data.power_kw} kW` : `${data.power_kw} kW`} />
+            <MaterialRow name="Hệ khung nhôm" power="1 bộ" />
+            <MaterialRow name="Hệ dây điện" power="1 bộ" />
+            <MaterialRow name="Tủ điện" power="1 bộ" />
+            <MaterialRow name="Hệ tiếp địa" power="1 bộ" />
+            <MaterialRow name="Vận chuyển + lắp đặt" power="1 gói" />
           </div>
         </div>
       </div>
@@ -334,29 +342,19 @@ function ConstructionMethodsSection({
 
 function MaterialRow({
   name,
-  warranty,
-  quantity,
-  icon,
+  power,
   highlight = false,
 }: {
   name: string;
-  warranty: string;
-  quantity: string;
-  icon: ReactNode;
+  power: string;
   highlight?: boolean;
 }) {
   return (
-    <div className="grid grid-cols-[minmax(0,1.5fr)_88px_120px] gap-4 border-b border-gray-200 px-5 py-4 last:border-b-0">
+    <div className="grid grid-cols-[minmax(0,1fr)_140px] gap-4 border-b border-gray-200 px-5 py-4 last:border-b-0">
       <div className="min-w-0">
-        <div className="flex items-center gap-3">
-          <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-[#f8fafc] text-gray-700 ring-1 ring-gray-200">
-            {icon}
-          </div>
-          <p className="text-[15px] font-medium text-gray-900">{name}</p>
-        </div>
+        <p className="text-[15px] font-medium text-gray-900">{name}</p>
       </div>
-        <div className={`text-center text-[15px] font-semibold ${highlight ? 'text-[#ff6a00]' : 'text-gray-900'}`}>{quantity}</div>
-        <div className="text-right text-[15px] text-gray-600">{warranty}</div>
+      <div className={`text-right text-[15px] font-semibold ${highlight ? 'text-[#ff6a00]' : 'text-gray-900'}`}>{power}</div>
     </div>
   );
 }
@@ -386,8 +384,15 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
   const avgProduction = Math.round((data.production_min_kwh + data.production_max_kwh) / 2);
   const monthlySaving = Math.round(avgProduction * 3100);
   const yearlySaving = monthlySaving * 12;
-  const panelModel = 'Aiko';
-  const inverterModel = isHybrid ? 'SAJ' : 'SAJ';
+  const panelBrand = data.panel_brand || 'Aiko';
+  const panelModel = data.panel_model || 'Stellar';
+  const panelSlug = data.panel_slug;
+  const inverterBrand = data.inverter_brand || 'SAJ';
+  const inverterModel = data.inverter_model || (isHybrid ? 'Hybrid' : 'On-Grid');
+  const inverterSlug = data.inverter_slug;
+  const batteryBrand = data.battery_brand || 'Genxgreen';
+  const batteryModel = data.battery_model || (data.battery_kwh ? `${data.battery_kwh} kWh` : '');
+  const batterySlug = data.battery_slug;
   const panelQuantity = Math.max(1, Math.round(data.power_kw * 1.6));
   const inverterQuantity = 1;
   const materialIcons = {
@@ -403,17 +408,19 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
     () => [
       {
         icon: <Sun className="h-5 w-5 text-amber-500" />,
-        title: `${panelModel} tấm pin`,
+        title: `${panelBrand} ${panelModel}`,
         image: '/images/combo/source-panel.webp',
         imagePosition: 'left top',
-        specs: [['Bảo hành', '12 năm'], ['Nhóm vật tư', 'Tấm pin mặt trời'], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
+        href: panelSlug ? `/thiet-bi/panel/${panelSlug}` : undefined,
+        specs: [['Bảo hành', '12 năm'], ['Model', panelModel], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Lightning className="h-5 w-5 text-[#f60]" />,
-        title: 'Biến tần',
+        title: `${inverterBrand} ${inverterModel}`,
         image: '/images/combo/source-inverter.avif',
         imagePosition: 'center top',
-        specs: [['Bảo hành', '5 năm'], ['Nhóm vật tư', `${inverterModel} biến tần`], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
+        href: inverterSlug ? `/thiet-bi/${data.system_type === 'hybrid' ? 'hybrid-inverter' : 'on-grid-inverter'}/${inverterSlug}` : undefined,
+        specs: [['Bảo hành', '5 năm'], ['Model', inverterModel], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Shield className="h-5 w-5 text-gray-700" />,
@@ -431,7 +438,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
       },
       {
         icon: <Shield className="h-5 w-5 text-gray-700" />,
-        title: 'Tủ điện',
+        title: data.voltage === 'high' ? 'Tủ điện áp cao' : 'Tủ điện',
         image: '/images/combo/source-cabinet.webp',
         imagePosition: 'center center',
         specs: [['Bảo hành', '2 năm'], ['Nhóm vật tư', 'Tủ điện'], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
@@ -451,7 +458,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
         specs: [['Bảo hành', '--'], ['Nhóm vật tư', 'Vận chuyển + lắp đặt'], ['Trạng thái', 'Áp dụng theo công trình']] as Array<[string, string]>,
       },
     ],
-    [inverterModel, panelModel]
+    [batteryBrand, batteryModel, batterySlug, inverterBrand, inverterModel, inverterSlug, panelBrand, panelModel, panelSlug, data.system_type, data.voltage]
   );
   const constructionSteps = useMemo(
     () => [
@@ -972,17 +979,19 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
 function EquipmentCard({
   icon,
   title,
+  href,
   image,
   imagePosition,
   specs,
 }: {
   icon: ReactNode;
   title: string;
+  href?: string;
   image: string;
   imagePosition: string;
   specs: Array<[string, string]>;
 }) {
-  return (
+  const Content = (
     <article
       data-equipment-card
       className="group min-w-[280px] snap-start overflow-hidden rounded-2xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#0B63CE] hover:shadow-xl xl:min-w-[calc((100%-4.5rem)/4)]"
@@ -993,7 +1002,6 @@ function EquipmentCard({
           <source srcSet={image.endsWith('.webp') ? image : image.replace(/\.avif$/, '.webp')} type="image/webp" />
           <img src={image} alt={title} className="h-full w-full object-cover" style={{ objectPosition: imagePosition }} loading="lazy" />
         </picture>
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
         <div className="absolute left-4 top-4 grid h-12 w-12 place-items-center rounded-2xl bg-white/90 text-[#f60] shadow-sm ring-1 ring-black/5 backdrop-blur">
           {icon}
         </div>
@@ -1014,4 +1022,10 @@ function EquipmentCard({
       </div>
     </article>
   );
+
+  if (href) {
+    return <a href={href} className="block">{Content}</a>;
+  }
+
+  return Content;
 }

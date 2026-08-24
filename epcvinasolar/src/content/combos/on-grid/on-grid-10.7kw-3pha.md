@@ -7,8 +7,8 @@ voltage: null
 power_kw: 10.63
 
 investment_million_vnd: 108.4
-production_min_kwh: 800
-production_max_kwh: 1000
+production_min_kwh: 1276
+production_max_kwh: 1276
 payback_years: 3.42
 payback_label: "3 năm 5 tháng"
 
