@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { CaretDown, FileText, List, X } from '@phosphor-icons/react';
-import { useScrollContext } from '../../layout/DashboardShell';
+import { useScrollContext } from '../../layout/dashboardShellContext';
 import { getLocaleFromPathname, messages } from '../../../i18n/messages';
 import { getLocalePath, getLocalizedRoute } from '../../../i18n/routes';
 import { getHeaderLayoutConfig } from './localeLayoutConfig';
@@ -8,11 +8,7 @@ import { getHeaderLayoutConfig } from './localeLayoutConfig';
 const MAIN_NAV_KEYS = ['home', 'solar-home', 'hybrid-bess', 'solar-cong-nghiep', 'sac-ev', 'bao-tri', 'profile'] as const;
 
 export default function HeaderBar({ pathname = '/' }: { pathname?: string }) {
-  const [activePath, setActivePath] = useState(() => {
-    if (pathname) return pathname;
-    if (typeof window !== 'undefined') return window.location.pathname;
-    return '/';
-  });
+  const activePath = pathname;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const { isHeaderVisible } = useScrollContext();
@@ -26,10 +22,6 @@ export default function HeaderBar({ pathname = '/' }: { pathname?: string }) {
   const config = getHeaderLayoutConfig(locale, activePath);
   const { homeHref, quoteHref, contactHref, mainNavItems, secondaryNavItems, labels } = config;
   const [visibleNavCount, setVisibleNavCount] = useState(mainNavItems.length);
-
-  useEffect(() => {
-    setActivePath(pathname || window.location.pathname);
-  }, [pathname]);
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {

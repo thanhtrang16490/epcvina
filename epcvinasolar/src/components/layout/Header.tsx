@@ -1,22 +1,22 @@
 import { CaretLeft, List } from '@phosphor-icons/react';
-import { useScrollContext } from './DashboardShell';
+import { useScrollContext } from './dashboardShellContext';
 import { getLocaleFromPathname, messages } from '../../i18n/messages';
 
 interface HeaderProps {
   onMenuClick?: () => void;
   isHidden?: boolean;
   isMenuOpen?: boolean;
+  pathname?: string;
 }
 
-export default function Header({ onMenuClick, isHidden, isMenuOpen }: HeaderProps) {
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+export default function Header({ onMenuClick, isHidden, isMenuOpen, pathname = '/' }: HeaderProps) {
   const navigateTo = (path: string) => { window.location.href = path; };
   const { scrollY } = useScrollContext();
   const locale = getLocaleFromPathname(pathname);
   const t = messages[locale];
   
   const isHome = pathname === '/';
-  const isDetailPage = pathname.includes('/combos/') && pathname !== '/combos';
+  const isDetailPage = pathname.includes('/goi-combo/') || pathname.includes('/solar-home/he-thong/') || (pathname.includes('/combos/') && pathname !== '/combos');
   const isTop = scrollY <= 10;
   const isDarkTheme = isTop;
   const iconColor = 'text-gray-800';

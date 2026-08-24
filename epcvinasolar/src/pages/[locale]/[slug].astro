@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import { locales, type Locale } from '../../i18n/messages';
 import { getLocalizedRoute } from '../../i18n/routes';
 
@@ -212,7 +212,7 @@ const backHref = getLocalizedRoute(locale, 'policies');
     { name: page.title, url: canonical },
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       <div class="mb-8">
         <a href={backHref} class="text-sm text-gray-500 hover:text-gray-700 transition-colors">← {locale === 'vi' ? 'Tất cả chính sách' : 'All policies'}</a>

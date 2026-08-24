@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HeaderBar from '../../components/home/layout/HeaderBar';
 import { getCollection, render } from 'astro:content';
 
@@ -103,7 +103,7 @@ const faq = project.data.faq || [];
       "@id": `https://epcvina.com/du-an/${projectSlug}`
     }
   })} />
-  <DashboardShell client:load>
+  <DashboardShell>
     <div class="min-h-screen bg-white">
       <HeaderBar client:load />
     

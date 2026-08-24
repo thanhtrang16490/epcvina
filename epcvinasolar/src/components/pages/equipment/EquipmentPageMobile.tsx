@@ -5,7 +5,7 @@ import { Shield, X, CaretRight, SlidersHorizontal, Eye, ArrowRight, Check, Caret
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
-import { useScrollContext } from '../../layout/DashboardShell';
+import { useScrollContext } from '../../layout/dashboardShellContext';
 import { formatCurrency, CATEGORY_META } from './shared-equipment';
 
 function CardImagePlaceholder({ category, label }: { category: EquipmentCategory; label: string }) {

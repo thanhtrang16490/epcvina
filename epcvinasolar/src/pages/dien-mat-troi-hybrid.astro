@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import HybridBESSPage from '../components/pages/hybrid/HybridBESSPage';
 import { buildFaqSchema } from '../lib/schema';
 
@@ -30,7 +30,7 @@ const faqSchema = buildFaqSchema([
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <DashboardShell client:load>
+  <DashboardShell>
       <HybridBESSPage client:visible />
     </DashboardShell>
 </DashboardLayout>

@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HeaderBar from '../../components/home/layout/HeaderBar';
 import { getCollection } from 'astro:content';
 
@@ -108,7 +108,7 @@ const posts = category.posts
     { name: category.title, url: `https://epcvina.com/kien-thuc/${slug}` },
   ]}
 >
-  <DashboardShell client:idle>
+  <DashboardShell>
     <HeaderBar client:idle />
     <main class="min-h-screen bg-slate-50 md:pt-16">
       <section class="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16">

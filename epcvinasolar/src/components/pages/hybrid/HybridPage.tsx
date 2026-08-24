@@ -7,7 +7,7 @@ import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import ComboPlaceholder from '../../shared/modals/ComboPlaceholder';
 import type { Device, EquipmentCategory, ComboTemplate, TemplateItem } from '../../../lib/types';
-import { useScrollContext } from '../../layout/DashboardShell';
+import { useScrollContext } from '../../layout/dashboardShellContext';
 import { useFetch } from '../../../hooks/useFetch';
 import { normalizeCombos, normalizeTemplate, calculateItemQuantities } from '../../../lib/api-helpers';
 import { formatCurrency, CATEGORY_META, CATEGORY_ORDER, ACCESSORY_ORDER, getAvailableDevicesByCategory, ImageGallery, SpecRow } from '../combo/shared-combo';
@@ -2106,4 +2106,3 @@ export default function HybridPage({ comboSlug }: HybridPageProps) {
     </div>
   );
 }
-

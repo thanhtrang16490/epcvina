@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 ---
 
 <DashboardLayout
@@ -9,7 +9,7 @@ import DashboardShell from '../components/layout/DashboardShell';
   keywords="giao nhận điện mặt trời, vận chuyển solar, lắp đặt điện mặt trời, triển khai thi công, EPCVINA"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Chính Sách Giao Nhận", url: "https://epcvina.com/chinh-sach-giao-nhan"}]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       <div class="mb-8">
         <a href="/chinh-sach" class="text-sm text-gray-500 hover:text-gray-700 transition-colors">← Tất cả chính sách</a>

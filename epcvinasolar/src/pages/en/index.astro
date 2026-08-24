@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HeaderBar from '../../components/home/layout/HeaderBar';
 import HeroSection from '../../components/home/hero/HeroSection';
 import ComparisonSection from '../../components/home/combos/ComparisonSection';
@@ -20,7 +20,7 @@ import FooterSection from '../../components/home/layout/FooterSection';
   description="Explore EPCVINA Solar's English homepage for rooftop solar, hybrid battery storage, EV charging, and turnkey EPC delivery in Vietnam."
   keywords="EPCVINA Solar, solar EPC Vietnam, rooftop solar Vietnam, hybrid BESS, EV charging, turnkey solar, solar contractor Vietnam"
 >
-  <DashboardShell client:idle showFooter={false}>
+  <DashboardShell showFooter={false}>
     <HeaderBar pathname={Astro.url.pathname} />
     <div class="lg:-ml-16 lg:w-[calc(100%+4rem)]">
       <HeroSection pathname={Astro.url.pathname} />

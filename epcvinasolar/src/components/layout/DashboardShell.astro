@@ -1,0 +1,16 @@
+---
+import DashboardShellClient from './DashboardShellClient';
+
+interface Props {
+  showFooter?: boolean;
+  showChrome?: boolean;
+  pathname?: string;
+}
+
+const { showFooter = true, showChrome = true, pathname } = Astro.props as Props;
+const currentPathname = pathname ?? Astro.url.pathname;
+---
+
+<DashboardShellClient client:load showFooter={showFooter} showChrome={showChrome} pathname={currentPathname}>
+  <slot />
+</DashboardShellClient>

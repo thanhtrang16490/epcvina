@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import ProjectsPage from '../../components/pages/projects/ProjectsPage';
 ---
-<DashboardLayout title="태양광 프로젝트 사례 | EPCVINA Solar" description="주택, 공장, 오피스, 상업시설에서 진행한 EPCVINA Solar의 프로젝트 사례를 확인하세요." keywords="태양광 프로젝트 사례, EPCVINA Solar 프로젝트, 주택 태양광, 하이브리드 ESS 사례"><DashboardShell client:load><ProjectsPage client:idle pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>
+<DashboardLayout title="태양광 프로젝트 사례 | EPCVINA Solar" description="주택, 공장, 오피스, 상업시설에서 진행한 EPCVINA Solar의 프로젝트 사례를 확인하세요." keywords="태양광 프로젝트 사례, EPCVINA Solar 프로젝트, 주택 태양광, 하이브리드 ESS 사례"><DashboardShell><ProjectsPage client:idle pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>

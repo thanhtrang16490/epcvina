@@ -1,0 +1,80 @@
+---
+import EquipmentLayout from '../../layouts/EquipmentLayout.astro';
+import EquipmentMarketplaceHeader from '../../components/pages/equipment/EquipmentMarketplaceHeader';
+import ComboDetailEquipmentStyle from '../../components/pages/solar-home/components/ComboDetailEquipmentStyle';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const combos = await getCollection('combos');
+  return combos.map((combo) => ({
+    params: { slug: combo.data.slug },
+    props: { combo },
+  }));
+}
+
+const { combo } = Astro.props;
+
+const formatComboTitle = (value: string, systemType: string, phase: string) => {
+  const normalized = value.replace(/-/g, ' ').trim();
+  const phaseLabel = phase === '1-phase' ? '1 pha' : '3 pha';
+  const systemLabel = systemType === 'on-grid' ? 'On-Grid' : 'Hybrid';
+  return `${systemLabel} ${normalized} ${phaseLabel}`.replace(/\s+/g, ' ').trim();
+};
+
+const readableTitle = formatComboTitle(combo.data.title, combo.data.system_type, combo.data.phase);
+const seoTitle = `Combo ${readableTitle} | EPCVINA Solar`;
+const seoDescription = `${readableTitle} - Hệ thống điện mặt trời trọn gói từ EPCVINA Solar. Tiết kiệm 70-90% chi phí điện, hoàn vốn 3-5 năm. Bảo hành 25 năm tấm pin.`;
+
+const pageUrl = `https://epcvina.com/goi-combo/${combo.data.slug}`;
+
+const comboSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": combo.data.title,
+  "description": `Hệ thống điện mặt trời ${combo.data.system_type === 'on-grid' ? 'On-Grid' : 'Hybrid'} ${combo.data.power_kw}kW - ${combo.data.title}. Sản lượng ${combo.data.production_min_kwh}-${combo.data.production_max_kwh} kWh/tháng. Hoàn vốn ${combo.data.payback_label}.`,
+  "sku": combo.data.slug,
+  "model": `${combo.data.system_type}-${combo.data.power_kw}kw-${combo.data.phase}`,
+  "brand": { "@type": "Brand", "name": "EPCVINA Solar" },
+  "image": "https://epcvina.com/hero-bg-1920.webp",
+  "category": `He thong dien mat troi ${combo.data.system_type}`,
+  "manufacturer": { "@type": "Organization", "name": "EPCVINA Solar" },
+  "offers": {
+    "@type": "Offer",
+    "url": pageUrl,
+    "priceCurrency": "VND",
+    "price": combo.data.investment_million_vnd * 1000000,
+    "priceValidUntil": new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0],
+    "availability": combo.data.is_active ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "seller": { "@type": "Organization", "name": "EPCVINA Solar" },
+    "warranty": "25 năm tấm pin, 5-10 năm inverter"
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Trang Chủ", "item": "https://epcvina.com" },
+    { "@type": "ListItem", "position": 2, "name": "Gói Combo", "item": "https://epcvina.com/goi-combo" },
+    { "@type": "ListItem", "position": 3, "name": combo.data.title, "item": pageUrl }
+  ]
+};
+---
+
+<EquipmentLayout
+  title={seoTitle}
+  description={seoDescription}
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Gói Combo', url: 'https://epcvina.com/goi-combo' },
+    { name: combo.data.title, url: pageUrl },
+  ]}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(comboSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <EquipmentMarketplaceHeader
+    title="Chi tiết Gói Combo"
+    subtitle="Xem cấu hình, công suất, sản lượng và giá của combo bạn đang quan tâm."
+  />
+  <ComboDetailEquipmentStyle client:idle combo={JSON.parse(JSON.stringify(combo))} />
+</EquipmentLayout>

@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../../components/layout/DashboardShell';
+import DashboardShell from '../../../components/layout/DashboardShell.astro';
 import HybridListingPage from '../../../components/combo/HybridListingPage';
 ---
 
@@ -28,7 +28,7 @@ import HybridListingPage from '../../../components/combo/HybridListingPage';
     "serviceType": "Hybrid Solar Panel Installation",
     "priceRange": "$$$"
   })} />
-  <DashboardShell client:load>
+  <DashboardShell>
     <HybridListingPage client:idle />
   </DashboardShell>
 </DashboardLayout>

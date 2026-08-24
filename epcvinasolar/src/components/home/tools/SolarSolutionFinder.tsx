@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { motion } from 'motion/react';
 import {
   Lightning, Shield, House, Building, CheckCircle,
   ArrowsClockwise, CaretDown, Sun, TrendUp,
@@ -755,12 +754,8 @@ export default function SolarSolutionFinder({ pathname = '/' }: { pathname?: str
   const selectedSol = selectedIndex !== null ? displaySolutions[selectedIndex] : null;
 
   return (
-    <motion.section
+    <section
       className="w-full py-10 md:py-16 px-3 sm:px-4"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.5 }}
       style={{ background: 'linear-gradient(180deg, #f8fafc 0%, #eff6ff 50%, #f8fafc 100%)' }}
     >
       <div className="max-w-[1440px] mx-auto">
@@ -994,6 +989,6 @@ export default function SolarSolutionFinder({ pathname = '/' }: { pathname?: str
         }
         input[type=range]:focus { outline: none; }
       `}</style>
-    </motion.section>
+    </section>
   );
 }

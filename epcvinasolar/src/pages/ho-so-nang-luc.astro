@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import HoSoNangLucPage from '../components/pages/profile/HoSoNangLucPage';
 ---
 
@@ -10,7 +10,7 @@ import HoSoNangLucPage from '../components/pages/profile/HoSoNangLucPage';
   keywords="hồ sơ năng lực EPCVINA Solar, năng lực tổng thầu EPC, hồ sơ công ty điện mặt trời, chứng nhận, đối tác"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Hồ Sơ Năng Lực", url: "https://epcvina.com/ho-so-nang-luc"}]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <HoSoNangLucPage client:idle pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

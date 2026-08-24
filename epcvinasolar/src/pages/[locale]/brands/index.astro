@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../../components/layout/DashboardShell';
+import DashboardShell from '../../../components/layout/DashboardShell.astro';
 import { localBrands } from '../../../data/brands';
 import { type Locale } from '../../../i18n/messages';
 import { getLocalizedRoute } from '../../../i18n/routes';
@@ -28,7 +28,7 @@ const description = isEn ? 'Official EPCVINA Solar brands and manufacturers.' : 
     { name: locale === 'en' ? 'Brands' : locale === 'zh' ? '品牌' : locale === 'ja' ? 'ブランド' : locale === 'ko' ? '브랜드' : 'Nhãn Hàng', url: `https://epcvina.com${getLocalizedRoute(locale, 'brands')}` }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <div class="flex-1">
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 class="text-3xl font-bold text-gray-900">{locale === 'en' ? 'Brands' : locale === 'zh' ? '品牌' : locale === 'ja' ? 'ブランド' : locale === 'ko' ? '브랜드' : 'Nhãn Hàng'}</h1>

@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import { motion } from 'motion/react';
 import { PaperPlaneRight, CheckCircle } from '@phosphor-icons/react';
 import { redirectToThankYou, submitCrmLead } from '../../../lib/crm-leads';
 import { getLocaleFromPathname, messages } from '../../../i18n/messages';
@@ -103,12 +102,8 @@ export default function CTASection({ pathname = '/' }: { pathname?: string }) {
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
+        <div
           className="text-center mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5 }}
         >
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-orange-200 mb-3">
             {t.ctaLabel}
@@ -119,15 +114,11 @@ export default function CTASection({ pathname = '/' }: { pathname?: string }) {
           <p className="mt-3 text-orange-100 text-sm sm:text-base max-w-xl mx-auto">
             {t.ctaLead}
           </p>
-        </motion.div>
+        </div>
 
         {/* Form card */}
-        <motion.div
+        <div
           className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.5, delay: 0.1 }}
         >
           {submitted ? (
             <div className="flex flex-col items-center justify-center py-10 gap-4 text-center">
@@ -249,7 +240,7 @@ export default function CTASection({ pathname = '/' }: { pathname?: string }) {
               </p>
             </form>
           )}
-        </motion.div>
+        </div>
 
         {/* Or call directly */}
         <p className="text-center text-orange-200 text-sm mt-6">

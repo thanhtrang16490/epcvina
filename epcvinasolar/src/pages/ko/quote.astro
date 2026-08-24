@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import QuotationPage from '../../components/pages/bao-gia/QuotationPage';
 ---
-<DashboardLayout title="견적 | EPCVINA Solar"><DashboardShell client:load><QuotationPage client:visible pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>
+<DashboardLayout title="견적 | EPCVINA Solar"><DashboardShell><QuotationPage client:visible pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>

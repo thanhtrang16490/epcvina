@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HeaderBar from '../../components/home/layout/HeaderBar';
 import HeroSection from '../../components/home/hero/HeroSection';
 import ComparisonSection from '../../components/home/combos/ComparisonSection';
@@ -16,7 +16,7 @@ import FooterSection from '../../components/home/layout/FooterSection';
 ---
 
 <DashboardLayout title="EPCVINA Solar | 베트남 주택·기업용 태양광 EPC" description="EPCVINA Solar 한국어 사이트. 주택, 산업용, 하이브리드 ESS, EV 충전용 로컬라이즈된 정적 페이지입니다.">
-  <DashboardShell client:idle showFooter={false}>
+  <DashboardShell showFooter={false}>
     <HeaderBar pathname={Astro.url.pathname} />
     <HeroSection pathname={Astro.url.pathname} />
     <ComparisonSection pathname={Astro.url.pathname} />

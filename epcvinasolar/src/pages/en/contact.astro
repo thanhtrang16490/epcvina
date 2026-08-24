@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import ContactPage from '../../components/pages/contact/ContactPage';
 ---
 
@@ -10,7 +10,7 @@ import ContactPage from '../../components/pages/contact/ContactPage';
   keywords="contact EPCVINA, solar consultation"
   breadcrumbs={[{name: "Home", url: "https://epcvina.com/en"}, {name: "Contact", url: "https://epcvina.com/en/contact"}]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <ContactPage client:idle />
   </DashboardShell>
 </DashboardLayout>

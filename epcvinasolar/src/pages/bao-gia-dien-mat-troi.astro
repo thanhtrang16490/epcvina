@@ -2,7 +2,7 @@
 import { buildProductSchema } from '../lib/schema';
 
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import BaoGiaLandingPage from '../components/pages/baogia/BaoGiaLandingPage';
 
 export const prerender = true;
@@ -32,7 +32,7 @@ const productSchema = buildProductSchema({
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
-  <DashboardShell client:load>
+  <DashboardShell>
       <BaoGiaLandingPage client:visible />
     </DashboardShell>
 </DashboardLayout>

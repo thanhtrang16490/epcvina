@@ -1,7 +1,7 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HeaderBar from '../../components/home/layout/HeaderBar';
 import BlogHero from '../../components/blog/BlogHero';
 ---
-<DashboardLayout title="太陽光ニュースと知見 | EPCVINA Solar" description="EPCVINA Solar の日本語ニュースページ。太陽光の知見、導入情報、業界ニュースを掲載します。" keywords="太陽光ニュース, EPCVINA Solar ニュース, 太陽光知見, 導入情報"><DashboardShell client:load><HeaderBar pathname={Astro.url.pathname} /><main class="min-h-screen md:pt-16"><BlogHero client:idle /><div class="max-w-4xl mx-auto px-4 py-16 text-gray-700">準備中です。</div></main></DashboardShell></DashboardLayout>
+<DashboardLayout title="太陽光ニュースと知見 | EPCVINA Solar" description="EPCVINA Solar の日本語ニュースページ。太陽光の知見、導入情報、業界ニュースを掲載します。" keywords="太陽光ニュース, EPCVINA Solar ニュース, 太陽光知見, 導入情報"><DashboardShell><HeaderBar pathname={Astro.url.pathname} /><main class="min-h-screen md:pt-16"><BlogHero client:idle /><div class="max-w-4xl mx-auto px-4 py-16 text-gray-700">準備中です。</div></main></DashboardShell></DashboardLayout>

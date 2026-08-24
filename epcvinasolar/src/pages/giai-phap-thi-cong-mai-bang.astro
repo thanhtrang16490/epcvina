@@ -1,7 +1,7 @@
 ---
 import { buildFaqSchema } from '../lib/schema';
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import MaiBangPage from '../components/pages/solar-home/MaiBangPage';
 
 export const prerender = true;
@@ -32,7 +32,7 @@ const serviceSchema = {
 <DashboardLayout title={seoTitle} description={seoDescription} keywords={seoKeywords}>
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-  <DashboardShell client:load>
+  <DashboardShell>
     <MaiBangPage client:visible />
   </DashboardShell>
 </DashboardLayout>

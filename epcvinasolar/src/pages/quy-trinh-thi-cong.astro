@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import QuyTrinhThiCongPage from '../components/pages/brand/QuyTrinhThiCongPage';
 
 export const prerender = true;
@@ -20,7 +20,7 @@ const seoKeywords = 'quy trình thi công solar, lắp đặt điện mặt tr�
     { name: 'Quy Trình Thi Công', url: 'https://epcvina.com/quy-trinh-thi-cong' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
       <QuyTrinhThiCongPage client:visible />
     </DashboardShell>
 </DashboardLayout>

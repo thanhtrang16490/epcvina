@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import NhaPhoLandingPage from '../components/pages/nhapho/NhaPhoLandingPage';
 import { buildFaqSchema } from '../lib/schema';
 
@@ -28,7 +28,7 @@ const faqSchema = buildFaqSchema([
   ]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <DashboardShell client:load>
+  <DashboardShell>
       <NhaPhoLandingPage client:visible />
     </DashboardShell>
 </DashboardLayout>

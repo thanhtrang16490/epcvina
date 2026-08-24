@@ -46,6 +46,7 @@ export const GET: APIRoute = async ({ url }) => {
       inverterModel: `${combo.power_kw}kW`,
       equipment: [], // Will be populated based on template
       description: combo.name,
+      image: '',
       images: [],
       price: combo.investment_million_vnd * 1000000, // Convert to VND
       features: [],

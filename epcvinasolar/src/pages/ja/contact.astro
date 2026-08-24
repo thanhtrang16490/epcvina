@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import ContactPage from '../../components/pages/contact/ContactPage';
 ---
-<DashboardLayout title="お問い合わせ | EPCVINA Solar"><DashboardShell client:load><ContactPage client:idle /></DashboardShell></DashboardLayout>
+<DashboardLayout title="お問い合わせ | EPCVINA Solar"><DashboardShell><ContactPage client:idle /></DashboardShell></DashboardLayout>

@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import BaoTriPage from '../components/pages/bao-tri/BaoTriPage';
 import { buildFaqSchema } from '../lib/schema';
 
@@ -20,7 +20,7 @@ const faqSchema = buildFaqSchema([
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Bảo Trì", url: "https://epcvina.com/bao-tri"}]}
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <DashboardShell client:load>
+  <DashboardShell>
     <BaoTriPage client:idle pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

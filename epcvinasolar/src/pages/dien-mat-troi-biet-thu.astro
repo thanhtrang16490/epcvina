@@ -1,7 +1,7 @@
 ---
 import { buildFaqSchema } from '../lib/schema';
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import BietThuLandingPage from '../components/pages/bietthu/BietThuLandingPage';
 
 export const prerender = true;
@@ -28,7 +28,7 @@ const faqSchema = buildFaqSchema([
   ]}
 >
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
-  <DashboardShell client:load>
+  <DashboardShell>
       <BietThuLandingPage client:visible />
     </DashboardShell>
 </DashboardLayout>

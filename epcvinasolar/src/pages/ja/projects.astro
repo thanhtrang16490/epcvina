@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import ProjectsPage from '../../components/pages/projects/ProjectsPage';
 ---
-<DashboardLayout title="太陽光導入実績 | EPCVINA Solar" description="住宅、工場、オフィス、商業施設における EPCVINA Solar の導入実績をご覧ください。" keywords="太陽光導入実績, EPCVINA Solar 実績, 住宅太陽光, ハイブリッド蓄電"><DashboardShell client:load><ProjectsPage client:idle pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>
+<DashboardLayout title="太陽光導入実績 | EPCVINA Solar" description="住宅、工場、オフィス、商業施設における EPCVINA Solar の導入実績をご覧ください。" keywords="太陽光導入実績, EPCVINA Solar 実績, 住宅太陽光, ハイブリッド蓄電"><DashboardShell><ProjectsPage client:idle pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>

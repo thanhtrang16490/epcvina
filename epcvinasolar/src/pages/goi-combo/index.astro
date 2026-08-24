@@ -1,0 +1,21 @@
+---
+import EquipmentLayout from '../../layouts/EquipmentLayout.astro';
+import EquipmentMarketplaceHeader from '../../components/pages/equipment/EquipmentMarketplaceHeader';
+import ComboCatalogPage from '../../components/combo/ComboCatalogPage';
+---
+
+<EquipmentLayout
+  title="Gói Combo Điện Mặt Trời | EPCVINA Solar"
+  description="Danh sách gói combo điện mặt trời On-Grid và Hybrid trọn gói."
+  keywords="gói combo điện mặt trời, combo solar, combo on-grid, combo hybrid, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Gói Combo', url: 'https://epcvina.com/goi-combo' }
+  ]}
+>
+  <EquipmentMarketplaceHeader
+    title="Gói Combo Điện Mặt Trời"
+    subtitle="Khám phá các combo On-Grid và Hybrid trọn gói theo nhu cầu thực tế."
+  />
+  <ComboCatalogPage />
+</EquipmentLayout>

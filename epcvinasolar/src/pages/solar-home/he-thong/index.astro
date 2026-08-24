@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../../components/layout/DashboardShell';
+import DashboardShell from '../../../components/layout/DashboardShell.astro';
 import ComboCatalogPage from '../../../components/combo/ComboCatalogPage';
 ---
 
@@ -11,7 +11,7 @@ import ComboCatalogPage from '../../../components/combo/ComboCatalogPage';
   ogImage="/hero-bg-1920.webp"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Giải Pháp", url: "https://epcvina.com/solar-home"}, {name: "Hệ Thống", url: "https://epcvina.com/solar-home/he-thong"}]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <ComboCatalogPage client:idle />
   </DashboardShell>
 </DashboardLayout>

@@ -2,7 +2,7 @@
 export const prerender = false;
 
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HybridPage from '../../components/pages/hybrid/HybridPage';
 
 const slug = Astro.params.slug ?? '';
@@ -47,7 +47,7 @@ const seoDescription = `Combo điện mặt trời ${readableTitle} - Lưu trữ
 ---
 
 <DashboardLayout title={seoTitle} description={seoDescription}>
-  <DashboardShell client:load>
+  <DashboardShell>
     <HybridPage comboSlug={slug} client:idle />
   </DashboardShell>
 </DashboardLayout>

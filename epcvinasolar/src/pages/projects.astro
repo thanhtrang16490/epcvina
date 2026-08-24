@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import ProjectsPage from '../components/pages/projects/ProjectsPage';
 ---
 
@@ -10,7 +10,7 @@ import ProjectsPage from '../components/pages/projects/ProjectsPage';
   keywords="dự án điện mặt trời, thi công solar, công trình điện mặt trời Hà Nội, EPCVINA Solar projects"
   noindex={true}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <ProjectsPage client:visible />
   </DashboardShell>
 </DashboardLayout>

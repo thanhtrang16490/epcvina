@@ -2,7 +2,7 @@
 import { buildFaqSchema, buildProductSchema } from '../lib/schema';
 
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import FamilyLandingPage from '../components/pages/ad-landing/DienMatTroiGiaDinh';
 
 export const prerender = true;
@@ -125,7 +125,7 @@ const videoSchema = {
   <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
   
   {/* Ad landing mode: keep the page focused on calculator, hotline and lead form. */}
-  <DashboardShell client:load showFooter={false}>
+  <DashboardShell showFooter={false}>
       <FamilyLandingPage client:visible />
     </DashboardShell>
 </DashboardLayout>

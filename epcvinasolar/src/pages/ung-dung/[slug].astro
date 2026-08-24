@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import ApplicationPage from '../../components/pages/application/ApplicationPage';
 
 export function getStaticPaths() {
@@ -30,7 +30,7 @@ const seoTitle = `Ứng dụng ${appLabel} - Điện Mặt Trời EPCVINA Solar`
 const seoDescription = `Giải pháp điện mặt trời cho ${appLabel.toLowerCase()}. Lắp đặt trọn gói, tiết kiệm đến 90% hóa đơn điện.`;
 ---
 <DashboardLayout title={seoTitle} description={seoDescription}>
-  <DashboardShell client:load>
+  <DashboardShell>
     <ApplicationPage applicationType={slug as any} client:idle />
   </DashboardShell>
 </DashboardLayout>

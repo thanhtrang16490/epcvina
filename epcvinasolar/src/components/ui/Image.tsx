@@ -45,7 +45,9 @@ export default function Image({
   ...rest 
 }: ImageProps) {
   const [error, setError] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const isLocalAsset = src.startsWith('/') && !src.startsWith('//');
+  // Local static assets should render immediately; remote images can still fade in.
+  const [loaded, setLoaded] = useState(isLocalAsset);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     setError(true);

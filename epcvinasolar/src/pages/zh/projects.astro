@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import ProjectsPage from '../../components/pages/projects/ProjectsPage';
 ---
-<DashboardLayout title="太阳能项目案例 | EPCVINA Solar" description="浏览 EPCVINA Solar 在住宅、工商业、工厂和办公场景的项目案例。" keywords="太阳能项目案例, EPCVINA Solar 项目, 屋顶光伏案例, 混合储能案例"><DashboardShell client:load><ProjectsPage client:idle pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>
+<DashboardLayout title="太阳能项目案例 | EPCVINA Solar" description="浏览 EPCVINA Solar 在住宅、工商业、工厂和办公场景的项目案例。" keywords="太阳能项目案例, EPCVINA Solar 项目, 屋顶光伏案例, 混合储能案例"><DashboardShell><ProjectsPage client:idle pathname={Astro.url.pathname} /></DashboardShell></DashboardLayout>

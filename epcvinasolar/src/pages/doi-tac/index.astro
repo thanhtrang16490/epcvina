@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import PartnersList from '../../components/pages/partner/PartnersList';
 import { getCollection } from 'astro:content';
 
@@ -24,7 +24,7 @@ const seoKeywords = 'đối tác EPCVINA, QUANG MINH Tech, EPCVINA Solar, đối
     { name: 'Đối Tác', url: 'https://epcvina.com/doi-tac' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <div class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
       <div class="rounded-3xl border border-orange-200 bg-gradient-to-r from-orange-50 to-white p-5 shadow-sm">
         <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">

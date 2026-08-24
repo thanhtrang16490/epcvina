@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
 ---
 
@@ -13,7 +13,7 @@ import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
     { name: 'Hybrid BESS', url: 'https://epcvina.com/en/hybrid-bess' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <HybridBESSPage pathname={Astro.url.pathname} client:idle />
   </DashboardShell>
 </DashboardLayout>

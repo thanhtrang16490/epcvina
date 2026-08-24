@@ -25,7 +25,7 @@ export interface ComboCardData {
 
 interface ComboListingCardProps {
   combo: ComboCardData;
-  basePath: string; // '/solar-home/he-thong'
+  basePath: string; // '/goi-combo'
   onQuickView?: (combo: ComboCardData) => void;
 }
 
@@ -54,9 +54,9 @@ export default function ComboListingCard({ combo, basePath, onQuickView }: Combo
   return (
     <div className="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-300 hover:-translate-y-2 flex flex-col">
       {/* Product image */}
-      <div className="relative w-full aspect-[4/3] bg-gray-50 overflow-hidden">
+      <div className="relative w-full aspect-square bg-gray-50 overflow-hidden">
         <Image
-          src={combo.image || DEFAULT_COMBO_IMAGE}
+          src={combo.image?.trim() ? combo.image : DEFAULT_COMBO_IMAGE}
           alt={combo.name}
           fill
           className="object-cover group-hover:scale-110 transition-transform duration-500 ease-out"

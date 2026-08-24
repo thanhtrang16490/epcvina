@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import BaoGiaSacXePage from '../components/pages/baogiasac/BaoGiaSacXePage';
 
 export const prerender = true;
@@ -20,7 +20,7 @@ const seoKeywords = 'báo giá trạm sạc xe điện, giá trạm sạc wallbo
     { name: 'Báo Giá Trạm Sạc Xe Điện', url: 'https://epcvina.com/bao-gia-sac-xe-dien' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
       <BaoGiaSacXePage client:visible />
     </DashboardShell>
 </DashboardLayout>

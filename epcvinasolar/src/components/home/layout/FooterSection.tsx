@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Phone, Envelope, MapPin, ChatCircle } from '@phosphor-icons/react';
 import LanguageSwitcher from '../../layout/LanguageSwitcher';
 import { getLocaleFromPathname } from '../../../i18n/messages';
@@ -8,18 +7,13 @@ import { getFooterLayoutConfig } from './localeLayoutConfig';
 const BRAND_RED = '#DC2626';
 
 export default function FooterSection({ pathname = '/' }: { pathname?: string }) {
-  const [pathnameState, setPathname] = useState(pathname);
-  const locale = getLocaleFromPathname(pathnameState);
+  const locale = getLocaleFromPathname(pathname);
   const { t, titles, links } = getFooterLayoutConfig(locale);
   const newsHref = getLocalizedRoute(locale, 'news');
   const profileHref = getLocalizedRoute(locale, 'profile');
   const quoteHref = getLocalizedRoute(locale, 'quote');
   const hybridBessHref = getLocalizedRoute(locale, 'hybridBess');
   const solarCiHref = getLocalizedRoute(locale, 'solarCi');
-
-  useEffect(() => {
-    setPathname(pathname);
-  }, [pathname]);
 
   return (
     <footer style={{ backgroundColor: '#1A1D21' }} className="text-gray-300">
@@ -91,7 +85,7 @@ export default function FooterSection({ pathname = '/' }: { pathname?: string })
             <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">{titles.products}</h3>
             <ul className="space-y-3 text-sm">
               <li><a href={getLocalePath('/solar-home', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarHome}</a></li>
-              <li><a href={getLocalePath('/solar-home/he-thong', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.allCombos}</a></li>
+              <li><a href={getLocalePath('/goi-combo', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.allCombos}</a></li>
               <li><a href={getLocalePath('/solar-home/on-grid', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.onGridCombo}</a></li>
               <li><a href={getLocalePath('/solar-home/hybrid', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.hybridCombo}</a></li>
               <li><a href={getLocalePath('/thiet-bi/panel', locale)} className="hover:text-white transition-colors cursor-pointer py-1.5 inline-block active:scale-[0.98]">{t.footer.solarModules}</a></li>
@@ -180,7 +174,7 @@ export default function FooterSection({ pathname = '/' }: { pathname?: string })
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
             <p>&copy; {new Date().getFullYear()} EPCVINA Solar — {t.footer.legalName}. {t.footer.copyright}</p>
             <div className="flex flex-col items-center gap-3 sm:items-end">
-              <LanguageSwitcher pathname={pathnameState} />
+              <LanguageSwitcher pathname={pathname} />
               <div className="flex items-center gap-4">
                 <a href={getLocalePath('/chinh-sach-bao-mat', locale)} className="hover:text-gray-300 transition-colors cursor-pointer py-1">{t.footer.privacy}</a>
                 <a href={getLocalePath('/dieu-khoan', locale)} className="hover:text-gray-300 transition-colors cursor-pointer py-1">{t.footer.terms}</a>

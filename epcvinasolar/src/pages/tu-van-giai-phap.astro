@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import TuVanGiaiPhapPage from '../components/pages/tuvan/TuVanGiaiPhapPage';
 
 export const prerender = true;
@@ -20,7 +20,7 @@ const seoKeywords = 'tư vấn điện mặt trời, khảo sát điện mặt t
     { name: 'Tư Vấn Giải Pháp', url: 'https://epcvina.com/tu-van-giai-phap' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
       <TuVanGiaiPhapPage client:visible />
     </DashboardShell>
 </DashboardLayout>

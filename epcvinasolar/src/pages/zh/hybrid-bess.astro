@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
 ---
 
@@ -13,7 +13,7 @@ import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
     { name: '混合储能', url: 'https://epcvina.com/zh/hybrid-bess' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <HybridBESSPage client:idle />
   </DashboardShell>
 </DashboardLayout>

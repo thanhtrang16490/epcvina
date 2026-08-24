@@ -331,7 +331,19 @@ const structuredData = buildLocalBusinessSchema({
 
     <!-- Service Worker Registration - PWA Caching -->
     <script is:inline>
-      if ('serviceWorker' in navigator) {
+      const isProductionHost =
+        window.location.hostname !== 'localhost' &&
+        window.location.hostname !== '127.0.0.1';
+
+      if ('serviceWorker' in navigator && !isProductionHost) {
+        navigator.serviceWorker.getRegistrations().then((registrations) => {
+          registrations.forEach((registration) => {
+            registration.unregister();
+          });
+        }).catch(() => {});
+      }
+
+      if ('serviceWorker' in navigator && isProductionHost) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
             .then((registration) => {

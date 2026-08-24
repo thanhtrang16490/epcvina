@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import BaoTriPage from '../../components/pages/bao-tri/BaoTriPage';
 ---
 
@@ -13,7 +13,7 @@ import BaoTriPage from '../../components/pages/bao-tri/BaoTriPage';
     { name: 'Maintenance', url: 'https://epcvina.com/en/maintenance' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <BaoTriPage client:idle locale="en" pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

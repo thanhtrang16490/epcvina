@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import AgriculturalApplicationPage from '../../components/pages/application/AgriculturalApplicationPage';
 ---
 
@@ -15,7 +15,7 @@ import AgriculturalApplicationPage from '../../components/pages/application/Agri
     { name: 'Điện Nông Nghiệp', url: 'https://epcvina.com/ung-dung/dien-nong-nghiep' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <AgriculturalApplicationPage client:idle />
   </DashboardShell>
 </DashboardLayout>

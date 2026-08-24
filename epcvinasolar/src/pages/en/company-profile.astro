@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HoSoNangLucPage from '../../components/pages/profile/HoSoNangLucPage';
 ---
 
@@ -10,7 +10,7 @@ import HoSoNangLucPage from '../../components/pages/profile/HoSoNangLucPage';
   keywords="company profile, EPCVINA Solar"
   breadcrumbs={[{name: "Home", url: "https://epcvina.com/en"}, {name: "Company Profile", url: "https://epcvina.com/en/company-profile"}]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <HoSoNangLucPage client:idle pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

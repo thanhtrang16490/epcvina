@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import SolutionsLandingPage from '../../components/pages/solar-home/SolutionsLandingPage';
 ---
 
@@ -14,7 +14,7 @@ import SolutionsLandingPage from '../../components/pages/solar-home/SolutionsLan
     { name: 'Giải Pháp', url: 'https://epcvina.com/solar-home' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <SolutionsLandingPage client:idle />
   </DashboardShell>
 </DashboardLayout>

@@ -1,10 +1,12 @@
-import { useState, useEffect, useRef, createContext, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import ZaloChatButton from '../shared/buttons/ZaloChatButton';
 import CallBoxButton from '../shared/buttons/CallBoxButton';
 import FooterSection from '../home/layout/FooterSection';
 import BackToTop from '../ui/BackToTop';
+import ErrorBoundary from '../ui/ErrorBoundary';
+import { ScrollContext } from './dashboardShellContext';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -13,20 +15,9 @@ interface DashboardLayoutProps {
   pathname?: string;
 }
 
-// Scroll context for header visibility
-const ScrollContext = createContext<{
-  isHeaderVisible: boolean;
-  scrollY: number;
-}>({
-  isHeaderVisible: true,
-  scrollY: 0,
-});
-
-export const useScrollContext = () => useContext(ScrollContext);
-
 export default function DashboardLayout({ children, showFooter = true, showChrome = true, pathname }: DashboardLayoutProps) {
-  const currentPathname = pathname || (typeof window !== 'undefined' ? window.location.pathname : '/');
-  const needsMobileTopOffset = currentPathname.startsWith('/solar-home/he-thong');
+  const currentPathname = pathname || '/';
+  const needsMobileTopOffset = currentPathname.startsWith('/goi-combo') || currentPathname.startsWith('/solar-home/he-thong');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [scrollY, setScrollY] = useState(0);
@@ -63,7 +54,9 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
       <div className="min-h-screen bg-[#f8f9fa] overflow-x-hidden">
         <div className="flex min-w-0">
           {/* Sidebar - always visible on desktop, mobile drawer */}
-          {showChrome ? <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} /> : null}
+          {showChrome ? (
+            <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} pathname={currentPathname} />
+          ) : null}
 
           {/* Main content - full width, accounting for sidebar */}
           <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'lg:ml-16' : ''} ${needsMobileTopOffset ? 'pt-14' : ''}`}>
@@ -73,12 +66,15 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
                 onMenuClick={() => setIsSidebarOpen(true)}
                 isHidden={!isHeaderVisible}
                 isMenuOpen={isSidebarOpen}
+                pathname={currentPathname}
               />
             ) : null}
             
             {/* Page content */}
             <main ref={mainRef} className="flex-1 w-full">
-              {children}
+              <ErrorBoundary name="DashboardShellContent">
+                {children}
+              </ErrorBoundary>
             </main>
           </div>
         </div>

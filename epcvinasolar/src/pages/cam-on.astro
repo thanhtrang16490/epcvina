@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import ThankYouPage from '../components/pages/thank-you/ThankYouPage';
 
 export const prerender = true;
@@ -11,7 +11,7 @@ export const prerender = true;
   description="EPCVINA Solar đã nhận được yêu cầu tư vấn của anh/chị."
   noindex={true}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <ThankYouPage />
   </DashboardShell>
 </DashboardLayout>

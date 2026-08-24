@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../../components/layout/DashboardShell';
+import DashboardShell from '../../../components/layout/DashboardShell.astro';
 import HeaderBar from '../../../components/home/layout/HeaderBar';
 import BlogHero from '../../../components/blog/BlogHero';
 import { getCollection } from 'astro:content';
@@ -20,7 +20,7 @@ const posts = (await getCollection('blog'))
     { name: 'Blog', url: 'https://epcvina.com/en/blog' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <HeaderBar pathname={Astro.url.pathname} />
     <main class="min-h-screen bg-gradient-to-br from-red-50 via-white to-green-50 md:pt-16">
       <BlogHero client:idle />

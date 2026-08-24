@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import QuotationPage from '../components/pages/bao-gia/QuotationPage';
 
 const breadcrumbs = [
@@ -16,7 +16,7 @@ const breadcrumbs = [
   breadcrumbs={breadcrumbs}
 >
   <h1 class="sr-only">Báo Giá Lắp Đặt Điện Mặt Trời EPCVINA Solar</h1>
-  <DashboardShell client:load>
+  <DashboardShell>
     <QuotationPage client:visible pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HeaderBar from '../../components/home/layout/HeaderBar';
 import { getCollection, render } from 'astro:content';
 
@@ -91,7 +91,7 @@ const tocItems = (post.body ?? '')
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
-  <DashboardShell client:load>
+  <DashboardShell>
   <HeaderBar client:idle />
   <main class="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(249,115,22,0.08),_transparent_35%),linear-gradient(to_bottom,_#fff7ed_0%,_#ffffff_22%,_#ffffff_100%)] md:pt-16">
     <section class="relative overflow-hidden border-b border-orange-100/70">

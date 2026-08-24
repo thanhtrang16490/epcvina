@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import AboutPage from '../components/pages/about/AboutPage';
 ---
 
@@ -11,7 +11,7 @@ import AboutPage from '../components/pages/about/AboutPage';
   ogImage="/hero-bg-1920.webp"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Giới Thiệu", url: "https://epcvina.com/ve-chung-toi"}]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <AboutPage client:idle />
   </DashboardShell>
 </DashboardLayout>

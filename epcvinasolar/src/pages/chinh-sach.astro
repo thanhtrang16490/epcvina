@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import ChinhSachPage from '../components/pages/brand/ChinhSachPage';
 
 export const prerender = true;
@@ -20,7 +20,7 @@ const seoKeywords = 'chính sách EPCVINA, chính sách bảo mật, chính sác
     { name: 'Chính Sách', url: 'https://epcvina.com/chinh-sach' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
       <ChinhSachPage client:visible />
     </DashboardShell>
 </DashboardLayout>

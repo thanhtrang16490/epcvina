@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import ProvinceLandingPage from '../components/pages/province/ProvinceLandingPage';
 import { buildFaqSchema, buildLocalBusinessSchema } from '../lib/schema';
 
@@ -59,7 +59,7 @@ const localBusinessSchema = buildLocalBusinessSchema({
 >
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-  <DashboardShell client:load>
+  <DashboardShell>
       <ProvinceLandingPage client:visible province={province} />
     </DashboardShell>
 </DashboardLayout>

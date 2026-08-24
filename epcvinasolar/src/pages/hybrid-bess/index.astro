@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
 import { buildFaqSchema, buildProductSchema } from '../../lib/schema';
 ---
@@ -27,7 +27,7 @@ import { buildFaqSchema, buildProductSchema } from '../../lib/schema';
     { q: 'Hybrid Có Hoạt Động Khi Mất Điện Không?', a: 'Có! Hệ Hybrid tự động chuyển sang chế độ backup khi mất điện, sử dụng điện từ pin lưu trữ cung cấp cho tải quan trọng.' },
     { q: 'Nên Chọn On-Grid Hay Hybrid?', a: 'Chọn On-Grid nếu: khu vực ít mất điện, ngân sách hạn chế. Chọn Hybrid nếu: hay mất điện, cần backup 24/7, muốn tối đa hóa sử dụng điện mặt trời.' },
   ]))} />
-  <DashboardShell client:load>
+  <DashboardShell>
     <HybridBESSPage pathname={Astro.url.pathname} client:idle />
   </DashboardShell>
 </DashboardLayout>

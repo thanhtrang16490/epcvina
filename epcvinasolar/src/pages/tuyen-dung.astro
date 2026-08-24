@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import { buildFaqSchema } from '../lib/schema';
 ---
 
@@ -78,7 +78,7 @@ import { buildFaqSchema } from '../lib/schema';
   ogImage="/hero-bg-1920.webp"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Tuyển Dụng", url: "https://epcvina.com/tuyen-dung"}]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
 
     <!-- HERO -->
     <section class="relative overflow-hidden bg-gradient-to-br from-orange-600 via-red-600 to-red-700 text-white">

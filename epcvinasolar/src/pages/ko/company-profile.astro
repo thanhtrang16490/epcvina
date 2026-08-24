@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HoSoNangLucPage from '../../components/pages/profile/HoSoNangLucPage';
 ---
-<DashboardLayout title="회사소개 및 역량 | EPCVINA Solar" description="EPCVINA Solar의 회사소개, 시공 역량, MEP 기반 실적, 제공 서비스를 확인하세요." keywords="회사소개, EPCVINA Solar, 역량 소개, 태양광 EPC, MEP 실적"><DashboardShell client:load><HoSoNangLucPage client:idle /></DashboardShell></DashboardLayout>
+<DashboardLayout title="회사소개 및 역량 | EPCVINA Solar" description="EPCVINA Solar의 회사소개, 시공 역량, MEP 기반 실적, 제공 서비스를 확인하세요." keywords="회사소개, EPCVINA Solar, 역량 소개, 태양광 EPC, MEP 실적"><DashboardShell><HoSoNangLucPage client:idle /></DashboardShell></DashboardLayout>

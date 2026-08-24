@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import { localBrands } from '../../data/brands';
 import { getCollection } from 'astro:content';
 import { Shield, ArrowRight, Globe, MapPin, Star, Buildings, Package, Lightning } from '@phosphor-icons/react';
@@ -42,7 +42,7 @@ const seoKeywords = 'nhãn hàng điện mặt trời, thương hiệu solar ch�
     { name: 'Nhãn Hàng', url: 'https://epcvina.com/nhan-hang' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <div class="flex-1 flex flex-col">
       <section class="relative overflow-hidden bg-[radial-gradient(circle_at_top_right,_rgba(251,146,60,0.18),_transparent_30%),linear-gradient(135deg,#0f172a_0%,#111827_50%,#1e293b_100%)] text-white pt-16 pb-14">
         <div class="absolute inset-0 opacity-10">

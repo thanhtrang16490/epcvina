@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import PartnerPage from '../../components/pages/partner/PartnerPage';
 import { getCollection } from 'astro:content';
 
@@ -31,7 +31,7 @@ const seoKeywords = `${partner.data.name.toLowerCase()}, thiết bị ${partner.
     { name: partner.data.name, url: `https://epcvina.com/doi-tac/${partner.data.slug}` }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <PartnerPage client:idle partner={partner} />
   </DashboardShell>
 </DashboardLayout>

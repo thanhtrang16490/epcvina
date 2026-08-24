@@ -2,7 +2,7 @@
 import { buildFaqSchema } from '../lib/schema';
 
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import HeaderBar from '../components/home/layout/HeaderBar';
 import HeroSection from '../components/home/hero/HeroSection';
 import ComparisonSection from '../components/home/combos/ComparisonSection';
@@ -96,21 +96,23 @@ const videoSchema = {
       a: "Chi phí bảo trì rất thấp: chủ yếu là vệ sinh tấm pin 2–4 lần/năm (có thể tự làm bằng nước sạch). Không có chi phí nhiên liệu hay phụ tùng thay thế định kỳ. Bảo trì chuyên nghiệp khoảng 500.000–1.000.000đ/năm. EPCVINA có gói bảo trì O&M dài hạn.",
     },
   ]) ?? { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [] })} />
-  <DashboardShell client:idle showFooter={false}>
-    <HeaderBar pathname={Astro.url.pathname} />
-    <div class="lg:-ml-16 lg:w-[calc(100%+4rem)]">
-      <HeroSection pathname={Astro.url.pathname} />
+  <DashboardShell showFooter={false}>
+    <HeaderBar pathname={Astro.url.pathname} client:load />
+    <div class="min-h-screen bg-[#f8f9fa]">
+      <div class="lg:-ml-16 lg:w-[calc(100%+4rem)]">
+        <HeroSection pathname={Astro.url.pathname} />
+      </div>
+      <ComparisonSection pathname={Astro.url.pathname} />
+      <SolarSolutionFinder pathname={Astro.url.pathname} />
+      <BenefitsSection pathname={Astro.url.pathname} />
+      <MidPageCTA variant="benefits" pathname={Astro.url.pathname} />
+      <ProcessSection pathname={Astro.url.pathname} />
+      <ProjectsPreviewSection pathname={Astro.url.pathname} />
+      <ReviewsSection pathname={Astro.url.pathname} />
+      <MidPageCTA variant="reviews" pathname={Astro.url.pathname} />
+      <FAQSection pathname={Astro.url.pathname} />
+      <CTASection pathname={Astro.url.pathname} />
+      <FooterSection pathname={Astro.url.pathname} />
     </div>
-    <ComparisonSection pathname={Astro.url.pathname} />
-    <SolarSolutionFinder pathname={Astro.url.pathname} client:visible />
-    <BenefitsSection pathname={Astro.url.pathname} />
-    <MidPageCTA variant="benefits" pathname={Astro.url.pathname} />
-    <ProcessSection pathname={Astro.url.pathname} />
-    <ProjectsPreviewSection pathname={Astro.url.pathname} />
-    <ReviewsSection pathname={Astro.url.pathname} />
-    <MidPageCTA variant="reviews" pathname={Astro.url.pathname} />
-    <FAQSection pathname={Astro.url.pathname} client:visible />
-    <CTASection pathname={Astro.url.pathname} client:visible />
-    <FooterSection pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from './DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 
 interface Props {
   title: string;
@@ -32,7 +32,7 @@ const {
   showChrome={showChrome}
   sidebarExpandedByDefault={sidebarExpandedByDefault}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <slot />
   </DashboardShell>
 </DashboardLayout>

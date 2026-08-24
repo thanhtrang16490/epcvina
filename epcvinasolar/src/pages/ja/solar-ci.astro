@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import SolarCIPage from '../../components/pages/solar-ci/SolarCIPage';
 ---
 
@@ -13,7 +13,7 @@ import SolarCIPage from '../../components/pages/solar-ci/SolarCIPage';
     { name: '産業・商業向け太陽光', url: 'https://epcvina.com/ja/solar-ci' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <SolarCIPage client:idle pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>

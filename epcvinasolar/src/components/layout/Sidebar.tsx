@@ -22,6 +22,7 @@ import { getLocalePath } from '../../i18n/routes';
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  pathname?: string;
 }
 
 interface MenuItem {
@@ -53,7 +54,7 @@ function buildMenuItems(locale: Locale): MenuItem[] {
 
   return [
     { name: text.combo, icon: Package, children: [
-      { name: text.allCombo, href: getLocalePath('/solar-home/he-thong', locale) },
+      { name: text.allCombo, href: getLocalePath('/goi-combo', locale) },
       { name: text.onGridCombo, href: getLocalePath('/solar-home/on-grid', locale) },
       { name: text.hybridCombo, href: getLocalePath('/solar-home/hybrid', locale) },
     ]},
@@ -234,8 +235,7 @@ function MenuGroup({
   );
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
-  const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+export default function Sidebar({ isOpen, onClose, pathname = '/' }: SidebarProps) {
   const locale = getLocaleFromPathname(pathname);
   const t = messages[locale];
   const menuItems = buildMenuItems(locale);
@@ -400,7 +400,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Desktop/Tablet Sidebar - persistent, expand on hover (desktop) or tap (tablet) */}
       <aside 
-        className="hidden lg:block fixed top-0 left-0 h-screen z-[55] transition-all duration-300 ease-in-out overflow-hidden"
+        className="hidden lg:block group/sidebar fixed top-0 left-0 h-screen z-[55] overflow-hidden transition-[width] duration-300 ease-in-out"
         style={{
           width: isExpanded ? '280px' : '64px',
           background: 'rgba(255,255,255,0.72)',

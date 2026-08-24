@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
-import DashboardShell from '../components/layout/DashboardShell';
+import DashboardShell from '../components/layout/DashboardShell.astro';
 import HeaderBar from '../components/home/layout/HeaderBar';
 import InternshipRecruitmentForm from '../components/pages/recruitment/InternshipRecruitmentForm';
 import { buildFaqSchema } from '../lib/schema';
@@ -38,7 +38,7 @@ const faqSchema = buildFaqSchema([
   ogImage="/hero-bg-1920.webp"
   breadcrumbs={[{ name: 'Trang Chủ', url: 'https://epcvina.com' }, { name: 'Tuyển Dụng', url: 'https://epcvina.com/tuyen-dung-thuc-tap-sinh-ky-su-dien-mat-troi' }]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <HeaderBar client:idle pathname={Astro.url.pathname} />
     <section class="relative overflow-hidden text-white">
       <div class="absolute inset-0">

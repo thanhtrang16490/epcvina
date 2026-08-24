@@ -1,6 +1,6 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
-import DashboardShell from '../../components/layout/DashboardShell';
+import DashboardShell from '../../components/layout/DashboardShell.astro';
 import EVChargerPage from '../../components/pages/ev-charger/EVChargerPage';
 ---
 
@@ -13,7 +13,7 @@ import EVChargerPage from '../../components/pages/ev-charger/EVChargerPage';
     { name: 'EV Charging', url: 'https://epcvina.com/en/ev-charging' }
   ]}
 >
-  <DashboardShell client:load>
+  <DashboardShell>
     <EVChargerPage client:idle locale="en" pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>
