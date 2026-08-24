@@ -71,7 +71,7 @@ export default function EquipmentMarketplaceHeader({ title, subtitle }: Equipmen
       </div>
 
       <div className="mx-auto max-w-[1824px] px-3 sm:px-4 lg:px-6">
-        <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-6 py-4">
+        <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-6 py-4 lg:pt-2 lg:pb-3">
           <a href="/thiet-bi" className="flex items-center gap-3 flex-shrink-0">
             <img src="/logo-epcvina-solar.png" alt="EPCVINA Solar" className="h-10 w-auto" />
           </a>
@@ -97,7 +97,7 @@ export default function EquipmentMarketplaceHeader({ title, subtitle }: Equipmen
           <div className="hidden lg:block" aria-hidden="true" />
         </div>
 
-        <div className="relative flex items-center justify-between gap-6 border-t border-[#ededed] py-3 text-[14px] text-gray-700">
+        <div className="relative flex items-center justify-between gap-6 border-t border-[#ededed] py-3 lg:py-2 text-[14px] text-gray-700">
           <div className="relative flex min-w-0 items-center gap-8 overflow-x-auto whitespace-nowrap pr-4">
             <button
               type="button"

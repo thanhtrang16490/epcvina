@@ -32,13 +32,13 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
   const systemLabel = isHybrid ? 'Hybrid' : 'On-Grid';
 
   return (
-    <div className="relative min-h-screen bg-gray-50 pt-14 md:pt-0">
+    <div className="relative min-h-screen bg-gray-50 pt-14 lg:pt-0">
       <div
         className="absolute inset-x-0 top-0 h-14 md:hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800"
         aria-hidden="true"
       />
       {/* Sticky Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+      <div className="hidden md:block bg-white border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 min-w-0">
@@ -75,10 +75,10 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-8">
           {/* Left Column - Description */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6">
             {/* Hero Image */}
             <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
               <div className="aspect-video">
@@ -88,7 +88,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
                   className="w-full h-full object-cover"
                 loading="lazy" />
               </div>
-              <div className="p-4 flex items-center gap-3 flex-wrap">
+              <div className="p-3 sm:p-4 flex items-center gap-2.5 sm:gap-3 flex-wrap">
                 <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold ${
                   isHybrid ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
                 }`}>
@@ -113,57 +113,57 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
             </div>
 
             {/* Overview Section */}
-            <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-8">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
                 <Lightbulb className="h-6 w-6 text-amber-500" />
                 Tổng quan hệ thống
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-6">
+              <p className="text-[14px] sm:text-base text-gray-600 leading-relaxed mb-4 sm:mb-6">
                 <strong className="text-gray-900">{data.title}</strong> là giải pháp điện mặt trời {systemLabel.toLowerCase()} {phaseLabel} với công suất <strong className="text-gray-900">{data.power_kw} kWp</strong>
                 {data.battery_kwh && <>, dung lượng lưu trữ <strong className="text-gray-900">{data.battery_kwh} kWh</strong></>}.
                 Hệ thống được thiết kế tối ưu cho {isHybrid ? 'gia đình cần nguồn điện dự phòng và muốn tự chủ năng lượng 24/7' : 'gia đình và doanh nghiệp muốn giảm chi phí điện và tối ưu hiệu quả đầu tư'}.
               </p>
 
               {/* Key Metrics Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-4 border border-emerald-100">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-3 sm:p-4 border border-emerald-100">
                   <div className="flex items-center gap-2 mb-2">
                     <Lightning className="h-4 w-4 text-emerald-600" />
-                    <span className="text-xs font-medium text-emerald-700 uppercase">Công suất</span>
+                    <span className="text-[11px] sm:text-xs font-medium text-emerald-700 uppercase">Công suất</span>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">{data.power_kw} <span className="text-sm font-normal text-gray-500">kWp</span></p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">{data.power_kw} <span className="text-xs sm:text-sm font-normal text-gray-500">kWp</span></p>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-4 border border-blue-100">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-3 sm:p-4 border border-blue-100">
                   <div className="flex items-center gap-2 mb-2">
                     <TrendUp className="h-4 w-4 text-blue-600" />
-                    <span className="text-xs font-medium text-blue-700 uppercase">Sản lượng/tháng</span>
+                    <span className="text-[11px] sm:text-xs font-medium text-blue-700 uppercase">Sản lượng/tháng</span>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">{avgProduction} <span className="text-sm font-normal text-gray-500">kWh</span></p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">{avgProduction} <span className="text-xs sm:text-sm font-normal text-gray-500">kWh</span></p>
                 </div>
-                <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-xl p-4 border border-amber-100">
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-xl p-3 sm:p-4 border border-amber-100">
                   <div className="flex items-center gap-2 mb-2">
                     <Building className="h-4 w-4 text-amber-600" />
-                    <span className="text-xs font-medium text-amber-700 uppercase">Diện tích mái</span>
+                    <span className="text-[11px] sm:text-xs font-medium text-amber-700 uppercase">Diện tích mái</span>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">~{area} <span className="text-sm font-normal text-gray-500">m²</span></p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">~{area} <span className="text-xs sm:text-sm font-normal text-gray-500">m²</span></p>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-4 border border-purple-100">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-3 sm:p-4 border border-purple-100">
                   <div className="flex items-center gap-2 mb-2">
                     <Calendar className="h-4 w-4 text-purple-600" />
-                    <span className="text-xs font-medium text-purple-700 uppercase">Hoàn vốn</span>
+                    <span className="text-[11px] sm:text-xs font-medium text-purple-700 uppercase">Hoàn vốn</span>
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">{data.payback_years.toFixed(1)} <span className="text-sm font-normal text-gray-500">năm</span></p>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900">{data.payback_years.toFixed(1)} <span className="text-xs sm:text-sm font-normal text-gray-500">năm</span></p>
                 </div>
               </div>
             </div>
 
             {/* Benefits Section */}
-            <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-8">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2">
                 <Shield className="h-6 w-6 text-emerald-600" />
                 Ưu điểm nổi bật
               </h2>
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                 {isHybrid ? (
                   <>
                     <BenefitCard
@@ -223,12 +223,12 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
             </div>
 
             {/* Suitable Applications */}
-            <div className="bg-white rounded-2xl shadow-sm p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-8">
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center gap-2">
                 <HomeIcon className="h-6 w-6 text-blue-600" />
                 Ứng dụng phù hợp
               </h2>
-              <div className="grid sm:grid-cols-3 gap-4">
+              <div className="grid sm:grid-cols-3 gap-3 sm:gap-4">
                 <ApplicationCard
                   title="Hộ gia đình"
                   items={['Nhà phố, biệt thự', 'Gia đình dùng điện nhiều', isHybrid ? 'Cần dự phòng khi mất điện' : 'Muốn giảm hóa đơn điện']}
@@ -247,29 +247,29 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
           </div>
 
           {/* Right Column - Financial & CTA */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Financial Summary Card */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
                 <CurrencyDollar className="h-5 w-5 text-emerald-600" />
                 Hiệu quả tài chính
               </h3>
-              <div className="space-y-4">
-                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-4 border border-emerald-100">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-xl p-3 sm:p-4 border border-emerald-100">
                   <p className="text-xs font-medium text-emerald-700 uppercase mb-1">Chi phí đầu tư</p>
                   <p className="text-2xl font-bold text-emerald-700">
                     {data.investment_million_vnd.toFixed(1)} <span className="text-base font-normal">triệu VNĐ</span>
                   </p>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-4 border border-blue-100">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-3 sm:p-4 border border-blue-100">
                   <p className="text-xs font-medium text-blue-700 uppercase mb-1">Thời gian hoàn vốn</p>
                   <p className="text-2xl font-bold text-blue-700">{data.payback_label}</p>
                 </div>
-                <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-xl p-4 border border-amber-100">
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-xl p-3 sm:p-4 border border-amber-100">
                   <p className="text-xs font-medium text-amber-700 uppercase mb-1">Tiết kiệm hàng tháng</p>
                   <p className="text-2xl font-bold text-amber-700">~{monthlySaving.toLocaleString('vi-VN')} VNĐ</p>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-4 border border-purple-100">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-xl p-3 sm:p-4 border border-purple-100">
                   <p className="text-xs font-medium text-purple-700 uppercase mb-1">Tiết kiệm hàng năm</p>
                   <p className="text-2xl font-bold text-purple-700">~{yearlySaving.toLocaleString('vi-VN')} VNĐ</p>
                 </div>
@@ -277,12 +277,12 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
             </div>
 
             {/* Equipment Card */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
                 <Shield className="h-5 w-5 text-gray-600" />
                 Thiết bị chính
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-2.5 sm:space-y-3">
                 <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Sun className="h-5 w-5 text-blue-600" />
@@ -316,9 +316,9 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
             </div>
 
             {/* System Info Card */}
-            <div className="bg-white rounded-2xl shadow-sm p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Thông tin hệ thống</h3>
-              <div className="space-y-3 text-sm">
+            <div className="bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Thông tin hệ thống</h3>
+              <div className="space-y-2.5 sm:space-y-3 text-sm">
                 <div className="flex justify-between">
                   <span className="text-gray-500">Loại hệ thống</span>
                   <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold ${
@@ -346,9 +346,9 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
             </div>
 
             {/* CTA Card */}
-            <div className="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl shadow-lg p-6 text-white">
-              <h3 className="text-lg font-bold mb-2">Cần tư vấn?</h3>
-              <p className="text-sm text-emerald-100 mb-4">
+            <div className="bg-gradient-to-br from-emerald-600 to-teal-600 rounded-2xl shadow-lg p-4 sm:p-6 text-white">
+              <h3 className="text-base sm:text-lg font-bold mb-2">Cần tư vấn?</h3>
+              <p className="text-xs sm:text-sm text-emerald-100 mb-3 sm:mb-4">
                 Liên hệ với chúng tôi để được khảo sát miễn phí và nhận báo giá chi tiết trong 24 giờ.
               </p>
               <a
@@ -370,7 +370,7 @@ export default function ComboDetailPage({ combo }: { combo: ComboData }) {
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 z-20">
         <a
           href="/calculator"
-          className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 text-white font-semibold rounded-full"
+          className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-emerald-600 text-white font-semibold rounded-full"
         >
           <Phone className="h-5 w-5" />
           Liên hệ tư vấn miễn phí

@@ -59,7 +59,7 @@ export default function DashboardLayout({ children, showFooter = true, showChrom
           ) : null}
 
           {/* Main content - full width, accounting for sidebar */}
-          <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'lg:ml-16' : ''} ${needsMobileTopOffset ? 'pt-14' : ''}`}>
+          <div className={`flex-1 flex flex-col min-w-0 ${showChrome ? 'lg:ml-16' : ''} ${needsMobileTopOffset ? 'pt-14 lg:pt-0' : ''}`}>
             {/* Header: mobile-only hamburger toggle */}
             {showChrome ? (
               <Header
