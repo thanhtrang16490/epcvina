@@ -1,3 +1,5 @@
+import ResponsiveComboImage from './ResponsiveComboImage';
+
 export default function ConstructionMethodsSection({
   constructionSteps,
   constructionTab,
@@ -37,7 +39,7 @@ export default function ConstructionMethodsSection({
                 key={`${src}-${index}`}
                 className="relative aspect-square w-[132px] shrink-0 overflow-hidden rounded-[16px] border border-gray-200 bg-white shadow-sm sm:w-[144px]"
               >
-                <img src={src} alt={`${constructionSteps[constructionTab].title} ${index + 1}`} className="h-full w-full object-cover" />
+                <ResponsiveComboImage src={src} alt={`${constructionSteps[constructionTab].title} ${index + 1}`} className="h-full w-full object-cover" />
               </div>
             ))}
           </div>

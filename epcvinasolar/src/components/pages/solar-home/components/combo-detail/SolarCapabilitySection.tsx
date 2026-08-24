@@ -188,7 +188,7 @@ export default function SolarCapabilitySection() {
                     Đối tác tiêu biểu
                   </div>
                 </div>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {[
                     { name: 'Samsung', logo: '/partners/samsung.svg' },
                     { name: 'VinFast', logo: '/partners/vinfast.png' },

@@ -376,6 +376,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
   const [leadSubmitted, setLeadSubmitted] = useState(false);
   const [projectsExpanded, setProjectsExpanded] = useState(false);
   const [faqExpanded, setFaqExpanded] = useState(false);
+  const [reviewsExpanded, setReviewsExpanded] = useState(false);
   const [sidebarStyle, setSidebarStyle] = useState<React.CSSProperties>({});
   const isHybrid = data.system_type === 'hybrid';
   const systemLabel = isHybrid ? 'Hybrid' : 'On-Grid';
@@ -472,28 +473,28 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
   const constructionImages = useMemo(
     () => [
       [
-        '/images/combo/roof-ton/1.png',
-        '/images/combo/roof-ton/2.png',
-        '/images/combo/roof-ton/3.png',
-        '/images/combo/roof-ton/4.png',
-        '/images/combo/roof-ton/5.png',
-        '/images/combo/roof-ton/6.png',
+        '/images/combo/roof-ton/1.webp',
+        '/images/combo/roof-ton/2.webp',
+        '/images/combo/roof-ton/3.webp',
+        '/images/combo/roof-ton/4.webp',
+        '/images/combo/roof-ton/5.webp',
+        '/images/combo/roof-ton/6.webp',
       ],
       [
-        '/images/combo/roof-ngoi/1.png',
-        '/images/combo/roof-ngoi/2.png',
-        '/images/combo/roof-ngoi/3.png',
-        '/images/combo/roof-ngoi/4.png',
-        '/images/combo/roof-ngoi/5.png',
-        '/images/combo/roof-ngoi/6.png',
+        '/images/combo/roof-ngoi/1.webp',
+        '/images/combo/roof-ngoi/2.webp',
+        '/images/combo/roof-ngoi/3.webp',
+        '/images/combo/roof-ngoi/4.webp',
+        '/images/combo/roof-ngoi/5.webp',
+        '/images/combo/roof-ngoi/6.webp',
       ],
       [
-        '/images/combo/roof-bang/1.png',
-        '/images/combo/roof-bang/2.png',
-        '/images/combo/roof-bang/3.png',
-        '/images/combo/roof-bang/4.png',
-        '/images/combo/roof-bang/5.png',
-        '/images/combo/roof-bang/6.png',
+        '/images/combo/roof-bang/1.webp',
+        '/images/combo/roof-bang/2.webp',
+        '/images/combo/roof-bang/3.webp',
+        '/images/combo/roof-bang/4.webp',
+        '/images/combo/roof-bang/5.webp',
+        '/images/combo/roof-bang/6.webp',
       ],
     ],
     []
@@ -893,19 +894,34 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
                   {
                     name: 'Anh Minh, Hà Nội',
                     role: 'Combo on-grid 1 pha',
-                    quote: 'Báo giá rõ ràng, đội kỹ sư tư vấn rất kỹ về mái và sản lượng. Mình thấy dễ quyết định hơn hẳn.',
+                    quote: 'Hệ thống vận hành ổn định sau khi lắp đặt. EPCVINA hỗ trợ khá kỹ từ khảo sát đến nghiệm thu nên gia đình tôi yên tâm.',
                   },
                   {
                     name: 'Chị Hạnh, Hải Dương',
                     role: 'Combo hybrid lưu trữ',
-                    quote: 'Phần vật tư và biện pháp thi công trình bày dễ hiểu, trao đổi nhanh nên chốt phương án rất thuận lợi.',
+                    quote: 'Tôi hài lòng vì cấu hình được tư vấn sát nhu cầu dùng điện. Sau thi công, đội ngũ vẫn theo dõi và phản hồi nhanh.',
                   },
                   {
                     name: 'Anh Quang, Bắc Ninh',
                     role: 'Combo 3 pha',
-                    quote: 'Mình thích cách trình bày theo từng hạng mục, nhìn giống catalog chuyên nghiệp nên khá tin tưởng.',
+                    quote: 'Bảng vật tư và tiến độ triển khai rõ ràng. Dịch vụ sau lắp đặt tốt, dễ trao đổi khi cần kiểm tra thêm.',
                   },
-                ].map((item) => (
+                  {
+                    name: 'Chị Thảo, Hưng Yên',
+                    role: 'Combo tiết kiệm điện',
+                    quote: 'Báo giá minh bạch và có các hạng mục đánh giá thực tế. Tôi thấy dễ đối chiếu trước khi quyết định lắp.',
+                  },
+                  {
+                    name: 'Anh Đức, Hải Phòng',
+                    role: 'Combo doanh nghiệp',
+                    quote: 'Quy trình làm việc chuyên nghiệp, lắp đặt gọn gàng, bàn giao đầy đủ hồ sơ và hướng dẫn vận hành.',
+                  },
+                  {
+                    name: 'Chị Lan, Bắc Giang',
+                    role: 'Combo hộ gia đình',
+                    quote: 'Sau khi dùng thực tế, sản lượng khá đúng như tư vấn. Tôi đánh giá cao cách EPCVINA hỗ trợ sau bán hàng.',
+                  },
+                ].slice(0, reviewsExpanded ? 6 : 3).map((item) => (
                   <div key={item.name} className="rounded-[16px] border border-gray-200 bg-[#fafafa] p-5 shadow-[0_1px_0_rgba(0,0,0,0.02)]">
                     <div className="flex items-start gap-3">
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white text-[#f60] ring-1 ring-gray-200">
@@ -924,6 +940,15 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
                     <p className="mt-3 text-[14px] leading-7 text-gray-700">{item.quote}</p>
                   </div>
                 ))}
+              </div>
+              <div className="mt-5 flex justify-center">
+                <button
+                  type="button"
+                  onClick={() => setReviewsExpanded((value) => !value)}
+                  className="inline-flex items-center gap-2 rounded-full border border-[#0B63CE]/20 bg-[#eef6ff] px-4 py-2 text-[13px] font-semibold text-[#0B63CE] transition hover:bg-[#dfeeff]"
+                >
+                  {reviewsExpanded ? 'Thu gọn' : 'Xem thêm đánh giá'}
+                </button>
               </div>
             </section>
 

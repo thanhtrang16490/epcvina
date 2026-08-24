@@ -1,4 +1,5 @@
 import { CheckCircle } from '@phosphor-icons/react';
+import ResponsiveComboImage from './ResponsiveComboImage';
 
 export default function ProcessFaqSection({
   faqExpanded,
@@ -38,7 +39,12 @@ export default function ProcessFaqSection({
 
           <div className="overflow-hidden rounded-[22px] border border-gray-200 bg-[#0b63ce] p-4 text-white shadow-[0_18px_50px_rgba(11,99,206,0.14)]">
             <div className="relative overflow-hidden rounded-[18px] bg-white/10">
-              <img src="/images/combo/roof-bang/1.png" alt="Quy trình triển khai EPCVINA" className="h-[220px] w-full object-cover" loading="lazy" />
+              <ResponsiveComboImage
+                src="/images/combo/roof-bang/1.webp"
+                alt="Quy trình triển khai EPCVINA"
+                className="h-[220px] w-full object-cover"
+                loading="lazy"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-[#073a78]/75 via-[#073a78]/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4">
                 <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/80">Ảnh minh hoạ</p>
@@ -67,25 +73,25 @@ export default function ProcessFaqSection({
               step: '01',
               title: 'Tiếp nhận yêu cầu',
               desc: 'Ghi nhận nhu cầu sử dụng điện, loại mái, mức đầu tư dự kiến và thông tin liên hệ để tư vấn nhanh.',
-              image: '/images/combo/source-install.webp',
+              image: '/images/combo/process-step-1.png',
             },
             {
               step: '02',
               title: 'Khảo sát thực tế',
               desc: 'Kỹ sư kiểm tra mái, hướng nắng, kết cấu và các điều kiện kỹ thuật để xác định phương án phù hợp.',
-              image: '/images/combo/roof-ton/1.png',
+              image: '/images/combo/process-step-2.png',
             },
             {
               step: '03',
               title: 'Thiết kế và báo giá',
               desc: 'Lên cấu hình combo, tối ưu vật tư và gửi báo giá chi tiết để khách hàng dễ so sánh, ra quyết định.',
-              image: '/images/combo/source-cabinet.webp',
+              image: '/images/combo/process-step-3.png',
             },
             {
               step: '04',
               title: 'Thi công và bàn giao',
               desc: 'Triển khai lắp đặt, kiểm tra vận hành, hướng dẫn sử dụng và bàn giao hồ sơ theo đúng cam kết.',
-              image: '/images/combo/source-grounding.webp',
+              image: '/images/combo/process-step-4.png',
             },
           ].map((item, index) => (
             <div
@@ -94,7 +100,7 @@ export default function ProcessFaqSection({
             >
               <div className="grid gap-0 sm:grid-cols-[160px_minmax(0,1fr)]">
                 <div className="relative aspect-square overflow-hidden bg-white sm:aspect-[4/3]">
-                  <img src={item.image} alt={item.title} className="h-full w-full object-cover" loading="lazy" />
+                  <ResponsiveComboImage src={item.image} alt={item.title} className="h-full w-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
                 </div>
                 <div className="min-w-0 p-4 sm:p-5">
