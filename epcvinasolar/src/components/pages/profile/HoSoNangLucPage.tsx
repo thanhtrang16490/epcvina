@@ -280,6 +280,15 @@ export default function HoSoNangLucPage({ pathname = '/' }: { pathname?: string 
       <HeaderBar pathname={pathname} />
       <div className="md:pt-16">
         <section className="relative overflow-hidden bg-slate-950 text-white">
+          <div className="absolute inset-0">
+            <img
+              src="/images/generated/ho-so-nang-luc-hero.png"
+              alt=""
+              className="h-full w-full object-cover object-center opacity-18"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/78 to-slate-950/50" />
+          </div>
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/20 rounded-full -translate-y-1/2 translate-x-1/4" />
             <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-orange-500/10 rounded-full translate-y-1/2 -translate-x-1/4" />

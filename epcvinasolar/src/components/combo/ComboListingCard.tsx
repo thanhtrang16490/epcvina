@@ -14,7 +14,16 @@ export interface ComboCardData {
   phase: string;
   panel_brand?: string;
   inverter_brand?: string;
+  inverter_model?: string;
   battery_brand?: string;
+  battery_model?: string;
+  panel_count?: number;
+  inverter_count?: number;
+  battery_count?: number;
+  panel_warranty?: number;
+  inverter_warranty?: number;
+  battery_warranty?: number;
+  raw?: Record<string, unknown>;
   monthly_production?: number;
   payback_period?: number;
   installation_area?: number;

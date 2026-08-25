@@ -3,14 +3,21 @@ import { BookOpen } from '@phosphor-icons/react';
 interface BlogHeroProps {
   title?: string;
   subtitle?: string;
+  imageSrc?: string;
 }
 
-export default function BlogHero({ title, subtitle }: BlogHeroProps) {
+export default function BlogHero({ title, subtitle, imageSrc }: BlogHeroProps) {
   const displayTitle = title ?? 'Blog Điện Mặt Trời';
   const displaySubtitle = subtitle ?? 'Kiến thức, hướng dẫn và tin tức mới nhất về năng lượng mặt trời';
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#7C2D12] via-[#9A3412] to-[#7C2D12]">
+      {imageSrc && (
+        <div className="absolute inset-0">
+          <img src={imageSrc} alt="" className="h-full w-full object-cover object-center opacity-20" loading="eager" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#7C2D12]/92 via-[#9A3412]/80 to-[#7C2D12]/55" />
+        </div>
+      )}
       {/* Decorative blurred circles */}
       <div className="absolute inset-0 opacity-10" aria-hidden="true">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-orange-500 to-amber-400 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />

@@ -1,0 +1,24 @@
+---
+import EquipmentLayout from '../../layouts/EquipmentLayout.astro';
+import EquipmentMarketplaceHeader from '../../components/pages/equipment/EquipmentMarketplaceHeader';
+import ComboTablePage from '../../components/combo/ComboTablePage';
+---
+
+<EquipmentLayout
+  title="Bảng kiểm tra dữ liệu combo | EPCVINA Solar"
+  description="Trang bảng kiểm tra nhanh dữ liệu combo điện mặt trời từ API."
+  keywords="combo table, bảng combo, kiểm tra dữ liệu combo, EPCVINA Solar"
+  breadcrumbs={[
+    { name: 'Trang chủ', url: 'https://epcvina.com' },
+    { name: 'Gói Combo', url: 'https://epcvina.com/goi-combo' },
+    { name: 'Table', url: 'https://epcvina.com/goi-combo/table' }
+  ]}
+>
+  <div class="hidden md:block">
+    <EquipmentMarketplaceHeader
+      title="Bảng kiểm tra dữ liệu combo"
+      subtitle="Dùng để rà nhanh dữ liệu công suất, giá và thương hiệu từ nguồn combo."
+    />
+  </div>
+  <ComboTablePage client:load />
+</EquipmentLayout>

@@ -1,6 +1,7 @@
 ---
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell.astro';
+import HeaderBar from '../components/home/layout/HeaderBar';
 import { buildFaqSchema } from '../lib/schema';
 ---
 
@@ -79,27 +80,31 @@ import { buildFaqSchema } from '../lib/schema';
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Tuyển Dụng", url: "https://epcvina.com/tuyen-dung"}]}
 >
   <DashboardShell>
-
-    <!-- HERO -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-orange-600 via-red-600 to-red-700 text-white">
-      <div class="absolute inset-0 bg-black/20"></div>
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <div class="hidden lg:block">
+      <HeaderBar pathname={Astro.url.pathname} />
+    </div>
+    <section class="relative overflow-hidden text-white">
+      <div class="absolute inset-0">
+        <img src="/images/generated/tuyen-dung-hero.png" alt="" class="h-full w-full object-cover object-center" />
+        <div class="absolute inset-0 bg-gradient-to-r from-[#5f1116]/88 via-[#b11f28]/68 to-[#f5831f]/40"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),_transparent_28%)]"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 min-h-[620px] flex items-center">
         <div class="max-w-3xl">
-          <p class="text-orange-200 text-sm font-semibold uppercase tracking-wider mb-3">EPCVINA Solar – Tuyển Dụng</p>
-          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-4">
-            <span class="block">Gia Nhập Đội Ngũ</span>
-            <span class="block text-orange-200">Điện Mặt Trời Hàng Đầu</span>
+          <p class="text-orange-100 text-sm font-semibold uppercase tracking-[0.24em] mb-4 drop-shadow-sm">EPCVINA Solar – Tuyển Dụng</p>
+          <h1 class="text-4xl sm:text-5xl font-bold leading-tight mb-5 drop-shadow-sm">
+            Gia Nhập Đội Ngũ
+            <span class="block text-orange-100">Điện Mặt Trời Hàng Đầu</span>
           </h1>
-          <p class="text-lg text-white/90 mb-8 max-w-2xl">
-            Hơn 500 dự án thành công trên toàn quốc. Chúng tôi tìm kiếm những nhân tài 
-            đam mê năng lượng tái tạo, muốn xây dựng sự nghiệp bền vững cùng EPCVINA Solar.
+          <p class="text-lg sm:text-xl text-white/92 max-w-2xl drop-shadow-sm">
+            Hơn 500 dự án thành công trên toàn quốc. Chúng tôi tìm kiếm những nhân tài đam mê năng lượng tái tạo, muốn xây dựng sự nghiệp bền vững cùng EPCVINA Solar.
           </p>
-          <div class="flex flex-wrap gap-3">
-            <a href="#vi-tri" class="inline-flex items-center gap-2 bg-white text-orange-700 font-bold px-6 py-3 rounded-xl hover:bg-orange-50 transition-colors">
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#vi-tri" class="inline-flex items-center gap-2 bg-white text-red-700 font-bold px-6 py-3 rounded-2xl hover:bg-orange-50 transition-colors shadow-lg shadow-black/10">
               Xem vị trí tuyển dụng
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </a>
-            <a href="/lien-he" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/25 transition-colors border border-white/20">
+            <a href="/lien-he" class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-2xl hover:bg-white/25 transition-colors border border-white/20">
               Liên hệ ứng tuyển
             </a>
           </div>
@@ -174,6 +179,35 @@ import { buildFaqSchema } from '../lib/schema';
         <p class="text-gray-500 text-center mb-10">Cập nhật liên tục – Gửi hồ sơ ngay để nhận phản hồi nhanh</p>
 
         <div class="space-y-4">
+          <div class="bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl border border-red-100 p-5 sm:p-6 shadow-sm">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+              <div class="max-w-3xl">
+                <div class="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-red-600 border border-red-100">
+                  Cơ hội thực tập
+                </div>
+                <h3 class="mt-3 text-xl sm:text-2xl font-bold text-gray-900">Tuyển thực tập sinh kỹ sư điện mặt trời</h3>
+                <p class="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
+                  Dành cho sinh viên muốn học việc thực tế, được kèm cặp bởi kỹ sư giàu kinh nghiệm và tham gia các dự án điện mặt trời từ khảo sát đến triển khai. EPCVINA có trang tuyển dụng riêng để bạn xem đầy đủ chi tiết.
+                </p>
+              </div>
+              <div class="flex flex-col gap-3 sm:items-end">
+                <a
+                  href="/tuyen-dung-thuc-tap-sinh-ky-su-dien-mat-troi"
+                  class="inline-flex items-center justify-center gap-2 rounded-2xl bg-red-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-500"
+                >
+                  Xem trang thực tập sinh
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <a
+                  href="#ung-tuyen"
+                  class="inline-flex items-center justify-center gap-2 rounded-2xl border border-red-200 bg-white px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-50"
+                >
+                  Nộp hồ sơ chung
+                </a>
+              </div>
+            </div>
+          </div>
+
           <!-- Position 1: Sales tư vấn điện mặt trời -->
           <div class="bg-white rounded-2xl border border-gray-100 p-5 sm:p-6 hover:shadow-lg transition-shadow">
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">

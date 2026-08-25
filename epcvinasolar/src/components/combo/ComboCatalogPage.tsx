@@ -53,6 +53,10 @@ export default function ComboCatalogPage() {
   const [combos, setCombos] = useState<ComboCardData[]>(ALL_COMBOS);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [panelBrand, setPanelBrand] = useState('all');
+  const [inverterBrand, setInverterBrand] = useState('all');
+  const [batteryBrand, setBatteryBrand] = useState('all');
+  const [powerFilter, setPowerFilter] = useState('all');
   const [sortBy, setSortBy] = useState<'az' | 'za' | 'price-asc' | 'price-desc'>('price-asc');
   const [gridColumns, setGridColumns] = useState<number>(4);
   const [productLimit, setProductLimit] = useState<number>(24);
@@ -140,6 +144,20 @@ export default function ComboCatalogPage() {
     });
   }, [combos, activeCategory]);
 
+  const brandOptions = useMemo(() => {
+    const uniqueValues = (items: Array<string | undefined>) =>
+      Array.from(new Set(items.map((item) => item?.trim()).filter((item): item is string => Boolean(item)))).sort((a, b) =>
+        a.localeCompare(b, 'vi')
+      );
+
+    return {
+      panel: uniqueValues(combos.map((combo) => combo.panel_brand)),
+      inverter: uniqueValues(combos.map((combo) => combo.inverter_brand)),
+      battery: uniqueValues(combos.map((combo) => combo.battery_brand)),
+      power: Array.from(new Set(combos.map((combo) => combo.power))).sort((a, b) => a - b),
+    };
+  }, [combos]);
+
   const filteredCombos = useMemo(() => {
     let filtered = [...categoryCombos];
 
@@ -150,6 +168,23 @@ export default function ComboCatalogPage() {
         (combo.panel_brand || '').toLowerCase().includes(q) ||
         (combo.inverter_brand || '').toLowerCase().includes(q)
       );
+    }
+
+    if (panelBrand !== 'all') {
+      filtered = filtered.filter((combo) => (combo.panel_brand || '').toLowerCase() === panelBrand.toLowerCase());
+    }
+
+    if (inverterBrand !== 'all') {
+      filtered = filtered.filter((combo) => (combo.inverter_brand || '').toLowerCase() === inverterBrand.toLowerCase());
+    }
+
+    if (batteryBrand !== 'all') {
+      filtered = filtered.filter((combo) => (combo.battery_brand || '').toLowerCase() === batteryBrand.toLowerCase());
+    }
+
+    if (powerFilter !== 'all') {
+      const selectedPower = Number(powerFilter);
+      filtered = filtered.filter((combo) => Math.abs(combo.power - selectedPower) < 0.01);
     }
 
     switch (sortBy) {
@@ -168,7 +203,7 @@ export default function ComboCatalogPage() {
     }
 
     return productLimit > 0 ? filtered.slice(0, productLimit) : filtered;
-  }, [categoryCombos, productLimit, searchQuery, sortBy]);
+  }, [batteryBrand, categoryCombos, inverterBrand, panelBrand, powerFilter, productLimit, searchQuery, sortBy]);
 
   const relatedArticles = [
     {
@@ -195,52 +230,68 @@ export default function ComboCatalogPage() {
 
   return (
     <div className="flex-1 flex flex-col">
-      <div className="hidden md:block px-4 sm:px-6 lg:px-8 pt-4 md:pt-5">
-        <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex min-w-0 items-center gap-2 text-sm text-gray-600">
+      <div className="px-4 sm:px-6 lg:px-8 py-4 md:py-5">
+        <section className="rounded-[24px] border border-[#e7e7e7] bg-white p-4 sm:p-5 shadow-sm">
+          <div className="flex items-center justify-between gap-4 border-b border-[#ededed] pb-3 text-[14px] text-gray-700">
+            <div className="flex min-w-0 items-center gap-2 overflow-x-auto whitespace-nowrap pr-4">
               <a href="/" className="whitespace-nowrap hover:text-[#0B63CE] transition-colors">Trang chủ</a>
-              <CaretRight className="h-3 w-3 flex-shrink-0" />
-              <a href="/goi-combo" className="whitespace-nowrap hover:text-[#0B63CE] transition-colors">Gói Combo</a>
-              <CaretRight className="h-3 w-3 flex-shrink-0" />
+              <CaretRight className="h-3 w-3 flex-shrink-0 text-gray-400" />
+              <a href="/goi-combo" className="whitespace-nowrap hover:text-[#0B63CE] transition-colors">Gói combo</a>
+              <CaretRight className="h-3 w-3 flex-shrink-0 text-gray-400" />
               <span className="min-w-0 truncate font-medium text-gray-900">{activeCategoryLabel}</span>
             </div>
 
-            <div className="flex flex-shrink-0 items-center gap-1 rounded-full border border-gray-300 p-1">
+            <div className="hidden items-center gap-2 lg:flex">
               <button
+                type="button"
                 onClick={() => setGridColumns(2)}
-                className={`rounded-full p-2 transition-colors ${gridColumns === 2 ? 'bg-[#0B63CE] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
-                title="Lưới 2 cột"
+                className={`inline-flex items-center justify-center rounded-full border px-4 py-2 font-semibold transition ${
+                  gridColumns === 2 ? 'border-[#0B63CE] bg-[#0B63CE] text-white' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
+                }`}
               >
-                <GridFour className="h-4 w-4" />
+                2 cột
               </button>
               <button
+                type="button"
                 onClick={() => setGridColumns(3)}
-                className={`rounded-full p-2 transition-colors ${gridColumns === 3 ? 'bg-[#0B63CE] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
-                title="Lưới 3 cột"
+                className={`inline-flex items-center justify-center rounded-full border px-4 py-2 font-semibold transition ${
+                  gridColumns === 3 ? 'border-[#0B63CE] bg-[#0B63CE] text-white' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
+                }`}
               >
-                <GridNine className="h-4 w-4" />
+                3 cột
               </button>
               <button
+                type="button"
                 onClick={() => setGridColumns(4)}
-                className={`rounded-full p-2 transition-colors ${gridColumns === 4 ? 'bg-[#0B63CE] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
-                title="Lưới 4 cột"
+                className={`inline-flex items-center justify-center rounded-full border px-4 py-2 font-semibold transition ${
+                  gridColumns === 4 ? 'border-[#0B63CE] bg-[#0B63CE] text-white' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'
+                }`}
               >
-                <List className="h-4 w-4" />
+                4 cột
               </button>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="px-4 sm:px-6 lg:px-8 py-4 md:py-5">
-        <section className="rounded-3xl border border-gray-200 bg-white p-4 sm:p-5 shadow-sm">
-          <div className="flex items-start justify-between gap-3 mb-4 sm:items-end">
+          <div className="flex items-start justify-between gap-3 pt-4 sm:items-end">
             <div className="min-w-0">
               <p className="text-[11px] uppercase tracking-[0.18em] text-gray-400">Danh mục</p>
               <h3 className="mt-1 text-lg sm:text-xl font-bold text-gray-900">Chọn loại combo</h3>
             </div>
             <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+              onClick={() => {
+                  setActiveCategory('all');
+                  setSearchQuery('');
+                  setPanelBrand('all');
+                  setInverterBrand('all');
+                  setBatteryBrand('all');
+                  setPowerFilter('all');
+                }}
+                className="hidden sm:inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50"
+              >
+                Bỏ lọc
+              </button>
               <div className="relative" ref={searchRef}>
                 <button
                   type="button"
@@ -321,7 +372,7 @@ export default function ComboCatalogPage() {
             </div>
           </div>
 
-          <div className="flex gap-3 overflow-x-auto pb-1 pr-1 snap-x snap-mandatory lg:grid lg:grid-cols-6 lg:overflow-visible lg:pb-0 lg:pr-0">
+          <div className="mt-4 flex gap-3 overflow-x-auto pb-1 pr-1 snap-x snap-mandatory lg:grid lg:grid-cols-6 lg:overflow-visible lg:pb-0 lg:pr-0">
             {[
               { id: 'all', label: 'Tất cả', icon: <Package className="h-5 w-5" />, count: categoryCounts.all, bg: 'bg-orange-50', color: 'text-orange-600' },
               ...COMBO_CATEGORIES.map((cat) => ({
@@ -358,6 +409,64 @@ export default function ComboCatalogPage() {
                 </button>
               );
             })}
+          </div>
+
+          <div className="mt-4 grid gap-3 md:grid-cols-4">
+            <label className="block">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Tấm pin</span>
+              <select
+                value={panelBrand}
+                onChange={(event) => setPanelBrand(event.target.value)}
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 shadow-sm outline-none transition focus:border-[#0B63CE] focus:ring-2 focus:ring-[#0B63CE]/20"
+              >
+                <option value="all">Tất cả thương hiệu</option>
+                {brandOptions.panel.map((brand) => (
+                  <option key={brand} value={brand}>{brand}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Biến tần</span>
+              <select
+                value={inverterBrand}
+                onChange={(event) => setInverterBrand(event.target.value)}
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 shadow-sm outline-none transition focus:border-[#0B63CE] focus:ring-2 focus:ring-[#0B63CE]/20"
+              >
+                <option value="all">Tất cả thương hiệu</option>
+                {brandOptions.inverter.map((brand) => (
+                  <option key={brand} value={brand}>{brand}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Pin lưu trữ</span>
+              <select
+                value={batteryBrand}
+                onChange={(event) => setBatteryBrand(event.target.value)}
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 shadow-sm outline-none transition focus:border-[#0B63CE] focus:ring-2 focus:ring-[#0B63CE]/20"
+              >
+                <option value="all">Tất cả thương hiệu</option>
+                {brandOptions.battery.map((brand) => (
+                  <option key={brand} value={brand}>{brand}</option>
+                ))}
+              </select>
+            </label>
+
+            <label className="block">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.16em] text-gray-500">Công suất hệ</span>
+              <select
+                value={powerFilter}
+                onChange={(event) => setPowerFilter(event.target.value)}
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-800 shadow-sm outline-none transition focus:border-[#0B63CE] focus:ring-2 focus:ring-[#0B63CE]/20"
+              >
+                <option value="all">Tất cả công suất</option>
+                {brandOptions.power.map((power) => (
+                  <option key={power} value={power}>{power} kWp</option>
+                ))}
+              </select>
+            </label>
           </div>
 
           <div className="mt-5 border-t border-gray-100 pt-5">

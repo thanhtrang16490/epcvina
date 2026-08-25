@@ -298,7 +298,15 @@ function ComboModal({ combo, variant, onClose }: { combo: ComboItem; variant: 'o
 }
 
 /* ─── Combo Card Component ─────────────────────────────── */
-function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | 'hybrid' | 'hybrid-battery' }) {
+function ComboCard({
+  combo,
+  variant,
+  onSelect,
+}: {
+  combo: ComboItem;
+  variant: 'ongrid' | 'hybrid' | 'hybrid-battery';
+  onSelect: () => void;
+}) {
   const [showModal, setShowModal] = useState(false);
   const panelCount = Math.ceil(combo.power * 1000 / 580);
   const isHybrid = variant !== 'ongrid';
@@ -317,16 +325,39 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
 
   return (
     <>
-      <div 
-        className="rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-all cursor-pointer overflow-hidden flex flex-col"
-        onClick={() => setShowModal(true)}
+      <div
+        role="button"
+        tabIndex={0}
+        className="rounded-lg border border-gray-200 bg-white hover:shadow-lg transition-all cursor-pointer overflow-hidden flex flex-col text-left w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+        onClick={onSelect}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            onSelect();
+          }
+        }}
       >
         <div className="px-4 pt-4 pb-3" style={{ background: headerColors[variant] }}>
-          <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5" style={{ background: badgeColors[variant].bg, color: badgeColors[variant].color }}>
-            {variant === 'ongrid' ? <Sun className="w-2.5 h-2.5" /> : <BatteryHigh className="w-2.5 h-2.5" />}
-            {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + BatteryHigh'}
-          </span>
-          <h4 className="text-base font-bold text-gray-900">{combo.name}</h4>
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1.5" style={{ background: badgeColors[variant].bg, color: badgeColors[variant].color }}>
+                {variant === 'ongrid' ? <Sun className="w-2.5 h-2.5" /> : <BatteryHigh className="w-2.5 h-2.5" />}
+                {variant === 'ongrid' ? 'On-Grid' : variant === 'hybrid' ? 'Hybrid' : 'Hybrid + BatteryHigh'}
+              </span>
+              <h4 className="text-base font-bold text-gray-900">{combo.name}</h4>
+            </div>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                setShowModal(true);
+              }}
+              className="rounded-full border border-gray-300 bg-white px-3 py-1 text-[11px] font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+              aria-label={`Xem nhanh ${combo.name}`}
+            >
+              Xem nhanh
+            </button>
+          </div>
         </div>
 
         <div className="px-4 py-3 space-y-2.5">
@@ -351,17 +382,17 @@ function ComboCard({ combo, variant }: { combo: ComboItem; variant: 'ongrid' | '
         </div>
 
         <div className="px-4 py-3 border-t border-gray-200">
-        <div className="flex items-center justify-between">
-          <span className="text-lg font-bold text-gray-900">{(combo.price / 1000000).toFixed(0)} triệu</span>
-          {combo.is_popular && (
-            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
-              Phổ biến
-            </span>
-          )}
+          <div className="flex items-center justify-between">
+            <span className="text-lg font-bold text-gray-900">{(combo.price / 1000000).toFixed(0)} triệu</span>
+            {combo.is_popular && (
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
+                Phổ biến
+              </span>
+            )}
+          </div>
         </div>
-      </div>
 
-      {showModal && <ComboModal combo={combo} variant={variant} onClose={() => setShowModal(false)} />}
+        {showModal && <ComboModal combo={combo} variant={variant} onClose={() => setShowModal(false)} />}
       </div>
     </>
   );
@@ -546,13 +577,13 @@ function SystemRow({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {filteredCombos.slice(0, showAll ? filteredCombos.length : 4).map((combo) => (
               <div key={combo.id} onClick={() => setSelectedComboId(combo.id)} className={combo.id === selectedCombo?.id ? 'ring-2 ring-emerald-500 rounded-lg' : ''}>
-                <ComboCard combo={combo} variant={variant} />
+                <ComboCard combo={combo} variant={variant} onSelect={() => setSelectedComboId(combo.id)} />
               </div>
             ))}
           </div>
 
           {selectedCombo && (
-            <div className="mt-5">
+            <div key={selectedCombo.id} className="mt-5 transition-opacity duration-300">
               <ComboDetailPanel combo={selectedCombo} variant={variant} />
             </div>
           )}

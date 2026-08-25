@@ -13,6 +13,7 @@ import {
   FileText,
   ChartLine,
 } from '@phosphor-icons/react';
+import HeaderBar from '../../home/layout/HeaderBar';
 import { submitCrmLead, redirectToThankYou } from '../../../lib/crm-leads';
 
 const benefits = [
@@ -45,7 +46,7 @@ const affiliateSteps = [
   'Báo cáo kết quả và nhận hoa hồng theo thỏa thuận.',
 ];
 
-export default function AffiliateSalesPage() {
+export default function AffiliateSalesPage({ pathname = '/' }: { pathname?: string }) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [done, setDone] = useState(false);
@@ -85,9 +86,15 @@ export default function AffiliateSalesPage() {
 
   return (
     <div className="bg-[#f6f8fb] text-slate-900">
+      <div className="hidden lg:block">
+        <HeaderBar pathname={pathname} />
+      </div>
       <section className="relative overflow-hidden bg-slate-950 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.22),_transparent_35%),radial-gradient(circle_at_80%_10%,_rgba(16,185,129,0.16),_transparent_28%),linear-gradient(180deg,_rgba(15,23,42,0.94),_rgba(2,6,23,0.98))]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        <div className="absolute inset-0">
+          <img src="/images/generated/tiep-thi-lien-ket-hero.png" alt="" className="h-full w-full object-cover opacity-55" loading="eager" />
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.08),_transparent_35%),radial-gradient(circle_at_80%_10%,_rgba(16,185,129,0.06),_transparent_28%),linear-gradient(180deg,_rgba(15,23,42,0.5),_rgba(2,6,23,0.72))]" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 lg:pt-32">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-400/10 px-4 py-2 text-sm text-sky-200">

@@ -19,6 +19,6 @@ const breadcrumbs = [
   breadcrumbs={breadcrumbs}
 >
   <DashboardShell>
-    <AffiliateSalesPage client:visible />
+    <AffiliateSalesPage client:visible pathname={Astro.url.pathname} />
   </DashboardShell>
 </DashboardLayout>
