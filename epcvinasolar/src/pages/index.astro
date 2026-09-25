@@ -111,7 +111,7 @@ const videoSchema = {
       <ReviewsSection pathname={Astro.url.pathname} />
       <MidPageCTA variant="reviews" pathname={Astro.url.pathname} />
       <FAQSection pathname={Astro.url.pathname} />
-      <CTASection pathname={Astro.url.pathname} />
+      <CTASection pathname={Astro.url.pathname} client:visible />
       <FooterSection pathname={Astro.url.pathname} />
     </div>
   </DashboardShell>
