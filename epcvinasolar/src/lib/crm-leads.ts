@@ -16,7 +16,7 @@ export type CrmLeadInput = {
   website?: string;
 };
 
-const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid", "fbclid"] as const;
+const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "gbraid", "wbraid", "fbclid", "oppref"] as const;
 const DEFAULT_CRM_LEAD_ENDPOINT = "https://app.epcvina.com/api/public/leads";
 const FORM_SESSION_STARTED_AT = Date.now();
 const ATTRIBUTION_STORAGE_KEY = "epcvina_attribution_v1";
@@ -25,6 +25,7 @@ const LEAD_DEBUG_KEY = "epcvina_lead_debug_v1";
 type Touchpoint = Partial<Record<(typeof TRACKING_KEYS)[number], string>> & {
   landing_page?: string;
   referrer?: string;
+  source_channel?: string;
   captured_at?: string;
 };
 
@@ -36,6 +37,18 @@ function readAttribution(): Attribution {
   } catch {
     return {};
   }
+}
+
+function getSourceChannel(attribution: Attribution) {
+  const stored = attribution.last_touch?.source_channel || attribution.first_touch?.source_channel;
+  if (stored) return stored;
+  try {
+    const host = new URL(document.referrer).hostname.toLowerCase();
+    if (/(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$|(^|\.)openai\.com$/.test(host)) return "chatgpt";
+  } catch {
+    // Referrer may be empty or malformed; attribution remains optional.
+  }
+  return undefined;
 }
 
 export function normalizeVietnamPhone(value: string) {
@@ -65,6 +78,7 @@ export async function submitCrmLead(input: CrmLeadInput) {
     key,
     params.get(key) || attribution.last_touch?.[key] || attribution.first_touch?.[key] || undefined,
   ]));
+  const sourceChannel = getSourceChannel(attribution);
   const response = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -72,8 +86,9 @@ export async function submitCrmLead(input: CrmLeadInput) {
       ...input,
       phone: phone || input.phone?.trim() || email,
       email: email || undefined,
-      metadata: { ...input.metadata, attribution },
+      metadata: { ...input.metadata, attribution, source_channel: sourceChannel },
       ...tracking,
+      source_channel: sourceChannel,
       source: "epcvinasolar",
       form_elapsed_ms: Date.now() - FORM_SESSION_STARTED_AT,
       landing_page: window.location.href,
@@ -99,6 +114,17 @@ export async function submitCrmLead(input: CrmLeadInput) {
     }
     trackEvent("generate_lead", {
       source_form: input.source_form,
+      event_id: result.lead_id,
+      source_channel: sourceChannel,
+    });
+    trackEvent("form_submit", {
+      source_form: input.source_form,
+      event_id: result.lead_id,
+      source_channel: sourceChannel,
+    });
+    window.oaiq?.("measure", "lead_created", {
+      type: "customer_action",
+    }, {
       event_id: result.lead_id,
     });
     window.fbq?.("track", "Lead", { source_form: input.source_form }, { eventID: result.lead_id });

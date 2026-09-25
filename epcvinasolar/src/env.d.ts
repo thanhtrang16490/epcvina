@@ -11,6 +11,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_GOOGLE_ADS_ID?: string;
   readonly PUBLIC_GTM_ID?: string;
   readonly PUBLIC_META_PIXEL_ID?: string;
+  readonly PUBLIC_OPENAI_ADS_PIXEL_ID?: string;
 }
 
 interface ImportMeta {
@@ -21,4 +22,5 @@ interface ImportMeta {
 interface Window {
   gtag?: (...args: any[]) => void;
   fbq?: (...args: any[]) => void;
+  oaiq?: (...args: any[]) => void;
 }

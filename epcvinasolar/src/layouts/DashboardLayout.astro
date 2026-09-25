@@ -29,6 +29,7 @@ const defaultOgImage = '/opengraph-epcvina-medium.jpeg';
 
 const gtmId = import.meta.env.PUBLIC_GTM_ID;
 const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '1716110676297295';
+const openAiAdsPixelId = import.meta.env.PUBLIC_OPENAI_ADS_PIXEL_ID || '7fF4DosKbCGpMw57MatvK4';
 const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-18369898149';
 const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID || 'G-2VLQ1GQBQL';
 const googleTagId = googleAnalyticsId || googleAdsId;
@@ -186,13 +187,22 @@ const structuredData = buildLocalBusinessSchema({
           window.epcvinaCookieConsent = JSON.stringify(storedConsent || { value: 'essential' });
           window.epcvinaAnalyticsEnabled = true;
 
-          var keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid'];
+          var keys = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','fbclid','oppref'];
           var params = new URLSearchParams(window.location.search);
           var touch = {};
           keys.forEach(function (key) { var value = params.get(key); if (value) touch[key] = value; });
-          if (!Object.keys(touch).length) return;
+          var referrer = document.referrer || '';
+          var referrerHost = '';
+          try { referrerHost = new URL(referrer).hostname.toLowerCase(); } catch (_) {}
+          var isChatGptReferrer = /(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$|(^|\.)openai\.com$/.test(referrerHost);
+          var source = (params.get('utm_source') || '').toLowerCase();
+          if (isChatGptReferrer || source === 'chatgpt' || source === 'openai') {
+            touch.source_channel = 'chatgpt';
+            window.epcvinaAttributionSource = 'chatgpt';
+          }
+          if (!Object.keys(touch).length && !referrer) return;
           touch.landing_page = window.location.href;
-          touch.referrer = document.referrer || undefined;
+          touch.referrer = referrer || undefined;
           touch.captured_at = new Date().toISOString();
           var storageKey = 'epcvina_attribution_v1';
           var stored = {};
@@ -203,6 +213,24 @@ const structuredData = buildLocalBusinessSchema({
         } catch (_) {}
       })();
     </script>
+
+    <!-- OpenAI ChatGPT Ads Measurement Pixel -->
+    {openAiAdsPixelId && (
+      <script is:inline define:vars={{ openAiAdsPixelId }}>
+        (function (w, d, s, u) {
+          if (w.oaiq) return;
+          var q = function () { q.q.push(arguments); };
+          q.q = [];
+          w.oaiq = q;
+          var js = d.createElement(s);
+          js.async = true;
+          js.src = u;
+          var f = d.getElementsByTagName(s)[0];
+          f.parentNode.insertBefore(js, f);
+        })(window, document, 'script', 'https://bzrcdn.openai.com/sdk/oaiq.min.js');
+        window.oaiq('init', { pixelId: openAiAdsPixelId });
+      </script>
+    )}
 
     <!-- Google tag (Google Analytics + Google Ads) -->
     <script is:inline define:vars={{ googleTagId, googleAnalyticsId, googleAdsId }}>
@@ -219,6 +247,12 @@ const structuredData = buildLocalBusinessSchema({
       window.gtag('js', new Date());
       window.gtag('config', googleAnalyticsId, { send_page_view: true, debug_mode: window.epcvinaGtagDebug });
       window.gtag('config', googleAdsId, { send_page_view: true, debug_mode: window.epcvinaGtagDebug });
+      try {
+        if (window.epcvinaAttributionSource === 'chatgpt' && !window.sessionStorage.getItem('epcvina_chatgpt_visit_v1')) {
+          window.gtag('event', 'chatgpt_landing', { source_channel: 'chatgpt', referrer: document.referrer || undefined });
+          window.sessionStorage.setItem('epcvina_chatgpt_visit_v1', '1');
+        }
+      } catch (_) {}
     </script>
     <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}></script>
 
