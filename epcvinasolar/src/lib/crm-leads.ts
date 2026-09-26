@@ -122,6 +122,11 @@ export async function submitCrmLead(input: CrmLeadInput) {
       event_id: result.lead_id,
       source_channel: sourceChannel,
     });
+    window.epcTrackConversion?.("form_submit", {
+      source_form: input.source_form,
+      event_id: result.lead_id,
+      source_channel: sourceChannel,
+    });
     window.oaiq?.("measure", "lead_created", {
       type: "customer_action",
     }, {

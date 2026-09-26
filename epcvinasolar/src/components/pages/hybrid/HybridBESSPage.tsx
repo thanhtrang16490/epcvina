@@ -326,11 +326,18 @@ function HybridComboCard({ combo }: { combo: typeof FALLBACK_HYBRID_COMBOS[0] })
   const panelCount = Math.ceil(combo.power * 1000 / 580);
   const prodMin = Math.round(combo.power * 4.2 * 30);
   const prodMax = Math.round(combo.power * 5.5 * 30);
-  const monthlySavings = combo.power * 4.85 * 2800;
-  const paybackYears = combo.price / (monthlySavings * 12);
-  const years = Math.floor(paybackYears);
-  const months = Math.round((paybackYears - years) * 12);
-  const paybackStr = months > 0 ? `${years} năm ${months} tháng` : `${years} năm`;
+  // Production is monthly kWh. Keep the 30-day conversion here; omitting it
+  // turns a normal ~5-year system into the old, incorrect 123+ year result.
+  const monthlySavings = combo.power * 4.85 * 30 * 2800;
+  const paybackYears = combo.price > 0 && monthlySavings > 0
+    ? combo.price / (monthlySavings * 12)
+    : 0;
+  const totalMonths = Math.max(0, Math.round(paybackYears * 12));
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  const paybackStr = totalMonths > 0
+    ? (months > 0 ? `${years} năm ${months} tháng` : `${years} năm`)
+    : 'Đang cập nhật';
 
   const specs = [
     { icon: <Sun className="w-3.5 h-3.5 text-amber-500" />, label: `Tấm ${combo.panel_brand || 'Aiko'}`, value: `${panelCount} tấm · ${combo.power} kWp` },

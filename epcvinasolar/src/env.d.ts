@@ -23,4 +23,6 @@ interface Window {
   gtag?: (...args: any[]) => void;
   fbq?: (...args: any[]) => void;
   oaiq?: (...args: any[]) => void;
+  epcvinaMeasure?: (eventName: string, params?: Record<string, unknown>) => void;
+  epcTrackConversion?: (eventName: string, params?: Record<string, unknown>) => void;
 }

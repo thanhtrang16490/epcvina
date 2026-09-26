@@ -49,7 +49,7 @@ const partners = [
 
 const stats = [
   { value: '13+', label: 'Năm kinh nghiệm' },
-  { value: '500+', label: 'Công trình hoàn thành' },
+  { value: '200+', label: 'Công trình hoàn thành' },
   { value: '98%', label: 'Khách hàng hài lòng' },
   { value: '0', label: 'Tai nạn lao động' },
 ];

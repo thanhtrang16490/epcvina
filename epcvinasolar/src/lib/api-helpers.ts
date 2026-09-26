@@ -227,13 +227,13 @@ export function deriveComboStats(equipment: any[], storedCombo: any) {
   }
 
   // ── 4. Payback Period (years) ──────────────────────────────
-  let paybackPeriod = storedCombo.payback_period_years || 0;
+  let paybackPeriod = Number(storedCombo.payback_period_years) || 0;
   if (!paybackPeriod && yearlySavings > 0 && totalPrice > 0) {
     paybackPeriod = parseFloat((totalPrice / yearlySavings).toFixed(1));
   }
 
   // ── 5. ROI (%) ────────────────────────────────────────────
-  let roi = storedCombo.roi_percentage || 0;
+  let roi = Number(storedCombo.roi_percentage) || 0;
   if (!roi && yearlySavings > 0 && totalPrice > 0) {
     roi = parseFloat(((yearlySavings / totalPrice) * 100).toFixed(1));
   }

@@ -6,10 +6,10 @@ import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
 import { useScrollContext } from '../../layout/dashboardShellContext';
-import { formatCurrency, CATEGORY_META } from './shared-equipment';
+import { formatCurrency, CATEGORY_META, getCategoryMeta } from './shared-equipment';
 
 function CardImagePlaceholder({ category, label }: { category: EquipmentCategory; label: string }) {
-  const meta = CATEGORY_META[category];
+  const meta = getCategoryMeta(category);
 
   return (
     <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${meta.gradient} p-4`}>
@@ -116,7 +116,7 @@ export default function EquipmentCategoryPage({ category, brand, audienceMode = 
     accent: 'bg-indigo-500',
     gradient: 'from-indigo-400 to-indigo-600',
     description: `Thiết bị chính hãng ${brand} cho EPC, đại lý và nhà thầu - hỗ trợ BOM, CO/CQ, báo giá dự án và giao hàng toàn quốc`,
-  } : CATEGORY_META[category as EquipmentCategory];
+  } : getCategoryMeta(category);
   const isB2C = audienceMode === 'b2c';
   const heroLead = isB2C
     ? 'Xem nhanh cấu hình phù hợp cho nhà phố, biệt thự hoặc hộ gia đình và nhận tư vấn theo nhu cầu thực tế.'
@@ -517,7 +517,9 @@ export default function EquipmentCategoryPage({ category, brand, audienceMode = 
             <div className={`w-16 h-16 mx-auto mb-3 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
               {meta.icon}
             </div>
-            <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
+            <p className="font-semibold text-gray-800">Danh mục này hiện chưa có sản phẩm</p>
+            <p className="mt-1 text-sm text-gray-500">Gửi nhu cầu để nhận cấu hình và báo giá tương đương.</p>
+            <a href="/bao-gia" className="mt-4 inline-flex rounded-lg bg-[#F97316] px-4 py-2 text-sm font-semibold text-white">Nhận tư vấn / báo giá</a>
           </div>
         ) : (
           Object.entries(devicesByBrand).map(([brand, devices]) => (

@@ -22,10 +22,10 @@ import {
 import HeaderBar from '../../home/layout/HeaderBar';
 
 const stats = [
-  { value: '500+', label: 'Kỹ sư kỹ thuật' },
-  { value: '300+', label: 'Nhân sự dự án' },
-  { value: '15+', label: 'Năm kinh nghiệm' },
-  { value: '50+', label: 'Dự án lớn' },
+  { value: '500+', label: 'Khách hàng đã tư vấn' },
+  { value: '200+', label: 'Công trình triển khai' },
+  { value: '13+', label: 'Năm kinh nghiệm' },
+  { value: '42 MWp', label: 'Tổng công suất triển khai' },
 ];
 
 const mepServices = [

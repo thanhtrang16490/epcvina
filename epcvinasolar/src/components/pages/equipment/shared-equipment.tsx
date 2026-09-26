@@ -116,3 +116,17 @@ export const CATEGORY_META: Record<EquipmentCategory, CategoryMeta> = {
     description: 'Phụ kiện lắp đặt đầy đủ: bulong, kẹp biên, kẹp giữa, ray trượt, khớp nối... hoàn thiện hệ thống điện mặt trời.',
   },
 };
+
+export const DEFAULT_CATEGORY_META: CategoryMeta = {
+  label: 'Thiết bị điện mặt trời',
+  icon: <Wrench className="h-5 w-5" />,
+  color: 'text-slate-600',
+  bg: 'bg-slate-100',
+  accent: 'bg-slate-500',
+  gradient: 'from-slate-400 to-slate-600',
+  description: 'Danh mục thiết bị đang được cập nhật. Đội ngũ EPCVINA có thể tư vấn cấu hình tương đương theo nhu cầu của bạn.',
+};
+
+export function getCategoryMeta(category?: string): CategoryMeta {
+  return (category && CATEGORY_META[category as EquipmentCategory]) || DEFAULT_CATEGORY_META;
+}

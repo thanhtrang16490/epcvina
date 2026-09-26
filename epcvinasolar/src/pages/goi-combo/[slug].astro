@@ -46,6 +46,11 @@ const comboSchema = {
   "image": "https://epcvina.com/hero-bg-1920.webp",
   "category": `He thong dien mat troi ${combo.data.system_type}`,
   "manufacturer": { "@type": "Organization", "name": "EPCVINA Solar" },
+  "additionalProperty": (comboData.data.equipment_items || []).map((item) => ({
+    "@type": "PropertyValue",
+    "name": item.label,
+    "value": item.value,
+  })),
   "offers": {
     "@type": "Offer",
     "url": pageUrl,
@@ -80,6 +85,15 @@ const breadcrumbSchema = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(comboSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script is:inline define:vars={{ comboSlug: comboData.data.slug, comboTitle: comboData.data.title }}>
+    window.addEventListener('load', () => {
+      window.epcvinaMeasure?.('view_item', {
+        item_id: comboSlug,
+        item_name: comboTitle,
+        item_category: 'solar_combo',
+      });
+    }, { once: true });
+  </script>
   <div class="hidden md:block">
     <EquipmentMarketplaceHeader
       title="Chi tiết Gói Combo"

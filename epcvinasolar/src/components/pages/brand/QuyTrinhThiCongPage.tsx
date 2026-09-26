@@ -100,7 +100,7 @@ export default function QuyTrinhThiCongPage() {
             </div>
             <div>
               <CheckCircle className="w-8 h-8 text-blue-500 mx-auto mb-2" />
-              <p className="text-2xl font-bold text-slate-900">500+</p>
+              <p className="text-2xl font-bold text-slate-900">200+</p>
               <p className="text-sm text-slate-600">Công trình hoàn thành</p>
             </div>
           </div>

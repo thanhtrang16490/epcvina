@@ -3,10 +3,10 @@ import { Shield, X, MagnifyingGlass, CaretRight, List, GridNine, GridFour, SortA
 import Image from '../../ui/Image';
 import DevicePlaceholder from '../../shared/selectors/DevicePlaceholder';
 import type { Device, EquipmentCategory } from '../../../lib/types';
-import { formatCurrency, CATEGORY_META } from './shared-equipment';
+import { formatCurrency, CATEGORY_META, getCategoryMeta } from './shared-equipment';
 
 function CardImagePlaceholder({ category, label }: { category: EquipmentCategory; label: string }) {
-  const meta = CATEGORY_META[category];
+  const meta = getCategoryMeta(category);
 
   return (
     <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${meta.gradient} p-5`}>
@@ -68,7 +68,7 @@ export default function EquipmentPageDesktop({
     bg: 'bg-indigo-50',
     accent: 'bg-indigo-500',
     description: `Thiết bị chính hãng ${brandName || brand} cho EPC, đại lý và nhà thầu - hỗ trợ BOM, CO/CQ, báo giá dự án và giao hàng toàn quốc`,
-  } : CATEGORY_META[category as EquipmentCategory];
+  } : getCategoryMeta(category);
   const isB2C = audienceMode === 'b2c';
   const heroLabel = isB2C ? 'Thiết bị cho khách mua lẻ' : 'Thiết bị cho EPC, đại lý và nhà thầu';
   const heroTitle = isB2C
@@ -331,7 +331,9 @@ export default function EquipmentPageDesktop({
             <div className={`w-16 h-16 mx-auto mb-3 rounded-xl ${meta.bg} flex items-center justify-center ${meta.color}`}>
               {meta.icon}
             </div>
-            <p className="text-gray-500">Không tìm thấy thiết bị phù hợp</p>
+            <p className="font-semibold text-gray-800">Danh mục này hiện chưa có sản phẩm</p>
+            <p className="mt-1 text-sm text-gray-500">Bạn vẫn có thể gửi nhu cầu để nhận cấu hình và báo giá tương đương.</p>
+            <a href="/bao-gia" className="mt-4 inline-flex rounded-lg bg-[#F97316] px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600">Nhận tư vấn / báo giá</a>
           </div>
         ) : (
           <div>

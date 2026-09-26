@@ -108,5 +108,14 @@ const breadcrumbSchema = {
 >
   <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script is:inline define:vars={{ productId, productName: product.data.name, productCategory }}>
+    window.addEventListener('load', () => {
+      window.epcvinaMeasure?.('view_item', {
+        item_id: productId,
+        item_name: productName,
+        item_category: productCategory,
+      });
+    }, { once: true });
+  </script>
   <ProductDetail client:visible product={optimizedProductData} relatedProjects={relatedProjects} />
 </EquipmentLayout>

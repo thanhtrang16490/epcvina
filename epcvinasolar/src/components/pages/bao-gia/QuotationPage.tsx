@@ -11,6 +11,7 @@ import type { SolutionCard } from '../../shared/solar-form-inputs';
 import HeaderBar from '../../home/layout/HeaderBar';
 import { getLocaleFromPathname } from '../../../i18n/messages';
 import { getLocalePath } from '../../../i18n/routes';
+import { trackEvent } from '../../../lib/tracking';
 
 type Locale = 'vi' | 'en' | 'zh' | 'ja' | 'ko';
 
@@ -745,6 +746,15 @@ export default function QuotationPage({ pathname = '/' }: { pathname?: string })
     setShowResults(true);
     setSelectedIndex(computed.length > 0 ? 0 : null);
     setSubmitted(true);
+    trackEvent('calculator_complete', {
+      event_category: 'engagement',
+      source_form: 'quotation_calculator',
+      system_type: systemType || 'all',
+      monthly_bill: bill,
+      roof_area: roofArea,
+      budget,
+      result_count: computed.length,
+    });
     // Smooth scroll to results after render
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
