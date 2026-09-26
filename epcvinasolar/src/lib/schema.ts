@@ -25,6 +25,38 @@ function cleanText(value: unknown) {
   return typeof value === "string" ? value.replace(/\s+/g, " ").trim() : "";
 }
 
+/** Google merchant listings require a stable, compact SKU string. */
+export function normalizeProductSku(value: unknown, fallback = "epcvina-product") {
+  const source = cleanText(value) || fallback;
+  const normalized = source
+    .replace(/[^a-zA-Z0-9._-]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^[-_.]+|[-_.]+$/g, "")
+    .slice(0, 70);
+  return normalized || fallback;
+}
+
+/** Shared offer enhancements used by both equipment and solar-combo pages. */
+export function buildMerchantOfferDetails() {
+  return {
+    validFrom: new Date().toISOString().split("T")[0],
+    shippingDetails: {
+      "@type": "OfferShippingDetails",
+      shippingDestination: {
+        "@type": "DefinedRegion",
+        addressCountry: "VN",
+      },
+    },
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy",
+      applicableCountry: "VN",
+      returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+      merchantReturnDays: 7,
+      url: "https://epcvina.com/chinh-sach-doi-tra",
+    },
+  };
+}
+
 export function buildFaqSchema(items: FaqItem[]) {
   const mainEntity = items
     .map((item) => ({

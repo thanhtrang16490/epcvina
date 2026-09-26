@@ -4,6 +4,7 @@ import EquipmentMarketplaceHeader from '../../components/pages/equipment/Equipme
 import ComboDetailEquipmentStyle from '../../components/pages/solar-home/components/ComboDetailEquipmentStyle';
 import { getCollection } from 'astro:content';
 import { getComboBySlug } from '../../data/combos';
+import { buildMerchantOfferDetails, normalizeProductSku } from '../../lib/schema';
 
 export async function getStaticPaths() {
   const combos = await getCollection('combos');
@@ -34,13 +35,14 @@ const seoTitle = `Combo ${readableTitle} | EPCVINA Solar`;
 const seoDescription = `${readableTitle} - Hệ thống điện mặt trời trọn gói từ EPCVINA Solar. Tiết kiệm 70-90% chi phí điện, hoàn vốn 3-5 năm. Bảo hành 25 năm tấm pin.`;
 
 const pageUrl = `https://epcvina.com/goi-combo/${comboData.data.slug}`;
+const comboSku = normalizeProductSku(comboData.data.slug);
 
 const comboSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": comboData.data.title,
   "description": `Hệ thống điện mặt trời ${comboData.data.system_type === 'on-grid' ? 'On-Grid' : 'Hybrid'} ${comboData.data.power_kw}kW - ${comboData.data.title}. Sản lượng ${comboData.data.production_min_kwh}-${comboData.data.production_max_kwh} kWh/tháng. Hoàn vốn ${comboData.data.payback_label}.`,
-  "sku": comboData.data.slug,
+  "sku": comboSku,
   "model": `${comboData.data.system_type}-${comboData.data.power_kw}kw-${comboData.data.phase}`,
   "brand": { "@type": "Brand", "name": "EPCVINA Solar" },
   "image": "https://epcvina.com/hero-bg-1920.webp",
@@ -57,6 +59,7 @@ const comboSchema = {
     "priceCurrency": "VND",
     "price": comboData.data.investment_million_vnd * 1000000,
     "priceValidUntil": new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0],
+    ...buildMerchantOfferDetails(),
     "availability": comboData.data.is_active ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
     "seller": { "@type": "Organization", "name": "EPCVINA Solar" },
     "warranty": "25 năm tấm pin, 5-10 năm inverter"
