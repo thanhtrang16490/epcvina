@@ -2,7 +2,7 @@
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import DashboardShell from '../../components/layout/DashboardShell.astro';
 import HybridBESSPage from '../../components/pages/hybrid/HybridBESSPage';
-import { buildFaqSchema, buildProductSchema } from '../../lib/schema';
+import { buildFaqSchema } from '../../lib/schema';
 ---
 
 <DashboardLayout
@@ -11,13 +11,20 @@ import { buildFaqSchema, buildProductSchema } from '../../lib/schema';
   keywords="hybrid solar, BESS, pin lưu trữ năng lượng, battery storage, lưu trữ điện mặt trời, backup điện, EPCVINA Solar"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Giải Pháp", url: "https://epcvina.com"}, {name: "Hybrid BESS", url: "https://epcvina.com/hybrid-bess"}]}
 >
-  <!-- Service Schema -->
-  <script type="application/ld+json" set:html={JSON.stringify(buildProductSchema({
+  <!-- Service Schema: this page describes a service, not one purchasable product. -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
     name: 'Lắp Đặt Hệ Thống Hybrid Solar + Pin Lưu Trữ BESS',
     description: 'Hệ thống hybrid solar kết hợp pin lưu trữ BESS, cung cấp điện 24/7. Tối ưu chi phí điện năng. Bảo hành 25 năm.',
-    brandName: 'EPCVINA Solar',
+    provider: {
+      '@type': 'Organization',
+      name: 'EPCVINA Solar',
+      url: 'https://epcvina.com',
+    },
+    areaServed: { '@type': 'Country', name: 'Vietnam' },
     url: 'https://epcvina.com/hybrid-bess',
-  }))} />
+  })} />
   
   <!-- FAQ Schema for Rich Snippets -->
   <script type="application/ld+json" set:html={JSON.stringify(buildFaqSchema([
