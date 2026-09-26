@@ -3,6 +3,7 @@ import { ShieldCheck, X } from '@phosphor-icons/react';
 import { submitCrmLead } from '../../lib/crm-leads';
 
 const STORAGE_KEY = 'epcvina_cookie_consent_v1';
+const DESKTOP_LEAD_SUPPRESSION_MS = 24 * 60 * 60 * 1000;
 
 type ConsentState = 'accepted' | 'essential' | null;
 type ConsentRecord = {
@@ -12,6 +13,7 @@ type ConsentRecord = {
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
   const [phone, setPhone] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
@@ -19,6 +21,15 @@ export default function CookieConsent() {
   const hideTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
+    const media = window.matchMedia('(min-width: 1024px)');
+    const updateViewport = () => setIsDesktop(media.matches);
+    updateViewport();
+    media.addEventListener('change', updateViewport);
+    return () => media.removeEventListener('change', updateViewport);
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop === null) return;
     try {
       const storedRaw = window.localStorage.getItem(STORAGE_KEY);
       if (!storedRaw) {
@@ -26,7 +37,11 @@ export default function CookieConsent() {
         return;
       }
       const stored = JSON.parse(storedRaw) as Partial<ConsentRecord>;
-      setVisible(stored?.value !== 'accepted');
+      const hasActiveDesktopLeadSuppression = isDesktop
+        && stored?.value === 'accepted'
+        && typeof stored.expiresAt === 'number'
+        && stored.expiresAt > Date.now();
+      setVisible(isDesktop ? !hasActiveDesktopLeadSuppression : stored?.value !== 'accepted');
     } catch {
       setVisible(true);
     }
@@ -36,7 +51,7 @@ export default function CookieConsent() {
         window.clearTimeout(hideTimerRef.current);
       }
     };
-  }, []);
+  }, [isDesktop]);
 
   const saveConsent = (_value: Exclude<ConsentState, null>) => {
     try {
@@ -51,7 +66,20 @@ export default function CookieConsent() {
   };
 
   const dismissWithoutPreference = () => {
+    if (isDesktop) return;
     saveConsent('essential');
+  };
+
+  const saveLeadSubmission = () => {
+    try {
+      const record: ConsentRecord = {
+        value: 'accepted',
+        ...(isDesktop ? { expiresAt: Date.now() + DESKTOP_LEAD_SUPPRESSION_MS } : {}),
+      };
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
+    } catch {
+      // Storage is best-effort; the success state still remains visible.
+    }
   };
 
   const showThankYou = () => {
@@ -81,7 +109,7 @@ export default function CookieConsent() {
         source_form: 'cookie_offer_popup',
         message: 'Khách để lại số điện thoại để được gọi tư vấn miễn phí từ popup trang chủ.',
       });
-      saveConsent('accepted');
+      saveLeadSubmission();
       showThankYou();
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : 'Không gửi được thông tin.');
@@ -214,14 +242,6 @@ export default function CookieConsent() {
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={dismissWithoutPreference}
-                  className="inline-flex h-7 w-7 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
-                  aria-label="Đóng"
-                >
-                  <X className="h-4 w-4" weight="bold" />
-                </button>
               </div>
             </div>
 
@@ -251,13 +271,6 @@ export default function CookieConsent() {
                   className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-1.75 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
                 >
                   {submitting ? 'ĐANG GỬI...' : 'NHẬN TƯ VẤN'}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => saveConsent('essential')}
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-1.25 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50"
-                >
-                  Để sau
                 </button>
               </div>
 
