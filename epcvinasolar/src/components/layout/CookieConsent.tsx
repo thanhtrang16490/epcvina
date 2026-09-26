@@ -3,11 +3,11 @@ import { ShieldCheck, X } from '@phosphor-icons/react';
 import { submitCrmLead } from '../../lib/crm-leads';
 
 const STORAGE_KEY = 'epcvina_cookie_consent_v1';
-const DESKTOP_LEAD_SUPPRESSION_MS = 24 * 60 * 60 * 1000;
+const LEAD_SUPPRESSION_MS = 24 * 60 * 60 * 1000;
+const MOBILE_DISMISS_SUPPRESSION_MS = 30 * 60 * 1000;
 
-type ConsentState = 'accepted' | 'essential' | null;
 type ConsentRecord = {
-  value: Exclude<ConsentState, null>;
+  value: 'accepted' | 'essential';
   expiresAt?: number;
 };
 
@@ -37,11 +37,12 @@ export default function CookieConsent() {
         return;
       }
       const stored = JSON.parse(storedRaw) as Partial<ConsentRecord>;
+      const hasActiveSuppression = typeof stored.expiresAt === 'number'
+        && stored.expiresAt > Date.now();
       const hasActiveDesktopLeadSuppression = isDesktop
         && stored?.value === 'accepted'
-        && typeof stored.expiresAt === 'number'
-        && stored.expiresAt > Date.now();
-      setVisible(isDesktop ? !hasActiveDesktopLeadSuppression : stored?.value !== 'accepted');
+        && hasActiveSuppression;
+      setVisible(isDesktop ? !hasActiveDesktopLeadSuppression : !hasActiveSuppression);
     } catch {
       setVisible(true);
     }
@@ -53,10 +54,11 @@ export default function CookieConsent() {
     };
   }, [isDesktop]);
 
-  const saveConsent = (_value: Exclude<ConsentState, null>) => {
+  const saveMobileDismissal = () => {
     try {
       const record: ConsentRecord = {
-        value: 'accepted',
+        value: 'essential',
+        expiresAt: Date.now() + MOBILE_DISMISS_SUPPRESSION_MS,
       };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
     } catch {
@@ -67,14 +69,14 @@ export default function CookieConsent() {
 
   const dismissWithoutPreference = () => {
     if (isDesktop) return;
-    saveConsent('essential');
+    saveMobileDismissal();
   };
 
   const saveLeadSubmission = () => {
     try {
       const record: ConsentRecord = {
         value: 'accepted',
-        ...(isDesktop ? { expiresAt: Date.now() + DESKTOP_LEAD_SUPPRESSION_MS } : {}),
+        expiresAt: Date.now() + LEAD_SUPPRESSION_MS,
       };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
     } catch {
@@ -194,7 +196,7 @@ export default function CookieConsent() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => saveConsent('accepted')}
+                    onClick={dismissWithoutPreference}
                     className="inline-flex min-h-11 items-center justify-center rounded-full border border-slate-200 bg-white px-2.5 py-2 text-[13px] font-semibold text-slate-700 transition-colors hover:bg-slate-50"
                   >
                     Để sau
