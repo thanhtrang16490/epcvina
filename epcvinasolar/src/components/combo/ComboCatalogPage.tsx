@@ -30,27 +30,8 @@ const COMBO_CATEGORIES = [
   { id: 'hybrid-3pha-hv', label: 'Hybrid 3 pha - áp cao', icon: <BatteryHigh className="h-5 w-5" />, color: 'text-fuchsia-600', bg: 'bg-fuchsia-50', system_type: 'hybrid' as const, phase: '3-phase', voltage: 'high' as const },
 ];
 
-const ALL_COMBOS: ComboCardData[] = [
-  { id: 'og1p-5', slug: 'on-grid-5kw-1pha', name: 'Hệ On-Grid 5 kWp 1 pha', power: 5, battery: 0, price: 54500000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og1p-8', slug: 'on-grid-88kw-1pha', name: 'Hệ On-Grid 8.8 kWp 1 pha', power: 8.8, battery: 0, price: 86400000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og1p-10', slug: 'on-grid-107kw-1pha', name: 'Hệ On-Grid 10.7 kWp 1 pha', power: 10.7, battery: 0, price: 100600000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-10', slug: 'on-grid-107kw-3pha', name: 'Hệ On-Grid 10.7 kWp 3 pha', power: 10.7, battery: 0, price: 98500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-15', slug: 'on-grid-157kw-3pha', name: 'Hệ On-Grid 15.7 kWp 3 pha', power: 15.7, battery: 0, price: 132500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol', is_popular: true },
-  { id: 'og3p-18', slug: 'on-grid-188kw-3pha', name: 'Hệ On-Grid 18.8 kWp 3 pha', power: 18.8, battery: 0, price: 152000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-29', slug: 'on-grid-294kw-3pha', name: 'Hệ On-Grid 29.4 kWp 3 pha', power: 29.4, battery: 0, price: 252700000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'og3p-48', slug: 'on-grid-488kw-3pha', name: 'Hệ On-Grid 48.8 kWp 3 pha', power: 48.8, battery: 0, price: 400500000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'Auxsol' },
-  { id: 'hyb-5-5', slug: 'hybrid-5kw-1pha-5kwh', name: 'Hybrid 5 kWp 1 pha - 5 kWh', power: 5, battery: 5.12, price: 100500000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
-  { id: 'hyb-5-10', slug: 'hybrid-5kw-1pha-10kwh', name: 'Hybrid 5 kWp 1 pha - 10 kWh', power: 5, battery: 10.24, price: 125000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-88-5', slug: 'hybrid-88kw-1pha-5kwh', name: 'Hybrid 8.8 kWp 1 pha - 5 kWh', power: 8.75, battery: 5.12, price: 145000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
-  { id: 'hyb-88-10', slug: 'hybrid-88kw-1pha-10kwh', name: 'Hybrid 8.8 kWp 1 pha - 10 kWh', power: 8.75, battery: 10.24, price: 168000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-88-16', slug: 'hybrid-88kw-1pha-16kwh', name: 'Hybrid 8.8 kWp 1 pha - 16 kWh', power: 8.75, battery: 16.38, price: 195000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-107-10', slug: 'hybrid-107kw-1pha-10kwh', name: 'Hybrid 10.7 kWp 1 pha - 10 kWh', power: 10.63, battery: 10.24, price: 185000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-107-16', slug: 'hybrid-107kw-1pha-16kwh', name: 'Hybrid 10.7 kWp 1 pha - 16 kWh', power: 10.63, battery: 16.38, price: 215000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
-  { id: 'hyb-157-16', slug: 'hybrid-157kw-1pha-16kwh', name: 'Hybrid 15.7 kWp 1 pha - 16 kWh', power: 15.63, battery: 16.38, price: 285000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-];
-
 export default function ComboCatalogPage() {
-  const [combos, setCombos] = useState<ComboCardData[]>(ALL_COMBOS);
+  const [combos, setCombos] = useState<ComboCardData[]>([]);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [panelBrand, setPanelBrand] = useState('all');
@@ -78,14 +59,12 @@ export default function ComboCatalogPage() {
           id: c.id,
           slug: c.slug || c.id,
           name: c.name,
-          power: c.power || c.capacity || 0,
-          battery: c.battery || 0,
-          price: c.price || 0,
-          system_type: c.system_type || c.systemType || 'on-grid',
-          phase: c.phase || '1-phase',
-          panel_brand: c.panelBrand || c.panel_brand || 'Aiko',
-          inverter_brand: c.inverterBrand || c.inverter_brand,
-          battery_brand: c.battery_brand,
+          system_type: c.system?.technology || c.system_type || 'on-grid',
+          phase: c.phase || (c.system?.phase === 'three_phase' ? '3-phase' : '1-phase'),
+          power_kw: c.system?.solar_capacity?.value || c.power_kw || 0,
+          battery_kwh: c.system?.battery_capacity?.value || c.battery_kwh || 0,
+          investment_million_vnd: c.pricing?.total ? c.pricing.total / 1000000 : c.investment_million_vnd || 0,
+          components: c.components || [],
           monthly_production: c.monthly_production,
           payback_period: c.payback_period || c.paybackYears,
           installation_area: c.installation_area || c.areaRequired,
@@ -151,10 +130,10 @@ export default function ComboCatalogPage() {
       );
 
     return {
-      panel: uniqueValues(combos.map((combo) => combo.panel_brand)),
-      inverter: uniqueValues(combos.map((combo) => combo.inverter_brand)),
-      battery: uniqueValues(combos.map((combo) => combo.battery_brand)),
-      power: Array.from(new Set(combos.map((combo) => combo.power))).sort((a, b) => a - b),
+      panel: uniqueValues(combos.map((combo) => combo.components?.find((component) => component.type === 'solar_panel')?.snapshot?.brand)),
+      inverter: uniqueValues(combos.map((combo) => combo.components?.find((component) => component.type === 'inverter')?.snapshot?.brand)),
+      battery: uniqueValues(combos.map((combo) => combo.components?.find((component) => component.type === 'battery')?.snapshot?.brand)),
+      power: Array.from(new Set(combos.map((combo) => combo.power_kw || 0))).sort((a, b) => a - b),
     };
   }, [combos]);
 
@@ -165,26 +144,26 @@ export default function ComboCatalogPage() {
       const q = searchQuery.toLowerCase().trim();
       filtered = filtered.filter((combo) =>
         combo.name.toLowerCase().includes(q) ||
-        (combo.panel_brand || '').toLowerCase().includes(q) ||
-        (combo.inverter_brand || '').toLowerCase().includes(q)
+        (combo.components?.find((component) => component.type === 'solar_panel')?.snapshot?.brand || '').toLowerCase().includes(q) ||
+        (combo.components?.find((component) => component.type === 'inverter')?.snapshot?.brand || '').toLowerCase().includes(q)
       );
     }
 
     if (panelBrand !== 'all') {
-      filtered = filtered.filter((combo) => (combo.panel_brand || '').toLowerCase() === panelBrand.toLowerCase());
+      filtered = filtered.filter((combo) => (combo.components?.find((component) => component.type === 'solar_panel')?.snapshot?.brand || '').toLowerCase() === panelBrand.toLowerCase());
     }
 
     if (inverterBrand !== 'all') {
-      filtered = filtered.filter((combo) => (combo.inverter_brand || '').toLowerCase() === inverterBrand.toLowerCase());
+      filtered = filtered.filter((combo) => (combo.components?.find((component) => component.type === 'inverter')?.snapshot?.brand || '').toLowerCase() === inverterBrand.toLowerCase());
     }
 
     if (batteryBrand !== 'all') {
-      filtered = filtered.filter((combo) => (combo.battery_brand || '').toLowerCase() === batteryBrand.toLowerCase());
+      filtered = filtered.filter((combo) => (combo.components?.find((component) => component.type === 'battery')?.snapshot?.brand || '').toLowerCase() === batteryBrand.toLowerCase());
     }
 
     if (powerFilter !== 'all') {
       const selectedPower = Number(powerFilter);
-      filtered = filtered.filter((combo) => Math.abs(combo.power - selectedPower) < 0.01);
+      filtered = filtered.filter((combo) => Math.abs((combo.power_kw || 0) - selectedPower) < 0.01);
     }
 
     switch (sortBy) {

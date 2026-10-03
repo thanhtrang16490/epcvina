@@ -11,6 +11,8 @@ type TableSection = {
   filter: (combo: ComboCardData) => boolean;
 };
 
+type ComboComponent = NonNullable<ComboCardData['components']>[number];
+
 const TABLE_SECTIONS: TableSection[] = [
   {
     key: 'on-grid-1pha',
@@ -50,7 +52,9 @@ export default function ComboTablePage() {
   useEffect(() => {
     async function fetchCombos() {
       try {
-        const res = await fetch('/api/combos');
+        const res = await fetch(`/api/combos?ts=${Date.now()}`, {
+          cache: 'no-store',
+        });
         const json = await res.json();
         const data = json.data || json;
 
@@ -59,22 +63,15 @@ export default function ComboTablePage() {
             id: c.slug || c.id,
             slug: c.slug || c.id,
             name: c.name,
+            category: c.category,
+            description: c.description,
+            system: c.system,
             power: c.power || c.power_kw || 0,
             battery: c.battery || c.battery_kwh || 0,
             price: c.price || c.investment_million_vnd * 1000000 || 0,
-            system_type: c.system_type || c.systemType || 'on-grid',
-            phase: c.phase || '1-phase',
-            panel_brand: c.panel_brand || c.panelBrand,
-            inverter_brand: c.inverter_brand || c.inverterBrand,
-            inverter_model: c.inverter_model || c.inverterModel,
-            battery_brand: c.battery_brand,
-            battery_model: c.battery_model || c.batteryModel,
-            panel_count: c.panelCount || c.panel_count,
-            inverter_count: c.inverterCount || c.inverter_count,
-            battery_count: c.batteryCount || c.battery_count,
-            panel_warranty: c.warranty?.panel,
-            inverter_warranty: c.warranty?.inverter,
-            battery_warranty: c.warranty?.battery,
+            system_type: c.system_type || c.system?.technology || c.systemType || 'on-grid',
+            phase: c.phase || (c.system?.phase === 'three_phase' ? '3-phase' : '1-phase'),
+            components: c.components,
             monthly_production: c.monthly_production,
             payback_period: c.payback_period || c.payback_years,
             installation_area: c.installation_area || c.roof_area_m2,
@@ -105,9 +102,9 @@ export default function ComboTablePage() {
       const q = search.toLowerCase().trim();
       list = list.filter((combo) =>
         combo.name.toLowerCase().includes(q) ||
-        (combo.panel_brand || '').toLowerCase().includes(q) ||
-        (combo.inverter_brand || '').toLowerCase().includes(q) ||
-        (combo.battery_brand || '').toLowerCase().includes(q) ||
+        (getComponentBrand(combo, 'solar_panel') || '').toLowerCase().includes(q) ||
+        (getComponentBrand(combo, 'inverter') || '').toLowerCase().includes(q) ||
+        (getComponentBrand(combo, 'battery') || '').toLowerCase().includes(q) ||
         combo.slug.toLowerCase().includes(q)
       );
     }
@@ -134,20 +131,36 @@ export default function ComboTablePage() {
     return { ...section, combos: sectionCombos };
   }).filter(Boolean) as Array<TableSection & { combos: ComboCardData[] }>;
 
-  const formatPower = (value: number | string | undefined, unit: 'kWp' | 'kW' | 'kWh') => {
-    if (value === undefined || value === null || value === '') return '';
-    const normalized = typeof value === 'number' ? value : Number(value);
-    if (Number.isNaN(normalized)) return `${value} ${unit}`;
-    return `${new Intl.NumberFormat('vi-VN').format(normalized)} ${unit}`;
+  const getComponent = (combo: ComboCardData, type: string) => combo.components?.find((item) => item.type === type);
+  const getComponentBrand = (combo: ComboCardData, type: string) => getComponent(combo, type)?.snapshot?.brand || '';
+  const getComponentModel = (combo: ComboCardData, type: string) => getComponent(combo, type)?.snapshot?.model || '';
+  const getEquipmentValue = (combo: ComboCardData, type: string) => {
+    const component = getComponent(combo, type);
+    if (!component) return '-';
+    const parts = [component.snapshot?.model, component.quantity ? `${component.quantity}${component.unit ? ` ${component.unit}` : ''}` : null].filter(Boolean);
+    return parts.length > 0 ? parts.join(' - ') : '-';
   };
-
-  const getDeviceHead = (
-    brand: string | undefined,
-    powerLabel: string,
-    fallback = '-',
-  ) => {
-    if (!brand) return fallback;
-    return powerLabel ? `${brand} - ${powerLabel}` : brand;
+  const getComponentLabel = (type?: string) => {
+    switch (type) {
+      case 'solar_panel':
+        return 'Tấm pin';
+      case 'inverter':
+        return 'Biến tần';
+      case 'battery':
+        return 'Pin lưu trữ';
+      case 'mounting_structure':
+        return 'Hệ khung nhôm';
+      case 'electrical_wiring':
+        return 'Hệ dây điện';
+      case 'electrical_panel':
+        return 'Tủ điện';
+      case 'grounding_system':
+        return 'Hệ tiếp địa';
+      case 'installation':
+        return 'Vận chuyển + lắp đặt';
+      default:
+        return type || 'Thiết bị';
+    }
   };
 
   return (
@@ -274,28 +287,46 @@ export default function ComboTablePage() {
                             </a>
                           </td>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700">
-                            <div className="font-medium text-gray-900">
-                              {getDeviceHead(combo.panel_brand, formatPower(combo.power, 'kWp'))}
-                            </div>
-                            <div className="text-xs text-gray-500">{combo.panel_model || '-'}</div>
-                            <div className="text-[11px] text-gray-400">{combo.panel_warranty ? `${combo.panel_warranty} năm bảo hành` : '-'}</div>
-                            <div className="text-[11px] text-gray-400">{combo.panel_count ? `${combo.panel_count} tấm` : '-'}</div>
+                            <div className="font-medium text-gray-900">{getComponentBrand(combo, 'solar_panel')} {getComponentModel(combo, 'solar_panel')}</div>
+                            {getComponent(combo, 'solar_panel')?.product_reference?.slug ? (
+                              <a
+                                href={`/thiet-bi/${getComponent(combo, 'solar_panel')?.product_reference?.slug}`}
+                                className="mt-1 block text-xs text-gray-500 hover:text-[#0B63CE] hover:underline"
+                              >
+                                {getComponent(combo, 'solar_panel')?.product_reference?.slug}
+                              </a>
+                            ) : (
+                              <div className="mt-1 text-xs text-gray-500">-</div>
+                            )}
+                            <div className="mt-1 text-[11px] text-gray-400">{getEquipmentValue(combo, 'solar_panel')}</div>
                           </td>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700">
-                            <div className="font-medium text-gray-900">
-                              {getDeviceHead(combo.inverter_brand, formatPower(combo.power, 'kW'))}
-                            </div>
-                            <div className="text-xs text-gray-500">{combo.inverter_model || '-'}</div>
-                            <div className="text-[11px] text-gray-400">{combo.inverter_warranty ? `${combo.inverter_warranty} năm bảo hành` : '-'}</div>
-                            <div className="text-[11px] text-gray-400">{combo.inverter_count ? `${combo.inverter_count} bộ` : '-'}</div>
+                            <div className="font-medium text-gray-900">{getComponentBrand(combo, 'inverter')} {getComponentModel(combo, 'inverter')}</div>
+                            {getComponent(combo, 'inverter')?.product_reference?.slug ? (
+                              <a
+                                href={`/thiet-bi/${getComponent(combo, 'inverter')?.product_reference?.slug}`}
+                                className="mt-1 block text-xs text-gray-500 hover:text-[#0B63CE] hover:underline"
+                              >
+                                {getComponent(combo, 'inverter')?.product_reference?.slug}
+                              </a>
+                            ) : (
+                              <div className="mt-1 text-xs text-gray-500">-</div>
+                            )}
+                            <div className="mt-1 text-[11px] text-gray-400">{getEquipmentValue(combo, 'inverter')}</div>
                           </td>
                           <td className="px-4 py-4 text-sm font-medium text-gray-700">
-                            <div className="font-medium text-gray-900">
-                              {getDeviceHead(combo.battery_brand, formatPower(combo.battery, 'kWh'))}
-                            </div>
-                            <div className="text-xs text-gray-500">{combo.battery_model || '-'}</div>
-                            <div className="text-[11px] text-gray-400">{combo.battery_warranty ? `${combo.battery_warranty} năm bảo hành` : '-'}</div>
-                            <div className="text-[11px] text-gray-400">{combo.battery_count ? `${combo.battery_count} bộ` : '-'}</div>
+                            <div className="font-medium text-gray-900">{getComponentBrand(combo, 'battery')} {getComponentModel(combo, 'battery')}</div>
+                            {getComponent(combo, 'battery')?.product_reference?.slug ? (
+                              <a
+                                href={`/thiet-bi/${getComponent(combo, 'battery')?.product_reference?.slug}`}
+                                className="mt-1 block text-xs text-gray-500 hover:text-[#0B63CE] hover:underline"
+                              >
+                                {getComponent(combo, 'battery')?.product_reference?.slug}
+                              </a>
+                            ) : (
+                              <div className="mt-1 text-xs text-gray-500">-</div>
+                            )}
+                            <div className="mt-1 text-[11px] text-gray-400">{getEquipmentValue(combo, 'battery')}</div>
                           </td>
                           <td className="px-4 py-4 text-sm font-semibold text-[#0B63CE]">
                             {new Intl.NumberFormat('vi-VN').format(combo.price)} đ
@@ -393,30 +424,53 @@ export default function ComboTablePage() {
                   <div className="mt-3 space-y-3 text-sm">
                     <div>
                       <p className="text-[11px] uppercase tracking-[0.16em] text-gray-400">Tấm pin</p>
-                      <p className="font-semibold text-gray-900">
-                        {getDeviceHead(modalCombo.panel_brand, formatPower(modalCombo.power, 'kWp'))}
-                      </p>
-                      <p className="text-gray-500">{modalCombo.panel_model || '-'}</p>
-                      <p className="text-xs text-gray-400">{modalCombo.panel_warranty ? `${modalCombo.panel_warranty} năm bảo hành` : '-'}</p>
-                      <p className="text-xs text-gray-400">{modalCombo.panel_count ? `${modalCombo.panel_count} tấm` : '-'}</p>
+                      <p className="font-semibold text-gray-900">{getComponentBrand(modalCombo, 'solar_panel')} {getComponentModel(modalCombo, 'solar_panel')}</p>
+                      {getComponent(modalCombo, 'solar_panel')?.product_reference?.slug ? (
+                        <a href={`/thiet-bi/${getComponent(modalCombo, 'solar_panel')?.product_reference?.slug}`} className="mt-1 block text-xs text-gray-500 hover:text-[#0B63CE] hover:underline">
+                          {getComponent(modalCombo, 'solar_panel')?.product_reference?.slug}
+                        </a>
+                      ) : (
+                        <p className="mt-1 text-xs text-gray-500">-</p>
+                      )}
+                      <p className="mt-1 text-xs text-gray-400">{getEquipmentValue(modalCombo, 'solar_panel')}</p>
                     </div>
                     <div>
                       <p className="text-[11px] uppercase tracking-[0.16em] text-gray-400">Biến tần</p>
-                      <p className="font-semibold text-gray-900">
-                        {getDeviceHead(modalCombo.inverter_brand, formatPower(modalCombo.power, 'kW'))}
-                      </p>
-                      <p className="text-gray-500">{modalCombo.inverter_model || '-'}</p>
-                      <p className="text-xs text-gray-400">{modalCombo.inverter_warranty ? `${modalCombo.inverter_warranty} năm bảo hành` : '-'}</p>
-                      <p className="text-xs text-gray-400">{modalCombo.inverter_count ? `${modalCombo.inverter_count} bộ` : '-'}</p>
+                      <p className="font-semibold text-gray-900">{getComponentBrand(modalCombo, 'inverter')} {getComponentModel(modalCombo, 'inverter')}</p>
+                      {getComponent(modalCombo, 'inverter')?.product_reference?.slug ? (
+                        <a href={`/thiet-bi/${getComponent(modalCombo, 'inverter')?.product_reference?.slug}`} className="mt-1 block text-xs text-gray-500 hover:text-[#0B63CE] hover:underline">
+                          {getComponent(modalCombo, 'inverter')?.product_reference?.slug}
+                        </a>
+                      ) : (
+                        <p className="mt-1 text-xs text-gray-500">-</p>
+                      )}
+                      <p className="mt-1 text-xs text-gray-400">{getEquipmentValue(modalCombo, 'inverter')}</p>
                     </div>
                     <div>
                       <p className="text-[11px] uppercase tracking-[0.16em] text-gray-400">Pin lưu trữ</p>
-                      <p className="font-semibold text-gray-900">
-                        {getDeviceHead(modalCombo.battery_brand, formatPower(modalCombo.battery, 'kWh'))}
-                      </p>
-                      <p className="text-gray-500">{modalCombo.battery_model || '-'}</p>
-                      <p className="text-xs text-gray-400">{modalCombo.battery_warranty ? `${modalCombo.battery_warranty} năm bảo hành` : '-'}</p>
-                      <p className="text-xs text-gray-400">{modalCombo.battery_count ? `${modalCombo.battery_count} bộ` : '-'}</p>
+                      <p className="font-semibold text-gray-900">{getComponentBrand(modalCombo, 'battery')} {getComponentModel(modalCombo, 'battery')}</p>
+                      {getComponent(modalCombo, 'battery')?.product_reference?.slug ? (
+                        <a href={`/thiet-bi/${getComponent(modalCombo, 'battery')?.product_reference?.slug}`} className="mt-1 block text-xs text-gray-500 hover:text-[#0B63CE] hover:underline">
+                          {getComponent(modalCombo, 'battery')?.product_reference?.slug}
+                        </a>
+                      ) : (
+                        <p className="mt-1 text-xs text-gray-500">-</p>
+                      )}
+                      <p className="mt-1 text-xs text-gray-400">{getEquipmentValue(modalCombo, 'battery')}</p>
+                    </div>
+                    <div className="pt-2 border-t border-gray-100">
+                      <p className="text-[11px] uppercase tracking-[0.16em] text-gray-400">Danh sách thiết bị</p>
+                      <div className="mt-3 space-y-2">
+                        {(modalCombo.components || []).map((component: ComboComponent, index) => (
+                          <div key={`${component.type || 'component'}-${index}`} className="rounded-xl bg-gray-50 px-3 py-2">
+                            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">{getComponentLabel(component.type)}</p>
+                            <p className="mt-1 text-sm font-medium text-gray-900">
+                              {[component.snapshot?.model, component.quantity ? `${component.quantity}${component.unit ? ` ${component.unit}` : ''}` : null].filter(Boolean).join(' - ') || '-'}
+                            </p>
+                            {component.product_reference?.slug ? <p className="mt-1 text-xs text-gray-400">{component.product_reference.slug}</p> : null}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>

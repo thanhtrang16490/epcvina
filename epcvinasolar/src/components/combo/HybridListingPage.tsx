@@ -4,21 +4,9 @@ import HeaderBar from '../home/layout/HeaderBar';
 import ComboListingCard from './ComboListingCard';
 import type { ComboCardData } from './ComboListingCard';
 
-// Fallback data when API returns empty
-const FALLBACK_COMBOS: ComboCardData[] = [
-  { id: 'hyb-5-5', slug: 'hybrid-5kw-1pha-5kwh', name: 'Hybrid 5 kWp 1 pha – 5 kWh', power: 5, battery: 5.12, price: 100500000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
-  { id: 'hyb-5-10', slug: 'hybrid-5kw-1pha-10kwh', name: 'Hybrid 5 kWp 1 pha – 10 kWh', power: 5, battery: 10.24, price: 125000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-88-5', slug: 'hybrid-88kw-1pha-5kwh', name: 'Hybrid 8.8 kWp 1 pha – 5 kWh', power: 8.75, battery: 5.12, price: 145000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
-  { id: 'hyb-88-10', slug: 'hybrid-88kw-1pha-10kwh', name: 'Hybrid 8.8 kWp 1 pha – 10 kWh', power: 8.75, battery: 10.24, price: 168000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-88-16', slug: 'hybrid-88kw-1pha-16kwh', name: 'Hybrid 8.8 kWp 1 pha – 16 kWh', power: 8.75, battery: 16.38, price: 195000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-107-10', slug: 'hybrid-107kw-1pha-10kwh', name: 'Hybrid 10.7 kWp 1 pha – 10 kWh', power: 10.63, battery: 10.24, price: 185000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'hyb-107-16', slug: 'hybrid-107kw-1pha-16kwh', name: 'Hybrid 10.7 kWp 1 pha – 16 kWh', power: 10.63, battery: 16.38, price: 215000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
-  { id: 'hyb-157-16', slug: 'hybrid-157kw-1pha-16kwh', name: 'Hybrid 15.7 kWp 1 pha – 16 kWh', power: 15.63, battery: 16.38, price: 285000000, system_type: 'hybrid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-];
-
 export default function HybridListingPage() {
-  const [combos, setCombos] = useState<ComboCardData[]>(FALLBACK_COMBOS);
-  const [loading, setLoading] = useState(false);
+  const [combos, setCombos] = useState<ComboCardData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchCombos() {
@@ -32,13 +20,12 @@ export default function HybridListingPage() {
               id: c.slug || c.id,
               slug: c.slug || c.id,
               name: c.name,
-              power: c.power || c.power_kw || 0,
-              battery: c.battery || c.battery_kwh || 0,
-              price: c.price || c.investment_million_vnd * 1000000 || 0,
               system_type: 'hybrid' as const,
-              phase: c.phase || '1-phase',
-              panel_brand: c.panel_brand || c.panelBrand,
-              inverter_brand: c.inverter_brand || c.inverterBrand,
+              phase: c.phase || (c.system?.phase === 'three_phase' ? '3-phase' : '1-phase'),
+              power_kw: c.system?.solar_capacity?.value || c.power_kw || 0,
+              battery_kwh: c.system?.battery_capacity?.value || c.battery_kwh || 0,
+              investment_million_vnd: c.pricing?.total ? c.pricing.total / 1000000 : c.investment_million_vnd || 0,
+              components: c.components || [],
               monthly_production: c.monthly_production,
               payback_period: c.payback_period || c.payback_years,
               installation_area: c.installation_area || c.roof_area_m2,
@@ -52,7 +39,6 @@ export default function HybridListingPage() {
       } catch (e) {
         console.error('Failed to fetch hybrid combos:', e);
       }
-      setCombos(FALLBACK_COMBOS);
       setLoading(false);
     }
     fetchCombos();

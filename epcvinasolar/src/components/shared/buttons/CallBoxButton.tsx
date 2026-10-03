@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Phone } from '@phosphor-icons/react';
+import { Phone } from 'lucide-react';
 
 /**
  * CallBoxButton - Floating phone call button
@@ -45,7 +45,7 @@ export default function CallBoxButton({ stackAboveBackToTop = false }: CallBoxBu
         <div className="animated_call infinite zoomIn_call cmoz-alo-circle"></div>
         <div className="animated_call infinite pulse_call cmoz-alo-circle-fill"></div>
         <span className="flex items-center justify-center">
-          <Phone weight="fill" className="size-4 text-white" />
+          <Phone className="size-4 text-white" />
         </span>
       </a>
 

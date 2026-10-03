@@ -87,12 +87,12 @@ export const localProducts: LocalProduct[] = [
   },
   {
     id: "aiko-650w-stellar-2n-66-202",
-    name: "Tấm pin mặt trời Aiko 650W Mặt Kính Stellar 2N 66-202",
+    name: "Tấm pin mặt trời Aiko 650W GRH66Dw",
     slug: "tam-pin-mat-troi-aiko-650w-mat-kinh-stellar-2n-66-202",
     brand: "AIKO",
     category: "solar-panel",
-    model: "Stellar 2N 66-202",
-    description: "Tấm pin mặt trời Aiko 650W công nghệ ABC (All Back Contact), mặt kính trong suốt",
+    model: "GRH66Dw",
+    description: "Tấm pin mặt trời Aiko 650W GRH66Dw công nghệ ABC (All Back Contact), mặt kính trong suốt",
     specifications: {
       power: "650W",
       efficiency: "23.2%",

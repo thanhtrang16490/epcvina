@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { CaretDown, FileText, List, X } from '@phosphor-icons/react';
+import { ChevronDown, FileText, Menu, X } from 'lucide-react';
 import { useScrollContext } from '../../layout/dashboardShellContext';
 import { getLocaleFromPathname, messages } from '../../../i18n/messages';
 import { getLocalePath, getLocalizedRoute } from '../../../i18n/routes';
@@ -126,7 +126,7 @@ export default function HeaderBar({ pathname = '/' }: { pathname?: string }) {
                   aria-expanded={moreOpen}
                 >
                   {labels.more}
-                  <CaretDown className={`h-3.5 w-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} weight="bold" />
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${moreOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {moreOpen && (
                   <div className="absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-48 overflow-hidden rounded-2xl border border-white/60 bg-white/95 shadow-[0_18px_40px_rgba(0,0,0,0.14)] backdrop-blur-xl">
@@ -167,7 +167,7 @@ export default function HeaderBar({ pathname = '/' }: { pathname?: string }) {
               aria-label={labels.toggleMenu}
               aria-expanded={mobileOpen}
             >
-              {mobileOpen ? <X className="h-5 w-5" weight="bold" /> : <List className="h-5 w-5" weight="bold" />}
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
@@ -183,7 +183,7 @@ export default function HeaderBar({ pathname = '/' }: { pathname?: string }) {
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-full px-4 py-2.5 text-sm font-semibold transition-colors w-full active:scale-[0.98]"
               >
-                <FileText className="h-4 w-4" weight="bold" />
+                <FileText className="h-4 w-4" />
                 <span>{t.nav.quote}</span>
               </a>
             </div>

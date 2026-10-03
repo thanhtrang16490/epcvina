@@ -14,3 +14,45 @@ const currentPathname = pathname ?? Astro.url.pathname;
 <DashboardShellClient client:load showFooter={showFooter} showChrome={showChrome} pathname={currentPathname}>
   <slot />
 </DashboardShellClient>
+
+<script is:inline>
+  (() => {
+    const getSidebar = () => document.querySelector('aside.w-\\[280px\\]');
+    const closeSidebar = () => {
+      const sidebar = getSidebar();
+      const overlay = document.querySelector('[data-global-sidebar-overlay]');
+      sidebar?.classList.remove('translate-x-0');
+      sidebar?.classList.add('-translate-x-full');
+      overlay?.remove();
+      document.body.classList.remove('overflow-hidden');
+    };
+    const openSidebar = () => {
+      const sidebar = getSidebar();
+      if (!sidebar) return;
+      sidebar.classList.remove('-translate-x-full');
+      sidebar.classList.add('translate-x-0');
+      if (!document.querySelector('[data-global-sidebar-overlay]')) {
+        const overlay = document.createElement('div');
+        overlay.dataset.globalSidebarOverlay = 'true';
+        overlay.className = 'fixed inset-0 z-40 bg-black/50 lg:hidden';
+        overlay.addEventListener('click', closeSidebar);
+        document.body.appendChild(overlay);
+      }
+      document.body.classList.add('overflow-hidden');
+    };
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const menuButton = target.closest('header.lg\\:hidden button[aria-label="Mở menu"]');
+      if (menuButton) {
+        event.preventDefault();
+        openSidebar();
+        return;
+      }
+      if (target.closest('aside.w-\\[280px\\] button[aria-label="Mở menu"]')) {
+        event.preventDefault();
+        closeSidebar();
+      }
+    }, true);
+  })();
+</script>

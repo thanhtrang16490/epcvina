@@ -7,22 +7,45 @@ export interface ComboCardData {
   id: string;
   slug: string;
   name: string;
-  power: number;
-  battery: number;
-  price: number;
+  category?: {
+    id?: string;
+    name?: string;
+    slug?: string;
+  };
+  description?: {
+    short?: string;
+    full?: string;
+  };
+  system?: {
+    technology?: 'on-grid' | 'hybrid';
+    phase?: 'single_phase' | 'three_phase';
+    solar_capacity?: { value?: number; unit?: string };
+    battery_capacity?: { value?: number; unit?: string };
+  };
   system_type: 'on-grid' | 'hybrid';
-  phase: string;
-  panel_brand?: string;
-  inverter_brand?: string;
-  inverter_model?: string;
-  battery_brand?: string;
-  battery_model?: string;
-  panel_count?: number;
-  inverter_count?: number;
-  battery_count?: number;
-  panel_warranty?: number;
-  inverter_warranty?: number;
-  battery_warranty?: number;
+  phase: '1-phase' | '3-phase';
+  power_kw?: number;
+  battery_kwh?: number;
+  investment_million_vnd?: number;
+  components?: Array<{
+    type?: string;
+    quantity?: number;
+    unit?: string;
+    product_reference?: {
+      linked?: boolean;
+      slug?: string | null;
+    };
+    snapshot?: {
+      name?: string;
+      brand?: string | null;
+      model?: string | null;
+      warranty?: {
+        period?: number;
+        unit?: string;
+        note?: string;
+      };
+    };
+  }>;
   raw?: Record<string, unknown>;
   monthly_production?: number;
   payback_period?: number;
@@ -43,22 +66,31 @@ function formatVND(amount: number): string {
 }
 
 export default function ComboListingCard({ combo, basePath, onQuickView }: ComboListingCardProps) {
-  const monthlyProduction = combo.monthly_production || Math.round(combo.power * 4 * 30);
-  const paybackPeriod = combo.payback_period || (combo.price > 0 ? Math.round((combo.price / (monthlyProduction * 3500 * 12)) * 10) / 10 : 0);
-  const area = combo.installation_area || Math.round(combo.power * 4.3);
+  const getComponent = (type: string) => combo.components?.find((component) => component.type === type);
+  const getBrand = (type: string) => getComponent(type)?.snapshot?.brand || '';
+  const getModel = (type: string) => getComponent(type)?.snapshot?.model || '';
+  const powerKw = combo.power_kw || combo.system?.solar_capacity?.value || 0;
+  const batteryKwh = combo.battery_kwh || combo.system?.battery_capacity?.value || 0;
+  const price = (combo.investment_million_vnd || 0) * 1000000;
+  const monthlyProduction = combo.monthly_production ?? Math.round(powerKw * 4 * 30);
+  const calculatedPayback = price > 0 && monthlyProduction > 0
+    ? price / (monthlyProduction * 3500 * 12)
+    : 0;
+  const paybackPeriod = combo.payback_period ?? (calculatedPayback > 0 ? Math.round(calculatedPayback * 10) / 10 : 0);
+  const area = combo.installation_area ?? Math.round(powerKw * 4.3);
 
-  // Build brands string
   const brands = [
-    combo.panel_brand || 'Aiko',
-    combo.inverter_brand || (combo.system_type === 'hybrid' ? 'SAJ' : 'Auxsol'),
-    combo.system_type === 'hybrid' ? (combo.battery_brand || 'Genxgreen') : null,
+    getBrand('solar_panel'),
+    getBrand('inverter'),
+    combo.system_type === 'hybrid' ? getBrand('battery') : null,
   ].filter(Boolean).join(' - ');
 
-  const paybackYears = Math.floor(paybackPeriod);
-  const paybackMonths = Math.round((paybackPeriod - paybackYears) * 12);
-  const paybackLabel = paybackMonths > 0 
-    ? `${paybackYears} năm ${paybackMonths} tháng` 
-    : `${paybackYears} năm`;
+  const totalPaybackMonths = Math.max(0, Math.round(paybackPeriod * 12));
+  const paybackYears = Math.floor(totalPaybackMonths / 12);
+  const paybackMonths = totalPaybackMonths % 12;
+  const paybackLabel = totalPaybackMonths > 0 && paybackMonths > 0
+    ? `${paybackYears} năm ${paybackMonths} tháng`
+    : totalPaybackMonths > 0 ? `${paybackYears} năm` : 'Đang cập nhật';
 
   return (
     <div className="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-2xl hover:border-orange-300 hover:-translate-y-2 flex flex-col">
@@ -124,17 +156,17 @@ export default function ComboListingCard({ combo, basePath, onQuickView }: Combo
         {/* Specs */}
         <div className="space-y-1.5 text-xs text-gray-600 flex-1">
           <div className="flex justify-between">
-            <span>{combo.panel_brand || 'Aiko'}:</span>
-            <span className="font-medium text-gray-900">{combo.power} kWp</span>
+            <span>{getBrand('solar_panel') || 'Tấm pin'}:</span>
+            <span className="font-medium text-gray-900">{powerKw} kWp</span>
           </div>
           <div className="flex justify-between">
             <span>Biến tần:</span>
-            <span className="font-medium text-gray-900">{combo.inverter_brand || (combo.system_type === 'hybrid' ? 'SAJ' : 'Auxsol')} {combo.power} kW</span>
+            <span className="font-medium text-gray-900">{getBrand('inverter')} {getModel('inverter') || powerKw} kW</span>
           </div>
-          {combo.system_type === 'hybrid' && combo.battery > 0 && (
+          {combo.system_type === 'hybrid' && batteryKwh > 0 && (
             <div className="flex justify-between">
               <span>Lưu trữ:</span>
-              <span className="font-medium text-gray-900">{combo.battery} kWh</span>
+              <span className="font-medium text-gray-900">{batteryKwh} kWh</span>
             </div>
           )}
           <div className="flex justify-between">
@@ -154,7 +186,7 @@ export default function ComboListingCard({ combo, basePath, onQuickView }: Combo
         {/* Price */}
         <div className="pt-3 border-t border-gray-100">
           <p className="text-[10px] text-gray-400 uppercase tracking-wider font-medium">Giá niêm yết</p>
-          <p className="text-lg font-bold text-orange-600">{formatVND(combo.price)}</p>
+          <p className="text-lg font-bold text-orange-600">{formatVND(price)}</p>
         </div>
       </div>
     </div>

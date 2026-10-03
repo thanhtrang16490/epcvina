@@ -390,6 +390,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
   const inverterBrand = data.inverter_brand || 'SAJ';
   const inverterModel = data.inverter_model || (isHybrid ? 'Hybrid' : 'On-Grid');
   const inverterSlug = data.inverter_slug;
+  const inverterWarrantyYears = inverterBrand.toUpperCase() === 'SAJ' ? 10 : 5;
   const batteryBrand = data.battery_brand || 'Genxgreen';
   const batteryModel = data.battery_model || (data.battery_kwh ? `${data.battery_kwh} kWh` : '');
   const batterySlug = data.battery_slug;
@@ -420,7 +421,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
         image: '/images/combo/source-inverter.avif',
         imagePosition: 'center top',
         href: inverterSlug ? `/thiet-bi/${data.system_type === 'hybrid' ? 'hybrid-inverter' : 'on-grid-inverter'}/${inverterSlug}` : undefined,
-        specs: [['Bảo hành', '5 năm'], ['Model', inverterModel], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
+        specs: [['Bảo hành', `${inverterWarrantyYears} năm`], ['Model', inverterModel], ['Trạng thái', 'Phù hợp combo']] as Array<[string, string]>,
       },
       {
         icon: <Shield className="h-5 w-5 text-gray-700" />,
@@ -782,6 +783,7 @@ export default function ComboDetailEquipmentStyle({ combo }: { combo: ComboData 
             panelQuantity={panelQuantity}
             inverterModel={inverterModel}
             inverterQuantity={inverterQuantity}
+            inverterWarrantyYears={inverterWarrantyYears}
           />
 
           <QuickQuoteSidebar

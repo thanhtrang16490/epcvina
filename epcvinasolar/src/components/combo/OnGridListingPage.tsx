@@ -4,21 +4,9 @@ import HeaderBar from '../home/layout/HeaderBar';
 import ComboListingCard from './ComboListingCard';
 import type { ComboCardData } from './ComboListingCard';
 
-// Fallback data when API returns empty
-const FALLBACK_COMBOS: ComboCardData[] = [
-  { id: 'on-grid-5kw-1pha', slug: 'on-grid-5kw-1pha', name: 'Hệ On-Grid 5 kWp 1 pha', power: 5, battery: 0, price: 60000000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'on-grid-8.8kw-1pha', slug: 'on-grid-8.8kw-1pha', name: 'Hệ On-Grid 8.8 kWp 1 pha', power: 8.8, battery: 0, price: 95000000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'on-grid-10.7kw-1pha', slug: 'on-grid-10.7kw-1pha', name: 'Hệ On-Grid 10.7 kWp 1 pha', power: 10.7, battery: 0, price: 115000000, system_type: 'on-grid', phase: '1-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'on-grid-10.7kw-3pha', slug: 'on-grid-10.7kw-3pha', name: 'Hệ On-Grid 10.7 kWp 3 pha', power: 10.7, battery: 0, price: 110000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'on-grid-15.7kw-3pha', slug: 'on-grid-15.7kw-3pha', name: 'Hệ On-Grid 15.7 kWp 3 pha', power: 15.7, battery: 0, price: 150000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ', is_popular: true },
-  { id: 'on-grid-18.8kw-3pha', slug: 'on-grid-18.8kw-3pha', name: 'Hệ On-Grid 18.8 kWp 3 pha', power: 18.8, battery: 0, price: 180000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'on-grid-29.4kw-3pha', slug: 'on-grid-29.4kw-3pha', name: 'Hệ On-Grid 29.4 kWp 3 pha', power: 29.4, battery: 0, price: 280000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-  { id: 'on-grid-48.8kw-3pha', slug: 'on-grid-48.8kw-3pha', name: 'Hệ On-Grid 48.8 kWp 3 pha', power: 48.8, battery: 0, price: 450000000, system_type: 'on-grid', phase: '3-phase', panel_brand: 'Aiko', inverter_brand: 'SAJ' },
-];
-
 export default function OnGridListingPage() {
-  const [combos, setCombos] = useState<ComboCardData[]>(FALLBACK_COMBOS);
-  const [loading, setLoading] = useState(false);
+  const [combos, setCombos] = useState<ComboCardData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchCombos() {
@@ -32,13 +20,11 @@ export default function OnGridListingPage() {
               id: c.slug || c.id,
               slug: c.slug || c.id,
               name: c.name,
-              power: c.power || c.power_kw || 0,
-              battery: c.battery || c.battery_kwh || 0,
-              price: c.price || c.investment_million_vnd * 1000000 || 0,
               system_type: 'on-grid' as const,
-              phase: c.phase || '1-phase',
-              panel_brand: c.panel_brand || c.panelBrand,
-              inverter_brand: c.inverter_brand || c.inverterBrand,
+              phase: c.phase || (c.system?.phase === 'three_phase' ? '3-phase' : '1-phase'),
+              power_kw: c.system?.solar_capacity?.value || c.power_kw || 0,
+              investment_million_vnd: c.pricing?.total ? c.pricing.total / 1000000 : c.investment_million_vnd || 0,
+              components: c.components || [],
               monthly_production: c.monthly_production,
               payback_period: c.payback_period || c.payback_years,
               installation_area: c.installation_area || c.roof_area_m2,
@@ -52,7 +38,6 @@ export default function OnGridListingPage() {
       } catch (e) {
         console.error('Failed to fetch on-grid combos:', e);
       }
-      setCombos(FALLBACK_COMBOS);
       setLoading(false);
     }
     fetchCombos();

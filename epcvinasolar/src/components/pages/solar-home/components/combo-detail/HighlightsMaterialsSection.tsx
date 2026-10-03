@@ -14,6 +14,7 @@ export default function HighlightsMaterialsSection({
   panelQuantity,
   inverterModel,
   inverterQuantity,
+  inverterWarrantyYears = 5,
 }: {
   data: {
     title: string;
@@ -34,6 +35,7 @@ export default function HighlightsMaterialsSection({
   panelQuantity: number;
   inverterModel: string;
   inverterQuantity: number;
+  inverterWarrantyYears?: number;
 }) {
   return (
     <div className="space-y-6">
@@ -97,7 +99,7 @@ export default function HighlightsMaterialsSection({
           </div>
           <div className="bg-white">
             <MaterialRow icon={materialIcons.panel} name={`${panelModel} tấm pin`} warranty="12 năm" quantity={`${panelQuantity} tấm`} highlight />
-            <MaterialRow icon={materialIcons.inverter} name={`${inverterModel} biến tần`} warranty="5 năm" quantity={`${inverterQuantity} bộ`} />
+            <MaterialRow icon={materialIcons.inverter} name={`${inverterModel} biến tần`} warranty={`${inverterWarrantyYears} năm`} quantity={`${inverterQuantity} bộ`} />
             <MaterialRow icon={materialIcons.rail} name="Hệ khung nhôm" warranty="5 năm" quantity="1 bộ" />
             <MaterialRow icon={materialIcons.wiring} name="Hệ dây điện" warranty="5 năm" quantity="1 bộ" />
             <MaterialRow icon={materialIcons.cabinet} name="Tủ điện" warranty="2 năm" quantity="1 bộ" />

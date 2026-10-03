@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ShieldCheck, X } from '@phosphor-icons/react';
+import { ShieldCheck, X } from 'lucide-react';
 import { submitCrmLead } from '../../lib/crm-leads';
 
 const STORAGE_KEY = 'epcvina_cookie_consent_v1';
@@ -130,7 +130,7 @@ export default function CookieConsent() {
             <div className="px-3.5 py-3 text-left">
               <div className="flex items-start gap-2.5">
                 <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
-                  <ShieldCheck className="h-6 w-6" weight="bold" />
+                  <ShieldCheck className="h-6 w-6" />
                 </div>
                 <div className="min-w-0">
                   <h2 className="text-[15px] font-semibold leading-tight text-slate-900">
@@ -150,7 +150,7 @@ export default function CookieConsent() {
               <div className="border-b border-slate-100 bg-white px-3 pb-2.5 pt-2.5">
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-slate-700 ring-1 ring-slate-200">
-                    <ShieldCheck className="h-5 w-5" weight="bold" />
+                    <ShieldCheck className="h-5 w-5" />
                   </div>
 
                   <div className="min-w-0 flex-1">
@@ -167,7 +167,7 @@ export default function CookieConsent() {
                     className="inline-flex h-7 w-7 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-700"
                     aria-label="Đóng"
                   >
-                    <X className="h-4 w-4" weight="bold" />
+                    <X className="h-4 w-4" />
                   </button>
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function CookieConsent() {
         {submitted ? (
           <div className="px-4 py-4 text-center">
             <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
-              <ShieldCheck className="h-7 w-7" weight="bold" />
+              <ShieldCheck className="h-7 w-7" />
             </div>
             <h2 className="mt-2.5 text-[18px] font-semibold leading-tight text-slate-900">
               Cảm ơn bạn, EPCVINA sẽ liên hệ sớm

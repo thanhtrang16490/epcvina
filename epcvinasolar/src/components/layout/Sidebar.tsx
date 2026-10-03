@@ -4,17 +4,17 @@ import {
   Sun,
   Lightbulb,
   Wrench,
-  Chat,
+  MessageCircle,
   BookOpen,
   Newspaper,
-  SignOut,
+  LogOut,
   User,
   Users,
   FileText,
-  CaretDown,
-  CaretRight,
+  ChevronDown,
+  ChevronRight,
   X,
-} from '@phosphor-icons/react';
+} from 'lucide-react';
 import { getLocaleFromPathname, messages, type Locale } from '../../i18n/messages';
 import { getLocalePath } from '../../i18n/routes';
 // Supabase is loaded dynamically to avoid adding it to every page's client bundle.
@@ -104,7 +104,7 @@ function buildMenuItems(locale: Locale): MenuItem[] {
     { name: text.blog, href: getLocalePath('/tin-tuc', locale), icon: Newspaper },
     { name: text.about, href: getLocalePath('/ve-chung-toi', locale), icon: User },
     { name: text.careers, href: getLocalePath('/tuyen-dung', locale), icon: Users },
-    { name: text.faq, href: getLocalePath('/hoi-dap', locale), icon: Chat },
+    { name: text.faq, href: getLocalePath('/hoi-dap', locale), icon: MessageCircle },
     { name: text.guide, icon: BookOpen, children: [
       { name: vi ? 'Hướng dẫn sử dụng' : locale === 'en' ? 'User guide' : locale === 'zh' ? '使用指南' : locale === 'ja' ? '使い方ガイド' : '사용 가이드', href: getLocalePath('/huong-dan-su-dung', locale) },
       { name: vi ? 'Bảo trì & Xử lý sự cố' : locale === 'en' ? 'Maintenance & troubleshooting' : locale === 'zh' ? '维护与故障排除' : locale === 'ja' ? '保守とトラブル対応' : '유지보수 및 문제 해결', href: getLocalePath('/bao-tri', locale) },
@@ -183,9 +183,9 @@ function MenuGroup({
           {item.name}
         </div>
         {isExpanded ? (
-          <CaretDown className="h-4 w-4 text-gray-400" />
+          <ChevronDown className="h-4 w-4 text-gray-400" />
         ) : (
-          <CaretRight className="h-4 w-4 text-gray-400" />
+          <ChevronRight className="h-4 w-4 text-gray-400" />
         )}
       </button>
       {item.children && (
@@ -244,7 +244,8 @@ export default function Sidebar({ isOpen, onClose, pathname = '/' }: SidebarProp
   const [user, setUser] = useState<{ email: string; name?: string } | null>(null);
 
   // Delayed mobile content: keep DOM nodes during slide-out, remove after animation
-  const [showMobileContent, setShowMobileContent] = useState(false);
+  // Render menu content in SSR so the drawer remains usable while the shell hydrates.
+  const [showMobileContent, setShowMobileContent] = useState(true);
   useEffect(() => {
     if (isOpen) {
       setShowMobileContent(true);
@@ -387,7 +388,7 @@ export default function Sidebar({ isOpen, onClose, pathname = '/' }: SidebarProp
                     </div>
                     <button onClick={handleLogout} title={locale === 'en' ? 'Logout' : locale === 'zh' ? '退出' : locale === 'ja' ? 'ログアウト' : locale === 'ko' ? '로그아웃' : 'Đăng xuất'}
                       className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
-                      <SignOut className="h-4 w-4" />
+                      <LogOut className="h-4 w-4" />
                     </button>
                   </div>
                 ) : null}
@@ -484,9 +485,9 @@ export default function Sidebar({ isOpen, onClose, pathname = '/' }: SidebarProp
                       <span className={hasActiveChild ? 'text-gray-900' : ''}>{item.name}</span>
                       <span className="ml-auto">
                         {expandedGroups.has(item.name) ? (
-                          <CaretDown className="h-4 w-4 text-gray-400" />
+                          <ChevronDown className="h-4 w-4 text-gray-400" />
                         ) : (
-                          <CaretRight className="h-4 w-4 text-gray-400" />
+                          <ChevronRight className="h-4 w-4 text-gray-400" />
                         )}
                       </span>
                     </>
@@ -606,13 +607,13 @@ export default function Sidebar({ isOpen, onClose, pathname = '/' }: SidebarProp
                   </div>
                   <button onClick={handleLogout} title={locale === 'en' ? 'Logout' : locale === 'zh' ? '退出' : locale === 'ja' ? 'ログアウト' : locale === 'ko' ? '로그아웃' : 'Đăng xuất'}
                     className="text-gray-400 hover:text-red-600 transition-colors flex-shrink-0">
-                    <SignOut className="h-4 w-4" />
+                    <LogOut className="h-4 w-4" />
                   </button>
                 </div>
               ) : (
                 <button onClick={handleLogout} title={locale === 'en' ? 'Logout' : locale === 'zh' ? '退出' : locale === 'ja' ? 'ログアウト' : locale === 'ko' ? '로그아웃' : 'Đăng xuất'}
                   className="w-full flex justify-center py-2 text-gray-400 hover:text-red-600 transition-colors">
-                  <SignOut className="h-5 w-5" />
+                  <LogOut className="h-5 w-5" />
                 </button>
               )
             ) : (

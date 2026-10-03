@@ -1,4 +1,4 @@
-import { CaretLeft, List } from '@phosphor-icons/react';
+import { ChevronLeft, Menu } from 'lucide-react';
 import { useScrollContext } from './dashboardShellContext';
 import { getLocaleFromPathname, messages } from '../../i18n/messages';
 
@@ -38,7 +38,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen, pathname = '
               className={`p-2 -ml-2 ${iconColor}`}
               aria-label="Quay lại trang chủ"
             >
-              <CaretLeft className="h-6 w-6" />
+            <ChevronLeft className="h-6 w-6" />
             </button>
           ) : (
             <button 
@@ -46,7 +46,7 @@ export default function Header({ onMenuClick, isHidden, isMenuOpen, pathname = '
               className={`p-2 -ml-2 ${iconColor}`}
               aria-label="Mở menu"
             >
-              <List className="h-6 w-6" />
+              <Menu className="h-6 w-6" />
             </button>
           )}
 
