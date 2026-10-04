@@ -161,6 +161,8 @@ export function buildLocalBusinessSchema(input: {
   geoRadius?: unknown;
   openingHours?: string;
   priceRange?: string;
+  hasMap?: string;
+  areaServed?: string | string[];
   sameAs?: Array<string | undefined>;
 }) {
   const schema: Record<string, unknown> = {
@@ -175,6 +177,12 @@ export function buildLocalBusinessSchema(input: {
     email: cleanText(input.email),
     openingHours: cleanText(input.openingHours),
     priceRange: cleanText(input.priceRange),
+    hasMap: toAbsoluteUrl(input.hasMap),
+    areaServed: Array.isArray(input.areaServed)
+      ? input.areaServed.map((value) => ({ "@type": "City", name: cleanText(value) }))
+      : input.areaServed
+        ? { "@type": "City", name: cleanText(input.areaServed) }
+        : undefined,
     sameAs: (input.sameAs || []).map((value) => toAbsoluteUrl(value)).filter(Boolean),
   };
 
