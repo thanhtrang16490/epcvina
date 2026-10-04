@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { getCombos } from '../data/combos';
 import { getOptimizedProductImage } from '../lib/optimized-product-images';
 
 export const prerender = false;
@@ -38,23 +39,29 @@ export const GET: APIRoute = async () => {
   try {
     const products = await getCollection('products');
     const eligibleProducts = products
-      .filter(({ data }) => Boolean(data.main_image) && typeof data.price === 'number' && data.price > 0)
+      .filter(
+        ({ data }) => Boolean(data.main_image) && typeof data.price === 'number' && data.price > 0
+      )
       .sort((a, b) => a.data.name.localeCompare(b.data.name, 'vi'));
 
-    const items = await Promise.all(eligibleProducts.map(async (product) => {
-      const id = productIdFromEntry(product.id);
-      const data = product.data;
-      const image = await getOptimizedProductImage(data.main_image, {
-        width: 1200,
-        format: 'webp',
-        quality: 82,
-      });
-      const imageUrl = new URL(image, SITE_URL).toString();
-      const title = cleanText(`${data.brand} ${data.name}`.trim(), 150);
-      const description = cleanText(data.description || `${data.name} chính hãng từ EPCVINA Solar.`, 5000);
-      const offerId = cleanText(data.model || id.replace(/\//g, '-'), 50);
+    const productItems = await Promise.all(
+      eligibleProducts.map(async (product) => {
+        const id = productIdFromEntry(product.id);
+        const data = product.data;
+        const image = await getOptimizedProductImage(data.main_image, {
+          width: 1200,
+          format: 'webp',
+          quality: 82,
+        });
+        const imageUrl = new URL(image, SITE_URL).toString();
+        const title = cleanText(`${data.brand} ${data.name}`.trim(), 150);
+        const description = cleanText(
+          data.description || `${data.name} chính hãng từ EPCVINA Solar.`,
+          5000
+        );
+        const offerId = cleanText(data.model || id.replace(/\//g, '-'), 50);
 
-      return `
+        return `
     <item>
       <g:id>${escapeXml(id)}</g:id>
       <g:title>${escapeXml(title)}</g:title>
@@ -67,14 +74,46 @@ export const GET: APIRoute = async () => {
       <g:brand>${escapeXml(data.brand)}</g:brand>
       <g:mpn>${escapeXml(offerId)}</g:mpn>
     </item>`;
-    }));
+      })
+    );
+
+    const comboItems = getCombos()
+      .filter((combo) => combo.investment_million_vnd > 0 && Boolean(combo.slug))
+      .map((combo) => {
+        const comboId = `combo-${combo.slug}`;
+        const price = combo.investment_million_vnd * 1000000;
+        const systemLabel =
+          combo.system_type === 'hybrid' ? 'Hybrid có pin lưu trữ' : 'On-grid hòa lưới';
+        const phaseLabel = combo.phase === '1-phase' ? '1 pha' : '3 pha';
+        const title = cleanText(`${combo.name} - EPCVINA Solar`, 150);
+        const description = cleanText(
+          `${combo.name}. Gói điện mặt trời ${systemLabel}, nguồn điện ${phaseLabel}, công suất ${combo.power_kw} kWp. Sản lượng dự kiến ${combo.production_min_kwh}-${combo.production_max_kwh} kWh/tháng, tư vấn và lắp đặt bởi EPCVINA Solar.`,
+          5000
+        );
+
+        return `
+    <item>
+      <g:id>${escapeXml(comboId)}</g:id>
+      <g:title>${escapeXml(title)}</g:title>
+      <g:description>${escapeXml(description)}</g:description>
+      <g:link>${escapeXml(`${SITE_URL}/goi-combo/${encodeURIComponent(combo.slug)}`)}</g:link>
+      <g:image_link>${SITE_URL}/sample-combo.webp</g:image_link>
+      <g:availability>${combo.is_active ? 'in stock' : 'out of stock'}</g:availability>
+      <g:price>${escapeXml(price)} VND</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>EPCVINA Solar</g:brand>
+      <g:mpn>${escapeXml(comboId)}</g:mpn>
+    </item>`;
+      });
+
+    const items = [...productItems, ...comboItems];
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
   <channel>
     <title>EPCVINA Solar - Sản phẩm điện mặt trời</title>
     <link>${SITE_URL}/thiet-bi</link>
-    <description>Danh mục thiết bị điện mặt trời chính hãng từ EPCVINA Solar.</description>${items.join('')}
+    <description>Danh mục thiết bị và gói combo điện mặt trời chính hãng từ EPCVINA Solar.</description>${items.join('')}
   </channel>
 </rss>`;
 
