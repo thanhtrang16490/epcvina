@@ -2,6 +2,24 @@
 import DashboardLayout from '../layouts/DashboardLayout.astro';
 import DashboardShell from '../components/layout/DashboardShell.astro';
 import ContactPage from '../components/pages/contact/ContactPage';
+import { buildLocalBusinessSchema } from '../lib/schema';
+
+const localBusinessSchema = buildLocalBusinessSchema({
+  name: 'EPCVINA Solar',
+  description: 'Văn phòng EPCVINA Solar cung cấp tư vấn, thiết kế và thi công điện mặt trời tại Hà Nội và toàn quốc.',
+  url: 'https://epcvina.com/lien-he',
+  telephone: '0988446113',
+  email: 'epcvinasolar@gmail.com',
+  streetAddress: 'Phòng 315, Khu thương mại – Chung cư Học viện Quốc phòng, Đường Xuân Tảo',
+  addressLocality: 'Tây Hồ',
+  addressRegion: 'Hà Nội',
+  addressCountry: 'VN',
+  latitude: 21.0500148,
+  longitude: 105.7999521,
+  openingHours: 'Mo-Sa 08:00-17:30',
+  priceRange: '$$',
+  sameAs: ['https://maps.app.goo.gl/QUxgHjPC4AUu3cPK9'],
+});
 ---
 
 <DashboardLayout
@@ -11,6 +29,7 @@ import ContactPage from '../components/pages/contact/ContactPage';
   ogImage="/hero-bg-1920.webp"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Liên Hệ", url: "https://epcvina.com/lien-he"}]}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
   <DashboardShell>
     <ContactPage client:idle />
   </DashboardShell>

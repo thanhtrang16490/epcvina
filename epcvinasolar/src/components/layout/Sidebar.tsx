@@ -14,6 +14,7 @@ import {
   ChevronDown,
   ChevronRight,
   X,
+  MapPin,
 } from 'lucide-react';
 import { getLocaleFromPathname, messages, type Locale } from '../../i18n/messages';
 import { getLocalePath } from '../../i18n/routes';
@@ -49,6 +50,7 @@ function buildMenuItems(locale: Locale): MenuItem[] {
     about: vi ? 'Về chúng tôi' : locale === 'en' ? 'About us' : locale === 'zh' ? '关于我们' : locale === 'ja' ? '私たちについて' : '회사 소개',
     careers: vi ? 'Tuyển dụng' : locale === 'en' ? 'Careers' : locale === 'zh' ? '招聘' : locale === 'ja' ? '採用' : '채용',
     faq: vi ? 'Hỏi đáp' : locale === 'en' ? 'FAQ' : locale === 'zh' ? '问答' : locale === 'ja' ? 'よくある質問' : '문의',
+    contact: vi ? 'Liên hệ' : locale === 'en' ? 'Contact' : locale === 'zh' ? '联系' : locale === 'ja' ? 'お問い合わせ' : '연락처',
     guide: vi ? 'Hướng dẫn' : locale === 'en' ? 'Guide' : locale === 'zh' ? '指南' : locale === 'ja' ? 'ガイド' : '가이드',
   };
 
@@ -105,6 +107,7 @@ function buildMenuItems(locale: Locale): MenuItem[] {
     { name: text.about, href: getLocalePath('/ve-chung-toi', locale), icon: User },
     { name: text.careers, href: getLocalePath('/tuyen-dung', locale), icon: Users },
     { name: text.faq, href: getLocalePath('/hoi-dap', locale), icon: MessageCircle },
+    { name: text.contact, href: getLocalePath('/lien-he', locale), icon: MapPin },
     { name: text.guide, icon: BookOpen, children: [
       { name: vi ? 'Hướng dẫn sử dụng' : locale === 'en' ? 'User guide' : locale === 'zh' ? '使用指南' : locale === 'ja' ? '使い方ガイド' : '사용 가이드', href: getLocalePath('/huong-dan-su-dung', locale) },
       { name: vi ? 'Bảo trì & Xử lý sự cố' : locale === 'en' ? 'Maintenance & troubleshooting' : locale === 'zh' ? '维护与故障排除' : locale === 'ja' ? '保守とトラブル対応' : '유지보수 및 문제 해결', href: getLocalePath('/bao-tri', locale) },

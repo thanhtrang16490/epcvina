@@ -441,15 +441,15 @@ export default function ContactPage() {
               Vị trí văn phòng
             </div>
             <h2 id="map-heading" className="text-2xl sm:text-3xl font-bold text-gray-900">
-              Hệ <span className="text-emerald-600">Số Bản Đồ</span>
+              Vị trí <span className="text-emerald-600">EPCVINA Solar</span> trên Google Maps
             </h2>
             <p className="text-base text-gray-500 mt-2 max-w-2xl mx-auto leading-relaxed">
-              Khu thương mại – Chung cư Học viện Quốc phòng, Đường Xuân Tảo, Quận Tây Hồ, Hà Nội
+              Phòng 315, Khu thương mại – Chung cư Học viện Quốc phòng, Đường Xuân Tảo, Tây Hồ, Hà Nội
             </p>
           </div>
           <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.8!2d105.8!3d21.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab1b7c1c6c6d%3A0x7c6e5e2c6a1e5e2c!2zUC4gMzE1IC0gS2h1IFRNIENo4bunZyWGIGN1IFDEkOG7jWMgdmnhu4duIFF14buRYyBQaMaw4budbmcgxJDhu51uZyBWw7UgQ2jDNCBDw7RuZywgVMOieSBI4buTLCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1719000000000!5m2!1svi!2s"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4358.706384942853!2d105.7999521!3d21.0500148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab7a277fbaeb%3A0x3819e303d6bd1ce6!2zRXBjdmluYSBTb2xhciAtIMSQaeG7h24gbeG6t3QgdHLhu51pIGdpYSDEkcOsbmg!5e1!3m2!1svi!2s!4v1791106953513!5m2!1svi!2s"
               width="100%"
               height="400"
               style={{ border: 0 }}
@@ -458,6 +458,16 @@ export default function ContactPage() {
               referrerPolicy="no-referrer-when-downgrade"
               title="EPCVINA Solar văn phòng"
             />
+          </div>
+          <div className="mt-4 text-center">
+            <a
+              href="https://maps.app.goo.gl/QUxgHjPC4AUu3cPK9"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            >
+              Mở vị trí trên Google Maps
+            </a>
           </div>
         </div>
       </section>

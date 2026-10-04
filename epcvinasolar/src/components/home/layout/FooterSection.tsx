@@ -162,7 +162,15 @@ export default function FooterSection({ pathname = '/' }: { pathname?: string })
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 flex-shrink-0 mt-0.5" weight="fill" style={{ color: BRAND_RED }} />
-                <span className="text-gray-400 leading-relaxed">{t.footer.address}</span>
+                <a
+                  href="https://maps.app.goo.gl/QUxgHjPC4AUu3cPK9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 leading-relaxed hover:text-white transition-colors"
+                  aria-label="Mở địa chỉ EPCVINA Solar trên Google Maps"
+                >
+                  {t.footer.address}
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 flex-shrink-0" weight="fill" style={{ color: BRAND_RED }} />
