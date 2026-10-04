@@ -457,12 +457,12 @@ export default function ResidentialApplicationPage() {
             {
               name: 'Gia đình Anh Hùng, TP. HCM',
               title: 'Hệ thống 5kWp - Tiết kiệm 2.5tr/tháng',
-              image: '/du-an/solar-nha-dan/du-an-anh-tho-uong-bi.png',
+              image: '/du-an/solar-nha-dan/du-an-anh-tho-uong-bi.webp',
             },
             {
               name: 'Chị Lan, Đà Nẵng',
               title: 'Hệ thống 3kWp - Tự chủ 100% điện sinh hoạt',
-              image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png',
+              image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.webp',
             },
             {
               name: 'Biệt thự Vinhome, Hà Nội',

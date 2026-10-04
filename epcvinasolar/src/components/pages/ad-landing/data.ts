@@ -119,7 +119,7 @@ export const FEATURED_PROJECTS: Project[] = [
       rating: 5,
       aspect: 'Tiết kiệm chi phí & Dịch vụ tốt',
     },
-    image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png',
+    image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.webp',
     is_featured: true,
   },
   {
@@ -134,7 +134,7 @@ export const FEATURED_PROJECTS: Project[] = [
       rating: 5,
       aspect: 'Thi công phức tạp & Chuyên nghiệp',
     },
-    image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png',
+    image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.webp',
     is_featured: true,
   },
   {
@@ -144,7 +144,7 @@ export const FEATURED_PROJECTS: Project[] = [
     system_type: 'Hybrid',
     location: 'Dương Nội - Hà Nội',
     completion_date: 'T9.2024',
-    image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png',
+    image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.webp',
     is_featured: false,
   },
   {
@@ -154,7 +154,7 @@ export const FEATURED_PROJECTS: Project[] = [
     system_type: 'Hybrid',
     location: 'Tây Tựu - Hà Nội',
     completion_date: 'T12.2024',
-    image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png',
+    image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.webp',
     is_featured: false,
   },
 ];

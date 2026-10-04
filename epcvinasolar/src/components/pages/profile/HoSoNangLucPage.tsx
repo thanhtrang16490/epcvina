@@ -282,7 +282,7 @@ export default function HoSoNangLucPage({ pathname = '/' }: { pathname?: string 
         <section className="relative overflow-hidden bg-slate-950 text-white">
           <div className="absolute inset-0">
             <img
-              src="/images/generated/ho-so-nang-luc-hero.png"
+              src="/images/generated/ho-so-nang-luc-hero.webp"
               alt=""
               className="h-full w-full object-cover object-center opacity-18"
               loading="eager"

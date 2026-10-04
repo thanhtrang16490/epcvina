@@ -17,7 +17,7 @@ export default function BeforeAfterBillsSection() {
       location: 'Hà Đông, Hà Nội',
       completed: 'T7.2024',
       note: 'Hybrid cho gia đình dùng cả ngày và đêm',
-      image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png',
+      image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.webp',
     },
     {
       customer: 'Chú Thanh - Hải Dương',
@@ -33,7 +33,7 @@ export default function BeforeAfterBillsSection() {
       location: 'TP. Hải Dương',
       completed: 'T6.2024',
       note: 'Có pin lưu trữ cho tải quan trọng',
-      image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png',
+      image: '/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.webp',
     },
     {
       customer: 'Anh Linh - Dương Nội',
@@ -49,7 +49,7 @@ export default function BeforeAfterBillsSection() {
       location: 'Dương Nội, Hà Nội',
       completed: 'T9.2024',
       note: 'Tối ưu hóa đơn cho nhà phố',
-      image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png',
+      image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.webp',
     },
   ];
 

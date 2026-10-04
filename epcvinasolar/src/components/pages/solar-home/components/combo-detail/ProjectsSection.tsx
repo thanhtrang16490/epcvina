@@ -11,8 +11,8 @@ export default function ProjectsSection({
       <h2 className="mt-2 text-[28px] font-semibold text-gray-900">Công trình thực tế EPCVINA đã bàn giao</h2>
       <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {[
-          { image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png', title: 'Dự án 15 kWp - Hà Đông', meta: 'Điện mặt trời nhà dân' },
-          { image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.png', title: 'Dự án 7.5 kWp - Dương Nội', meta: 'Hybrid nhà phố' },
+          { image: '/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.webp', title: 'Dự án 15 kWp - Hà Đông', meta: 'Điện mặt trời nhà dân' },
+          { image: '/du-an/solar-nha-dan/du-an-anh-linh-duong-noi.webp', title: 'Dự án 7.5 kWp - Dương Nội', meta: 'Hybrid nhà phố' },
           { image: '/du-an/DU-AN-KHACH-SAN-IMPERIA-HAI_PHONG.jpg', title: 'Dự án thương mại - Hải Phòng', meta: 'Công trình quy mô lớn' },
           { image: '/du-an/DU-AN-VINHOMES-GOLDEN-RIVER-BA-SON-1.jpg', title: 'Dự án 5.4 kWp - Bason', meta: 'Nhà ở đô thị' },
           { image: '/du-an/DU-AN-METROPOLIS-LIEU-GIAI.jpg', title: 'Dự án 5 kWp - Lieu Giai', meta: 'Nhà phố cao cấp' },

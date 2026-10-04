@@ -15,9 +15,9 @@ testimonial:
   quote: "Chất lượng thi công tuyệt vời, sơn tĩnh điện rất đẹp và bền. Hệ thống hoạt động ổn định, tiết kiệm được nhiều điện. Rất hài lòng!"
   rating: 5
   aspect: "Chất lượng thi công & Thẩm mỹ"
-image: "/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png"
+image: "/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.webp"
 gallery:
-  - "/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.png"
+  - "/du-an/solar-nha-dan/du-an-anh-thang-hai-duong.webp"
 is_featured: true
 ---
 

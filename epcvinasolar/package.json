@@ -16,7 +16,8 @@
     "geo:audit": "node ./scripts/geo-audit.mjs",
     "geo:audit:md": "node ./scripts/geo-audit.mjs --md",
     "geo:audit:json": "node ./scripts/geo-audit.mjs --json",
-    "geo:audit:ci": "node ./scripts/geo-audit.mjs --fail-on-high"
+    "geo:audit:ci": "node ./scripts/geo-audit.mjs --fail-on-high",
+    "images:optimize-large": "node ./scripts/optimize-large-assets.mjs"
   },
   "keywords": [],
   "author": "",

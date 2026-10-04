@@ -109,7 +109,7 @@ export default function JoinSalesPage({ pathname = '/' }: { pathname?: string })
       </div>
       <section className="relative overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0">
-          <img src="/images/generated/ban-hang-hero.png" alt="" className="h-full w-full object-cover opacity-55" loading="eager" />
+          <img src="/images/generated/ban-hang-hero.webp" alt="" className="h-full w-full object-cover opacity-55" loading="eager" />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.08),_transparent_35%),radial-gradient(circle_at_80%_10%,_rgba(34,197,94,0.06),_transparent_28%),linear-gradient(180deg,_rgba(15,23,42,0.5),_rgba(2,6,23,0.72))]" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 lg:pt-32">

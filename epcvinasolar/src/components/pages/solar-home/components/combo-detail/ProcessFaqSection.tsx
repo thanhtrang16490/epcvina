@@ -73,25 +73,25 @@ export default function ProcessFaqSection({
               step: '01',
               title: 'Tiếp nhận yêu cầu',
               desc: 'Ghi nhận nhu cầu sử dụng điện, loại mái, mức đầu tư dự kiến và thông tin liên hệ để tư vấn nhanh.',
-              image: '/images/combo/process-step-1.png',
+              image: '/images/combo/process-step-1.webp',
             },
             {
               step: '02',
               title: 'Khảo sát thực tế',
               desc: 'Kỹ sư kiểm tra mái, hướng nắng, kết cấu và các điều kiện kỹ thuật để xác định phương án phù hợp.',
-              image: '/images/combo/process-step-2.png',
+              image: '/images/combo/process-step-2.webp',
             },
             {
               step: '03',
               title: 'Thiết kế và báo giá',
               desc: 'Lên cấu hình combo, tối ưu vật tư và gửi báo giá chi tiết để khách hàng dễ so sánh, ra quyết định.',
-              image: '/images/combo/process-step-3.png',
+              image: '/images/combo/process-step-3.webp',
             },
             {
               step: '04',
               title: 'Thi công và bàn giao',
               desc: 'Triển khai lắp đặt, kiểm tra vận hành, hướng dẫn sử dụng và bàn giao hồ sơ theo đúng cam kết.',
-              image: '/images/combo/process-step-4.png',
+              image: '/images/combo/process-step-4.webp',
             },
           ].map((item, index) => (
             <div

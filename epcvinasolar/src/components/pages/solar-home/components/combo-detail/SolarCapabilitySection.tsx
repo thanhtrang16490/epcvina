@@ -13,7 +13,7 @@ export default function SolarCapabilitySection() {
           <div className="mt-5 grid gap-4">
             <div className="grid gap-4 rounded-[18px] border border-gray-200 bg-[#fafafa] p-4 sm:grid-cols-[112px_minmax(0,1fr)]">
               <div className="relative aspect-square overflow-hidden rounded-[14px] bg-white ring-1 ring-gray-200">
-                <img src="/images/generated/sales-consultant-woman.png" alt="Đội ngũ bán hàng EPCVINA" className="h-full w-full object-cover" loading="lazy" />
+                <img src="/images/generated/sales-consultant-woman.webp" alt="Đội ngũ bán hàng EPCVINA" className="h-full w-full object-cover" loading="lazy" />
               </div>
               <div>
                 <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-gray-500">Đội ngũ bán hàng</p>
@@ -23,7 +23,7 @@ export default function SolarCapabilitySection() {
 
             <div className="grid gap-4 rounded-[18px] border border-gray-200 bg-[#fafafa] p-4 sm:grid-cols-[112px_minmax(0,1fr)]">
               <div className="relative aspect-square overflow-hidden rounded-[14px] bg-white ring-1 ring-gray-200">
-                <img src="/images/generated/construction-engineer.png" alt="Đội ngũ thi công EPCVINA" className="h-full w-full object-cover" loading="lazy" />
+                <img src="/images/generated/construction-engineer.webp" alt="Đội ngũ thi công EPCVINA" className="h-full w-full object-cover" loading="lazy" />
               </div>
               <div>
                 <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-gray-500">Đội ngũ thi công</p>
@@ -112,10 +112,10 @@ export default function SolarCapabilitySection() {
         <div className="space-y-4">
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              { image: '/images/generated/warehouse-solar-panels.jpg', title: 'Kho tấm pin', desc: 'Tấm pin phổ biến cho nhiều cấu hình combo.' },
-              { image: '/images/generated/warehouse-inverters.jpg', title: 'Kho biến tần', desc: 'Nhóm thiết bị trung tâm cho hệ thống.' },
-              { image: '/images/generated/warehouse-cabinets.jpg', title: 'Tủ điện - phụ trợ', desc: 'Hạng mục phục vụ vận hành an toàn.' },
-              { image: '/images/generated/warehouse-wiring-grounding.jpg', title: 'Dây - tiếp địa', desc: 'Vật tư hỗ trợ thi công và hoàn thiện.' },
+              { image: '/images/generated/warehouse-solar-panels.webp', title: 'Kho tấm pin', desc: 'Tấm pin phổ biến cho nhiều cấu hình combo.' },
+              { image: '/images/generated/warehouse-inverters.webp', title: 'Kho biến tần', desc: 'Nhóm thiết bị trung tâm cho hệ thống.' },
+              { image: '/images/generated/warehouse-cabinets.webp', title: 'Tủ điện - phụ trợ', desc: 'Hạng mục phục vụ vận hành an toàn.' },
+              { image: '/images/generated/warehouse-wiring-grounding.webp', title: 'Dây - tiếp địa', desc: 'Vật tư hỗ trợ thi công và hoàn thiện.' },
             ].map((item) => (
               <div key={item.title} className="overflow-hidden rounded-[18px] border border-gray-200 bg-[#fafafa]">
                 <div className="relative aspect-square bg-white p-4">

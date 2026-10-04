@@ -21,7 +21,7 @@ export default function HeroSection() {
       {/* Background image with subtle overlay */}
       <div className="absolute inset-0 opacity-[0.22]">
         <img
-          src="/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.png"
+          src="/du-an/solar-nha-dan/du-an-chi-ha-ha-dong.webp"
           alt=""
           aria-hidden="true"
           className="h-full w-full object-cover"

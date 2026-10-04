@@ -17,7 +17,9 @@ const target = `/tin-tuc/${slug}`;
     <meta charset="utf-8" />
     <meta http-equiv="refresh" content={`0; url=${target}`} />
     <link rel="canonical" href={new URL(target, Astro.site).href} />
-    <title>Redirecting...</title>
+    <meta name="robots" content="noindex,follow" />
+    <meta name="description" content="Read this EPCVINA Solar article and discover practical solar energy solutions." />
+    <title>EPCVINA Solar article</title>
   </head>
   <body>
     <p>Redirecting to <a href={target}>bài viết</a>...</p>

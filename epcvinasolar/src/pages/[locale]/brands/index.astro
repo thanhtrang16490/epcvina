@@ -8,4 +8,14 @@ const { locale } = Astro.params as { locale: Locale };
 const target = getLocalizedRoute(locale, 'brands');
 ---
 
-<meta http-equiv="refresh" content={`0; url=${target}`} />
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex,follow" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={new URL(target, Astro.site).href} />
+    <title>Solar brands | EPCVINA Solar</title>
+    <meta name="description" content="Explore solar panel, inverter and battery brands supplied by EPCVINA Solar." />
+  </head>
+  <body><p>Redirecting to <a href={target}>solar brands</a>...</p></body>
+</html>
