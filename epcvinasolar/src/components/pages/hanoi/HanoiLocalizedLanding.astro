@@ -1,0 +1,46 @@
+---
+import DashboardShell from '../../layout/DashboardShell.astro';
+
+interface Props {
+  locale: 'en' | 'zh' | 'ja' | 'ko';
+  title: string;
+  lead: string;
+  hybrid: string;
+  onGrid: string;
+  cta: string;
+  faq: string;
+}
+
+const { locale, title, lead, hybrid, onGrid, cta, faq } = Astro.props;
+const copy = {
+  en: { eyebrow: 'EPCVINA Solar in Hanoi', intro: 'Turnkey rooftop solar designed for your home or business in Hanoi.', proof: 'Site survey, engineering design, installation and long-term support from one team.', contact: 'Contact EPCVINA Solar', faqTitle: 'Frequently asked questions' },
+  zh: { eyebrow: 'EPCVINA Solar 河内', intro: '为河内家庭和企业量身设计的一站式屋顶光伏解决方案。', proof: '从现场勘察、工程设计到安装和长期服务，由同一团队负责。', contact: '联系 EPCVINA Solar', faqTitle: '常见问题' },
+  ja: { eyebrow: 'EPCVINA Solar ハノイ', intro: 'ご家庭や企業に合わせた、ハノイの屋根置き太陽光発電を一括提供します。', proof: '現地調査、設計、施工、長期サポートまで一つのチームが対応します。', contact: 'EPCVINA Solar に相談', faqTitle: 'よくある質問' },
+  ko: { eyebrow: 'EPCVINA Solar 하노이', intro: '하노이 가정과 기업을 위한 맞춤형 원스톱 태양광 솔루션입니다.', proof: '현장 조사, 설계, 시공, 장기 유지관리까지 한 팀이 책임집니다.', contact: 'EPCVINA Solar 상담', faqTitle: '자주 묻는 질문' },
+}[locale];
+---
+
+<DashboardShell showFooter={true} showChrome={true} pathname={Astro.url.pathname}>
+  <main class="bg-white text-[#0F172A]">
+    <section class="mx-auto max-w-6xl px-5 pb-14 pt-12 sm:px-8 lg:px-12 lg:pb-20 lg:pt-20">
+      <p class="text-sm font-semibold uppercase tracking-[0.12em] text-[#E87516]">{copy.eyebrow}</p>
+      <h1 class="mt-4 max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">{title}</h1>
+      <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{lead} {copy.intro}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="inline-flex min-h-12 items-center rounded-lg bg-[#E87516] px-5 font-semibold text-white" href={`/${locale}/contact`}>{cta}</a>
+        <a class="inline-flex min-h-12 items-center rounded-lg border border-slate-300 px-5 font-semibold text-slate-800" href={`/${locale}/solar-home`}>{copy.contact}</a>
+      </div>
+    </section>
+    <section class="border-y border-slate-200 bg-slate-50">
+      <div class="mx-auto grid max-w-6xl gap-6 px-5 py-12 sm:grid-cols-3 sm:px-8 lg:px-12">
+        <article><h2 class="text-xl font-semibold">{hybrid}</h2><p class="mt-2 leading-7 text-slate-600">Battery storage for backup power and higher self-consumption.</p></article>
+        <article><h2 class="text-xl font-semibold">{onGrid}</h2><p class="mt-2 leading-7 text-slate-600">A practical grid-connected system to reduce daytime electricity costs.</p></article>
+        <article><h2 class="text-xl font-semibold">{copy.proof}</h2><p class="mt-2 leading-7 text-slate-600">Aiko 650W modules, SAJ inverters and carefully matched system components.</p></article>
+      </div>
+    </section>
+    <section class="mx-auto max-w-4xl px-5 py-14 sm:px-8 lg:py-20">
+      <h2 class="text-3xl font-semibold">{copy.faqTitle}</h2>
+      <details class="mt-6 border-b border-slate-200 py-4"><summary class="cursor-pointer font-semibold">{faq}</summary><p class="mt-3 leading-7 text-slate-600">EPCVINA Solar surveys the roof, electricity usage and backup requirements before recommending an On-grid or Hybrid configuration.</p></details>
+    </section>
+  </main>
+</DashboardShell>

@@ -31,7 +31,7 @@ const serviceSchema = {
   title="Điện Mặt Trời Hà Nội | Lắp Đặt On-grid & Hybrid | EPCVINA Solar"
   description="EPCVINA Solar tư vấn, thiết kế và lắp đặt điện mặt trời trọn gói tại Hà Nội. Giải pháp On-grid, Hybrid pin lưu trữ, Aiko 650W và SAJ, khảo sát theo nhu cầu thực tế."
   keywords="điện mặt trời Hà Nội, lắp đặt điện mặt trời Hà Nội, điện mặt trời áp mái Hà Nội, điện mặt trời Hybrid Hà Nội, điện mặt trời On-grid Hà Nội, pin Aiko 650W, biến tần SAJ"
-  ogImage="/hero-epcvina-hanoi.png"
+  ogImage="/hero-epcvina-hanoi.webp"
   ogType="website"
   breadcrumbs={[{name: "Trang Chủ", url: "https://epcvina.com"}, {name: "Điện Mặt Trời Tại Hà Nội", url: "https://epcvina.com/dien-mat-troi-tai-ha-noi"}]}
   updatedTime="2026-10-03"
@@ -43,6 +43,7 @@ const serviceSchema = {
     showChrome={true}
     pathname={Astro.url.pathname}
   >
+    <h1 class="sr-only">Điện mặt trời tại Hà Nội | Lắp đặt On-grid và Hybrid | EPCVINA Solar</h1>
     <link rel="stylesheet" href="/dien-mat-troi-tai-ha-noi/assets/index-eEXZLP98.css" />
     <style is:global>
       .carousel-item {
@@ -2745,13 +2746,19 @@ Bảo vệ toàn diện - Phân phối ổn định - Dễ kiểm tra</p></div><
       }
 
       const heroImage = document.querySelector('img[alt="Solar compare banner"]');
+      if (heroImage) {
+        heroImage.src = '/hero-epcvina-hanoi.webp';
+        heroImage.loading = 'eager';
+        heroImage.fetchPriority = 'high';
+        heroImage.decoding = 'async';
+      }
       if (heroImage && !heroImage.parentElement?.querySelector('[data-epcvina-hero-copy]')) {
         const heroFrame = heroImage.parentElement;
         heroFrame?.classList.add('overflow-hidden');
         const heroCopy = document.createElement('div');
         heroCopy.dataset.epcvinaHeroCopy = 'true';
         heroCopy.className = 'absolute inset-x-0 bottom-0 z-10 p-6 sm:p-8 text-white';
-        heroCopy.innerHTML = '<p class="text-sm font-semibold uppercase tracking-[0.12em] text-orange-200">EPCVINA Solar</p><h1 class="mt-2 max-w-[420px] text-2xl sm:text-3xl font-semibold leading-tight">Điện mặt trời tối ưu cho ngôi nhà Hà Nội</h1><p class="mt-3 max-w-[430px] text-sm sm:text-base leading-relaxed text-white/90">On-grid tiết kiệm chi phí, Hybrid chủ động nguồn điện với pin lưu trữ.</p>';
+        heroCopy.innerHTML = '<p class="text-sm font-semibold uppercase tracking-[0.12em] text-orange-200">EPCVINA Solar</p><p class="mt-2 max-w-[420px] text-2xl sm:text-3xl font-semibold leading-tight">Điện mặt trời tối ưu cho ngôi nhà Hà Nội</p><p class="mt-3 max-w-[430px] text-sm sm:text-base leading-relaxed text-white/90">On-grid tiết kiệm chi phí, Hybrid chủ động nguồn điện với pin lưu trữ.</p>';
         const shade = document.createElement('div');
         shade.className = 'absolute inset-0 z-[1] bg-gradient-to-t from-slate-950/75 via-slate-950/15 to-transparent';
         heroFrame?.append(shade, heroCopy);
@@ -2884,7 +2891,7 @@ Bảo vệ toàn diện - Phân phối ổn định - Dễ kiểm tra</p></div><
         .filter(Boolean)
         .filter((brand, index, brands) => brands.indexOf(brand) === index)
         .join(' - ');
-      fetch('/api/combos')
+      const loadCombos = () => fetch('/api/combos')
         .then((response) => response.ok ? response.json() : null)
         .then((payload) => {
           const combos = payload?.data;
@@ -2948,7 +2955,12 @@ Bảo vệ toàn diện - Phân phối ổn định - Dễ kiểm tra</p></div><
                 event.preventDefault();
                 openCombo();
               }
-            });
+        });
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(loadCombos, { timeout: 1800 });
+      } else {
+        window.setTimeout(loadCombos, 500);
+      }
           });
         })
         .catch(() => {});

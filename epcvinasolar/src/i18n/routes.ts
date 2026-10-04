@@ -164,6 +164,8 @@ export function getLocalizedRoute(locale: Locale, key: RouteKey) {
   return localizedRoutes[locale][key];
 }
 
+const hanoiLandingPath = '/dien-mat-troi-tai-ha-noi';
+
 export function stripLocalePrefix(pathname: string) {
   const stripped = pathname.replace(localePrefixPattern, '');
   return stripped || '/';
@@ -171,6 +173,9 @@ export function stripLocalePrefix(pathname: string) {
 
 export function getLocalePath(pathname: string, locale: Locale) {
   const basePath = stripLocalePrefix(pathname);
+  if (basePath === hanoiLandingPath) {
+    return locale === 'vi' ? basePath : `/${locale}${basePath}`;
+  }
   if (basePath.startsWith('/nhan-hang/')) {
     const slug = basePath.slice('/nhan-hang/'.length);
     return getLocalizedRoute(locale, 'brands') + `/${slug}`;
