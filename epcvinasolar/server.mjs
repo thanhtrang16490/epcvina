@@ -33,7 +33,7 @@ const server = http.createServer((request, response) => {
   if ((request.url || '').startsWith('/_astro/')) {
     response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
   } else if (/\.(?:avif|webp|png|jpe?g|gif|svg|ico|woff2?)$/i.test(request.url || '')) {
-    response.setHeader('Cache-Control', 'public, max-age=604800');
+    response.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
   } else {
     response.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
   }

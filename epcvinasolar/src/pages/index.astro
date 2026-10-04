@@ -97,13 +97,13 @@ const videoSchema = {
     },
   ]) ?? { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [] })} />
   <DashboardShell showFooter={false}>
-    <HeaderBar pathname={Astro.url.pathname} client:load />
+    <HeaderBar pathname={Astro.url.pathname} client:idle />
     <div class="min-h-screen bg-[#f8f9fa]">
       <div class="lg:-ml-16 lg:w-[calc(100%+4rem)]">
         <HeroSection pathname={Astro.url.pathname} />
       </div>
       <ComparisonSection pathname={Astro.url.pathname} />
-      <SolarSolutionFinder pathname={Astro.url.pathname} client:load />
+      <SolarSolutionFinder pathname={Astro.url.pathname} client:visible />
       <BenefitsSection pathname={Astro.url.pathname} />
       <MidPageCTA variant="benefits" pathname={Astro.url.pathname} />
       <ProcessSection pathname={Astro.url.pathname} />

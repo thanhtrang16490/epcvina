@@ -11,7 +11,7 @@ const { showFooter = true, showChrome = true, pathname } = Astro.props as Props;
 const currentPathname = pathname ?? Astro.url.pathname;
 ---
 
-<DashboardShellClient client:load showFooter={showFooter} showChrome={showChrome} pathname={currentPathname}>
+<DashboardShellClient client:idle showFooter={showFooter} showChrome={showChrome} pathname={currentPathname}>
   <slot />
 </DashboardShellClient>
 
